@@ -1,0 +1,33 @@
+url: https://pkgdown.r-lib.org
+title: Manifold Destiny
+template:
+  params:
+    bootswatch: flatly
+navbar:
+  type: inverse
+  left:
+    - icon: fa-home 
+    - text: "General algorithm"
+      href: "articles/General_algorithm.html"
+    - text: "Stylized Model"
+      href: "articles/Stylized_model.html"
+    - text: "Presentation"
+      href: "articles/Presentation.html"
+    - text: "Applications"
+      icon: fas fa-book
+      menu:
+      - text: "Arizona"
+        href: "articles/Application_Arizona.html"
+      - text: "Nevada"
+        href: "articles/Application_Nevada.html"
+      - text: "Texas"
+        href: "articles/Application_Texas.html"
+    - text: "References"
+      href: "stuff/man_bib.bib"
+    - text: "Log"
+      href: "news/index.html" 
+  right:
+    - icon: fa-github fa-lg
+      text: "github"
+      href: https://github.com/lotariohw26/ManifoldDestiny
+reference:

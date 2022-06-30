@@ -1,0 +1,69 @@
+---
+title: ""
+output: github_document
+---
+
+## Maricopa county
+
+```{r include=FALSE}
+library(ManifoldDestiny)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r, echo=T}
+knitr::knit_exit()
+```
+
+# All vectors
+```{r}
+dfc <- dplyr::select(ManifoldDestiny::maricopa_sel,pre,a,b,c,d)
+veclist <- allvectors(dfc)
+vecone <- veclist[[1]]
+natural <- aggordered(vecone,polynr=6,arrangevar='y')
+```
+
+# Part I
+```{r echo=FALSE}
+plotall <- quintileplot2(quintile_df=natural)
+```
+
+```{r echo=FALSE}
+plotall[[1]]
+```
+```{r echo=FALSE}
+plotall[[2]]
+```
+```{r echo=FALSE}
+plotall[[3]]
+```
+```{r echo=FALSE}
+plotall[[4]]
+```
+
+# Part II
+```{r}
+library(ggpmisc)
+df <- df_stdform()
+foragg <- 'y ~ y_est'
+ggplot2::ggplot(data=df,aes(x=y_est,y=y)) + geom_point() + ggplot2::geom_smooth(method='lm') + stat_poly_eq(formula = foragg,digits=10, parse = TRUE) + ggplot2::aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~"))
+
+
+
+```{r setup}
+#knitr::opts_chunk$set(eval = FALSE, include = FALSE)
+# Permutation
+#perm <- 1
+#comb <- c(1,2,3)
+#perm_sel_df  <- vec_list[[perm]] %>% dplyr::select(1,8:12) 	
+#mean(perm_sel_df$x)
+#mean(perm_sel_df$y)
+#mean(perm_sel_df$zeta)
+#sd(perm_sel_df$x)
+#sd(perm_sel_df$y)
+#sd(perm_sel_df$zeta)
+#perm_df %>% dplyr::select(1,1+comb)
+#names(perm_df) <- c("pre","x","y","alpa")
+#perm_sel_df
+```
+

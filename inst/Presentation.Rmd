@@ -1,0 +1,446 @@
+---
+title: "Manifold Destiny"
+date: "2021/08/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    includes:
+      in_header: "mathjax-equation-numbers.html"
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: FALSE
+---
+
+<!-- LIbraries
+################################################################################################# 
+-->
+
+```{r include=FALSE}
+library(ManifoldDestiny)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(purrr)
+library(randNames)
+library(openxlsx)
+library(patchwork)
+library(writexl)
+library(plotly)
+library(ViewPipeSteps)
+library(RefManageR)
+library(ggpubr)
+```
+<!-- References
+################################################################################################# 
+-->
+
+```{r setup, include=FALSE}
+BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown",
+           dashed = TRUE)
+file.name <- paste0("man_bib.bib")
+bib <- ReadBib(file.name)
+```
+
+<!-- Reading script
+################################################################################################# 
+-->
+
+```{r, eval=T, echo=F, message=F, warning=F}
+### Loading equations
+source('script/stylized.R')
+load("~/research/ManifoldDestiny/data/eqpar.rda")
+modlat <- eqpar$meql
+```
+
+
+<!-- Presentation
+################################################################################################# 
+-->
+
+```{r eval=FALSE, include=FALSE}
+setwd(rprojroot::find_rstudio_root_file())
+tes <- "inst/Presentation.Rmd"
+xaringan::inf_mr(tes)
+rmarkdown::render(tes)
+```
+
+Ed. Solomon
+
+> "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. In a fair election, the aggregate cannot be known until after all ballots are cast; in an election that is unfair, where the aggregate was predetermined, the aggregate becomes the cause and the Mail-in Vote (and/or the Election Day Vote) becomes the effect...and the laws of mathematics allow us to readily discern between which was the cause...and which was the effect."
+
+> To Paraphrase Immanuel Kant:  “The causation is the thing without which, is a condition of possibility of a thing, and so it is satisfied in the thing.”  
+
+---
+
+class: inverse, center, middle
+
+# Setting up the simplified framework (two modes of voting)
+---
+
+## Integers 
+\begin{equation*}
+a=\text{Number of votes for candidate A mode 1}
+\end{equation*}
+\begin{equation*}
+b=\text{Number of votes for candidate B mode 1}
+\end{equation*}
+\begin{equation*}
+c=\text{Number of votes for candidate A mode 2}
+\end{equation*}
+\begin{equation*}
+d=\text{Number of votes for candidate A mode 2}
+\end{equation*}
+## Percentages
+\begin{equation*}
+x=`r modlat$cx`
+\end{equation*}
+\begin{equation*}
+y=`r modlat$cy`
+\end{equation*}
+\begin{equation*}
+\alpha=`r modlat$cal`
+\end{equation*}
+\begin{equation*}
+\zeta=`r modlat$cal`
+\end{equation*}
+
+---
+
+## Examples of major elections based on two modes of voting
+
+- Venezuela referendum to recall President Hugo Chávez (2004)
+	- Mode 1: Computerized Voting Centers
+	- Mode 2: Manuel Voting Centers
+
+- USA Presidental elections (2020)
+	- Mode 1: Election day voting (EDV)
+	- Mode 2: Mail in votes/Early voting (MiV)
+
+`r Citet(bib, "delfino2011analysis")`
+> HYPOTHESIS: In computerized centers, official results were **forced to follow a linear relationship** with respect to the number of signatures.
+
+---
+
+
+class: inverse, center, middle
+
+# The main phases of a fair election process
+---
+
+## Phase 1: Initiating the voterroll database
+
+---
+
+## Phase 2: The counting process
+
+---
+
+## Phase 3: Initiating the voterroll database
+
+---
+
+## Phase 4: Updating the voterroll database
+
+---
+
+class: inverse, center, middle
+
+# The main phases of the rigged election process
+
+---
+
+## Phase 1: Initiating the voterroll database
+
+---
+
+## Phase 2: The counting process
+
+Three forms of rigging
+
+-  Standard form
+-  Hybrid form
+-  Opposition form
+
+---
+
+### Standard form
+Parameters: $x$, $y$, $\alpha$, $\lambda$ $\zeta$
+
+\begin{equation*}
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
+
+---
+
+### Hybrid form
+Parameters: $g$, $h$, $\alpha$, $\Omega$, $\Gamma$
+
+\begin{equation*}
+\alpha=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
+
+---
+
+### Opposition form
+Parameters: $m$, $n$, $\Omega$, $\lambda$, $\xi$
+
+\begin{equation*}
+\alpha=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
+
+---
+
+## Phase 3: Polynominal 
+
+---
+
+## Phase 4: Updating the voterroll database
+
+---
+
+class: inverse, center, middle
+
+# Empirical applications
+
+---
+
+## Application 1: Maricopa (standard form)
+
+---
+
+## Application 2: Maricopa (hybrid form)
+
+---
+
+## Application 3: Maricopa (oppostion form)
+
+---
+
+class: inverse, center, middle
+
+# Conclusions
+
+---
+
+- Abc
+  - Def 
+  - Def 
+  - Ghi
+
+---
+
+# References
+
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(bib)
+```
+
+---
+
+class: inverse, center, middle
+
+# Appendix: Parametric tautologies
+
+
+```{r, eval=T, echo=F}
+knitr::knit_exit()
+```
+
+
+
+```{r, eval=F, echo=F}
+str(modlat)
+```
+
+---
+
+.pull-left[
+## Integers 
+\begin{equation*}
+a=\text{Trump votes mode 1}
+\end{equation*}
+\begin{equation*}
+b=\text{Biden votes mode 1}
+\end{equation*}
+\begin{equation*}
+c=\text{Trump votes mode 2}
+\end{equation*}
+\begin{equation*}
+d=\text{Biden votes mode 2}
+\end{equation*}
+## Percentages
+\begin{equation*}
+x=`r modlat$cx`
+\end{equation*}
+\begin{equation*}
+y=`r modlat$cy`
+\end{equation*}
+\begin{equation*}
+g=`r modlat$cg`
+\end{equation*}
+\begin{equation*}
+h=`r modlat$ch`
+\end{equation*}
+]
+.pull-left[
+\begin{equation*}
+m=`r modlat$cm`
+\end{equation*}
+\begin{equation*}
+n=`r modlat$cn`
+\end{equation*}
+\begin{equation*}
+\alpha=`r modlat$cal`
+\end{equation*}
+\begin{equation*}
+\lambda=`r modlat$cla`
+\end{equation*}
+\begin{equation*}
+\Omega=`r modlat$com`
+\end{equation*}
+\begin{equation*}
+\zeta=`r modlat$cal`
+\end{equation*}
+\begin{equation*}
+\xi=`r modlat$alpha_s[1]`
+\end{equation*}
+\begin{equation*}
+\Gamma=`r modlat$alpha_s[1]`
+\end{equation*}
+]
+
+---
+
+### Standard form 
+Parameters: $x$, $y$, $\alpha$, $\lambda$ $\zeta$
+
+\begin{equation*}
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
+
+---
+
+### Hybrid form 
+Parameters: $g$, $h$, $\alpha$, $\Omega$, $\Gamma$
+
+\begin{equation*}
+\alpha=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
+
+---
+
+### Opposition form 
+Parameters: $m$, $n$, $\Omega$, $\lambda$, $\xi$
+
+\begin{equation*}
+\alpha=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
+
+```{r, eval=T, echo=F}
+knitr::knit_exit()
+```
+
+
+```{r}
+# State 1
+pol_order_s1 <- 6
+c1 <- 0.05
+#State 2
+phantom_s2 <- 6
+c2 <- 0.05
+```
+
+
+# Simplifying assumption
+
+- Two states, each with two counties
+- Two modes of voting
+
+# Phase #1: Initiating the voter database
+
+```{r echo=FALSE}
+vb1 <- dgprealized(state=1,maxpeople=100,credit=c1)
+vb2 <- dgprealized(state=2,maxpeople=100,credit=c2)
+voterdatabase <- dplyr::bind_rows(vb1,vb2)
+writexl::write_xlsx(voterdatabase, paste0('voterdatabase.xlsx'))
+#voterdatabase <- readxl::read_excel("voterdatabase.xlsx")
+#system('libreoffice voterdatabase.xlsx')
+```
+
+# Phase #2: Counting process
+  
+```{r}
+state1_election_data <- filter(voterdatabase,state==1)
+state2_election_data <- filter(voterdatabase,state==2)
+View(state2_election_data)
+#natural <- polinj(voterdatabase,polynr=7)
+#natural1 <- polinj(state1_election_data,polynr=7)
+#natural2 <- polinj(state2_election_data,polynr=7)
+#gridExtra::grid.arrange(natural[[3]],natural1[[3]],natural2[[3]])
+################################################################################################### ## State 1: Fair election ###
+## Counting and sorting
+election_box_df_state1 <- countingp(state1_election_data)
+View(election_box_df_state1)
+quintile_df_s1 <- sortprecinct(election_box_df_state1,pol_order=2,M=F)
+####################################################################################################
+quintileplot(quintile_df=quintile_df_s1,filcou='A')[[1]]
+
+#quintileplot(quintile_df=quintile_df_s1,filcou='B')[[1]]
+
+# Correlation
+a <- quintile_df_s1 %>% tidyr::pivot_wider() %>%
+	dplyr::group_by(county,votetype) %>%
+	dplyr::mutate(cxy=cor(x,y)) %>%
+	dplyr::mutate(cxalpha=cor(x,alpha)) %>%
+	dplyr::distinct()
+####################################################################################################
+## State 2: Rigged election ###
+### Countingprocess
+### Sorting and predicting
+election_box_df_s2 <- countingp(state2_election_data)
+###################################################################################################
+```
+
+## Natural election in state 1
+
+## Rigged election in state 2
+
+# Phase #3: Polynominal
+
+# Phase #4: Updating the voter databse
+
+
+# References
+
+
+# First
+
+```{r, echo=FALSE,message=F,out.width="75%",out.height="70%",fig.cap="",fig.show='hold',fig.align='center'}
+ggplotly(gcou$plotxy(c("x","y")))
+```
+
+---
+
+# Second
+
+```{r, echo=FALSE,message=F,out.width="75%",out.height="70%",fig.cap="",fig.show='hold',fig.align='center'}
+gquil <- gcou$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
+gzeta <- gcou$plot2d(selvp=c("zeta"),selvl='zeta_m')
+plotly::subplot(gquil,gzeta,nrows=2)
+```
+
+---
+
+
+Referanse
+`r Citet(bib, "delfino2011analysis")`
+
+
+\begin{equation*}
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
+\end{equation*}
+
+\begin{equation*}
+x =`r modlat$x_o`
+\end{equation*}

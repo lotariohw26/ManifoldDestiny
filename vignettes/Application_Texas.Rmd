@@ -1,0 +1,46 @@
+---
+title: ""
+output: github_document
+---
+
+## Dallas county 
+
+```{r}
+library(ManifoldDestiny)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r, echo=F}
+knitr::knit_exit()
+```
+
+```{r }
+#View(ManifoldDestiny::dallas_sel)
+dfc <- dallas_sel %>% tidyr::drop_na()
+#dfc <- dplyr::select(ManifoldDestiny::dallas_sel) %>% tidyr::drop_na()
+veclist <- allvectors(dfc)
+vecone <- veclist[[1]]
+natural <- aggordered(vecone,polynr=6)
+```
+
+```{r echo=FALSE}
+plotall <- quintileplot2(quintile_df=natural)
+```
+
+```{r echo=FALSE}
+plotall[[1]]
+```
+
+```{r echo=FALSE}
+plotall[[2]]
+```
+
+```{r echo=FALSE}
+plotall[[3]]
+```
+
+```{r echo=FALSE}
+plotall[[4]]
+```
+

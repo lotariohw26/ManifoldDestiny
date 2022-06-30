@@ -1,0 +1,62 @@
+---
+title: "Equations"
+date: "2021/08/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    includes:
+      in_header: "mathjax-equation-numbers.html"
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+#output: 
+#  html_notebook:
+#  toc: false
+---
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+#xaringanExtra::use_share_again()
+xaringanExtra::use_scribble()
+xaringanExtra::use_webcam()
+```
+
+```{r eval=FALSE, include=FALSE}
+Sys.which('decktape')
+#xaringan::decktape("presentations.html", output="abc.pdf")
+xaringan::inf_mr("calcboard.Rmd")
+```
+---
+
+```{r}
+a <- 'a'
+b <- 'b'
+c <- 'c'
+d <- 'd'
+alpha <- 'alpha'
+zeta <- 'zeta'
+```
+
+
+# Def
+
+$$
+a = \frac{`r a`}{Z}
+$$
+
+# Abc
+
+```{r, echo=FALSE}
+# set variables
+
+set.seed(1)
+values <- sample(10:100, sample(3:5))/10
+lv <- length(values)
+avg <- sum(values)/lv
+```
+
+$\hat{v} = \frac{`r paste(values, collapse=" + ")`}{`r lv`} = `r round(avg, 3)`$
+
+---
+

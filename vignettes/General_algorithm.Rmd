@@ -1,0 +1,40 @@
+---
+title: ""
+output: github_document
+---
+
+```{r eval=F, echo=F}
+setwd(rprojroot::find_rstudio_root_file())
+filp <- 'vignettes/General_algorithm.Rmd'
+rmarkdown::render(filp)
+```
+
+```{r setup, echo=F}
+library(ManifoldDestiny)
+```
+
+# Abc
+
+![](abc.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

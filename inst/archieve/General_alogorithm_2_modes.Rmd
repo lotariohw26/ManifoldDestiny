@@ -1,0 +1,57 @@
+---
+title: "General_alogorithm"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{General_alogorithm}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo=F}
+library(ManifoldDestiny)
+```
+
+![](pngs/election_phases.png)
+
+# Symbolic notation
+## Definitions
+
+## Formulas
+
+
+# Fair election
+
+- $x=\frac{a}{a+b}$
+- $y=\frac{c}{c+d}$
+- $\alpha=\frac{x}{Z}+\frac{Z\cdot y}{Z+1}$
+- $Z=\frac{c+d}{a+b}$
+
+$x$ and $y$ causes $\\alpha$
+
+# Rigged election
+
+1. $\alpha$
+1. $x$
+1. $y=formula$
+1. $\zeta=altformula$
+
+$\alpha$ and $x$ causes $y$
+
+# The four phases of the general algorithm 
+
+## Phase #1: Initiating the voter database
+
+## Phase #2: Manifold Destiny
+
+## Phase #3: Phantom-voters
+
+## Phase #4: Updating the voter databse
+
+

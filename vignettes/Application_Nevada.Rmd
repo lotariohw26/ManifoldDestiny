@@ -1,0 +1,68 @@
+---
+title: ""
+output: github_document
+---
+
+## Clark county
+
+```{r}
+library(ManifoldDestiny)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r, echo=F}
+knitr::knit_exit()
+```
+
+# All vectors
+```{r }
+dfc <- dplyr::select(ManifoldDestiny::clark_sel,pre,a,b,c,d) %>% tidyr::drop_na()
+veclist <- allvectors(dfc)
+vecone <- veclist[[2]]
+natural <- aggordered(vecone,polynr=6,arrangevar='y')
+
+```
+
+```{r echo=FALSE}
+plotall <- quintileplot2(quintile_df=natural)
+```
+
+```{r echo=FALSE}
+plotall[[1]]
+```
+```{r echo=FALSE}
+plotall[[2]]
+```
+```{r echo=FALSE}
+plotall[[3]]
+```
+```{r echo=FALSE}
+plotall[[4]]
+```
+
+# Permutation
+```{r setup}
+#g_stdform <- function(parsurf='(alpha+k1+k2*h)/(k3)',alpha=0.50,h=0.5,
+#		      k=list(k1=0.0010245,k2=0.369029,k3=0.633491)){
+#	eval(parse(text=parsurf),c(list(alpha=alpha,h=h),k))
+#}
+#g_stdform()
+#df <- vecone %>% dplyr::mutate(g_est=g_stdform(alpha=alpha,h=h))
+#View(df)
+#ggplot2::ggplot(data=df,aes(x=g_est,y=g)) + geom_point() + ggplot2::geom_smooth(method='lm')
+#
+#perm <- 1
+#comb <- c(1,2,3)
+# #perm_sel_df  <- vec_list[[perm]] %>% dplyr::select(1,8:12) 	
+#mean(perm_sel_df$x)
+#mean(perm_sel_df$y)
+#mean(perm_sel_df$zeta)
+#sd(perm_sel_df$x)
+#sd(perm_sel_df$y)
+#sd(perm_sel_df$zeta)
+#perm_df %>% dplyr::select(1,1+comb)
+#names(perm_df) <- c("pre","x","y","alpa")
+#perm_sel_df
+```
+

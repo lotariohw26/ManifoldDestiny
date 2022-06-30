@@ -1,0 +1,62 @@
+---
+title: ""
+output: html_document
+---
+
+
+
+```{r eval=F}
+setwd(rprojroot::find_rstudio_root_file())
+filp <- 'vignettes/Stylized_model.Rmd'
+rmarkdown::render(filp)
+```
+
+```{r include=FALSE}
+library(ManifoldDestiny)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(purrr)
+library(randNames)
+library(openxlsx)
+library(patchwork)
+library(writexl)
+library(plotly)
+library(ViewPipeSteps)
+library(RefManageR)
+library(ggpubr)
+```
+
+```{r, eval=T, echo=F, message=F, warning=F}
+### Loading equations
+#source('inst/script/stylized.R')
+load("~/research/ManifoldDestiny/data/eqpar.rda")
+modlat <- eqpar$meql
+```
+
+# Abc
+
+$$
+a=\text{Number of votes for candidate A mode 1}
+$$
+
+
+## Percentages
+\begin{equation*}
+x=`r modlat$cx`
+\end{equation*}
+
+
+# Def
+
+
+
+
+
+
+
+
+
+
+
+
