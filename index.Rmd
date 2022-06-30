@@ -1,12 +1,20 @@
 ---
 title: ""
-#output: html_document
-#always_allow_html: true
+output: github_document
+always_allow_html: true
 ---
 
 ```{r, eval=F, echo=F}
 rmarkdown::render("index.Rmd")
 ```
+
+```{r, echo=F, message=F, warning=F}
+### Loading equations
+#source('inst/script/stylized.R')
+#load("~/research/ManifoldDestiny/data/eqpar.rda")
+#modlat <- eqpar$meql
+```
+
 
 ```{r, eval=F, echo=F}
 pkgdown::build_site()
@@ -16,6 +24,7 @@ pkgdown::build_articles()
 pkgdown::build_news()
 usethis::use_news_md("")
 system("cp inst/Presentation.html docs/articles/Presentation.html")
+system("cp inst/Graphical.html docs/articles/Graphical.html")
 system("cp inst/man_bib.bib docs/stuff/man_bib.bib")
 ```
 
@@ -27,12 +36,10 @@ Ed. Solomon
 
 
 
-
-
-
 ```{r, echo=F, eval=T}
 knitr::knit_exit()
 ```
+
 # Now
 vignettes/Stylized_model.Rmd
 data-raw/xlsx/

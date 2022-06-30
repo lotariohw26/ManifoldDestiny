@@ -13,6 +13,8 @@ navbar:
       href: "articles/Stylized_model.html"
     - text: "Presentation"
       href: "articles/Presentation.html"
+    - text: "Graphical"
+      href: "articles/Graphical.html"
     - text: "Applications"
       icon: fas fa-book
       menu:

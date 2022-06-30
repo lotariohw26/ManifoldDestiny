@@ -265,7 +265,7 @@ Countinggraphs$methods(resplot=function(resvar=c("zeta_r","alpha_res")){
 
 })
 Countinggraphs$methods(trplot=function(selvar=c('x','y','alpha')){
-browser()	
+
 	mrdfc <- as.matrix(rdfc)
 	x <- mrdfc[,selvar[1]]
 	y <- mrdfc[,selvar[2]]

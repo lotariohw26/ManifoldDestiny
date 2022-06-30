@@ -7,7 +7,7 @@ articles:
   Application_Texas: Application_Texas.html
   General_algorithm: General_algorithm.html
   Stylized_model: Stylized_model.html
-last_built: 2022-06-30T21:34Z
+last_built: 2022-06-30T21:46Z
 urls:
   reference: https://pkgdown.r-lib.org/reference
   article: https://pkgdown.r-lib.org/articles

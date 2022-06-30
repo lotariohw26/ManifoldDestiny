@@ -11,9 +11,9 @@ library(writexl)
 library(plotly)
 library(ViewPipeSteps)
 library(ggpubr)
-setwd(rprojroot::find_rstudio_root_file())
-source('R/misc.R')
-source('R/class.R')
+#setwd(rprojroot::find_rstudio_root_file())
+source('../R/misc.R')
+source('../R/class.R')
 snr <- 1 
 set.seed(snr)
 #################################################################################################
@@ -42,16 +42,6 @@ gcou$sortpre()
 #round(polynom::integral(polr,c(0,1)),digits=4)
 #grig$riggsta()
 #grig$sortpre(selvar=c("x_s","x","y","y_s","alpha","alpha_s"))
-#### Tab1
-#grig$plot2d(selvp=c("x_s","y_s","alpha_s","alpha"),selvl=c("x_s_pred","y_s_pred","alpha_s_pred","alpha_pred"))
-#### Tab2
-#grig$resplot(resvar=c('zeta_m','alpha_s_res'))
-#### Tab3
-#grig$resplot(resvar=c('zeta_m','y_s_res'))
-#### Tab4
-#grig$resplot(resvar=c('zeta_m','y_s_res'))
-#### Tab5
-#grig$trplot(c('x_s','y_s','alpha_s'))
 ##################################################################################################33
 ### Estimation ###
 #est <- Estimation()
@@ -107,3 +97,14 @@ gcou$sortpre()
 #  div(og[9], style = "width: 40%; border: solid;"),
 #  div(og[10], style = "width: 40%; border: solid;")
 #))
+
+#### Tab1
+#grig$plot2d(selvp=c("x_s","y_s","alpha_s","alpha"),selvl=c("x_s_pred","y_s_pred","alpha_s_pred","alpha_pred"))
+#### Tab2
+#grig$resplot(resvar=c('zeta_m','alpha_s_res'))
+#### Tab3
+#grig$resplot(resvar=c('zeta_m','y_s_res'))
+#### Tab4
+#grig$resplot(resvar=c('zeta_m','y_s_res'))
+#### Tab5
+#grig$trplot(c('x_s','y_s','alpha_s'))

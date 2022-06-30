@@ -122,6 +122,13 @@ y=`r modlat$cy`
 
 ---
 
+## Simplifying assumption
+- Two states, each with two counties
+- Two modes of voting
+- Natural election in state 1
+- Rigged election in state 2
+
+---
 
 class: inverse, center, middle
 
@@ -342,105 +349,4 @@ knitr::knit_exit()
 ```
 
 
-```{r}
-# State 1
-pol_order_s1 <- 6
-c1 <- 0.05
-#State 2
-phantom_s2 <- 6
-c2 <- 0.05
-```
 
-
-# Simplifying assumption
-
-- Two states, each with two counties
-- Two modes of voting
-
-# Phase #1: Initiating the voter database
-
-```{r echo=FALSE}
-vb1 <- dgprealized(state=1,maxpeople=100,credit=c1)
-vb2 <- dgprealized(state=2,maxpeople=100,credit=c2)
-voterdatabase <- dplyr::bind_rows(vb1,vb2)
-writexl::write_xlsx(voterdatabase, paste0('voterdatabase.xlsx'))
-#voterdatabase <- readxl::read_excel("voterdatabase.xlsx")
-#system('libreoffice voterdatabase.xlsx')
-```
-
-# Phase #2: Counting process
-  
-```{r}
-state1_election_data <- filter(voterdatabase,state==1)
-state2_election_data <- filter(voterdatabase,state==2)
-View(state2_election_data)
-#natural <- polinj(voterdatabase,polynr=7)
-#natural1 <- polinj(state1_election_data,polynr=7)
-#natural2 <- polinj(state2_election_data,polynr=7)
-#gridExtra::grid.arrange(natural[[3]],natural1[[3]],natural2[[3]])
-################################################################################################### ## State 1: Fair election ###
-## Counting and sorting
-election_box_df_state1 <- countingp(state1_election_data)
-View(election_box_df_state1)
-quintile_df_s1 <- sortprecinct(election_box_df_state1,pol_order=2,M=F)
-####################################################################################################
-quintileplot(quintile_df=quintile_df_s1,filcou='A')[[1]]
-
-#quintileplot(quintile_df=quintile_df_s1,filcou='B')[[1]]
-
-# Correlation
-a <- quintile_df_s1 %>% tidyr::pivot_wider() %>%
-	dplyr::group_by(county,votetype) %>%
-	dplyr::mutate(cxy=cor(x,y)) %>%
-	dplyr::mutate(cxalpha=cor(x,alpha)) %>%
-	dplyr::distinct()
-####################################################################################################
-## State 2: Rigged election ###
-### Countingprocess
-### Sorting and predicting
-election_box_df_s2 <- countingp(state2_election_data)
-###################################################################################################
-```
-
-## Natural election in state 1
-
-## Rigged election in state 2
-
-# Phase #3: Polynominal
-
-# Phase #4: Updating the voter databse
-
-
-# References
-
-
-# First
-
-```{r, echo=FALSE,message=F,out.width="75%",out.height="70%",fig.cap="",fig.show='hold',fig.align='center'}
-ggplotly(gcou$plotxy(c("x","y")))
-```
-
----
-
-# Second
-
-```{r, echo=FALSE,message=F,out.width="75%",out.height="70%",fig.cap="",fig.show='hold',fig.align='center'}
-gquil <- gcou$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
-gzeta <- gcou$plot2d(selvp=c("zeta"),selvl='zeta_m')
-plotly::subplot(gquil,gzeta,nrows=2)
-```
-
----
-
-
-Referanse
-`r Citet(bib, "delfino2011analysis")`
-
-
-\begin{equation*}
-\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
-\end{equation*}
-
-\begin{equation*}
-x =`r modlat$x_o`
-\end{equation*}
