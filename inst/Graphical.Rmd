@@ -26,13 +26,12 @@ library(RefManageR)
 library(ggpubr)
 ```
 
-
 ```{r, eval=T, echo=F, message=F, warning=F}
 ### Loading equations
 #setwd(rprojroot::find_rstudio_root_file())
-source('script/stylized.R')
-load("~/research/ManifoldDestiny/data/eqpar.rda")
-modlat <- eqpar$meql
+#source('script/stylized.R')
+#load("~/research/ManifoldDestiny/data/eqpar.rda")
+#modlat <- eqpar$meql
 ```
 
 

@@ -36,9 +36,53 @@ load("~/research/ManifoldDestiny/data/eqpar.rda")
 modlat <- eqpar$meql
 ```
 
-# Graphical 
+```{r include=FALSE}
+library(ManifoldDestiny)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(purrr)
+library(randNames)
+library(openxlsx)
+library(patchwork)
+library(writexl)
+library(plotly)
+library(ViewPipeSteps)
+library(RefManageR)
+library(ggpubr)
+```
+
+# Graphical: Fair election process
+## Tab 1
+Some text here
+```{r}
+gcou$plotxy(c("x","y"))
+ggplotly(gcou$plotxy(c("x","y")))
+```
+
+## Tab 2
+## Tab 3	
+## Tab 4
+
+# Rigged election process: Fair election process
+## Tab 1
+## Tab 2
+## Tab 3	
+## Tab 4
 
 
-123
 
-Writfe morew
+
+
+
+
+
+
+
+
+
+
+
+
+
+

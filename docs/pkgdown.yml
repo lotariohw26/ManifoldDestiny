@@ -6,8 +6,9 @@ articles:
   Application_Nevada: Application_Nevada.html
   Application_Texas: Application_Texas.html
   General_algorithm: General_algorithm.html
+  Graphical: Graphical.html
   Stylized_model: Stylized_model.html
-last_built: 2022-06-30T21:46Z
+last_built: 2022-06-30T22:35Z
 urls:
   reference: https://pkgdown.r-lib.org/reference
   article: https://pkgdown.r-lib.org/articles
