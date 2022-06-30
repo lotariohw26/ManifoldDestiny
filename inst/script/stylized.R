@@ -11,9 +11,9 @@ library(writexl)
 library(plotly)
 library(ViewPipeSteps)
 library(ggpubr)
-#setwd(rprojroot::find_rstudio_root_file())
-source('../R/misc.R')
-source('../R/class.R')
+setwd(rprojroot::find_rstudio_root_file())
+source('R/misc.R')
+source('R/class.R')
 snr <- 1 
 set.seed(snr)
 #################################################################################################
@@ -36,24 +36,17 @@ gcou$sortpre()
 #################################################################################################33
 ### B) Rigged ###
 ### Tab1
-#grig <- Countinggraphs(votr)
-#polr <- polynom::polynomial(grig$polyc[[1]])
+grig <- Countinggraphs(votr)
+polr <- polynom::polynomial(grig$polyc[[1]])
 #polr[1] <- 0.3096 # 0.3469
-#round(polynom::integral(polr,c(0,1)),digits=4)
+round(polynom::integral(polr,c(0,1)),digits=4)
 #grig$riggsta()
 #grig$sortpre(selvar=c("x_s","x","y","y_s","alpha","alpha_s"))
 ##################################################################################################33
 ### Estimation ###
 #est <- Estimation()
 #################################################################################################33
-#library(plotly)
-#p1 <- plot_ly(economics, x = ~date, y = ~unemploy) %>% 
-#  add_lines(name = "unemploy")
-#p2 <- plot_ly(economics, x = ~date, y = ~uempmed) %>% 
-#  add_lines(name = "uempmed")
-#subplot(p1, p2)
-##################################################################################################33
-###### Tab0
+##### Tab0
 #gcou$plotxy(c("x","y"))
 #ggplotly(gcou$plotxy(c("x","y")))
 ###### Tab1
@@ -70,7 +63,7 @@ gcou$sortpre()
 #gcou$trplot(selvar=c('x','y','alpha'))
 #combi <- combinat::combn(5, 3)
 #v <- seq(1,dim(combi)[2])
-#sdfc <- gcou$sdfc %>% dplyr::select(x,y,alpha,lambda,zeta,lambda)
+##sdfc <- gcou$sdfc %>% dplyr::select(x,y,alpha,lambda,zeta,lambda)
 #v%>% purrr::map(function(x,comb=combi,df=sdfc){
 #		gdf <- df %>% dplyr::select(combi[,x])
 #		mrdfc <- as.matrix(gdf)

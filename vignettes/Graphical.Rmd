@@ -9,6 +9,7 @@ output: html_document
 setwd(rprojroot::find_rstudio_root_file())
 filp <- 'vignettes/Graphical.Rmd'
 rmarkdown::render(filp)
+system(paste0('brave vignettes/Graphical.html'))
 ```
 
 ```{r include=FALSE}
@@ -32,8 +33,6 @@ library(ggpubr)
 ### Loading equations
 #setwd(rprojroot::find_rstudio_root_file())
 source('../inst/script/stylized.R')
-load("~/research/ManifoldDestiny/data/eqpar.rda")
-modlat <- eqpar$meql
 ```
 
 ```{r include=FALSE}
@@ -54,35 +53,37 @@ library(ggpubr)
 
 # Graphical: Fair election process
 ## Tab 1
-Some text here
-```{r}
-gcou$plotxy(c("x","y"))
-ggplotly(gcou$plotxy(c("x","y")))
+Some text here abc
+```{r, echo=F, message=F, warning=F}
+g <- gcou$plotxy(c("x","y"))
+ggplotly(g)
 ```
 
 ## Tab 2
+```{r, echo=F, message=F, warning=F}
+#gquil <- gcou$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
+#gzeta <- gcou$plot2d(selvp=c("zeta"),selvl='zeta_m')
+#plotly::subplot(gquil,gzeta,nrows=2)
+```
+
 ## Tab 3	
-## Tab 4
+```{r, echo=F, message=F, warning=F}
+#plotly(gcou$resplot(resvar=c('zeta_m','y_s_res')))
+```
+
+## Tab 4	
+```{r, echo=F, message=F, warning=F}
+#gcou$resplot(resvar=c('zeta_m','y_s_res'))
+```
+
+## Tab 5
+```{r, echo=F, message=F, warning=F}
+gcou$trplot(c('x','y','alpha'))
+```
 
 # Rigged election process: Fair election process
 ## Tab 1
 ## Tab 2
 ## Tab 3	
 ## Tab 4
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

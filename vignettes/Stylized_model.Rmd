@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Stylized_model"
 output: html_document
 ---
 
@@ -9,6 +9,7 @@ output: html_document
 setwd(rprojroot::find_rstudio_root_file())
 filp <- 'vignettes/Stylized_model.Rmd'
 rmarkdown::render(filp)
+system(paste0('brave ','vignettes/Stylized_model.html'))
 ```
 
 ```{r include=FALSE}
@@ -34,23 +35,30 @@ load("~/research/ManifoldDestiny/data/eqpar.rda")
 modlat <- eqpar$meql
 ```
 
-# Abc
+### Standard form
+Parameters: $x$, $y$, $\alpha$, $\lambda$ $\zeta$
 
-$$
-a=\text{Number of votes for candidate A mode 1}
-$$
-
-
-## Percentages
 \begin{equation*}
-x=`r modlat$cx`
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
 \end{equation*}
 
+---
 
-# Def
+### Hybrid form
+Parameters: $g$, $h$, $\alpha$, $\Omega$, $\Gamma$
 
+\begin{equation*}
+\alpha=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
 
+---
 
+### Opposition form
+Parameters: $m$, $n$, $\Omega$, $\lambda$, $\xi$
+
+\begin{equation*}
+\alpha=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
 
 
 

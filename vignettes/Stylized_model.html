@@ -11,7 +11,7 @@
 
 
 
-<title>Stylized_model.knit</title>
+<title>Stylized_model</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,27 +361,40 @@ pre code {
 
 
 
+<h1 class="title toc-ignore">Stylized_model</h1>
 
 </div>
 
 
 <pre class="r"><code>setwd(rprojroot::find_rstudio_root_file())
 filp &lt;- &#39;vignettes/Stylized_model.Rmd&#39;
-rmarkdown::render(filp)</code></pre>
-<div id="abc" class="section level1">
-<h1>Abc</h1>
-<p><span class="math display">\[
-a=\text{Number of votes for candidate A mode 1}
-\]</span></p>
-<div id="percentages" class="section level2">
-<h2>Percentages</h2>
+rmarkdown::render(filp)
+system(paste0(&#39;brave &#39;,&#39;vignettes/Stylized_model.html&#39;))</code></pre>
+<div id="standard-form" class="section level3">
+<h3>Standard form</h3>
+<p>Parameters: <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\lambda\)</span> <span class="math inline">\(\zeta\)</span></p>
 <p><span class="math display">\[\begin{equation*}
-x=\frac{a}{a + b}
+\alpha=\Omega x + y \left(1 - \Omega\right)=\frac{x + y \zeta}{\zeta +
+1}=\frac{\Gamma h + g}{\Gamma + 1}=\frac{1}{\xi + 1}
 \end{equation*}\]</span></p>
+<hr />
 </div>
+<div id="hybrid-form" class="section level3">
+<h3>Hybrid form</h3>
+<p>Parameters: <span class="math inline">\(g\)</span>, <span class="math inline">\(h\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\Omega\)</span>, <span class="math inline">\(\Gamma\)</span></p>
+<p><span class="math display">\[\begin{equation*}
+\alpha=\frac{x + y \zeta}{\zeta + 1}=\frac{\Gamma h + g}{\Gamma +
+1}=\frac{1}{\xi + 1}
+\end{equation*}\]</span></p>
+<hr />
 </div>
-<div id="def" class="section level1">
-<h1>Def</h1>
+<div id="opposition-form" class="section level3">
+<h3>Opposition form</h3>
+<p>Parameters: <span class="math inline">\(m\)</span>, <span class="math inline">\(n\)</span>, <span class="math inline">\(\Omega\)</span>, <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\xi\)</span></p>
+<p><span class="math display">\[\begin{equation*}
+\alpha=\frac{x + y \zeta}{\zeta + 1}=\frac{\Gamma h + g}{\Gamma +
+1}=\frac{1}{\xi + 1}
+\end{equation*}\]</span></p>
 </div>
 
 

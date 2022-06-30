@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> • Manifold Destiny</title>
+<title>Stylized_model • Manifold Destiny</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Stylized_model">
 <meta property="og:description" content="ManifoldDestiny">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -105,7 +105,7 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip></h1>
+      <h1 data-toc-skip>Stylized_model</h1>
             
       
       
@@ -118,32 +118,42 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="fu">rprojroot</span><span class="fu">::</span><span class="fu"><a href="https://rprojroot.r-lib.org/reference/find_root_file.html" class="external-link">find_rstudio_root_file</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="va">filp</span> <span class="op">&lt;-</span> <span class="st">'vignettes/Stylized_model.Rmd'</span>
-<span class="fu">rmarkdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">render</a></span><span class="op">(</span><span class="va">filp</span><span class="op">)</span></code></pre></div>
-<div class="section level2">
-<h2 id="abc">Abc<a class="anchor" aria-label="anchor" href="#abc"></a>
-</h2>
-<p><span class="math display">\[
-a=\text{Number of votes for candidate A mode 1}
-\]</span></p>
+<span class="fu">rmarkdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">render</a></span><span class="op">(</span><span class="va">filp</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.html" class="external-link">system</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'brave '</span>,<span class="st">'vignettes/Stylized_model.html'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="section level3">
-<h3 id="percentages">Percentages<a class="anchor" aria-label="anchor" href="#percentages"></a>
+<h3 id="standard-form">Standard form<a class="anchor" aria-label="anchor" href="#standard-form"></a>
 </h3>
+<p>Parameters: <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\lambda\)</span> <span class="math inline">\(\zeta\)</span></p>
 <p><span class="math display">\[\begin{equation*}
-x=\frac{a}{a + b}
+\alpha=\Omega x + y \left(1 - \Omega\right)=\frac{x + y \zeta}{\zeta +
+1}=\frac{\Gamma h + g}{\Gamma + 1}=\frac{1}{\xi + 1}
 \end{equation*}\]</span></p>
+<hr>
 </div>
+<div class="section level3">
+<h3 id="hybrid-form">Hybrid form<a class="anchor" aria-label="anchor" href="#hybrid-form"></a>
+</h3>
+<p>Parameters: <span class="math inline">\(g\)</span>, <span class="math inline">\(h\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\Omega\)</span>, <span class="math inline">\(\Gamma\)</span></p>
+<p><span class="math display">\[\begin{equation*}
+\alpha=\frac{x + y \zeta}{\zeta + 1}=\frac{\Gamma h + g}{\Gamma +
+1}=\frac{1}{\xi + 1}
+\end{equation*}\]</span></p>
+<hr>
 </div>
-<div class="section level2">
-<h2 id="def">Def<a class="anchor" aria-label="anchor" href="#def"></a>
-</h2>
+<div class="section level3">
+<h3 id="opposition-form">Opposition form<a class="anchor" aria-label="anchor" href="#opposition-form"></a>
+</h3>
+<p>Parameters: <span class="math inline">\(m\)</span>, <span class="math inline">\(n\)</span>, <span class="math inline">\(\Omega\)</span>, <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\xi\)</span></p>
+<p><span class="math display">\[\begin{equation*}
+\alpha=\frac{x + y \zeta}{\zeta + 1}=\frac{\Gamma h + g}{\Gamma +
+1}=\frac{1}{\xi + 1}
+\end{equation*}\]</span></p>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
