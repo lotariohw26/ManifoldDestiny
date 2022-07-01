@@ -3,6 +3,7 @@
 #' @export pareq
 pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))
 {
+	browser()
   eval(parse(text=ste),lv)
 }
 ###########################################################################################################################################################
@@ -213,16 +214,14 @@ Countingprocess$methods(riggsta=function(
   polycl <- list(polyc[[1]],polyadj)[[ifelse(is.null(polyadj),1,2)]]
   pf <- polynom::polynomial(polycl[[1]])
   predv <- predict(pf,quintile$alpha)
-
   pardf <<- dplyr::select(quintile,param$pre,param$end) %>%
     # Presetting three parameters
-    dplyr::mutate(end1=x) %>%
-    dplyr::mutate(end2=predv) %>%
-    dplyr::mutate(end3=rnorm(n(),1,0.01)) %>%
-    # Solving for two remaining parameters
-    dplyr::mutate(end4=pareq(ste=pareqs$meqs[['alpha_s']][2],lv=list(x=x,y=y,zeta=zeta))) %>%
-    dplyr::mutate(end5=pareq(ste=pareqs$meqs[['alpha_s']][2],lv=list(x=x,y=y,zeta=zeta)))
-    
+    dplyr::mutate(x_s=x) %>%
+    dplyr::mutate(alpha_s=predv) %>%
+    dplyr::mutate(zeta_s=rnorm(n(),1,0.01)) %>% 
+    dplyr::mutate(y_s=pareq(ste=pareqs$meqs[['y_s']][1],lv=list(x=x_s,alpha=alpha_s,zeta=zeta_s))) %>%
+    dplyr::mutate(lambda_s=pareq(ste=pareqs$meqs[['y_s']][1],lv=list(x=x_s,alpha=alpha_s,zeta=zeta_s))) 
+  browser()  
     names(pardf)[6:10] <<- paste(c(param$pre,param$end),"s", sep="_")
 })
 Countingprocess$methods(rigghyp=function(sdfinp=NULL){

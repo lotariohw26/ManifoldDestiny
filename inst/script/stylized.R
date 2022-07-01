@@ -29,7 +29,7 @@ probvset <- list(c(0.70,0.30,0.00),c(0.30,0.70,0.00))
 Znr <- c(0,1)
 vrdf$realizedgp(probv=probvset,Ztech=Znr)
 votr <- vrdf$voterrollrealized
-#################################################################################################33
+################################################################################################33
 ### A) Fair ###
 #gcou <- Countinggraphs(votr)
 #gcou$sortpre()
@@ -43,7 +43,6 @@ polr <- polynom::polynomial(grig$polyc[[1]])
 #polr[1] <- 0.3096 # 0.3469
 round(polynom::integral(polr,c(0,1)),digits=4)
 grig$riggsta()
-View(grig$pardf)
 #grig$sortpre(selvar=c("x_s","x","y","y_s","alpha","alpha_s"))
 ##################################################################################################33
 ### Estimation ###
