@@ -3,6 +3,8 @@ pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))
 {
   eval(parse(text=ste),lv)
 }
+###########################################################################################################################################################
+###########################################################################################################################################################
 #' A class description
 #' @export Voterdatabase
 #' @export class Voterdatabase
@@ -116,7 +118,8 @@ Grafbase <- setRefClass("Grafbase", contains = c('Voterdatabase'), fields = list
 #' @export Tablebase
 #' @exportClass Tablebase
 Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = list(ghi='list'))
-####################################################################################################
+###########################################################################################################################################################
+###########################################################################################################################################################
 #' @export class Countingprocess
 Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',polyc='list',parameters='list', pareqs='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
@@ -138,7 +141,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
   #pareq(ste=s,lv)
   
   # Parameters?
-#  parameters <<- list(standard=c("x","y","alpha","zeta","lambda"), 
+# iparameters <<- list(standard=c("x","y","alpha","zeta","lambda"), 
 #  		      hybrid=c("g","h","Omega","lambda","xi"),
 #		      opposition=c("m","n","Omega","xi","lambda"))
   sdfc <<- sdfinp %>% dplyr::select(pre,a,b,c,d) %>% dplyr::group_by(pre) %>% 
@@ -204,19 +207,21 @@ Countingprocess$methods(riggsta=function(
 					 param=list(pre=c('x','alpha','zeta'), end=c('y','lambda')), 
 					 polyadj=NULL
 					 ){
-
-  pardf <- data.frame(matrix(ncol = 5, nrow = nr))
+  # Initiating
+  rnr <- dim(quintile)
+  pardf <- data.frame(matrix(ncol = 5, nrow = rnr))
   colnames(pardf) <- c(param[[1]],param[[2]])
   polycl <- list(polyc[[1]],polyadj)[[ifelse(is.null(polyadj),1,2)]]
   pf <- polynom::polynomial(polycl[[1]])
-  # Presetting tre parameters
+  # Presetting three parameters
+  browser()
   pardf[,1] <- rdfc[,param$pre[1]]
-  pardf[,2] <-predict(pf,sdfc$pri)
+  pardf[,2] <- predict(pf,quintile$alpha)
   pardf[,3] <- 1
+  browser()
   # Solving for two remaining parameters
   pardf[,4] <- 1
   pardf[,5] <- 1
-  # Determining form of election fraud
 })
 Countingprocess$methods(rigghyp=function(sdfinp=NULL){
   # Init values standard form
@@ -275,7 +280,11 @@ Countinggraphs$methods(trplot=function(selvar=c('x','y','alpha')){
 #' @export Countingtables
 #' @exportClass Countingtables
 Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'), fields = list(ghi='list'))
-##################################################################################################3
+###########################################################################################################################################################
+###########################################################################################################################################################
+#' A class description
+#' @export Estimation
+#' @export class Estimation
 Estimation <- setRefClass("Estimation", fields=list(
 						sdfc='data.frame', 
 						edfc='data.frame', 
@@ -331,7 +340,6 @@ Estimation$methods(sortpre=function(poly=6,sortby='alpha',selvar=c('x','y','alph
     }) %>% as.data.frame(.) -> predictor
   quintile <<- dplyr::bind_cols(srdfc, predictor) 
 })
-
 Estimation$methods(plotly3d=function(selvar=c('x','y','alpha')){
 
 	mrdfc <- as.matrix(sdfc)
@@ -387,4 +395,5 @@ Estimation$methods(plot2d=function(selvp=c("x","y","alpha"),selvl=c("x_pred","y_
 	#labs(x=selv[1],y=selv[2],title="") +
 	ggplot2::theme_bw()
 })
+##################################################################################################3
 ##################################################################################################3
