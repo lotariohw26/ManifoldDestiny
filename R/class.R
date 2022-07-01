@@ -123,7 +123,7 @@ Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = li
 ###########################################################################################################################################################
 ###########################################################################################################################################################
 #' @export class Countingprocess
-Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',polyc='list',parameters='list', pareqs='list'))
+Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', pareqs='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
 
   # Assigning model equations
@@ -212,16 +212,18 @@ Countingprocess$methods(riggsta=function(
 
   polycl <- list(polyc[[1]],polyadj)[[ifelse(is.null(polyadj),1,2)]]
   pf <- polynom::polynomial(polycl[[1]])
-  pardf <- dplyr::select(quintile,param$pre,param$end) %>%
+  predv <- predict(pf,quintile$alpha)
+
+  pardf <<- dplyr::select(quintile,param$pre,param$end) %>%
     # Presetting three parameters
     dplyr::mutate(end1=x) %>%
-    dplyr::mutate(end2=quintile[['alpha_pred']]) %>%
-    dplyr::mutate(end3=1)
-browser()
+    dplyr::mutate(end2=predv) %>%
+    dplyr::mutate(end3=rnorm(n(),1,0.01)) %>%
     # Solving for two remaining parameters
-    dplyr::mutate(end4=pareq(ste=pareqs$meqs[['alpha_s']],lv=list(x=x,y=y,zeta=zeta))) %>%
-    dplyr::mutate(end5=pareq(ste=pareqs$meqs[['alpha_s']],lv=list(x=x,y=y,zeta=zeta))) 
-    # Testing
+    dplyr::mutate(end4=pareq(ste=pareqs$meqs[['alpha_s']][2],lv=list(x=x,y=y,zeta=zeta))) %>%
+    dplyr::mutate(end5=pareq(ste=pareqs$meqs[['alpha_s']][2],lv=list(x=x,y=y,zeta=zeta)))
+    
+    names(pardf)[6:10] <<- paste(c(param$pre,param$end),"s", sep="_")
 })
 Countingprocess$methods(rigghyp=function(sdfinp=NULL){
   # Init values standard form

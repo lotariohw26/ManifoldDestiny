@@ -43,8 +43,7 @@ polr <- polynom::polynomial(grig$polyc[[1]])
 #polr[1] <- 0.3096 # 0.3469
 round(polynom::integral(polr,c(0,1)),digits=4)
 grig$riggsta()
-View(pardf)
-'test'
+View(grig$pardf)
 #grig$sortpre(selvar=c("x_s","x","y","y_s","alpha","alpha_s"))
 ##################################################################################################33
 ### Estimation ###
