@@ -1,12 +1,8 @@
+library(reticulate)
+fqs <- reticulate::import("fqs")
+p4 <- c(1,2,3,4,5)
+fqs$quartic_roots(p1)
+p3 <- c(1,2,3,4)
+fqs$cubic_roots(p3)
 
 
-
-library(reticulate)'
-np <- import("numpy", convert = TRUE)
-np1 <- np$array(c(1:4))
-np1
-
-
-reticulate::py_run_string("a=[1,3,3]")
-a <- reticulate::py_run_string("print(a)", convert=T)
-str(a)

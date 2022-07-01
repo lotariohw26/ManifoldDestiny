@@ -42,7 +42,7 @@ knitr::knit_exit()
 
 # Now
 vignettes/Stylized_model.Rmd
-data-raw/xlsx/
+data-raw/
 inst/script/symbolic/pysympye.py
 inst/script/symbolic/pysympy.py
 inst/script/stylized.R
