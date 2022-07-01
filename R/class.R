@@ -209,21 +209,19 @@ Countingprocess$methods(riggsta=function(
 					 param=list(pre=c('x','alpha','zeta'), end=c('y','lambda')),
 					 polyadj=NULL
 					 ){
-  #colnames(pardf) <- c(param[[1]],param[[2]])
+
   polycl <- list(polyc[[1]],polyadj)[[ifelse(is.null(polyadj),1,2)]]
   pf <- polynom::polynomial(polycl[[1]])
   pardf <- dplyr::select(quintile,param$pre,param$end) %>%
     # Presetting three parameters
     dplyr::mutate(end1=x) %>%
     dplyr::mutate(end2=quintile[['alpha_pred']]) %>%
-    dplyr::mutate(end3=1) %>%
+    dplyr::mutate(end3=1)
+browser()
     # Solving for two remaining parameters
-    dplyr::mutate(end4=pareq()) %>%
-    dplyr::mutate(end5=pareq()) 
+    dplyr::mutate(end4=pareq(ste=pareqs$meqs[['alpha_s']],lv=list(x=x,y=y,zeta=zeta))) %>%
+    dplyr::mutate(end5=pareq(ste=pareqs$meqs[['alpha_s']],lv=list(x=x,y=y,zeta=zeta))) 
     # Testing
-    #s <-pareqs$meqs$y_s[1]
-    #lv <-list(alpha=0.5,x=0.25,zeta=1)
-    #pareq(ste=s)
 })
 Countingprocess$methods(rigghyp=function(sdfinp=NULL){
   # Init values standard form
