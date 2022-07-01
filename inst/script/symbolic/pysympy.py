@@ -42,7 +42,7 @@ x_s=       cx
 alpha_s =  [Eq(alpha,Omega*x+(1-Omega)*y),Eq(alpha,(x+zeta*y)/(1+zeta)),Eq(alpha,(g+Gamma*h)/(Gamma+1)),Eq(alpha,(1)/(xi+1))]
 lambda_s = [Eq(alpha,(x+zeta*y)/(1+zeta)),Eq(alpha,(1)/(xi+1)),Eq(alpha,(m+xi*(1-n))/(xi+1))]
 zeta_s =   [Eq(alpha,(x-alpha)/(alpha-y))]
-y_s = 	   [Eq(alpha,(x+zeta*y)/(1+zeta))]
+y_s = 	   [Eq(y,solve(alpha_s[1],y)[0])]
 ##########################################################################################################################
 ###### Oppostion form
 x_o=       cx

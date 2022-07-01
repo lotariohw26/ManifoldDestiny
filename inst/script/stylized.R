@@ -1,5 +1,5 @@
 #################################################################################################33
-library(ManifoldDestiny) 
+library(ManifoldDestiny)
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -14,7 +14,7 @@ library(ggpubr)
 setwd(rprojroot::find_rstudio_root_file())
 source('R/misc.R')
 source('R/class.R')
-snr <- 1 
+snr <- 1
 set.seed(snr)
 #################################################################################################
 ### I: Voterdatabase ###
@@ -36,7 +36,6 @@ votr <- vrdf$voterrollrealized
 ##################################################################################################33
 ### B) Rigged ###
 ### Tab1
-View(votr)
 grig <- Countinggraphs(votr)
 grig$sortpre()
 sort(grig$quintile$pre)
@@ -44,6 +43,7 @@ polr <- polynom::polynomial(grig$polyc[[1]])
 #polr[1] <- 0.3096 # 0.3469
 round(polynom::integral(polr,c(0,1)),digits=4)
 grig$riggsta()
+
 'test'
 #grig$sortpre(selvar=c("x_s","x","y","y_s","alpha","alpha_s"))
 ##################################################################################################33
