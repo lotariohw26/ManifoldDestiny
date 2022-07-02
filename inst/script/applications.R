@@ -31,8 +31,7 @@ source('../../R/class.R')
 #est_clark$estimation()
 #est_clark$plotxy()
 ### Tabuuu###############################################################################
-# Nevada
-load("~/research/ManifoldDestiny/data/nevada_sel.rda")
+load("~/Research/ManifoldDestiny/data/nevada_sel.rda")
 ##################################################################################################
 # Maricopa
 #load("~/research/ManifoldDestiny/data/maricopa_sel.rda")

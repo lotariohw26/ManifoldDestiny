@@ -282,6 +282,16 @@ Countinggraphs$methods(trplot=function(selvar=c('x','y','alpha')){
 #' @exportClass Countingtables
 Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'), fields = list(ghi='list'))
 ###########################################################################################################################################################
+rootsolving <- function(k=NULL,c=NULL){
+  os <-reticulate::import("fqs")
+  A <- 1 
+  B <- 1 
+  C <- 1 
+  D <- 1 
+  E <- 1
+  p <- c(A,B,C,D,E)[1:4]
+  os$quartic_roots(p)
+}
 ###########################################################################################################################################################
 #' A class description
 #' @export Estimation
