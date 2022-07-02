@@ -62,7 +62,7 @@ modlat <- eqpar$meql
 setwd(rprojroot::find_rstudio_root_file())
 tes <- "inst/Presentation.Rmd"
 xaringan::inf_mr(tes)
-rmarkdown::render(tes)
+rmarkdown::render(tes) 
 ```
 
 Ed. Solomon
@@ -117,22 +117,28 @@ y=`r modlat$cy`
 	- Mode 1: Election day voting (EDV)
 	- Mode 2: Mail in votes/Early voting (MiV)
 
+---
+
 `r Citet(bib, "delfino2011analysis")`
 > HYPOTHESIS: In computerized centers, official results were **forced to follow a linear relationship** with respect to the number of signatures.
 
----
-
-## Simplifying assumption
-- Two states, each with two counties
-- Two modes of voting
-- Natural election in state 1
-- Rigged election in state 2
+```{r, echo=FALSE, out.width="70%", fig.cap=""}
+knitr::include_graphics(c("figures/mancom.png"))
+```
 
 ---
 
 class: inverse, center, middle
 
 # The main phases of a fair election process
+
+---
+
+## Simplifying assumption
+- Two states, each with two counties
+- Two modes of voting
+
+
 ---
 
 ## Phase 1: Initiating the voterroll database

@@ -3,7 +3,7 @@
 #' @export pareq
 pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))
 {
-	browser()
+	#browser()
   eval(parse(text=ste),lv)
 }
 ###########################################################################################################################################################
@@ -221,7 +221,7 @@ Countingprocess$methods(riggsta=function(
     dplyr::mutate(zeta_s=rnorm(n(),1,0.01)) %>% 
     dplyr::mutate(y_s=pareq(ste=pareqs$meqs[['y_s']][1],lv=list(x=x_s,alpha=alpha_s,zeta=zeta_s))) %>%
     dplyr::mutate(lambda_s=pareq(ste=pareqs$meqs[['y_s']][1],lv=list(x=x_s,alpha=alpha_s,zeta=zeta_s))) 
-  browser()  
+  #browser()  
     names(pardf)[6:10] <<- paste(c(param$pre,param$end),"s", sep="_")
 })
 Countingprocess$methods(rigghyp=function(sdfinp=NULL){
