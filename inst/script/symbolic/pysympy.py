@@ -40,8 +40,8 @@ cga = [Eq(Gamma,(b+c)/(a+d))]
 ### Standard form
 x_s=       cx
 alpha_s =  [Eq(alpha,Omega*x+(1-Omega)*y),Eq(alpha,(x+zeta*y)/(1+zeta)),Eq(alpha,(g+Gamma*h)/(Gamma+1)),Eq(alpha,(1)/(xi+1))]
-lambda_s = [Eq(alpha,(x+zeta*y)/(1+zeta)),Eq(alpha,(1)/(xi+1)),Eq(alpha,(m+xi*(1-n))/(xi+1))]
-zeta_s =   [Eq(alpha,(x-alpha)/(alpha-y))]
+lambda_s = [Eq(lamda,(x+zeta*(1-y))/(zeta+1)),Eq(lamda,(1)/(Gamma+1)),Eq(lamda,(m+xi*(1-n))/(xi+1))]
+zeta_s =   [Eq(zeta,(x-alpha)/(alpha-y))]
 y_s = 	   [Eq(y,solve(alpha_s[1],y)[0])]
 ##########################################################################################################################
 ###### Oppostion form

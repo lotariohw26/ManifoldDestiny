@@ -20,8 +20,8 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  namebase='default',
 					  newdraw=T
 					  ){
-filn <- paste0('voterbase/',namebase)
-  if(newdraw == T) {
+    filn <- paste0('voterbase/',namebase)
+    if(newdraw == T) {
     # Demograhpic structure
     agelength <- agebracketmax[2]-agebracketmax[1]
     brack <- seq(agebracketmax[1],agebracketmax[2])
@@ -198,21 +198,21 @@ Countingprocess$methods(sortpre=function(poly=6,sortby='alpha',selvar=c('x','y',
 Countingprocess$methods(riggsta=function(
 					 form=1,
 					 param=list(pre=c('x','alpha','zeta'), end=c('y','lambda')),
-					 polyadj=NULL
+					 polyadj=polyc[[1]] 
 					 ){
-
-  polycl <- list(polyc[[1]],polyadj)[[ifelse(is.null(polyadj),1,2)]]
-  pf <- polynom::polynomial(polycl[[1]])
-  predv <- predict(pf,quintile$alpha)
+  polycl <- polynom::polynomial(polyadj)
+  predv <- predict(polycl,quintile$x)
+  #
   pardf <<- dplyr::select(quintile,param$pre,param$end) %>%
     # Presetting three parameters
     dplyr::mutate(x_s=x) %>%
     dplyr::mutate(alpha_s=predv) %>%
-    dplyr::mutate(zeta_s=rnorm(n(),1,0.01)) %>% 
-    dplyr::mutate(y_s=pareq(ste=pareqs$meqs[['y_s']][1],lv=list(x=x_s,alpha=alpha_s,zeta=zeta_s))) %>%
-    dplyr::mutate(lambda_s=pareq(ste=pareqs$meqs[['y_s']][1],lv=list(x=x_s,alpha=alpha_s,zeta=zeta_s))) 
-  #browser()  
-    names(pardf)[6:10] <<- paste(c(param$pre,param$end),"s", sep="_")
+    dplyr::mutate(y_s=1*(x_s-alpha_s)) %>% 
+    # Backsolving for two parameters
+    dplyr::mutate(zeta_s=pareq(ste=pareqs$meqs[['zeta_s']][1],lv=list(x=x_s,alpha=alpha_s,y=y_s))) %>%
+    dplyr::mutate(lambda_s=pareq(ste=pareqs$meqs[['lambda_s']][1],lv=list(x=x_s,zeta=zeta_s,y=y_s))) 
+
+    rdfc[c(param$pre,param$end)] <- pardf[6:10]
 })
 Countingprocess$methods(rigghyp=function(sdfinp=NULL){
   # Init values standard form
@@ -275,7 +275,7 @@ Countinggraphs$methods(plotly3d=function(partition=1,sel=list(1:5,6:10)){
   yaxis = list(title = names(gdf)[2]),
   zaxis = list(title = names(gdf)[3]))) }) ->> plot3dlist	
 
-  ohtml <- div(h1='This is a heading in a div element', class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
+  ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
   	 div(plot3dlist[sel[[1]]], class="column"),
   	 div(plot3dlist[sel[[1]]],class="column"))
   list(page=htmltools::browsable(ohtml),ohtml)
@@ -310,9 +310,8 @@ Estimation <- setRefClass("Estimation", fields=list(
 Estimation$methods(initialize=function(
 					sdfinp=NULL
 					  ){
-
-
-  parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
+  
+ parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
   		      hybrid=c("g","h","Omega","lambda","xi"),
 		      opposition=c("m","n","Omega","xi","lambda"))
 
