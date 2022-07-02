@@ -1,23 +1,10 @@
-#################################################################################################33
-library(ManifoldDestiny)
 library(dplyr)
 library(ggplot2)
 library(tidyr)
 library(purrr)
-library(randNames)
-library(openxlsx)
-library(patchwork)
-library(writexl)
-library(plotly)
-library(ViewPipeSteps)
-library(ggpubr)
 setwd(rprojroot::find_rstudio_root_file())
 source('R/misc.R')
 source('R/class.R')
-snr <- 1
-set.seed(snr)
-#################################################################################################
-### I: Voterdatabase ###
 # Inititating
 agebracketmax <- c(18,100,1000)
 regf <- 0.8
@@ -29,44 +16,10 @@ probvset <- list(c(0.70,0.30,0.00),c(0.30,0.70,0.00))
 Znr <- c(0,1)
 vrdf$realizedgp(probv=probvset,Ztech=Znr)
 votr <- vrdf$voterrollrealized
-################################################################################################33
-### A) Fair ###
-#gcou <- Countinggraphs(votr)
-#gcou$sortpre()
-##################################################################################################33
-### B) Rigged ###
-### Tab1
-grig <- Countinggraphs(votr)
-grig$sortpre()
-sort(grig$quintile$pre)
-polr <- polynom::polynomial(grig$polyc[[1]])
-#polr[1] <- 0.3096 # 0.3469
-round(polynom::integral(polr,c(0,1)),digits=4)
-grig$riggsta()
-#grig$sortpre(selvar=c("x_s","x","y","y_s","alpha","alpha_s"))
-##################################################################################################33
-### Estimation ###
-#est <- Estimation()
-#################################################################################################33
-library(ManifoldDestiny)
-library(dplyr)
-library(ggplot2)
-library(tidyr)
-library(purrr)
-library(randNames)
-library(openxlsx)
-library(patchwork)
-library(writexl)
-library(plotly)
-library(ViewPipeSteps)
-library(ggpubr)
-setwd(rprojroot::find_rstudio_root_file())
-source('R/misc.R')
-source('R/class.R')
-snr <- 1
-set.seed(snr)
-
-
+vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase='default',newdraw=T)
+vrdf$realizedgp(probv=probvset,Ztech=Znr)
+gcou <- Countinggraphs(votr)
+gcou$sortpre()
 combi <- combinat::combn(5, 3)
 v <- seq(1,dim(combi)[2])
 sdfc <- gcou$sdfc %>% dplyr::select(x,y,alpha,lambda,zeta,lambda)
@@ -83,21 +36,11 @@ v%>% purrr::map(function(x,comb=combi,df=sdfc){
 }) -> og
 og[1]
 library(htmltools)
-htmltools::browsable(div(
-  style = "display: flex; flex-wrap: wrap; justify-content: center",
-  div(og[1], style = "width: 40%; border: solid;"),
-  div(og[2], style = "width: 40%; border: solid;"),
-  div(og[3], style = "width: 40%; border: solid;"),
-  div(og[4], style = "width: 40%; border: solid;"),
-  div(og[5], style = "width: 40%; border: solid;"),
-  div(og[6], style = "width: 40%; border: solid;"),
-  div(og[7], style = "width: 40%; border: solid;"),
-  div(og[8], style = "width: 40%; border: solid;"),
-  div(og[9], style = "width: 40%; border: solid;"),
-  div(og[10], style = "width: 40%; border: solid;")
-))
-
-
+html3dall <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
+	 div(og[1:5], class="column"),
+	 div(og[6:10],class="column")
+)
+htmltools::browsable(h)
 
 ##### Tab0
 #gcou$plotxy(c("x","y"))

@@ -31,7 +31,7 @@ source('../../R/class.R')
 #est_clark$estimation()
 #est_clark$plotxy()
 ### Tabuuu###############################################################################
-load("~/Research/ManifoldDestiny/data/nevada_sel.rda")
+#load("~/Research/ManifoldDestiny/data/nevada_sel.rda")
 ##################################################################################################
 # Maricopa
 #load("~/research/ManifoldDestiny/data/maricopa_sel.rda")
@@ -45,16 +45,20 @@ load("~/Research/ManifoldDestiny/data/nevada_sel.rda")
 # Texas
 load("~/research/ManifoldDestiny/data/dallas_sel.rda")
 str(dallas_sel)
-est_dallas  <- Estimation(dallas_sel)
-est_dallas$rotation()
-View(est_dallas$sdfc)
-est_dallas$sortpre(poly=6)
-est_dallas$plot2d(selvp=c("x","y","alpha"),selvl="alpha_pred")
-est_dallas$plotly3d()
-cor(est_dallas$quintile$alpha_pred,est_dallas$quintile$alpha)^2
+#est_dallas  <- Estimation(dallas_sel)
+#
+#
+#
+#est_dallas$rotation()
+##View(est_dallas$sdfc)
+#est_dallas$sortpre(poly=6)
+#est_dallas$plot2d(selvp=c("x","y","alpha"),selvl="alpha_pred")
+#est_dallas$plotly3d()
+#cor(est_dallas$quintile$alpha_pred,est_dallas$quintile$alpha)^2
 #################################################################################################33
 vrdf <- Estimation(dallas_sel)
 #### Step 1: Inspect visually
+
 #### Step 2: Rotation matrix
 ## a)
 
