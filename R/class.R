@@ -1,11 +1,5 @@
 ###########################################################################################################################################################
 ###########################################################################################################################################################
-abc <- function(og=NULL){
-  h <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
-  	 div(og[1:5], class="column"),
-  	 div(og[6:10],class="column"))
-  htmltools::browsable(h)
-}
 #' @export pareq
 pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))
 {
@@ -136,18 +130,9 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
   # Assigning model equations
   rotp <- rprojroot::find_rstudio_root_file()
   mpath <- paste0(rotp,'/data/eqpar.rda')
-  #load("~/research/ManifoldDestiny/data/eqpar.rda")
-  load(mpath)
+  load("~/research/ManifoldDestiny/data/eqpar.rda")
   pareqs <<- eqpar
-  #str(pareqs$meqs$alpha_s[1])
-  ##pareqs$meql
-  ##pareqs$meqs
-  ### Source code
-  ## Functions
-  #s <-pareqs$meqs$alpha_s[2]
-  #lv <-list(x=0.75,y=0.25,zeta=1)
-  #pareq(lv)
-  #pareq(ste=s,lv)
+  
   parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
   		      hybrid=c("g","h","Omega","lambda","xi"),
 		      opposition=c("m","n","Omega","xi","lambda"))
@@ -274,7 +259,7 @@ Countinggraphs$methods(resplot=function(resvar=c("zeta_r","alpha_res")){
     #stat_cor(label.x=0,label.y=0.15) +
     ggplot2::theme_bw()
 })
-Countinggraphs$methods(trplot=function(partition=1,sel=list(1:5,6:10)){
+Countinggraphs$methods(plotly3d=function(partition=1,sel=list(1:5,6:10)){
 
   rdfcpar <- rdfc %>% dplyr::select(parameters[[partition]])
   mrdfc <- as.matrix(rdfcpar)
@@ -290,7 +275,7 @@ Countinggraphs$methods(trplot=function(partition=1,sel=list(1:5,6:10)){
   yaxis = list(title = names(gdf)[2]),
   zaxis = list(title = names(gdf)[3]))) }) ->> plot3dlist	
 
-  ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
+  ohtml <- div(h1='This is a heading in a div element', class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
   	 div(plot3dlist[sel[[1]]], class="column"),
   	 div(plot3dlist[sel[[1]]],class="column"))
   list(page=htmltools::browsable(ohtml),ohtml)
@@ -318,65 +303,21 @@ rootsolving <- function(k=NULL,c=NULL){
 Estimation <- setRefClass("Estimation", fields=list(
 						sdfc='data.frame',
 						edfc='data.frame',
-						quintile='data.frame'
+						quintile='data.frame',
+						parameters='list',
+						plot3dlist='list'
 						))
 Estimation$methods(initialize=function(
 					sdfinp=NULL
 					  ){
 
-  sdfc <<- sdfinp %>% dplyr::select(pre,a,b,c,d) %>% dplyr::group_by(pre) %>%
-  dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
-  dplyr::ungroup() %>% dplyr::distinct() %>%
-  dplyr::filter(a>0 & b>0 & c>0 & d>0) %>%
-  dplyr::mutate(x=a/(a+b),y=c/(c+d)) %>%
-  dplyr::mutate(g=a/(a+d),h=c/(b+c)) %>%
-  dplyr::mutate(m=a/(a+c),n=b/(b+d)) %>%
-  #Identities
-  dplyr::mutate(zeta=(c+d)/(a+b)) %>%
-  dplyr::mutate(Omega=(a+b)/(a+b+c+d)) %>%
-  dplyr::mutate(Gamma=(b+c)/(a+d)) %>%
-  dplyr::mutate(xi=(b+d)/(a+c)) %>%
-  dplyr::mutate(alpha=(a+c)/(a+b+c+d),
-      	 alphac1=Omega*x+(1-Omega)*y,
-      	 alphac2=(x+zeta*y)/(1+zeta),
-      	 alphac3=1/(1+xi)) %>%
-  dplyr::mutate(lambda=(a+d)/(a+b+c+d),
-      	 lambdac1=(x+zeta*(1-y))/(zeta+1),
-      	 lambdac2=(1)/(Gamma+1),
-      	 lambdac3=(m+xi*(1-n))/(xi+1)) %>%
-  dplyr::mutate(Omega=(a+b)/(a+b+c+d),
-      	 Omegac1=(1)/(1+zeta),
-      	 Omegac2=(g+Gamma*(1-h))/(Gamma+1),
-      	 Omegac3=(m+xi*n)/(xi+1)) %>%
-  dplyr::mutate(zeta1=(x-alpha)/(alpha-y)) %>%
-  dplyr::mutate(xi1=(m-Omega)/(Omega-n)) %>%
-  dplyr::mutate(xi2=(m-lambda)/(lambda-(1-n))) %>%
-  dplyr::mutate(pri=row_number()/length(pre)) %>%
-  dplyr::select(pre,a,b,c,d,x,y,alpha,zeta,lambda,g,h,Omega,n,m)
 
-})
-Estimation$methods(sortpre=function(poly=6,sortby='alpha',selvar=c('x','y','alpha','zeta')){
+  parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
+  		      hybrid=c("g","h","Omega","lambda","xi"),
+		      opposition=c("m","n","Omega","xi","lambda"))
 
-  srdfc <- sdfc %>%
-    dplyr::select(pre,zeta,all_of(selvar)) %>%
-    dplyr::arrange(sortby) %>%
-    dplyr::mutate(pri=row_number()/length(pre)) %>%
-    dplyr::mutate(zeta_m=mean(zeta)) %>%
-    dplyr::mutate(zeta_r=zeta-zeta_m)
-    selvar %>% purrr::map(function(x,df=srdfc,p=poly){
-        pred <- c(predict(lm(df[[x]] ~ poly(df$pri,p, raw=T))))
-        res <- pred - df[[x]]
-        data.frame(pred,res) %>% `colnames<-` (c(paste0(x,'_pred'),paste0(x,'_res')))
-    }) %>% as.data.frame(.) -> predictor
-  quintile <<- dplyr::bind_cols(srdfc, predictor)
-})
-Estimation$methods(plotly3d=function(selvar=c('x','y','alpha')){
-
-	mrdfc <- as.matrix(sdfc)
-	x <- mrdfc[,selvar[1]]
-	y <- mrdfc[,selvar[2]]
-	z <- mrdfc[,selvar[3]]
-	plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers")
+  sdfc <<- sdfinp 
+  
 })
 Estimation$methods(rotation=function(
 				     selvar=c('x','y','alpha'),
@@ -404,26 +345,6 @@ Estimation$methods(estimation=function(selvar=c('x','y','alpha')){
 	k <- c(1.57874563,-0.5819051755,0.001519026359)
 	ge <- eval(parse(text='k[1]*alpha+k[2]*h+k[3]'),list(alpha=1,h=1,k=k))
 	edfc <<- sdfc %>% dplyr::mutate(gpred=gp(alpha,h,k)) %>% dplyr::mutate(rsq=rsq(g,gpred))
-})
-Estimation$methods(plotxy=function(selv=c('g','gpred')){
-
-  widedf <- edfc
-  ggplot2::ggplot(data=widedf,aes_string(x=selv[1],y=selv[2])) +
-      geom_point() +
-      geom_smooth(method=lm,se=F) +
-      ggpubr::stat_regline_equation(label.x=0,label.y=0.10) +
-      ggpubr::stat_cor() +
-      labs(x=selv[1],y=selv[2],title="") +
-      ggplot2::theme_bw()
-})
-Estimation$methods(plot2d=function(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred")){
-
-    longdf <- tidyr::pivot_longer(quintile,all_of(c(selvp,selvl)))
-    ggplot2::ggplot(data=longdf) +
-	geom_line(data=filter(longdf,name%in%selvl),aes(x=pri,y=value, color=name)) +
-	geom_point(data=filter(longdf,name%in%selvp),aes(x=pri,y=value, color=name)) +
-	#labs(x=selv[1],y=selv[2],title="") +
-	ggplot2::theme_bw()
 })
 ##################################################################################################3
 ##################################################################################################3

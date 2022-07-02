@@ -88,35 +88,7 @@ gcou$trplot(c('x','y','alpha'))
 ## Tab 4
 
 ```{r}
-combi <- combinat::combn(5, 3)
-v <- seq(1,dim(combi)[2])
-sdfc <- gcou$sdfc %>% dplyr::select(x,y,alpha,lambda,zeta,lambda)
-v%>% purrr::map(function(x,comb=combi,df=sdfc){
-		gdf <- df %>% dplyr::select(combi[,x])
-		mrdfc <- as.matrix(gdf)
-		x <- mrdfc[,1]
-		y <- mrdfc[,2]
-		z <- mrdfc[,3]
-		plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers") %>%
-	        plotly::layout(scene = list(xaxis = list(title = names(gdf)[1]),
-                     yaxis = list(title = names(gdf)[2]),
-                     zaxis = list(title = names(gdf)[3])))
-}) -> og
-og[1]
-library(htmltools)
-htmltools::browsable(div(
-  style = "display: flex; flex-wrap: wrap; justify-content: center",
-  div(og[1], style = "width: 40%; border: solid;"),
-  div(og[2], style = "width: 40%; border: solid;"),
-  div(og[3], style = "width: 40%; border: solid;"),
-  div(og[4], style = "width: 40%; border: solid;"),
-  div(og[5], style = "width: 40%; border: solid;"),
-  div(og[6], style = "width: 40%; border: solid;"),
-  div(og[7], style = "width: 40%; border: solid;"),
-  div(og[8], style = "width: 40%; border: solid;"),
-  div(og[9], style = "width: 40%; border: solid;"),
-  div(og[10], style = "width: 40%; border: solid;")
-))
+
 ```
 
 

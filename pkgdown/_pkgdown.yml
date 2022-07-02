@@ -7,12 +7,12 @@ navbar:
   type: inverse
   left:
     - icon: fa-home 
+    - text: "Presentation"
+      href: "articles/Presentation.html"
     - text: "General algorithm"
       href: "articles/General_algorithm.html"
     - text: "Stylized Model"
       href: "articles/Stylized_model.html"
-    - text: "Presentation"
-      href: "articles/Presentation.html"
     - text: "Graphical"
       href: "articles/Graphical.html"
     - text: "Applications"

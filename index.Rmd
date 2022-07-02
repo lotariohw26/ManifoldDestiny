@@ -34,6 +34,15 @@ Ed. Solomon
 
 > To Paraphrase Immanuel Kant:  “The causation is the thing without which, is a condition of possibility of a thing, and so it is satisfied in the thing.”  
 
+<br>
+<br>
+<br>
+<br>
+<br>
+
+```{r, echo=FALSE, out.width="75%", fig.cap=""}
+knitr::include_graphics("man/figures/overview.png")
+```
 
 
 ```{r, echo=F, eval=T}
