@@ -55,12 +55,25 @@ ggt3b <- gcou$resplot(resvar=c('zeta_r','y_res'))
 ### Tab1
 grig <- Countinggraphs(votr)
 grig$sortpre()
-sort(grig$quintile$pre)
-polr <- polynom::polynomial(grig$polyc[[1]])
 ##polr[1] <- 0.3096 # 0.3469
-#round(polynom::integral(polr,c(0,1)),digits=4)
+polr <- polynom::polynomial(grig$polyc[[1]])
+round(polynom::integral(polr,c(0,1)),digits=4)
 grig$riggsta()
-grig$plotly3d(partition=3)
+### Graphical ###
+##### Tab1
+ggt1 <- grig$plotxy(c("x","y"))
+ggplotly(ggt1)
+###### Tab2
+ggt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
+ggt2b <- grig$plot2d(selvp=c("zeta"),selvl='zeta_m')
+plotly::subplot(ggt2a,ggt2b,nrows=2)
+###### Tab3
+ggt3a <- gcou$resplot(resvar=c('zeta_r','alpha_res'))
+ggt3b <- gcou$resplot(resvar=c('zeta_r','y_res'))
+###### Tab4
+#gcou$resplot(resvar=c('zeta_r','y_res'))
+###### Tab5
+grig$plotly3d(partition=1)
 ##################################################################################################33
 ### Estimation ###
 #est <- Estimation()

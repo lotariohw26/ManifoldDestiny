@@ -200,19 +200,18 @@ Countingprocess$methods(riggsta=function(
 					 param=list(pre=c('x','alpha','zeta'), end=c('y','lambda')),
 					 polyadj=polyc[[1]] 
 					 ){
+  
   polycl <- polynom::polynomial(polyadj)
-  predv <- predict(polycl,quintile$x)
-  #
   pardf <<- dplyr::select(quintile,param$pre,param$end) %>%
     # Presetting three parameters
     dplyr::mutate(x_s=x) %>%
-    dplyr::mutate(alpha_s=predv) %>%
-    dplyr::mutate(y_s=1*(x_s-alpha_s)) %>% 
+    dplyr::mutate(alpha_s=predict(polycl,quintile$x)) %>%
+    dplyr::mutate(y_s=0.10) %>% 
     # Backsolving for two parameters
     dplyr::mutate(zeta_s=pareq(ste=pareqs$meqs[['zeta_s']][1],lv=list(x=x_s,alpha=alpha_s,y=y_s))) %>%
     dplyr::mutate(lambda_s=pareq(ste=pareqs$meqs[['lambda_s']][1],lv=list(x=x_s,zeta=zeta_s,y=y_s))) 
 
-    rdfc[c(param$pre,param$end)] <- pardf[6:10]
+    rdfc[c(param$pre,param$end)] <<- pardf[6:10]
 })
 Countingprocess$methods(rigghyp=function(sdfinp=NULL){
   # Init values standard form
