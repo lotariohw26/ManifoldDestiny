@@ -1,10 +1,10 @@
 ###########################################################################################################################################################
 ###########################################################################################################################################################
-abc <- function(){
-h <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
-	 div(og[1:5], class="column"),
-	 div(og[6:10],class="column")
-htmltools::browsable(h)
+abc <- function(og=NULL){
+  h <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
+  	 div(og[1:5], class="column"),
+  	 div(og[6:10],class="column"))
+  htmltools::browsable(h)
 }
 #' @export pareq
 pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))
@@ -130,7 +130,7 @@ Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = li
 ###########################################################################################################################################################
 ###########################################################################################################################################################
 #' @export class Countingprocess
-Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', pareqs='list'))
+Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', pareqs='list',plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
 
   # Assigning model equations
@@ -148,11 +148,10 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
   #lv <-list(x=0.75,y=0.25,zeta=1)
   #pareq(lv)
   #pareq(ste=s,lv)
+  parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
+  		      hybrid=c("g","h","Omega","lambda","xi"),
+		      opposition=c("m","n","Omega","xi","lambda"))
 
-  # Parameters?
-# iparameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
-#  		      hybrid=c("g","h","Omega","lambda","xi"),
-#		      opposition=c("m","n","Omega","xi","lambda"))
   sdfc <<- sdfinp %>% dplyr::select(pre,a,b,c,d) %>% dplyr::group_by(pre) %>%
     dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
@@ -274,15 +273,27 @@ Countinggraphs$methods(resplot=function(resvar=c("zeta_r","alpha_res")){
     #stat_regline_equation(label.x=0,label.y=0.10) +
     #stat_cor(label.x=0,label.y=0.15) +
     ggplot2::theme_bw()
-
 })
-Countinggraphs$methods(trplot=function(selvar=c('x','y','alpha')){
+Countinggraphs$methods(trplot=function(partition=1,sel=list(1:5,6:10)){
 
-	mrdfc <- as.matrix(rdfc)
-	x <- mrdfc[,selvar[1]]
-	y <- mrdfc[,selvar[2]]
-	z <- mrdfc[,selvar[3]]
-	plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers")
+  rdfcpar <- rdfc %>% dplyr::select(parameters[[partition]])
+  mrdfc <- as.matrix(rdfcpar)
+  combi <- combinat::combn(5, 3)
+  seq(1,dim(combi)[2]) %>% purrr::map(function(x,comb=combi,df=rdfcpar){
+  gdf <- df %>% dplyr::select(combi[,x])
+  mrdfc <- as.matrix(gdf)
+  x <- mrdfc[,1]
+  y <- mrdfc[,2]
+  z <- mrdfc[,3]
+  plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers") %>%
+  plotly::layout(scene = list(xaxis = list(title = names(gdf)[1]),
+  yaxis = list(title = names(gdf)[2]),
+  zaxis = list(title = names(gdf)[3]))) }) ->> plot3dlist	
+
+  ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
+  	 div(plot3dlist[sel[[1]]], class="column"),
+  	 div(plot3dlist[sel[[1]]],class="column"))
+  list(page=htmltools::browsable(ohtml),ohtml)
 })
 #' @export Countingtables
 #' @exportClass Countingtables
