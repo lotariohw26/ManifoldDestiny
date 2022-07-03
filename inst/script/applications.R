@@ -20,10 +20,13 @@ set.seed(snr)
 #################################################################################################
 # Dallas
 load("~/research/ManifoldDestiny/data/dallas_sel.rda")
-invdallas <- Countinggraphs(dallas_sel)
-invdallas$sortpre()
-invdallas$plotly3d(partition=3)
+gcda <- Countinggraphs(dallas_sel)
+gcda$sortpre()
 #### Step 1: Inspect visually
+a <- gcda$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
+b <- gcda$plot2d(selvp=c("zeta"),selvl='zeta_m')
+plotly::subplot(a,b,nrows=2)
+invdallas$plotly3d(partition=1)
 #### Step 2: Rotation matrix
 #### Step 3: Regression
 #### Step 4: Prediction

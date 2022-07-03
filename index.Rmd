@@ -91,4 +91,3 @@ https://lotariohw26.github.io/ManifoldDestiny/
 https://plotly-r.com/exporting-static-images.html
 # Lombardo
 https://docs.google.com/document/d/1O_5Rs29mJut8NfOtFIW2chN5NC6TyFwVkkCZX7PyZIA/edit#heading=h.tp0g9ruvaiuu
-
