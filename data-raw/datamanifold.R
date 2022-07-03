@@ -1,4 +1,5 @@
 ################################################################################################################
+library(ManifoldDestiny)
 library(ggplot2)
 library(purrr)
 library(fredr)
@@ -20,7 +21,3 @@ eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
 usethis::use_data(eqpar, overwrite = TRUE)
 # Lagre data
 ###############################################################################################################
-setwd(rprojroot::find_rstudio_root_file())
-getwd()
-system('R CMD build . ; R CMD INSTALL ManifoldDestiny_0.0.0.9000.tar.gz; rm -r ManifoldDestiny_0.0.0.9000.tar.gz')
-library(ManifoldDestiny)

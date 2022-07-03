@@ -1,0 +1,205 @@
+Vignettes with name or keyword or title matching ‘small’ using fuzzy matching:
+
+
+reticulate::python_packages                   Installing Python Packages
+xtable::listOfTablesGallery                   xtable List of Tables Gallery
+xtable::OtherPackagesGallery                  xtable Other Packages Gallery
+
+
+Type 'vignette("FOO", package="PKG")' to inspect entries 'PKG::FOO'.
+
+
+
+Help files with alias or concept or title matching ‘small’ using fuzzy matching:
+
+
+assertive.properties::assert_has_all_attributes
+                                              Does the input have the specified attributes?
+  Aliases: assert_has_all_attributes
+assertive.types::assert_all_are_classes       Is the input the name of a (formally defined) class?
+assertive.types::assert_is_all_of             Does x belong to these classes?
+  Aliases: assert_is_all_of
+base::showConnections                         Display Connections
+  Aliases: closeAllConnections
+base::zapsmall                                Rounding of Numbers: Zapping Small Ones to Zero
+  Aliases: zapsmall
+bit64::is.sorted.integer64                    Small cache access methods
+callr::supported_archs                        Find supported sub-architectures for the current R installation
+caret::modelLookup                            Tools for Models Available in 'train'
+  Aliases: checkInstall
+circular::swallows                            Orientation of juvenile barn swallows
+  Aliases: swallows
+combinat::permn                               Generates all permutations of the elements of x
+combinat::xsimplex                            Generates all points on a (p,n) simplex lattice (i.e. a p-part composition of n).
+devtools::has_tests                           Was devtools installed with tests?
+devtools::install                             Install a local development package.
+  Aliases: install
+  Concepts: package installation
+devtools::install_deps                        Install package dependencies if needed.
+  Aliases: install_deps, install_dev_deps
+devtools::remote-reexports                    Functions re-exported from the remotes package
+  Aliases: install_bioc, install_bitbucket, install_cran, install_dev, install_git, install_github, install_gitlab, install_local,
+    install_svn, install_url, install_version
+devtools::uninstall                           Uninstall a local development package.
+  Aliases: uninstall
+  Concepts: package installation
+dplyr::cumall                                 Cumulativate versions of any, all, and mean
+  Aliases: cumall
+fs::path_package                              Construct a path to a location within an installed or development package
+ggplot2::aes_all                              Given a character vector, create a set of identity mappings
+  Aliases: aes_all
+git2r::is_shallow                             Determine if the repository is a shallow clone
+  Aliases: is_shallow
+grDevices::extendrange                        Extend a Numerical Range by a Small Percentage
+Hmisc::getHdata                               Download and Install Datasets for 'Hmisc', 'rms', and Statistical Modeling
+Hmisc::print.char.list                        prints a list of lists in a visually readable format.
+httr::get_callback                            Install or uninstall a callback function
+Matrix::all-methods                           "Matrix" Methods for Functions all() and any()
+Matrix::dMatrix-class                         (Virtual) Class "dMatrix" of "double" Matrices
+  Aliases: zapsmall,dMatrix-method
+methods::evalSource                           Use Function Definitions from a Source File without Reinstalling a Package
+mgcv::mroot                                   Smallest square root of matrix
+pkgbuild::has_latex                           Is latex installed?
+pkgbuild::rtools_path                         Is Rtools installed?
+pkgload::has_tests                            Was devtools installed with tests?
+pkgload::inst                                 Get the installation path of a package
+pxweb::pxe_allowed_input                      Defines allowed input for a position in a 'pxweb_explorer' or character object.
+pxweb::pxe_position_multiple_choice_allowed   Are multiple choices allowed?
+R.oo::getClasses.Package                      Gets all classes of a package
+R.oo::getContribUrl.Package                   Gets the URL(s) from where this package can be installed
+R.oo::getDevelUrl.Package                     Gets the URL(s) from where the developers version of this package can be installed
+R.oo::getFieldModifiers.Object                Gets all types of field modifiers
+R.oo::getKnownSubclasses.Class                Gets all subclasses that are currently loaded
+R.oo::isLoaded.Package                        Checks if the package is installed on the search path or not
+R.oo::Rdoc$methodsInheritedFrom               Gets all methods inherited from a class in Rd format
+R.utils::cmdArgsCall                          Calls an R function passing command-line arguments
+  Aliases: cmdArgsCall
+R.utils::findSourceTraceback.default          Finds all 'srcfile' objects generated by source() in all call frames
+R.utils::getLeaves.Options                    Gets all (non-list) options in a flat list
+R.utils::GString$getBuiltinRhome              Gets the path where R is installed
+R.utils::installPackages.default              Install R packages by name or URL
+  Aliases: installPackages.default, installPackages
+R.utils::isPackageInstalled.default           Checks if a package is installed or not
+  Aliases: isPackageInstalled.default, isPackageInstalled
+R.utils::isReplicated                         Identifies all entries with replicated values
+R.utils::isSingle                             Identifies all entries that exists exactly once
+R.utils::patchCode.default                    Patches installed and loaded packages and more
+R.utils::seqToIntervals.default               Gets all contiguous intervals of a vector of indices
+R.utils::update.TextStatusBar                 Updates the status bar (visually)
+remotes::bioc_version                         Tools for Bioconductor repositories
+  Aliases: bioc_install_repos
+remotes::install_bioc                         Install a development package from the Bioconductor git repository
+  Aliases: install_bioc
+  Concepts: package installation
+remotes::install_bitbucket                    Install a package directly from Bitbucket
+  Aliases: install_bitbucket
+  Concepts: package installation
+remotes::install_cran                         Attempts to install a package from CRAN.
+  Aliases: install_cran
+  Concepts: package installation
+remotes::install_deps                         Install package dependencies if needed.
+  Aliases: install_deps
+remotes::install_dev                          Install the development version of a package
+  Aliases: install_dev
+  Concepts: package installation
+remotes::install_git                          Install a package from a git repository
+  Aliases: install_git
+  Concepts: package installation
+remotes::install_github                       Attempts to install a package directly from GitHub.
+  Aliases: install_github
+  Concepts: package installation
+remotes::install_gitlab                       Install a package from GitLab
+  Aliases: install_gitlab
+  Concepts: package installation
+remotes::install_local                        Install a package from a local file
+  Aliases: install_local
+  Concepts: package installation
+remotes::install_remote                       Install a remote package.
+  Aliases: install_remote
+remotes::install_svn                          Install a package from a SVN repository
+  Aliases: install_svn
+  Concepts: package installation
+remotes::install_url                          Install a package from a url
+  Aliases: install_url
+  Concepts: package installation
+remotes::install_version                      Install specific version of a package.
+  Aliases: install_version
+  Concepts: package installation
+remotes::standardise_dep                      Standardise dependencies using the same logical as install.packages
+reticulate::conda-tools                       Conda Tools
+  Aliases: conda_install
+reticulate::install_miniconda                 Install Miniconda
+  Aliases: install_miniconda
+reticulate::install_python                    Install Python
+  Aliases: install_python
+reticulate::miniconda_uninstall               Remove Miniconda
+  Aliases: miniconda_uninstall
+reticulate::py_install                        Install Python packages
+  Aliases: py_install
+reticulate::py_list_packages                  List installed Python packages
+reticulate::py_versions_windows               Discover versions of Python installed on a Windows system
+reticulate::virtualenv-tools                  Interface to Python Virtual Environments
+  Aliases: virtualenv_install
+rgl::rgl.setAxisCallback                      User-defined axis labelling callbacks.
+  Aliases: rgl.setAxisCallback, rgl.getAxisCallback
+rgl::setAxisCallbacks                         User-defined axis labelling callbacks.
+  Aliases: setAxisCallbacks
+rlang::global_prompt_install                  Prompt user to install missing packages
+  Aliases: global_prompt_install
+rlang::inherits_any                           Does an object inherit from a set of classes?
+  Aliases: inherits_all
+rlang::is_installed                           Are packages installed in any of the libraries?
+  Aliases: is_installed, check_installed
+roxygen2::load                                Load package code
+  Aliases: load_installed
+rstudioapi::build-tools                       Build Tools
+  Aliases: buildToolsInstall
+rversions::r_release_macos                    Latest R release with a macOS installer available for download
+rversions::r_release_win                      Latest R release with a Windows installer available for download
+shiny::createRenderFunction                   Implement custom render functions
+  Aliases: installExprFunction
+systemfonts::system_fonts                     List all fonts installed on your system
+testthat::skip                                Skip a test
+  Aliases: skip_if_not_installed
+tinytex::check_installed                      Check if certain LaTeX packages are installed
+  Aliases: check_installed
+tinytex::install_tinytex                      Install/Uninstall TinyTeX
+  Aliases: install_tinytex, uninstall_tinytex, reinstall_tinytex
+tinytex::is_tinytex                           Check if the LaTeX installation is TinyTeX
+tinytex::parse_install                        Parse the LaTeX log and install missing LaTeX packages if possible
+  Aliases: parse_install
+tinytex::tinytex                              tinytex: Helper Functions to Install and Maintain TeX Live, and Compile LaTeX Documents
+tinytex::tl_pkgs                              List the names of installed TeX Live packages
+tinytex::tlmgr                                Run the TeX Live Manager
+  Aliases: tlmgr_install
+tools::getVignetteInfo                        Get Information on Installed Vignettes
+tools::testInstalledPackage                   Test Installed Packages
+  Aliases: testInstalledPackage, testInstalledPackages, testInstalledBasic
+tools::tools-deprecated                       Deprecated Objects in Package 'tools'
+  Aliases: installFoundDepends
+utils::INSTALL                                Install Add-on Packages
+  Aliases: INSTALL, R_INSTALL_TAR, R_INSTALL_STAGED
+utils::install.packages                       Install Packages from Repositories or Local Files
+  Aliases: install.packages
+utils::installed.packages                     Find Installed Packages
+  Aliases: installed.packages
+utils::remove.packages                        Remove Installed Packages
+  Concepts: uninstall
+utils::update.packages                        Compare Installed Packages with CRAN-like Repositories
+webshot::install_phantomjs                    Install PhantomJS
+  Aliases: install_phantomjs
+webshot::is_phantomjs_installed               Determine if PhantomJS is Installed
+  Aliases: is_phantomjs_installed
+xfun::broken_packages                         Find out broken packages and reinstall them
+xfun::install_dir                             Install a source package from a directory
+  Aliases: install_dir
+xfun::install_github                          An alias of 'remotes::install_github()'
+  Aliases: install_github
+xfun::pkg_attach                              Attach or load packages, and automatically install missing packages if requested
+
+
+Type '?PKG::FOO' to inspect entries 'PKG::FOO', or 'TYPE?PKG::FOO' for entries like 'PKG::FOO-TYPE'.
+
+
+
+
