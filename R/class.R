@@ -3,7 +3,6 @@
 #' @export pareq
 pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))
 {
-	#browser()
   eval(parse(text=ste),lv)
 }
 ###########################################################################################################################################################
@@ -142,11 +141,13 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
     dplyr::ungroup() %>% dplyr::distinct() %>%
     dplyr::group_by(pre) %>% dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
-    dplyr::filter(a>0 | b>0) %>% dplyr::filter(c>0 | d>0)  %>%
+    dplyr::filter(a>0) %>% 
+    dplyr::filter(b>0) %>% 
+    dplyr::filter(c>0) %>% 
+    dplyr::filter(d>0) %>%
     dplyr::mutate(x=a/(a+b),y=c/(c+d)) %>%
     dplyr::mutate(g=a/(a+d),h=c/(b+c)) %>%
     dplyr::mutate(m=a/(a+c),n=b/(b+d)) %>%
-    #Identities
     dplyr::mutate(zeta=(c+d)/(a+b)) %>%
     dplyr::mutate(Omega=(a+b)/(a+b+c+d)) %>%
     dplyr::mutate(Gamma=(b+c)/(a+d)) %>%
@@ -166,7 +167,6 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
     dplyr::mutate(zeta1=(x-alpha)/(alpha-y)) %>%
     dplyr::mutate(xi1=(m-Omega)/(Omega-n)) %>%
     dplyr::mutate(xi2=(m-lambda)/(lambda-(1-n))) %>%
-    dplyr::arrange(alpha) %>%
     dplyr::mutate(pri=row_number()/length(pre))
 
   rdfc <<- sdfc
@@ -301,7 +301,7 @@ rootsolving <- function(k=NULL,c=NULL){
 #' @export class Estimation
 Estimation <- setRefClass("Estimation", fields=list(
 						sdfc='data.frame',
-						edfc='data.frame',
+						rdfc='data.frame',
 						quintile='data.frame',
 						parameters='list',
 						plot3dlist='list'
@@ -319,11 +319,11 @@ Estimation$methods(initialize=function(
 Estimation$methods(rotation=function(
 				     selvar=c('x','y','alpha'),
 				     angles=list(tgrad=c(-41.771547,0,0)), 
-				     slidel=list(s_depth=0.01,s_division=0.02,s_shift=50,s_slide=49) 
+				     sli=list(depth=0.01,divi=0.02,shift=50,slide=49) 
 				     ){
 browser()
-  ra <- circular::rad(angles$tgrad[1])
-  rd <- sdfc %>% dplyr::select(selvar) %>%
+  ra <- circular::rad(angles$tgrad)
+  rdfc <<- sdfc %>% dplyr::select(selvar) %>%
   dplyr::mutate(rxy=ra[1]) %>%
   dplyr::mutate(cosxy=cos(rxy)) %>%
   dplyr::mutate(sinxy=sin(rxy)) %>%
@@ -335,28 +335,26 @@ browser()
   dplyr::mutate(sinzx=sin(rzx)) %>%
   dplyr::mutate(u=cosxy*y-sinxy*x) %>%
   dplyr::mutate(v=sinxy*y+cosxy*x) %>%
-  dplyr::mutate(w=sinyz*v+cosyz*alpha)
-rd
-#  build <- dallasxray[1:741,] %>% dplyr::select(7,8,9) %>% 
-#  dplyr::mutate(rank_v=dense_rank(v)) %>% 
-#  dplyr::mutate(slide=floor((v+s_depth*s_division*s_shift)/s_depth)) %>%
-#  dplyr::mutate(slide_norm=slide-(s_slide)+1) %>%
-#  dplyr::mutate(carry_slide_norm=1000*rank_v+slide_norm, 
-#  	      carry_v=1000*rank_v+v, 
-#  	      carry_u=1000*rank_v+u,
-#  	      carry_w=1000*rank_v+w) %>%
-#  dplyr::mutate(index=row_number()) %>%
-#  dplyr::mutate(sort_slide_norm=sort(carry_slide_norm)) %>%
-#  dplyr::mutate(sort_v=sort(carry_v),
-#                sort_u=sort(carry_u),
-#                sort_w=sort(carry_w)) %>%
-#  dplyr::mutate(drop_s=sort_slide_norm-1000*index+s_slide-1,
-#               drop_v=sort_v-1000*index,
-#               drop_u=sort_u-1000*index,
-#               drop_w=sort_w-1000*index) 
-#  dplyr::mutate(Fat_Slide=0,
-#                Partition_Rank_=0,
-#                True Rank=0)
+  dplyr::mutate(w=sinyz*v+cosyz*alpha) %>%
+  dplyr::mutate(rank_v=dense_rank(v)) %>% 
+  dplyr::mutate(slide=floor((v+sli$depth*sli$depth*sli$shift)/sli$depth)) %>%
+  dplyr::mutate(slide_norm=slide-sli$depth) %>%
+  dplyr::mutate(carry_slide_norm=1000*rank_v+slide_norm,
+  	      carry_v=1000*rank_v+v, 
+  	      carry_u=1000*rank_v+u,
+  	      carry_w=1000*rank_v+w) 
+  dplyr::mutate(index=row_number()) %>%
+  dplyr::mutate(sort_slide_norm=sort(carry_slide_norm)) %>%
+  dplyr::mutate(sort_v=sort(carry_v),
+                sort_u=sort(carry_u),
+                sort_w=sort(carry_w)) %>%
+  dplyr::mutate(drop_s=sort_slide_norm-1000*index+sli$slide-1,
+               drop_v=sort_v-1000*index,
+               drop_u=sort_u-1000*index,
+               drop_w=sort_w-1000*index) %>%
+  dplyr::mutate(fat_slide=0,
+                partition_rank=0,
+                true_rank=0)
 })
 #Estimation$methods(estimation=function(selvar=c('x','y','alpha')){
 #

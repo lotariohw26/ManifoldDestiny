@@ -20,7 +20,6 @@ set.seed(snr)
 # Dallas
 load("~/research/ManifoldDestiny/data/dallas_sel.rda")
 gcda <- Countinggraphs(dallas_sel)
-View(gcda$sdfc)
 gcda$sortpre()
 #### Step 1: Inspect visually
 a <- gcda$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
@@ -28,13 +27,13 @@ b <- gcda$plot2d(selvp=c("zeta"),selvl='zeta_m')
 #plotly::subplot(a,b,nrows=2)
 #gcda$plotly3d(partition=3)
 #### Step 2: Rotation matrix
-dfa <- gcda$rdfk
-t <- dplyr::select(dfa,alpha)
-View(t)
+dfa <- gcda$rdfc
 edal <- Estimation(dfa)
 edal$rotation()
-View(edal)
-
+rdfc$carry_slide_norm
+head(rdfc)
+l()
+rdfc$slide-49
 #### Step 3: Regression
 #### Step 4: Prediction
 #################################################################################################33
@@ -45,7 +44,11 @@ getwd()
 library(dplyr)
 filename <- 'data-raw/xlsx/Dallas Texas, Completed.xlsx'
 openxlsx::getSheetNames(filename) 
-dallasxray <- openxlsx::read.xlsx(filename,sheet='X-Ray Machine') 
+xray <- openxlsx::read.xlsx(filename,sheet='X-Ray Machine') 
+rot <- openxlsx::read.xlsx(filename,sheet='Complex Rotator') 
+rot
+l()
+l(dallasxray)
 head(dplyr::select(dallasxray,1,2,3,4,5))
 
 
