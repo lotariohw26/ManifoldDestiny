@@ -9,14 +9,7 @@ abs_path <- function(){rprojroot::find_rstudio_root_file()}
 ful_path <- paste0(abs_path(),'/vignettes/',filn)
 rmarkdown::render(paste0(ful_path,'.Rmd'))
 system(paste0('brave ',ful_path,'.html'))
-
-
-abs_path <- function(){rprojroot::find_rstudio_root_file()}
-fdm <- paste0(abs_path(),'/inst/script/symbolic/pysympy.py')
-reticulate::source_python(fdm)
-eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
-# Saving data
-usethis::use_data(eqpar, overwrite = TRUE)
+sympupd()
 ```
 
 ```{r include=FALSE}
@@ -52,7 +45,7 @@ x=`r modlat$x_s[1]`
 y=`r modlat$y_s[1]`
 \end{equation*}
 \begin{equation*}
-\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
 \end{equation*}
 \begin{equation*}
 \zeta=`r modlat$zeta_s[1]`
@@ -73,13 +66,13 @@ g=`r modlat$g_h[1]`
 h=`r modlat$h_h[1]`
 \end{equation*}
 \begin{equation*}
-\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
 \end{equation*}
 \begin{equation*}
-\Omega=
+\Omega=`r modlat$Omega_h[1]`
 \end{equation*}
 \begin{equation*}
-\Gamma=
+\Gamma=`r modlat$Gamma_h[1]`
 \end{equation*}
 
 ---
@@ -94,13 +87,13 @@ m=`r modlat$m_o[1]`
 n=`r modlat$n_o[1]`
 \end{equation*}
 \begin{equation*}
-\alpha=`r modlat$alpha_o[1]`
-\end{equation*}
-\begin{equation*}
-\zeta=`r modlat$zeta_o[1]`
+\Omega=`r modlat$Omega_o[1]`
 \end{equation*}
 \begin{equation*}
 \lambda=`r modlat$lambda_o[1]`
+\end{equation*}
+\begin{equation*}
+\xi=`r modlat$xi_o[1]`
 \end{equation*}
 
 ## Numerical testing of equations

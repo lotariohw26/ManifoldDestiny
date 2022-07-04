@@ -83,7 +83,7 @@ source(paste0(abs_path(),'/inst/script/stylized.R'))
 -->
 
 ```{r eval=FALSE, include=FALSE}
-setwd(rprojroot::find_rstudio_root_file())
+ManifoldDestiny::abs_path()
 tes <- "inst/Presentation.Rmd"
 xaringan::inf_mr(tes)
 rmarkdown::render(tes) 
