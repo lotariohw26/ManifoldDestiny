@@ -19,6 +19,8 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  namebase='default',
 					  newdraw=T
 					  ){
+
+	#browser()
     filn <- paste0('voterbase/',namebase)
     if(newdraw == T) {
     # Demograhpic structure

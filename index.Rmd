@@ -44,7 +44,7 @@ knitr::knit_exit()
 ```
 # Now
 vignettes/References.Rmd
-vignettes/stylized_model.Rmd
+vignettes/Stylized_model.Rmd
 vignettes/Application_Dallas.Rmd
 data-raw/
 inst/script/symbolic/pysympy.py
@@ -61,5 +61,3 @@ inst/General_alogorithm.Rmd
 inst/sty_presentation.Rmd  
 inst/odg/main_sheet.odg
 inst/sty_presentation.Rmd   
-
-
