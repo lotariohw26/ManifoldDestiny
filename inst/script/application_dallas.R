@@ -30,26 +30,22 @@ b <- gcda$plot2d(selvp=c("zeta"),selvl='zeta_m')
 dfa <- gcda$rdfc
 edal <- Estimation(dfa)
 edal$rotation()
-rdfc$carry_slide_norm
-head(rdfc)
-l()
-rdfc$slide-49
+edal$rdfc
 #### Step 3: Regression
 #### Step 4: Prediction
 #################################################################################################33
-
-
 ###
-getwd()
-library(dplyr)
 filename <- 'data-raw/xlsx/Dallas Texas, Completed.xlsx'
 openxlsx::getSheetNames(filename) 
-xray <- openxlsx::read.xlsx(filename,sheet='X-Ray Machine') 
 rot <- openxlsx::read.xlsx(filename,sheet='Complex Rotator') 
-rot
+xray <- openxlsx::read.xlsx(filename,sheet='X-Ray Machine') 
+rots <- dplyr::select(rot,7:9)
+View(xray)
+xras <- dplyr::select(xray,1:5)
+diffu <- 	
+length(edal$rdfc$u)
+length(xras$u)
+xray
+rots
 l()
-l(dallasxray)
-head(dplyr::select(dallasxray,1,2,3,4,5))
-
-
 

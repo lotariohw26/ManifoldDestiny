@@ -258,7 +258,11 @@ Countinggraphs$methods(resplot=function(resvar=c("zeta_r","alpha_res")){
     #stat_cor(label.x=0,label.y=0.15) +
     ggplot2::theme_bw()
 })
-Countinggraphs$methods(plotly3d=function(partition=1,sel=list(1:5,6:10)){
+Countinggraphs$methods(plotly3d=function(
+					 partition=1,
+					 sel=list(1:5,6:10), 
+					 selid=1
+					 ){
 
   rdfcpar <- rdfc %>% dplyr::select(parameters[[partition]])
   mrdfc <- as.matrix(rdfcpar)
@@ -277,7 +281,7 @@ Countinggraphs$methods(plotly3d=function(partition=1,sel=list(1:5,6:10)){
   ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
   	 div(plot3dlist[sel[[1]]], class="column"),
   	 div(plot3dlist[sel[[2]]],class="column"))
-  list(page=htmltools::browsable(ohtml),ohtml)
+  list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=plot3dlist[[selid]])
 })
 #' @export Countingtables
 #' @exportClass Countingtables
@@ -321,7 +325,7 @@ Estimation$methods(rotation=function(
 				     angles=list(tgrad=c(-41.771547,0,0)), 
 				     sli=list(depth=0.01,divi=0.02,shift=50,slide=49) 
 				     ){
-browser()
+  #browser()
   ra <- circular::rad(angles$tgrad)
   rdfc <<- sdfc %>% dplyr::select(selvar) %>%
   dplyr::mutate(rxy=ra[1]) %>%
@@ -342,7 +346,7 @@ browser()
   dplyr::mutate(carry_slide_norm=1000*rank_v+slide_norm,
   	      carry_v=1000*rank_v+v, 
   	      carry_u=1000*rank_v+u,
-  	      carry_w=1000*rank_v+w) 
+  	      carry_w=1000*rank_v+w) %>%
   dplyr::mutate(index=row_number()) %>%
   dplyr::mutate(sort_slide_norm=sort(carry_slide_norm)) %>%
   dplyr::mutate(sort_v=sort(carry_v),
