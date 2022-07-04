@@ -9,16 +9,16 @@ import json
 import sympy
 import numpy
 import sys
-#import matplotlib.pyplot as plt
 from sympy import solve, Eq, symbols, latex, simplify
-#from matplotlib.pyplot import *
 import pandas
 import os
-apath = os.getcwd()
-print(apath)
-#readmodvar = pandas.read_csv('script/symbolic/csv/parameters.csv', sep=',') 
-#readmodvar = pandas.read_csv('inst/script/symbolic/csv/parameters.csv', sep=',') 
-readmodvar = pandas.read_csv('csv/parameters.csv', sep=',') 
+import rpy2
+import rpy2.robjects as robjects
+from rpy2.robjects.packages import importr, data
+rroot=importr('rprojroot')
+abs_path = rroot.find_rstudio_root_file()[0]
+csvfile=abs_path+'/inst/script/symbolic/csv/parameters.csv'
+readmodvar = pandas.read_csv(csvfile, sep=',') 
 sympy.var(readmodvar.iloc[:,0])
 beforems = set(dir())
 ########################################################################################################################
