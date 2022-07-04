@@ -6,7 +6,10 @@ output: html_document
 ```{r, eval=F, echo=F}
 filn <- 'Parametric_taut'
 abs_path <- function(){rprojroot::find_rstudio_root_file()}
-rmarkdown::render(paste0(abs_path(),'/vignettes/',filn,'.Rmd'))
+ful_path <- paste0(abs_path(),'/vignettes/',filn)
+rmarkdown::render(paste0(ful_path,'.Rmd'))
+system(paste0('brave ',ful_path,'.html'))
+
 
 abs_path <- function(){rprojroot::find_rstudio_root_file()}
 fdm <- paste0(abs_path(),'/inst/script/symbolic/pysympy.py')
@@ -14,8 +17,6 @@ reticulate::source_python(fdm)
 eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
 # Saving data
 usethis::use_data(eqpar, overwrite = TRUE)
-
-
 ```
 
 ```{r include=FALSE}
@@ -87,19 +88,19 @@ h=`r modlat$h_h[1]`
 Parameters: $m$, $n$, $\Omega$, $\lambda$, $\xi$
 
 \begin{equation*}
-x_s=
+m=`r modlat$m_o[1]`
 \end{equation*}
 \begin{equation*}
-y_s=
+n=`r modlat$n_o[1]`
 \end{equation*}
 \begin{equation*}
-\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\alpha=`r modlat$alpha_o[1]`
 \end{equation*}
 \begin{equation*}
-\zeta=
+\zeta=`r modlat$zeta_o[1]`
 \end{equation*}
 \begin{equation*}
-\lambda=
+\lambda=`r modlat$lambda_o[1]`
 \end{equation*}
 
 ## Numerical testing of equations
