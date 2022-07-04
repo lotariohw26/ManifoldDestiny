@@ -15,7 +15,7 @@ library(ManifoldDestiny)
 
 # Overview
 
-![](abc.png)
+![](main_sheet.jpg)
 
 # Phase 1:
 

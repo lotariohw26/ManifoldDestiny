@@ -48,9 +48,33 @@ bib <- ReadBib(file.name)
 
 ```{r, eval=T, echo=F, message=F, warning=F}
 ### Loading equations
-source('script/stylized.R')
-load("~/research/ManifoldDestiny/data/eqpar.rda")
-modlat <- eqpar$meql
+filn <- 'stylized.R'
+abs_path <- function(){rprojroot::find_rstudio_root_file()}
+source(paste0(abs_path(),'/inst/script/stylized.R'))
+```
+
+<!-- Table of contents
+################################################################################################# 
+-->
+
+```{r, echo=FALSE}
+#require("magrittr")
+#file_name <- paste0(abs_path())
+#doc <- toc <- readLines(paste0(file_name,'/inst/Presentation.Rmd'))
+#tocc <- character()
+#for (i in 1:length(toc)) {
+#  if(substr(toc[i][1], 1, 2) == "# ") {
+#    toc[i] <- gsub("# ", "", toc[i], fixed = TRUE) %>% 
+#                gsub("#", "", ., fixed = TRUE)
+#    tocc <- append(tocc, toc[i])
+#  }
+#}
+#tocc <- paste("- ", tocc[-1])
+#row_outline <- which(doc == "# Outline")
+#row_body <- which(doc == "---")
+#row_body <- row_body[which(row_body > row_outline)][1]
+#doc <- c(doc[1:row_outline], "\n", tocc, "\n", doc[(row_body):length(doc)])
+#writeLines(doc, file_name)
 ```
 
 

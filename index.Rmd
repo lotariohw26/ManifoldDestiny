@@ -42,22 +42,6 @@ Ed. Solomon
 ```{r, echo=F, eval=T}
 knitr::knit_exit()
 ```
+
 # Now
-vignettes/References.Rmd
-vignettes/Stylized_model.Rmd
-vignettes/Application_Dallas.Rmd
-data-raw/
-inst/script/symbolic/pysympy.py
-inst/script/application_dallas.R
-inst/script/application_dallas.R
-inst/odg/main_sheet.odg
-data-raw/DATASET.R
-R/class.R
-vignettes/general_algorithm.Rmd
-vignettes/stylized_model.Rmd
-data-raw/DATASET.R
-inst/StylizedModel.Rmd
-inst/General_alogorithm.Rmd
-inst/sty_presentation.Rmd  
-inst/odg/main_sheet.odg
-inst/sty_presentation.Rmd   
+inst/Presentation.Rmd
