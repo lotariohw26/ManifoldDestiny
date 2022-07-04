@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> • Manifold Destiny</title>
+<title>Manifold Destiny • Manifold Destiny</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Manifold Destiny">
 <meta property="og:description" content="ManifoldDestiny">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -46,13 +46,16 @@
   </a>
 </li>
 <li>
-  <a href="../articles/general_algorithm.html">General algorithm</a>
+  <a href="../articles/General_algorithm.html">General algorithm</a>
 </li>
 <li>
-  <a href="../articles/StylizedModel.html">Stylized Model</a>
+  <a href="../articles/Presentation.html">Presentation</a>
 </li>
 <li>
-  <a href="../articles/sty_presentation.html">Presentation</a>
+  <a href="../articles/Stylized_model.html">Stylized Model</a>
+</li>
+<li>
+  <a href="../articles/Graphical.html">Paremetric tautologies</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,12 +73,12 @@
       <a href="../articles/Application_Nevada.html">Nevada</a>
     </li>
     <li>
-      <a href="../articles/Application_Texas.html">Texas</a>
+      <a href="../articles/Application_Dallas.html">Dallas</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../stuff/man_bib.bib">References</a>
+  <a href="../articles/References.html">References</a>
 </li>
 <li>
   <a href="../news/index.html">Log</a>
@@ -102,23 +105,37 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip></h1>
+      <h1 data-toc-skip>Manifold Destiny</h1>
             
       
       
-      <div class="hidden name"><code>general_algorithm.Rmd</code></div>
+      <div class="hidden name"><code>References.Rmd</code></div>
 
     </div>
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="fu">rprojroot</span><span class="fu">::</span><span class="fu"><a href="https://rprojroot.r-lib.org/reference/find_root_file.html" class="external-link">find_rstudio_root_file</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="va">filp</span> <span class="op">&lt;-</span> <span class="st">'vignettes/general_algorithm.Rmd'</span>
-<span class="fu">rmarkdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">render</a></span><span class="op">(</span><span class="va">filp</span><span class="op">)</span></code></pre></div>
 <div class="section level2">
-<h2 id="abc">Abc<a class="anchor" aria-label="anchor" href="#abc"></a>
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
+<div class="section level3">
+<h3 id="clark-and-washoe">Clark and Washoe<a class="anchor" aria-label="anchor" href="#clark-and-washoe"></a>
+</h3>
+<p><a href="https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit#" class="external-link uri">https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit#</a>
+## Maricopa <a href="https://docs.google.com/document/d/1V5drFEwOqVuwpmkepPNfRgWVYwW72MvVqK15qAEx3Ok/edit#" class="external-link uri">https://docs.google.com/document/d/1V5drFEwOqVuwpmkepPNfRgWVYwW72MvVqK15qAEx3Ok/edit#</a>
+<a href="https://docs.google.com/document/d/1f8-h_wHNBVJsUW1UBISGercDkFPyk2HrMmEPCL7LqO8/edit#i" class="external-link uri">https://docs.google.com/document/d/1f8-h_wHNBVJsUW1UBISGercDkFPyk2HrMmEPCL7LqO8/edit#i</a>
+##Pascal Tet Formation <a href="https://docs.google.com/spreadsheets/d/1spDerF9g3tAzng-THlKYr3U_0KOQz40rMuxJ-OT9Jdg/edit#gid=1272764919" class="external-link uri">https://docs.google.com/spreadsheets/d/1spDerF9g3tAzng-THlKYr3U_0KOQz40rMuxJ-OT9Jdg/edit#gid=1272764919</a>
+## Old ### Maricopa <a href="https://docs.google.com/document/d/1-9qbBtTqiGlAurJjEbtVt6lBUi9MKTqPR-xb3FpHx-A/edit#" class="external-link uri">https://docs.google.com/document/d/1-9qbBtTqiGlAurJjEbtVt6lBUi9MKTqPR-xb3FpHx-A/edit#</a>
+<a href="https://coderwall.com/p/elfkaq/editing-google-docs-with-vim" class="external-link uri">https://coderwall.com/p/elfkaq/editing-google-docs-with-vim</a>
+<a href="https://docs.google.com/spreadsheets/d/1R78hoPiP_sleD3L7QtvuE5R-3kf2Xob20bMXQeChke8/edit#gid=173566074" class="external-link uri">https://docs.google.com/spreadsheets/d/1R78hoPiP_sleD3L7QtvuE5R-3kf2Xob20bMXQeChke8/edit#gid=173566074</a>
+### Dallas <a href="https://docs.google.com/document/d/1u8XTDJsyYVFOyuOly1Xs6XjOAAdKFW88C7q624lpAz4" class="external-link uri">https://docs.google.com/document/d/1u8XTDJsyYVFOyuOly1Xs6XjOAAdKFW88C7q624lpAz4</a>
+# Spreadsheets <a href="https://docs.google.com/spreadsheets/d/1x1w2hv8JdAA5Zq5C-SbmsSBTA1fhO1aUuDyFRgEeHK0/edit#gid=0" class="external-link uri">https://docs.google.com/spreadsheets/d/1x1w2hv8JdAA5Zq5C-SbmsSBTA1fhO1aUuDyFRgEeHK0/edit#gid=0</a>
+<a href="https://docs.google.com/spreadsheets/d/1e_Hqb4lIYdfjehEXRv9c9gFHPG-4Z-1tSjrOX_n2G98/edit#gid=2045784139A" class="external-link uri">https://docs.google.com/spreadsheets/d/1e_Hqb4lIYdfjehEXRv9c9gFHPG-4Z-1tSjrOX_n2G98/edit#gid=2045784139A</a>
+<a href="https://docs.google.com/spreadsheets/d/1DYotD54PsrTREk4dZ3I04uVDa7z2FqH5DSNGjD11XrI/edit#gid=0" class="external-link uri">https://docs.google.com/spreadsheets/d/1DYotD54PsrTREk4dZ3I04uVDa7z2FqH5DSNGjD11XrI/edit#gid=0</a>
+<a href="https://docs.google.com/spreadsheets/d/1tAB6sjG7P-0y6PzxyYDvKMbYDK833MgQhfLti5Ip6Gg/edit#gid=1217173103" class="external-link uri">https://docs.google.com/spreadsheets/d/1tAB6sjG7P-0y6PzxyYDvKMbYDK833MgQhfLti5Ip6Gg/edit#gid=1217173103</a>
+# Links <a href="https://github.com/lotariohw26/ManifoldDestiny" class="external-link uri">https://github.com/lotariohw26/ManifoldDestiny</a> <a href="https://lotariohw26.github.io/ManifoldDestiny/" class="external-link uri">https://lotariohw26.github.io/ManifoldDestiny/</a> <a href="https://plotly-r.com/exporting-static-images.html" class="external-link uri">https://plotly-r.com/exporting-static-images.html</a> #
+Lombardo <a href="https://docs.google.com/document/d/1O_5Rs29mJut8NfOtFIW2chN5NC6TyFwVkkCZX7PyZIA/edit#heading=h.tp0g9ruvaiuu" class="external-link uri">https://docs.google.com/document/d/1O_5Rs29mJut8NfOtFIW2chN5NC6TyFwVkkCZX7PyZIA/edit#heading=h.tp0g9ruvaiuu</a></p>
+</div>
 </div>
   </div>
 

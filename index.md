@@ -16,5 +16,3 @@ Ed. Solomon
 > satisfied in the thing.”
 
 <br> <br> <br> <br> <br>
-
-<img src="man/figures/overview.png" width="75%" />

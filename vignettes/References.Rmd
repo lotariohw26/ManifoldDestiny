@@ -1,12 +1,12 @@
 ---
 title: "Manifold Destiny"
 abstract: ""	
-date: '`r format(Sys.Date())`'
+#date: '`r format(Sys.Date())`'
 # output:
 #   pdf_document:
 #     keep_tex: false
 #output: html_notebook
-bibliography: man_bib.bib
+#bibliography: man_bib.bib
 output: html_document
 #output: word_document
 #lang: en-US
@@ -14,8 +14,8 @@ output: html_document
 ---
 
 ```{r, eval=F, include=F}
-abspath <- setwd(rprojroot::find_rstudio_root_file())
-filn <-'inst/Paper'
+getwd()
+filn <-'vignettes/References'
 rmarkdown::render(paste0(filn,'.Rmd'))
 system(paste0('brave ',filn,'.html'))
 ```
@@ -25,11 +25,37 @@ library(ggplot2)
 library(dplyr)
 library(RefManageR)
 BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown", dashed = TRUE)
-bib <- ReadBib('man_bib.bib')
+#bib <- ReadBib('../inst/References/script/man_bib.bib')
 ```
 
 # References
 
 ```{r eval=FALSE, include=FALSE}
-PrintBibliography(bib)
+#PrintBibliography(bib)
 ```
+
+## Clark and Washoe
+https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit#
+## Maricopa
+https://docs.google.com/document/d/1V5drFEwOqVuwpmkepPNfRgWVYwW72MvVqK15qAEx3Ok/edit#
+https://docs.google.com/document/d/1f8-h_wHNBVJsUW1UBISGercDkFPyk2HrMmEPCL7LqO8/edit#i
+##Pascal Tet Formation
+https://docs.google.com/spreadsheets/d/1spDerF9g3tAzng-THlKYr3U_0KOQz40rMuxJ-OT9Jdg/edit#gid=1272764919
+## Old
+### Maricopa
+https://docs.google.com/document/d/1-9qbBtTqiGlAurJjEbtVt6lBUi9MKTqPR-xb3FpHx-A/edit#
+https://coderwall.com/p/elfkaq/editing-google-docs-with-vim
+https://docs.google.com/spreadsheets/d/1R78hoPiP_sleD3L7QtvuE5R-3kf2Xob20bMXQeChke8/edit#gid=173566074
+### Dallas
+https://docs.google.com/document/d/1u8XTDJsyYVFOyuOly1Xs6XjOAAdKFW88C7q624lpAz4
+# Spreadsheets
+https://docs.google.com/spreadsheets/d/1x1w2hv8JdAA5Zq5C-SbmsSBTA1fhO1aUuDyFRgEeHK0/edit#gid=0
+https://docs.google.com/spreadsheets/d/1e_Hqb4lIYdfjehEXRv9c9gFHPG-4Z-1tSjrOX_n2G98/edit#gid=2045784139A
+https://docs.google.com/spreadsheets/d/1DYotD54PsrTREk4dZ3I04uVDa7z2FqH5DSNGjD11XrI/edit#gid=0
+https://docs.google.com/spreadsheets/d/1tAB6sjG7P-0y6PzxyYDvKMbYDK833MgQhfLti5Ip6Gg/edit#gid=1217173103
+# Links
+https://github.com/lotariohw26/ManifoldDestiny
+https://lotariohw26.github.io/ManifoldDestiny/
+https://plotly-r.com/exporting-static-images.html
+# Lombardo
+https://docs.google.com/document/d/1O_5Rs29mJut8NfOtFIW2chN5NC6TyFwVkkCZX7PyZIA/edit#heading=h.tp0g9ruvaiuu

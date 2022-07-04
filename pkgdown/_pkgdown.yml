@@ -7,14 +7,14 @@ navbar:
   type: inverse
   left:
     - icon: fa-home 
-    - text: "Presentation"
-      href: "articles/Presentation.html"
     - text: "General algorithm"
       href: "articles/General_algorithm.html"
+    - text: "Presentation"
+      href: "articles/Presentation.html"
     - text: "Stylized Model"
       href: "articles/Stylized_model.html"
     - text: "Paremetric tautologies"
-      href: "articles/Graphical.html"
+      href: "articles/Parametric_taut.html"
     - text: "Applications"
       icon: fas fa-book
       menu:
@@ -25,7 +25,7 @@ navbar:
       - text: "Dallas"
         href: "articles/Application_Dallas.html"
     - text: "References"
-      href: "stuff/man_bib.bib"
+      href: "articles/References.html"
     - text: "Log"
       href: "news/index.html" 
   right:
