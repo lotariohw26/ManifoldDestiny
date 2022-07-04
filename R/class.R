@@ -307,23 +307,22 @@ Estimation <- setRefClass("Estimation", fields=list(
 						plot3dlist='list'
 						))
 Estimation$methods(initialize=function(
-					sdfinp=NULL
+					rdfcinp=NULL
 					  ){
   
- parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
+  parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
   		      hybrid=c("g","h","Omega","lambda","xi"),
 		      opposition=c("m","n","Omega","xi","lambda"))
 
-  sdfc <<- sdfinp 
-  
+  sdfc <<- rdfcinp
 })
 Estimation$methods(rotation=function(
 				     selvar=c('x','y','alpha'),
-				     angles=list(tgrad=c(-41.771547,0,0))
-				     slidel=list(s_depth=0.01,s_division=0.02,s_shift=50,s_slide=49)
+				     angles=list(tgrad=c(-41.771547,0,0)), 
+				     slidel=list(s_depth=0.01,s_division=0.02,s_shift=50,s_slide=49) 
 				     ){
-#
-  ra <- circular::rad(angles$tgrad)
+browser()
+  ra <- circular::rad(angles$tgrad[1])
   rd <- sdfc %>% dplyr::select(selvar) %>%
   dplyr::mutate(rxy=ra[1]) %>%
   dplyr::mutate(cosxy=cos(rxy)) %>%
@@ -337,34 +336,34 @@ Estimation$methods(rotation=function(
   dplyr::mutate(u=cosxy*y-sinxy*x) %>%
   dplyr::mutate(v=sinxy*y+cosxy*x) %>%
   dplyr::mutate(w=sinyz*v+cosyz*alpha)
-  
-  build <- dallasxray[1:741,] %>% dplyr::select(7,8,9) %>% 
-  dplyr::mutate(rank_v=dense_rank(v)) %>% 
-  dplyr::mutate(slide=floor((v+s_depth*s_division*s_shift)/s_depth)) %>%
-  dplyr::mutate(slide_norm=slide-(s_slide)+1) %>%
-  dplyr::mutate(carry_slide_norm=1000*rank_v+slide_norm, 
-  	      carry_v=1000*rank_v+v, 
-  	      carry_u=1000*rank_v+u,
-  	      carry_w=1000*rank_v+w) %>%
-  dplyr::mutate(index=row_number()) %>%
-  dplyr::mutate(sort_slide_norm=sort(carry_slide_norm)) %>%
-  dplyr::mutate(sort_v=sort(carry_v),
-                sort_u=sort(carry_u),
-                sort_w=sort(carry_w)) %>%
-  dplyr::mutate(drop_s=sort_slide_norm-1000*index+s_slide-1,
-               drop_v=sort_v-1000*index,
-               drop_u=sort_u-1000*index,
-               drop_w=sort_w-1000*index) 
-  dplyr::mutate(Fat_Slide=0,
-                Partition_Rank_=0,
-                True Rank=0)
+rd
+#  build <- dallasxray[1:741,] %>% dplyr::select(7,8,9) %>% 
+#  dplyr::mutate(rank_v=dense_rank(v)) %>% 
+#  dplyr::mutate(slide=floor((v+s_depth*s_division*s_shift)/s_depth)) %>%
+#  dplyr::mutate(slide_norm=slide-(s_slide)+1) %>%
+#  dplyr::mutate(carry_slide_norm=1000*rank_v+slide_norm, 
+#  	      carry_v=1000*rank_v+v, 
+#  	      carry_u=1000*rank_v+u,
+#  	      carry_w=1000*rank_v+w) %>%
+#  dplyr::mutate(index=row_number()) %>%
+#  dplyr::mutate(sort_slide_norm=sort(carry_slide_norm)) %>%
+#  dplyr::mutate(sort_v=sort(carry_v),
+#                sort_u=sort(carry_u),
+#                sort_w=sort(carry_w)) %>%
+#  dplyr::mutate(drop_s=sort_slide_norm-1000*index+s_slide-1,
+#               drop_v=sort_v-1000*index,
+#               drop_u=sort_u-1000*index,
+#               drop_w=sort_w-1000*index) 
+#  dplyr::mutate(Fat_Slide=0,
+#                Partition_Rank_=0,
+#                True Rank=0)
 })
-Estimation$methods(estimation=function(selvar=c('x','y','alpha')){
-
-	rsq <- function(x, y) summary(lm(y~x))$r.squared
-	k <- c(1.57874563,-0.5819051755,0.001519026359)
-	ge <- eval(parse(text='k[1]*alpha+k[2]*h+k[3]'),list(alpha=1,h=1,k=k))
-	edfc <<- sdfc %>% dplyr::mutate(gpred=gp(alpha,h,k)) %>% dplyr::mutate(rsq=rsq(g,gpred))
-})
-##################################################################################################3
-##################################################################################################3
+#Estimation$methods(estimation=function(selvar=c('x','y','alpha')){
+#
+#	rsq <- function(x, y) summary(lm(y~x))$r.squared
+#	k <- c(1.57874563,-0.5819051755,0.001519026359)
+#	ge <- eval(parse(text='k[1]*alpha+k[2]*h+k[3]'),list(alpha=1,h=1,k=k))
+#	edfc <<- sdfc %>% dplyr::mutate(gpred=gp(alpha,h,k)) %>% dplyr::mutate(rsq=rsq(g,gpred))
+#})
+###################################################################################################3
+###################################################################################################3
