@@ -161,12 +161,14 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
     dplyr::mutate(lambda=pareq(s[['lambda_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(Omega=pareq(s[['Omega_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(Gamma=pareq(s[['Gamma_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(xi=pareq(s[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d)))
+    dplyr::mutate(xi=pareq(s[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::arrange('alpha') %>%
+    dplyr::mutate(pri=row_number()/length(pre))
 
   rdfc <<- sdfc
 
   # Init values standard form
-  #polyc[[1]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
+  polyc[[1]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
   # Init values hybrid form
   #polyc[[2]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
   ### Init values opposition form
