@@ -107,6 +107,21 @@ y=`r modlat$cy`
 
 ---
 
+class: inverse, center, middle
+
+# The meaning of manifold Destiny
+
+```{r, echo=FALSE, out.width="70%", fig.cap=""}
+head(iris)
+```
+
+---
+
+class: inverse, center, middle
+
+# Setting up the simplified framework (two modes of voting)
+---
+
 ## Examples of major elections based on two modes of voting
 
 - Venezuela referendum to recall President Hugo Chávez (2004)

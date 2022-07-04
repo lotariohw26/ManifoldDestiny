@@ -276,7 +276,7 @@ Countinggraphs$methods(plotly3d=function(partition=1,sel=list(1:5,6:10)){
 
   ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
   	 div(plot3dlist[sel[[1]]], class="column"),
-  	 div(plot3dlist[sel[[1]]],class="column"))
+  	 div(plot3dlist[sel[[2]]],class="column"))
   list(page=htmltools::browsable(ohtml),ohtml)
 })
 #' @export Countingtables

@@ -53,8 +53,8 @@ knitr::knit_exit()
 vignettes/Stylized_model.Rmd
 data-raw/
 inst/script/symbolic/pysympy.py
-inst/script/stylized.R
-inst/script/applications.R
+inst/script/application_dallas.R
+inst/script/application_dallas.R
 inst/odg/main_sheet.odg
 data-raw/DATASET.R
 R/class.R
