@@ -19,8 +19,8 @@ import os
 apath = os.getcwd()
 print(apath)
 #readmodvar = pandas.read_csv('script/symbolic/csv/parameters.csv', sep=',') 
-readmodvar = pandas.read_csv('inst/script/symbolic/csv/parameters.csv', sep=',') 
-#readmodvar = pandas.read_csv('csv/parameters.csv', sep=',') 
+#readmodvar = pandas.read_csv('inst/script/symbolic/csv/parameters.csv', sep=',') 
+readmodvar = pandas.read_csv('csv/parameters.csv', sep=',') 
 sympy.var(readmodvar.iloc[:,0])
 beforems = set(dir())
 ########################################################################################################################
