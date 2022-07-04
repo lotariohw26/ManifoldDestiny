@@ -23,6 +23,7 @@ pkgdown::build_articles()
 pkgdown::build_news()
 usethis::use_news_md("")
 system("cp inst/Presentation.html docs/articles/Presentation.html")
+system("cp -r inst/libs docs/articles")
 #system("cp inst/man_bib.bib docs/stuff/man_bib.bib")
 ```
 

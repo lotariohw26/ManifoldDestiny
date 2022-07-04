@@ -288,13 +288,6 @@ class: inverse, center, middle
 PrintBibliography(bib)
 ```
 
----
-
-class: inverse, center, middle
-
-# Appendix: Parametric tautologies
-
-
 ```{r, eval=T, echo=F}
 knitr::knit_exit()
 ```

@@ -1,4 +1,4 @@
-pandoc: '2.18'
+pandoc: 2.17.1.1
 pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
@@ -9,7 +9,7 @@ articles:
   Parametric_taut: Parametric_taut.html
   References: References.html
   Stylized_model: Stylized_model.html
-last_built: 2022-07-04T12:03Z
+last_built: 2022-07-04T12:15Z
 urls:
   reference: https://pkgdown.r-lib.org/reference
   article: https://pkgdown.r-lib.org/articles

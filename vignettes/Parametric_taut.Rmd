@@ -1,0 +1,53 @@
+---
+title: "Stylized_model"
+output: html_document
+---
+
+```{r include=FALSE}
+library(ManifoldDestiny)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(purrr)
+library(randNames)
+library(openxlsx)
+library(patchwork)
+library(writexl)
+library(plotly)
+library(ViewPipeSteps)
+library(RefManageR)
+library(ggpubr)
+```
+
+```{r, eval=T, echo=F, message=F, warning=F}
+### Loading equations
+#source('inst/script/stylized.R')
+load("~/research/ManifoldDestiny/data/eqpar.rda")
+modlat <- eqpar$meql
+```
+
+### Standard form
+Parameters: $x$, $y$, $\alpha$, $\lambda$ $\zeta$
+
+\begin{equation*}
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
+
+---
+
+### Hybrid form
+Parameters: $g$, $h$, $\alpha$, $\Omega$, $\Gamma$
+
+\begin{equation*}
+\alpha=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
+
+---
+
+### Opposition form
+Parameters: $m$, $n$, $\Omega$, $\lambda$, $\xi$
+
+\begin{equation*}
+\alpha=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
+
