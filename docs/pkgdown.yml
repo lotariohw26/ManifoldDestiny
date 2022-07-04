@@ -3,12 +3,12 @@ pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   Application_Arizona: Application_Arizona.html
+  Application_Dallas: Application_Dallas.html
   Application_Nevada: Application_Nevada.html
-  Application_Texas: Application_Texas.html
   General_algorithm: General_algorithm.html
-  Graphical: Graphical.html
+  Parametric_taut: Parametric_taut.html
   Stylized_model: Stylized_model.html
-last_built: 2022-06-30T23:47Z
+last_built: 2022-07-04T11:37Z
 urls:
   reference: https://pkgdown.r-lib.org/reference
   article: https://pkgdown.r-lib.org/articles

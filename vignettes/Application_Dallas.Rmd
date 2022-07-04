@@ -1,0 +1,47 @@
+---
+title: "Application: Dallas county (Texas)"
+output: html_document
+---
+
+```{r, eval=F, echo=F}
+setwd(rprojroot::find_rstudio_root_file())
+filp <- 'vignettes/Application_Dallas.Rmd'
+rmarkdown::render(filp)
+system(paste0('brave vignettes/Application_Dallas.html'))
+```
+
+```{r, eval=T, message=F, warning=F, echo=F}
+library(ManifoldDestiny)
+library(dplyr)
+library(ggplot2)
+source('../inst/script/application_dallas.R')
+```
+
+#### Step 1: Visual inspection
+
+```{r}
+gcda$plotly3d(partition=1)[[1]]
+```
+
+#### Step 2: Rotation matrix
+
+#### Step 3: Regression
+
+#### Step 4: Prediction
+
+```{r, echo=F}
+knitr::knit_exit()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

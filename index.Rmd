@@ -18,7 +18,7 @@ rmarkdown::render("index.Rmd")
 
 ```{r, eval=F, echo=F}
 pkgdown::build_site()
-# Specific
+pkgdown::build_vignette()
 pkgdown::build_home()
 pkgdown::build_articles()
 pkgdown::build_news()
@@ -50,7 +50,9 @@ knitr::knit_exit()
 ```
 
 # Now
-vignettes/Stylized_model.Rmd
+vignettes/stylized_model.Rmd
+vignettes/Application_Dallas.Rmd
+
 data-raw/
 inst/script/symbolic/pysympy.py
 inst/script/application_dallas.R

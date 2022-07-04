@@ -35,17 +35,17 @@ edal$rdfc
 #### Step 4: Prediction
 #################################################################################################33
 ###
-filename <- 'data-raw/xlsx/Dallas Texas, Completed.xlsx'
-openxlsx::getSheetNames(filename) 
-rot <- openxlsx::read.xlsx(filename,sheet='Complex Rotator') 
-xray <- openxlsx::read.xlsx(filename,sheet='X-Ray Machine') 
-rots <- dplyr::select(rot,7:9)
-View(xray)
-xras <- dplyr::select(xray,1:5)
-diffu <- 	
-length(edal$rdfc$u)
-length(xras$u)
-xray
-rots
-l()
-
+#filename <- 'data-raw/xlsx/Dallas Texas, Completed.xlsx'
+#openxlsx::getSheetNames(filename) 
+#rot <- openxlsx::read.xlsx(filename,sheet='Complex Rotator') 
+#xray <- openxlsx::read.xlsx(filename,sheet='X-Ray Machine') 
+#rots <- dplyr::select(rot,7:9)
+#View(xray)
+#xras <- dplyr::select(xray,1:5)
+#diffu <- 	
+#length(edal$rdfc$u)
+#length(xras$u)
+#xray
+#rots
+#l()
+#

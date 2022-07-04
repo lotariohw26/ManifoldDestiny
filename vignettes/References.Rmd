@@ -1,0 +1,35 @@
+---
+title: "Manifold Destiny"
+abstract: ""	
+date: '`r format(Sys.Date())`'
+# output:
+#   pdf_document:
+#     keep_tex: false
+#output: html_notebook
+bibliography: man_bib.bib
+output: html_document
+#output: word_document
+#lang: en-US
+#zotero: true
+---
+
+```{r, eval=F, include=F}
+abspath <- setwd(rprojroot::find_rstudio_root_file())
+filn <-'inst/Paper'
+rmarkdown::render(paste0(filn,'.Rmd'))
+system(paste0('brave ',filn,'.html'))
+```
+
+```{r, eval=T, include=F}
+library(ggplot2)
+library(dplyr)
+library(RefManageR)
+BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown", dashed = TRUE)
+bib <- ReadBib('man_bib.bib')
+```
+
+# References
+
+```{r eval=FALSE, include=FALSE}
+PrintBibliography(bib)
+```
