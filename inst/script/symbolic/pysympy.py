@@ -60,7 +60,7 @@ modeqs = dict()
 modeql = dict()
 dfs = [] 
 dfl = [] 
-parv = 'empty'
+arv = 'empty'
 for i in range(0,len(modvarlist)):
   modeqs[parv] = dfs
   modeql[parv] = dfl
