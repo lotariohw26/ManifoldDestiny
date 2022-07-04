@@ -1,7 +1,22 @@
 ---
-title: "Stylized_model"
+title: ""
 output: html_document
 ---
+
+```{r, eval=F, echo=F}
+filn <- 'Parametric_taut'
+abs_path <- function(){rprojroot::find_rstudio_root_file()}
+rmarkdown::render(paste0(abs_path(),'/vignettes/',filn,'.Rmd'))
+
+abs_path <- function(){rprojroot::find_rstudio_root_file()}
+fdm <- paste0(abs_path(),'/inst/script/symbolic/pysympy.py')
+reticulate::source_python(fdm)
+eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
+# Saving data
+usethis::use_data(eqpar, overwrite = TRUE)
+
+
+```
 
 ```{r include=FALSE}
 library(ManifoldDestiny)
@@ -21,8 +36,8 @@ library(ggpubr)
 
 ```{r, eval=T, echo=F, message=F, warning=F}
 ### Loading equations
-#source('inst/script/stylized.R')
-load("~/research/ManifoldDestiny/data/eqpar.rda")
+abs_path <- function(){rprojroot::find_rstudio_root_file()}
+load(paste0(abs_path(),'/data/eqpar.rda'))
 modlat <- eqpar$meql
 ```
 
@@ -30,7 +45,19 @@ modlat <- eqpar$meql
 Parameters: $x$, $y$, $\alpha$, $\lambda$ $\zeta$
 
 \begin{equation*}
+x=`r modlat$x_s[1]`
+\end{equation*}
+\begin{equation*}
+y=`r modlat$y_s[1]`
+\end{equation*}
+\begin{equation*}
 \alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
+\begin{equation*}
+\zeta=`r modlat$zeta_s[1]`
+\end{equation*}
+\begin{equation*}
+\lambda=`r modlat$lambda_s[1]`
 \end{equation*}
 
 ---
@@ -39,7 +66,19 @@ Parameters: $x$, $y$, $\alpha$, $\lambda$ $\zeta$
 Parameters: $g$, $h$, $\alpha$, $\Omega$, $\Gamma$
 
 \begin{equation*}
-\alpha=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+g=`r modlat$g_h[1]`
+\end{equation*}
+\begin{equation*}
+h=`r modlat$h_h[1]`
+\end{equation*}
+\begin{equation*}
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
+\begin{equation*}
+\Omega=
+\end{equation*}
+\begin{equation*}
+\Gamma=
 \end{equation*}
 
 ---
@@ -48,6 +87,19 @@ Parameters: $g$, $h$, $\alpha$, $\Omega$, $\Gamma$
 Parameters: $m$, $n$, $\Omega$, $\lambda$, $\xi$
 
 \begin{equation*}
-\alpha=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+x_s=
+\end{equation*}
+\begin{equation*}
+y_s=
+\end{equation*}
+\begin{equation*}
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\end{equation*}
+\begin{equation*}
+\zeta=
+\end{equation*}
+\begin{equation*}
+\lambda=
 \end{equation*}
 
+## Numerical testing of equations

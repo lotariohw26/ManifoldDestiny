@@ -12,9 +12,8 @@ rn <- randNames::rand_names(100, nationality="US")[,c("name.first","name.last","
 ###############################################################################################################
 # Model
 ###############################################################################################################
-proot <- rprojroot::find_rstudio_root_file()
-setwd(proot)
-fdm <- paste0(proot,'/inst/script/symbolic/pysympy.py')
+abs_path <- function(){rprojroot::find_rstudio_root_file()}
+fdm <- paste0(abs_path(),'/inst/script/symbolic/pysympy.py')
 reticulate::source_python(fdm)
 eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
 # Saving data
