@@ -3,9 +3,10 @@ title: "Stylized_model"
 output: html_document
 ---
 
-```{r eval=F}
-setwd(rprojroot::find_rstudio_root_file())
-filp <- 'vignettes/Stylized_model.Rmd'
+```{r eval=F, echo=F}
+filn <- 'Stylized_model'
+abs_path <- function(){rprojroot::find_rstudio_root_file()}
+paste0(abs_path(),filn)
 rmarkdown::render(filp)
 system(paste0('brave ','vignettes/Stylized_model.html'))
 ```
@@ -24,14 +25,14 @@ library(plotly)
 library(ViewPipeSteps)
 library(RefManageR)
 library(ggpubr)
+library(ManifoldDestiny)
+library(dplyr)
+library(ggplot2)
 ```
 
-```{r, eval=T, echo=F, message=F, warning=F}
-### Loading equations
-#source('inst/script/stylized.R')
-load("~/research/ManifoldDestiny/data/eqpar.rda")
-modlat <- eqpar$meql
+```{r, eval=T, message=F, warning=F, echo=F}
+sourcef <- 'stylized.R'
+abs_path <- function(){rprojroot::find_rstudio_root_file()}
+source(paste0(abs_path(),'/inst/script/',sourcef))
 ```
-
-
 

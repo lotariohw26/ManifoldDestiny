@@ -1,3 +1,4 @@
+abs_path <- function(){rprojroot::find_rstudio_root_file()}
 bm <- function(){
    early <- getwd()
    middle <- rprojroot::find_rstudio_root_file()

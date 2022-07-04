@@ -34,6 +34,10 @@ BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown", 
 #PrintBibliography(bib)
 ```
 
+```{r eval=FALSE, include=FALSE}
+knitr::knit_exit()
+```
+
 ## Clark and Washoe
 https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit#
 ## Maricopa
