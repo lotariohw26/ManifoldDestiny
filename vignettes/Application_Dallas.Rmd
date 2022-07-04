@@ -18,16 +18,28 @@ source('../inst/script/application_dallas.R')
 ```
 
 #### Step 1: Visual inspection
-
-```{r}
+## Results {.tabset}
+### A
+```{r, echo=F}
 gcda$plotly3d(partition=1)[[1]]
 ```
+### B
+```{r, echo=F}
+gcda$plotly3d(partition=2)[[1]]
+```
+### C
+```{r, echo=F}
+gcda$plotly3d(partition=3)[[1]]
+```
+
 
 #### Step 2: Rotation matrix
 
 #### Step 3: Regression
 
 #### Step 4: Prediction
+
+
 
 ```{r, echo=F}
 knitr::knit_exit()
