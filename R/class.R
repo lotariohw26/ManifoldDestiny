@@ -8,7 +8,6 @@ pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))
 ############################################################################################################################################################
 ###########################################################################################################################################################
 #' @export Voterdatabase
-#' @export class Voterdatabase
 Voterdatabase <- setRefClass("Voterdatabase", fields=list(voterrolldatabase='data.frame',
 							  voterrollrealized='data.frame',
 							  totpop='matrix',agebrack='vector'))
@@ -116,14 +115,11 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
   dplyr::arrange(desc(status),pi)
 })
 #' @export Grafbase
-#' @exportClass Grafbase
 Grafbase <- setRefClass("Grafbase", contains = c('Voterdatabase'), fields = list(def='list'))
 #' @export Tablebase
-#' @exportClass Tablebase
 Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = list(ghi='list'))
 ############################################################################################################################################################
-############################################################################################################################################################
-#' @export Countingprocess 
+#' @export Countingprocess
 #' @export class Countingprocess
 Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', pareqs='list',plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
@@ -225,86 +221,10 @@ Countingprocess$methods(riggopo=function(sdfinp=NULL){
   n <- function(alpha,x,k,h) eval(parse(text=formula,c(list(alpha=alpha,x=x),list(k=k,h=h))))
   rdfc <<- sdfc %>% dplyr::select(pri,pre,alpha,x,y)
 })
-##' @export Countinggraphs
-##' @exportClass
-#Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
-#Countinggraphs$methods(plot2d=function(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred")){
-#
-#    longdf <- tidyr::pivot_longer(quintile,all_of(c(selvp,selvl)))
-#    ggplot2::ggplot(data=longdf) +
-#	geom_line(data=filter(longdf,name%in%selvl),aes(x=pri,y=value, color=name)) +
-#	geom_point(data=filter(longdf,name%in%selvp),aes(x=pri,y=value, color=name)) +
-#	#labs(x=selv[1],y=selv[2],title="") +
-#	ggplot2::theme_bw()
-#})
-#Countinggraphs$methods(plotxy=function(selv=c("x","y")){
-#
-#    widedf <- sdfc
-#    ggplot2::ggplot(data=widedf,aes_string(x=selv[1],y=selv[2])) +
-#	geom_point() +
-#	geom_smooth(method=lm,se=F) +
-#        #ggpubr::stat_regline_equation(label.x=0,label.y=0.10) +
-#        ggpubr::stat_cor() +
-#   	labs(x=selv[1],y=selv[2],title="") +
-#    	ggplot2::theme_bw()
-#})
-#Countinggraphs$methods(resplot=function(resvar=c("zeta_r","alpha_res")){
-#
-#  x <- quintile[paste0(resvar[1])]
-#  y <- quintile[paste0(resvar[2])]
-#  quintile$z <<- x*y
-#  ggplot2::ggplot(data=quintile,aes_string(resvar[1],resvar[2])) +
-#    geom_smooth(method="lm") +
-#    geom_point() +
-#    #stat_regline_equation(label.x=0,label.y=0.10) +
-#    #stat_cor(label.x=0,label.y=0.15) +
-#    ggplot2::theme_bw()
-#})
-#Countinggraphs$methods(plotly3d=function(
-#					 partition=1,
-#					 sel=list(1:5,6:10),
-#					 selid=1
-#					 ){
-#
-#  rdfcpar <- rdfc %>% dplyr::select(parameters[[partition]])
-#  mrdfc <- as.matrix(rdfcpar)
-#  combi <- combinat::combn(5, 3)
-#  seq(1,dim(combi)[2]) %>% purrr::map(function(x,comb=combi,df=rdfcpar){
-#  gdf <- df %>% dplyr::select(combi[,x])
-#  mrdfc <- as.matrix(gdf)
-#  x <- mrdfc[,1]
-#  y <- mrdfc[,2]
-#  z <- mrdfc[,3]
-#  plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers") %>%
-#  plotly::layout(scene = list(xaxis = list(title = names(gdf)[1]),
-#  yaxis = list(title = names(gdf)[2]),
-#  zaxis = list(title = names(gdf)[3]))) }) ->> plot3dlist
-#
-#  ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
-#  	 div(plot3dlist[sel[[1]]], class="column"),
-#  	 div(plot3dlist[sel[[2]]],class="column"))
-#  list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=plot3dlist[[selid]])
-#})
-##' @export Countingtables
-##' @exportClass Countingtables
-#Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'), fields = list(ghi='list'))
-############################################################################################################################################################
-#rootsolving <- function(k=NULL,c=NULL){
-#  #reticulate::repl_python('../inst/script/rootsolving/fqs.py')
-#  #os <-reticulate::import("fqs")
-#  A <- 1
-#  B <- 1
-#  C <- 1
-#  D <- 1
-#  E <- 1
-#  p <- c(A,B,C,D,E)[1:4]
-#  #os$quartic_roots(p)
-#}
-##rootsolving()
+
 ############################################################################################################################################################
 #' A class description
 #' @export Estimation
-#' @export class Estimation
 Estimation <- setRefClass("Estimation", fields=list(
 						sdfc='data.frame',
 						rdfc='data.frame',
@@ -369,6 +289,4 @@ Estimation$methods(rotation=function(
 #	ge <- eval(parse(text='k[1]*alpha+k[2]*h+k[3]'),list(alpha=1,h=1,k=k))
 #	edfc <<- sdfc %>% dplyr::mutate(gpred=gp(alpha,h,k)) %>% dplyr::mutate(rsq=rsq(g,gpred))
 #})
-###################################################################################################3
-####################################################################################################3
-#
+

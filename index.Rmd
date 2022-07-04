@@ -54,3 +54,185 @@ inst/script/symbolic/pysympy.py
 vignettes/Application_Dallas.Rmd
 vignettes/Parametric_taut.Rmd
 
+
+
+####################################################################3
+#' @export Countingprocess
+#' @export class Countingprocess
+Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', pareqs='list',plot3dlist='list'))
+Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
+
+  # Assigning model equations
+  rotp <- rprojroot::find_rstudio_root_file()
+  mpath <- paste0(rotp,'/data/eqpar.rda')
+  load("~/research/ManifoldDestiny/data/eqpar.rda")
+  pareqs <<- eqpar
+
+  parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
+  		      hybrid=c("g","h","Omega","lambda","xi"),
+		      opposition=c("m","n","Omega","xi","lambda"))
+
+  sdfc <<- sdfinp %>% dplyr::select(pre,a,b,c,d) %>% dplyr::group_by(pre) %>%
+    dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
+    dplyr::ungroup() %>% dplyr::distinct() %>%
+    dplyr::group_by(pre) %>% dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
+    dplyr::ungroup() %>% dplyr::distinct() %>%
+    dplyr::filter(a>0) %>%
+    dplyr::filter(b>0) %>%
+    dplyr::filter(c>0) %>%
+    dplyr::filter(d>0) %>%
+    dplyr::mutate(x=a/(a+b),y=c/(c+d)) %>%
+    dplyr::mutate(g=a/(a+d),h=c/(b+c)) %>%
+    dplyr::mutate(m=a/(a+c),n=b/(b+d)) %>%
+    dplyr::mutate(zeta=(c+d)/(a+b)) %>%
+    dplyr::mutate(Omega=(a+b)/(a+b+c+d)) %>%
+    dplyr::mutate(Gamma=(b+c)/(a+d)) %>%
+    dplyr::mutate(xi=(b+d)/(a+c)) %>%
+    dplyr::mutate(alpha=(a+c)/(a+b+c+d),
+		 alphac1=Omega*x+(1-Omega)*y,
+		 alphac2=(x+zeta*y)/(1+zeta),
+		 alphac3=1/(1+xi)) %>%
+    dplyr::mutate(lambda=(a+d)/(a+b+c+d),
+		 lambdac1=(x+zeta*(1-y))/(zeta+1),
+		 lambdac2=(1)/(Gamma+1),
+		 lambdac3=(m+xi*(1-n))/(xi+1)) %>%
+    dplyr::mutate(Omega=(a+b)/(a+b+c+d),
+		 Omegac1=(1)/(1+zeta),
+		 Omegac2=(g+Gamma*(1-h))/(Gamma+1),
+		 Omegac3=(m+xi*n)/(xi+1)) %>%
+    dplyr::mutate(zeta1=(x-alpha)/(alpha-y)) %>%
+    dplyr::mutate(xi1=(m-Omega)/(Omega-n)) %>%
+    dplyr::mutate(xi2=(m-lambda)/(lambda-(1-n))) %>%
+    dplyr::mutate(pri=row_number()/length(pre))
+
+  rdfc <<- sdfc
+
+  # Init values standard form
+  polyc[[1]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
+  # Init values hybrid form
+  #polyc[[2]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
+  ### Init values opposition form
+  #polyc[[3]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
+  ### Init poly
+
+})
+Countingprocess$methods(sortpre=function(poly=6,sortby='alpha',selvar=c('x','y','alpha','lambda','zeta')){
+
+ srdfc <- rdfc %>%
+    dplyr::select(pre,zeta,all_of(selvar)) %>%
+    dplyr::arrange(sortby) %>%
+    dplyr::mutate(pri=row_number()/length(pre)) %>%
+    dplyr::mutate(zeta_m=mean(zeta)) %>%
+    dplyr::mutate(zeta_r=zeta-zeta_m)
+    selvar %>% purrr::map(function(x,df=srdfc,p=poly){
+	pred <- c(predict(lm(df[[x]] ~ poly(df$pri,p, raw=T))))
+	res <- pred - df[[x]]
+	data.frame(pred,res) %>% `colnames<-` (c(paste0(x,'_pred'),paste0(x,'_res')))
+    }) %>% as.data.frame(.) -> predictor
+  quintile <<- dplyr::bind_cols(srdfc, predictor)
+})
+Countingprocess$methods(riggsta=function(
+					 form=1,
+					 param=list(pre=c('x','alpha','zeta'), end=c('y','lambda')),
+					 polyadj=polyc[[1]]
+					 ){
+
+  polycl <- polynom::polynomial(polyadj)
+  pardf <<- dplyr::select(quintile,param$pre,param$end) %>%
+    # Presetting three parameters
+    dplyr::mutate(x_s=x) %>%
+    dplyr::mutate(alpha_s=predict(polycl,quintile$x)) %>%
+    dplyr::mutate(y_s=0.10) %>%
+    # Backsolving for two parameters
+    dplyr::mutate(zeta_s=pareq(ste=pareqs$meqs[['zeta_s']][1],lv=list(x=x_s,alpha=alpha_s,y=y_s))) %>%
+    dplyr::mutate(lambda_s=pareq(ste=pareqs$meqs[['lambda_s']][1],lv=list(x=x_s,zeta=zeta_s,y=y_s)))
+
+    rdfc[c(param$pre,param$end)] <<- pardf[6:10]
+})
+Countingprocess$methods(rigghyp=function(sdfinp=NULL){
+  # Init values standard form
+  k <- function(alpha,x,k,h) eval(parse(text=formula,c(list(alpha=alpha,x=x),list(k=k,h=h))))
+  rdfc <<- sdfc %>% dplyr::select(pri,pre,alpha,x,y)
+})
+Countingprocess$methods(riggopo=function(sdfinp=NULL){
+  # Init values standard form
+  n <- function(alpha,x,k,h) eval(parse(text=formula,c(list(alpha=alpha,x=x),list(k=k,h=h))))
+  rdfc <<- sdfc %>% dplyr::select(pri,pre,alpha,x,y)
+})
+#' @export Countinggraphs
+#' @exportClass Countinggraphs
+Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
+Countinggraphs$methods(plot2d=function(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred")){
+
+    longdf <- tidyr::pivot_longer(quintile,all_of(c(selvp,selvl)))
+    ggplot2::ggplot(data=longdf) +
+	geom_line(data=filter(longdf,name%in%selvl),aes(x=pri,y=value, color=name)) +
+	geom_point(data=filter(longdf,name%in%selvp),aes(x=pri,y=value, color=name)) +
+	#labs(x=selv[1],y=selv[2],title="") +
+	ggplot2::theme_bw()
+})
+#Countinggraphs$methods(plotxy=function(selv=c("x","y")){
+#
+#    widedf <- sdfc
+#    ggplot2::ggplot(data=widedf,aes_string(x=selv[1],y=selv[2])) +
+#	geom_point() +
+#	geom_smooth(method=lm,se=F) +
+#        #ggpubr::stat_regline_equation(label.x=0,label.y=0.10) +
+#        ggpubr::stat_cor() +
+#   	labs(x=selv[1],y=selv[2],title="") +
+#    	ggplot2::theme_bw()
+#})
+#Countinggraphs$methods(resplot=function(resvar=c("zeta_r","alpha_res")){
+#
+#  x <- quintile[paste0(resvar[1])]
+#  y <- quintile[paste0(resvar[2])]
+#  quintile$z <<- x*y
+#  ggplot2::ggplot(data=quintile,aes_string(resvar[1],resvar[2])) +
+#    geom_smooth(method="lm") +
+#    geom_point() +
+#    #stat_regline_equation(label.x=0,label.y=0.10) +
+#    #stat_cor(label.x=0,label.y=0.15) +
+#    ggplot2::theme_bw()
+#})
+#Countinggraphs$methods(plotly3d=function(
+#					 partition=1,
+#					 sel=list(1:5,6:10),
+#					 selid=1
+#					 ){
+#
+#  rdfcpar <- rdfc %>% dplyr::select(parameters[[partition]])
+#  mrdfc <- as.matrix(rdfcpar)
+#  combi <- combinat::combn(5, 3)
+#  seq(1,dim(combi)[2]) %>% purrr::map(function(x,comb=combi,df=rdfcpar){
+#  gdf <- df %>% dplyr::select(combi[,x])
+#  mrdfc <- as.matrix(gdf)
+#  x <- mrdfc[,1]
+#  y <- mrdfc[,2]
+#  z <- mrdfc[,3]
+#  plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers") %>%
+#  plotly::layout(scene = list(xaxis = list(title = names(gdf)[1]),
+#  yaxis = list(title = names(gdf)[2]),
+#  zaxis = list(title = names(gdf)[3]))) }) ->> plot3dlist
+#
+#  ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
+#  	 div(plot3dlist[sel[[1]]], class="column"),
+#  	 div(plot3dlist[sel[[2]]],class="column"))
+#  list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=plot3dlist[[selid]])
+#})
+#' @export Countingtables
+#' @exportClass Countingtables
+Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'), fields = list(ghi='list'))
+###########################################################################################################################################################
+#rootsolving <- function(k=NULL,c=NULL){
+#  #reticulate::repl_python('../inst/script/rootsolving/fqs.py')
+#  #os <-reticulate::import("fqs")
+#  A <- 1
+#  B <- 1
+#  C <- 1
+#  D <- 1
+#  E <- 1
+#  p <- c(A,B,C,D,E)[1:4]
+#  #os$quartic_roots(p)
+#}
+##rootsolving()
+############################################################################################################################################################
