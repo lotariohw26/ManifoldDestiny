@@ -7,8 +7,11 @@ sympupd <- function(){
 	usethis::use_data(eqpar, overwrite = TRUE)
 }
 # Saving data
+
 #' @export
 abs_path <- function(){rprojroot::find_rstudio_root_file()}
+
+#' @export
 bm <- function(){
    early <- getwd()
    middle <- rprojroot::find_rstudio_root_file()

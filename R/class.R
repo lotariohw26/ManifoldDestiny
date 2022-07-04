@@ -71,10 +71,16 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
       dplyr::mutate(registered=ifelse(idn%in%rvot,1,0))
       usethis::use_data(voterrolldatabase, overwrite = TRUE)
     } else {
-	voterrolldatabase <<-  voterrolldatabase
+      rotp <- rprojroot::find_rstudio_root_file()
+      defl <- paste0(rotp,'/data/default.rda')
+      load(defl)
+      pareqs <<- eqpar
+      voterrolldatabase <<-  voterrolldatabase
     }
 })
 Voterdatabase$methods(load=function(database='initial'){
+
+
 	print('test')
 })
 
@@ -121,19 +127,20 @@ Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = li
 ############################################################################################################################################################
 #' @export Countingprocess
 #' @export class Countingprocess
-Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', pareqs='list',plot3dlist='list'))
+Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', s='list',l='list',plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
 
-  # Assigning model equations
-  rotp <- rprojroot::find_rstudio_root_file()
-  mpath <- paste0(rotp,'/data/eqpar.rda')
-  load("~/research/ManifoldDestiny/data/eqpar.rda")
-  pareqs <<- eqpar
-
+  # Parameters 
   parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
   		      hybrid=c("g","h","Omega","lambda","xi"),
 		      opposition=c("m","n","Omega","xi","lambda"))
-
+  
+  # Assigning model equations
+  rotp <- rprojroot::find_rstudio_root_file()
+  mpath <- paste0(rotp,'/data/eqpar.rda'); load(mpath)
+  s <<- eqpar$meqs
+  l <<- eqpar$meql
+  
   sdfc <<- sdfinp %>% dplyr::select(pre,a,b,c,d) %>% dplyr::group_by(pre) %>%
     dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
@@ -142,35 +149,24 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
     dplyr::filter(a>0) %>%
     dplyr::filter(b>0) %>%
     dplyr::filter(c>0) %>%
-    dplyr::filter(d>0) %>%
-    dplyr::mutate(x=a/(a+b),y=c/(c+d)) %>%
-    dplyr::mutate(g=a/(a+d),h=c/(b+c)) %>%
-    dplyr::mutate(m=a/(a+c),n=b/(b+d)) %>%
-    dplyr::mutate(zeta=(c+d)/(a+b)) %>%
-    dplyr::mutate(Omega=(a+b)/(a+b+c+d)) %>%
-    dplyr::mutate(Gamma=(b+c)/(a+d)) %>%
-    dplyr::mutate(xi=(b+d)/(a+c)) %>%
-    dplyr::mutate(alpha=(a+c)/(a+b+c+d),
-		 alphac1=Omega*x+(1-Omega)*y,
-		 alphac2=(x+zeta*y)/(1+zeta),
-		 alphac3=1/(1+xi)) %>%
-    dplyr::mutate(lambda=(a+d)/(a+b+c+d),
-		 lambdac1=(x+zeta*(1-y))/(zeta+1),
-		 lambdac2=(1)/(Gamma+1),
-		 lambdac3=(m+xi*(1-n))/(xi+1)) %>%
-    dplyr::mutate(Omega=(a+b)/(a+b+c+d),
-		 Omegac1=(1)/(1+zeta),
-		 Omegac2=(g+Gamma*(1-h))/(Gamma+1),
-		 Omegac3=(m+xi*n)/(xi+1)) %>%
-    dplyr::mutate(zeta1=(x-alpha)/(alpha-y)) %>%
-    dplyr::mutate(xi1=(m-Omega)/(Omega-n)) %>%
-    dplyr::mutate(xi2=(m-lambda)/(lambda-(1-n))) %>%
-    dplyr::mutate(pri=row_number()/length(pre))
+    dplyr::filter(d>0) %>% 
+    #
+    dplyr::mutate(x=pareq(s[['x_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(y=pareq(s[['y_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(g=pareq(s[['g_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(m=pareq(s[['m_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(n=pareq(s[['n_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(alpha=pareq(s[['alpha_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(zeta=pareq(s[['zeta_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(lambda=pareq(s[['lambda_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(Omega=pareq(s[['Omega_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(Gamma=pareq(s[['Gamma_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(xi=pareq(s[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d)))
 
   rdfc <<- sdfc
 
   # Init values standard form
-  polyc[[1]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
+  #polyc[[1]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
   # Init values hybrid form
   #polyc[[2]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
   ### Init values opposition form
