@@ -1,15 +1,13 @@
-###########################################################################################################################################################
-###########################################################################################################################################################
+##########################################################################################################################################################
+##########################################################################################################################################################
 #' @export pareq
 pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))
 {
-  eval(parse(text=ste),lv)
+	eval(parse(text=ste),lv)
 }
+############################################################################################################################################################
 ###########################################################################################################################################################
-###########################################################################################################################################################
-#' A class description
 #' @export Voterdatabase
-#' @export class Voterdatabase
 Voterdatabase <- setRefClass("Voterdatabase", fields=list(voterrolldatabase='data.frame',
 							  voterrollrealized='data.frame',
 							  totpop='matrix',agebrack='vector'))
@@ -73,10 +71,16 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
       dplyr::mutate(registered=ifelse(idn%in%rvot,1,0))
       usethis::use_data(voterrolldatabase, overwrite = TRUE)
     } else {
-	voterrolldatabase <<-  voterrolldatabase
+      rotp <- rprojroot::find_rstudio_root_file()
+      defl <- paste0(rotp,'/data/default.rda')
+      load(defl)
+      pareqs <<- eqpar
+      voterrolldatabase <<-  voterrolldatabase
     }
 })
 Voterdatabase$methods(load=function(database='initial'){
+
+
 	print('test')
 })
 
@@ -117,17 +121,16 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
   dplyr::arrange(desc(status),pi)
 })
 #' @export Grafbase
-#' @exportClass Grafbase
 Grafbase <- setRefClass("Grafbase", contains = c('Voterdatabase'), fields = list(def='list'))
 #' @export Tablebase
-#' @exportClass Tablebase
 Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = list(ghi='list'))
-###########################################################################################################################################################
-###########################################################################################################################################################
+############################################################################################################################################################
+#' @export Countingprocess
 #' @export class Countingprocess
-Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', pareqs='list',plot3dlist='list'))
+Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', s='list',l='list',plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
 
+<<<<<<< HEAD
   # Assigning model equations
   rotp <- rprojroot::find_rstudio_root_file()
   mpath <- paste0(rotp,'/data/eqpar.rda')
@@ -140,37 +143,41 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
 
   browser()
 
+=======
+  # Parameters 
+  parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
+  		      hybrid=c("g","h","Omega","lambda","xi"),
+		      opposition=c("m","n","Omega","xi","lambda"))
+  
+  # Assigning model equations
+  rotp <- rprojroot::find_rstudio_root_file()
+  mpath <- paste0(rotp,'/data/eqpar.rda'); load(mpath)
+  s <<- eqpar$meqs
+  l <<- eqpar$meql
+  
+>>>>>>> fc2a7d2f4659f2225a02c874c4f41a3e0b1ff15a
   sdfc <<- sdfinp %>% dplyr::select(pre,a,b,c,d) %>% dplyr::group_by(pre) %>%
     dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
     dplyr::group_by(pre) %>% dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
-    dplyr::filter(a>0) %>% 
-    dplyr::filter(b>0) %>% 
-    dplyr::filter(c>0) %>% 
-    dplyr::filter(d>0) %>%
-    dplyr::mutate(x=a/(a+b),y=c/(c+d)) %>%
-    dplyr::mutate(g=a/(a+d),h=c/(b+c)) %>%
-    dplyr::mutate(m=a/(a+c),n=b/(b+d)) %>%
-    dplyr::mutate(zeta=(c+d)/(a+b)) %>%
-    dplyr::mutate(Omega=(a+b)/(a+b+c+d)) %>%
-    dplyr::mutate(Gamma=(b+c)/(a+d)) %>%
-    dplyr::mutate(xi=(b+d)/(a+c)) %>%
-    dplyr::mutate(alpha=(a+c)/(a+b+c+d),
-		 alphac1=Omega*x+(1-Omega)*y,
-		 alphac2=(x+zeta*y)/(1+zeta),
-		 alphac3=1/(1+xi)) %>%
-    dplyr::mutate(lambda=(a+d)/(a+b+c+d),
-		 lambdac1=(x+zeta*(1-y))/(zeta+1),
-		 lambdac2=(1)/(Gamma+1),
-		 lambdac3=(m+xi*(1-n))/(xi+1)) %>%
-    dplyr::mutate(Omega=(a+b)/(a+b+c+d),
-		 Omegac1=(1)/(1+zeta),
-		 Omegac2=(g+Gamma*(1-h))/(Gamma+1),
-		 Omegac3=(m+xi*n)/(xi+1)) %>%
-    dplyr::mutate(zeta1=(x-alpha)/(alpha-y)) %>%
-    dplyr::mutate(xi1=(m-Omega)/(Omega-n)) %>%
-    dplyr::mutate(xi2=(m-lambda)/(lambda-(1-n))) %>%
+    dplyr::filter(a>0) %>%
+    dplyr::filter(b>0) %>%
+    dplyr::filter(c>0) %>%
+    dplyr::filter(d>0) %>% 
+    #
+    dplyr::mutate(x=pareq(s[['x_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(y=pareq(s[['y_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(g=pareq(s[['g_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(m=pareq(s[['m_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(n=pareq(s[['n_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(alpha=pareq(s[['alpha_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(zeta=pareq(s[['zeta_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(lambda=pareq(s[['lambda_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(Omega=pareq(s[['Omega_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(Gamma=pareq(s[['Gamma_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(xi=pareq(s[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::arrange(alpha) %>%
     dplyr::mutate(pri=row_number()/length(pre))
 
   rdfc <<- sdfc
@@ -202,18 +209,18 @@ Countingprocess$methods(sortpre=function(poly=6,sortby='alpha',selvar=c('x','y',
 Countingprocess$methods(riggsta=function(
 					 form=1,
 					 param=list(pre=c('x','alpha','zeta'), end=c('y','lambda')),
-					 polyadj=polyc[[1]] 
+					 polyadj=polyc[[1]]
 					 ){
-  
+
   polycl <- polynom::polynomial(polyadj)
   pardf <<- dplyr::select(quintile,param$pre,param$end) %>%
     # Presetting three parameters
     dplyr::mutate(x_s=x) %>%
     dplyr::mutate(alpha_s=predict(polycl,quintile$x)) %>%
-    dplyr::mutate(y_s=0.10) %>% 
+    dplyr::mutate(y_s=0.10) %>%
     # Backsolving for two parameters
     dplyr::mutate(zeta_s=pareq(ste=pareqs$meqs[['zeta_s']][1],lv=list(x=x_s,alpha=alpha_s,y=y_s))) %>%
-    dplyr::mutate(lambda_s=pareq(ste=pareqs$meqs[['lambda_s']][1],lv=list(x=x_s,zeta=zeta_s,y=y_s))) 
+    dplyr::mutate(lambda_s=pareq(ste=pareqs$meqs[['lambda_s']][1],lv=list(x=x_s,zeta=zeta_s,y=y_s)))
 
     rdfc[c(param$pre,param$end)] <<- pardf[6:10]
 })
@@ -228,7 +235,6 @@ Countingprocess$methods(riggopo=function(sdfinp=NULL){
   rdfc <<- sdfc %>% dplyr::select(pri,pre,alpha,x,y)
 })
 #' @export Countinggraphs
-#' @exportClass
 Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
 Countinggraphs$methods(plot2d=function(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred")){
 
@@ -264,7 +270,7 @@ Countinggraphs$methods(resplot=function(resvar=c("zeta_r","alpha_res")){
 })
 Countinggraphs$methods(plotly3d=function(
 					 partition=1,
-					 sel=list(1:5,6:10), 
+					 sel=list(1:5,6:10),
 					 selid=1
 					 ){
 
@@ -280,33 +286,21 @@ Countinggraphs$methods(plotly3d=function(
   plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers") %>%
   plotly::layout(scene = list(xaxis = list(title = names(gdf)[1]),
   yaxis = list(title = names(gdf)[2]),
-  zaxis = list(title = names(gdf)[3]))) }) ->> plot3dlist	
+  zaxis = list(title = names(gdf)[3]))) }) ->> plot3dlist
 
   ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
   	 div(plot3dlist[sel[[1]]], class="column"),
   	 div(plot3dlist[sel[[2]]],class="column"))
   list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=plot3dlist[[selid]])
 })
-#' @export Countingtables
 #' @exportClass Countingtables
 Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'), fields = list(ghi='list'))
-###########################################################################################################################################################
-rootsolving <- function(k=NULL,c=NULL){
-  #reticulate::repl_python('../inst/script/rootsolving/fqs.py')
-  #os <-reticulate::import("fqs")
-  A <- 1 
-  B <- 1 
-  C <- 1 
-  D <- 1 
-  E <- 1
-  p <- c(A,B,C,D,E)[1:4]
-  #os$quartic_roots(p)
-}
-#rootsolving()
-###########################################################################################################################################################
+
+
+
+############################################################################################################################################################
 #' A class description
 #' @export Estimation
-#' @export class Estimation
 Estimation <- setRefClass("Estimation", fields=list(
 						sdfc='data.frame',
 						rdfc='data.frame',
@@ -317,7 +311,7 @@ Estimation <- setRefClass("Estimation", fields=list(
 Estimation$methods(initialize=function(
 					rdfcinp=NULL
 					  ){
-  
+
   parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
   		      hybrid=c("g","h","Omega","lambda","xi"),
 		      opposition=c("m","n","Omega","xi","lambda"))
@@ -326,8 +320,8 @@ Estimation$methods(initialize=function(
 })
 Estimation$methods(rotation=function(
 				     selvar=c('x','y','alpha'),
-				     angles=list(tgrad=c(-41.771547,0,0)), 
-				     sli=list(depth=0.01,divi=0.02,shift=50,slide=49) 
+				     angles=list(tgrad=c(-41.771547,0,0)),
+				     sli=list(depth=0.01,divi=0.02,shift=50,slide=49)
 				     ){
   #browser()
   ra <- circular::rad(angles$tgrad)
@@ -344,11 +338,11 @@ Estimation$methods(rotation=function(
   dplyr::mutate(u=cosxy*y-sinxy*x) %>%
   dplyr::mutate(v=sinxy*y+cosxy*x) %>%
   dplyr::mutate(w=sinyz*v+cosyz*alpha) %>%
-  dplyr::mutate(rank_v=dense_rank(v)) %>% 
+  dplyr::mutate(rank_v=dense_rank(v)) %>%
   dplyr::mutate(slide=floor((v+sli$depth*sli$depth*sli$shift)/sli$depth)) %>%
   dplyr::mutate(slide_norm=slide-sli$depth) %>%
   dplyr::mutate(carry_slide_norm=1000*rank_v+slide_norm,
-  	      carry_v=1000*rank_v+v, 
+  	      carry_v=1000*rank_v+v,
   	      carry_u=1000*rank_v+u,
   	      carry_w=1000*rank_v+w) %>%
   dplyr::mutate(index=row_number()) %>%
@@ -364,12 +358,12 @@ Estimation$methods(rotation=function(
                 partition_rank=0,
                 true_rank=0)
 })
-#Estimation$methods(estimation=function(selvar=c('x','y','alpha')){
-#
-#	rsq <- function(x, y) summary(lm(y~x))$r.squared
-#	k <- c(1.57874563,-0.5819051755,0.001519026359)
-#	ge <- eval(parse(text='k[1]*alpha+k[2]*h+k[3]'),list(alpha=1,h=1,k=k))
-#	edfc <<- sdfc %>% dplyr::mutate(gpred=gp(alpha,h,k)) %>% dplyr::mutate(rsq=rsq(g,gpred))
-#})
-###################################################################################################3
-###################################################################################################3
+
+Estimation$methods(estimation=function(selvar=c('x','y','alpha')){
+
+	rsq <- function(x, y) summary(lm(y~x))$r.squared
+	k <- c(1.57874563,-0.5819051755,0.001519026359)
+	ge <- eval(parse(text='k[1]*alpha+k[2]*h+k[3]'),list(alpha=1,h=1,k=k))
+	edfc <<- sdfc %>% dplyr::mutate(gpred=gp(alpha,h,k)) %>% dplyr::mutate(rsq=rsq(g,gpred))
+})
+

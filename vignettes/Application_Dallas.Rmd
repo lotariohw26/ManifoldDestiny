@@ -4,6 +4,11 @@ output: html_document
 ---
 
 ```{r, eval=F, echo=F}
+abs_path <- function(){rprojroot::find_rstudio_root_file()}
+ManifoldDestiny::abs_path()
+
+rprojroot::find_rstudio_root_file()
+
 setwd(rprojroot::find_rstudio_root_file())
 filp <- 'vignettes/Application_Dallas.Rmd'
 rmarkdown::render(filp)
@@ -32,28 +37,13 @@ gcda$plotly3d(partition=2)[[1]]
 gcda$plotly3d(partition=3)[[1]]
 ```
 
-
 #### Step 2: Rotation matrix
 
 #### Step 3: Regression
 
 #### Step 4: Prediction
 
-
-
 ```{r, echo=F}
 knitr::knit_exit()
 ```
-
-
-
-
-
-
-
-
-
-
-
-
 

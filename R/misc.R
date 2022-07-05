@@ -1,4 +1,17 @@
 #' @export
+<<<<<<< HEAD
+=======
+sympupd <- function(){
+	abs_path <- function(){rprojroot::find_rstudio_root_file()}
+	fdm <- paste0(abs_path(),'/inst/script/symbolic/pysympy.py')
+	reticulate::source_python(fdm)
+	eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
+	usethis::use_data(eqpar, overwrite = TRUE)
+}
+# Saving data
+
+#' @export
+>>>>>>> fc2a7d2f4659f2225a02c874c4f41a3e0b1ff15a
 abs_path <- function(){rprojroot::find_rstudio_root_file()}
 
 #' @export
@@ -47,27 +60,25 @@ v <- function(){
     View(df)
 }
 
-#' @export
-magic <- function(zeta=1,lambda=0.4,x=seq(0,1,by=0.01),select=c('t1','b1','rl','t2','b2','a2','ab')){
-
-  # evaluation
-  t1 <- eval(parse(text='x'),list(x=x)) # Predetermined
-  b1 <- eval(parse(text='1-x'),list(x=x))  # Predetermined
-  rl <- eval(parse(text='lambda'),c(list(lambda=lambda),list(x=x))) # Enforced form hybrid
-  t2 <- rl-(b1-rl)/zeta # Combination
-  b2 <- 1-t2
-  at <- (t1+t2*zeta)/(zeta+1)
-  ab <- (b1+b2*zeta)/(zeta+1)
-
-  # Plot
-  df <- data.frame(x,t1,b1,rl,t2,b2,at,ab)
-  dfs <- df %>% tidyr::pivot_longer(c(t1,b1,rl,t2,b2,at,ab)) %>% subset(name%in%select)
-  plot <- ggplot2::ggplot(data=dfs,ggplot2::aes(x=x,y=value,color=name)) + ggplot2::geom_point() + ggplot2::geom_line() + theme_classic()
-  ## output
-  list(df=df,dfv=df[],plot=plot)
-}
-
-magic()
+##' @export
+#magic <- function(zeta=1,lambda=0.4,x=seq(0,1,by=0.01),select=c('t1','b1','rl','t2','b2','a2','ab')){
+#
+#  # evaluation
+#  t1 <- eval(parse(text='x'),list(x=x)) # Predetermined
+#  b1 <- eval(parse(text='1-x'),list(x=x))  # Predetermined
+#  rl <- eval(parse(text='lambda'),c(list(lambda=lambda),list(x=x))) # Enforced form hybrid
+#  t2 <- rl-(b1-rl)/zeta # Combination
+#  b2 <- 1-t2
+#  at <- (t1+t2*zeta)/(zeta+1)
+#  ab <- (b1+b2*zeta)/(zeta+1)
+#
+#  # Plot
+#  df <- data.frame(x,t1,b1,rl,t2,b2,at,ab)
+#  dfs <- df %>% tidyr::pivot_longer(c(t1,b1,rl,t2,b2,at,ab)) %>% subset(name%in%select)
+#  plot <- ggplot2::ggplot(data=dfs,ggplot2::aes(x=x,y=value,color=name)) + ggplot2::geom_point() + ggplot2::geom_line() + theme_classic()
+#  ## output
+#  list(df=df,dfv=df[],plot=plot)
+#}
 #
 ##' @export
 #magic2 <- function(zeta=seq(0.2,2,0.01),lambda=0.3,alpha_b=0.55,selectv=NA){

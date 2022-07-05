@@ -33,15 +33,12 @@ votr <- vrdf$voterrollrealized
 ################################################################################################33
 #### A) Fair ###
 gcou <- Countinggraphs(votr)
-gcou$sortpre()
-#### Graphical ###
-###### Tab1
 ggt1 <- gcou$plotxy(c("x","y"))
 ##ggplotly(ggt1)
 ####### Tab2
 ggt2a <- gcou$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
 ggt2b <- gcou$plot2d(selvp=c("zeta"),selvl='zeta_m')
-##plotly::subplot(ggt2a,ggt2b,nrows=2)
+plotly::subplot(ggt2a,ggt2b,nrows=2)
 ####### Tab3
 ggt3a <- gcou$resplot(resvar=c('zeta_r','alpha_res'))
 ggt3b <- gcou$resplot(resvar=c('zeta_r','y_res'))
@@ -49,7 +46,7 @@ ggt3b <- gcou$resplot(resvar=c('zeta_r','y_res'))
 ####### Tab4
 ##gcou$resplot(resvar=c('zeta_r','y_res'))
 ####### Tab5
-##gcou$plotly3d(partition=1)[[3]]
+gcou$plotly3d(partition=1)[[1]]
 ##################################################################################################33
 #### B) Rigged ###
 #### Tab1
