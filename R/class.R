@@ -130,20 +130,16 @@ Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = li
 Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', s='list',x='list',plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
 
-  # Parameters 
-  parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
-  		      hybrid=c("g","h","Omega","lambda","xi"),
-		      opposition=c("m","n","Omega","xi","lambda"))
-  
-  # Assigning model equations
+  # Loading 
   rotp <- rprojroot::find_rstudio_root_file()
-  mpath <- paste0(rotp,'/data/eqpar.rda')
-  load(mpath)
+  load(paste0(rotp,'/data/eqpar.rda')
+  load(paste0(rotp,'/data/labels.rda'))
+  
+  # Assigning parameters 
+  parameters <<- labels[['parameters']]
+
+  # Assigning model equations
   pareqs <<- eqpar
-  
-  # Assigning model equations
-  rotp <- rprojroot::find_rstudio_root_file()
-  mpath <- paste0(rotp,'/data/eqpar.rda'); load(mpath)
   s <<- eqpar$meqs
   x <<- eqpar$meql
 
