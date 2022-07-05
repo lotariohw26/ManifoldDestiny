@@ -18,5 +18,10 @@ reticulate::source_python(fdm)
 eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
 # Saving data
 usethis::use_data(eqpar, overwrite = TRUE)
-# Lagre data
 ###############################################################################################################
+labels <- list(parameters=list(standard=c("x","y","zeta","alpha","lambda"),
+  hybrid=c("g","h","Gamma","alpha","Omega"),
+  opposition=c("m","n","xi","lambda","Omega")))
+usethis::use_data(labels, overwrite = TRUE)
+
+
