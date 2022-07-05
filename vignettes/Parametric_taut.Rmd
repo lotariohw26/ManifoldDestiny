@@ -1,5 +1,5 @@
 ---
-title: ""
+title: " "
 output: html_document
 ---
 
@@ -7,15 +7,12 @@ output: html_document
 filn <- 'Parametric_taut'
 abs_path <- function(){rprojroot::find_rstudio_root_file()}
 rmarkdown::render(paste0(abs_path(),'/vignettes/',filn,'.Rmd'))
-
-abs_path <- function(){rprojroot::find_rstudio_root_file()}
-fdm <- paste0(abs_path(),'/inst/script/symbolic/pysympy.py')
-reticulate::source_python(fdm)
-eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
-# Saving data
-usethis::use_data(eqpar, overwrite = TRUE)
-
-
+#abs_path <- function(){rprojroot::find_rstudio_root_file()}
+#fdm <- paste0(abs_path(),'/inst/script/symbolic/pysympy.py')
+#reticulate::source_python(fdm)
+#eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
+## Saving data
+#usethis::use_data(eqpar, overwrite = TRUE)
 ```
 
 ```{r include=FALSE}
@@ -72,13 +69,13 @@ g=`r modlat$g_h[1]`
 h=`r modlat$h_h[1]`
 \end{equation*}
 \begin{equation*}
-\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\alpha=`r modlat$alpha_h[1]`
 \end{equation*}
 \begin{equation*}
-\Omega=
+\Omega=`r modlat$Omega_h[1]`
 \end{equation*}
 \begin{equation*}
-\Gamma=
+\Gamma=`r modlat$Gamma_h[1]`
 \end{equation*}
 
 ---
@@ -87,19 +84,36 @@ h=`r modlat$h_h[1]`
 Parameters: $m$, $n$, $\Omega$, $\lambda$, $\xi$
 
 \begin{equation*}
-x_s=
+m=`r modlat$g_h[1]`
 \end{equation*}
 \begin{equation*}
-y_s=
+n=`r modlat$h_h[1]`
 \end{equation*}
 \begin{equation*}
-\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\alpha=`r modlat$alpha_h[1]`
 \end{equation*}
 \begin{equation*}
-\zeta=
+\lambda=`r modlat$Omega_h[1]`
 \end{equation*}
 \begin{equation*}
-\lambda=
+\xi=`r modlat$Gamma_h[1]`
 \end{equation*}
 
+
 ## Numerical testing of equations
+
+```{r, eval=T, message=F, warning=F, echo=F}
+sourcef <- 'stylized.R'
+abs_path <- function(){rprojroot::find_rstudio_root_file()}
+source(paste0(abs_path(),'/inst/script/',sourcef))
+```
+
+```{r}
+gcou <- Countinggraphs(votr)
+```
+
+
+
+
+
+

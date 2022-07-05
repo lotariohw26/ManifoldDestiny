@@ -131,12 +131,14 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
   # Assigning model equations
   rotp <- rprojroot::find_rstudio_root_file()
   mpath <- paste0(rotp,'/data/eqpar.rda')
-  load("~/research/ManifoldDestiny/data/eqpar.rda")
+  load(mpath)
   pareqs <<- eqpar
   
   parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
   		      hybrid=c("g","h","Omega","lambda","xi"),
 		      opposition=c("m","n","Omega","xi","lambda"))
+
+  browser()
 
   sdfc <<- sdfinp %>% dplyr::select(pre,a,b,c,d) %>% dplyr::group_by(pre) %>%
     dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
