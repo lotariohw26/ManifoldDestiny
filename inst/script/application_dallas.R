@@ -33,6 +33,20 @@ edal$rdfc
 #### Step 3: Regression
 #### Step 4: Prediction
 #################################################################################################33
+getwd()
+filename <- '../../data-raw/xlsx/Dallas Texas, Completed.xlsx'
+openxlsx::getSheetNames(filename) 
+rot <- openxlsx::read.xlsx(filename,sheet='Complex Rotator') 
+rots <- dplyr::select(rot,14:16)
+View(rots)
+#a <- load(paste0(ManifoldDestiny::abs_path(),'/data/dallas_sel.rda'))
+dallas_sel; l()
+ot <- openxlsx::read.xlsx(filename,sheet='Complex Rotator') 
+library(dplyr)
 
+sdfc <<- dallas_sel %>% dplyr::select(pre,a,b,c,d) %>% dplyr::group_by(pre) %>%
+  dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
+  dplyr::ungroup() 
 
+sdfc; l()
 

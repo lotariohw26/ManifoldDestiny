@@ -308,12 +308,14 @@ Estimation$methods(initialize=function(
 Estimation$methods(rotation=function(
 				     selvar=c('x','y','alpha'),
 				     angles=list(tgrad=c(-41.771547,0,0)),
-				     sli=list(depth=0.01,divi=0.02,shift=50,slide=49)
+				     sli=list(depth=0.01,divi=0.02,shift=50,slide=-49)
 				     ){
   browser()
   View(rdfc)
+  hist(rdfc$slide_norm)
+  
   ra <- circular::rad(angles$tgrad)
-  rdfc <<- sdfc %>% dplyr::select(selvar) %>%
+  rdfc <<- sdfc[1:741,] %>% dplyr::select(selvar) %>%
   dplyr::mutate(rxy=ra[1]) %>%
   dplyr::mutate(cosxy=cos(rxy)) %>%
   dplyr::mutate(sinxy=sin(rxy)) %>%
@@ -326,9 +328,9 @@ Estimation$methods(rotation=function(
   dplyr::mutate(u=cosxy*y-sinxy*x) %>%
   dplyr::mutate(v=sinxy*y+cosxy*x) %>%
   dplyr::mutate(w=sinyz*v+cosyz*alpha) %>% 
-  dplyr::mutate(rank_v=dense_rank(v)) 
-  dplyr::mutate(slide=floor((v+sli$depth*sli$depth*sli$shift)/sli$depth)) %>%
-  dplyr::mutate(slide_norm=slide-sli$depth) %>%
+  dplyr::mutate(rank_v=dense_rank(v)) %>%
+  dplyr::mutate(slide=floor((v+sli$depth*sli$divi*sli$shift)/sli$depth)) %>%
+  dplyr::mutate(slide_norm=slide-sli$slide+1) %>%
   dplyr::mutate(carry_slide_norm=1000*rank_v+slide_norm,
   	      carry_v=1000*rank_v+v,
   	      carry_u=1000*rank_v+u,
@@ -342,9 +344,13 @@ Estimation$methods(rotation=function(
                drop_v=sort_v-1000*index,
                drop_u=sort_u-1000*index,
                drop_w=sort_w-1000*index) %>%
-  dplyr::mutate(fat_slide=0,
-                partition_rank=0,
-                true_rank=0)
+  dplyr::mutate(fat_slide=ifelse(drop_s<=9,-1000,ifelse(drop_s>100,1000,drop_s)),
+                partition_rank=rank(fat_slide),
+                true_rank=rank(partition_rank))
+  View(rdfc)
+
+  View(t)
+
 })
 
 Estimation$methods(estimation=function(selvar=c('x','y','alpha')){
