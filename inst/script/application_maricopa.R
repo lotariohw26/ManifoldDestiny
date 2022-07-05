@@ -1,3 +1,5 @@
+
+#################################################################################################
 library(ManifoldDestiny)
 library(dplyr)
 library(ggplot2)
@@ -11,41 +13,26 @@ library(plotly)
 library(ViewPipeSteps)
 library(ggpubr)
 library(htmltools)
-setwd(rprojroot::find_rstudio_root_file())
-source('R/misc.R')
-source('R/class.R')
-snr <- 1
-set.seed(snr)
+abs_path <- function(){rprojroot::find_rstudio_root_file()}
+source(paste0(abs_path(),'/R/misc.R'))
+source(paste0(abs_path(),'/R/class.R'))
 #################################################################################################
-# Maricopa
-load("~/research/ManifoldDestiny/data/maricopa_sel.rda")
-gcda <- Countinggraphs(maricopa_sel)
-gcda$sortpre()
+load(paste0(abs_path(),'/data/maricopa_sel.rda'))
+gmaric <- Countinggraphs(maricopa_sel)
+gmaric$sortpre()
 #### Step 1: Inspect visually
-a <- gcda$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
-b <- gcda$plot2d(selvp=c("zeta"),selvl='zeta_m')
-plotly::subplot(a,b,nrows=2)
-gcda$plotly3d(partition=1)[1]
+gcq <- gmaric$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
+gcz <- gmaric$plot2d(selvp=c("zeta"),selvl='zeta_m')
+plotly::subplot(gcq,gcz,nrows=2)
+gcrza <- gmaric$resplot(resvar=c('zeta_r','alpha_res'))
+gcrzy <- gmaric$resplot(resvar=c('zeta_r','y_res'))
+gmaric$plotly3d(partition=1)[1]
+gmaric$plotly3d(partition=1,selid=2)[3]
 #### Step 2: Rotation matrix
-dfa <- gcda$rdfc
-edal <- Estimation(dfa)
-edal$rotation()
-edal$rdfc
+eclark <- Estimation(gmaric$sdfc)
+#edal$rotation()
 #### Step 3: Regression
+
 #### Step 4: Prediction
-#################################################################################################33
-###
-#filename <- 'data-raw/xlsx/Dallas Texas, Completed.xlsx'
-#openxlsx::getSheetNames(filename) 
-#rot <- openxlsx::read.xlsx(filename,sheet='Complex Rotator') 
-#xray <- openxlsx::read.xlsx(filename,sheet='X-Ray Machine') 
-#rots <- dplyr::select(rot,7:9)
-#View(xray)
-#xras <- dplyr::select(xray,1:5)
-#diffu <- 	
-#length(edal$rdfc$u)
-#length(xras$u)
-#xray
-#rots
-#l()
-#
+
+#### Step 5: Prediction

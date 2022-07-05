@@ -242,14 +242,14 @@ Countinggraphs$methods(plotxy=function(selv=c("x","y")){
 })
 Countinggraphs$methods(resplot=function(resvar=c("zeta_r","alpha_res")){
 
-  xp <- quintile[paste0(resvar[1])]
-  yp <- quintile[paste0(resvar[2])]
+  x <- quintile[paste0(resvar[1])]
+  y <- quintile[paste0(resvar[2])]
   quintile$z <<- x*y
   ggplot2::ggplot(data=quintile,aes_string(resvar[1],resvar[2])) +
     geom_smooth(method="lm") +
     geom_point() +
-    #stat_regline_equation(label.x=0,label.y=0.10) +
-    #stat_cor(label.x=0,label.y=0.15) +
+    stat_regline_equation(label.x=0,label.y=0.10) +
+    stat_cor(label.x=0,label.y=0.15) +
     ggplot2::theme_bw()
 })
 Countinggraphs$methods(plotly3d=function(
