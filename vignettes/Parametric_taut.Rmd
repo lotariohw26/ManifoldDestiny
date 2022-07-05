@@ -96,32 +96,5 @@ n=`r modlat$n_o[1]`
 \xi=`r modlat$xi_o[1]`
 \end{equation*}
 
-## Numerical testing of equations
-
-```{r}
-library(dplyr)
-abs_path <- function(){rprojroot::find_rstudio_root_file()}
-source(paste0(abs_path(),'/R/misc.R'))
-source(paste0(abs_path(),'/R/class.R'))
-snr <- 1
-set.seed(snr)
-##################################################################################################
-#### I: Voterdatabase ###
-## Inititating
-agebracketmax <- c(18,100,1000)
-regf <- 0.8
-numprec <- 200
-vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase='default',newdraw=T)
-###### Realization of DGP
-probwset <- c(0.50,0.05)
-probvset <- list(c(0.70,0.30,0.00),c(0.30,0.70,0.00))
-Znr <- c(0,1)
-vrdf$realizedgp(probv=probvset,Ztech=Znr)
-votr <- vrdf$voterrollrealized
-################################################################################################33
-#### A) Fair ###
-gcou <- Countinggraphs(votr)
-gcou$rdfc
-```
 
 

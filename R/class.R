@@ -162,7 +162,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
     dplyr::mutate(Omega=pareq(s[['Omega_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(Gamma=pareq(s[['Gamma_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(xi=pareq(s[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::arrange('alpha') %>%
+    dplyr::arrange(alpha) %>%
     dplyr::mutate(pri=row_number()/length(pre))
 
   rdfc <<- sdfc
