@@ -25,7 +25,7 @@ gcda$sortpre()
 a <- gcda$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
 b <- gcda$plot2d(selvp=c("zeta"),selvl='zeta_m')
 #plotly::subplot(a,b,nrows=2)
-#gcda$plotly3d(partition=3)
+gcda$plotly3d(partition=1)[1]
 #### Step 2: Rotation matrix
 dfa <- gcda$rdfc
 edal <- Estimation(dfa)
@@ -35,17 +35,16 @@ edal$rdfc
 #### Step 4: Prediction
 #################################################################################################33
 ###
-#filename <- 'data-raw/xlsx/Dallas Texas, Completed.xlsx'
-#openxlsx::getSheetNames(filename) 
-#rot <- openxlsx::read.xlsx(filename,sheet='Complex Rotator') 
-#xray <- openxlsx::read.xlsx(filename,sheet='X-Ray Machine') 
-#rots <- dplyr::select(rot,7:9)
-#View(xray)
-#xras <- dplyr::select(xray,1:5)
-#diffu <- 	
-#length(edal$rdfc$u)
-#length(xras$u)
-#xray
-#rots
-#l()
-#
+filename <- 'data-raw/xlsx/Dallas Texas, Completed.xlsx'
+openxlsx::getSheetNames(filename) 
+rot <- openxlsx::read.xlsx(filename,sheet='Complex Rotator') 
+a <- load(paste0(ManifoldDestiny::abs_path(),'/data/dallas_sel.rda'))
+dallas_sel; l()
+ot <- openxlsx::read.xlsx(filename,sheet='Complex Rotator') 
+library(dplyr)
+
+sdfc <<- dallas_sel %>% dplyr::select(pre,a,b,c,d) %>% dplyr::group_by(pre) %>%
+  dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
+  dplyr::ungroup() 
+
+sdfc; l()
