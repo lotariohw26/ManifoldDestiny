@@ -127,23 +127,15 @@ Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = li
 ############################################################################################################################################################
 #' @export Countingprocess
 #' @export class Countingprocess
-Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', s='list',l='list',plot3dlist='list'))
+Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', s='list',x='list',plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
 
-<<<<<<< HEAD
   # Assigning model equations
   rotp <- rprojroot::find_rstudio_root_file()
   mpath <- paste0(rotp,'/data/eqpar.rda')
   load(mpath)
   pareqs <<- eqpar
   
-  parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
-  		      hybrid=c("g","h","Omega","lambda","xi"),
-		      opposition=c("m","n","Omega","xi","lambda"))
-
-  browser()
-
-=======
   # Parameters 
   parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
   		      hybrid=c("g","h","Omega","lambda","xi"),
@@ -153,19 +145,15 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
   rotp <- rprojroot::find_rstudio_root_file()
   mpath <- paste0(rotp,'/data/eqpar.rda'); load(mpath)
   s <<- eqpar$meqs
-  l <<- eqpar$meql
-  
->>>>>>> fc2a7d2f4659f2225a02c874c4f41a3e0b1ff15a
+  x <<- eqpar$meql
+
   sdfc <<- sdfinp %>% dplyr::select(pre,a,b,c,d) %>% dplyr::group_by(pre) %>%
     dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
-    dplyr::group_by(pre) %>% dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
-    dplyr::ungroup() %>% dplyr::distinct() %>%
-    dplyr::filter(a>0) %>%
-    dplyr::filter(b>0) %>%
-    dplyr::filter(c>0) %>%
-    dplyr::filter(d>0) %>% 
-    #
+    #dplyr::filter(a>0) %>%
+    #dplyr::filter(b>0) %>%
+    #dplyr::filter(c>0) %>%
+    #dplyr::filter(d>0) %>% 
     dplyr::mutate(x=pareq(s[['x_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(y=pareq(s[['y_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(g=pareq(s[['g_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
@@ -177,13 +165,12 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
     dplyr::mutate(Omega=pareq(s[['Omega_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(Gamma=pareq(s[['Gamma_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(xi=pareq(s[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::arrange(alpha) %>%
-    dplyr::mutate(pri=row_number()/length(pre))
+    na.omit() 
 
-  rdfc <<- sdfc
+  rdfc <<- sdfc %>% dplyr::arrange(alpha) %>% dplyr::mutate(pri=row_number()/length(pre))
 
   # Init values standard form
-  polyc[[1]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
+  polyc[[1]] <<- unname(coef(lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))))
   # Init values hybrid form
   #polyc[[2]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
   ### Init values opposition form
@@ -323,7 +310,8 @@ Estimation$methods(rotation=function(
 				     angles=list(tgrad=c(-41.771547,0,0)),
 				     sli=list(depth=0.01,divi=0.02,shift=50,slide=49)
 				     ){
-  #browser()
+  browser()
+  View(rdfc)
   ra <- circular::rad(angles$tgrad)
   rdfc <<- sdfc %>% dplyr::select(selvar) %>%
   dplyr::mutate(rxy=ra[1]) %>%
@@ -337,8 +325,8 @@ Estimation$methods(rotation=function(
   dplyr::mutate(sinzx=sin(rzx)) %>%
   dplyr::mutate(u=cosxy*y-sinxy*x) %>%
   dplyr::mutate(v=sinxy*y+cosxy*x) %>%
-  dplyr::mutate(w=sinyz*v+cosyz*alpha) %>%
-  dplyr::mutate(rank_v=dense_rank(v)) %>%
+  dplyr::mutate(w=sinyz*v+cosyz*alpha) %>% 
+  dplyr::mutate(rank_v=dense_rank(v)) 
   dplyr::mutate(slide=floor((v+sli$depth*sli$depth*sli$shift)/sli$depth)) %>%
   dplyr::mutate(slide_norm=slide-sli$depth) %>%
   dplyr::mutate(carry_slide_norm=1000*rank_v+slide_norm,

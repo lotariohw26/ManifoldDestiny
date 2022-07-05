@@ -1,6 +1,3 @@
-#' @export
-<<<<<<< HEAD
-=======
 sympupd <- function(){
 	abs_path <- function(){rprojroot::find_rstudio_root_file()}
 	fdm <- paste0(abs_path(),'/inst/script/symbolic/pysympy.py')
@@ -11,7 +8,6 @@ sympupd <- function(){
 # Saving data
 
 #' @export
->>>>>>> fc2a7d2f4659f2225a02c874c4f41a3e0b1ff15a
 abs_path <- function(){rprojroot::find_rstudio_root_file()}
 
 #' @export
