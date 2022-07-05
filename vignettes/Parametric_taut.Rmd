@@ -7,7 +7,7 @@ output: html_document
 library(ManifoldDestiny)
 rmarkdown::render(paste0(abs_path(),'/vignettes/Parametric_taut.Rmd'))
 system(paste0('brave ',paste0(abs_path(),'/vignettes/Parametric_taut.html')))
-sympupd()
+#sympupd()
 ```
 ```{r include=FALSE}
 library(ManifoldDestiny)

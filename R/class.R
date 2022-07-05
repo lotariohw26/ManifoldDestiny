@@ -74,7 +74,6 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
       rotp <- rprojroot::find_rstudio_root_file()
       defl <- paste0(rotp,'/data/default.rda')
       load(defl)
-      pareqs <<- eqpar
       voterrolldatabase <<-  voterrolldatabase
     }
 })
@@ -127,22 +126,23 @@ Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = li
 ############################################################################################################################################################
 #' @export Countingprocess
 #' @export class Countingprocess
-Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', s='list',x='list',plot3dlist='list'))
+Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', se='list',lx='list',plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
 
+  browser()
   # Loading 
   rotp <- rprojroot::find_rstudio_root_file()
-  load(paste0(rotp,'/data/eqpar.rda')
+  load(paste0(rotp,'/data/eqpar.rda'))
   load(paste0(rotp,'/data/labels.rda'))
   
   # Assigning parameters 
   parameters <<- labels[['parameters']]
 
   # Assigning model equations
-  pareqs <<- eqpar
-  s <<- eqpar$meqs
-  x <<- eqpar$meql
-
+  #pareqs <<- eqpar
+  se <<- eqpar$meqs
+  lx <<- eqpar$meql
+  
   sdfc <<- sdfinp %>% dplyr::select(pre,a,b,c,d) %>% dplyr::group_by(pre) %>%
     dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
@@ -150,18 +150,18 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
     #dplyr::filter(b>0) %>%
     #dplyr::filter(c>0) %>%
     #dplyr::filter(d>0) %>% 
-    dplyr::mutate(x=pareq(s[['x_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(y=pareq(s[['y_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(g=pareq(s[['g_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(h=pareq(s[['h_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(m=pareq(s[['m_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(n=pareq(s[['n_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(alpha=pareq(s[['alpha_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(zeta=pareq(s[['zeta_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(lambda=pareq(s[['lambda_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(Omega=pareq(s[['Omega_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(Gamma=pareq(s[['Gamma_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(xi=pareq(s[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(x=pareq(se[['x_se']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(y=pareq(se[['y_se']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(g=pareq(se[['g_h']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(h=pareq(se[['h_h']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(m=pareq(se[['m_o']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(n=pareq(se[['n_o']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(alpha=pareq(se[['alpha_se']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(zeta=pareq(se[['zeta_se']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(lambda=pareq(se[['lambda_se']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(Omega=pareq(se[['Omega_h']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(Gamma=pareq(se[['Gamma_h']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(xi=pareq(se[['xi_o']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
     na.omit() 
 
   rdfc <<- sdfc %>% dplyr::arrange(alpha) %>% dplyr::mutate(pri=row_number()/length(pre))
@@ -173,8 +173,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
   ### Init values opposition form
   #polyc[[3]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
   ### Init poly
-
 })
+
 Countingprocess$methods(sortpre=function(poly=6,sortby='alpha',selvar=c('x','y','alpha','lambda','zeta')){
 
  srdfc <- rdfc %>%
@@ -242,8 +242,8 @@ Countinggraphs$methods(plotxy=function(selv=c("x","y")){
 })
 Countinggraphs$methods(resplot=function(resvar=c("zeta_r","alpha_res")){
 
-  x <- quintile[paste0(resvar[1])]
-  y <- quintile[paste0(resvar[2])]
+  xp <- quintile[paste0(resvar[1])]
+  yp <- quintile[paste0(resvar[2])]
   quintile$z <<- x*y
   ggplot2::ggplot(data=quintile,aes_string(resvar[1],resvar[2])) +
     geom_smooth(method="lm") +

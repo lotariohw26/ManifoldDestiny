@@ -4,22 +4,13 @@ output: html_document
 ---
 
 ```{r, eval=F, echo=F}
-abs_path <- function(){rprojroot::find_rstudio_root_file()}
-ManifoldDestiny::abs_path()
-
-rprojroot::find_rstudio_root_file()
-
-setwd(rprojroot::find_rstudio_root_file())
-filp <- 'vignettes/Application_Dallas.Rmd'
-rmarkdown::render(filp)
-system(paste0('brave vignettes/Application_Dallas.html'))
 ```
 
 ```{r, eval=T, message=F, warning=F, echo=F}
 library(ManifoldDestiny)
 library(dplyr)
 library(ggplot2)
-source('../inst/script/application_dallas.R')
+paste0(abs_path(),'/inst/script/application_dallas.R')
 ```
 
 #### Step 1: Visual inspection

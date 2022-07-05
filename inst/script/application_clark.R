@@ -25,6 +25,7 @@ gcz <- gclark$plot2d(selvp=c("zeta"),selvl='zeta_m')
 plotly::subplot(gcq,gcz,nrows=2)
 gclark$rdfc
 gclark$plotly3d(partition=2)[1]
+gclark$plotly3d(partition=2,selid=2)[3]
 #### Step 2: Rotation matrix
 sdfc <- gcda$sdfc
 edal <- Estimation(sdfc)
