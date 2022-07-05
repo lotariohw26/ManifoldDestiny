@@ -33,15 +33,6 @@ votr <- vrdf$voterrollrealized
 ################################################################################################33
 #### A) Fair ###
 gcou <- Countinggraphs(votr)
-e <- gcou$sdfc
-
-l <- gcou$l
-gcou$sortpre() %>%
-	dplyr::mutate(x=pareq(s[['x_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-
-	    
-	    #### Graphical ###
-###### Tab1
 ggt1 <- gcou$plotxy(c("x","y"))
 ##ggplotly(ggt1)
 ####### Tab2
