@@ -130,16 +130,16 @@ Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = li
 Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', s='list',x='list',plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
 
+  # Parameters 
+  parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
+  		      hybrid=c("g","h","Omega","lambda","xi"),
+		      opposition=c("m","n","Omega","xi","lambda"))
+  
   # Assigning model equations
   rotp <- rprojroot::find_rstudio_root_file()
   mpath <- paste0(rotp,'/data/eqpar.rda')
   load(mpath)
   pareqs <<- eqpar
-  
-  # Parameters 
-  parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
-  		      hybrid=c("g","h","Omega","lambda","xi"),
-		      opposition=c("m","n","Omega","xi","lambda"))
   
   # Assigning model equations
   rotp <- rprojroot::find_rstudio_root_file()
@@ -157,6 +157,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
     dplyr::mutate(x=pareq(s[['x_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(y=pareq(s[['y_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(g=pareq(s[['g_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(h=pareq(s[['h_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(m=pareq(s[['m_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(n=pareq(s[['n_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(alpha=pareq(s[['alpha_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
@@ -311,8 +312,6 @@ Estimation$methods(rotation=function(
 				     sli=list(depth=0.01,divi=0.02,shift=50,slide=-49)
 				     ){
   browser()
-  View(rdfc)
-  hist(rdfc$slide_norm)
   
   ra <- circular::rad(angles$tgrad)
   rdfc <<- sdfc[1:741,] %>% dplyr::select(selvar) %>%
@@ -327,7 +326,13 @@ Estimation$methods(rotation=function(
   dplyr::mutate(sinzx=sin(rzx)) %>%
   dplyr::mutate(u=cosxy*y-sinxy*x) %>%
   dplyr::mutate(v=sinxy*y+cosxy*x) %>%
-  dplyr::mutate(w=sinyz*v+cosyz*alpha) %>% 
+  dplyr::mutate(w=sinyz*v+cosyz*alpha) %>%
+  dplyr::arrange(v)
+  rdfc; l()
+
+
+  plot(rdfc$u,rdfc$w)
+
   dplyr::mutate(rank_v=dense_rank(v)) %>%
   dplyr::mutate(slide=floor((v+sli$depth*sli$divi*sli$shift)/sli$depth)) %>%
   dplyr::mutate(slide_norm=slide-sli$slide+1) %>%

@@ -38,6 +38,8 @@ BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown", 
 knitr::knit_exit()
 ```
 
+### Dallas
+https://docs.google.com/document/d/1u8XTDJsyYVFOyuOly1Xs6XjOAAdKFW88C7q624lpAz4
 ## Clark and Washoe
 https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit#
 ## Maricopa
@@ -49,8 +51,6 @@ https://docs.google.com/document/d/1f8-h_wHNBVJsUW1UBISGercDkFPyk2HrMmEPCL7LqO8/
 https://docs.google.com/document/d/1-9qbBtTqiGlAurJjEbtVt6lBUi9MKTqPR-xb3FpHx-A/edit#
 https://coderwall.com/p/elfkaq/editing-google-docs-with-vim
 https://docs.google.com/spreadsheets/d/1R78hoPiP_sleD3L7QtvuE5R-3kf2Xob20bMXQeChke8/edit#gid=173566074
-### Dallas
-https://docs.google.com/document/d/1u8XTDJsyYVFOyuOly1Xs6XjOAAdKFW88C7q624lpAz4
 # Links
 https://github.com/lotariohw26/ManifoldDestiny
 https://lotariohw26.github.io/ManifoldDestiny/

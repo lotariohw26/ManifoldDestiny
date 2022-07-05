@@ -32,14 +32,14 @@ lambda_s  = [Eq(lamda,(a+d)/(a+b+c+d)),Eq(lamda,(x+zeta*(1-y))/(zeta+1))]
 ###########################################################################################################################
 ######### Hybrid form
 g_h       = [Eq(g,a/(a+d))]
-h_h       = [Eq(h,b/(b+c))]
+h_h       = [Eq(h,c/(b+c))]
 Gamma_h   = [Eq(Gamma,(b+c)/(a+d))]
 alpha_h   = [Eq(alpha,(a+c)/(a+b+c+d)),Eq(alpha,(g+Gamma*h)/(1+Gamma))]
 Omega_h   = [Eq(Omega,(a+b)/(a+b+c+d)),Eq(alpha,(x+zeta*y)/(1+zeta))]
 ###############################################################################################################################
 ###### Oppostion form
-n_o       = [Eq(n,b/(b+d))]
-m_o       = [Eq(m,a/(a+c))]
+n_o       = [Eq(n,a/(a+c))]
+m_o       = [Eq(m,b/(b+d))]
 xi_o      = [Eq(xi,(b+d)/(a+c))]
 lambda_o  = [Eq(lamda,(a+d)/(a+b+c+d)),Eq(alpha,(m+xi*n)/(xi+1))]
 Omega_o   = [Eq(Omega,(a+b)/(a+b+c+d)),Eq(alpha,(m+xi*y)/(1+xi))]
