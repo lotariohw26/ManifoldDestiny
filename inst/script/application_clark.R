@@ -27,11 +27,8 @@ gclark$rdfc
 gclark$plotly3d(partition=2)[1]
 gclark$plotly3d(partition=2,selid=2)[3]
 #### Step 2: Rotation matrix
-sdfc <- gcda$sdfc
-edal <- Estimation(sdfc)
-edal$rotation()
-View(dfa)
-
-edal$rdfc
+#sdfc <- gcda$sdfc
+#edal <- Estimation(sdfc)
+#edal$rotation()
 #### Step 3: Regression
 #### Step 4: Prediction

@@ -129,7 +129,7 @@ Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = li
 Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', se='list',lx='list',plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
 
-  browser()
+  #browser()
   # Loading 
   rotp <- rprojroot::find_rstudio_root_file()
   load(paste0(rotp,'/data/eqpar.rda'))
@@ -142,7 +142,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
   #pareqs <<- eqpar
   se <<- eqpar$meqs
   lx <<- eqpar$meql
-  
+ 
   sdfc <<- sdfinp %>% dplyr::select(pre,a,b,c,d) %>% dplyr::group_by(pre) %>%
     dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
@@ -150,18 +150,18 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
     #dplyr::filter(b>0) %>%
     #dplyr::filter(c>0) %>%
     #dplyr::filter(d>0) %>% 
-    dplyr::mutate(x=pareq(se[['x_se']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(y=pareq(se[['y_se']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(g=pareq(se[['g_h']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(h=pareq(se[['h_h']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(m=pareq(se[['m_o']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(n=pareq(se[['n_o']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(alpha=pareq(se[['alpha_se']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(zeta=pareq(se[['zeta_se']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(lambda=pareq(se[['lambda_se']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(Omega=pareq(se[['Omega_h']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(Gamma=pareq(se[['Gamma_h']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(xi=pareq(se[['xi_o']][1],lv=liset(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(x=pareq(se[['x_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(y=pareq(se[['y_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(g=pareq(se[['g_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(h=pareq(se[['h_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(m=pareq(se[['m_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(n=pareq(se[['n_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(alpha=pareq(se[['alpha_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(zeta=pareq(se[['zeta_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(lambda=pareq(se[['lambda_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(Omega=pareq(se[['Omega_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(Gamma=pareq(se[['Gamma_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(xi=pareq(se[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     na.omit() 
 
   rdfc <<- sdfc %>% dplyr::arrange(alpha) %>% dplyr::mutate(pri=row_number()/length(pre))
@@ -356,9 +356,9 @@ Estimation$methods(rotation=function(
 
 Estimation$methods(estimation=function(selvar=c('x','y','alpha')){
 
-	rsq <- function(x, y) summary(lm(y~x))$r.squared
-	k <- c(1.57874563,-0.5819051755,0.001519026359)
-	ge <- eval(parse(text='k[1]*alpha+k[2]*h+k[3]'),list(alpha=1,h=1,k=k))
-	edfc <<- sdfc %>% dplyr::mutate(gpred=gp(alpha,h,k)) %>% dplyr::mutate(rsq=rsq(g,gpred))
+	#rsq <- function(x, y) summary(lm(y~x))$r.squared
+	#k <- c(1.57874563,-0.5819051755,0.001519026359)
+	#ge <- eval(parse(text='k[1]*alpha+k[2]*h+k[3]'),list(alpha=1,h=1,k=k))
+	#edfc <<- sdfc %>% dplyr::mutate(gpred=gp(alpha,h,k)) %>% dplyr::mutate(rsq=rsq(g,gpred))
 })
 
