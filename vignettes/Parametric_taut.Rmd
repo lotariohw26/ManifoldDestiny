@@ -36,7 +36,7 @@ modlat <- eqpar$meql
 ```
 
 ### Standard form
-Parameters: $x$, $y$, $\alpha$, $\lambda$ $\zeta$
+Parameters: $x$, $y$, $\zeta$, $\alpha$ $\lambda$
 
 \begin{equation*}
 x=`r modlat$x_s[1]`
@@ -45,10 +45,10 @@ x=`r modlat$x_s[1]`
 y=`r modlat$y_s[1]`
 \end{equation*}
 \begin{equation*}
-\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
+\zeta=`r modlat$zeta_s[1]`
 \end{equation*}
 \begin{equation*}
-\zeta=`r modlat$zeta_s[1]`
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
 \end{equation*}
 \begin{equation*}
 \lambda=`r modlat$lambda_s[1]`
@@ -57,7 +57,7 @@ y=`r modlat$y_s[1]`
 ---
 
 ### Hybrid form
-Parameters: $g$, $h$, $\alpha$, $\Omega$, $\Gamma$
+Parameters: $g$, $h$, $\Gamma$, $\alpha$, $\Omega$
 
 \begin{equation*}
 g=`r modlat$g_h[1]`
@@ -66,19 +66,18 @@ g=`r modlat$g_h[1]`
 h=`r modlat$h_h[1]`
 \end{equation*}
 \begin{equation*}
-\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
+\Gamma=`r modlat$Gamma_h[1]`
+\end{equation*}
+\begin{equation*}
+\alpha=`r modlat$alpha_h[1]`=`r modlat$alpha_h[2]`
 \end{equation*}
 \begin{equation*}
 \Omega=`r modlat$Omega_h[1]`
 \end{equation*}
-\begin{equation*}
-\Gamma=`r modlat$Gamma_h[1]`
-\end{equation*}
-
 ---
 
 ### Opposition form
-Parameters: $m$, $n$, $\Omega$, $\lambda$, $\xi$
+Parameters: $m$, $n$, $\xi$, $\lambda$, $\Omega$
 
 \begin{equation*}
 m=`r modlat$m_o[1]`
@@ -87,13 +86,13 @@ m=`r modlat$m_o[1]`
 n=`r modlat$n_o[1]`
 \end{equation*}
 \begin{equation*}
-\Omega=`r modlat$Omega_o[1]`
-\end{equation*}
-\begin{equation*}
-\lambda=`r modlat$lambda_o[1]`
-\end{equation*}
-\begin{equation*}
 \xi=`r modlat$xi_o[1]`
+\end{equation*}
+\begin{equation*}
+\lambda=`r modlat$lambda_o[1]`=`r modlat$lambda_o[2]`
+\end{equation*}
+\begin{equation*}
+\Omega=`r modlat$Omega_o[1]`
 \end{equation*}
 
 
