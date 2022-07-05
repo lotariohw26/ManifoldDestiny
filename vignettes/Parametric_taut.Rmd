@@ -51,7 +51,7 @@ y=`r modlat$y_s[1]`
 \alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
 \end{equation*}
 \begin{equation*}
-\lambda=`r modlat$lambda_s[1]`
+\lambda=`r modlat$lambda_s[1]`=`r modlat$lambda_s[2]`
 \end{equation*}
 
 ---
@@ -72,7 +72,7 @@ h=`r modlat$h_h[1]`
 \alpha=`r modlat$alpha_h[1]`=`r modlat$alpha_h[2]`
 \end{equation*}
 \begin{equation*}
-\Omega=`r modlat$Omega_h[1]`
+\Omega=`r modlat$Omega_h[1]`=`r modlat$Omega_h[2]`
 \end{equation*}
 ---
 
@@ -92,8 +92,10 @@ n=`r modlat$n_o[1]`
 \lambda=`r modlat$lambda_o[1]`=`r modlat$lambda_o[2]`
 \end{equation*}
 \begin{equation*}
-\Omega=`r modlat$Omega_o[1]`
+\Omega=`r modlat$Omega_o[1]`=`r modlat$Omega_o[2]`
 \end{equation*}
 
-
+<!--
+### Combinations
+-->
 
