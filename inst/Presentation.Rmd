@@ -16,6 +16,7 @@ output:
 ################################################################################################# 
 -->
 
+
 ```{r include=FALSE}
 library(ManifoldDestiny)
 library(dplyr)
@@ -36,22 +37,23 @@ library(ggpubr)
 -->
 
 ```{r setup, include=FALSE}
-BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown",
-           dashed = TRUE)
-file.name <- paste0("man_bib.bib")
-bib <- ReadBib(file.name)
+BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown",dashed = TRUE)
+bib <- ReadBib(paste0(ManifoldDestiny::abs_path(),'/inst/references/man_bib.bib'))
 ```
 
 <!-- Reading script
 ################################################################################################# 
 -->
 
+
 ```{r, eval=T, echo=F, message=F, warning=F}
 ### Loading equations
-filn <- 'stylized.R'
-abs_path <- function(){rprojroot::find_rstudio_root_file()}
 source(paste0(abs_path(),'/inst/script/stylized.R'))
+modlat <- gcou$lx
+
+
 ```
+
 
 <!-- Table of contents
 ################################################################################################# 
@@ -83,9 +85,7 @@ source(paste0(abs_path(),'/inst/script/stylized.R'))
 -->
 
 ```{r eval=FALSE, include=FALSE}
-ManifoldDestiny::abs_path()
-tes <- "inst/Presentation.Rmd"
-xaringan::inf_mr(tes)
+xaringan::inf_mr(paste0(ManifoldDestiny::abs_path(),'/inst/Presentation.Rmd'))
 rmarkdown::render(tes) 
 ```
 
@@ -100,6 +100,8 @@ Ed. Solomon
 class: inverse, center, middle
 
 # Setting up the simplified framework (two modes of voting)
+
+
 ---
 
 ## Integers 
