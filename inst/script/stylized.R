@@ -32,24 +32,20 @@ vrdf$realizedgp(probv=probvset,Ztech=Znr)
 votr <- vrdf$voterrollrealized
 #################################################################################################33
 ##### A) Fair ###
-gcou <- Countinggraphs(votr)
-gcou$lx
-
-
-#ggt1 <- gcou$plotxy(c("x","y"))
-###ggplotly(ggt1)
+gsimf <- Countinggraphs(votr)
+gsimf$sortpre()
+ggt2a <- gsimf$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
+ggt2b <- gsimf$plot2d(selvp=c("zeta"),selvl='zeta_m')
+#plotly::subplot(ggt2a,ggt2b,nrows=2)
 ######### Tab2
-##ggt2a <- gcou$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
-##ggt2b <- gcou$plot2d(selvp=c("zeta"),selvl='zeta_m')
-##plotly::subplot(ggt2a,ggt2b,nrows=2)
 ######### Tab3
-##ggt3a <- gcou$resplot(resvar=c('zeta_r','alpha_res'))
-##ggt3b <- gcou$resplot(resvar=c('zeta_r','y_res'))
-####plotly::subplot(ggt3a,ggt3b,nrows=2)
-######## Tab4
-###gcou$resplot(resvar=c('zeta_r','y_res'))
+ggt3a <- gsimf$resplot(resvar=c('zeta_r','alpha_res'))
+ggt3b <- gsimf$resplot(resvar=c('zeta_r','y_res'))
+#plotly::subplot(ggt3a,ggt3b,nrows=2)
 ######## Tab5
-#gcou$plotly3d(partition=1)[[1]]
+gsimf$rdfc$zeta <- 1
+gsimf$plotly3d(partition=1)[[1]]
+gsimf$plotly3d(partition=1,selid=1)[[3]]
 ###################################################################################################33
 ##### B) Rigged ###
 ##### Tab1

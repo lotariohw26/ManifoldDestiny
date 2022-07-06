@@ -25,15 +25,16 @@ library(RefManageR)
 library(ggpubr)
 ```
 
-
 ```{r, eval=T, echo=F, message=F, warning=F}
 ### Loading equations
 load(paste0(abs_path(),'/data/eqpar.rda'))
+load(paste0(abs_path(),'/data/labels.rda'))
 modlat <- eqpar$meql
+labs <- labels[['parameters']]
 ```
 
 ### Standard form
-Parameters: $x$, $y$, $\zeta$, $\alpha$ $\lambda$
+Parameters: $\text{`r labs$standard`}$
 
 \begin{equation*}
 x=`r modlat$x_s[1]`
@@ -90,5 +91,4 @@ m=`r modlat$m_o[1]`
 \begin{equation*}
 \Omega=`r modlat$Omega_o[1]`=`r modlat$Omega_o[2]`
 \end{equation*}
-
 
