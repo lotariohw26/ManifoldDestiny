@@ -192,17 +192,20 @@ Countingprocess$methods(sortpre=function(poly=6,sortby='alpha',selvar=c('x','y',
 })
 Countingprocess$methods(riggsta=function(
   param=list(form=1,pre=c('x','alpha','y'), end=c('zeta','lambda')),
-  predet=list(end1=quintile$x,end2=polyc[[1]],end3='x+y')){
-
+  predet=list(end1=quintile$x,end2=polyc[[1]],end3='x-alpha')
+)
+{
   # Presetting three parameters
   parampre <- data.frame(pri=quintile$pri) %>% 
     dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
     dplyr::mutate(!!param$pre[2]:=predict(polynom::polynomial(predet$end2),quintile$pri)) %>%
-    dplyr::mutate(!!param$pre[3]:=pareq(ste,lv)) 
-    dplyr::mutate(!!param$end[1]:=0) %>%
-    dplyr::mutate(!!param$end[2]:=0) %>%
+    dplyr::mutate(!!param$pre[3]:=pareq(predet[[3]],lv=list(x=x,alpha=alpha))) %>%
+    dplyr::mutate(!!param$end[1]:=pareq(se[['zeta_s']][2],lv=list(x=x,alpha=alpha,y=y))) %>%
+    dplyr::mutate(!!param$end[2]:=pareq(se[['lambda_s']][2],lv=list(x=x,zeta=zeta,y=y))) %>%
     dplyr::rename_all(paste0, "_st")
-View(parampre)
+
+  rdfc <<- parampre
+
 })
 Countingprocess$methods(rigghyp=function(sdfinp=NULL){
   # Init values standard form
