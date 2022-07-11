@@ -192,24 +192,17 @@ Countingprocess$methods(sortpre=function(poly=6,sortby='alpha',selvar=c('x','y',
 })
 Countingprocess$methods(riggsta=function(
   param=list(form=1,pre=c('x','alpha','y'), end=c('zeta','lambda')),
-  predet=list(end1=quintile$x, 
-  end2=polyc[[1]],
-  end3='0.10')){
-  browser()
-  polyn <- as.numeric(predict(polynom::polynomial(predet$end2),quintile$pri))
-  # Presetting three parameters
-  dfr <- data.frame() 
-  pardf <<- dfr 
-  ### Presetting three parameters
-  dplyr::mutate(end1=predet[[1]]) 
-  dplyr::mutate(end2=polyn) %>%
-  dplyr::select(end1,end2) %>% stats::setNames(param$pre[1:2])
-  dplyr::mutate(end3=pareq(ste=predet[[3]])) %>%
-  ## Backsolving for the two remaining variables
-  dplyr::mutate(end4=0) %>%
-  dplyr::mutate(end5=0) 
+  predet=list(end1=quintile$x,end2=polyc[[1]],end3='x+y')){
 
-  parampre <- paste0(param$pre,'_st')
+  # Presetting three parameters
+  parampre <- data.frame(pri=quintile$pri) %>% 
+    dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
+    dplyr::mutate(!!param$pre[2]:=predict(polynom::polynomial(predet$end2),quintile$pri)) %>%
+    dplyr::mutate(!!param$pre[3]:=pareq(ste,lv)) 
+    dplyr::mutate(!!param$end[1]:=0) %>%
+    dplyr::mutate(!!param$end[2]:=0) %>%
+    dplyr::rename_all(paste0, "_st")
+View(parampre)
 })
 Countingprocess$methods(rigghyp=function(sdfinp=NULL){
   # Init values standard form
