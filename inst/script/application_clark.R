@@ -22,7 +22,7 @@ gclark$sortpre()
 #### Step 1: Inspect visually
 gcq <- gclark$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
 gcz <- gclark$plot2d(selvp=c("zeta"),selvl='zeta_m')
-plotly::subplot(gcq,gcz,nrows=2)
+#plotly::subplot(gcq,gcz,nrows=2)
 gcrza <- gclark$resplot(resvar=c('zeta_r','alpha_res'))
 gcrzy <- gclark$resplot(resvar=c('zeta_r','y_res'))
 gclark$plotly3d(partition=2)[1]

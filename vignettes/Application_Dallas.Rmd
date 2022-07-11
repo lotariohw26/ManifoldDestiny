@@ -3,8 +3,6 @@ title: "Application: Dallas county (Texas)"
 output: html_document
 ---
 
-```{r, eval=F, echo=F}
-```
 
 ```{r, eval=T, message=F, warning=F, echo=F}
 library(ManifoldDestiny)
@@ -19,6 +17,7 @@ paste0(abs_path(),'/inst/script/application_dallas.R')
 ```{r, echo=F}
 gcda$plotly3d(partition=1)[[1]]
 ```
+
 ### B
 ```{r, echo=F}
 gcda$plotly3d(partition=2)[[1]]

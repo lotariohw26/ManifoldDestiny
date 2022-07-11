@@ -32,29 +32,29 @@ vrdf$realizedgp(probv=probvset,Ztech=Znr)
 votr <- vrdf$voterrollrealized
 #################################################################################################33
 ##### A) Fair ###
+########## Tab1
 gsimf <- Countinggraphs(votr)
 gsimf$sortpre()
 ggt2a <- gsimf$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
 ggt2b <- gsimf$plot2d(selvp=c("zeta"),selvl='zeta_m')
-#plotly::subplot(ggt2a,ggt2b,nrows=2)
-######### Tab2
-######### Tab3
+ggt2ab <- plotly::subplot(ggt2a,ggt2b,nrows=2)
+########## Tab3
 ggt3a <- gsimf$resplot(resvar=c('zeta_r','alpha_res'))
 ggt3b <- gsimf$resplot(resvar=c('zeta_r','y_res'))
-#plotly::subplot(ggt3a,ggt3b,nrows=2)
-######## Tab5
+ggt3ab <- plotly::subplot(ggt3a,ggt3b,nrows=2)
+######### Tab5
 gsimf$rdfc$zeta <- 1
-gsimf$plotly3d(partition=1)[[1]]
-gsimf$plotly3d(partition=1,selid=1)[[3]]
-###################################################################################################33
+gg3da <- gsimf$plotly3d(partition=1)[[1]]
+gg3db <- gsimf$plotly3d(partition=1,selid=1)[[3]]
+####################################################################################################33
 ##### B) Rigged ###
 ##### Tab1
-###grig <- Countinggraphs(votr)
-###grig$sortpre()
-#####polr[1] <- 0.3096 # 0.3469
-###polr <- polynom::polynomial(grig$polyc[[1]])
-###round(polynom::integral(polr,c(0,1)),digits=4)
-###grig$riggsta()
+grig <- Countinggraphs(votr)
+grig$sortpre()
+##polr[1] <- 0.3096 # 0.3469
+polr <- polynom::polynomial(grig$polyc[[1]])
+round(polynom::integral(polr,c(0,1)),digits=4)
+grig$riggsta()
 ###### Graphical ###
 ######## Tab1
 ###ggt1 <- grig$plotxy(c("x","y"))

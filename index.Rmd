@@ -1,5 +1,5 @@
 ---
-,itle: ""
+title: ""
 output: github_document
 always_allow_html: true
 ---
@@ -7,6 +7,12 @@ always_allow_html: true
 ```{r, eval=F, echo=F}
 rmarkdown::render("index.Rmd")
 ```
+
+```{r}
+#source(paste0(ManifoldDestiny::abs_path(),'/inst/script/stylized.R'))
+##gsimf$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
+```
+
 
 ```{r, echo=F, message=F, warning=F}
 ### Loading equations
@@ -46,6 +52,8 @@ Ed. Solomon
 ```{r, echo=F, eval=T}
 knitr::knit_exit()
 ```
+
+#
 
 # Now
 inst/Presentation.Rmd

@@ -4,9 +4,7 @@ output: html_document
 ---
 
 ```{r eval=F, echo=F}
-filn <- 'Stylized_model'
-abs_path <- function(){rprojroot::find_rstudio_root_file()}
-rmarkdown::render(paste0(abs_path(),'/vignettes/',filn,'.Rmd'))
+rmarkdown::render(paste0(ManifoldDestiny::abs_path(),'/vignettes/Stylized_model.Rmd'))
 ```
 
 ```{r include=FALSE}
@@ -29,9 +27,7 @@ library(ggplot2)
 ```
 
 ```{r, eval=T, message=F, warning=F, echo=F}
-sourcef <- 'stylized.R'
-abs_path <- function(){rprojroot::find_rstudio_root_file()}
-source(paste0(abs_path(),'/inst/script/',sourcef))
+source(paste0(ManifoldDestiny::abs_path(),'/inst/script/stylized.R'))
 ```
 
 # Test abc

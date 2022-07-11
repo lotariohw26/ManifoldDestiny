@@ -26,8 +26,6 @@ b <- gcda$plot2d(selvp=c("zeta"),selvl='zeta_m')
 #### Step 2: Rotation matrix
 sdfc <- gcda$sdfc
 edal <- Estimation(sdfc)
-edal$rotation()
-edal$rdfc
 #### Step 3: Regression
 #### Step 4: Prediction
 #################################################################################################33
