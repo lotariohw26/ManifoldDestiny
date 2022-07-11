@@ -42,6 +42,7 @@ knitr::knit_exit()
 https://docs.google.com/document/d/1u8XTDJsyYVFOyuOly1Xs6XjOAAdKFW88C7q624lpAz4
 ## Clark and Washoe
 https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit#
+https://docs.google.com/document/d/1O_5Rs29mJut8NfOtFIW2chN5NC6TyFwVkkCZX7PyZIA/edit#
 ## Maricopa
 https://docs.google.com/document/d/1V5drFEwOqVuwpmkepPNfRgWVYwW72MvVqK15qAEx3Ok/edit#
 https://docs.google.com/document/d/1f8-h_wHNBVJsUW1UBISGercDkFPyk2HrMmEPCL7LqO8/edit#i
