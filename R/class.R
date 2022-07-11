@@ -194,9 +194,10 @@ Countingprocess$methods(riggsta=function(
   param=list(form=1,pre=c('x','alpha','y'), end=c('zeta','lambda')),
   predet=list(end1=quintile$x, 
   end2=polyc[[1]],
-  end3='x')){
-	    
-browser()
+  end3=ste='(x + y*zeta)/(zeta + 1)')){
+	   
+#predict(predet$end2,quintile$pri)
+
     pardf <<- dplyr::select(quintile,param$pre,param$end) 
     # Presetting three parameters
     #dplyr::mutate(end1=predet[[1]]) %>% 
