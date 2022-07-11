@@ -18,7 +18,7 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  newdraw=T
 					  ){
 
-	#browser()
+
     filn <- paste0('voterbase/',namebase)
     if(newdraw == T) {
     # Demograhpic structure
@@ -129,7 +129,7 @@ Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = li
 Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', se='list',lx='list',plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
 
-  #browser()
+  
   # Loading 
   rotp <- rprojroot::find_rstudio_root_file()
   load(paste0(rotp,'/data/eqpar.rda'))
@@ -195,19 +195,20 @@ Countingprocess$methods(riggsta=function(
   predet=list(end1=quintile$x, 
   end2=polyc[[1]],
   end3='0.10')){
-
-  polycl <- polynom::polynomial(predet$end2)
+  browser()
+  polyn <- as.numeric(predict(polynom::polynomial(predet$end2),quintile$pri))
   # Presetting three parameters
-  pardf <<- dplyr::select(quintile,param$pre,param$end) %>%
-  ## Presetting three parameters
+  pardf <<- dplyr::select(quintile,param$pre) %>%
+  ### Presetting three parameters
   dplyr::mutate(end1=predet[[1]]) %>%
-  dplyr::mutate(end2=predict(polycl,quintile$pri)) %>%
+  dplyr::mutate(end2=polyn) %>%
+  dplyr::select(end1,end2) %>% stats::setNames(param$pre[1:2])
   dplyr::mutate(end3=pareq(ste=predet[[3]])) %>%
-  ## Backsolving for two parameters
+  ## Backsolving for the two remaining variables
   dplyr::mutate(end4=0) %>%
   dplyr::mutate(end5=0) 
-  ## Backsolving for two parameters
-  names(pardf)[6:10] <<- paste0(c(param$pre,param$end),'_st') 
+
+  parampre <- paste0(param$pre,'_st')
 })
 Countingprocess$methods(rigghyp=function(sdfinp=NULL){
   # Init values standard form

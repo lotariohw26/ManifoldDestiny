@@ -56,8 +56,8 @@ polr <- polynom::polynomial(grig$polyc[[1]])
 round(polynom::integral(polr,c(0,1)),digits=4)
 grig$riggsta()
 
-View(grig$pardf)
 
+View(grig$pardf)
 
 ###### Graphical ###
 ######## Tab1
