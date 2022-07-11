@@ -32,20 +32,20 @@ vrdf$realizedgp(probv=probvset,Ztech=Znr)
 votr <- vrdf$voterrollrealized
 #################################################################################################33
 ##### A) Fair ###
-########## Tab1
 gsimf <- Countinggraphs(votr)
 gsimf$sortpre()
-ggt2a <- gsimf$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
-ggt2b <- gsimf$plot2d(selvp=c("zeta"),selvl='zeta_m')
-ggt2ab <- plotly::subplot(ggt2a,ggt2b,nrows=2)
+########## Tab1
+gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
+gnt2b <- gsimf$plot2d(selvp=c("zeta"),selvl='zeta_m')
+gnt2ab <- plotly::subplot(ggt2a,ggt2b,nrows=2)
 ########## Tab3
-ggt3a <- gsimf$resplot(resvar=c('zeta_r','alpha_res'))
-ggt3b <- gsimf$resplot(resvar=c('zeta_r','y_res'))
-ggt3ab <- plotly::subplot(ggt3a,ggt3b,nrows=2)
+gnt3a <- gsimf$resplot(resvar=c('zeta_r','alpha_res'))
+gnt3b <- gsimf$resplot(resvar=c('zeta_r','y_res'))
+gnt3ab <- plotly::subplot(ggt3a,ggt3b,nrows=2)
 ######### Tab5
-gsimf$rdfc$zeta <- 1
-gg3da <- gsimf$plotly3d(partition=1)[[1]]
-gg3db <- gsimf$plotly3d(partition=1,selid=1)[[3]]
+#gsimf$rdfc$zeta <- 1
+gn3da <- gsimf$plotly3d(partition=1)[[1]]
+gn3db <- gsimf$plotly3d(partition=1,selid=1)[[3]]
 ####################################################################################################33
 ##### B) Rigged ###
 ##### Tab1
@@ -55,23 +55,16 @@ grig$sortpre()
 polr <- polynom::polynomial(grig$polyc[[1]])
 round(polynom::integral(polr,c(0,1)),digits=4)
 grig$riggsta()
-
-
-View(grig$pardf)
-
 ###### Graphical ###
-######## Tab1
-###ggt1 <- grig$plotxy(c("x","y"))
-###ggplotly(ggt1)
-######### Tab2
-###ggt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
-###ggt2b <- grig$plot2d(selvp=c("zeta"),selvl='zeta_m')
-###plotly::subplot(ggt2a,ggt2b,nrows=2)
-######### Tab3
-###ggt3a <- gcou$resplot(resvar=c('zeta_r','alpha_res'))
-###ggt3b <- gcou$resplot(resvar=c('zeta_r','y_res'))
-######### Tab4
-####gcou$resplot(resvar=c('zeta_r','y_res'))
-######### Tab5
-###grig$plotly3d(partition=1)
+########## Tab1
+grt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
+grt2b <- grig$plot2d(selvp=c("zeta"),selvl='zeta_m')
+grt2ab <- plotly::subplot(grt2a,grt2b,nrows=2)
+########### Tab3
+grt3a <- grig$resplot(resvar=c('zeta_r','alpha_res'))
+grt3b <- grig$resplot(resvar=c('zeta_r','y_res'))
+grt3ab <- plotly::subplot(grt3a,grt3b,nrows=2)
+########## Tab5
+gr3da <- grig$plotly3d(partition=1)[[1]]
+gr3db <- grig$plotly3d(partition=1,selid=1)[[1]]
 #####################################################################################################33

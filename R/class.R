@@ -201,11 +201,9 @@ Countingprocess$methods(riggsta=function(
     dplyr::mutate(!!param$pre[2]:=predict(polynom::polynomial(predet$end2),quintile$pri)) %>%
     dplyr::mutate(!!param$pre[3]:=pareq(predet[[3]],lv=list(x=x,alpha=alpha))) %>%
     dplyr::mutate(!!param$end[1]:=pareq(se[['zeta_s']][2],lv=list(x=x,alpha=alpha,y=y))) %>%
-    dplyr::mutate(!!param$end[2]:=pareq(se[['lambda_s']][2],lv=list(x=x,zeta=zeta,y=y))) %>%
-    dplyr::rename_all(paste0, "_st")
-
-  rdfc <<- parampre
-
+    dplyr::mutate(!!param$end[2]:=pareq(se[['lambda_s']][2],lv=list(x=x,zeta=zeta,y=y))) 
+    #dplyr::rename_all(paste0, "_st")
+  rdfc[,c(param$pre,param$end)] <<- parampre[,-1]
 })
 Countingprocess$methods(rigghyp=function(sdfinp=NULL){
   # Init values standard form
