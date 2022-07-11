@@ -194,21 +194,20 @@ Countingprocess$methods(riggsta=function(
   param=list(form=1,pre=c('x','alpha','y'), end=c('zeta','lambda')),
   predet=list(end1=quintile$x, 
   end2=polyc[[1]],
-  end3=ste='(x + y*zeta)/(zeta + 1)')){
-	   
-#predict(predet$end2,quintile$pri)
-predet$end2
-predict(polyc[1],quintile$x)
-    pardf <<- dplyr::select(quintile,param$pre,param$end) %>%
-    # Presetting three parameters
-    dplyr::mutate(end1=predet[[1]]) 
-    #dplyr::mutate(end2=predict(predet$end2,quintile$pri)) %>%
-    #dplyr::mutate(end3=0.10) %>%
-    ## Backsolving for two parameters
-    #dplyr::mutate(zeta_s=pareq(ste=pareqs$meqs[['zeta_s']][1],lv=list(x=x_s,alpha=alpha_s,y=y_s))) %>%
-    #dplyr::mutate(lambda_s=pareq(ste=pareqs$meqs[['lambda_s']][1],lv=list(x=x_s,zeta=zeta_s,y=y_s)))
-pardf
-    #rdfc[c(param$pre,param$end)] <<- pardf[6:10]
+  end3='0.10')){
+
+  polycl <- polynom::polynomial(predet$end2)
+  # Presetting three parameters
+  pardf <<- dplyr::select(quintile,param$pre,param$end) %>%
+  ## Presetting three parameters
+  dplyr::mutate(end1=predet[[1]]) %>%
+  dplyr::mutate(end2=predict(polycl,quintile$pri)) %>%
+  dplyr::mutate(end3=pareq(ste=predet[[3]])) %>%
+  ## Backsolving for two parameters
+  dplyr::mutate(end4=0) %>%
+  dplyr::mutate(end5=0) 
+  ## Backsolving for two parameters
+  names(pardf)[6:10] <<- paste0(c(param$pre,param$end),'_st') 
 })
 Countingprocess$methods(rigghyp=function(sdfinp=NULL){
   # Init values standard form
