@@ -198,9 +198,10 @@ Countingprocess$methods(riggsta=function(
   browser()
   polyn <- as.numeric(predict(polynom::polynomial(predet$end2),quintile$pri))
   # Presetting three parameters
-  pardf <<- dplyr::select(quintile,param$pre) %>%
+  dfr <- data.frame() 
+  pardf <<- dfr 
   ### Presetting three parameters
-  dplyr::mutate(end1=predet[[1]]) %>%
+  dplyr::mutate(end1=predet[[1]]) 
   dplyr::mutate(end2=polyn) %>%
   dplyr::select(end1,end2) %>% stats::setNames(param$pre[1:2])
   dplyr::mutate(end3=pareq(ste=predet[[3]])) %>%
