@@ -28,13 +28,13 @@ library(ggpubr)
 ```{r, eval=T, echo=F, message=F, warning=F}
 ### Loading equations
 load(paste0(abs_path(),'/data/eqpar.rda'))
-load(paste0(abs_path(),'/data/labels.rda'))
+load(paste0(abs_path(),'/data/stickers.rda'))
 modlat <- eqpar$meql
-labs <- labels[['parameters']]
+labs <- stickers[['parameters']]
 ```
 
 ### Standard form
-Parameters: $\text{`r labs$standard`}$
+Parameters: $x$, $y$, $\zeta$, $\alpha$, $\lambda$
 
 \begin{equation*}
 x=`r modlat$x_s[1]`
