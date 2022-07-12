@@ -141,7 +141,6 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 
   # Assigning parameters 
   parameters <<- stickers[['parameters']]
-
   # Assigning model equations
   #pareqs <<- eqpar
   se <<- eqpar$meqs
@@ -205,18 +204,18 @@ Countingprocess$methods(riggsta=function(
 )
 {
 
-  ends1 <- se[[paste0(param$end[1],'_s')]][2]
-  ends2 <- se[[paste0(param$end[2],'_s')]][2]
+  forms <- list('_s','o_h','h_o')[param$form[[1]]]
+  ends1 <- se[[paste0(param$end[1],forms)]][2]
+  ends2 <- se[[paste0(param$end[2],forms)]][2]
   
   parampre <- data.frame(pri=quintile$pri) %>%
-    # Presetting three parameters
+    # Presetting the first three parameters
     dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
     dplyr::mutate(!!param$pre[2]:=predict(polynom::polynomial(predet$end2),quintile$pri)) %>%
-    dplyr::mutate(!!param$pre[3]:=pareq(predet[[3]],lv=as.list(.[,param$pre[1:2]]))) %>%
+    dplyr::mutate(!!param$pre[3]:=pareq(predet[[3]],lv=as.list(.[,param$pre[1:2]]))) %>% 
     # Backsolving for the two remaining parameters
     dplyr::mutate(!!param$end[1]:=pareq(ends1,lv=as.list(.[,param$pre[1:3]]))) %>%
     dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=as.list(.[,c(param$end[1],param$pre[1:3])])))
-    #dplyr::rename_all(paste0, "_st")
   
   rdfc[,c(param$pre,param$end)] <<- parampre[,-1]
 })
