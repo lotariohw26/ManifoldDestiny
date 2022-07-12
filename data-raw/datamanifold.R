@@ -19,9 +19,12 @@ eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
 # Saving data
 usethis::use_data(eqpar, overwrite = TRUE)
 ###############################################################################################################
-labels <- list(parameters=list(standard=c("x","y","zeta","alpha","lambda"),
+stickers <- 
+  list(parameters=list(
+  standard=c("x","y","zeta","alpha","lambda"),
   hybrid=c("g","h","Gamma","alpha","Omega"),
-  opposition=c("m","n","xi","lambda","Omega")))
-usethis::use_data(labels, overwrite = TRUE)
+  opposition=c("m","n","xi","lambda","Omega")), 
+  forms=list('_s','o_h','h_o'))
+usethis::use_data(stickers, overwrite = TRUE)
 
 

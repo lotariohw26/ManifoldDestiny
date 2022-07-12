@@ -133,7 +133,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
   # Loading 
   rotp <- rprojroot::find_rstudio_root_file()
   load(paste0(rotp,'/data/eqpar.rda'))
-  load(paste0(rotp,'/data/labels.rda'))
+  load(paste0(rotp,'/data/stickers.rda'))
   
   # Assigning parameters 
   parameters <<- labels[['parameters']]
@@ -195,15 +195,16 @@ Countingprocess$methods(riggsta=function(
   predet=list(end1=quintile$x,end2=polyc[[1]],end3='x-alpha')
 )
 {
-  # Presetting three parameters
 	browser()
   ends1 <- se[[paste0(param$end[1],'_s')]][2]
   ends2 <- se[[paste0(param$end[2],'_s')]][2]
 
   parampre <- data.frame(pri=quintile$pri) %>% 
+  # Presetting three parameters
     dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
     dplyr::mutate(!!param$pre[2]:=predict(polynom::polynomial(predet$end2),quintile$pri)) %>%
     dplyr::mutate(!!param$pre[3]:=pareq(predet[[3]],lv=list(x=x,alpha=alpha))) %>%
+  # Backsolving for the two remaining parameters
     dplyr::mutate(!!param$end[1]:=pareq(ends1,lv=list(x=x,alpha=alpha,y=y))) %>%
     dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=list(x=x,zeta=zeta,y=y))) 
     #dplyr::rename_all(paste0, "_st")
