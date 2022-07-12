@@ -36,14 +36,18 @@ gsimf <- Countinggraphs(votr,
 		        selvar=c('pre','a','b','c','d','probwd'), 
 			)
 gsimf$sortpre(selvar=c('x','y','alpha','lambda','zeta','probwd'))
+#gsimf$quintile; l()
 ########## Tab1
 gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha","probwd"),selvl=c("x_pred","y_pred","alpha_pred"))
 gnt2b <- gsimf$plot2d(selvp=c("zeta"),selvl='zeta_m')
 gnt2ab <- plotly::subplot(gnt2a,gnt2b,nrows=2)
+#plot(x=gsimf$quintile$zeta_r,y=gsimf$quintile$alpha_res)
+#cor(x=gsimf$quintile$zeta_r,y=gsimf$quintile$y)
 ########## Tab3
-gnt3a <- gsimf$resplot(resvar=c('zeta_r','alpha_res'))
-gnt3b <- gsimf$resplot(resvar=c('zeta_r','y_res'))
-gnt3ab <- plotly::subplot(gnt3a,gnt3b,nrows=2)
+gnt3a <- gsimf$resplot(resvar=c('zeta_r','alpha'))
+gnt3b <- gsimf$resplot(resvar=c('zeta_r','y'))
+gnt3c <- gsimf$resplot(resvar=c('zeta_r','x'))
+gnt3abc <- plotly::subplot(gnt3a,gnt3b,gnt3c,nrows=3)
 ######### Tab5
 #gsimf$rdfc$zeta <- 1
 gn3da <- gsimf$plotly3d(partition=1)[[1]]

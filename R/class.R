@@ -82,8 +82,6 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
     }
 })
 Voterdatabase$methods(load=function(database='initial'){
-
-
 	print('test')
 })
 
@@ -183,8 +181,9 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   ### Init poly
 })
 
-Countingprocess$methods(sortpre=function(poly=6,sortby='alpha',
-					 selvar=c('x','y','alpha','lambda','zeta')){
+Countingprocess$methods(sortpre=function(poly=6,
+					 sortby='alpha',
+					 selvar=c('x','y','alpha')){
 
  srdfc <- rdfc %>%
     dplyr::select(pre,zeta,all_of(selvar)) %>%
@@ -257,16 +256,15 @@ Countinggraphs$methods(plotxy=function(selv=c("x","y")){
    	labs(x=selv[1],y=selv[2],title="") +
     	ggplot2::theme_bw()
 })
-Countinggraphs$methods(resplot=function(resvar=c("zeta_r","alpha_res")){
+Countinggraphs$methods(resplot=function(resvar=c("zeta_m","alpha_res")){
 
   x <- quintile[paste0(resvar[1])]
   y <- quintile[paste0(resvar[2])]
-  quintile$z <<- x*y
   ggplot2::ggplot(data=quintile,aes_string(resvar[1],resvar[2])) +
     geom_smooth(method="lm") +
     geom_point() +
-    stat_regline_equation(label.x=0,label.y=0.10) +
-    stat_cor(label.x=0,label.y=0.15) +
+    #stat_regline_equation(label.x=0,label.y=0.10) +
+    #stat_cor(label.x=0,label.y=0.15) +
     ggplot2::theme_bw()
 })
 Countinggraphs$methods(plotly3d=function(
@@ -296,9 +294,6 @@ Countinggraphs$methods(plotly3d=function(
 })
 #' @exportClass Countingtables
 Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'), fields = list(ghi='list'))
-
-
-
 ############################################################################################################################################################
 #' A class description
 #' @export Estimation
@@ -366,11 +361,7 @@ Estimation$methods(rotation=function(
                 partition_rank=rank(fat_slide),
                 true_rank=rank(partition_rank))
   View(rdfc)
-
-  View(t)
-
 })
-
 Estimation$methods(estimation=function(selvar=c('x','y','alpha')){
 
 	#rsq <- function(x, y) summary(lm(y~x))$r.squared
