@@ -61,11 +61,14 @@ gn3db <- gsimf$plotly3d(partition=1,selid=1)[[3]]
 ##### B) Rigged ###
 grig <- Countinggraphs(votr)
 grig$sortpre()
-grig$polyc[[1]] #<- c(0.3469)
+grig$polyc[[1]][1] <- c(0.30)
 polr <- polynom::polynomial(grig$polyc[[1]])
 round(polynom::integral(polr,c(0,1)),digits=4)
-grig$riggsta()
+grig$riggsta(predet=list(end1=grig$quintile$x,
+	      end2=grig$polyc[[1]],
+	      end3='x-alpha'))
 grig$sortpre()
+grig$rdfc; l()
 ###### Graphical ###
 ########## Tab1
 grt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))

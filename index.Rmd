@@ -56,6 +56,7 @@ knitr::knit_exit()
 
 # Now
 inst/Presentation.Rmd
+inst/script/application_clark.R
 inst/script/application_dallas.R
 inst/script/application_maricopa.R
 inst/script/symbolic/pysympy.py

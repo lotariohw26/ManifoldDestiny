@@ -22,7 +22,7 @@ gcda$sortpre()
 #### Step 1: Inspect visually
 a <- gcda$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
 b <- gcda$plot2d(selvp=c("zeta"),selvl='zeta_m')
-#gcda$plotly3d(partition=1)[3]
+gcda$plotly3d(partition=1)
 #### Step 2: Rotation matrix
 sdfc <- gcda$sdfc
 edal <- Estimation(sdfc)
