@@ -44,10 +44,15 @@ gnt2ab <- plotly::subplot(gnt2a,gnt2b,nrows=2)
 #plot(x=gsimf$quintile$zeta_r,y=gsimf$quintile$alpha_res)
 #cor(x=gsimf$quintile$zeta_r,y=gsimf$quintile$y)
 ########## Tab3
-gnt3a <- gsimf$resplot(resvar=c('zeta_r','alpha'))
-gnt3b <- gsimf$resplot(resvar=c('zeta_r','y'))
-gnt3c <- gsimf$resplot(resvar=c('zeta_r','x'))
+gnt3a <- gsimf$resplot(resvar=c('zeta_mr','alpha'))
+gnt3b <- gsimf$resplot(resvar=c('zeta_mr','y'))
+gnt3c <- gsimf$resplot(resvar=c('zeta_mr','x'))
 gnt3abc <- plotly::subplot(gnt3a,gnt3b,gnt3c,nrows=3)
+########## Tab4
+gnt4a <- gsimf$resplot(resvar=c('zeta_mr','alpha'),crossp=T)
+gnt4b <- gsimf$resplot(resvar=c('zeta_mr','y'),crossp=T)
+gnt4c <- gsimf$resplot(resvar=c('zeta_mr','x'),crossp=T)
+gnt4abc <- plotly::subplot(gnt4a,gnt4b,gnt4c,nrows=3)
 ######### Tab5
 #gsimf$rdfc$zeta <- 1
 gn3da <- gsimf$plotly3d(partition=1)[[1]]

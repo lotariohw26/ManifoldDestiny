@@ -1,10 +1,8 @@
 ##########################################################################################################################################################
 ##########################################################################################################################################################
 #' @export pareq
-pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))
-{
-	eval(parse(text=ste),lv)
-}
+pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))eval(parse(text=ste),lv)
+
 ############################################################################################################################################################
 ###########################################################################################################################################################
 #' @export Voterdatabase
@@ -190,7 +188,7 @@ Countingprocess$methods(sortpre=function(poly=6,
     dplyr::arrange(sortby) %>%
     dplyr::mutate(pri=row_number()/length(pre)) %>%
     dplyr::mutate(zeta_m=mean(zeta)) %>%
-    dplyr::mutate(zeta_r=zeta-zeta_m)
+    dplyr::mutate(zeta_mr=zeta-zeta_m)
     selvar %>% purrr::map(function(x,df=srdfc,p=poly){
 	pred <- c(predict(lm(df[[x]] ~ poly(df$pri,p, raw=T))))
 	res <- pred - df[[x]]
@@ -256,16 +254,17 @@ Countinggraphs$methods(plotxy=function(selv=c("x","y")){
    	labs(x=selv[1],y=selv[2],title="") +
     	ggplot2::theme_bw()
 })
-Countinggraphs$methods(resplot=function(resvar=c("zeta_m","alpha_res")){
+Countinggraphs$methods(resplot=function(resvar=c("zeta_mr","alpha_res"),crossp=F){
 
-  x <- quintile[paste0(resvar[1])]
-  y <- quintile[paste0(resvar[2])]
-  ggplot2::ggplot(data=quintile,aes_string(resvar[1],resvar[2])) +
-    geom_smooth(method="lm") +
+  plotv <- list(resvar,c('pri','crossp'))[[ifelse(crossp==F,1,2)]]
+  dfgp <- quintile %>% dplyr::select(pri,all_of(resvar)) %>% 
+	  dplyr::mutate(crossp=quintile[[resvar[1]]]*quintile[[resvar[2]]])
+
+  ggplot2::ggplot(data=dfgp,aes_string(x=plotv[1],y=plotv[2])) +
+    geom_smooth(method="lm", se=F) +
     geom_point() +
-    #stat_regline_equation(label.x=0,label.y=0.10) +
-    #stat_cor(label.x=0,label.y=0.15) +
-    ggplot2::theme_bw()
+    stat_regline_equation(label.y = 0.05, aes(label = ..eq.label..)) +
+    stat_regline_equation(label.y = 0.0, aes(label = ..rr.label..))
 })
 Countinggraphs$methods(plotly3d=function(
 					 partition=1,
