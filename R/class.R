@@ -216,6 +216,7 @@ Countingprocess$methods(riggsta=function(
     dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
     dplyr::mutate(!!param$pre[2]:=predict(polynom::polynomial(predet$end2),quintile$pri)) %>%
     dplyr::mutate(!!param$pre[3]:=flist(.[,param$pre[1:2]])) 
+    #dplyr::mutate(!!param$pre[3]:=flist(.[,param$pre[1:2]])) 
   # Backsolving for the two remaining parameters
     dplyr::mutate(!!param$end[1]:=pareq(ends1,lv=list(x=x,alpha=alpha,y=y))) %>%
     dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=list(x=x,zeta=zeta,y=y))) 
