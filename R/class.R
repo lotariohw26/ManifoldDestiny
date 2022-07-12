@@ -200,26 +200,15 @@ Countingprocess$methods(riggsta=function(
 
   ends1 <- se[[paste0(param$end[1],'_s')]][2]
   ends2 <- se[[paste0(param$end[2],'_s')]][2]
-  #lpre3 <- list()
-  #lend1 <- list()
-  #lend2 <- list()
-  ##param$pre[-3]
-  #c(param$pre,param$end[-1])
-  flist <- function(...){
-          lsel <- list(...)[[1]]
-          lsel[[1]]*lsel[[2]]
-	  list(x=0,alpha=0)
-  }
-#
+  
   parampre <- data.frame(pri=quintile$pri) %>%
   # Presetting three parameters
     dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
     dplyr::mutate(!!param$pre[2]:=predict(polynom::polynomial(predet$end2),quintile$pri)) %>%
-    dplyr::mutate(!!param$pre[3]:=flist(.[,param$pre[1:2]])) 
-    #dplyr::mutate(!!param$pre[3]:=flist(.[,param$pre[1:2]])) 
+    dplyr::mutate(!!param$pre[3]:=pareq(predet[[3]],lv=as.list(.[,param$pre[1:2]]))) %>%
   # Backsolving for the two remaining parameters
-    dplyr::mutate(!!param$end[1]:=pareq(ends1,lv=list(x=x,alpha=alpha,y=y))) %>%
-    dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=list(x=x,zeta=zeta,y=y))) 
+    dplyr::mutate(!!param$end[1]:=pareq(ends1,lv=as.list(.[,param$pre[1:3]]))) %>%
+    dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=as.list(.[,c(param$end[1],param$pre[1:3])])))
     #dplyr::rename_all(paste0, "_st")
   
   rdfc[,c(param$pre,param$end)] <<- parampre[,-1]
