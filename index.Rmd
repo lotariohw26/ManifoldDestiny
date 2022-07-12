@@ -52,7 +52,6 @@ Ed. Solomon
 ```{r, echo=F, eval=T}
 knitr::knit_exit()
 ```
-
 #
 
 # Now
@@ -69,4 +68,3 @@ vignettes/Stylized_model.Rmd
 vignettes/Application_Dallas.Rmd
 vignettes/Parametric_taut.Rmd
 vignettes/References.Rmd
-

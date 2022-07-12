@@ -196,12 +196,16 @@ Countingprocess$methods(riggsta=function(
 )
 {
   # Presetting three parameters
+	browser()
+  ends1 <- se[[paste0(param$end[1],'_s')]][2]
+  ends2 <- se[[paste0(param$end[2],'_s')]][2]
+
   parampre <- data.frame(pri=quintile$pri) %>% 
     dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
     dplyr::mutate(!!param$pre[2]:=predict(polynom::polynomial(predet$end2),quintile$pri)) %>%
     dplyr::mutate(!!param$pre[3]:=pareq(predet[[3]],lv=list(x=x,alpha=alpha))) %>%
-    dplyr::mutate(!!param$end[1]:=pareq(se[['zeta_s']][2],lv=list(x=x,alpha=alpha,y=y))) %>%
-    dplyr::mutate(!!param$end[2]:=pareq(se[['lambda_s']][2],lv=list(x=x,zeta=zeta,y=y))) 
+    dplyr::mutate(!!param$end[1]:=pareq(ends1,lv=list(x=x,alpha=alpha,y=y))) %>%
+    dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=list(x=x,zeta=zeta,y=y))) 
     #dplyr::rename_all(paste0, "_st")
   rdfc[,c(param$pre,param$end)] <<- parampre[,-1]
 })

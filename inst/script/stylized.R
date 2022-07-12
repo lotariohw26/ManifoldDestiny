@@ -37,7 +37,7 @@ gsimf$sortpre()
 ########## Tab1
 gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
 gnt2b <- gsimf$plot2d(selvp=c("zeta"),selvl='zeta_m')
-gnt2ab <- plotly::subplot(ggt2a,ggt2b,nrows=2)
+gnt2ab <- plotly::subplot(gnt2a,gnt2b,nrows=2)
 ########## Tab3
 gnt3a <- gsimf$resplot(resvar=c('zeta_r','alpha_res'))
 gnt3b <- gsimf$resplot(resvar=c('zeta_r','y_res'))
