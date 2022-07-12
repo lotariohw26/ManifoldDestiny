@@ -171,8 +171,9 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
     dplyr::mutate(Gamma=pareq(se[['Gamma_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(xi=pareq(se[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     na.omit() 
-browser()
-  rdfc <<- sdfc
+
+  rdfc <<- sdfc %>% dplyr::arrange(alpha) %>% dplyr::mutate(pri=row_number()/length(pre))
+  
   # Init values standard form
   polyc[[1]] <<- unname(coef(lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))))
   # Init values hybrid form
