@@ -20,7 +20,6 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 
 
     filn <- paste0('voterbase/',namebase)
-    if(newdraw == T) {
     # Demograhpic structure
     agelength <- agebracketmax[2]-agebracketmax[1]
     brack <- seq(agebracketmax[1],agebracketmax[2])
@@ -41,6 +40,8 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
     # Total Population
     totpop <<- cbind(earlpop,latepop)
     agebrack <<- agebracketmax
+    
+    if(newdraw == T) {
     # Desc statistics
     popvotgro <- colSums(totpop)           # Population for each age group
     popsize <- sum(popvotgro) 	         # Total number of citizien
@@ -69,12 +70,15 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
       dplyr::mutate(registered=ifelse(idn%in%rvot,1,0)) %>%
       # Assigned whether citizien register to vote or not
       dplyr::mutate(registered=ifelse(idn%in%rvot,1,0))
-      usethis::use_data(voterrolldatabase, overwrite = TRUE)
-    } else {
+      listvbase <- list(voterrolldatabase,totpop,agebrack)
+      usethis::use_data(listvbase, overwrite = TRUE)
+    } 
+    else {
       rotp <- rprojroot::find_rstudio_root_file()
-      defl <- paste0(rotp,'/data/default.rda')
-      load(defl)
-      voterrolldatabase <<-  voterrolldatabase
+      load(paste0(rotp,'/data/listvbase.rda'))
+      voterrolldatabase <<- listvbase[[1]]
+      totpop <<- listvbase[[2]]
+      agebrack <<- listvbase[[3]]
     }
 })
 Voterdatabase$methods(load=function(database='initial'){
@@ -127,7 +131,11 @@ Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = li
 #' @export Countingprocess
 #' @export class Countingprocess
 Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', se='list',lx='list',plot3dlist='list'))
-Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
+Countingprocess$methods(initialize=function(sdfinp=NULL,
+					    selvar=c('pre','a','b','c','d'), 
+					    polyn=6,
+					    sortby=alpha
+					    ){
 
   
   # Loading 
@@ -142,8 +150,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
   #pareqs <<- eqpar
   se <<- eqpar$meqs
   lx <<- eqpar$meql
- 
-  sdfc <<- sdfinp %>% dplyr::select(pre,a,b,c,d) %>% dplyr::group_by(pre) %>%
+
+  sdfc <<- sdfinp %>% dplyr::select(pre,all_of(selvar)) %>% dplyr::group_by(pre) %>%
     dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
     #dplyr::filter(a>0) %>%
@@ -163,9 +171,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
     dplyr::mutate(Gamma=pareq(se[['Gamma_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(xi=pareq(se[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     na.omit() 
-
-  rdfc <<- sdfc %>% dplyr::arrange(alpha) %>% dplyr::mutate(pri=row_number()/length(pre))
-
+browser()
+  rdfc <<- sdfc
   # Init values standard form
   polyc[[1]] <<- unname(coef(lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))))
   # Init values hybrid form
@@ -175,7 +182,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,polyn=6,sortby=alpha){
   ### Init poly
 })
 
-Countingprocess$methods(sortpre=function(poly=6,sortby='alpha',selvar=c('x','y','alpha','lambda','zeta')){
+Countingprocess$methods(sortpre=function(poly=6,sortby='alpha',
+					 selvar=c('x','y','alpha','lambda','zeta')){
 
  srdfc <- rdfc %>%
     dplyr::select(pre,zeta,all_of(selvar)) %>%
@@ -190,6 +198,7 @@ Countingprocess$methods(sortpre=function(poly=6,sortby='alpha',selvar=c('x','y',
     }) %>% as.data.frame(.) -> predictor
   quintile <<- dplyr::bind_cols(srdfc, predictor)
 })
+
 Countingprocess$methods(riggsta=function(
   param=list(form=1,pre=c('x','alpha','y'), end=c('zeta','lambda')),
   predet=list(end1=quintile$x,

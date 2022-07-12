@@ -23,17 +23,24 @@ set.seed(snr)
 agebracketmax <- c(18,100,1000)
 regf <- 0.8
 numprec <- 200
-vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase='default',newdraw=T)
+vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase='default',newdraw=F)
 ###### Realization of DGP
 probwset <- c(0.50,0.05)
 probvset <- list(c(0.70,0.30,0.00),c(0.30,0.70,0.00))
 Znr <- c(0,1)
 vrdf$realizedgp(probv=probvset,Ztech=Znr)
 votr <- vrdf$voterrollrealized
-#################################################################################################33
+################################################################################################33
 ##### A) Fair ###
-gsimf <- Countinggraphs(votr)
-gsimf$sortpre()
+sv <-c('pre','a','b','c','d','probwd') 
+gsimf <- Countinggraphs(votr,selvar=sv)
+votr$pobwd
+
+unique(select(votr,pre,probwd))
+
+df = merge(x=df1,y=df2,by="CustomerId",all.x=TRUE)
+gsimf$rdfc
+gsimf$sortpre(selvar=sv)
 ########## Tab1
 gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
 gnt2b <- gsimf$plot2d(selvp=c("zeta"),selvl='zeta_m')
