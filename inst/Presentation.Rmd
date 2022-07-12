@@ -49,9 +49,7 @@ bib <- ReadBib(paste0(ManifoldDestiny::abs_path(),'/inst/references/man_bib.bib'
 ```{r, eval=T, echo=F, message=F, warning=F}
 ### Loading equations
 source(paste0(abs_path(),'/inst/script/stylized.R'))
-modlat <- gcou$lx
-
-
+modlat <- gsimf$lx
 ```
 
 
@@ -106,29 +104,29 @@ class: inverse, center, middle
 
 ## Integers 
 \begin{equation*}
-a=\text{Number of votes for candidate A mode 1}
+a=\text{Number of votes for candidate A in mode 1}
 \end{equation*}
 \begin{equation*}
-b=\text{Number of votes for candidate B mode 1}
+b=\text{Number of votes for candidate B in mode 1}
 \end{equation*}
 \begin{equation*}
-c=\text{Number of votes for candidate A mode 2}
+c=\text{Number of votes for candidate A in mode 2}
 \end{equation*}
 \begin{equation*}
-d=\text{Number of votes for candidate A mode 2}
+d=\text{Number of votes for candidate A in mode 2}
 \end{equation*}
 ## Percentages
 \begin{equation*}
-x=`r modlat$cx`
+x=`r modlat$x_s[1]`
 \end{equation*}
 \begin{equation*}
-y=`r modlat$cy`
+y=`r modlat$y_s[1]`
 \end{equation*}
 \begin{equation*}
-\alpha=`r modlat$cal`
+\alpha=`r modlat$alpha_s[1]`
 \end{equation*}
 \begin{equation*}
-\zeta=`r modlat$cal`
+\zeta=`r modlat$zeta_s[1]`
 \end{equation*}
 
 ---
@@ -139,31 +137,18 @@ class: inverse, center, middle
 
 ---
 
+
 .pull-left[
 ```{r, echo=FALSE, out.width="70%", fig.cap=""}
-gcou$plotly3d(partition=1)[[3]]
+gn3db
 ```
 ]
 
 .pull-right[
 ```{r, echo=FALSE, out.width="70%", fig.cap=""}
-gcou$plotly3d(partition=1)[[3]]
+gn3db
 ```
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ---
 
@@ -246,7 +231,7 @@ Three forms of rigging
 Parameters: $x$, $y$, $\alpha$, $\lambda$ $\zeta$
 
 \begin{equation*}
-\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
 \end{equation*}
 
 ---
@@ -255,7 +240,7 @@ Parameters: $x$, $y$, $\alpha$, $\lambda$ $\zeta$
 Parameters: $g$, $h$, $\alpha$, $\Omega$, $\Gamma$
 
 \begin{equation*}
-\alpha=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
 \end{equation*}
 
 ---
@@ -264,7 +249,7 @@ Parameters: $g$, $h$, $\alpha$, $\Omega$, $\Gamma$
 Parameters: $m$, $n$, $\Omega$, $\lambda$, $\xi$
 
 \begin{equation*}
-\alpha=`r modlat$alpha_s[2]`=`r modlat$alpha_s[3]`=`r modlat$alpha_s[4]`
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
 \end{equation*}
 
 ---
