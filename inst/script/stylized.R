@@ -65,15 +65,17 @@ grig$polyc[[1]] #<- c(0.3469)
 polr <- polynom::polynomial(grig$polyc[[1]])
 round(polynom::integral(polr,c(0,1)),digits=4)
 grig$riggsta()
+grig$sortpre()
 ###### Graphical ###
 ########## Tab1
 grt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
 grt2b <- grig$plot2d(selvp=c("zeta"),selvl='zeta_m')
 grt2ab <- plotly::subplot(grt2a,grt2b,nrows=2)
 ########### Tab3
-grt3a <- grig$resplot(resvar=c('zeta_r','alpha_res'))
-grt3b <- grig$resplot(resvar=c('zeta_r','y_res'))
-grt3ab <- plotly::subplot(grt3a,grt3b,nrows=2)
+grt3a <- grig$resplot(resvar=c('zeta_mr','alpha'),crossp=T)
+grt3b <- grig$resplot(resvar=c('zeta_mr','x'),crossp=T)
+grt3c <- grig$resplot(resvar=c('zeta_mr','y'),crossp=T)
+grt3abc <- plotly::subplot(grt3a,grt3b,grt3c,nrows=3)
 ########## Tab5
 gr3da <- grig$plotly3d(partition=1)[[1]]
 gr3db <- grig$plotly3d(partition=1,selid=1)[[1]]
