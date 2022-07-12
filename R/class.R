@@ -202,11 +202,11 @@ Countingprocess$methods(riggsta=function(
   ends2 <- se[[paste0(param$end[2],'_s')]][2]
   
   parampre <- data.frame(pri=quintile$pri) %>%
-  # Presetting three parameters
+    # Presetting three parameters
     dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
     dplyr::mutate(!!param$pre[2]:=predict(polynom::polynomial(predet$end2),quintile$pri)) %>%
     dplyr::mutate(!!param$pre[3]:=pareq(predet[[3]],lv=as.list(.[,param$pre[1:2]]))) %>%
-  # Backsolving for the two remaining parameters
+    # Backsolving for the two remaining parameters
     dplyr::mutate(!!param$end[1]:=pareq(ends1,lv=as.list(.[,param$pre[1:3]]))) %>%
     dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=as.list(.[,c(param$end[1],param$pre[1:3])])))
     #dplyr::rename_all(paste0, "_st")

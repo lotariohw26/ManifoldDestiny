@@ -48,11 +48,10 @@ gn3da <- gsimf$plotly3d(partition=1)[[1]]
 gn3db <- gsimf$plotly3d(partition=1,selid=1)[[3]]
 ####################################################################################################33
 ##### B) Rigged ###
-##### Tab1
 grig <- Countinggraphs(votr)
 grig$sortpre()
-##polr[1] <- 0.3096 # 0.3469
-polr <- polynom::polynomial(grig$polyc[[1]])
+polyc <- grig$polyc[1] <- 0.50096 # 0.3469
+polr <- polynom::polynomial(polyc)
 round(polynom::integral(polr,c(0,1)),digits=4)
 grig$riggsta()
 ###### Graphical ###
