@@ -9,7 +9,7 @@ articles:
   Parametric_taut: Parametric_taut.html
   References: References.html
   Stylized_model: Stylized_model.html
-last_built: 2022-07-11T13:21Z
+last_built: 2022-07-13T11:27Z
 urls:
   reference: https://pkgdown.r-lib.org/reference
   article: https://pkgdown.r-lib.org/articles

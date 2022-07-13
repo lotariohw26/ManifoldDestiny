@@ -34,7 +34,7 @@ BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown", 
 #PrintBibliography(bib)
 ```
 
-```{r eval=FALSE, include=FALSE}
+```{r eval=T, include=FALSE}
 knitr::knit_exit()
 ```
 

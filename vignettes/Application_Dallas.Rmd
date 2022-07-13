@@ -15,16 +15,16 @@ paste0(abs_path(),'/inst/script/application_dallas.R')
 ## Results {.tabset}
 ### A
 ```{r, echo=F}
-gcda$plotly3d(partition=1)[[1]]
+#gcda$plotly3d(partition=1)[[1]]
 ```
 
 ### B
 ```{r, echo=F}
-gcda$plotly3d(partition=2)[[1]]
+#gcda$plotly3d(partition=2)[[1]]
 ```
 ### C
 ```{r, echo=F}
-gcda$plotly3d(partition=3)[[1]]
+#gcda$plotly3d(partition=3)[[1]]
 ```
 
 #### Step 2: Rotation matrix

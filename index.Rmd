@@ -8,7 +8,7 @@ always_allow_html: true
 rmarkdown::render("index.Rmd")
 ```
 
-```{r}
+```{r, echo=F}
 #source(paste0(ManifoldDestiny::abs_path(),'/inst/script/stylized.R'))
 ##gsimf$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
 ```
@@ -52,7 +52,6 @@ Ed. Solomon
 ```{r, echo=F, eval=T}
 knitr::knit_exit()
 ```
-#
 
 # Now
 inst/Presentation.Rmd

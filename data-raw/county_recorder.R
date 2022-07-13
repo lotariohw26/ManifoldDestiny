@@ -50,7 +50,3 @@ nevada_sel <- openxlsx::read.xlsx(filename,sheet=3) %>% select(c(1,3:8)) %>%   f
 	`colnames<-` (c("pre","reg","tot","a","b","c","d")) %>% dplyr::mutate_at(ctype,as.numeric) %>% dplyr::mutate_at(ctype, ~replace(., is.na(.), 0))
 usethis::use_data(nevada_sel, overwrite = TRUE)
 
-
-
-
-
