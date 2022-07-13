@@ -230,15 +230,17 @@ Countingprocess$methods(riggopo=function(sdfinp=NULL){
 })
 #' @export Countinggraphs
 Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
-Countinggraphs$methods(plot2d=function(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred")){
-    
-  titext <- paste0(polynom::polynomial(polyc[[1]]),' with R²=',cor(quintile$alpha_pred,quintile$alpha)^2
-)
+Countinggraphs$methods(plot2d=function(selvp=c("x","y","alpha"),
+				       selvl=c("x_pred","y_pred","alpha_pred"), 
+				       titext=NULL
+				       ){
+
   longdf <- tidyr::pivot_longer(quintile,all_of(c(selvp,selvl)))
   ggplot2::ggplot(data=longdf) +
     geom_line(data=filter(longdf,name%in%selvl),aes(x=pri,y=value, color=name)) +
     geom_point(data=filter(longdf,name%in%selvp),aes(x=pri,y=value, color=name)) +
-    labs(x='precinct (normalized)',y='probability',title=titext) +
+    labs(x='precinct (normalized)',y='probability') +
+    annotate(geom="text",x=0.2,y=0.75,label=titext) +
     ggplot2::theme_bw()
 })
 Countinggraphs$methods(plotxy=function(selv=c("x","y")){

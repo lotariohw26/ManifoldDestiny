@@ -32,17 +32,16 @@ vrdf$realizedgp(probv=probvset,Ztech=Znr)
 votr <- vrdf$voterrollrealized
 #################################################################################################33
 ##### A) Fair ###
-gsimf <- Countinggraphs(votr, 
-		        selvar=c('pre','a','b','c','d','probwd'), 
-			)
+gsimf <- Countinggraphs(votr,selvar=c('pre','a','b','c','d','probwd'))
 gsimf$sortpre(selvar=c('x','y','alpha','lambda','zeta','probwd'))
 #gsimf$quintile; l()
 ########## Tab1
-gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha","probwd"),selvl=c("x_pred","y_pred","alpha_pred"))
-gnt2b <- gsimf$plot2d(selvp=c("zeta"),selvl='zeta_m')
-gnt2ab <- plotly::subplot(gnt2a,gnt2b,nrows=2)
+#tilabel <- paste0(polynom::polynomial(round(polyc[[1]],4)),' with R²=',round(cor(quintile$alpha_pred,quintile$alpha)^2,4))
 #plot(x=gsimf$quintile$zeta_r,y=gsimf$quintile$alpha_res)
 #cor(x=gsimf$quintile$zeta_r,y=gsimf$quintile$y)
+gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha","probwd"),selvl=c("x_pred","y_pred","alpha_pred"))
+gnt2b <- gsimf$plot2d(selvp=c("zeta"),selvl='zeta_m')
+gnt2ab <-plotly::subplot(gnt2a,gnt2b,nrows=1)
 ########## Tab3
 gnt3a <- gsimf$resplot(resvar=c('zeta_mr','alpha'))
 gnt3b <- gsimf$resplot(resvar=c('zeta_mr','y'))
@@ -82,4 +81,8 @@ grt3abc <- plotly::subplot(grt3a,grt3b,grt3c,nrows=3)
 ########## Tab5
 gr3da <- grig$plotly3d(partition=1)[[1]]
 gr3db <- grig$plotly3d(partition=1,selid=1)[[1]]
-#####################################################################################################33
+#####################################################################################################3
+
+
+
+
