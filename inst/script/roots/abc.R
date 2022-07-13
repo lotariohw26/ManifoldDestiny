@@ -5,31 +5,6 @@ p4 <- c(1,2,3,4,5)
 fqs$quartic_roots(p4)
 p3 <- c(1,2,3,4)
 fqs$cubic_roots(p3)
-
-2022, Sheriff Restoration, Clark County, Nevada.xlsx
-Clark County, NV.xlsx
-Cubic Equation Calculator, Standard.xlsx
-Dallas Texas, Completed.xlsx
-Dallas Texas Revised.xlsx
-Dallas Texas.xlsx
-MacombCountyRecorder.xlsx
-Maricopa Plane Equation_F.xlsx
-Maricopa Plane Equation_V.xlsx
-Maricopa Plane Equation.xlsx
-Maricopa Plane, Hybrid.xlsx
-maricopareplicationplane.xlsx
-MultiVariateQuadReg.xlsx
-OaklandCountyRecorder.xlsx
-Pascal Tet Formation.xlsx
-Patriot Database, Nevada, Washoe.xlsx
-PrefaceNevada.xlsx
-Quartic Equation Calculator.xlsx
-Reflection Test Fair.xlsx
-Reflection Test Unfair.xlsx
-Restored Nevada 2022 Primary Elections.xlsx
-Tarrant County Texas, Completed.xlsx
-Tarrant County.xlsx
-voterdatabase.xlsx
 # Dallas
 filename <- paste0(ManifoldDestiny::abs_path(),'/data-raw/xlsx/Dallas Texas, Completed.xlsx')
 #"/home/joernih/research/ManifoldDestiny/data-raw/xlsx/Dallas Texas, Completed.xlsx"

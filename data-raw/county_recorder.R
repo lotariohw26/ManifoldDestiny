@@ -4,9 +4,9 @@ library(DataEditR)
 ## code to prepare `DATASET` dataset goes here
 ## To candidates
 # Dallas
-filename <- paste0(abs_path(),'/data-raw/xlsx/Dallas Texas.xlsx')
+filename <- paste0(abs_path(),'/data-raw/xlsx/Dallas Texas, Completed.xlsx')
 ctype <- c("pre","a","b","c","d","e","f")
-dallas_sel <- openxlsx::read.xlsx(filename, sheet="County Recorder Data") %>%
+dallas_sel <- openxlsx::read.xlsx(filename, sheet="County Recorder Data") %>% dplyr::select(1:7) %>%
 	`colnames<-` (c("Precinct","e","f","b","a","d","c")) %>% filter(!row_number() %in% c(1170)) %>%
 	dplyr::mutate(pre=gsub("-","",Precinct)) %>% dplyr::mutate_at(ctype,as.numeric) 
 usethis::use_data(dallas_sel, overwrite = TRUE)
@@ -49,15 +49,11 @@ nevada_sel <- openxlsx::read.xlsx(filename,sheet=3) %>% select(c(1,3:8)) %>%   f
 usethis::use_data(nevada_sel, overwrite = TRUE)
 
 ## Three candidates
-library(ManifoldDestiny)
-library(dplyr)
-library(DataEditR)
-library(openxlsx)
 filename <- paste0(abs_path(),'/data-raw/xlsx/Manifolds In Action; County Recorder Data.xlsx')
 clark <- openxlsx::read.xlsx(filename,sheet=1) 
 stn <- c("P","R","A1","A2","A3","B1","B2","B3","C1","C2","C3")
-she <- clark[c(-1),c(-1,-4)] %>% dplyr::select(1,2,3:11)  %>% `colnames<-` (stn) 
-gov <- clark[c(-1),c(-1,-4)] %>% dplyr::select(1,2,12:20) %>% `colnames<-` (stn) 
-sen <- clark[c(-1),c(-1,-4)] %>% dplyr::select(1,2,21:29) %>% `colnames<-` (stn) 
+she <- clark[c(-1),c(-1,-4)] %>% dplyr::select(1,2,3:11)  %>% `colnames<-` (stn) %>% dplyr::mutate_at(stn,as.numeric) 
+gov <- clark[c(-1),c(-1,-4)] %>% dplyr::select(1,2,12:20) %>% `colnames<-` (stn) %>% dplyr::mutate_at(stn,as.numeric) 
+sen <- clark[c(-1),c(-1,-4)] %>% dplyr::select(1,2,21:29) %>% `colnames<-` (stn) %>% dplyr::mutate_at(stn,as.numeric) 
 clark_sgs_sel <- list(sheriff=she,governor=gov,senate=sen)
 usethis::use_data(clark_sgs_sel,overwrite = TRUE)

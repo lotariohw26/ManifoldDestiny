@@ -137,10 +137,13 @@ Countingprocess <- setRefClass("Countingprocess",
 					   lx='list',
 					   plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,
-					    selvar=c('pre','a','b','c','d'), 
+					    selvar=c('R','a','b','c','d'), 
 					    polyn=6,
 					    sortby=alpha
 					    ){
+
+
+
   # Loading 
   rotp <- rprojroot::find_rstudio_root_file()
   load(paste0(rotp,'/data/eqpar.rda'))
@@ -153,8 +156,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   se <<- eqpar$meqs
   lx <<- eqpar$meql
 
-  sdfc <<- sdfinp %>% dplyr::select(pre,all_of(selvar)) %>% dplyr::group_by(pre) %>%
-    dplyr::arrange(pre) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
+  sdfc <<- sdfinp %>% dplyr::select(P,all_of(selvar)) %>% dplyr::group_by(P) %>%
+    dplyr::arrange(P) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
     #dplyr::filter(a>0) %>%
     #dplyr::filter(b>0) %>%
@@ -324,6 +327,23 @@ Estimation$methods(initialize=function(
 
   sdfc <<- rdfcinp
 })
+Estimation$methods(regression=function(){
+'test'
+0.005070874159	1.535448595	-0.549045972	-0.66148927	1.303368815	-0.632192474
+
+names(sdfc)
+
+man_model <- lm(y~alpha+h+I(alpha^2)+I(h^2)+alpha*h,data=sdfc)
+man_sum <- summary(man_model)
+coeff <- man_sum[[4]][,1]
+r2andadj <- c(man_sum[[8]],man_sum[[8]])
+
+
+	#rsq <- function(x, y) summary(lm(y~x))$r.squared
+	#k <- c(1.57874563,-0.5819051755,0.001519026359)
+	#ge <- eval(parse(text='k[1]*alpha+k[2]*h+k[3]'),list(alpha=1,h=1,k=k))
+	#edfc <<- sdfc %>% dplyr::mutate(gpred=gp(alpha,h,k)) %>% dplyr::mutate(rsq=rsq(g,gpred))
+})
 Estimation$methods(rotation=function(
 				     selvar=c('x','y','alpha'),
 				     angles=list(tgrad=c(-41.771547,0,0)),
@@ -371,12 +391,5 @@ Estimation$methods(rotation=function(
                 partition_rank=rank(fat_slide),
                 true_rank=rank(partition_rank))
   View(rdfc)
-})
-Estimation$methods(estimation=function(selvar=c('x','y','alpha')){
-
-	#rsq <- function(x, y) summary(lm(y~x))$r.squared
-	#k <- c(1.57874563,-0.5819051755,0.001519026359)
-	#ge <- eval(parse(text='k[1]*alpha+k[2]*h+k[3]'),list(alpha=1,h=1,k=k))
-	#edfc <<- sdfc %>% dplyr::mutate(gpred=gp(alpha,h,k)) %>% dplyr::mutate(rsq=rsq(g,gpred))
 })
 
