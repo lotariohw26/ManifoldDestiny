@@ -58,6 +58,12 @@ https://lotariohw26.github.io/ManifoldDestiny/
 https://plotly-r.com/exporting-static-images.html
 # Lombardo
 https://docs.google.com/document/d/1O_5Rs29mJut8NfOtFIW2chN5NC6TyFwVkkCZX7PyZIA/edit#heading=h.tp0g9ruvaiuu
+# References
+
+# Lake county
+Lake County IL, 2022, Primary Precinct Analysis; Preface
+https://docs.google.com/document/d/1cSX72T0zMZKN4EClUQTtHKOITC9hXkCRjQRp0Y1Hvk8/edit#heading=h.lty23tl914ct
+https://docs.google.com/document/d/1TP3FvN2ohXDz-eWGsunZ465V1QKtFY6ykYnGe9lg-nQ/edit#
 
 # Spreadsheets
 https://docs.google.com/spreadsheets/d/1x1w2hv8JdAA5Zq5C-SbmsSBTA1fhO1aUuDyFRgEeHK0/edit#gid=0
