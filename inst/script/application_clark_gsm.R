@@ -6,12 +6,12 @@ library(tidyr)
 library(purrr)
 library(randNames)
 library(openxlsx)
-library(patchwork)
 library(writexl)
 library(plotly)
 library(ViewPipeSteps)
 library(ggpubr)
 library(htmltools)
+library(broom)
 abs_path <- function(){rprojroot::find_rstudio_root_file()}
 source(paste0(abs_path(),'/R/misc.R'))
 source(paste0(abs_path(),'/R/class.R'))
@@ -30,10 +30,16 @@ gclark <- Countinggraphs(fitdf)
 #gcrzy <- gclark$resplot(resvar=c('zeta_mr','y_res'))
 #gclark$plotly3d(partition=2)[1]
 #gclark$plotly3d(partition=2,selid=2)[3]
-#### Step 2: Visual inspection
+### Step 2: Visual inspection
 gclark$sdfc
 eclark <- Estimation(gclark$sdfc)
-edal$regression()
+form <- 'g~alpha+h+I(alpha^2)+alpha*h+I(h^2)'
+eclark$regression(form)
+eclark$regsum[[1]][1]
+eclark$regsum[[2]]
+eclark$regsum[[3]]
+eclark$regsum[[4]]
+str(eclark$regsum)
 #### Step 3: Regression
 
 #### Step 4: Prediction

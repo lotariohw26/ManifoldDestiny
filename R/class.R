@@ -311,38 +311,23 @@ Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'),
 #' A class description
 #' @export Estimation
 Estimation <- setRefClass("Estimation", fields=list(
-						sdfc='data.frame',
-						rdfc='data.frame',
-						quintile='data.frame',
-						parameters='list',
-						plot3dlist='list'
+						sdfc='data.frame', 
+						regsum='list'
 						))
 Estimation$methods(initialize=function(
 					rdfcinp=NULL
 					  ){
 
-  parameters <<- list(standard=c("x","y","alpha","zeta","lambda"),
-  		      hybrid=c("g","h","Omega","lambda","xi"),
-		      opposition=c("m","n","Omega","xi","lambda"))
-
   sdfc <<- rdfcinp
 })
-Estimation$methods(regression=function(){
-'test'
-0.005070874159	1.535448595	-0.549045972	-0.66148927	1.303368815	-0.632192474
+Estimation$methods(regression=function(regform='g~alpha+h+I(alpha^2)+alpha*h+I(h^2)'){
 
-names(sdfc)
-
-man_model <- lm(y~alpha+h+I(alpha^2)+I(h^2)+alpha*h,data=sdfc)
-man_sum <- summary(man_model)
-coeff <- man_sum[[4]][,1]
-r2andadj <- c(man_sum[[8]],man_sum[[8]])
-
-
-	#rsq <- function(x, y) summary(lm(y~x))$r.squared
-	#k <- c(1.57874563,-0.5819051755,0.001519026359)
-	#ge <- eval(parse(text='k[1]*alpha+k[2]*h+k[3]'),list(alpha=1,h=1,k=k))
-	#edfc <<- sdfc %>% dplyr::mutate(gpred=gp(alpha,h,k)) %>% dplyr::mutate(rsq=rsq(g,gpred))
+  man_model <- lm(as.formula(regform),data=sdfc)
+  regsum <<- list(summary(man_model),
+		  tidy=broom::tidy(man_model), 
+		  glance=broom::glance(man_model), 
+		  augment=broom::augment(man_model))
+  ##0.005070874159	1.535448595	-0.549045972	-0.66148927	1.303368815	-0.632192474
 })
 Estimation$methods(rotation=function(
 				     selvar=c('x','y','alpha'),
@@ -351,45 +336,45 @@ Estimation$methods(rotation=function(
 				     ){
   browser()
   
-  ra <- circular::rad(angles$tgrad)
-  rdfc <<- sdfc[1:741,] %>% dplyr::select(selvar) %>%
-  dplyr::mutate(rxy=ra[1]) %>%
-  dplyr::mutate(cosxy=cos(rxy)) %>%
-  dplyr::mutate(sinxy=sin(rxy)) %>%
-  dplyr::mutate(ryz=ra[2]) %>%
-  dplyr::mutate(cosyz=cos(ryz)) %>%
-  dplyr::mutate(sinyz=sin(ryz)) %>%
-  dplyr::mutate(rzx=ra[3]) %>%
-  dplyr::mutate(coszx=cos(rzx)) %>%
-  dplyr::mutate(sinzx=sin(rzx)) %>%
-  dplyr::mutate(u=cosxy*y-sinxy*x) %>%
-  dplyr::mutate(v=sinxy*y+cosxy*x) %>%
-  dplyr::mutate(w=sinyz*v+cosyz*alpha) %>%
-  dplyr::arrange(v)
-  rdfc; l()
+  #ra <- circular::rad(angles$tgrad)
+  #rdfc <<- sdfc[1:741,] %>% dplyr::select(selvar) %>%
+  #dplyr::mutate(rxy=ra[1]) %>%
+  #dplyr::mutate(cosxy=cos(rxy)) %>%
+  #dplyr::mutate(sinxy=sin(rxy)) %>%
+  #dplyr::mutate(ryz=ra[2]) %>%
+  #dplyr::mutate(cosyz=cos(ryz)) %>%
+  #dplyr::mutate(sinyz=sin(ryz)) %>%
+  #dplyr::mutate(rzx=ra[3]) %>%
+  #dplyr::mutate(coszx=cos(rzx)) %>%
+  #dplyr::mutate(sinzx=sin(rzx)) %>%
+  #dplyr::mutate(u=cosxy*y-sinxy*x) %>%
+  #dplyr::mutate(v=sinxy*y+cosxy*x) %>%
+  #dplyr::mutate(w=sinyz*v+cosyz*alpha) %>%
+  #dplyr::arrange(v)
+  #rdfc; l()
 
 
-  plot(rdfc$u,rdfc$w)
+  #plot(rdfc$u,rdfc$w)
 
-  dplyr::mutate(rank_v=dense_rank(v)) %>%
-  dplyr::mutate(slide=floor((v+sli$depth*sli$divi*sli$shift)/sli$depth)) %>%
-  dplyr::mutate(slide_norm=slide-sli$slide+1) %>%
-  dplyr::mutate(carry_slide_norm=1000*rank_v+slide_norm,
-  	      carry_v=1000*rank_v+v,
-  	      carry_u=1000*rank_v+u,
-  	      carry_w=1000*rank_v+w) %>%
-  dplyr::mutate(index=row_number()) %>%
-  dplyr::mutate(sort_slide_norm=sort(carry_slide_norm)) %>%
-  dplyr::mutate(sort_v=sort(carry_v),
-                sort_u=sort(carry_u),
-                sort_w=sort(carry_w)) %>%
-  dplyr::mutate(drop_s=sort_slide_norm-1000*index+sli$slide-1,
-               drop_v=sort_v-1000*index,
-               drop_u=sort_u-1000*index,
-               drop_w=sort_w-1000*index) %>%
-  dplyr::mutate(fat_slide=ifelse(drop_s<=9,-1000,ifelse(drop_s>100,1000,drop_s)),
-                partition_rank=rank(fat_slide),
-                true_rank=rank(partition_rank))
-  View(rdfc)
+  #dplyr::mutate(rank_v=dense_rank(v)) %>%
+  #dplyr::mutate(slide=floor((v+sli$depth*sli$divi*sli$shift)/sli$depth)) %>%
+  #dplyr::mutate(slide_norm=slide-sli$slide+1) %>%
+  #dplyr::mutate(carry_slide_norm=1000*rank_v+slide_norm,
+  #	      carry_v=1000*rank_v+v,
+  #	      carry_u=1000*rank_v+u,
+  #	      carry_w=1000*rank_v+w) %>%
+  #dplyr::mutate(index=row_number()) %>%
+  #dplyr::mutate(sort_slide_norm=sort(carry_slide_norm)) %>%
+  #dplyr::mutate(sort_v=sort(carry_v),
+  #              sort_u=sort(carry_u),
+  #              sort_w=sort(carry_w)) %>%
+  #dplyr::mutate(drop_s=sort_slide_norm-1000*index+sli$slide-1,
+  #             drop_v=sort_v-1000*index,
+  #             drop_u=sort_u-1000*index,
+  #             drop_w=sort_w-1000*index) %>%
+  #dplyr::mutate(fat_slide=ifelse(drop_s<=9,-1000,ifelse(drop_s>100,1000,drop_s)),
+  #              partition_rank=rank(fat_slide),
+  #              true_rank=rank(partition_rank))
+  #View(rdfc)
 })
 
