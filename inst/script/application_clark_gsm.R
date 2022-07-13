@@ -17,14 +17,23 @@ source(paste0(abs_path(),'/R/misc.R'))
 source(paste0(abs_path(),'/R/class.R'))
 #################################################################################################
 load(paste0(abs_path(),'/data/clark_sgs_sel.rda'))
-fitdf <- clark_sgs_sel[[3]] %>% dplyr::mutate(a=B2,
-					    b=A1+C3+A2, 
-					    c=B1+B3,
-					    d=C1+A3+C2) 
+fitdf <- transtwomodes(A=c('B2'),
+	      B=c('A1','C3','A2'),
+	      C=c('B1','B3'),
+	      D=c('C1','A3','C2'),
+	      dfi=clark_sgs_sel[[3]])
+
 gclark <- Countinggraphs(fitdf)
+gclark$sortpre()
 #### Step 1: Visual inspection
-#gcq <- gclark$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
-#gcz <- gclark$plot2d(selvp=c("zeta"),selvl='zeta_m')
+gnt2a <- gclark$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"),
+  labs=list(x="precinct (normalized)",y="precentage",caption=gclark$sumreg['alpha']))
+gnt2b <- gclark$plot2d(selvp=c("zeta"),selvl="zeta_m",)
+gnt2bab <- ggpubr::ggarrange(gnt2a,gnt2b, ncol=1)
+#gnt2pab <- plotly::subplot(gnt2a,gnt2b,nrows=2)
+
+
+
 ##plotly::subplot(gcq,gcz,nrows=2)
 #grrza <- gclark$resplot(resvar=c('zeta_mr','alpha_res'))
 #gcrzy <- gclark$resplot(resvar=c('zeta_mr','y_res'))
@@ -38,8 +47,6 @@ eclark$regression(form)
 eclark$regsum[[1]][1]
 eclark$regsum[[2]]
 eclark$regsum[[3]]
-eclark$regsum[[4]]
-str(eclark$regsum)
 #### Step 3: Regression
 
 #### Step 4: Prediction

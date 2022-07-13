@@ -3,6 +3,13 @@
 #' @export pareq
 pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))eval(parse(text=ste),lv)
 
+#' @export totwomodes
+transtwomodes <- function(A=NULL,B=NULL,C=NULL,D=NULL,dfi=NULL){
+  dfi$a <- rowSums(dfi[ , A], na.rm=TRUE)
+  dfi$b <- rowSums(dfi[ , B], na.rm=TRUE)
+  dfi$c <- rowSums(dfi[ , C], na.rm=TRUE)
+  dfi$d <- rowSums(dfi[ , D], na.rm=TRUE)
+}
 ############################################################################################################################################################
 ###########################################################################################################################################################
 #' @export Voterdatabase
@@ -192,9 +199,9 @@ Countingprocess$methods(sortpre=function(poly=6,
 					 selvar=c('x','y','alpha')){
 
  srdfc <- rdfc %>%
-    dplyr::select(pre,zeta,all_of(selvar)) %>%
+    dplyr::select(P,zeta,all_of(selvar)) %>%
     dplyr::arrange(sortby) %>%
-    dplyr::mutate(pri=row_number()/length(pre)) %>%
+    dplyr::mutate(pri=row_number()/length(P)) %>%
     dplyr::mutate(zeta_m=mean(zeta)) %>%
     dplyr::mutate(zeta_mr=zeta-zeta_m)
     selvar %>% purrr::map(function(x,df=srdfc,p=poly){
@@ -320,7 +327,7 @@ Estimation$methods(initialize=function(
 
   sdfc <<- rdfcinp
 })
-Estimation$methods(regression=function(regform='g~alpha+h+I(alpha^2)+alpha*h+I(h^2)'){
+Estimation$methods(regression=function(regform=NULL){
 
   man_model <- lm(as.formula(regform),data=sdfc)
   regsum <<- list(summary(man_model),
@@ -376,5 +383,8 @@ Estimation$methods(rotation=function(
   #              partition_rank=rank(fat_slide),
   #              true_rank=rank(partition_rank))
   #View(rdfc)
+})
+Estimation$methods(regplots=function(){
+'test'
 })
 
