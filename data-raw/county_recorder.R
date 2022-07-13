@@ -1,8 +1,8 @@
 library(ManifoldDestiny)
 library(dplyr)
 library(DataEditR)
-#library(tidyverse)
-#library(tidyquant)
+library(tidyverse)
+library(tidyquant)
 ## code to prepare `DATASET` dataset goes here
 
 # Dallas
@@ -49,4 +49,3 @@ filename <- paste0(abs_path(),'/data-raw/xlsx/xlsx/PrefaceNevada.xlsx')
 nevada_sel <- openxlsx::read.xlsx(filename,sheet=3) %>% select(c(1,3:8)) %>%   filter(!row_number() %in% c(1)) %>% 
 	`colnames<-` (c("pre","reg","tot","a","b","c","d")) %>% dplyr::mutate_at(ctype,as.numeric) %>% dplyr::mutate_at(ctype, ~replace(., is.na(.), 0))
 usethis::use_data(nevada_sel, overwrite = TRUE)
-
