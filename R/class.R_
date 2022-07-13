@@ -177,6 +177,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   #polyc[[3]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
   ### Init poly
 })
+
 Countingprocess$methods(sortpre=function(poly=6,
 					 sortby='alpha',
 					 selvar=c('x','y','alpha')){
