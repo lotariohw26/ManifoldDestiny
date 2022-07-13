@@ -126,14 +126,21 @@ Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = li
 ############################################################################################################################################################
 #' @export Countingprocess
 #' @export class Countingprocess
-Countingprocess <- setRefClass("Countingprocess", fields=list(sdfc='data.frame',rdfc='data.frame',quintile='data.frame',pardf='data.frame', polyc='list',parameters='list', se='list',lx='list',plot3dlist='list'))
+Countingprocess <- setRefClass("Countingprocess", 
+			       fields=list(sdfc='data.frame',
+					   rdfc='data.frame',
+					   quintile='data.frame',
+					   sumreg='list', 
+					   polyc='list',
+					   parameters='list', 
+					   se='list',
+					   lx='list',
+					   plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,
 					    selvar=c('pre','a','b','c','d'), 
 					    polyn=6,
 					    sortby=alpha
 					    ){
-
-  
   # Loading 
   rotp <- rprojroot::find_rstudio_root_file()
   load(paste0(rotp,'/data/eqpar.rda'))
@@ -170,7 +177,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   rdfc <<- sdfc %>% dplyr::arrange(alpha) %>% dplyr::mutate(pri=row_number()/length(pre))
   
   # Init values standard form
-  polyc[[1]] <<- unname(coef(lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))))
+  polyc[['alpha']] <<- unname(coef(lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))))
   # Init values hybrid form
   #polyc[[2]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
   ### Init values opposition form
@@ -193,6 +200,10 @@ Countingprocess$methods(sortpre=function(poly=6,
 	data.frame(pred,res) %>% `colnames<-` (c(paste0(x,'_pred'),paste0(x,'_res')))
     }) %>% as.data.frame(.) -> predictor
   quintile <<- dplyr::bind_cols(srdfc, predictor)
+
+  rcte <- polynom::polynomial(round(polyc[['alpha']],4))
+  rcr2 <- round(cor(quintile$alpha_pred,quintile$alpha)^2,4)
+  sumreg['alpha'] <<- paste0(rcte,' with R² ',rcr2)
 })
 
 Countingprocess$methods(riggsta=function(
@@ -232,16 +243,15 @@ Countingprocess$methods(riggopo=function(sdfinp=NULL){
 Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
 Countinggraphs$methods(plot2d=function(selvp=c("x","y","alpha"),
 				       selvl=c("x_pred","y_pred","alpha_pred"), 
-    				       labt=list(x='precinct (normalized)',y=NULL), 
-				       titext=NULL){
+    				       labs=list(x="precinct (normalized)",y=NULL,caption=NULL)
+				       ){
 
 
   longdf <- tidyr::pivot_longer(quintile,all_of(c(selvp,selvl)))
   ggplot2::ggplot(data=longdf) +
     ggplot2::geom_line(data=filter(longdf,name%in%selvl),aes(x=pri,y=value, color=name)) +
-    ggplot2::geom_point(data=filter(longdf,name%in%selvp),aes(x=pri,y=value, color=name)) +
-    ggplot2::labs(x=labt$x,y=labt$y) +
-    ggplot2::annotate(geom="text",x=0.2,y=0.75,label=titext) +
+    ggplot2::geom_point(data=filter(longdf,name%in%selvp),aes(x=pri,y=value, color=name)) + 
+    ggplot2::labs(x=labs$x,y=labs$y,caption=labs$caption) +
     ggplot2::theme_bw()
 })
 Countinggraphs$methods(plotxy=function(selv=c("x","y")){

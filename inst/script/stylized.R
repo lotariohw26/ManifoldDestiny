@@ -34,29 +34,29 @@ votr <- vrdf$voterrollrealized
 ##### A) Fair ###
 gsimf <- Countinggraphs(votr,selvar=c('pre','a','b','c','d','probwd'))
 gsimf$sortpre(selvar=c('x','y','alpha','lambda','zeta','probwd'))
-#gsimf$quintile; l()
 ########## Tab1
-#tilabel <- paste0(polynom::polynomial(round(polyc[[1]],4)),' with R²=',round(cor(quintile$alpha_pred,quintile$alpha)^2,4))
-#plot(x=gsimf$quintile$zeta_r,y=gsimf$quintile$alpha_res)
-#cor(x=gsimf$quintile$zeta_r,y=gsimf$quintile$y)
-gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha","probwd"),selvl=c("x_pred","y_pred","alpha_pred"))
-gnt2b <- gsimf$plot2d(selvp=c("zeta"),selvl="zeta_m")
-gnt2ab <- plotly::subplot(gnt2a,gnt2b,nrows=2)
+gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha","probwd"),selvl=c("x_pred","y_pred","alpha_pred"),
+  labs=list(x="precinct (normalized)",y="precentage",caption=gsimf$sumreg['alpha']))
+gnt2b <- gsimf$plot2d(selvp=c("zeta"),selvl="zeta_m",)
+gnt2bab <- ggpubr::ggarrange(gnt2a,gnt2b, ncol=1)
+gnt2pab <- plotly::subplot(gnt2a,gnt2b,nrows=2)
 ########## Tab3
 gnt3a <- gsimf$resplot(resvar=c('zeta_mr','alpha'))
 gnt3b <- gsimf$resplot(resvar=c('zeta_mr','y'))
 gnt3c <- gsimf$resplot(resvar=c('zeta_mr','x'))
-gnt3abc <- plotly::subplot(gnt3a,gnt3b,gnt3c,nrows=3)
+gnt3abcb <- ggpubr::ggarrange(gnt3a,gnt3b,gnt3c,nrow=3)
+gnt3abcp <- plotly::subplot(gnt3a,gnt3b,gnt3c,nrows=3)
 ########## Tab4
 gnt4a <- gsimf$resplot(resvar=c('zeta_mr','alpha'),crossp=T)
 gnt4b <- gsimf$resplot(resvar=c('zeta_mr','y'),crossp=T)
 gnt4c <- gsimf$resplot(resvar=c('zeta_mr','x'),crossp=T)
-gnt4abc <- plotly::subplot(gnt4a,gnt4b,gnt4c,nrows=3)
+gnt4babc <- ggpubr::ggarrange(gnt4a,gnt4b,gnt4c, nrow=4)
+gnt4pabc <- plotly::subplot(gnt4a,gnt4b,gnt4c,nrows=3)
 ######### Tab5
 #gsimf$rdfc$zeta <- 1
 gn3da <- gsimf$plotly3d(partition=1)[[1]]
 gn3db <- gsimf$plotly3d(partition=1,selid=1)[[3]]
-####################################################################################################33
+####################################################################################################
 ##### B) Rigged ###
 grig <- Countinggraphs(votr)
 grig$sortpre()
@@ -81,8 +81,4 @@ grt3abc <- plotly::subplot(grt3a,grt3b,grt3c,nrows=3)
 ########## Tab5
 gr3da <- grig$plotly3d(partition=1)[[1]]
 gr3db <- grig$plotly3d(partition=1,selid=1)[[1]]
-#####################################################################################################3
-
-
-
-
+#####################################################################################################

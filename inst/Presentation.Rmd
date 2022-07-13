@@ -1,6 +1,6 @@
 ---
 title: "Manifold Destiny"
-subtitle: "(or how to rig an election)"
+#subtitle: "-or how to rig an election-"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
@@ -85,7 +85,7 @@ modlat <- gsimf$lx
 
 ```{r eval=FALSE, include=FALSE}
 xaringan::inf_mr(paste0(ManifoldDestiny::abs_path(),'/inst/Presentation.Rmd'))
-rmarkdown::render(tes) 
+#rmarkdown::render(tes) 
 ```
 
 Ed. Solomon
