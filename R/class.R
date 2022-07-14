@@ -83,23 +83,11 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
       listvbase <<- get(base::load(file=vfile))
     }
 })
-Voterdatabase$methods(uploadvbase=function(
-				    truevotdf=NULL, 
-				    manipvotdf=NULL 
-				    ){
-			      browser()
-	voterrollrealized
-	names(truevotdf)
-	names(manipvotdf)
-df = merge(x=truevotdf,y=manipvotdf,by="P",all.x=TRUE)
-df; l()
-})
 Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
 						     c(0.30,0.70,0.00)),
 					  probw=c(0.50,0.05),
                                           Ztech=c(0,1),
                                           tvoting=c('EDV','MIV')){
-
 
   nprect <- max(listvbase[[1]]$P)
   ## Election Technology and voter sentiment
@@ -130,6 +118,17 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
   dplyr::mutate(R=ifelse(voted==3 | voted==6,0,1)) %>%
   dplyr::mutate(status=ifelse(R==0,'credit','active')) %>%
   dplyr::arrange(desc(status),pi)
+})
+Voterdatabase$methods(uploadvbase=function(
+				    truevotdf=NULL, 
+				    manipvotdf=NULL 
+				    ){
+			      browser()
+	voterrollrealized
+	names(truevotdf)
+	names(manipvotdf)
+df = merge(x=truevotdf,y=manipvotdf,by="P",all.x=TRUE)
+df; l()
 })
 #' @export Grafbase
 Grafbase <- setRefClass("Grafbase", contains = c('Voterdatabase'), fields = list(def='list'))
@@ -216,8 +215,10 @@ Countingprocess$methods(sortpre=function(poly=6,
 	data.frame(pred,res) %>% `colnames<-` (c(paste0(x,'_pred'),paste0(x,'_res')))
     }) %>% as.data.frame(.) -> predictor
   quintile <<- dplyr::bind_cols(srdfc, predictor)
+
   rcte <- polynom::polynomial(unname(coef(polyc[['alpha']])))
   rcr2 <- round(cor(quintile$alpha_pred,quintile$alpha)^2,4)
+
   sumreg['alpha'] <<- paste0(rcte,' with R² ',rcr2)
 })
 Countingprocess$methods(manfolimp=function(
@@ -290,17 +291,16 @@ Countinggraphs$methods(plotxy=function(selv=c("x","y")){
    	labs(x=selv[1],y=selv[2],title="") +
     	ggplot2::theme_bw()
 })
-Countinggraphs$methods(resplot=function(resvar=c("zeta_mr","alpha_res"),crossp=F){
-
-  plotv <- list(resvar,c('pri','crossp'))[[ifelse(crossp==F,1,2)]]
+Countinggraphs$methods(resplot=function(resvar=c("zeta_mr","alpha_res"),
+					labs=list(x=NULL,y=NULL,caption=NULL), 
+					crossp=F){
+  selv <- list(resvar,c('zeta_mr',paste0(resvar[1],'*',resvar[2])))[[ifelse(crossp==F,1,2)]]
   dfgp <- quintile %>% dplyr::select(pri,all_of(resvar)) %>% 
-	  dplyr::mutate(crossp=quintile[[resvar[1]]]*quintile[[resvar[2]]])
-
-  ggplot2::ggplot(data=dfgp,aes_string(x=plotv[1],y=plotv[2])) +
+	  dplyr::mutate(crossp=100*quintile[[resvar[1]]]*quintile[[resvar[2]]])
+  ggplot2::ggplot(data=dfgp,aes_string(x=selv[1],y=selv[2])) +
     geom_smooth(method="lm", se=F) +
-    geom_point() +
-    stat_regline_equation(label.y = 0.05, aes(label = ..eq.label..)) +
-    stat_regline_equation(label.y = 0.0, aes(label = ..rr.label..))
+    labs(x=selv[1],y=selv[2],title="") +
+    geom_point() 
 })
 Countinggraphs$methods(plotly3d=function(
 					 partition=1,
