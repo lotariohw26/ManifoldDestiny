@@ -57,8 +57,8 @@ gnt4babc <- ggpubr::ggarrange(gnt4a,gnt4b,gnt4c, nrow=4)
 #gnt4pabc <- plotly::subplot(gnt4a,gnt4b,gnt4c,nrows=3)
 ########## Tab5
 ##gsimf$rdfc$zeta <- 1
-#gn3da <- gsimf$plotly3d(partition=1)[[1]]
-#gn3db <- gsimf$plotly3d(partition=1,selid=1)[[3]]
+gn3da <- gsimf$plotly3d(partition=1)[[1]]
+gn3db <- gsimf$plotly3d(partition=1,selid=3)
 #####################################################################################################
 ##### B) Rigged ###
 grig <- Countinggraphs(votr)
