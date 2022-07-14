@@ -5,10 +5,10 @@ pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))ev
 
 #' @export totwomodes
 transtwomodes <- function(A=NULL,B=NULL,C=NULL,D=NULL,dfi=NULL){
-  dfi$a <- rowSums(dfi[ , A], na.rm=TRUE)
-  dfi$b <- rowSums(dfi[ , B], na.rm=TRUE)
-  dfi$c <- rowSums(dfi[ , C], na.rm=TRUE)
-  dfi$d <- rowSums(dfi[ , D], na.rm=TRUE)
+  ou <- dfi %>% dplyr::mutate(a=A1) %>% 
+	  dplyr::mutate(b=A1+C3+A2) %>%
+	  dplyr::mutate(c=B1+B3) %>%
+	  dplyr::mutate(d=C1+A3+C2) 
 }
 ############################################################################################################################################################
 ###########################################################################################################################################################
@@ -319,7 +319,8 @@ Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'),
 #' @export Estimation
 Estimation <- setRefClass("Estimation", fields=list(
 						sdfc='data.frame', 
-						regsum='list'
+						regsum='list', 
+						resplots='list'
 						))
 Estimation$methods(initialize=function(
 					rdfcinp=NULL
@@ -330,11 +331,22 @@ Estimation$methods(initialize=function(
 Estimation$methods(regression=function(regform=NULL){
 
   man_model <- lm(as.formula(regform),data=sdfc)
-  regsum <<- list(summary(man_model),
+  regsum <<- list(lm=man_model, 
+		  summary(man_model),
 		  tidy=broom::tidy(man_model), 
 		  glance=broom::glance(man_model), 
 		  augment=broom::augment(man_model))
   ##0.005070874159	1.535448595	-0.549045972	-0.66148927	1.303368815	-0.632192474
+})
+Estimation$methods(diagnostics=function(){
+
+  model <- regsum[[1]]
+  l1 <- ggplot(model, aes(x = model$residuals)) +
+    geom_histogram(bins = 20, fill = 'steelblue', color = 'black') +
+    labs(title = 'Histogram of Residuals', x = 'Residuals', y = 'Frequency')+ 
+    theme_bw()
+  l2 <- ggplot(model, aes(x = .fitted, y = .resid)) + geom_point() + theme_bw()
+  resplots <<- list(hist=l1,res=l2)
 })
 Estimation$methods(rotation=function(
 				     selvar=c('x','y','alpha'),
@@ -383,8 +395,5 @@ Estimation$methods(rotation=function(
   #              partition_rank=rank(fat_slide),
   #              true_rank=rank(partition_rank))
   #View(rdfc)
-})
-Estimation$methods(regplots=function(){
-'test'
 })
 
