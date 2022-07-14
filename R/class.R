@@ -25,7 +25,8 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  newdraw=T
 					  ){
 
-
+    rotp <- rprojroot::find_rstudio_root_file()
+    vfile <- paste0(rotp,'/inst/script/voterbase/defvotbase.rda')
     if(newdraw == T) {
     # Demograhpic structure
     agelength <- agebracketmax[2]-agebracketmax[1]
@@ -76,15 +77,14 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
       dplyr::mutate(R=ifelse(idn%in%rvot,1,0)) 
       # Assigned whether citizien register to vote or not
       listvbase <<- list(voterrolldatabase,totpop,agebrack)
-      usethis::use_data(listvbase, overwrite = TRUE)
+      base::save(file=vfile,listvbase)
     } 
     else {
-      rotp <- rprojroot::find_rstudio_root_file()
-      load(paste0(rotp,'/data/listvbase.rda'))
+      listvbase <<- get(base::load(file=vfile))
     }
 })
 Voterdatabase$methods(load=function(database='initial'){
-	print('test')
+	#print('test')
 })
 
 Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
@@ -139,6 +139,7 @@ Countingprocess <- setRefClass("Countingprocess",
 					   sumreg='list', 
 					   polyc='list',
 					   parameters='list', 
+					   preend='list', 
 					   se='list',
 					   lx='list',
 					   plot3dlist='list'))
@@ -162,7 +163,6 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   se <<- eqpar$meqs
   lx <<- eqpar$meql
 
-browser()
   sdfc <<- sdfinp %>% dplyr::select(P,all_of(selvar)) %>% dplyr::group_by(P) %>%
     dplyr::arrange(P) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
@@ -215,15 +215,31 @@ Countingprocess$methods(sortpre=function(poly=6,
   rcr2 <- round(cor(quintile$alpha_pred,quintile$alpha)^2,4)
   sumreg['alpha'] <<- paste0(rcte,' with R² ',rcr2)
 })
+Countingprocess$methods(manfolimp=function(
+				pres1=quintile$x, 
+				pres2=polyc[[1]], 
+				pres3='x-alpha'
+					   ){
+  # 1
+  ##
+  end1 <- pres1
+  # 2
+  browser()
+  polr <- polynom::polynomial(grig$polyc[[1]])
+  #round(polynom::integral(polr,c(0,1)),digits=4)
+  ## 
+  end2 <- predict(polr,quintile$pri)
+  # 3
+  ## 
+  end3 <- end1-end2
 
+  preend <<- list(end1,end2,end3)
+
+})
 Countingprocess$methods(riggsta=function(
   param=list(form=1,pre=c('x','alpha','y'), end=c('zeta','lambda')),
-  predet=list(end1=quintile$x,
-	      end2=polyc[[1]],
-	      end3='x-alpha')
-)
+  predet=preend)
 {
-
   forms <- list('_s','o_h','h_o')[param$form[[1]]]
   ends1 <- se[[paste0(param$end[1],forms)]][2]
   ends2 <- se[[paste0(param$end[2],forms)]][2]
@@ -231,8 +247,8 @@ Countingprocess$methods(riggsta=function(
   parampre <- data.frame(pri=quintile$pri) %>%
     # Presetting the first three parameters
     dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
-    dplyr::mutate(!!param$pre[2]:=predict(polynom::polynomial(predet$end2),quintile$pri)) %>%
-    dplyr::mutate(!!param$pre[3]:=pareq(predet[[3]],lv=as.list(.[,param$pre[1:2]]))) %>% 
+    dplyr::mutate(!!param$pre[2]:=predet[[2]]) %>%
+    dplyr::mutate(!!param$pre[3]:=predet[[3]]) %>%
     # Backsolving for the two remaining parameters
     dplyr::mutate(!!param$end[1]:=pareq(ends1,lv=as.list(.[,param$pre[1:3]]))) %>%
     dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=as.list(.[,c(param$end[1],param$pre[1:3])])))

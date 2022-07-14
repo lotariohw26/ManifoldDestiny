@@ -23,9 +23,8 @@ set.seed(snr)
 agebracketmax <- c(18,100,1000)
 regf <- 0.8
 numprec <- 200
-vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase='default',newdraw=T)
+vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase='default',newdraw=F)
 ###### Realization of DGP
-vrdf$listvbase
 probwset <- c(0.50,0.05)
 probvset <- list(c(0.70,0.30,0.00),c(0.30,0.70,0.00))
 Znr <- c(0,1)
@@ -33,41 +32,39 @@ vrdf$realizedgp(probv=probvset,Ztech=Znr)
 votr <- vrdf$voterrollrealized
 #################################################################################################33
 ##### A) Fair ###
-gsimf <- Countinggraphs(votr,selvar=c('P','a','b','c','d','probwd'))
-gsimf$sortpre(selvar=c('x','y','alpha','lambda','zeta','probwd'))
-########## Tab1
-gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha","probwd"),selvl=c("x_pred","y_pred","alpha_pred"),
-  labs=list(x="precinct (normalized)",y="precentage",caption=gsimf$sumreg['alpha']))
-gnt2b <- gsimf$plot2d(selvp=c("zeta"),selvl="zeta_m",)
-gnt2bab <- ggpubr::ggarrange(gnt2a,gnt2b, ncol=1)
-gnt2pab <- plotly::subplot(gnt2a,gnt2b,nrows=2)
-########## Tab3
-gnt3a <- gsimf$resplot(resvar=c('zeta_mr','alpha'))
-gnt3b <- gsimf$resplot(resvar=c('zeta_mr','y'))
-gnt3c <- gsimf$resplot(resvar=c('zeta_mr','x'))
-gnt3abcb <- ggpubr::ggarrange(gnt3a,gnt3b,gnt3c,nrow=3)
-gnt3abcp <- plotly::subplot(gnt3a,gnt3b,gnt3c,nrows=3)
-########## Tab4
-gnt4a <- gsimf$resplot(resvar=c('zeta_mr','alpha'),crossp=T)
-gnt4b <- gsimf$resplot(resvar=c('zeta_mr','y'),crossp=T)
-gnt4c <- gsimf$resplot(resvar=c('zeta_mr','x'),crossp=T)
-gnt4babc <- ggpubr::ggarrange(gnt4a,gnt4b,gnt4c, nrow=4)
-gnt4pabc <- plotly::subplot(gnt4a,gnt4b,gnt4c,nrows=3)
-######### Tab5
-#gsimf$rdfc$zeta <- 1
-gn3da <- gsimf$plotly3d(partition=1)[[1]]
-gn3db <- gsimf$plotly3d(partition=1,selid=1)[[3]]
-####################################################################################################
+#gsimf <- Countinggraphs(votr,selvar=c('P','a','b','c','d','probwd'))
+#gsimf$sortpre(selvar=c('x','y','alpha','lambda','zeta','probwd'))
+########### Tab1
+#gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha","probwd"),selvl=c("x_pred","y_pred","alpha_pred"),
+#  labs=list(x="precinct (normalized)",y="precentage",caption=gsimf$sumreg['alpha']))
+#gnt2b <- gsimf$plot2d(selvp=c("zeta"),selvl="zeta_m",)
+#gnt2bab <- ggpubr::ggarrange(gnt2a,gnt2b, ncol=1)
+#gnt2pab <- plotly::subplot(gnt2a,gnt2b,nrows=2)
+########### Tab3
+#gnt3a <- gsimf$resplot(resvar=c('zeta_mr','alpha'))
+#gnt3b <- gsimf$resplot(resvar=c('zeta_mr','y'))
+#gnt3c <- gsimf$resplot(resvar=c('zeta_mr','x'))
+#gnt3abcb <- ggpubr::ggarrange(gnt3a,gnt3b,gnt3c,nrow=3)
+#gnt3abcp <- plotly::subplot(gnt3a,gnt3b,gnt3c,nrows=3)
+########### Tab4
+#gnt4a <- gsimf$resplot(resvar=c('zeta_mr','alpha'),crossp=T)
+#gnt4b <- gsimf$resplot(resvar=c('zeta_mr','y'),crossp=T)
+#gnt4c <- gsimf$resplot(resvar=c('zeta_mr','x'),crossp=T)
+#gnt4babc <- ggpubr::ggarrange(gnt4a,gnt4b,gnt4c, nrow=4)
+#gnt4pabc <- plotly::subplot(gnt4a,gnt4b,gnt4c,nrows=3)
+########## Tab5
+##gsimf$rdfc$zeta <- 1
+#gn3da <- gsimf$plotly3d(partition=1)[[1]]
+#gn3db <- gsimf$plotly3d(partition=1,selid=1)[[3]]
+#####################################################################################################
 ##### B) Rigged ###
 grig <- Countinggraphs(votr)
 grig$sortpre()
-grig$polyc[[1]][1] <- c(0.30)
-polr <- polynom::polynomial(grig$polyc[[1]])
-round(polynom::integral(polr,c(0,1)),digits=4)
-grig$riggsta(predet=list(end1=grig$quintile$x,
-	      end2=grig$polyc[[1]],
-	      end3='x-alpha'))
+grig$manfolimp()
+grig$riggsta()
 grig$sortpre()
+gr3da <- grig$plotly3d(partition=1)[[1]]
+grt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
 grig$rdfc; l()
 ###### Graphical ###
 ########## Tab1
