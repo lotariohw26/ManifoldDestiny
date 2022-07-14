@@ -33,40 +33,41 @@ vrdf$realizedgp(probv=probvset,
 		Ztech=Znr)
 votr <- vrdf$voterrollrealized
 #################################################################################################33
-##### A) Fair ###
-gsimf <- Countinggraphs(votr,selvar=c('P','a','b','c','d','probwd'))
-gsimf$sortpre(selvar=c('x','y','alpha','lambda','zeta','probwd'))
-########### Tab1
-gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha","probwd"),selvl=c("x_pred","y_pred","alpha_pred"), 
-  labs=list(x="precinct (normalized)",y="precentage",caption=gsimf$sumreg['alpha']))
-gnt2b <- gsimf$plot2d(selvp=c("zeta"),selvl=c("zeta_m","zeta_pred"))
-gnt2bab <- ggpubr::ggarrange(gnt2a,gnt2b, ncol=1)
-#gnt2pab <- plotly::subplot(gnt2a,gnt2b,nrows=2)
-########### Tab3
-gsimf$quintile
-gnt3a <- gsimf$resplot(resvar=c('zeta_mr','alpha_res'))
-gnt3b <- gsimf$resplot(resvar=c('zeta_mr','y_res'))
-gnt3c <- gsimf$resplot(resvar=c('zeta_mr','x_res'))
-gnt3abcb <- ggpubr::ggarrange(gnt3a,gnt3b,gnt3c,nrow=3)
-#gnt3abcp <- plotly::subplot(gnt3a,gnt3b,gnt3c,nrows=3)
-########### Tab4
-gnt4a <- gsimf$resplot(resvar=c('zeta_mr','alpha_res'),crossp=T)
-gnt4b <- gsimf$resplot(resvar=c('zeta_mr','y_res'),crossp=T)
-gnt4c <- gsimf$resplot(resvar=c('zeta_mr','x_res'),crossp=T)
-gnt4babc <- ggpubr::ggarrange(gnt4a,gnt4b,gnt4c, nrow=4)
-#gnt4pabc <- plotly::subplot(gnt4a,gnt4b,gnt4c,nrows=3)
-########## Tab5
-##gsimf$rdfc$zeta <- 1
-gn3da <- gsimf$plotly3d(partition=1)[[1]]
-gn3db <- gsimf$plotly3d(partition=1,selid=2)
-#####################################################################################################
+###### A) Fair ###
+#gsimf <- Countinggraphs(votr,selvar=c('P','a','b','c','d','probwd'))
+#gsimf$sortpre(selvar=c('x','y','alpha','lambda','zeta','probwd'))
+############ Tab1
+#gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha","probwd"),selvl=c("x_pred","y_pred","alpha_pred"), 
+#  labs=list(x="precinct (normalized)",y="precentage",caption=gsimf$sumreg['alpha']))
+#gnt2b <- gsimf$plot2d(selvp=c("zeta"),selvl=c("zeta_m","zeta_pred"))
+#gnt2bab <- ggpubr::ggarrange(gnt2a,gnt2b, ncol=1)
+##gnt2pab <- plotly::subplot(gnt2a,gnt2b,nrows=2)
+############ Tab3
+#gsimf$quintile
+#gnt3a <- gsimf$resplot(resvar=c('zeta_mr','alpha_res'))
+#gnt3b <- gsimf$resplot(resvar=c('zeta_mr','y_res'))
+#gnt3c <- gsimf$resplot(resvar=c('zeta_mr','x_res'))
+#gnt3abcb <- ggpubr::ggarrange(gnt3a,gnt3b,gnt3c,nrow=3)
+##gnt3abcp <- plotly::subplot(gnt3a,gnt3b,gnt3c,nrows=3)
+############ Tab4
+#gnt4a <- gsimf$resplot(resvar=c('zeta_mr','alpha_res'),crossp=T)
+#gnt4b <- gsimf$resplot(resvar=c('zeta_mr','y_res'),crossp=T)
+#gnt4c <- gsimf$resplot(resvar=c('zeta_mr','x_res'),crossp=T)
+#gnt4babc <- ggpubr::ggarrange(gnt4a,gnt4b,gnt4c, nrow=4)
+##gnt4pabc <- plotly::subplot(gnt4a,gnt4b,gnt4c,nrows=3)
+########### Tab5
+###gsimf$rdfc$zeta <- 1
+#gn3da <- gsimf$plotly3d(partition=1)[[1]]
+#gn3db <- gsimf$plotly3d(partition=1,selid=2)
+######################################################################################################
 ##### B) Rigged ###
 grig <- Countinggraphs(votr)
 grig$sortpre()
-grig$manfolimp(pres1=grig$quintile$x,pres2=grig$quintile$alpha-0.05,pres3="(alpha*zeta + alpha - x)/zeta")
+grig$manfolimp(pres1=grig$quintile$x,pres2=grig$quintile$alpha-0*0.05,pres3="(alpha*zeta + alpha - x)/zeta")
 grig$riggsta()
 grig$parameters$standard
 vrdf$uploadvbase(grig$sdfc,grig$rdfc,grig$parameters$standard)
+View(vrdf$listvbase[[4]])
 ###### Graphical ###
 ########## Tab1
 grt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))

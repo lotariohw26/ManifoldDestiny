@@ -127,11 +127,11 @@ Voterdatabase$methods(uploadvbase=function(
   
   trvdf  <- dplyr::select(truevotdf,P,all_of(parameters))
   names(trvdf)[-1] <- paste0(names(trvdf)[-1],'_s')
-  df <- merge(x=trvdf,y=select(manipvotdf,-pri),by="P",all.x=TRUE) %>%
+  listvbase[[4]]  <<- merge(x=trvdf,y=select(manipvotdf,-pri),by="P",all.x=TRUE) %>%
   dplyr::mutate(diff_x=x_s-x) %>%
   dplyr::mutate(diff_y=y_s-y) %>%
   dplyr::mutate(diff_zeta=zeta_s-zeta) 
-  #upv <- listvbase[[1]] %>% merge(y=dplyr::select(df,P,diff_x,diff_y,diff_zeta),by="P",all.x=TRUE)
+  listvbase[[5]] <<- listvbase[[1]] %>%  merge(y=dplyr::select(listvbase[[4]],P,diff_x,diff_y,diff_zeta),by="P",all.x=TRUE)
 })
 #' @export Grafbase
 Grafbase <- setRefClass("Grafbase", contains = c('Voterdatabase'), fields = list(def='list'))
