@@ -121,16 +121,17 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
 })
 Voterdatabase$methods(uploadvbase=function(
 				    truevotdf=NULL, 
-				    manipvotdf=NULL 
+				    manipvotdf=NULL, 
+				    parameters=NULL 
 				    ){
-
-  df <- merge(x=truevotdf,y=select(manipvotdf,-pri),by="P",all.x=TRUE) %>%
-	dplyr::mutate(diff_x=x-x_s) %>%
-	dplyr::mutate(diff_y=y-y_s) %>%
-	dplyr::mutate(diff_zeta=zeta-zeta_s) 
-
-  upv <- listvbase[[1]] %>% merge(y=dplyr::select(df,P,diff_x,diff_y,diff_zeta),by="P",all.x=TRUE)
-
+  
+  trvdf  <- dplyr::select(truevotdf,P,all_of(parameters))
+  names(trvdf)[-1] <- paste0(names(trvdf)[-1],'_s')
+  df <- merge(x=trvdf,y=select(manipvotdf,-pri),by="P",all.x=TRUE) %>%
+  dplyr::mutate(diff_x=x_s-x) %>%
+  dplyr::mutate(diff_y=y_s-y) %>%
+  dplyr::mutate(diff_zeta=zeta_s-zeta) 
+  #upv <- listvbase[[1]] %>% merge(y=dplyr::select(df,P,diff_x,diff_y,diff_zeta),by="P",all.x=TRUE)
 })
 #' @export Grafbase
 Grafbase <- setRefClass("Grafbase", contains = c('Voterdatabase'), fields = list(def='list'))
@@ -268,8 +269,6 @@ Countingprocess$methods(riggsta=function(
    dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=as.list(.[,c(param$end[1],param$pre[1:3])])))
   
    rdfc[,c(param$pre,param$end)] <<- parset[,c(-1,-2)]
-   names(parset)[3:7] <- paste0(c(param$pre,param$end),forms)
-   parampre <<- parset
 })
 #' @export Countinggraphs
 Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
@@ -417,4 +416,6 @@ Estimation$methods(rotation=function(
   #              true_rank=rank(partition_rank))
   #View(rdfc)
 })
+
+
 

@@ -63,12 +63,10 @@ gn3db <- gsimf$plotly3d(partition=1,selid=2)
 ##### B) Rigged ###
 grig <- Countinggraphs(votr)
 grig$sortpre()
-grig$manfolimp(pres1=grig$quintile$x, 
-pres2=grig$quintile$alpha+0.02,  
-pres3="(alpha*zeta + alpha - x)/zeta")
+grig$manfolimp(pres1=grig$quintile$x,pres2=grig$quintile$alpha-0.05,pres3="(alpha*zeta + alpha - x)/zeta")
 grig$riggsta()
-d <- vrdf$uploadvbase(truevotdf=grig$sdfc,manipvotdf=grig$parampre)
-View(d)
+grig$parameters$standard
+vrdf$uploadvbase(grig$sdfc,grig$rdfc,grig$parameters$standard)
 ###### Graphical ###
 ########## Tab1
 grt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
