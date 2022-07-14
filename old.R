@@ -3,21 +3,12 @@
 #' @export pareq
 pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))eval(parse(text=ste),lv)
 
-#' @export totwomodes
-transtwomodes <- function(A=NULL,B=NULL,C=NULL,D=NULL,dfi=NULL){
-  ou <- dfi %>% 
-    dplyr::mutate(a=eval(parse(text=A))) %>% 
-    dplyr::mutate(b=eval(parse(text=B))) %>%
-    dplyr::mutate(c=eval(parse(text=C))) %>%
-    dplyr::mutate(d=eval(parse(text=D))) 
-}
 ############################################################################################################################################################
 ###########################################################################################################################################################
 #' @export Voterdatabase
-Voterdatabase <- setRefClass("Voterdatabase", fields=list(
-							  listvbase='list', 
-							  voterrollrealized='data.frame')
-)
+Voterdatabase <- setRefClass("Voterdatabase", fields=list(voterrolldatabase='data.frame',
+							  voterrollrealized='data.frame',
+							  totpop='matrix',agebrack='vector'))
 Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  nprect=5,
 					  reg=0.80,
@@ -26,7 +17,7 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  ){
 
 
-    if(newdraw == T) {
+    filn <- paste0('voterbase/',namebase)
     # Demograhpic structure
     agelength <- agebracketmax[2]-agebracketmax[1]
     brack <- seq(agebracketmax[1],agebracketmax[2])
@@ -45,9 +36,10 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
     colnames(latepop) <- NULL
 
     # Total Population
-    totpop <- cbind(earlpop,latepop)
-    agebrack <- agebracketmax
+    totpop <<- cbind(earlpop,latepop)
+    agebrack <<- agebracketmax
     
+    if(newdraw == T) {
     # Desc statistics
     popvotgro <- colSums(totpop)           # Population for each age group
     popsize <- sum(popvotgro) 	         # Total number of citizien
@@ -62,25 +54,29 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 
     # Realvoters
     #sci <- 500; hc <- floor(popsize/sci); resnr <- c(rep(sci,hc),popsize-sci*hc)
-    #voterrolldatabase <- resnr %>% purrr::map_df(randNames::rand_names,nationality="US") %>%
+    #voterrolldatabase <<- resnr %>% purrr::map_df(randNames::rand_names,nationality="US") %>%
     #dplyr::select(gender,name.first,name.last) %>%
     # Id-number for voters
-    voterrolldatabase <- data.frame(idn=seq(1:popsize)) %>%
+    voterrolldatabase <<- data.frame(idn=seq(1:popsize)) %>%
       dplyr::mutate(status='real') %>%
       # Age being assigned to citizien making up the population
       dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%
       # Assigned to different precincts
-      dplyr::mutate(P=sample(nprect,size=n(),replace=T)) %>%
-      dplyr::arrange(P) %>%
+      dplyr::mutate(pre=sample(nprect,size=n(),replace=T)) %>%
+      dplyr::arrange(pre) %>%
       # Assigned whether citizien register to vote or not
-      dplyr::mutate(R=ifelse(idn%in%rvot,1,0)) 
+      dplyr::mutate(registered=ifelse(idn%in%rvot,1,0)) %>%
       # Assigned whether citizien register to vote or not
-      listvbase <<- list(voterrolldatabase,totpop,agebrack)
+      dplyr::mutate(registered=ifelse(idn%in%rvot,1,0))
+      listvbase <- list(voterrolldatabase,totpop,agebrack)
       usethis::use_data(listvbase, overwrite = TRUE)
     } 
     else {
       rotp <- rprojroot::find_rstudio_root_file()
       load(paste0(rotp,'/data/listvbase.rda'))
+      voterrolldatabase <<- listvbase[[1]]
+      totpop <<- listvbase[[2]]
+      agebrack <<- listvbase[[3]]
     }
 })
 Voterdatabase$methods(load=function(database='initial'){
@@ -93,10 +89,9 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
                                           Ztech=c(0,1),
                                           tvoting=c('EDV','MIV')){
 
-
-  nprect <- max(listvbase[[1]]$P)
+  nprect <- max(voterrolldatabase$pre)
   ## Election Technology and voter sentiment
-  ztech <- data.frame(P=seq(1,nprect)) %>%
+  ztech <- data.frame(pre=seq(1,nprect)) %>%
 	  dplyr::mutate(probwd=rnorm(nprect,probw[1],probw[2])) %>%
 	  dplyr::mutate(Zt=runif(n(), min=Ztech[1], max=Ztech[2])) %>%
           dplyr::mutate(p1=probv[[1]][1]) %>%
@@ -106,10 +101,9 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
           dplyr::mutate(p5=probv[[2]][2]+probv[[2]][3]*Zt) %>%
           dplyr::mutate(p6=probv[[2]][3]*(1-Zt))
 
-
   ## Technology
-  voterrollrealized <<- listvbase[[1]] %>% dplyr::left_join(ztech, by="P") %>%
-	  base::split(.$P) %>%
+  voterrollrealized <<- voterrolldatabase %>% dplyr::left_join(ztech, by="pre") %>%
+	  base::split(.$pre) %>%
   purrr::map(function(x){
   x %>%  dplyr::mutate(candraw=rbinom(n(),1,probwd)) %>%
 	 dplyr::mutate(voted=ifelse(candraw==1,
@@ -121,8 +115,8 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
   dplyr::mutate(c=ifelse(voted==2,1,0)) %>%
   dplyr::mutate(b=ifelse(voted==4,1,0)) %>%
   dplyr::mutate(d=ifelse(voted==5,1,0)) %>%
-  dplyr::mutate(R=ifelse(voted==3 | voted==6,0,1)) %>%
-  dplyr::mutate(status=ifelse(R==0,'credit','active')) %>%
+  dplyr::mutate(regvoted=ifelse(voted==3 | voted==6,0,1)) %>%
+  dplyr::mutate(status=ifelse(regvoted==0,'credit','active')) %>%
   dplyr::arrange(desc(status),pi)
 })
 #' @export Grafbase
@@ -162,7 +156,6 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   se <<- eqpar$meqs
   lx <<- eqpar$meql
 
-browser()
   sdfc <<- sdfinp %>% dplyr::select(P,all_of(selvar)) %>% dplyr::group_by(P) %>%
     dplyr::arrange(P) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
@@ -198,10 +191,10 @@ Countingprocess$methods(sortpre=function(poly=6,
 					 sortby='alpha',
 					 selvar=c('x','y','alpha')){
 
-  srdfc <- rdfc %>%
-    dplyr::select(P,zeta,all_of(selvar)) %>%
+ srdfc <- rdfc %>%
+    dplyr::select(pre,zeta,all_of(selvar)) %>%
     dplyr::arrange(sortby) %>%
-    dplyr::mutate(pri=row_number()/length(P)) %>%
+    dplyr::mutate(pri=row_number()/length(pre)) %>%
     dplyr::mutate(zeta_m=mean(zeta)) %>%
     dplyr::mutate(zeta_mr=zeta-zeta_m)
     selvar %>% purrr::map(function(x,df=srdfc,p=poly){
@@ -319,8 +312,7 @@ Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'),
 #' @export Estimation
 Estimation <- setRefClass("Estimation", fields=list(
 						sdfc='data.frame', 
-						regsum='list', 
-						resplots='list'
+						regsum='list'
 						))
 Estimation$methods(initialize=function(
 					rdfcinp=NULL
@@ -328,25 +320,14 @@ Estimation$methods(initialize=function(
 
   sdfc <<- rdfcinp
 })
-Estimation$methods(regression=function(regform=NULL){
+Estimation$methods(regression=function(regform='g~alpha+h+I(alpha^2)+alpha*h+I(h^2)'){
 
   man_model <- lm(as.formula(regform),data=sdfc)
-  regsum <<- list(lm=man_model, 
-		  summary(man_model),
+  regsum <<- list(summary(man_model),
 		  tidy=broom::tidy(man_model), 
 		  glance=broom::glance(man_model), 
 		  augment=broom::augment(man_model))
   ##0.005070874159	1.535448595	-0.549045972	-0.66148927	1.303368815	-0.632192474
-})
-Estimation$methods(diagnostics=function(){
-
-  model <- regsum[[1]]
-  l1 <- ggplot(model, aes(x = model$residuals)) +
-    geom_histogram(bins = 20, fill = 'steelblue', color = 'black') +
-    labs(title = 'Histogram of Residuals', x = 'Residuals', y = 'Frequency')+ 
-    theme_bw()
-  l2 <- ggplot(model, aes(x = .fitted, y = .resid)) + geom_point() + theme_bw()
-  resplots <<- list(hist=l1,res=l2)
 })
 Estimation$methods(rotation=function(
 				     selvar=c('x','y','alpha'),
