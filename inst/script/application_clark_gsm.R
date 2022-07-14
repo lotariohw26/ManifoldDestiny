@@ -16,6 +16,9 @@ abs_path <- function(){rprojroot::find_rstudio_root_file()}
 source(paste0(abs_path(),'/R/misc.R'))
 source(paste0(abs_path(),'/R/class.R'))
 #################################################################################################
+### Sheriff
+### Governor
+### Senate
 load(paste0(abs_path(),'/data/clark_sgs_sel.rda'))
 fitdf <-transtwomodes(A=c('B2'),B=c('A1+C3+A2'),C=c('B1+B3'),D=c('C1+A3+C2'),dfi=clark_sgs_sel[[3]])
 gclark <- Countinggraphs(fitdf)
@@ -35,9 +38,7 @@ eclark$regression(form)
 #eclark$regsum[[1]][1]
 #eclark$regsum[[2]]
 #eclark$regsum[[3]]
-
 #### Step 3: Regression
 eclark$diagnostics()
 eclark$resplots[[1]]
-
 
