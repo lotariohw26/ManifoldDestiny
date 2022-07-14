@@ -21,12 +21,12 @@ Voterdatabase <- setRefClass("Voterdatabase", fields=list(
 Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  nprect=5,
 					  reg=0.80,
-					  namebase='default',
+					  namebase='defvotbase',
 					  newdraw=T
 					  ){
 
     rotp <- rprojroot::find_rstudio_root_file()
-    vfile <- paste0(rotp,'/inst/script/voterbase/defvotbase.rda')
+    vfile <- paste0(rotp,'/inst/script/voterbase/',namebase,'.rda')
     if(newdraw == T) {
     # Demograhpic structure
     agelength <- agebracketmax[2]-agebracketmax[1]
@@ -83,10 +83,17 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
       listvbase <<- get(base::load(file=vfile))
     }
 })
-Voterdatabase$methods(load=function(database='initial'){
-	#print('test')
+Voterdatabase$methods(uploadvbase=function(
+				    truevotdf=NULL, 
+				    manipvotdf=NULL 
+				    ){
+			      browser()
+	voterrollrealized
+	names(truevotdf)
+	names(manipvotdf)
+df = merge(x=truevotdf,y=manipvotdf,by="P",all.x=TRUE)
+df; l()
 })
-
 Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
 						     c(0.30,0.70,0.00)),
 					  probw=c(0.50,0.05),
@@ -105,7 +112,6 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
           dplyr::mutate(p4=probv[[2]][1]) %>%
           dplyr::mutate(p5=probv[[2]][2]+probv[[2]][3]*Zt) %>%
           dplyr::mutate(p6=probv[[2]][3]*(1-Zt))
-
 
   ## Technology
   voterrollrealized <<- listvbase[[1]] %>% dplyr::left_join(ztech, by="P") %>%
@@ -140,6 +146,7 @@ Countingprocess <- setRefClass("Countingprocess",
 					   polyc='list',
 					   parameters='list', 
 					   preend='list', 
+					   parampre='data.frame', 
 					   se='list',
 					   lx='list',
 					   plot3dlist='list'))
@@ -185,9 +192,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
     na.omit() 
 
   rdfc <<- sdfc %>% dplyr::arrange(alpha) %>% dplyr::mutate(pri=row_number()/length(pre))
-  
   # Init values standard form
-  polyc[['alpha']] <<- unname(coef(lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))))
+  polyc[['alpha']] <<- lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))
   # Init values hybrid form
   #polyc[[2]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
   ### Init values opposition form
@@ -210,31 +216,34 @@ Countingprocess$methods(sortpre=function(poly=6,
 	data.frame(pred,res) %>% `colnames<-` (c(paste0(x,'_pred'),paste0(x,'_res')))
     }) %>% as.data.frame(.) -> predictor
   quintile <<- dplyr::bind_cols(srdfc, predictor)
-
-  rcte <- polynom::polynomial(round(polyc[['alpha']],4))
+  rcte <- polynom::polynomial(unname(coef(polyc[['alpha']])))
   rcr2 <- round(cor(quintile$alpha_pred,quintile$alpha)^2,4)
   sumreg['alpha'] <<- paste0(rcte,' with R² ',rcr2)
 })
 Countingprocess$methods(manfolimp=function(
 				pres1=quintile$x, 
-				pres2=polyc[[1]], 
-				pres3='x-alpha'
+				pres2=quintile$alpha,  
+				pres3="(alpha*zeta + alpha - x)/zeta"
 					   ){
   # 1
   ##
   end1 <- pres1
   # 2
-  browser()
-  polr <- polynom::polynomial(grig$polyc[[1]])
-  #round(polynom::integral(polr,c(0,1)),digits=4)
+  #coef(polyc[['alpha']])
+  #coef <- coefficients(polyc[[1]])
+  #round(polynom::integral(coef,c(0,1)),digits=4)
+  #polr <- polynom::polynomial(polyc[[1]])
   ## 
-  end2 <- predict(polr,quintile$pri)
+  predict(polyc[[1]])
+  end2 <- pres2 
   # 3
   ## 
-  end3 <- end1-end2
+  #browser()
+  riggreal <- pareq(pres3,as.list(rdfc[,c("x","alpha","zeta")]))
+  #end1-end2
+  end3 <- riggreal
 
   preend <<- list(end1,end2,end3)
-
 })
 Countingprocess$methods(riggsta=function(
   param=list(form=1,pre=c('x','alpha','y'), end=c('zeta','lambda')),
@@ -243,27 +252,17 @@ Countingprocess$methods(riggsta=function(
   forms <- list('_s','o_h','h_o')[param$form[[1]]]
   ends1 <- se[[paste0(param$end[1],forms)]][2]
   ends2 <- se[[paste0(param$end[2],forms)]][2]
+
+  parampre <<- quintile[,c('P','pri')] %>%
+   # Presetting the first three parameters
+   dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
+   dplyr::mutate(!!param$pre[2]:=predet[[2]]) %>%
+   dplyr::mutate(!!param$pre[3]:=predet[[3]]) %>%
+   # Backsolving for the two remaining parameters
+   dplyr::mutate(!!param$end[1]:=pareq(ends1,lv=as.list(.[,param$pre[1:3]]))) %>%
+   dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=as.list(.[,c(param$end[1],param$pre[1:3])])))
   
-  parampre <- data.frame(pri=quintile$pri) %>%
-    # Presetting the first three parameters
-    dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
-    dplyr::mutate(!!param$pre[2]:=predet[[2]]) %>%
-    dplyr::mutate(!!param$pre[3]:=predet[[3]]) %>%
-    # Backsolving for the two remaining parameters
-    dplyr::mutate(!!param$end[1]:=pareq(ends1,lv=as.list(.[,param$pre[1:3]]))) %>%
-    dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=as.list(.[,c(param$end[1],param$pre[1:3])])))
-  
-  rdfc[,c(param$pre,param$end)] <<- parampre[,-1]
-})
-Countingprocess$methods(rigghyp=function(sdfinp=NULL){
-  # Init values standard form
-  k <- function(alpha,x,k,h) eval(parse(text=formula,c(list(alpha=alpha,x=x),list(k=k,h=h))))
-  rdfc <<- sdfc %>% dplyr::select(pri,pre,alpha,x,y)
-})
-Countingprocess$methods(riggopo=function(sdfinp=NULL){
-  # Init values standard form
-  n <- function(alpha,x,k,h) eval(parse(text=formula,c(list(alpha=alpha,x=x),list(k=k,h=h))))
-  rdfc <<- sdfc %>% dplyr::select(pri,pre,alpha,x,y)
+  rdfc[,c(param$pre,param$end)] <<- parampre[,c(-1,-2)]
 })
 #' @export Countinggraphs
 Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))

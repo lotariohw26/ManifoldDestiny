@@ -1,12 +1,12 @@
-sympupd <- function(){
+sympyupd <- function(){
 	abs_path <- function(){rprojroot::find_rstudio_root_file()}
 	fdm <- paste0(abs_path(),'/inst/script/symbolic/pysympy.py')
 	reticulate::source_python(fdm)
 	eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
 	usethis::use_data(eqpar, overwrite = TRUE)
 }
-# Saving data
 
+# Saving data
 #' @export
 abs_path <- function(){rprojroot::find_rstudio_root_file()}
 

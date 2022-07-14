@@ -23,7 +23,7 @@ set.seed(snr)
 agebracketmax <- c(18,100,1000)
 regf <- 0.8
 numprec <- 200
-vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase='default',newdraw=F)
+vrdf <- Voterdatabase(agebracketmax,numprec,regf,newdraw=F)
 ###### Realization of DGP
 probwset <- c(0.50,0.05)
 probvset <- list(c(0.70,0.30,0.00),c(0.30,0.70,0.00))
@@ -62,9 +62,16 @@ grig <- Countinggraphs(votr)
 grig$sortpre()
 grig$manfolimp()
 grig$riggsta()
+vrdf$uploadvbase(truevotdf=grig$sdfc,manipvotdf=grig$parampre)
+grig$se$y_s[3]
+# [1] "(alpha*zeta + alpha - x)/zeta"
+# [1] "(alpha*zeta + alpha - x)/zeta"
+# [1] NA
+
+
 grig$sortpre()
-gr3da <- grig$plotly3d(partition=1)[[1]]
 grt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
+gr3da <- grig$plotly3d(partition=1)[[1]]
 grig$rdfc; l()
 ###### Graphical ###
 ########## Tab1
