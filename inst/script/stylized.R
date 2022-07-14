@@ -58,7 +58,7 @@ gnt4babc <- ggpubr::ggarrange(gnt4a,gnt4b,gnt4c, nrow=4)
 ########## Tab5
 ##gsimf$rdfc$zeta <- 1
 gn3da <- gsimf$plotly3d(partition=1)[[1]]
-gn3db <- gsimf$plotly3d(partition=1,selid=3)
+gn3db <- gsimf$plotly3d(partition=1,selid=2)
 #####################################################################################################
 ##### B) Rigged ###
 grig <- Countinggraphs(votr)
@@ -67,11 +67,6 @@ grig$manfolimp()
 grig$riggsta()
 vrdf$uploadvbase(truevotdf=grig$sdfc,manipvotdf=grig$parampre)
 grig$se$y_s[3]
-# [1] "(alpha*zeta + alpha - x)/zeta"
-# [1] "(alpha*zeta + alpha - x)/zeta"
-# [1] NA
-
-
 grig$sortpre()
 grt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
 gr3da <- grig$plotly3d(partition=1)[[1]]

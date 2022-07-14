@@ -123,12 +123,14 @@ Voterdatabase$methods(uploadvbase=function(
 				    truevotdf=NULL, 
 				    manipvotdf=NULL 
 				    ){
-			      browser()
-	voterrollrealized
-	names(truevotdf)
-	names(manipvotdf)
-df = merge(x=truevotdf,y=manipvotdf,by="P",all.x=TRUE)
-df; l()
+
+  df <- merge(x=truevotdf,y=select(manipvotdf,-pri),by="P",all.x=TRUE) %>%
+	dplyr::mutate(diff_x=x-x_s) %>%
+	dplyr::mutate(diff_y=y-y_s) %>%
+	dplyr::mutate(diff_zeta=zeta-zeta_s) 
+
+  upv <- listvbase[[1]] %>% merge(y=dplyr::select(df,P,diff_x,diff_y,diff_zeta),by="P",all.x=TRUE)
+
 })
 #' @export Grafbase
 Grafbase <- setRefClass("Grafbase", contains = c('Voterdatabase'), fields = list(def='list'))
@@ -154,9 +156,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 					    polyn=6,
 					    sortby=alpha
 					    ){
-
-
-
+                                            
   # Loading 
   rotp <- rprojroot::find_rstudio_root_file()
   load(paste0(rotp,'/data/eqpar.rda'))
@@ -169,7 +169,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   se <<- eqpar$meqs
   lx <<- eqpar$meql
 
-  sdfc <<- sdfinp %>% dplyr::select(P,all_of(selvar)) %>% dplyr::group_by(P) %>%
+  sdfc <<- sdfinp %>% dplyr::select(P,all_of(selvar)) %>% 
+    dplyr::group_by(P) %>%
     dplyr::arrange(P) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
     #dplyr::filter(a>0) %>%
@@ -188,9 +189,12 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
     dplyr::mutate(Omega=pareq(se[['Omega_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(Gamma=pareq(se[['Gamma_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(xi=pareq(se[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    na.omit() 
+    na.omit() %>% 
+    dplyr::arrange(alpha) %>% 
+    dplyr::mutate(pri=row_number()/length(pre))
 
-  rdfc <<- sdfc %>% dplyr::arrange(alpha) %>% dplyr::mutate(pri=row_number()/length(pre))
+  rdfc <<- sdfc   # Init values standard form
+  
   # Init values standard form
   polyc[['alpha']] <<- lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))
   # Init values hybrid form
@@ -254,7 +258,7 @@ Countingprocess$methods(riggsta=function(
   ends1 <- se[[paste0(param$end[1],forms)]][2]
   ends2 <- se[[paste0(param$end[2],forms)]][2]
 
-  parampre <<- quintile[,c('P','pri')] %>%
+   parset <- quintile[,c('P','pri')] %>%
    # Presetting the first three parameters
    dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
    dplyr::mutate(!!param$pre[2]:=predet[[2]]) %>%
@@ -263,7 +267,9 @@ Countingprocess$methods(riggsta=function(
    dplyr::mutate(!!param$end[1]:=pareq(ends1,lv=as.list(.[,param$pre[1:3]]))) %>%
    dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=as.list(.[,c(param$end[1],param$pre[1:3])])))
   
-  rdfc[,c(param$pre,param$end)] <<- parampre[,c(-1,-2)]
+   rdfc[,c(param$pre,param$end)] <<- parset[,c(-1,-2)]
+   names(parset)[3:7] <- paste0(c(param$pre,param$end),forms)
+   parampre <<- parset
 })
 #' @export Countinggraphs
 Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
