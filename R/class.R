@@ -14,7 +14,10 @@ transtwomodes <- function(A=NULL,B=NULL,C=NULL,D=NULL,dfi=NULL){
 ############################################################################################################################################################
 ###########################################################################################################################################################
 #' @export Voterdatabase
-Voterdatabase <- setRefClass("Voterdatabase", fields=list(listvbase='list'))
+Voterdatabase <- setRefClass("Voterdatabase", fields=list(
+							  listvbase='list', 
+							  voterrollrealized='data.frame')
+)
 Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  nprect=5,
 					  reg=0.80,
@@ -22,7 +25,7 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  newdraw=T
 					  ){
 
-browser()
+
     if(newdraw == T) {
     # Demograhpic structure
     agelength <- agebracketmax[2]-agebracketmax[1]
@@ -59,7 +62,7 @@ browser()
 
     # Realvoters
     #sci <- 500; hc <- floor(popsize/sci); resnr <- c(rep(sci,hc),popsize-sci*hc)
-    #voterrolldatabase <<- resnr %>% purrr::map_df(randNames::rand_names,nationality="US") %>%
+    #voterrolldatabase <- resnr %>% purrr::map_df(randNames::rand_names,nationality="US") %>%
     #dplyr::select(gender,name.first,name.last) %>%
     # Id-number for voters
     voterrolldatabase <- data.frame(idn=seq(1:popsize)) %>%
@@ -68,20 +71,19 @@ browser()
       dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%
       # Assigned to different precincts
       dplyr::mutate(P=sample(nprect,size=n(),replace=T)) %>%
-      dplyr::arrange(P) 
+      dplyr::arrange(P) %>%
       # Assigned whether citizien register to vote or not
-      dplyr::mutate(R=ifelse(idn%in%rvot,1,0)) %>%
+      dplyr::mutate(R=ifelse(idn%in%rvot,1,0)) 
       # Assigned whether citizien register to vote or not
-      listvbase <- list(voterrolldatabase,totpop,agebrack)
+      listvbase <<- list(voterrolldatabase,totpop,agebrack)
       usethis::use_data(listvbase, overwrite = TRUE)
     } 
     else {
 
+browser()
       rotp <- rprojroot::find_rstudio_root_file()
       load(paste0(rotp,'/data/listvbase.rda'))
-      voterrolldatabase <<- listvbase[[1]]
-      totpop <<- listvbase[[2]]
-      agebrack <<- listvbase[[3]]
+      #listvbasevoterrolldatabase <<- listvbase[[1]]
     }
 })
 Voterdatabase$methods(load=function(database='initial'){
