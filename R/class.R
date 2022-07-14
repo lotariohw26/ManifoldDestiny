@@ -14,9 +14,7 @@ transtwomodes <- function(A=NULL,B=NULL,C=NULL,D=NULL,dfi=NULL){
 ############################################################################################################################################################
 ###########################################################################################################################################################
 #' @export Voterdatabase
-Voterdatabase <- setRefClass("Voterdatabase", fields=list(voterrolldatabase='data.frame',
-							  voterrollrealized='data.frame',
-							  totpop='matrix',agebrack='vector'))
+Voterdatabase <- setRefClass("Voterdatabase", fields=list(listvbase='list'))
 Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  nprect=5,
 					  reg=0.80,
@@ -24,8 +22,8 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  newdraw=T
 					  ){
 
-
-    filn <- paste0('voterbase/',namebase)
+browser()
+    if(newdraw == T) {
     # Demograhpic structure
     agelength <- agebracketmax[2]-agebracketmax[1]
     brack <- seq(agebracketmax[1],agebracketmax[2])
@@ -44,10 +42,9 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
     colnames(latepop) <- NULL
 
     # Total Population
-    totpop <<- cbind(earlpop,latepop)
-    agebrack <<- agebracketmax
+    totpop <- cbind(earlpop,latepop)
+    agebrack < agebracketmax
     
-    if(newdraw == T) {
     # Desc statistics
     popvotgro <- colSums(totpop)           # Population for each age group
     popsize <- sum(popvotgro) 	         # Total number of citizien
@@ -65,21 +62,21 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
     #voterrolldatabase <<- resnr %>% purrr::map_df(randNames::rand_names,nationality="US") %>%
     #dplyr::select(gender,name.first,name.last) %>%
     # Id-number for voters
-    voterrolldatabase <<- data.frame(idn=seq(1:popsize)) %>%
+    voterrolldatabase <- data.frame(idn=seq(1:popsize)) %>%
       dplyr::mutate(status='real') %>%
       # Age being assigned to citizien making up the population
       dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%
       # Assigned to different precincts
-      dplyr::mutate(pre=sample(nprect,size=n(),replace=T)) %>%
-      dplyr::arrange(pre) %>%
+      dplyr::mutate(P=sample(nprect,size=n(),replace=T)) %>%
+      dplyr::arrange(P) 
       # Assigned whether citizien register to vote or not
-      dplyr::mutate(registered=ifelse(idn%in%rvot,1,0)) %>%
+      dplyr::mutate(R=ifelse(idn%in%rvot,1,0)) %>%
       # Assigned whether citizien register to vote or not
-      dplyr::mutate(registered=ifelse(idn%in%rvot,1,0))
       listvbase <- list(voterrolldatabase,totpop,agebrack)
       usethis::use_data(listvbase, overwrite = TRUE)
     } 
     else {
+
       rotp <- rprojroot::find_rstudio_root_file()
       load(paste0(rotp,'/data/listvbase.rda'))
       voterrolldatabase <<- listvbase[[1]]
@@ -97,9 +94,9 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
                                           Ztech=c(0,1),
                                           tvoting=c('EDV','MIV')){
 
-  nprect <- max(voterrolldatabase$pre)
+  nprect <- max(voterrolldatabase$P)
   ## Election Technology and voter sentiment
-  ztech <- data.frame(pre=seq(1,nprect)) %>%
+  ztech <- data.frame(P=seq(1,nprect)) %>%
 	  dplyr::mutate(probwd=rnorm(nprect,probw[1],probw[2])) %>%
 	  dplyr::mutate(Zt=runif(n(), min=Ztech[1], max=Ztech[2])) %>%
           dplyr::mutate(p1=probv[[1]][1]) %>%
@@ -108,6 +105,7 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
           dplyr::mutate(p4=probv[[2]][1]) %>%
           dplyr::mutate(p5=probv[[2]][2]+probv[[2]][3]*Zt) %>%
           dplyr::mutate(p6=probv[[2]][3]*(1-Zt))
+browser()
 
   ## Technology
   voterrollrealized <<- voterrolldatabase %>% dplyr::left_join(ztech, by="pre") %>%
@@ -164,6 +162,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   se <<- eqpar$meqs
   lx <<- eqpar$meql
 
+browser()
   sdfc <<- sdfinp %>% dplyr::select(P,all_of(selvar)) %>% dplyr::group_by(P) %>%
     dplyr::arrange(P) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
@@ -199,7 +198,7 @@ Countingprocess$methods(sortpre=function(poly=6,
 					 sortby='alpha',
 					 selvar=c('x','y','alpha')){
 
- srdfc <- rdfc %>%
+  srdfc <- rdfc %>%
     dplyr::select(P,zeta,all_of(selvar)) %>%
     dplyr::arrange(sortby) %>%
     dplyr::mutate(pri=row_number()/length(P)) %>%

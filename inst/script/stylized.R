@@ -30,9 +30,10 @@ probvset <- list(c(0.70,0.30,0.00),c(0.30,0.70,0.00))
 Znr <- c(0,1)
 vrdf$realizedgp(probv=probvset,Ztech=Znr)
 votr <- vrdf$voterrollrealized
+View(votr)
 #################################################################################################33
 ##### A) Fair ###
-gsimf <- Countinggraphs(votr,selvar=c('pre','a','b','c','d','probwd'))
+gsimf <- Countinggraphs(votr,selvar=c('P','a','b','c','d','probwd'))
 gsimf$sortpre(selvar=c('x','y','alpha','lambda','zeta','probwd'))
 ########## Tab1
 gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha","probwd"),selvl=c("x_pred","y_pred","alpha_pred"),

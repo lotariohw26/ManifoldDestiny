@@ -60,7 +60,6 @@ inst/script/application_clark.R
 inst/script/application_dallas.R
 inst/script/application_maricopa.R
 inst/script/symbolic/pysympy.py
-
 inst/script/application_maricopa.R
 data-raw/datamanifold.R
 data-raw/county_recorder.R
