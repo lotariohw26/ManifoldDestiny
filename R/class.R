@@ -5,10 +5,11 @@ pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))ev
 
 #' @export totwomodes
 transtwomodes <- function(A=NULL,B=NULL,C=NULL,D=NULL,dfi=NULL){
-  ou <- dfi %>% dplyr::mutate(a=A1) %>% 
-	  dplyr::mutate(b=A1+C3+A2) %>%
-	  dplyr::mutate(c=B1+B3) %>%
-	  dplyr::mutate(d=C1+A3+C2) 
+  ou <- dfi %>% 
+    dplyr::mutate(a=eval(parse(text=A))) %>% 
+    dplyr::mutate(b=eval(parse(text=B))) %>%
+    dplyr::mutate(c=eval(parse(text=C))) %>%
+    dplyr::mutate(d=eval(parse(text=D))) 
 }
 ############################################################################################################################################################
 ###########################################################################################################################################################

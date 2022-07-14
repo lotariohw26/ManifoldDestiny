@@ -20,7 +20,8 @@ source(paste0(abs_path(),'/R/class.R'))
 ### Governor
 ### Senate
 load(paste0(abs_path(),'/data/clark_sgs_sel.rda'))
-fitdf <-transtwomodes(A=c('B2'),B=c('A1+C3+A2'),C=c('B1+B3'),D=c('C1+A3+C2'),dfi=clark_sgs_sel[[3]])
+fitdf <-transtwomodes(A=c('B2'),B=c('A1','C3','A2'),C=c('B1+B3'),D=c('C1+A3+C2'),dfi=clark_sgs_sel[[3]])
+
 gclark <- Countinggraphs(fitdf)
 gclark$sortpre()
 #### Step 1: Visual inspection
