@@ -49,7 +49,7 @@ Omega_o   = [Eq(Omega,(a+b)/(a+b+c+d)),Eq(alpha,(m+xi*y)/(1+xi))]
 ### Standard form
 y_s.append(Eq(y,solve(alpha_s[1],y)[0]))
 ### Hybrid form
-
+solve(alpha_s[1],y)
 ### Oppostion form
 
 ### Interaction

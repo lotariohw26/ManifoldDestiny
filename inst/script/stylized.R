@@ -63,14 +63,16 @@ votr <- vrdf$voterrollrealized
 ##### B) Rigged ###
 grig <- Countinggraphs(votr)
 grig$sortpre()
-grig$manfolimp(pres1=grig$quintile$x,pres2=grig$quintile$alpha-0*0.05,pres3="(alpha*zeta + alpha - x)/zeta")
+grig$manfolimp(pres1=grig$quintile$x,
+	       pres2=grig$quintile$alpha-0.03,
+	       pres3="(alpha*zeta + alpha - x)/zeta")
 grig$riggsta()
 grig$parameters$standard
 vrdf$uploadvbase(grig$sdfc,grig$rdfc,grig$parameters$standard)
 View(vrdf$listvbase[[4]])
 ###### Graphical ###
 ########## Tab1
-grt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
+jrt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
 grt2b <- grig$plot2d(selvp=c("zeta"),selvl='zeta_m')
 grt2ab <- plotly::subplot(grt2a,grt2b,nrows=2)
 ########### Tab3

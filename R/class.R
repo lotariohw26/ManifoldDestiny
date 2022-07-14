@@ -170,6 +170,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   se <<- eqpar$meqs
   lx <<- eqpar$meql
 
+browser()
+  ils <- c('a','b','c','d')
   sdfc <<- sdfinp %>% dplyr::select(P,all_of(selvar)) %>% 
     dplyr::group_by(P) %>%
     dplyr::arrange(P) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
@@ -178,7 +180,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
     #dplyr::filter(b>0) %>%
     #dplyr::filter(c>0) %>%
     #dplyr::filter(d>0) %>% 
-    dplyr::mutate(x=pareq(se[['x_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(x=pareq(se[['x_s']][1],lv=as.list(.[,ils]))) %>%
+    #dplyr::mutate(x=pareq(se[['x_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(y=pareq(se[['y_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(g=pareq(se[['g_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(h=pareq(se[['h_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
