@@ -6,7 +6,7 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  nprect=20,
 					  reg=0.80,
 					  namebase='defvotbase',
-					  newdraw=T
+					  newdraw=F
 					  ){
 
     rotp <- rprojroot::find_rstudio_root_file()
@@ -65,7 +65,7 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
       base::save(file=vfile,listvbase)
     } 
     else {
-      listvbase[[1]] <<- get(base::load(file=vfile))
+      listvbase <<- get(base::load(file=vfile))
     }
 })
 Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
@@ -111,35 +111,36 @@ Voterdatabase$methods(uploadvbase=function(
 				    parameters=NULL 
 				    ){
 
-  # Breate diff 
-  trvdf  <- dplyr::select(truevotdf,P,all_of(parameters))
-  names(trvdf)[-1] <- paste0(names(trvdf)[-1],'_s')
-  vdiff  <- merge(x=trvdf,y=select(manipvotdf,-pri),by="P",all.x=TRUE) %>%
-  dplyr::mutate(Cp=C) %>%
-  dplyr::mutate(T=V/R) %>%
-  dplyr::mutate(diff_x=x_s-x) %>%
-  dplyr::mutate(diff_y=y_s-y) %>%
-  dplyr::mutate(diff_alpha=alpha_s-zeta) %>%
-  dplyr::mutate(diff_a=0) %>%
-  dplyr::mutate(diff_b=0) %>%
-  dplyr::mutate(diff_c=ceiling(y_s*(c+d+Cp)-c)) %>%
-  dplyr::mutate(diff_d=Cp-diff_c) 
-  
-  vdiff_sel <- dplyr::select(vdiff,P,Cp,diff_c,diff_d)
-  base_sel  <- dplyr::select(listvbase[[2]],P,idn,age,status,P,R,C,a,b,c,d) %>% dplyr::mutate(Cu=0)
-  
-  listvbase[[3]] <<- base_sel %>% 
-	  dplyr::arrange(P) %>% 
-	  dplyr::left_join(vdiff_sel,by="P") %>%
-	  base::split(.$P) %>%
-	  purrr::map(function(x){
-	    Cstock <- sum(x$C)
-	    phantcan <- which(x$C==1)
-	    drawphantom <- sample(x=phantcan,size=Cstock,replace=F)
-            x[drawphantom,'c'] <- 2
-	    x
-	  }) %>%
-  dplyr::bind_rows(.) 
-  listvbase[[4]] <<- vdiff_sel
-  listvbase[[5]] <<- base_sel
+
+ # # Breate diff 
+ trvdf  <- dplyr::select(truevotdf,P,all_of(parameters))
+ names(trvdf)[-1] <- paste0(names(trvdf)[-1],'_s')
+ vdiff  <- merge(x=trvdf,y=select(manipvotdf,-pri),by="P",all.x=TRUE) %>%
+ dplyr::mutate(Cp=C) %>%
+ dplyr::mutate(T=V/R) %>%
+ dplyr::mutate(diff_x=x_s-x) %>%
+ dplyr::mutate(diff_y=y_s-y) %>%
+ dplyr::mutate(diff_alpha=alpha_s-zeta) %>%
+ dplyr::mutate(diff_a=0) %>%
+ dplyr::mutate(diff_b=0) %>%
+ dplyr::mutate(diff_c=ceiling(y_s*(c+d+Cp)-c)) %>%
+ dplyr::mutate(diff_d=Cp-diff_c) 
+ 
+ vdiff_sel <- dplyr::select(vdiff,P,Cp,diff_c,diff_d)
+ base_sel  <- dplyr::select(listvbase[[2]],P,idn,age,P,R,C,a,b,c,d) %>% dplyr::mutate(Cu=0)
+ 
+ listvbase[[3]] <<- base_sel %>% 
+         dplyr::arrange(P) %>% 
+         dplyr::left_join(vdiff_sel,by="P") %>%
+         base::split(.$P) %>%
+         purrr::map(function(x){
+           Cstock <- sum(x$C)
+           phantcan <- which(x$C==1)
+           drawphantom <- sample(x=phantcan,size=Cstock,replace=F)
+           x[drawphantom,'c'] <- 2
+           x
+         }) %>%
+ dplyr::bind_rows(.) 
+ listvbase[[4]] <<- vdiff_sel
+ listvbase[[5]] <<- base_sel
 })

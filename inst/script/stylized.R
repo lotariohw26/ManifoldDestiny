@@ -12,9 +12,7 @@ library(plotly)
 library(ViewPipeSteps)
 library(ggpubr)
 library(htmltools)
-abs_path <- function(){rprojroot::find_rstudio_root_file()}
-source(paste0(abs_path(),'/R/misc.R'))
-source(paste0(abs_path(),'/R/class.R'))
+sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
 snr <- 1
 set.seed(snr)
 ##################################################################################################
@@ -23,7 +21,8 @@ set.seed(snr)
 agebracketmax <- c(18,100,1000)
 regf <- 0.8
 numprec <- 200
-vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase='defvotbase',newdraw=T)
+nb <- 'defvotbase'
+vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase=nb,newdraw=F)
 ###### Realization of DGP
 probwset <- c(0.50,0.00)
 probvset <- list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
@@ -61,6 +60,7 @@ votr <- vrdf$listvbase[[2]]
 #gn3db <- gsimf$plotly3d(partition=1,selid=2)
 ######################################################################################################
 ##### B) Rigged ###
+### Part A:
 grig <- Countinggraphs(votr)
 grig$sortpre()
 p1 <- grig$quintile$x
@@ -72,7 +72,9 @@ grig$manfolimp(pres1=p1,
 grig$riggsta()
 grig$parameters$standard
 vrdf$uploadvbase(grig$sdfc,grig$rdfc,grig$parameters$standard)
-vrdf$listvbase[[4]]
+View(vrdf$listvbase[[5]])
+## Part B: Estimation
+
 #View(vrdf$listvbase[[3]])
 #View(vrdf$listvbase[[4]])
 #View(vrdf$listvbase[[5]])
