@@ -1,6 +1,6 @@
 ---
 title: "Manifold Destiny"
-#subtitle: "-or how to rig an election-"
+subtitle: "-or how to rig an election-"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
@@ -19,7 +19,7 @@ output:
 
 
 ```{r include=FALSE}
-library(ManifoldDestiny)
+#library(ManifoldDestiny)
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -49,8 +49,9 @@ bib <- ReadBib(paste0(ManifoldDestiny::abs_path(),'/inst/references/man_bib.bib'
 
 ```{r, eval=T, echo=F, message=F, warning=F}
 ### Loading equations
-source(paste0(abs_path(),'/inst/script/stylized.R'))
-modlat <- gsimf$lx
+sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
+load(paste0(rprojroot::find_rstudio_root_file(),'/data/eqpar.rda'))
+modlat <-  eqpar$meql
 ```
 
 
@@ -83,9 +84,10 @@ modlat <- gsimf$lx
 ################################################################################################# 
 -->
 
-```{r eval=FALSE, include=FALSE}
-xaringan::inf_mr(paste0(ManifoldDestiny::abs_path(),'/inst/Presentation.Rmd'))
-#rmarkdown::render(tes) 
+```{r, eval=F, echo=F, message=F, warning=F}
+pre_fil <- paste0(ManifoldDestiny::abs_path(),'/inst/Presentation.Rmd')
+xaringan::inf_mr(pre_fil)
+rmarkdown::render(pre_fil) 
 ```
 
 Ed. Solomon
@@ -141,13 +143,13 @@ class: inverse, center, middle
 
 .pull-left[
 ```{r, echo=FALSE, out.width="70%", fig.cap=""}
-gn3db
+#gn3db
 ```
 ]
 
 .pull-right[
 ```{r, echo=FALSE, out.width="70%", fig.cap=""}
-gn3db
+#gn3db
 ```
 ]
 
