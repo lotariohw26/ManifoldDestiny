@@ -3,7 +3,7 @@ Voterdatabase <- setRefClass("Voterdatabase", fields=list(
 							  listvbase='list')
 )
 Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
-					  nprect=5,
+					  nprect=20,
 					  reg=0.80,
 					  namebase='defvotbase',
 					  newdraw=T
