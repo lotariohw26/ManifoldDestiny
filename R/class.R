@@ -15,8 +15,7 @@ transtwomodes <- function(A=NULL,B=NULL,C=NULL,D=NULL,dfi=NULL){
 ###########################################################################################################################################################
 #' @export Voterdatabase
 Voterdatabase <- setRefClass("Voterdatabase", fields=list(
-							  listvbase='list', 
-							  voterrollrealized='data.frame')
+							  listvbase='list')
 )
 Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  nprect=5,
@@ -27,6 +26,7 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 
     rotp <- rprojroot::find_rstudio_root_file()
     vfile <- paste0(rotp,'/inst/script/voterbase/',namebase,'.rda')
+
     if(newdraw == T) {
     # Demograhpic structure
     agelength <- agebracketmax[2]-agebracketmax[1]
@@ -69,18 +69,14 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
     voterrolldatabase <- data.frame(idn=seq(1:popsize)) %>%
       dplyr::mutate(status='real') %>%
       # Age being assigned to citizien making up the population
-      dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%
+      dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%     
       # Assigned to different precincts
-      dplyr::mutate(P=sample(nprect,size=n(),replace=T)) %>%
-      dplyr::arrange(P) %>%
-      # Assigned whether citizien register to vote or not
-      dplyr::mutate(R=ifelse(idn%in%rvot,1,0)) 
-      # Assigned whether citizien register to vote or not
-      listvbase <<- list(voterrolldatabase,totpop,agebrack)
+      dplyr::mutate(P=sample(nprect,size=n(),replace=T)) %>% dplyr::arrange(P) 
+      listvbase[[1]] <<- list(voterrolldatabase,totpop,agebrack)
       base::save(file=vfile,listvbase)
     } 
     else {
-      listvbase <<- get(base::load(file=vfile))
+      listvbase[[1]] <<- get(base::load(file=vfile))
     }
 })
 Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
@@ -89,7 +85,7 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
                                           Ztech=c(0,1),
                                           tvoting=c('EDV','MIV')){
 
-  nprect <- max(listvbase[[1]]$P)
+  nprect <- max(listvbase[[1]][[1]]$P)
   ## Election Technology and voter sentiment
   ztech <- data.frame(P=seq(1,nprect)) %>%
 	  dplyr::mutate(probwd=rnorm(nprect,probw[1],probw[2])) %>%
@@ -102,7 +98,7 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
           dplyr::mutate(p6=probv[[2]][3]*(1-Zt))
 
   ## Technology
-  voterrollrealized <<- listvbase[[1]] %>% dplyr::left_join(ztech, by="P") %>%
+  listvbase[[2]] <<- listvbase[[1]][[1]] %>% dplyr::left_join(ztech, by="P") %>%
 	  base::split(.$P) %>%
   purrr::map(function(x){
   x %>%  dplyr::mutate(candraw=rbinom(n(),1,probwd)) %>%
@@ -123,25 +119,30 @@ Voterdatabase$methods(uploadvbase=function(
 				    manipvotdf=NULL, 
 				    parameters=NULL 
 				    ){
+
+browser()
   # Breate diff 
   trvdf  <- dplyr::select(truevotdf,P,all_of(parameters))
   names(trvdf)[-1] <- paste0(names(trvdf)[-1],'_s')
   vdiff  <- merge(x=trvdf,y=select(manipvotdf,-pri),by="P",all.x=TRUE) %>%
+  dplyr::mutate(Cp=C) %>%
+  dplyr::mutate(T=V/R) %>%
   dplyr::mutate(diff_x=x_s-x) %>%
   dplyr::mutate(diff_y=y_s-y) %>%
   dplyr::mutate(diff_alpha=alpha_s-zeta) %>%
   dplyr::mutate(diff_a=0) %>%
   dplyr::mutate(diff_b=0) %>%
-  dplyr::mutate(diff_c=ceiling(y_s*(c+d+C)-c)) %>%
-  dplyr::mutate(diff_d=C-diff_c) 
-#View(vdiff)
-# 1
-#yf=(cr+ca)/(c+d+Cu)
-#yf*(c+d+Cu)=cr+ca
-#yf*(c+d+Cu)-cr=ca
-#ca=yf*(c+d+Cu)-cr
-# 2
+  dplyr::mutate(diff_c=ceiling(y_s*(c+d+Cp)-c)) %>%
+  dplyr::mutate(diff_d=Cp-diff_c) 
+
+  o <- merge(x=listvbase[[1]],y=dplyr::select(vdiff,P,Cp,C,diff_c,diff_d)) %>% group_by(P) %>% 
+	  dplyr::mutate(Cstock=cumsum(abs(R-1)))
+  View(o)
 })
+
+  
+  
+
 ############################################################################################################################################################
 #' @export Countingprocess
 #' @export class Countingprocess
@@ -428,3 +429,4 @@ Estimation$methods(rotation=function(
 Estimation$methods(restoration=function(){
 			   'test'
 })
+

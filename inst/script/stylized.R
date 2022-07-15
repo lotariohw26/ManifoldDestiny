@@ -23,7 +23,7 @@ set.seed(snr)
 agebracketmax <- c(18,100,1000)
 regf <- 0.8
 numprec <- 200
-vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase='defvotbase',newdraw=F)
+vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase='defvotbase',newdraw=T)
 ###### Realization of DGP
 probwset <- c(0.50,0.00)
 probvset <- list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
@@ -72,8 +72,6 @@ grig$manfolimp(pres1=p1,
 grig$riggsta()
 grig$parameters$standard
 vrdf$uploadvbase(grig$sdfc,grig$rdfc,grig$parameters$standard)
-
-
 vrdf$listvbase[[4]]
 View(vrdf$listvbase[[4]])
 ###### Graphical ###
