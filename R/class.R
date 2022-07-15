@@ -123,7 +123,6 @@ Voterdatabase$methods(uploadvbase=function(
 				    manipvotdf=NULL, 
 				    parameters=NULL 
 				    ){
-browser()
   # Breate diff 
   trvdf  <- dplyr::select(truevotdf,P,all_of(parameters))
   names(trvdf)[-1] <- paste0(names(trvdf)[-1],'_s')
@@ -133,12 +132,15 @@ browser()
   dplyr::mutate(diff_alpha=alpha_s-zeta) %>%
   dplyr::mutate(diff_a=0) %>%
   dplyr::mutate(diff_b=0) %>%
-  dplyr::mutate(diff_c=0) %>%
-  dplyr::mutate(diff_d=0) %>%
-  dplyr::select(P,a,b,c,d,x,y,alpha,diff_x,diff_y,diff_alpha,diff_a,diff_b,diff_c,diff_d,diff_x)
-View(manipvotdf)
-View(vdiff)
-
+  dplyr::mutate(diff_c=ceiling(y_s*(c+d+C)-c)) %>%
+  dplyr::mutate(diff_d=C-diff_c) 
+#View(vdiff)
+# 1
+#yf=(cr+ca)/(c+d+Cu)
+#yf*(c+d+Cu)=cr+ca
+#yf*(c+d+Cu)-cr=ca
+#ca=yf*(c+d+Cu)-cr
+# 2
 })
 ############################################################################################################################################################
 #' @export Countingprocess
@@ -156,7 +158,7 @@ Countingprocess <- setRefClass("Countingprocess",
 					   lx='list',
 					   plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,
-					    selvar=c('R','a','b','c','d'), 
+					    selvar=c('R','C','a','b','c','d'), 
 					    polyn=6,
 					    sortby=alpha
 					    ){
@@ -173,10 +175,14 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   se <<- eqpar$meqs
   lx <<- eqpar$meql
 
+
   ils <- c('a','b','c','d')
   sdfc <<- sdfinp %>% dplyr::select(P,all_of(selvar)) %>% 
     dplyr::group_by(P) %>%
-    dplyr::arrange(P) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
+    dplyr::arrange(P) %>% 
+    dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
+    dplyr::mutate(R=sum(R),C=sum(C),V=R-C) %>%
+    #dplyr::mutate(T1=a+b+c+d) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
     #dplyr::filter(a>0) %>%
     #dplyr::filter(b>0) %>%
@@ -197,7 +203,9 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
     dplyr::mutate(xi=pareq(se[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     na.omit() %>% 
     dplyr::arrange(alpha) %>% 
-    dplyr::mutate(pri=row_number()/length(pre))
+    dplyr::mutate(pri=row_number()/length(pre)) %>%
+    dplyr::relocate(pri,.before=P) %>%
+    dplyr::relocate(V,.after=C)
 
   rdfc <<- sdfc   # Init values standard form
   

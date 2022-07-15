@@ -26,8 +26,8 @@ numprec <- 200
 vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase='defvotbase',newdraw=F)
 ###### Realization of DGP
 probwset <- c(0.50,0.00)
-probvset <- list(c(0.60,0.30,0.00),c(0.30,0.60,0.10))
-Znr <- c(0,0)
+probvset <- list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
+Znr <- c(0,1)
 vrdf$realizedgp(probv=probvset,
 		probw=probwset,
 		Ztech=Znr)
