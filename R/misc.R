@@ -17,34 +17,27 @@ bm <- function(){
    system('R CMD build .; R CMD INSTALL ManifoldDestiny_0.0.0.9000.tar.gz; rm -r ManifoldDestiny_0.0.0.9000.tar.gz')
    setwd(early)
 }
-## Saving data
-##' @export
-#abs_path <- function(){rprojroot::find_rstudio_root_file()}
-#
-##' @export
-#
-##' @export
-#rp <- function(){
-#	reticulate::repl_python()
-#}
-##' @export
-#k <- function(){
-#    df <-  clipr::write_last_clip()
-#}
-##' @export
-#l <- function(){
-#    open_command <- switch(Sys.info()[['sysname']],
-#                           Windows= 'open',
-#                           Linux  = 'xdg-open',
-#                           Darwin = 'open')
-#
-#    #temp_file <- paste0('tmp/abc', '.xlsx')
-#    temp_file <- paste0(tempfile(), '.xlsx')
-#    df <-  clipr::write_last_clip()
-#    openxlsx::write.xlsx(df, file = temp_file)
-#    invisible(system(paste(open_command, temp_file),
-#                     ignore.stdout = TRUE, ignore.stderr = TRUE))
-#}
+#' @export
+k <- function(){
+    df <-  clipr::write_last_clip()
+}
+#' @export
+l <- function(){
+    open_command <- switch(Sys.info()[['sysname']],
+                           Windows= 'open',
+                           Linux  = 'xdg-open',
+                           Darwin = 'open')
+
+    #temp_file <- paste0('tmp/abc', '.xlsx')
+    temp_file <- paste0(tempfile(), '.xlsx')
+    df <-  clipr::write_last_clip()
+    openxlsx::write.xlsx(df, file = temp_file)
+    invisible(system(paste(open_command, temp_file),
+                     ignore.stdout = TRUE, ignore.stderr = TRUE))
+}
+# Saving data
+#' @export
+abs_path <- function(){rprojroot::find_rstudio_root_file()}
 #v <- function(){
 #    open_command <- switch(Sys.info()[['sysname']],
 #                           Windows= 'open',
@@ -99,22 +92,6 @@ bm <- function(){
 #	rat <- ifelse(d==0,0.5,n/d)
 #}
 #
-##' @export
-#allvectors <- function(dfc=NULL){
-#
-#  #𝓧	𝓨 	𝓐,1	 𝓛,1	𝓩,1
-#  vec_df_1 <- dfc %>% dplyr::mutate(x=ratio(n=a,d=a+b),y=ratio(n=c,d=c+d),alpha=ratio(n=a+c,d=(a+b+c+d)),Lambda=ratio(n=a+d,d=a+b+c+d),zeta=ratio(n=c+d,d=a+b))
-#
-#  #𝓖,1	𝓗,1 dfc %>%   𝓐,1	Ω,1	Γ,1
-#  vec_df_2 <- dfc %>%  dplyr::mutate(g=ratio(n=a,d=a+d),h=ratio(n=c,d=c+b),alpha=ratio(n=a+c,d=(a+b+c+d)),Omega=ratio(n=a+b,d=a+b+c+d),Gamma=ratio(n=b+c,d=a+d))
-#
-#  #𝓜,1	𝓝,1   dfc %>%   Ω,1	 𝓛,1	ξ,1	1/Arb
-#  vec_df_3 <- dfc %>% dplyr::mutate(m=ratio(n=a,d=a+c),n=ratio(n=b,d=b+d),Omega=ratio(n=a+b,d=a+b+c+d),Lambda=ratio(n=a+d,d=a+b+c+d),epsilon=ratio(n=b+d,d=a+c)) %>% dplyr::mutate(inv_arb=1/epsilon)
-#
-#  vec_list <- list(vec_df_1,vec_df_2,vec_df_3)
-#}
-#
-##' @export
 #aggordered <- function(dfc=NULL,polynr=6,arrangevar='x'){
 #
 #    names(dfc) <- c("pre","a","b","c","d","x","y","alpha","Lambda","zeta")
@@ -136,22 +113,3 @@ bm <- function(){
 #    dplyr::mutate(crossres_alpha=res_zeta*res_alpha) %>%
 #    tidyr::pivot_longer(c(x,y,alpha,pred1,pred2,pred3))
 #}
-#
-## Two modes
-### Standard form
-##' @export
-#y_stdform <- function(parsurf='(alpha-k*x-h)/(1-k*x)',alpha=0.50,x=0.60,k=0.01,h=-0.0282354516396){
-#	eval(parse(text=parsurf),c(list(alpha=alpha,x=x),list(k=k,h=h)))
-#}
-### Hybrid form
-#
-#
-### Opposition form
-#
-##' @export
-#df_stdform <- function(vecone_df=vecone){
-#
-#	test <- vecone_df %>% dplyr::mutate(y_est=y_stdform(alpha=alpha,x=x)) %>% dplyr::mutate(resM=y-y_est)
-#}
-#
-#
