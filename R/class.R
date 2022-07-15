@@ -83,8 +83,8 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
       listvbase <<- get(base::load(file=vfile))
     }
 })
-Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
-						     c(0.30,0.70,0.00)),
+Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
+						     c(0.30,0.60,0.10)),
 					  probw=c(0.50,0.05),
                                           Ztech=c(0,1),
                                           tvoting=c('EDV','MIV')){
@@ -111,13 +111,12 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
       		      sample(4:6,size=n(),prob=c(x$p4[1],x$p5[1],x$p6[1]),T)))
   }) %>%
   dplyr::bind_rows(.) %>%
-  dplyr::mutate(a=ifelse(voted==1,1,0)) %>%
-  dplyr::mutate(c=ifelse(voted==2,1,0)) %>%
-  dplyr::mutate(b=ifelse(voted==4,1,0)) %>%
-  dplyr::mutate(d=ifelse(voted==5,1,0)) %>%
-  dplyr::mutate(R=ifelse(voted==3 | voted==6,0,1)) %>%
-  dplyr::mutate(status=ifelse(R==0,'credit','active')) %>%
-  dplyr::arrange(desc(status),pi)
+  dplyr::mutate(a=ifelse(voted==1&R==1,1,0)) %>%
+  dplyr::mutate(c=ifelse(voted==2&R==1,1,0)) %>%
+  dplyr::mutate(b=ifelse(voted==4&R==1,1,0)) %>%
+  dplyr::mutate(d=ifelse(voted==5&R==1,1,0)) %>%
+  dplyr::mutate(C=ifelse(voted==3|voted==6&R==1,1,0))			 
+			 
 })
 Voterdatabase$methods(uploadvbase=function(
 				    truevotdf=NULL, 
@@ -135,77 +134,10 @@ Voterdatabase$methods(uploadvbase=function(
   dplyr::mutate(diff_b=0) %>%
   dplyr::mutate(diff_c=0) %>%
   dplyr::mutate(diff_d=0) %>%
-  dplyr::select(P,a,b,c,d, diff_a, diff_b, diff_c, diff_d,diff_x,diff_y,diff_alpha)
-  glimpse(vdiff) 
+  dplyr::select(P,a,b,c,d,x,y,alpha,diff_x,diff_y,diff_alpha,diff_a,diff_b,diff_c,diff_d,diff_x)
 
   # Update Voterdatabase
   listvbase[[4]] <<- listvbase[[1]] %>% merge(y=vdiff,all.x=T) 
-  View(listvbase[[4]])
-
-})
-#' @export Grafbase
-Grafbase <- setRefClass("Grafbase", contains = c('Voterdatabase'), fields = list(def='list'))
-#' @export Tablebase
-Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = list(ghi='list'))
-############################################################################################################################################################
-#' @export Countingprocess
-#' @export class Countingprocess
-Countingprocess <- setRefClass("Countingprocess", 
-			       fields=list(sdfc='data.frame',
-					   rdfc='data.frame',
-					   quintile='data.frame',
-					   sumreg='list', 
-					   polyc='list',
-					   parameters='list', 
-					   preend='list', 
-					   parampre='data.frame', 
-					   se='list',
-					   lx='list',
-					   plot3dlist='list'))
-Countingprocess$methods(initialize=function(sdfinp=NULL,
-					    selvar=c('R','a','b','c','d'), 
-					    polyn=6,
-					    sortby=alpha
-					    ){
-                                            
-  # Loading 
-  rotp <- rprojroot::find_rstudio_root_file()
-  load(paste0(rotp,'/data/eqpar.rda'))
-  load(paste0(rotp,'/data/stickers.rda'))
-
-  # Assigning parameters 
-  parameters <<- stickers[['parameters']]
-  # Assigning model equations
-  #pareqs <<- eqpar
-  se <<- eqpar$meqs
-  lx <<- eqpar$meql
-
-  ils <- c('a','b','c','d')
-  sdfc <<- sdfinp %>% dplyr::select(P,all_of(selvar)) %>% 
-    dplyr::group_by(P) %>%
-    dplyr::arrange(P) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
-    dplyr::ungroup() %>% dplyr::distinct() %>%
-    #dplyr::filter(a>0) %>%
-    #dplyr::filter(b>0) %>%
-    #dplyr::filter(c>0) %>%
-    #dplyr::filter(d>0) %>% 
-    dplyr::mutate(x=pareq(se[['x_s']][1],lv=as.list(.[,ils]))) %>%
-    #dplyr::mutate(x=pareq(se[['x_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(y=pareq(se[['y_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(g=pareq(se[['g_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(h=pareq(se[['h_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(m=pareq(se[['m_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(n=pareq(se[['n_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(alpha=pareq(se[['alpha_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(zeta=pareq(se[['zeta_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(lambda=pareq(se[['lambda_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(Omega=pareq(se[['Omega_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(Gamma=pareq(se[['Gamma_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    dplyr::mutate(xi=pareq(se[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    na.omit() %>% 
-    dplyr::arrange(alpha) %>% 
-    dplyr::mutate(pri=row_number()/length(pre))
-
   rdfc <<- sdfc   # Init values standard form
   
   # Init values standard form

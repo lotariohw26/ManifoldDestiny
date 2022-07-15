@@ -26,12 +26,13 @@ numprec <- 200
 vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase='defvotbase',newdraw=F)
 ###### Realization of DGP
 probwset <- c(0.50,0.00)
-probvset <- list(c(0.70,0.30,0.00),c(0.30,0.70,0.00))
+probvset <- list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
 Znr <- c(0,0)
 vrdf$realizedgp(probv=probvset,
 		probw=probwset,
 		Ztech=Znr)
 votr <- vrdf$voterrollrealized
+View(votr)
 #################################################################################################33
 ###### A) Fair ###
 #gsimf <- Countinggraphs(votr,selvar=c('P','a','b','c','d','probwd'))
@@ -72,8 +73,7 @@ grig$manfolimp(pres1=p1,
 grig$riggsta()
 grig$parameters$standard
 vrdf$uploadvbase(grig$sdfc,grig$rdfc,grig$parameters$standard)
-
-
+vrdf$listvbase[[4]]
 View(vrdf$listvbase[[4]])
 ###### Graphical ###
 ########## Tab1
