@@ -18,14 +18,25 @@ library(ggpubr)
 library(htmltools)
 vtest <- Voterdatabase()
 vtest$realizedgp()
-#View(vtest$listvbase[[1]])
-#View(vtest$listvbase[[2]]%>%filter(C==1) %>% select(R,C))
-#View(ctest$sdfc)
 ctest <- Countingprocess(vtest$listvbase[[2]])
-testthat::test_that("tautologies",{
-  vf <- rowSums(ctest$sdfc[,c("a","b","c","d")])
-  ve <- ctest$sdfc$V
-  # 
+cmat <- ctest$sdfc
+parlform <- ctest$parameters
+seqpy <- ctest$se
+
+testthat::test_that("counting",{
+  vf <- rowSums(cmat[,c("a","b","c","d")])
+  ve <- cmat$V
   expect_equal(vf,ve) 
+})
+
+testthat::test_that("tautologies",{
+  pm <- as.vector(unlist(parlform))
+  parlv <- paste0(pm,each=rep(c('_s','_h','_o'), each=5))
+  eqv <- seqpy  
+  pe <- cmat[, pm]
+  po <- cmat[, c('a','b','c','d')]
+  pv <- parlv %>% purrr::map_dfc(function(x,cmat){pareq(eqv[[x]][1],po)}) %>% 
+	  `colnames<-` (pm)
+  expect_equal(pv,pe) 
 })
 
