@@ -170,7 +170,6 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   se <<- eqpar$meqs
   lx <<- eqpar$meql
 
-browser()
   ils <- c('a','b','c','d')
   sdfc <<- sdfinp %>% dplyr::select(P,all_of(selvar)) %>% 
     dplyr::group_by(P) %>%
@@ -419,6 +418,7 @@ Estimation$methods(rotation=function(
   #              true_rank=rank(partition_rank))
   #View(rdfc)
 })
-
-
+Estimation$methods(rotation=function(){
+			   'test'
+})
 

@@ -37,7 +37,6 @@ BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown", 
 ```{r eval=T, include=FALSE}
 knitr::knit_exit()
 ```
-
 ### Dallas
 https://docs.google.com/document/d/1u8XTDJsyYVFOyuOly1Xs6XjOAAdKFW88C7q624lpAz4
 ## Clark and Washoe
@@ -59,12 +58,10 @@ https://plotly-r.com/exporting-static-images.html
 # Lombardo
 https://docs.google.com/document/d/1O_5Rs29mJut8NfOtFIW2chN5NC6TyFwVkkCZX7PyZIA/edit#heading=h.tp0g9ruvaiuu
 # References
-
 # Lake county
 Lake County IL, 2022, Primary Precinct Analysis; Preface
 https://docs.google.com/document/d/1cSX72T0zMZKN4EClUQTtHKOITC9hXkCRjQRp0Y1Hvk8/edit#heading=h.lty23tl914ct
 https://docs.google.com/document/d/1TP3FvN2ohXDz-eWGsunZ465V1QKtFY6ykYnGe9lg-nQ/edit#
-
 # Spreadsheets
 https://docs.google.com/spreadsheets/d/1x1w2hv8JdAA5Zq5C-SbmsSBTA1fhO1aUuDyFRgEeHK0/edit#gid=0
 https://docs.google.com/spreadsheets/d/1e_Hqb4lIYdfjehEXRv9c9gFHPG-4Z-1tSjrOX_n2G98/edit#gid=2045784139A
@@ -73,7 +70,5 @@ https://docs.google.com/spreadsheets/d/1tAB6sjG7P-0y6PzxyYDvKMbYDK833MgQhfLti5Ip
 https://docs.google.com/spreadsheets/d/1spDerF9g3tAzng-THlKYr3U_0KOQz40rMuxJ-OT9Jdg/edit#gid=1272764919
 # Lake county
 https://docs.google.com/spreadsheets/d/1Rk0QNzNuboit7pyY1UbGlIQyl5JtLxqcnoMmQpK3Xkw/edit#gid=0
-
-
 # Dr. Frank
 https://rumble.com/vk35dj-wisconsin-election-demographics-investigation.html
