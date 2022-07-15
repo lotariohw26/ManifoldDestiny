@@ -1,5 +1,5 @@
 #' @export totwomodes
-transtwomodes <- function(A=NULL,B=NULL,C=NULL,D=NULL,dfi=NULL){
+totwomodes <- function(A=NULL,B=NULL,C=NULL,D=NULL,dfi=NULL){
   ou <- dfi %>% 
     dplyr::mutate(a=eval(parse(text=A))) %>% 
     dplyr::mutate(b=eval(parse(text=B))) %>%
