@@ -1,6 +1,6 @@
 ---
 title: "Manifold Destiny"
-subtitle: "-or how to rig an election-"
+subtitle: "or how to rig an election"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
@@ -50,7 +50,7 @@ bib <- ReadBib(paste0(ManifoldDestiny::abs_path(),'/inst/references/man_bib.bib'
 ```{r, eval=T, echo=F, message=F, warning=F}
 ### Loading equations
 sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
-load(paste0(rprojroot::find_rstudio_root_file(),'/data/eqpar.rda'))
+eqpar <- get(load(paste0(rprojroot::find_rstudio_root_file(),'/data/eqpar.rda')))
 modlat <-  eqpar$meql
 ```
 
