@@ -107,6 +107,8 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
       		      sample(4:6,size=n(),prob=c(x$p4[1],x$p5[1],x$p6[1]),T)))
   }) %>%
   dplyr::bind_rows(.) %>%
+  #!
+  dplyr::mutate(R=1) %>% 
   dplyr::mutate(a=ifelse(voted==1&R==1,1,0)) %>%
   dplyr::mutate(c=ifelse(voted==2&R==1,1,0)) %>%
   dplyr::mutate(b=ifelse(voted==4&R==1,1,0)) %>%
