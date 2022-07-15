@@ -62,6 +62,7 @@ votr <- vrdf$listvbase[[2]]
 ##### B) Rigged ###
 ### Part A:
 grig <- Countinggraphs(votr)
+View(grig$sdfc)
 grig$sortpre()
 p1 <- grig$quintile$x
 p2 <- grig$quintile$alpha-0.05
@@ -74,11 +75,13 @@ grig$parameters$standard
 vrdf$uploadvbase(grig$sdfc,grig$rdfc,grig$parameters$standard)
 View(vrdf$listvbase[[5]])
 ## Part B: Estimation
-
-#View(vrdf$listvbase[[3]])
-#View(vrdf$listvbase[[4]])
-#View(vrdf$listvbase[[5]])
-#hist(vrdf$listvbase[[4]]$Cp)
+gcda <- Countinggraphs(vrdf$listvbase[[5]])
+View(gcda$sdfc)
+gcda$sortpre()
+restim <- Estimation(gcda$sdfc)
+form <- 'g~alpha+h+I(alpha^2)+alpha*h+I(h^2)'
+restim$regression(form)
+restim$regsum[3]
 ###### Graphical ###
 ########## Tab1
 jrt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
