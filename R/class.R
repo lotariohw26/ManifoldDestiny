@@ -71,8 +71,12 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
       # Age being assigned to citizien making up the population
       dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%     
       # Assigned to different precincts
-      dplyr::mutate(P=sample(nprect,size=n(),replace=T)) %>% dplyr::arrange(P) 
-      listvbase[[1]] <<- list(voterrolldatabase,totpop,agebrack)
+      dplyr::mutate(P=sample(nprect,size=n(),replace=T)) %>% 
+      dplyr::arrange(P) 
+      # Assigned whether citizien register to vote or not
+      #dplyr::mutate(R=ifelse(idn%in%rvot,1,0)) 
+      #listvbase[[1]] <<- list(voterrolldatabase,totpop,agebrack)
+      listvbase[[1]] <<- voterrolldatabase
       base::save(file=vfile,listvbase)
     } 
     else {
@@ -85,6 +89,7 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
                                           Ztech=c(0,1),
                                           tvoting=c('EDV','MIV')){
 
+browser()
   nprect <- max(listvbase[[1]][[1]]$P)
   ## Election Technology and voter sentiment
   ztech <- data.frame(P=seq(1,nprect)) %>%
