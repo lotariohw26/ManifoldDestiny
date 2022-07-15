@@ -1,8 +1,24 @@
+#library(ManifoldDestiny)
+abs_path <- paste0(rprojroot::find_rstudio_root_file(),'/R/');lf <- list.files(abs_path)
+for (f in length(lf)){source(paste0(abs_path,lf[1]))}
 library(testthat)
 library(stringr)
-testthat::context("tautologies")
-
-testthat::test_that("abc",{
-	expect_equal(1,1)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(purrr)
+library(randNames)
+library(openxlsx)
+library(patchwork)
+library(writexl)
+library(plotly)
+library(ViewPipeSteps)
+library(ggpubr)
+library(htmltools)
+testthat::test_that("tautologies",{
+  vtest <- Voterdatabase()
+  vtest$realizedgp()
+  vtest$listvbase[[2]]
+  Countinggraphs(vtest$listvbase[[2]])
+  expect_equal(1,1) 
 })
-
