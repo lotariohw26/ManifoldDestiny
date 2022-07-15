@@ -17,6 +17,16 @@ output:
 ################################################################################################# 
 -->
 
+```{r xaringan-tile-view, echo=FALSE, message=F, warning=F}
+xaringanExtra::use_editable(expires = 1)
+xaringanExtra::use_tile_view()
+#xaringanExtra::use_share_again()
+xaringanExtra::use_scribble()
+xaringanExtra::use_webcam()
+#xaringanExtra::use_slide_tone()
+xaringanExtra::use_panelset()
+```
+
 
 ```{r include=FALSE}
 #library(ManifoldDestiny)
@@ -37,6 +47,7 @@ library(ggpubr)
 ################################################################################################# 
 -->
 
+
 ```{r setup, include=FALSE}
 BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown",dashed = TRUE)
 bib <- ReadBib(paste0(ManifoldDestiny::abs_path(),'/inst/references/man_bib.bib'))
@@ -47,13 +58,12 @@ bib <- ReadBib(paste0(ManifoldDestiny::abs_path(),'/inst/references/man_bib.bib'
 -->
 
 
-```{r, eval=T, echo=F, message=F, warning=F}
+```{r, eval=T, echo=F, messages=F, warnings=F}
 ### Loading equations
-sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
+s <- sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
 eqpar <- get(load(paste0(rprojroot::find_rstudio_root_file(),'/data/eqpar.rda')))
 modlat <-  eqpar$meql
 ```
-
 
 <!-- Table of contents
 ################################################################################################# 
@@ -134,9 +144,7 @@ y=`r modlat$y_s[1]`
 
 ---
 
-class: inverse, center, middle
-
-# The imposition of a manifold
+## The imposition of a manifold
 
 ---
 
@@ -153,11 +161,6 @@ class: inverse, center, middle
 ```
 ]
 
----
-
-class: inverse, center, middle
-
-# Setting up the simplified framework (two modes of voting)
 ---
 
 ## Examples of major elections based on two modes of voting
