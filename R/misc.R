@@ -1,61 +1,61 @@
-sympyupd <- function(){
-	abs_path <- function(){rprojroot::find_rstudio_root_file()}
-	fdm <- paste0(abs_path(),'/inst/script/symbolic/pysympy.py')
-	reticulate::source_python(fdm)
-	eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
-	usethis::use_data(eqpar, overwrite = TRUE)
-}
-
-# Saving data
-#' @export
-abs_path <- function(){rprojroot::find_rstudio_root_file()}
-
-#' @export
-bm <- function(){
-   early <- getwd()
-   middle <- rprojroot::find_rstudio_root_file()
-   setwd(middle)
-   middle <- setwd(rprojroot::find_rstudio_root_file())
-   setwd(middle)
-   getwd()
-   system('R CMD build .; R CMD INSTALL ManifoldDestiny_0.0.0.9000.tar.gz; rm -r ManifoldDestiny_0.0.0.9000.tar.gz')
-   setwd(early)
-}
-
-#' @export
-rp <- function(){
-	reticulate::repl_python()
-}
-#' @export
-k <- function(){
-    df <-  clipr::write_last_clip()
-}
-#' @export
-l <- function(){
-    open_command <- switch(Sys.info()[['sysname']],
-                           Windows= 'open',
-                           Linux  = 'xdg-open',
-                           Darwin = 'open')
-
-    #temp_file <- paste0('tmp/abc', '.xlsx')
-    temp_file <- paste0(tempfile(), '.xlsx')
-    df <-  clipr::write_last_clip()
-    openxlsx::write.xlsx(df, file = temp_file)
-    invisible(system(paste(open_command, temp_file),
-                     ignore.stdout = TRUE, ignore.stderr = TRUE))
-}
-v <- function(){
-    open_command <- switch(Sys.info()[['sysname']],
-                           Windows= 'open',
-                           Linux  = 'xdg-open',
-                           Darwin = 'open')
-
-    #temp_file <- paste0('tmp/abc', '.xlsx')
-    temp_file <- paste0(tempfile(), '.xlsx')
-    df <-  clipr::write_last_clip()
-    View(df)
-}
-
+#sympyupd <- function(){
+#	abs_path <- function(){rprojroot::find_rstudio_root_file()}
+#	fdm <- paste0(abs_path(),'/inst/script/symbolic/pysympy.py')
+#	reticulate::source_python(fdm)
+#	eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
+#	usethis::use_data(eqpar, overwrite = TRUE)
+#}
+#
+## Saving data
+##' @export
+#abs_path <- function(){rprojroot::find_rstudio_root_file()}
+#
+##' @export
+#bm <- function(){
+#   early <- getwd()
+#   middle <- rprojroot::find_rstudio_root_file()
+#   setwd(middle)
+#   middle <- setwd(rprojroot::find_rstudio_root_file())
+#   setwd(middle)
+#   getwd()
+#   system('R CMD build .; R CMD INSTALL ManifoldDestiny_0.0.0.9000.tar.gz; rm -r ManifoldDestiny_0.0.0.9000.tar.gz')
+#   setwd(early)
+#}
+#
+##' @export
+#rp <- function(){
+#	reticulate::repl_python()
+#}
+##' @export
+#k <- function(){
+#    df <-  clipr::write_last_clip()
+#}
+##' @export
+#l <- function(){
+#    open_command <- switch(Sys.info()[['sysname']],
+#                           Windows= 'open',
+#                           Linux  = 'xdg-open',
+#                           Darwin = 'open')
+#
+#    #temp_file <- paste0('tmp/abc', '.xlsx')
+#    temp_file <- paste0(tempfile(), '.xlsx')
+#    df <-  clipr::write_last_clip()
+#    openxlsx::write.xlsx(df, file = temp_file)
+#    invisible(system(paste(open_command, temp_file),
+#                     ignore.stdout = TRUE, ignore.stderr = TRUE))
+#}
+#v <- function(){
+#    open_command <- switch(Sys.info()[['sysname']],
+#                           Windows= 'open',
+#                           Linux  = 'xdg-open',
+#                           Darwin = 'open')
+#
+#    #temp_file <- paste0('tmp/abc', '.xlsx')
+#    temp_file <- paste0(tempfile(), '.xlsx')
+#    df <-  clipr::write_last_clip()
+#    View(df)
+#}
+#
 ##' @export
 #magic <- function(zeta=1,lambda=0.4,x=seq(0,1,by=0.01),select=c('t1','b1','rl','t2','b2','a2','ab')){
 #

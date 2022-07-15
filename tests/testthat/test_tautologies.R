@@ -1,9 +1,7 @@
 #library(ManifoldDestiny)
 abs_path <- paste0(rprojroot::find_rstudio_root_file())
 lf <- list.files(paste0(abs_path,'/R/'))
-for (f in length(lf)){source(paste0(abs_path,'/R/',lf[f]),echo=T)}
-source("../../R/countingprocess.R", echo=T)
-
+for (t in 1:length(lf))source(paste0(abs_path,'/R/',lf[t]))
 library(testthat)
 library(stringr)
 library(dplyr)
@@ -18,11 +16,13 @@ library(plotly)
 library(ViewPipeSteps)
 library(ggpubr)
 library(htmltools)
+vtest <- Voterdatabase()
+vtest$realizedgp()
+#View(vtest$listvbase[[1]])
+#View(vtest$listvbase[[2]]%>%filter(C==1) %>% select(R,C))
+#View(ctest$sdfc)
+ctest <- Countingprocess(vtest$listvbase[[2]])
 testthat::test_that("tautologies",{
-  vtest <- Voterdatabase()
-  vtest$realizedgp()
-  vtest$listvbase[[2]]
-  ctest <- Countingprocess(vtest$listvbase[[2]])
   vf <- rowSums(ctest$sdfc[,c("a","b","c","d")])
   ve <- ctest$sdfc$V
   # 

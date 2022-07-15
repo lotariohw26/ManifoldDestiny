@@ -73,6 +73,7 @@ vignettes/References.Rmd
 ```{r}
 #testthat::test_check("ManifoldDestiny")
 devtools::test()
+abs_path <- paste0(rprojroot::find_rstudio_root_file())
 fln <- paste0(abs_path,'/tests/testthat/test_tautologies.R')
 devtools::test_active_file(fln)
 ```

@@ -35,15 +35,16 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   se <<- eqpar$meqs
   lx <<- eqpar$meql
 
-
   ils <- c('a','b','c','d')
-  sdfc <<- sdfinp %>% dplyr::select(P,all_of(selvar)) %>% 
-    dplyr::group_by(P) %>%
+  sdfc <<- sdfinp %>% 
+    dplyr::select(P,all_of(selvar)) %>% 
     dplyr::arrange(P) %>% 
+    dplyr::group_by(P) %>%
     dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
-    dplyr::mutate(R=sum(R),C=sum(C),V=R-C) %>%
-    #dplyr::mutate(T1=a+b+c+d) %>%
-    dplyr::ungroup() %>% dplyr::distinct() %>%
+    dplyr::mutate(R=sum(R),C=sum(C)) %>%
+    dplyr::mutate(V=R-C) %>%
+    dplyr::ungroup() %>% 
+    dplyr::distinct() %>%
     #dplyr::filter(a>0) %>%
     #dplyr::filter(b>0) %>%
     #dplyr::filter(c>0) %>%

@@ -52,7 +52,7 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
     #dplyr::select(gender,name.first,name.last) %>%
     # Id-number for voters
     voterrolldatabase <- data.frame(idn=seq(1:popsize)) %>%
-      dplyr::mutate(status='real') %>%
+      #dplyr::mutate(status='real') %>%
       # Age being assigned to citizien making up the population
       dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%     
       # Assigned to different precincts
@@ -73,7 +73,6 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
 					  probw=c(0.50,0.05),
                                           Ztech=c(0,1),
                                           tvoting=c('EDV','MIV')){
-
 
   nprect <- max(listvbase[[1]]$P)
   ## Election Technology and voter sentiment
@@ -97,13 +96,14 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
       		      sample(4:6,size=n(),prob=c(x$p4[1],x$p5[1],x$p6[1]),T)))
   }) %>%
   dplyr::bind_rows(.) %>%
+  # Prior voting for which candidate and type of voting
   dplyr::mutate(a=ifelse(voted==1&R==1,1,0)) %>%
   dplyr::mutate(c=ifelse(voted==2&R==1,1,0)) %>%
   dplyr::mutate(b=ifelse(voted==4&R==1,1,0)) %>%
   dplyr::mutate(d=ifelse(voted==5&R==1,1,0)) %>%
-  # Condition for becoming a credit voter
-  dplyr::mutate(C=ifelse(voted==3|voted==6&R==1,1,0))			 
-			 
+  # Condition for becoming a credit voter: Registered and not voting
+  dplyr::mutate(C=ifelse((voted==3|voted==6)&R==1,1,0)) 
+
 })
 Voterdatabase$methods(uploadvbase=function(
 				    truevotdf=NULL, 
