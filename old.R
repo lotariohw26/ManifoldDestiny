@@ -3,21 +3,31 @@
 #' @export pareq
 pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1))eval(parse(text=ste),lv)
 
+#' @export totwomodes
+transtwomodes <- function(A=NULL,B=NULL,C=NULL,D=NULL,dfi=NULL){
+  ou <- dfi %>% 
+    dplyr::mutate(a=eval(parse(text=A))) %>% 
+    dplyr::mutate(b=eval(parse(text=B))) %>%
+    dplyr::mutate(c=eval(parse(text=C))) %>%
+    dplyr::mutate(d=eval(parse(text=D))) 
+}
 ############################################################################################################################################################
 ###########################################################################################################################################################
 #' @export Voterdatabase
-Voterdatabase <- setRefClass("Voterdatabase", fields=list(voterrolldatabase='data.frame',
-							  voterrollrealized='data.frame',
-							  totpop='matrix',agebrack='vector'))
+Voterdatabase <- setRefClass("Voterdatabase", fields=list(
+							  listvbase='list', 
+							  voterrollrealized='data.frame')
+)
 Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  nprect=5,
 					  reg=0.80,
-					  namebase='default',
+					  namebase='defvotbase',
 					  newdraw=T
 					  ){
 
-
-    filn <- paste0('voterbase/',namebase)
+    rotp <- rprojroot::find_rstudio_root_file()
+    vfile <- paste0(rotp,'/inst/script/voterbase/',namebase,'.rda')
+    if(newdraw == T) {
     # Demograhpic structure
     agelength <- agebracketmax[2]-agebracketmax[1]
     brack <- seq(agebracketmax[1],agebracketmax[2])
@@ -36,10 +46,9 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
     colnames(latepop) <- NULL
 
     # Total Population
-    totpop <<- cbind(earlpop,latepop)
-    agebrack <<- agebracketmax
+    totpop <- cbind(earlpop,latepop)
+    agebrack <- agebracketmax
     
-    if(newdraw == T) {
     # Desc statistics
     popvotgro <- colSums(totpop)           # Population for each age group
     popsize <- sum(popvotgro) 	         # Total number of citizien
@@ -54,44 +63,35 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 
     # Realvoters
     #sci <- 500; hc <- floor(popsize/sci); resnr <- c(rep(sci,hc),popsize-sci*hc)
-    #voterrolldatabase <<- resnr %>% purrr::map_df(randNames::rand_names,nationality="US") %>%
+    #voterrolldatabase <- resnr %>% purrr::map_df(randNames::rand_names,nationality="US") %>%
     #dplyr::select(gender,name.first,name.last) %>%
     # Id-number for voters
-    voterrolldatabase <<- data.frame(idn=seq(1:popsize)) %>%
+    voterrolldatabase <- data.frame(idn=seq(1:popsize)) %>%
       dplyr::mutate(status='real') %>%
       # Age being assigned to citizien making up the population
       dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%
       # Assigned to different precincts
-      dplyr::mutate(pre=sample(nprect,size=n(),replace=T)) %>%
-      dplyr::arrange(pre) %>%
+      dplyr::mutate(P=sample(nprect,size=n(),replace=T)) %>%
+      dplyr::arrange(P) %>%
       # Assigned whether citizien register to vote or not
-      dplyr::mutate(registered=ifelse(idn%in%rvot,1,0)) %>%
+      dplyr::mutate(R=ifelse(idn%in%rvot,1,0)) 
       # Assigned whether citizien register to vote or not
-      dplyr::mutate(registered=ifelse(idn%in%rvot,1,0))
-      listvbase <- list(voterrolldatabase,totpop,agebrack)
-      usethis::use_data(listvbase, overwrite = TRUE)
+      listvbase <<- list(voterrolldatabase,totpop,agebrack)
+      base::save(file=vfile,listvbase)
     } 
     else {
-      rotp <- rprojroot::find_rstudio_root_file()
-      load(paste0(rotp,'/data/listvbase.rda'))
-      voterrolldatabase <<- listvbase[[1]]
-      totpop <<- listvbase[[2]]
-      agebrack <<- listvbase[[3]]
+      listvbase <<- get(base::load(file=vfile))
     }
 })
-Voterdatabase$methods(load=function(database='initial'){
-	print('test')
-})
-
-Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
-						     c(0.30,0.70,0.00)),
+Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
+						     c(0.30,0.60,0.10)),
 					  probw=c(0.50,0.05),
                                           Ztech=c(0,1),
                                           tvoting=c('EDV','MIV')){
 
-  nprect <- max(voterrolldatabase$pre)
+  nprect <- max(listvbase[[1]]$P)
   ## Election Technology and voter sentiment
-  ztech <- data.frame(pre=seq(1,nprect)) %>%
+  ztech <- data.frame(P=seq(1,nprect)) %>%
 	  dplyr::mutate(probwd=rnorm(nprect,probw[1],probw[2])) %>%
 	  dplyr::mutate(Zt=runif(n(), min=Ztech[1], max=Ztech[2])) %>%
           dplyr::mutate(p1=probv[[1]][1]) %>%
@@ -102,8 +102,8 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
           dplyr::mutate(p6=probv[[2]][3]*(1-Zt))
 
   ## Technology
-  voterrollrealized <<- voterrolldatabase %>% dplyr::left_join(ztech, by="pre") %>%
-	  base::split(.$pre) %>%
+  voterrollrealized <<- listvbase[[1]] %>% dplyr::left_join(ztech, by="P") %>%
+	  base::split(.$P) %>%
   purrr::map(function(x){
   x %>%  dplyr::mutate(candraw=rbinom(n(),1,probwd)) %>%
 	 dplyr::mutate(voted=ifelse(candraw==1,
@@ -111,18 +111,37 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.70,0.30,0.00),
       		      sample(4:6,size=n(),prob=c(x$p4[1],x$p5[1],x$p6[1]),T)))
   }) %>%
   dplyr::bind_rows(.) %>%
-  dplyr::mutate(a=ifelse(voted==1,1,0)) %>%
-  dplyr::mutate(c=ifelse(voted==2,1,0)) %>%
-  dplyr::mutate(b=ifelse(voted==4,1,0)) %>%
-  dplyr::mutate(d=ifelse(voted==5,1,0)) %>%
-  dplyr::mutate(regvoted=ifelse(voted==3 | voted==6,0,1)) %>%
-  dplyr::mutate(status=ifelse(regvoted==0,'credit','active')) %>%
-  dplyr::arrange(desc(status),pi)
+  dplyr::mutate(a=ifelse(voted==1&R==1,1,0)) %>%
+  dplyr::mutate(c=ifelse(voted==2&R==1,1,0)) %>%
+  dplyr::mutate(b=ifelse(voted==4&R==1,1,0)) %>%
+  dplyr::mutate(d=ifelse(voted==5&R==1,1,0)) %>%
+  dplyr::mutate(C=ifelse(voted==3|voted==6&R==1,1,0))			 
+			 
 })
-#' @export Grafbase
-Grafbase <- setRefClass("Grafbase", contains = c('Voterdatabase'), fields = list(def='list'))
-#' @export Tablebase
-Tablebase <- setRefClass("Tablebase", contains = c('Voterdatabase'), fields = list(ghi='list'))
+Voterdatabase$methods(uploadvbase=function(
+				    truevotdf=NULL, 
+				    manipvotdf=NULL, 
+				    parameters=NULL 
+				    ){
+  # Breate diff 
+  trvdf  <- dplyr::select(truevotdf,P,all_of(parameters))
+  names(trvdf)[-1] <- paste0(names(trvdf)[-1],'_s')
+  vdiff  <- merge(x=trvdf,y=select(manipvotdf,-pri),by="P",all.x=TRUE) %>%
+  dplyr::mutate(diff_x=x_s-x) %>%
+  dplyr::mutate(diff_y=y_s-y) %>%
+  dplyr::mutate(diff_alpha=alpha_s-zeta) %>%
+  dplyr::mutate(diff_a=0) %>%
+  dplyr::mutate(diff_b=0) %>%
+  dplyr::mutate(diff_c=ceiling(y_s*(c+d+C)-c)) %>%
+  dplyr::mutate(diff_d=C-diff_c) 
+#View(vdiff)
+# 1
+#yf=(cr+ca)/(c+d+Cu)
+#yf*(c+d+Cu)=cr+ca
+#yf*(c+d+Cu)-cr=ca
+#ca=yf*(c+d+Cu)-cr
+# 2
+})
 ############################################################################################################################################################
 #' @export Countingprocess
 #' @export class Countingprocess
@@ -133,17 +152,17 @@ Countingprocess <- setRefClass("Countingprocess",
 					   sumreg='list', 
 					   polyc='list',
 					   parameters='list', 
+					   preend='list', 
+					   parampre='data.frame', 
 					   se='list',
 					   lx='list',
 					   plot3dlist='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,
-					    selvar=c('R','a','b','c','d'), 
+					    selvar=c('R','C','a','b','c','d'), 
 					    polyn=6,
 					    sortby=alpha
 					    ){
-
-
-
+                                            
   # Loading 
   rotp <- rprojroot::find_rstudio_root_file()
   load(paste0(rotp,'/data/eqpar.rda'))
@@ -156,14 +175,21 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   se <<- eqpar$meqs
   lx <<- eqpar$meql
 
-  sdfc <<- sdfinp %>% dplyr::select(P,all_of(selvar)) %>% dplyr::group_by(P) %>%
-    dplyr::arrange(P) %>% dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
+
+  ils <- c('a','b','c','d')
+  sdfc <<- sdfinp %>% dplyr::select(P,all_of(selvar)) %>% 
+    dplyr::group_by(P) %>%
+    dplyr::arrange(P) %>% 
+    dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
+    dplyr::mutate(R=sum(R),C=sum(C),V=R-C) %>%
+    #dplyr::mutate(T1=a+b+c+d) %>%
     dplyr::ungroup() %>% dplyr::distinct() %>%
     #dplyr::filter(a>0) %>%
     #dplyr::filter(b>0) %>%
     #dplyr::filter(c>0) %>%
     #dplyr::filter(d>0) %>% 
-    dplyr::mutate(x=pareq(se[['x_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
+    dplyr::mutate(x=pareq(se[['x_s']][1],lv=as.list(.[,ils]))) %>%
+    #dplyr::mutate(x=pareq(se[['x_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(y=pareq(se[['y_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(g=pareq(se[['g_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(h=pareq(se[['h_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
@@ -175,12 +201,16 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
     dplyr::mutate(Omega=pareq(se[['Omega_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(Gamma=pareq(se[['Gamma_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(xi=pareq(se[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    na.omit() 
+    na.omit() %>% 
+    dplyr::arrange(alpha) %>% 
+    dplyr::mutate(pri=row_number()/length(pre)) %>%
+    dplyr::relocate(pri,.before=P) %>%
+    dplyr::relocate(V,.after=C)
 
-  rdfc <<- sdfc %>% dplyr::arrange(alpha) %>% dplyr::mutate(pri=row_number()/length(pre))
+  rdfc <<- sdfc   # Init values standard form
   
   # Init values standard form
-  polyc[['alpha']] <<- unname(coef(lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))))
+  polyc[['alpha']] <<- lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))
   # Init values hybrid form
   #polyc[[2]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
   ### Init values opposition form
@@ -191,10 +221,10 @@ Countingprocess$methods(sortpre=function(poly=6,
 					 sortby='alpha',
 					 selvar=c('x','y','alpha')){
 
- srdfc <- rdfc %>%
-    dplyr::select(pre,zeta,all_of(selvar)) %>%
+  srdfc <- rdfc %>%
+    dplyr::select(P,zeta,all_of(selvar)) %>%
     dplyr::arrange(sortby) %>%
-    dplyr::mutate(pri=row_number()/length(pre)) %>%
+    dplyr::mutate(pri=row_number()/length(P)) %>%
     dplyr::mutate(zeta_m=mean(zeta)) %>%
     dplyr::mutate(zeta_mr=zeta-zeta_m)
     selvar %>% purrr::map(function(x,df=srdfc,p=poly){
@@ -204,43 +234,54 @@ Countingprocess$methods(sortpre=function(poly=6,
     }) %>% as.data.frame(.) -> predictor
   quintile <<- dplyr::bind_cols(srdfc, predictor)
 
-  rcte <- polynom::polynomial(round(polyc[['alpha']],4))
+  rcte <- polynom::polynomial(unname(coef(polyc[['alpha']])))
   rcr2 <- round(cor(quintile$alpha_pred,quintile$alpha)^2,4)
+
   sumreg['alpha'] <<- paste0(rcte,' with R² ',rcr2)
 })
+Countingprocess$methods(manfolimp=function(
+				pres1=quintile$x, 
+				pres2=quintile$alpha,  
+				pres3="(alpha*zeta + alpha - x)/zeta"
+					   ){
+  # 1
+  ##
+  end1 <- pres1
+  # 2
+  #coef(polyc[['alpha']])
+  #coef <- coefficients(polyc[[1]])
+  #round(polynom::integral(coef,c(0,1)),digits=4)
+  #polr <- polynom::polynomial(polyc[[1]])
+  ## 
+  predict(polyc[[1]])
+  end2 <- pres2 
+  # 3
+  ## 
+  #browser()
+  riggreal <- pareq(pres3,as.list(rdfc[,c("x","alpha","zeta")]))
+  #end1-end2
+  end3 <- riggreal
 
+  preend <<- list(end1,end2,end3)
+})
 Countingprocess$methods(riggsta=function(
   param=list(form=1,pre=c('x','alpha','y'), end=c('zeta','lambda')),
-  predet=list(end1=quintile$x,
-	      end2=polyc[[1]],
-	      end3='x-alpha')
-)
+  predet=preend)
 {
-
   forms <- list('_s','o_h','h_o')[param$form[[1]]]
   ends1 <- se[[paste0(param$end[1],forms)]][2]
   ends2 <- se[[paste0(param$end[2],forms)]][2]
+
+   parset <- quintile[,c('P','pri')] %>%
+   # Presetting the first three parameters
+   dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
+   dplyr::mutate(!!param$pre[2]:=predet[[2]]) %>%
+   dplyr::mutate(!!param$pre[3]:=predet[[3]]) %>%
+   # Backsolving for the two remaining parameters
+   dplyr::mutate(!!param$end[1]:=pareq(ends1,lv=as.list(.[,param$pre[1:3]]))) %>%
+   dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=as.list(.[,c(param$end[1],param$pre[1:3])])))
   
-  parampre <- data.frame(pri=quintile$pri) %>%
-    # Presetting the first three parameters
-    dplyr::mutate(!!param$pre[1]:=predet[[1]]) %>%
-    dplyr::mutate(!!param$pre[2]:=predict(polynom::polynomial(predet$end2),quintile$pri)) %>%
-    dplyr::mutate(!!param$pre[3]:=pareq(predet[[3]],lv=as.list(.[,param$pre[1:2]]))) %>% 
-    # Backsolving for the two remaining parameters
-    dplyr::mutate(!!param$end[1]:=pareq(ends1,lv=as.list(.[,param$pre[1:3]]))) %>%
-    dplyr::mutate(!!param$end[2]:=pareq(ends2,lv=as.list(.[,c(param$end[1],param$pre[1:3])])))
-  
-  rdfc[,c(param$pre,param$end)] <<- parampre[,-1]
-})
-Countingprocess$methods(rigghyp=function(sdfinp=NULL){
-  # Init values standard form
-  k <- function(alpha,x,k,h) eval(parse(text=formula,c(list(alpha=alpha,x=x),list(k=k,h=h))))
-  rdfc <<- sdfc %>% dplyr::select(pri,pre,alpha,x,y)
-})
-Countingprocess$methods(riggopo=function(sdfinp=NULL){
-  # Init values standard form
-  n <- function(alpha,x,k,h) eval(parse(text=formula,c(list(alpha=alpha,x=x),list(k=k,h=h))))
-  rdfc <<- sdfc %>% dplyr::select(pri,pre,alpha,x,y)
+   rdfc[,c(param$pre,param$end)] <<- parset[,c(-1,-2)]
 })
 #' @export Countinggraphs
 Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
@@ -268,17 +309,16 @@ Countinggraphs$methods(plotxy=function(selv=c("x","y")){
    	labs(x=selv[1],y=selv[2],title="") +
     	ggplot2::theme_bw()
 })
-Countinggraphs$methods(resplot=function(resvar=c("zeta_mr","alpha_res"),crossp=F){
-
-  plotv <- list(resvar,c('pri','crossp'))[[ifelse(crossp==F,1,2)]]
+Countinggraphs$methods(resplot=function(resvar=c("zeta_mr","alpha_res"),
+					labs=list(x=NULL,y=NULL,caption=NULL), 
+					crossp=F){
+  selv <- list(resvar,c('zeta_mr',paste0(resvar[1],'*',resvar[2])))[[ifelse(crossp==F,1,2)]]
   dfgp <- quintile %>% dplyr::select(pri,all_of(resvar)) %>% 
-	  dplyr::mutate(crossp=quintile[[resvar[1]]]*quintile[[resvar[2]]])
-
-  ggplot2::ggplot(data=dfgp,aes_string(x=plotv[1],y=plotv[2])) +
+	  dplyr::mutate(crossp=100*quintile[[resvar[1]]]*quintile[[resvar[2]]])
+  ggplot2::ggplot(data=dfgp,aes_string(x=selv[1],y=selv[2])) +
     geom_smooth(method="lm", se=F) +
-    geom_point() +
-    stat_regline_equation(label.y = 0.05, aes(label = ..eq.label..)) +
-    stat_regline_equation(label.y = 0.0, aes(label = ..rr.label..))
+    labs(x=selv[1],y=selv[2],title="") +
+    geom_point() 
 })
 Countinggraphs$methods(plotly3d=function(
 					 partition=1,
@@ -312,7 +352,8 @@ Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'),
 #' @export Estimation
 Estimation <- setRefClass("Estimation", fields=list(
 						sdfc='data.frame', 
-						regsum='list'
+						regsum='list', 
+						resplots='list'
 						))
 Estimation$methods(initialize=function(
 					rdfcinp=NULL
@@ -320,14 +361,25 @@ Estimation$methods(initialize=function(
 
   sdfc <<- rdfcinp
 })
-Estimation$methods(regression=function(regform='g~alpha+h+I(alpha^2)+alpha*h+I(h^2)'){
+Estimation$methods(regression=function(regform=NULL){
 
   man_model <- lm(as.formula(regform),data=sdfc)
-  regsum <<- list(summary(man_model),
+  regsum <<- list(lm=man_model, 
+		  summary(man_model),
 		  tidy=broom::tidy(man_model), 
 		  glance=broom::glance(man_model), 
 		  augment=broom::augment(man_model))
   ##0.005070874159	1.535448595	-0.549045972	-0.66148927	1.303368815	-0.632192474
+})
+Estimation$methods(diagnostics=function(){
+
+  model <- regsum[[1]]
+  l1 <- ggplot(model, aes(x = model$residuals)) +
+    geom_histogram(bins = 20, fill = 'steelblue', color = 'black') +
+    labs(title = 'Histogram of Residuals', x = 'Residuals', y = 'Frequency')+ 
+    theme_bw()
+  l2 <- ggplot(model, aes(x = .fitted, y = .resid)) + geom_point() + theme_bw()
+  resplots <<- list(hist=l1,res=l2)
 })
 Estimation$methods(rotation=function(
 				     selvar=c('x','y','alpha'),
@@ -335,7 +387,6 @@ Estimation$methods(rotation=function(
 				     sli=list(depth=0.01,divi=0.02,shift=50,slide=-49)
 				     ){
   browser()
-  
   #ra <- circular::rad(angles$tgrad)
   #rdfc <<- sdfc[1:741,] %>% dplyr::select(selvar) %>%
   #dplyr::mutate(rxy=ra[1]) %>%
@@ -352,10 +403,7 @@ Estimation$methods(rotation=function(
   #dplyr::mutate(w=sinyz*v+cosyz*alpha) %>%
   #dplyr::arrange(v)
   #rdfc; l()
-
-
   #plot(rdfc$u,rdfc$w)
-
   #dplyr::mutate(rank_v=dense_rank(v)) %>%
   #dplyr::mutate(slide=floor((v+sli$depth*sli$divi*sli$shift)/sli$depth)) %>%
   #dplyr::mutate(slide_norm=slide-sli$slide+1) %>%
@@ -377,4 +425,6 @@ Estimation$methods(rotation=function(
   #              true_rank=rank(partition_rank))
   #View(rdfc)
 })
-
+Estimation$methods(restoration=function(){
+			   'test'
+})

@@ -72,9 +72,9 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
       dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%     
       # Assigned to different precincts
       dplyr::mutate(P=sample(nprect,size=n(),replace=T)) %>% 
-      dplyr::arrange(P) 
+      dplyr::arrange(P) %>%
       # Assigned whether citizien register to vote or not
-      #dplyr::mutate(R=ifelse(idn%in%rvot,1,0)) 
+      dplyr::mutate(R=ifelse(idn%in%rvot,1,0)) 
       #listvbase[[1]] <<- list(voterrolldatabase,totpop,agebrack)
       listvbase[[1]] <<- voterrolldatabase
       base::save(file=vfile,listvbase)
@@ -89,8 +89,8 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
                                           Ztech=c(0,1),
                                           tvoting=c('EDV','MIV')){
 
-browser()
-  nprect <- max(listvbase[[1]][[1]]$P)
+
+  nprect <- max(listvbase[[1]]$P)
   ## Election Technology and voter sentiment
   ztech <- data.frame(P=seq(1,nprect)) %>%
 	  dplyr::mutate(probwd=rnorm(nprect,probw[1],probw[2])) %>%
@@ -103,7 +103,7 @@ browser()
           dplyr::mutate(p6=probv[[2]][3]*(1-Zt))
 
   ## Technology
-  listvbase[[2]] <<- listvbase[[1]][[1]] %>% dplyr::left_join(ztech, by="P") %>%
+  listvbase[[2]] <<- listvbase[[1]] %>% dplyr::left_join(ztech, by="P") %>%
 	  base::split(.$P) %>%
   purrr::map(function(x){
   x %>%  dplyr::mutate(candraw=rbinom(n(),1,probwd)) %>%
@@ -113,7 +113,6 @@ browser()
   }) %>%
   dplyr::bind_rows(.) %>%
   #!
-  dplyr::mutate(R=1) %>% 
   dplyr::mutate(a=ifelse(voted==1&R==1,1,0)) %>%
   dplyr::mutate(c=ifelse(voted==2&R==1,1,0)) %>%
   dplyr::mutate(b=ifelse(voted==4&R==1,1,0)) %>%

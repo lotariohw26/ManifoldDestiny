@@ -31,11 +31,7 @@ Znr <- c(0,1)
 vrdf$realizedgp(probv=probvset,
 		probw=probwset,
 		Ztech=Znr)
-
-
-votr <- vrdf$listvbase[[1]]
-
-
+votr <- vrdf$listvbase[[2]]
 #################################################################################################33
 ###### A) Fair ###
 #gsimf <- Countinggraphs(votr,selvar=c('P','a','b','c','d','probwd'))
