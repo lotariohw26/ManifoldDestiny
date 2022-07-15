@@ -72,6 +72,8 @@ grig$manfolimp(pres1=p1,
 grig$riggsta()
 grig$parameters$standard
 vrdf$uploadvbase(grig$sdfc,grig$rdfc,grig$parameters$standard)
+
+
 vrdf$listvbase[[4]]
 View(vrdf$listvbase[[4]])
 ###### Graphical ###

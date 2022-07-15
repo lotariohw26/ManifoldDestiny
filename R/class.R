@@ -123,7 +123,7 @@ Voterdatabase$methods(uploadvbase=function(
 				    manipvotdf=NULL, 
 				    parameters=NULL 
 				    ){
-
+browser()
   # Breate diff 
   trvdf  <- dplyr::select(truevotdf,P,all_of(parameters))
   names(trvdf)[-1] <- paste0(names(trvdf)[-1],'_s')
@@ -136,6 +136,9 @@ Voterdatabase$methods(uploadvbase=function(
   dplyr::mutate(diff_c=0) %>%
   dplyr::mutate(diff_d=0) %>%
   dplyr::select(P,a,b,c,d,x,y,alpha,diff_x,diff_y,diff_alpha,diff_a,diff_b,diff_c,diff_d,diff_x)
+View(manipvotdf)
+View(vdiff)
+
 })
 ############################################################################################################################################################
 #' @export Countingprocess
