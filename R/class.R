@@ -124,14 +124,24 @@ Voterdatabase$methods(uploadvbase=function(
 				    manipvotdf=NULL, 
 				    parameters=NULL 
 				    ){
-  
+  # Breate diff 
   trvdf  <- dplyr::select(truevotdf,P,all_of(parameters))
   names(trvdf)[-1] <- paste0(names(trvdf)[-1],'_s')
-  listvbase[[4]]  <<- merge(x=trvdf,y=select(manipvotdf,-pri),by="P",all.x=TRUE) %>%
+  vdiff  <- merge(x=trvdf,y=select(manipvotdf,-pri),by="P",all.x=TRUE) %>%
   dplyr::mutate(diff_x=x_s-x) %>%
   dplyr::mutate(diff_y=y_s-y) %>%
-  dplyr::mutate(diff_zeta=zeta_s-zeta) 
-  listvbase[[5]] <<- listvbase[[1]] %>%  merge(y=dplyr::select(listvbase[[4]],P,diff_x,diff_y,diff_zeta),by="P",all.x=TRUE)
+  dplyr::mutate(diff_alpha=alpha_s-zeta) %>%
+  dplyr::mutate(diff_a=0) %>%
+  dplyr::mutate(diff_b=0) %>%
+  dplyr::mutate(diff_c=0) %>%
+  dplyr::mutate(diff_d=0) %>%
+  dplyr::select(P,a,b,c,d, diff_a, diff_b, diff_c, diff_d,diff_x,diff_y,diff_alpha)
+  glimpse(vdiff) 
+
+  # Update Voterdatabase
+  listvbase[[4]] <<- listvbase[[1]] %>% merge(y=vdiff,all.x=T) 
+  View(listvbase[[4]])
+
 })
 #' @export Grafbase
 Grafbase <- setRefClass("Grafbase", contains = c('Voterdatabase'), fields = list(def='list'))
@@ -376,7 +386,6 @@ Estimation$methods(rotation=function(
 				     sli=list(depth=0.01,divi=0.02,shift=50,slide=-49)
 				     ){
   browser()
-  
   #ra <- circular::rad(angles$tgrad)
   #rdfc <<- sdfc[1:741,] %>% dplyr::select(selvar) %>%
   #dplyr::mutate(rxy=ra[1]) %>%
@@ -393,10 +402,7 @@ Estimation$methods(rotation=function(
   #dplyr::mutate(w=sinyz*v+cosyz*alpha) %>%
   #dplyr::arrange(v)
   #rdfc; l()
-
-
   #plot(rdfc$u,rdfc$w)
-
   #dplyr::mutate(rank_v=dense_rank(v)) %>%
   #dplyr::mutate(slide=floor((v+sli$depth*sli$divi*sli$shift)/sli$depth)) %>%
   #dplyr::mutate(slide_norm=slide-sli$slide+1) %>%
@@ -418,7 +424,7 @@ Estimation$methods(rotation=function(
   #              true_rank=rank(partition_rank))
   #View(rdfc)
 })
-Estimation$methods(rotation=function(){
+Estimation$methods(restoration=function(){
 			   'test'
 })
 

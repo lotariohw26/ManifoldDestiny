@@ -63,12 +63,17 @@ votr <- vrdf$voterrollrealized
 ##### B) Rigged ###
 grig <- Countinggraphs(votr)
 grig$sortpre()
-grig$manfolimp(pres1=grig$quintile$x,
-	       pres2=grig$quintile$alpha-0.03,
-	       pres3="(alpha*zeta + alpha - x)/zeta")
+p1 <- grig$quintile$x
+p2 <- grig$quintile$alpha-0.05
+p3 <- c("x-alpha","(alpha*zeta + alpha - x)/zeta")[1]
+grig$manfolimp(pres1=p1,
+	       pres2=p2,
+	       pres3=p3)
 grig$riggsta()
 grig$parameters$standard
 vrdf$uploadvbase(grig$sdfc,grig$rdfc,grig$parameters$standard)
+
+
 View(vrdf$listvbase[[4]])
 ###### Graphical ###
 ########## Tab1
