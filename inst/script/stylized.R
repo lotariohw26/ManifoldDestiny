@@ -1,5 +1,6 @@
 #################################################################################################33
 library(ManifoldDestiny)
+sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -12,7 +13,6 @@ library(plotly)
 library(ViewPipeSteps)
 library(ggpubr)
 library(htmltools)
-sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
 snr <- 1
 set.seed(snr)
 ##################################################################################################
