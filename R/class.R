@@ -123,6 +123,7 @@ Voterdatabase$methods(uploadvbase=function(
 				    manipvotdf=NULL, 
 				    parameters=NULL 
 				    ){
+
   # Breate diff 
   trvdf  <- dplyr::select(truevotdf,P,all_of(parameters))
   names(trvdf)[-1] <- paste0(names(trvdf)[-1],'_s')
@@ -135,19 +136,9 @@ Voterdatabase$methods(uploadvbase=function(
   dplyr::mutate(diff_c=0) %>%
   dplyr::mutate(diff_d=0) %>%
   dplyr::select(P,a,b,c,d,x,y,alpha,diff_x,diff_y,diff_alpha,diff_a,diff_b,diff_c,diff_d,diff_x)
-
-  # Update Voterdatabase
-  listvbase[[4]] <<- listvbase[[1]] %>% merge(y=vdiff,all.x=T) 
-  rdfc <<- sdfc   # Init values standard form
-  
-  # Init values standard form
-  polyc[['alpha']] <<- lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))
-  # Init values hybrid form
-  #polyc[[2]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
-  ### Init values opposition form
-  #polyc[[3]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
-  ### Init poly
 })
+#########################################################################################
+#########################################################################################
 Countingprocess$methods(sortpre=function(poly=6,
 					 sortby='alpha',
 					 selvar=c('x','y','alpha')){
