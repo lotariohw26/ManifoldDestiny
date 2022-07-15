@@ -26,6 +26,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 					    ){
                                             
 
+browser()
   # Loading 
   rotp <- rprojroot::find_rstudio_root_file()
   load(paste0(rotp,'/data/eqpar.rda'))
