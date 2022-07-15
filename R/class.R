@@ -140,10 +140,14 @@ browser()
   dplyr::mutate(diff_b=0) %>%
   dplyr::mutate(diff_c=ceiling(y_s*(c+d+Cp)-c)) %>%
   dplyr::mutate(diff_d=Cp-diff_c) 
+  
+  vdiff_sel <- dplyr::select(vdiff,P,Cp,C,diff_c,diff_d)
+  base_sel  <- dplyr::select(listvbase[[2]],c(P))
 
-  o <- merge(x=listvbase[[1]],y=dplyr::select(vdiff,P,Cp,C,diff_c,diff_d)) %>% group_by(P) %>% 
-	  dplyr::mutate(Cstock=cumsum(abs(R-1)))
-  View(o)
+  listvbase[[3]] <- base_sel %>% dplyr::arrange(P) %>% dplyr::left_join(vdiff_sel,by="P") %>% 
+	  group_by(P)  
+
+  View(listvbase[[3]])
 })
 
   
