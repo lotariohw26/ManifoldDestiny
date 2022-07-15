@@ -1,6 +1,7 @@
 #library(ManifoldDestiny)
-abs_path <- paste0(rprojroot::find_rstudio_root_file(),'/R/');lf <- list.files(abs_path)
-for (f in length(lf)){source(paste0(abs_path,lf[1]))}
+abs_path <- paste0(rprojroot::find_rstudio_root_file());
+lf <- list.files(paste0(abs_path,'/R/'))
+for (f in length(lf)){source(paste0(abs_path,'/R/',lf[1]))}
 library(testthat)
 library(stringr)
 library(dplyr)
@@ -22,3 +23,6 @@ testthat::test_that("tautologies",{
   Countinggraphs(vtest$listvbase[[2]])
   expect_equal(1,1) 
 })
+
+
+

@@ -69,3 +69,11 @@ vignettes/Stylized_model.Rmd
 vignettes/Application_Dallas.Rmd
 vignettes/Parametric_taut.Rmd
 vignettes/References.Rmd
+
+```{r}
+#testthat::test_check("ManifoldDestiny")
+devtools::test()
+fln <- paste0(abs_path,'/tests/testthat/test_tautologies.R')
+devtools::test_active_file(fln)
+```
+
