@@ -73,7 +73,10 @@ grig$riggsta()
 grig$parameters$standard
 vrdf$uploadvbase(grig$sdfc,grig$rdfc,grig$parameters$standard)
 vrdf$listvbase[[4]]
-View(vrdf$listvbase[[4]])
+#View(vrdf$listvbase[[3]])
+#View(vrdf$listvbase[[4]])
+#View(vrdf$listvbase[[5]])
+#hist(vrdf$listvbase[[4]]$Cp)
 ###### Graphical ###
 ########## Tab1
 jrt2a <- grig$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))

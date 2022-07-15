@@ -126,7 +126,6 @@ Voterdatabase$methods(uploadvbase=function(
 				    parameters=NULL 
 				    ){
 
-browser()
   # Breate diff 
   trvdf  <- dplyr::select(truevotdf,P,all_of(parameters))
   names(trvdf)[-1] <- paste0(names(trvdf)[-1],'_s')
@@ -141,13 +140,23 @@ browser()
   dplyr::mutate(diff_c=ceiling(y_s*(c+d+Cp)-c)) %>%
   dplyr::mutate(diff_d=Cp-diff_c) 
   
-  vdiff_sel <- dplyr::select(vdiff,P,Cp,C,diff_c,diff_d)
-  base_sel  <- dplyr::select(listvbase[[2]],c(P))
-
-  listvbase[[3]] <- base_sel %>% dplyr::arrange(P) %>% dplyr::left_join(vdiff_sel,by="P") %>% 
-	  group_by(P)  
-
-  View(listvbase[[3]])
+  vdiff_sel <- dplyr::select(vdiff,P,Cp,diff_c,diff_d)
+  base_sel  <- dplyr::select(listvbase[[2]],P,idn,age,status,P,R,C,a,b,c,d) %>% dplyr::mutate(Cu=0)
+  
+  listvbase[[3]] <<- base_sel %>% 
+	  dplyr::arrange(P) %>% 
+	  dplyr::left_join(vdiff_sel,by="P") %>%
+	  base::split(.$P) %>%
+	  purrr::map(function(x){
+	    Cstock <- sum(x$C)
+	    phantcan <- which(x$C==1)
+	    drawphantom <- sample(x=phantcan,size=Cstock,replace=F)
+            x[drawphantom,'c'] <- 2
+	    x
+	  }) %>%
+  dplyr::bind_rows(.) 
+  listvbase[[4]] <<- vdiff_sel
+  listvbase[[5]] <<- base_sel
 })
 
   
