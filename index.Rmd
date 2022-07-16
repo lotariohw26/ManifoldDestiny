@@ -54,6 +54,8 @@ knitr::knit_exit()
 ```
 
 # Now
+inst/script/frankreplication.R
+
 inst/odg/main_sheet.odg
 inst/Presentation.Rmd
 inst/script/application_clark_gsm.R

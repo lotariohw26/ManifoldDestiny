@@ -1,6 +1,14 @@
 #' @export Voterrollanalysis
 Voterrollanalysis <- setRefClass("Voterrollanalysis", fields=list(abc='list'))
-Voterrollanalysis$methods(initialize=function(arg1=NULL){})
+Voterrollanalysis$methods(initialize=function(arg1=NULL){
+
+#      dplyr::select(COUNTY_NUMBER, age, vregratio, registered, voting) %>%
+#      unique() %>%
+#      dplyr::mutate(tvoting=sum(voting)) %>%
+#      dplyr::mutate(tregistered=sum(registered)) %>%
+#      dplyr::mutate(turnratio=tvoting/tregistered) %>%
+#      dplyr::mutate(keyratio=vregratio/turnratio)
+})
 Voterrollanalysis$methods(load=function(arg1=NULL){})
 
 
