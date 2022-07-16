@@ -54,6 +54,7 @@ knitr::knit_exit()
 ```
 
 # Now
+inst/odg/main_sheet.odg
 inst/Presentation.Rmd
 inst/script/application_clark_gsm.R
 inst/script/application_clark.R
