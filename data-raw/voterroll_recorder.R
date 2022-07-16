@@ -4,15 +4,14 @@ library(dplyr)
 # Standardized values
 vrsnames <- c('id','cou_nr','birthdate','general','primary','voted','registered','age')
 el_date='2020-01-04'
-age_limit <- c(18,100)
+age_limit <- c(19,100)
 gen_el <- 'GENERAL-11/03/2020'
 pri_el <- 'PRIMARY-03/17/2020'
 
 # Ohio
 lf_ohio <- list.files(path=paste0(rprojroot::find_rstudio_root_file(),'/data-raw/voterroll/ohio'),full.names=T)
 vtr_ohio <- lf_ohio %>% purrr::map(function(x){
-  browser()
-  # Standardize voterroll
+  # Standardized voterroll
   ## read raw file
   sta_vot <- readxl::read_excel(x) %>% 
     dplyr::rename(c(general=all_of(gen_el),primary=all_of(pri_el))) %>%
@@ -32,6 +31,7 @@ vtr_ohio <- lf_ohio %>% purrr::map(function(x){
     `colnames<-` (vrsnames) %>%
     ## standardizing the variables needed
     ### for each age group
+    dplyr::group_by(age) %>% 
     dplyr::mutate(ag_voted=sum(voted, na.rm=T)) %>%
     dplyr::mutate(ag_regis=sum(registered, na.rm=T)) %>% 
     dplyr::mutate(ag_regra=ag_voted/ag_regis) %>% 
@@ -43,31 +43,8 @@ vtr_ohio <- lf_ohio %>% purrr::map(function(x){
     dplyr::mutate(tot_regist=sum(ag_regis)) %>%
     dplyr::mutate(tur_ratio=tot_voted/tot_regist) %>%
     dplyr::mutate(key_ratio=ag_regra/tur_ratio)
-View(sta_vot)
-}
-    
-    
-    View(sta_vot)
-
-dim(distinct(sta_vot))
-
-    l
-      dplyr::mutate(tvoting=sum(voting)) %>%
-      dplyr::mutate(tregistered=sum(registered)) %>%
-      dplyr::mutate(turnratio=tvoting/tregistered) %>%
-      dplyr::mutate(keyratio=vregratio/turnratio)
-  
-	  
-	  
-	    View(sta_vot)
-  #dplyr::mutate(tvoting=sum(voting)) %>%
-  #dplyr::mutate(tregistered=sum(registered)) %>%
-  #dplyr::mutate(turnratio=tvoting/tregistered) %>%
-  #dplyr::mutate(keyratio=vregratio/turnratio)
-})
+}) %>% dplyr::bind_rows(.) 
+vtr_ohio
 usethis::use_data(vtr_ohio, overwrite = TRUE)
-#  [1] "/home/joernih/research/ManifoldDestiny/data-raw/voterroll/ohio/ASHLAND.xlsx"   
-#  [2] "/home/joernih/research/ManifoldDestiny/data-raw/voterroll/ohio/ATHENS.xlsx"    
 
-View(sta_vot)
 

@@ -1,84 +1,63 @@
+library(ggplot2)
+library(dplyr)
 #' @export Voterrollanalysis
-Voterrollanalysis <- setRefClass("Voterrollanalysis", fields=list(voterroll='list'))
+Voterrollanalysis <- setRefClass("Voterrollanalysis", fields=list(voterroll='data.frame'))
 Voterrollanalysis$methods(initialize=function(coudatafile='vtr_ohio.rda'){
-browser()
   rotp <- rprojroot::find_rstudio_root_file()
   vfile <- paste0(rotp,'/data/',coudatafile)
-  voterroll[[1]] <<- get(load(vfile))
-
-#  dft <- voterroll[[1]] # dplyr::mutate()
-#  str(dft)
-#      dplyr::select(COUNTY_NUMBER, age, vregratio, registered, voting) %>%
-#      unique() %>%
-#      dplyr::mutate(tvoting=sum(voting)) %>%
-#      dplyr::mutate(tregistered=sum(registered)) %>%
-#      dplyr::mutate(turnratio=tvoting/tregistered) %>%
-#      dplyr::mutate(keyratio=vregratio/turnratio)
+  load("~/research/ManifoldDestiny/data/vtr_ohio.rda")
+  #¡
+  voterroll <<- as.data.frame(vtr_ohio) 
 })
-Voterrollanalysis$methods(load=function(arg1=NULL){})
+Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
 
-
+  nrco <- unique(voterroll$cou_nr)
+  lmc <- nrco %>% purrr::map(function(x,vr=voterroll){
+    fs <- paste0("vr$key_ratio~poly(vr$age,",polyo[1],")")
+    lm(as.formula(fs))
+    #lapply(polyo,print)
+  }) 
+  browser()
+  length(nrco)
+  length(lmc)
+  length(lmc[[2]])
+})
+lmc
 
 ohio_vr <- Voterrollanalysis()
+ohio_vr$scorecard()
+
+
+names(ohio_vr$voterroll)
+head(ohio_vr$voterroll)
+dft <- dplyr::filter(ohio_vr$voterroll,cou_nr==3)
+
+names(dft)
+palette <- c("Registered voters","Ballot votes","Predicted votes")
+
+ggplot2::ggplot(data=dft) +
+  geom_line(aes(x=age,y=ag_regis,color=palette[1])) +
+  geom_line(aes(x=age,y=ag_voted,color=palette[2])) +
+  #geom_line(aes(x=age,y=ag_regra,color=palette[3])) +
+  labs(caption='test') +
+  ggplot2::xlab('xlab') +
+  ggplot2::ylab('ylab')+
+  theme_classic()
 
 
 
 
 
 
+ggplot2::ggplot(data=df,aes(x=df$age,y=df$key_ratio))+geom_point()
 
 
-
-
-
+View()
 #rm(list=rm())
 ####################################################################################################
 # Version 2.0
 # About: Based on Dr. Frank analysis for Ohio
 ###################################################################################################
-# Functions
-coupolpre <- function(county=1,
-                      el_date='2020-01-04',
-                      flist=list(gel='GENERAL-11/03/2020',
-                                 pel='PRIMARY-03/17/2020',
-                                 lage=18,
-                                 uage=100,
-                                 gen_el='GENERAL-11/03/2020',
-                                 pri_el='PRIMARY-03/17/2020'),
-                      path='../../../googledata/drfrank/ohio/'){
-  # Finding the polynominalj
-  ## Transformation of data
-
-  # put this as function arguments later
-  #View(cou_data_transf)
-  cou_data_transf <- readr::read_csv(paste0(re_path,counties[county]))[] %>%
-      dplyr::rename(c(general=gen_el,primary=pri_el)) %>%
-      # might adjust this later
-      dplyr::select(1:43,general,primary) %>%
-      dplyr::ungroup() %>%
-      #dplyr::mutate(age=lubridate::interval(DATE_OF_BIRTH, Sys.Date())%/%lubridate::years(1)) %>%
-      dplyr::mutate(age=as.numeric(difftime(el_date,DATE_OF_BIRTH,units="weeks")/52.5)) %>%
-      dplyr::mutate(age=floor(age)) %>%
-      dplyr::filter(age>=flist$lage) %>%
-      dplyr::filter(age<=flist$uage) %>%
-      dplyr::arrange(age) %>%
-      dplyr::group_by(age) %>%
-      #dplyr::summarize(COUNTY_NUMBER=max(COUNTY_NUMBER), voting=sum(general=='X', na.rm=T), registered=sum(VOTER_STATUS=='ACTIVE', na.rm=T)) %>%
-      dplyr::filter(age>=low_age) %>%
-      dplyr::filter(age<=upp_age) %>%
-      dplyr::mutate(voting=sum(general=='X', na.rm=T)) %>%
-      dplyr::mutate(registered=sum(VOTER_STATUS=='ACTIVE', na.rm=T)) %>%
-      # Can probably be deleted
-      #dplyr::mutate(voters=sum(age)) %>%
-      dplyr::mutate(vregratio=voting/registered) %>%
-      dplyr::ungroup() %>%
-      dplyr::select(COUNTY_NUMBER, age, vregratio, registered, voting) %>%
-      unique() %>%
-      dplyr::mutate(tvoting=sum(voting)) %>%
-      dplyr::mutate(tregistered=sum(registered)) %>%
-      dplyr::mutate(turnratio=tvoting/tregistered) %>%
-      dplyr::mutate(keyratio=vregratio/turnratio)
-}
 polorderpred <- function(keyratio,age,polorderset=c(1,2,6,8)){
 	pol_order_all <- list()
   	for (i in 1:length(polorderset)){
@@ -91,13 +70,6 @@ polorderpred <- function(keyratio,age,polorderset=c(1,2,6,8)){
 ### Part I: Estimating the parameters for the polynominal functions ###
 ###################################################################################################
 ## Setting parameters
-# Importing libraries
-library(dplyr)
-library(ggplot2)
-low_age <- 18
-up_age <- 100
-gen_el <- 'GENERAL-11/03/2020'
-pri_el <- 'PRIMARY-03/17/2020'
 re_path <-"../../../googledata/drfrank/ohio/" # user specific relative path
 pol_order_set <- c(1,2,6,8) # Polynominal set
 cou_set <- c(1:5)
