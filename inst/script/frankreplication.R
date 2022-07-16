@@ -1,7 +1,13 @@
 #' @export Voterrollanalysis
-Voterrollanalysis <- setRefClass("Voterrollanalysis", fields=list(abc='list'))
-Voterrollanalysis$methods(initialize=function(arg1=NULL){
+Voterrollanalysis <- setRefClass("Voterrollanalysis", fields=list(voterroll='list'))
+Voterrollanalysis$methods(initialize=function(coudatafile='vtr_ohio.rda'){
+browser()
+  rotp <- rprojroot::find_rstudio_root_file()
+  vfile <- paste0(rotp,'/data/',coudatafile)
+  voterroll[[1]] <<- get(load(vfile))
 
+#  dft <- voterroll[[1]] # dplyr::mutate()
+#  str(dft)
 #      dplyr::select(COUNTY_NUMBER, age, vregratio, registered, voting) %>%
 #      unique() %>%
 #      dplyr::mutate(tvoting=sum(voting)) %>%
@@ -13,7 +19,7 @@ Voterrollanalysis$methods(load=function(arg1=NULL){})
 
 
 
-
+ohio_vr <- Voterrollanalysis()
 
 
 
