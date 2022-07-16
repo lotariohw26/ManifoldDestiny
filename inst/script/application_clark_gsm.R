@@ -1,6 +1,7 @@
 #################################################################################################
 #library(ManifoldDestiny)
 sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
+abs_path <- rprojroot::find_rstudio_root_file()
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -13,16 +14,14 @@ library(ViewPipeSteps)
 library(ggpubr)
 library(htmltools)
 library(broom)
-abs_path <- function(){rprojroot::find_rstudio_root_file()}
 #################################################################################################
 ### Sheriff
 ### Governor
 ### Senate
-load(paste0(abs_path(),'/data/clark_sgs_sel.rda'))
+load(paste0(abs_path,'/data/clark_sgs_sel.rda'))
 fitdf <- totwomodes(A=c('B2'),B=c('A1','C3','A2'),C=c('B1+B3'),D=c('C1+A3+C2'),dfi=clark_sgs_sel[[3]])
-fitdf$C <- fitdf$R*0.20
+fitdf$C <- fitdf$R*0.200 #!
 gclark <- Countinggraphs(fitdf)
-gclark$sortpre()
 #### Step 1: Visual inspection
 gnt2a <- gclark$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"),labs=list(x="precinct (normalized)",y="precentage",caption=gclark$sumreg['alpha']))
 gnt2b <- gclark$plot2d(selvp=c("zeta"),selvl="zeta_m")
