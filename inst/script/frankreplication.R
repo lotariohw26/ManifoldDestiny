@@ -2,7 +2,9 @@ library(ggplot2)
 library(dplyr)
 #' @export Voterrollanalysis
 Voterrollanalysis <- setRefClass("Voterrollanalysis", fields=list(voterroll='data.frame', 
-								  listscard='list'))
+								  listscard='list', 
+								  polyscard='list' 
+								  ))
 Voterrollanalysis$methods(initialize=function(coudatafile='vtr_ohio.rda'){
   rotp <- rprojroot::find_rstudio_root_file()
   vfile <- paste0(rotp,'/data/',coudatafile)
@@ -10,24 +12,22 @@ Voterrollanalysis$methods(initialize=function(coudatafile='vtr_ohio.rda'){
   #¡
   voterroll <<- as.data.frame(vtr_ohio) 
 })
-
 Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
-				  browser()
-vr <- voterroll
-nrco <- unique(voterroll$cou_nr)
-  lapply(nrco,function(x){
-    lapply(1:length(polyo),function(y){
-      dft <- dplyr::filter(voterroll,cou_nr==x)
-      ft <- paste0("dft$key_ratio~poly(dft$age,",polyo[y],")")
-      lm(as.formula(ft))
-    })
-  }) ->> listscard
 
-listscard
+  vr <- voterroll
+  nrco <- unique(voterroll$cou_nr)
+    lapply(nrco,function(x){
+      lapply(1:length(polyo),function(y){
+        dft <- dplyr::filter(voterroll,cou_nr==x)
+        ft <- paste0("dft$key_ratio~poly(dft$age,",polyo[y],")")
+        lm(as.formula(ft))
+      })
+    }) ->> listscard
+    polyscard <<- lapply(1:4, function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]]$coeff)))	
 })
 ohio_vr <- Voterrollanalysis()
 ohio_vr$scorecard()
-
+View(ohio_vr$polyscard[[1]])
 
 
 names(ohio_vr$voterroll)
