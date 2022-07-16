@@ -57,71 +57,71 @@ resplot <- function(datadf=NULL,xt=NULL,yt=NULL,x_scale=c(-2.2)){
     #scale_y_continuous(limits=c(0, 1))
 }
 
-foudatatidy <- function(county=1,
-                      el_date='2020-01-04',
-                      flist=list(lage=18,
-                                 uage=100,
-                                 gen_el='GENERAL-11/03/2020',
-                                 pri_el='PRIMARY-03/17/2020'),
-                      path='/home/joernih/gitclones/homepageJIH/rprojects/research/election2020investigation/website/static/data-raw/ohio/'){
-      #print(getwd())
-      counties <- list.files(path,"*.csv")
-      ## Transformation of data
-      cou_data_transf <- readr::read_csv(paste0(path,counties[county]))[] %>%
-      dplyr::rename(c(general=flist$gen_el,primary=flist$pri_el)) %>%
-      # might adjust this later
-      dplyr::select(1:43,general,primary) %>% dplyr::mutate(county=counties[county]) %>%
-      dplyr::ungroup() %>%
-      #dplyr::mutate(age=lubridate::interval(DATE_OF_BIRTH, Sys.Date())%/%lubridate::years(1)) %>%
-      dplyr::mutate(age=as.numeric(difftime(el_date,DATE_OF_BIRTH,units="weeks")/52.5)) %>%
-      dplyr::mutate(age=floor(age)) %>%
-      dplyr::filter(age>=flist$lage) %>%
-      dplyr::filter(age<=flist$uage) %>%
-      dplyr::arrange(age) %>%
-      dplyr::group_by(age) %>%
-      dplyr::filter(age>=flist$lage) %>%
-      dplyr::filter(age<=flist$uage) %>%
-      dplyr::mutate(voting=sum(general=='X', na.rm=T)) %>%
-      dplyr::mutate(registered=sum(VOTER_STATUS=='ACTIVE', na.rm=T)) %>%
-      dplyr::mutate(geovoter=registered+sum(VOTER_STATUS=='CONFIRMATION', na.rm=T)) %>%
-      dplyr::mutate(vregratio=voting/registered) %>%
-      dplyr::ungroup() %>%
-      dplyr::select(county,COUNTY_NUMBER, age, vregratio, geovoter, registered, voting) %>%
-      unique() %>%
-      dplyr::mutate(tgeo=sum(geovoter)) %>%
-      dplyr::mutate(tvoting=sum(voting)) %>%
-      dplyr::mutate(tregistered=sum(registered)) %>%
-      dplyr::mutate(turnratio=tvoting/tregistered) %>%
-      dplyr::mutate(keyratio=vregratio/turnratio)
-}
+#foudatatidy <- function(county=1,
+#                      el_date='2020-01-04',
+#                      flist=list(lage=18,
+#                                 uage=100,
+#                                 gen_el='GENERAL-11/03/2020',
+#                                 pri_el='PRIMARY-03/17/2020'),
+#                      path='/home/joernih/gitclones/homepageJIH/rprojects/research/election2020investigation/website/static/data-raw/ohio/'){
+#      #print(getwd())
+#      counties <- list.files(path,"*.csv")
+#      ## Transformation of data
+#      cou_data_transf <- readr::read_csv(paste0(path,counties[county]))[] %>%
+#      dplyr::rename(c(general=flist$gen_el,primary=flist$pri_el)) %>%
+#      # might adjust this later
+#      dplyr::select(1:43,general,primary) %>% dplyr::mutate(county=counties[county]) %>%
+#      dplyr::ungroup() %>%
+#      #dplyr::mutate(age=lubridate::interval(DATE_OF_BIRTH, Sys.Date())%/%lubridate::years(1)) %>%
+#      dplyr::mutate(age=as.numeric(difftime(el_date,DATE_OF_BIRTH,units="weeks")/52.5)) %>%
+#      dplyr::mutate(age=floor(age)) %>%
+#      dplyr::filter(age>=flist$lage) %>%
+#      dplyr::filter(age<=flist$uage) %>%
+#      dplyr::arrange(age) %>%
+#      dplyr::group_by(age) %>%
+#      dplyr::filter(age>=flist$lage) %>%
+#      dplyr::filter(age<=flist$uage) %>%
+#      dplyr::mutate(voting=sum(general=='X', na.rm=T)) %>%
+#      dplyr::mutate(registered=sum(VOTER_STATUS=='ACTIVE', na.rm=T)) %>%
+#      dplyr::mutate(geovoter=registered+sum(VOTER_STATUS=='CONFIRMATION', na.rm=T)) %>%
+#      dplyr::mutate(vregratio=voting/registered) %>%
+#      dplyr::ungroup() %>%
+#      dplyr::select(county,COUNTY_NUMBER, age, vregratio, geovoter, registered, voting) %>%
+#      unique() %>%
+#      dplyr::mutate(tgeo=sum(geovoter)) %>%
+#      dplyr::mutate(tvoting=sum(voting)) %>%
+#      dplyr::mutate(tregistered=sum(registered)) %>%
+#      dplyr::mutate(turnratio=tvoting/tregistered) %>%
+#      dplyr::mutate(keyratio=vregratio/turnratio)
+#}
 
-agedatatidy2 <- function(dfage=NULL,flist=list(lage=18,uage=100)){
-#browser()
-
- # View(agedatatidy)
-
-    agedatatidy <- dfage %>%
-    dplyr::filter(age>=flist$lage) %>%
-    dplyr::filter(age<=flist$uage) %>%
-    dplyr::arrange(county,age) %>%
-    dplyr::group_by(county,age) %>%
-    dplyr::mutate(geovoter=sum(dplyr::dense_rank(status))) %>%
-    dplyr::mutate(gteovoter=sum(ifelse(status=='real',1,0))) %>%
-    dplyr::mutate(voting=sum(voting, na.rm=T)) %>%
-    dplyr::mutate(registered=sum(registered, na.rm=T)) %>%
-    dplyr::mutate(vregratio=voting/registered) %>%
-    dplyr::select(state,county,status,age,geovoter,gteovoter,vregratio, registered, voting) %>%
-    dplyr::distinct() %>%
-    dplyr::group_by(county) %>%
-    dplyr::mutate(tgeovoter=sum(geovoter)) %>%
-    dplyr::mutate(tgfeovoter=sum(gteovoter)) %>%
-    dplyr::mutate(tvoting=sum(voting)) %>%
-    dplyr::mutate(tregistered=sum(registered)) %>%
-    dplyr::mutate(turnratio=tvoting/tregistered) %>%
-    dplyr::mutate(keyratio=vregratio/turnratio) %>%
-    base::split(.$county)
-
-}
+#agedatatidy2 <- function(dfage=NULL,flist=list(lage=18,uage=100)){
+##browser()
+#
+# # View(agedatatidy)
+#
+#    agedatatidy <- dfage %>%
+#    dplyr::filter(age>=flist$lage) %>%
+#    dplyr::filter(age<=flist$uage) %>%
+#    dplyr::arrange(county,age) %>%
+#    dplyr::group_by(county,age) %>%
+#    dplyr::mutate(geovoter=sum(dplyr::dense_rank(status))) %>%
+#    dplyr::mutate(gteovoter=sum(ifelse(status=='real',1,0))) %>%
+#    dplyr::mutate(voting=sum(voting, na.rm=T)) %>%
+#    dplyr::mutate(registered=sum(registered, na.rm=T)) %>%
+#    dplyr::mutate(vregratio=voting/registered) %>%
+#    dplyr::select(state,county,status,age,geovoter,gteovoter,vregratio, registered, voting) %>%
+#    dplyr::distinct() %>%
+#    dplyr::group_by(county) %>%
+#    dplyr::mutate(tgeovoter=sum(geovoter)) %>%
+#    dplyr::mutate(tgfeovoter=sum(gteovoter)) %>%
+#    dplyr::mutate(tvoting=sum(voting)) %>%
+#    dplyr::mutate(tregistered=sum(registered)) %>%
+#    dplyr::mutate(turnratio=tvoting/tregistered) %>%
+#    dplyr::mutate(keyratio=vregratio/turnratio) %>%
+#    base::split(.$county)
+#
+#}
 
 keypolorder <- function(polyorder=2,county=seq(1,3)){
  

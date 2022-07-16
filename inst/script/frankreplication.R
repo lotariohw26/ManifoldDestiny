@@ -3,7 +3,8 @@ library(dplyr)
 #' @export Voterrollanalysis
 Voterrollanalysis <- setRefClass("Voterrollanalysis", fields=list(voterroll='data.frame', 
 								  listscard='list', 
-								  polyscard='list' 
+								  polyscard='list',
+								  polypredi='list' 
 								  ))
 Voterrollanalysis$methods(initialize=function(coudatafile='vtr_ohio.rda'){
   rotp <- rprojroot::find_rstudio_root_file()
@@ -25,8 +26,57 @@ Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
     }) ->> listscard
     polyscard <<- lapply(1:4, function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]]$coeff)))	
 })
+Voterrollanalysis$methods(predictinput=function(predict=c(1,2,6,8)){
+
+  avgpredkeyratio <- t(polyscard[[3]]) %>% base::colMeans()
+  polypredi[[1]] <<- voterroll %>%
+	  dplyr::group_by(cou_nr) %>%
+          dplyr::mutate(ballpred=tot_regist*tur_ratio*avgpredkeyratio) 
+          dplyr::mutate(prederror=tot_voted-ballpred) %>%
+          #dplyr::mutate(corr=cor(ballpred,tot_voted)) 
+	  dplyr::ungroup()
+warnings()
+  dft <- polypredi[[1]] %>% dplyr::filter(cou_nr==3)
+  plot(dft$age,dft$key_ratio) 
+  View(polypredi[[1]])
+names(dft)
+  polyscard[[1]]
+  View(voterroll)
+  dim(voterroll[1])
+browser()
+  
+#    dplyr::mutate(ballpred=registered*turnratio*avgpredkeyratio) %>%
+
+#  cou_data_trans <- foudatatidy(county) %>% tidyr::drop_na() %>% dplyr::select(county,age,keyratio,geovoter,voting,registered,turnratio)
+#  
+# dfinputreport <- scorecard %>%
+#    purrr::map_df(function(x) as.data.frame(left_join(x,cou_data_trans,by='age'))) %>%
+#    dplyr::group_by(polinc) %>%
+#    tidyr::drop_na() %>%
+#    dplyr::mutate(ballpred=registered*turnratio*avgpredkeyratio) %>%
+#    dplyr::mutate(prederror=voting-ballpred) %>%
+#    dplyr::mutate(corr=cor(ballpred,voting)) %>%
+#    tidyr::nest() %>%
+#    tidyr::unnest(data) %>%
+#    dplyr::ungroup() %>%
+#    tidyr::pivot_longer(c(avgpredkeyratio,keyratio,prederror,ballpred,geovoter,voting,registered)) %>%
+#    split(.$polinc)
+})
+Voterrollanalysis$methods(predictplots=function(arg1=NULL){})
+Voterrollanalysis$methods(gridarrange=function(arg1=NULL){})
+Voterrollanalysis$methods(teste=function(arg1=NULL){
+browser()
+})
 ohio_vr <- Voterrollanalysis()
+#View(ohio_vr)
+ohio_vr$voterroll
 ohio_vr$scorecard()
+ohio_vr$predictinput()
+
+ohio_vr$predictplots()
+ohio_vr$gridarrange()
+
+
 View(ohio_vr$polyscard[[1]])
 
 
@@ -45,15 +95,7 @@ ggplot2::ggplot(data=dft) +
   ggplot2::xlab('xlab') +
   ggplot2::ylab('ylab')+
   theme_classic()
-
-
-
-
-
-
 ggplot2::ggplot(data=df,aes(x=df$age,y=df$key_ratio))+geom_point()
-
-
 View()
 #rm(list=rm())
 ####################################################################################################
