@@ -4,7 +4,8 @@ library(dplyr)
 Voterrollanalysis <- setRefClass("Voterrollanalysis", fields=list(voterroll='data.frame', 
 								  listscard='list', 
 								  polyscard='list',
-								  polypredi='list' 
+								  polypredi='list', 
+								  polyov='vector' 
 								  ))
 Voterrollanalysis$methods(initialize=function(coudatafile='vtr_ohio.rda'){
   rotp <- rprojroot::find_rstudio_root_file()
@@ -15,6 +16,7 @@ Voterrollanalysis$methods(initialize=function(coudatafile='vtr_ohio.rda'){
 })
 Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
 
+  polyov <<- polyo
   vr <- voterroll
   nrco <- unique(voterroll$cou_nr)
     lapply(nrco,function(x){
@@ -26,47 +28,42 @@ Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
     }) ->> listscard
     polyscard <<- lapply(1:4, function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]]$coeff)))	
 })
-Voterrollanalysis$methods(predictinput=function(predict=c(1,2,6,8)){
-browser()
-  avgpkeyr <- t(polyscard[[3]]) %>% base::colMeans() %>% polynom::polynomial()
-  avgpkeyr2 <- lm(voterroll$key_ratio~poly(voterroll$age,3,raw=T))$coeff %>%
-	  as.vector() %>% polynom::polynomial()
+Voterrollanalysis$methods(predictinput=function(arg1=NULL){
 
-  plotvage <- c('ag_geovo','ag_voted','ag_regis')
-
-  polypredi[[1]] <<- voterroll %>%
+  polypredi <<- lapply(1:length(polyov), function(x){
+    avg_key_poly <- t(polyscard[[x]]) %>% base::colMeans() %>% polynom::polynomial()
+    vr <- voterroll %>%
     dplyr::group_by(cou_nr) %>%
-    dplyr::mutate(avgpredkey=stats::predict(avgpkeyr,age)) %>% 
-    dplyr::mutate(ag_pred=tot_regist*tur_ratio*avgpredkey) %>%
-    dplyr::mutate(prederror=ag_voted-ag_pred) %>%
-    #dplyr::mutate(corr=cor(ballpred,tot_voted)) 
-    dplyr::ungroup() %>%
-    tidyr::pivot_longer(plotvage) 
-    
-
-dfg <- polypredi[[1]] %>% dplyr::filter(cou_nr==3)
-ggplot2::ggplot(data=dfg , aes(x=age,y=value,color=name)) + geom_line() 
-names(voterroll)
-  
-	
-hist(polypredi[[1]]$prederror)
-qplot()
-	  
-	  warnings()
-predict(avgpkeyr,18:100)
-View(voterroll)
-voterroll$key_ratio
-vp <- as.vector(lm(voterroll$key_ratio~poly(voterroll$age,3,raw=T))$coeff)
-predict(polynomial(vp),18:100)
-
+    dplyr::mutate(avg_key_ratio=stats::predict(avg_key_poly,age)) %>%
+    dplyr::mutate(ag_vpred=ag_regis*tur_ratio*avg_key_ratio) %>%
+    dplyr::mutate(prederror=ag_voted-ag_vpred) %>%
+    dplyr::mutate(corr=cor(ag_voted,ag_vpred)) %>%
+    dplyr::ungroup() 
+  }) 
 })
 Voterrollanalysis$methods(predictplots=function(arg1=NULL){})
 Voterrollanalysis$methods(gridarrange=function(arg1=NULL){})
 ohio_vr <- Voterrollanalysis()
 ohio_vr$scorecard()
 ohio_vr$predictinput()
+ohio_vr$polypredi[[4]]
 ohio_vr$predictplots()
 ohio_vr$gridarrange()
+
+
+
+
+#  plotvage <- c('ag_geovo','ag_voted','ag_regis','ag_vpred')
+#  keys <- c('key_ratio','avg_key_ratio')
+
+#round(unique(polypredi[[1]]$corr),4)
+    
+    #    #tidyr::pivot_longer(keys) 
+#    tidyr::pivot_longer(plotvage) 
+#dfg <- polypredi[[1]] %>% dplyr::filter(cou_nr==3)
+#ggplot2::ggplot(data=dfg , aes(x=age,y=value,color=name)) + geom_line() 
+
+
 
   
 #    dplyr::mutate(ballpred=registered*turnratio*avgpredkeyratio) %>%
