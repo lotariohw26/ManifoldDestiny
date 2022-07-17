@@ -36,7 +36,11 @@ votr <- vrdf$listvbase[[2]]
 ###### A) Fair ###
 gsimf <- Countinggraphs(votr,selvar=c('R','C','a','b','c','d','probwd'))
 gsimf$sortpre(selvar=c('x','y','alpha','lambda','zeta','probwd'))
-#gsimf$gridarrange()
+gsimf$plot2d()
+gsimf$plotxy()
+gsimf$resplot()
+gsimf$plotly3d()
+gsimf$gridarrange()
 vrdf$uploadvbase(gsimf$sdfc,gsimf$rdfc,gsimf$parameters$standard)
 #################################################################################################33
 ##### B) Rigged ###

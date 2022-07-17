@@ -152,35 +152,39 @@ Countinggraphs$methods(plot2d=function(selvp=c("x","y","alpha"),
 				       selvl=c("x_pred","y_pred","alpha_pred"), 
     				       labs=list(x="precinct (normalized)",y=NULL,caption=NULL)
 				       ){
-
   longdf <- tidyr::pivot_longer(quintile,all_of(c(selvp,selvl)))
-  pl_2dsort <<- ggplot2::ggplot(data=longdf) +
+  go <-   ggplot2::ggplot(data=longdf) +
     ggplot2::geom_line(data=filter(longdf,name%in%selvl),aes(x=pri,y=value, color=name)) +
     ggplot2::geom_point(data=filter(longdf,name%in%selvp),aes(x=pri,y=value, color=name)) + 
     ggplot2::labs(x=labs$x,y=labs$y,caption=labs$caption) +
     ggplot2::theme_bw()
+    pl_2dsort <<- list(go)
 })
-Countinggraphs$methods(plotxy=function(selv=c("x","y")){
+Countinggraphs$methods(plotxy=function(form=1){
 
-    widedf <- sdfc
-    ggplot2::ggplot(data=widedf,aes_string(x=selv[1],y=selv[2])) +
-	geom_point() +
-	geom_smooth(method=lm,se=F) +
-        #ggpubr::stat_regline_equation(label.x=0,label.y=0.10) +
-        ggpubr::stat_cor() +
-   	labs(x=selv[1],y=selv[2],title="") +
-    	ggplot2::theme_bw()
+  dfg  <- dplyr::select(rdfc,parameters[[form]])
+  cmb <- combinat::combn(3, 2)
+  #pl_corrxy[1]
+  pl_corrxy <<- lapply(seq(1,dim(cmb)[2]), function(x){
+    ggplot2::ggplot(data=dfg,aes_string(x='x',y='y')) +
+    geom_point() +
+    geom_smooth(method=lm,se=F) +
+    #ggpubr::stat_regline_equation(label.x=0,label.y=0.10) +
+    ggpubr::stat_cor() +
+    #labs(x=selv[1],y=selv[2],title="") +
+    ggplot2::theme_bw()
+  }) 
 })
-Countinggraphs$methods(resplot=function(resvar=c("zeta_mr","alpha_res"),
-					labs=list(x=NULL,y=NULL,caption=NULL), 
-					crossp=F){
-  selv <- list(resvar,c('zeta_mr',paste0(resvar[1],'*',resvar[2])))[[ifelse(crossp==F,1,2)]]
-  dfgp <- quintile %>% dplyr::select(pri,all_of(resvar)) %>% 
-	  dplyr::mutate(crossp=100*quintile[[resvar[1]]]*quintile[[resvar[2]]])
-  ggplot2::ggplot(data=dfgp,aes_string(x=selv[1],y=selv[2])) +
-    geom_smooth(method="lm", se=F) +
-    labs(x=selv[1],y=selv[2],title="") +
-    geom_point() 
+Countinggraphs$methods(resplot=function(form=1){
+
+  dfg <- dplyr::select(quintile,zeta_m,zeta_mr,zeta,paste0(parameters[[form]][c(1,2,4)],'_res'))
+  cmb <- combinat::combn(3, 2)
+  pl_rescro <<- lapply(seq(1,dim(cmb)[2]), function(x){
+    ggplot2::ggplot(data=dfg,aes_string(x='zeta_mr',y='y_res')) +
+    ggplot2::geom_point() +
+    ggplot2::geom_smooth(method="lm", se=F) 
+    #ggplot2::labs(x='x',y='y',title="") 
+    })
 })
 Countinggraphs$methods(plotly3d=function(
 					 partition=1,
@@ -202,13 +206,17 @@ Countinggraphs$methods(plotly3d=function(
   yaxis = list(title = names(gdf)[2]),
   zaxis = list(title = names(gdf)[3]))) }) ->> pl_3dmani
 
-  ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
-  	 div(plot3dlist[sel[[1]]], class="column"),
-  	 div(plot3dlist[sel[[2]]],class="column"))
-  list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=plot3dlist[[selid]])
 })
 Countinggraphs$methods(gridarrange=function(arg1=NULL){
-			       browser()
+browser()
+#pl_2dsort
+#pl_corrxy
+#pl_rescro
+#pl_3dmani[[1]]
+##  ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
+#  	 div(pl_3dmani[sel[[1]]],class="column"),
+#  	 div(pl_3dmani[sel[[2]]],class="column"))
+#  list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=plot3dlist[[selid]])
 })
 
 #' @exportClass Countingtables
