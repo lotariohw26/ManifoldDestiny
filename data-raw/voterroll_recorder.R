@@ -46,5 +46,3 @@ vtr_ohio <- lf_ohio %>% purrr::map(function(x){
 }) %>% dplyr::bind_rows(.) 
 vtr_ohio
 usethis::use_data(vtr_ohio, overwrite = TRUE)
-
-
