@@ -1,6 +1,6 @@
 library(ManifoldDestiny)
 library(dplyr)
-
+library(readxl)
 # Standardized values
 vrsnames <- c('id','cou_nr','birthdate','general','primary','voted','registered','age')
 el_date='2020-01-04'
@@ -10,8 +10,11 @@ pri_el <- 'PRIMARY-03/17/2020'
 
 # Ohio
 lf_ohio <- list.files(path=paste0(rprojroot::find_rstudio_root_file(),'/data-raw/voterroll/ohio'),full.names=T)
+lc_ohio <- list.files(path=paste0(rprojroot::find_rstudio_root_file(),'/data-raw/voterroll/ohio'),full.names=F)
 vtr_ohio <- lf_ohio %>% purrr::map(function(x){
   # Standardized voterroll
+  ## county names
+  cou_nal <- substring(lc_ohio[1],1,nchar(lc_ohio[1])-5)
   ## read raw files
   sta_vot <- readxl::read_excel(x) %>% 
     dplyr::rename(c(general=all_of(gen_el),primary=all_of(pri_el))) %>%
@@ -43,7 +46,10 @@ vtr_ohio <- lf_ohio %>% purrr::map(function(x){
     dplyr::mutate(tot_voted=sum(ag_voted)) %>%
     dplyr::mutate(tot_regist=sum(ag_regis)) %>%
     dplyr::mutate(tur_ratio=tot_voted/tot_regist) %>%
-    dplyr::mutate(key_ratio=ag_regra/tur_ratio)
+    dplyr::mutate(key_ratio=ag_regra/tur_ratio) %>%
+    ### add county names
+    dplyr:: mutate(cou_na=cou_nal) %>% dplyr::relocate(cou_na,.after=cou_nr) 
 }) %>% dplyr::bind_rows(.) 
 usethis::use_data(vtr_ohio, overwrite = TRUE)
+
 
