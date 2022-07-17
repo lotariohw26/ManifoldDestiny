@@ -46,7 +46,10 @@ Voterrollanalysis$methods(predictinput=function(arg1=NULL){
     dplyr::ungroup() 
   }) 
 })
-Voterrollanalysis$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','ag_regis','ag_vpred'), lp=list(x='Age category',y='Number of voters') 
+
+#' @export Voterrollgraphs
+Voterrollgraphs <- setRefClass("Voterrollgraphs", contains = c('Voterrollanalysis'))
+Voterrollgraphs$methods()(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','ag_regis','ag_vpred'), lp=list(x='Age category',y='Number of voters') 
 ){
   for (po in 1:length(polcou[[1]])){
     lg_pred[[po]] <<- lapply(polcou[[2]], function(x){
@@ -58,7 +61,7 @@ Voterrollanalysis$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted'
       ggplot2::theme_bw()})
   }
 })
-Voterrollanalysis$methods(plot_keyrat=function(
+Voterrollgraphs$methods(plot_keyrat=function(
   plotyvar=list(li='avg_key_ratio',po=c('go_key_ratio','re_key_ratio','avg_key_ratio','tur_ratio')
   )){
   for (po in 1:length(polcou[[1]])){
@@ -71,7 +74,7 @@ Voterrollanalysis$methods(plot_keyrat=function(
     })
   }				  
 })
-Voterrollanalysis$methods(plot_histio=function(plotyvar=c('pred_error')){
+Voterrollgraphs$methods(plot_histio=function(plotyvar=c('pred_error')){
 for (po in 1:length(polcou[[1]])){
   lg_hist[[po]] <<- lapply(polcou[[2]], function(x){
     dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(all_of(plotyvar))
@@ -81,7 +84,7 @@ for (po in 1:length(polcou[[1]])){
 })
 }				  
 })
-Voterrollanalysis$methods(gridarrange=function(arg1=NULL){
+Voterrollgraphs$methods(gridarrange=function(arg1=NULL){
 
   nmlc <- unique(voterroll$cou_na)
   for (lc in 1:length(nmlc)){
@@ -97,9 +100,8 @@ Voterrollanalysis$methods(gridarrange=function(arg1=NULL){
     #list(plot=g)
   }
 })
-#' @export Countinggraphs
-Voterrollgraphs <- setRefClass("Voterrollgraphs", contains = c('Voterrollanalysis'))
-#' @export Countinggraphs
+
+#' @export Voterrollreport
 Voterrollreport <- setRefClass("Voterrollreport", contains = c('Voterrollanalysis'))
 Voterrollreport$methods(htmlreport=function(reportn='Ohio'){
   report <- voterroll
