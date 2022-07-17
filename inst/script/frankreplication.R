@@ -60,27 +60,31 @@ for (po in 1:length(polcou[[1]])){
     ggplot2::theme_bw()})
 }
 })
-#ggplot2::ggplot(data=x, aes(x=age,y=value,color=name)) + geom_line()  
-#dfg <- polypredi[[1]] %>% dplyr::filter(cou_nr==3)
+Voterrollanalysis$methods(plot_histio=function(arg1=NULL){
+browser()
+po <- 1
+x <- 1
+#ggplot2::ggplot(data=x) + geom_histogram(aes(x=value)) + ggplot2::labs(title = label$title)
+})
+Voterrollanalysis$methods(plot_keyrat=function(arg1=NULL){
+po <- 1
+x <- 1
+#browser()
+# ggplot2::ggplot(data=x, aes(x=age,y=value, color=name)) + geom_point() + scale_y_continuous(limits=c(0, 2))
+})
 Voterrollanalysis$methods(gridarrange=function(arg1=NULL){})
+
+
 ohio_vr <- Voterrollanalysis()
 ohio_vr$scorecard()
 ohio_vr$predictinput()
 ohio_vr$plot_predict()
-#length(ohio_vr$lg_pred[[1]])
+ohio_vr$plot_histiot()
+ohio_vr$plot_keyrat()
 
 
 ohio_vr$gridarrange()
 #
-Voterrollanalysis$methods(plot_histio=function(arg1=NULL){
-browser()
-#ggplot2::ggplot(data=x) + geom_histogram(aes(x=value)) + ggplot2::labs(title = label$title)
-})
-Voterrollanalysis$methods(plot_keyrat=function(arg1=NULL){
-#browser()
-# ggplot2::ggplot(data=x, aes(x=age,y=value, color=name)) + geom_point() + scale_y_continuous(limits=c(0, 2))
-})
-
 
 plotvage <- c('ag_geovo','ag_voted','ag_regis','ag_vpred')
 #  keys <- c('key_ratio','avg_key_ratio')
