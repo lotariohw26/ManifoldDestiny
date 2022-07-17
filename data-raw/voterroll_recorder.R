@@ -11,12 +11,14 @@ pri_el <- 'PRIMARY-03/17/2020'
 # Ohio
 lf_ohio <- list.files(path=paste0(rprojroot::find_rstudio_root_file(),'/data-raw/voterroll/ohio'),full.names=T)
 lc_ohio <- list.files(path=paste0(rprojroot::find_rstudio_root_file(),'/data-raw/voterroll/ohio'),full.names=F)
-vtr_ohio <- lf_ohio %>% purrr::map(function(x){
+
+vtr_ohio <-seq(1,length(lc_ohio)) %>% purrr::map(function(x){
   # Standardized voterroll
   ## county names
-  cou_nal <- substring(lc_ohio[1],1,nchar(lc_ohio[1])-5)
+  cou_nal <- substring(lc_ohio[x],1,nchar(lc_ohio[x])-5)
+  xlsx_file <- lf_ohio[x]
   ## read raw files
-  sta_vot <- readxl::read_excel(x) %>% 
+  sta_vot <- readxl::read_excel(xlsx_file) %>% 
     dplyr::rename(c(general=all_of(gen_el),primary=all_of(pri_el))) %>%
     select(SOS_VOTERID,COUNTY_NUMBER,DATE_OF_BIRTH,VOTER_STATUS,general,primary) %>%
     ## Transform relevant data variables
@@ -55,4 +57,3 @@ vtr_ohio <- lf_ohio %>% purrr::map(function(x){
     dplyr:: mutate(cou_na=cou_nal) %>% dplyr::relocate(cou_na,.after=cou_nr) 
 }) %>% dplyr::bind_rows(.) 
 usethis::use_data(vtr_ohio, overwrite = TRUE)
-View(sta_vot)

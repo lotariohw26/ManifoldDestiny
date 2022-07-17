@@ -77,7 +77,7 @@ Voterrollanalysis$methods(plot_keyrat=function(
 Voterrollanalysis$methods(plot_histio=function(plotyvar=c('pred_error')){
 for (po in 1:length(polcou[[1]])){
   lg_hist[[po]] <<- lapply(polcou[[2]], function(x){
-    dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(plotyvar)
+    dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(all_of(plotyvar))
     ctitle <- paste0('County ',dfg$cou_nr[x])
     ggplot2::ggplot(data=dfg) + geom_histogram(aes(x=value)) + 
 	    ggplot2::labs(title = ctitle) + theme_bw()
@@ -85,53 +85,24 @@ for (po in 1:length(polcou[[1]])){
 }				  
 })
 Voterrollanalysis$methods(gridarrange=function(arg1=NULL){
-				  browser()
-gr1 <-lg_keyr[[3]][[2]] 
-gr2 <-lg_pred[[3]][[2]] 
-gr3 <-lg_hist[[3]][[1]] 
-nmlc <- unique(voterroll$cou_na)
-names(dfg)
+browser()
 dfg <- voterroll %>% dplyr::filter(cou_nr==3)
-fla <- ggplot2::ggplot(dfg,aes(x=age,y=ag_gevos))+geom_line()
-
-ag <- gridExtra::arrangeGrob(fla)
-grid.arrange(fla, fla, ncol=2)
-library(gridExtra)
-library(grid)
-library(ggplot2)
-library(lattice)
-
-fla <- ggplot2::ggplot(dfg,aes(x=age,y=ag_gevos))+geom_line()
-p <- qplot(1,1)
-pl <- list(qplot(1,1))
-grid.arrange(fla, fla, fla, ncol=3)
-ggsave(file=plotfile)
-
-
-ag <- arrangeGrob(grobs=pl)
-plotname <- paste0(substr(nmlc,1,nchar(nmlc)),".png")
+nmlc <- unique(voterroll$cou_na)
+for (lc in 1:3){
+lc <- 3
+nmlcl <- nmlc[lc]
+gr1 <- lg_keyr[[3]][[lc]] 
+gr2 <- lg_pred[[3]][[lc]] 
+gr3 <- lg_hist[[3]][[lc]] 
+# Test
+#grid.arrange(gr1, gr2, gr3, ncol=3)
+# True save
+ag <- gridExtra::arrangeGrob(grobs=gr1)
+plotname <- paste0(substr(nmlcl,1,nchar(nmlcl)),".png")
 plotfile <- paste0(rotp,'/inst/script/pngs/',plotname)
 ggsave(file=plotfile,ag)
-
-#gridExtra
-?append
-
-
-require(ggplot2)
-pl <- lapply(1:11, function(.x) qplot(1:10,rnorm(10), main=paste("plot",.x)))
-ml <- do.call(marrangeGrob, c(pl, list(nrow=2, ncol=2)))
-## interactive use; open new devices
-ml
-## non-interactive use, multipage pdf
-ggsave("multipage.pdf", ml)
-
-
-g <- gridExtra::marrangeGrob(fl,nrow=1,ncol=1)
-fl
-plotname <- paste0(substr(nmlc,1,nchar(nmlc)),".png")
-plotfile <- paste0(rotp,'inst/script/pngs/',plotname)
-ggsave(file=plotfile,g)
 #list(plot=g)
+}
 })
 ohio_vr <- Voterrollanalysis()
 ohio_vr$scorecard()
