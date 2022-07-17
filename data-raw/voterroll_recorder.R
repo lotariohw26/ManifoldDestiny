@@ -12,7 +12,7 @@ pri_el <- 'PRIMARY-03/17/2020'
 lf_ohio <- list.files(path=paste0(rprojroot::find_rstudio_root_file(),'/data-raw/voterroll/ohio'),full.names=T)
 vtr_ohio <- lf_ohio %>% purrr::map(function(x){
   # Standardized voterroll
-  ## read raw file
+  ## read raw files
   sta_vot <- readxl::read_excel(x) %>% 
     dplyr::rename(c(general=all_of(gen_el),primary=all_of(pri_el))) %>%
     select(SOS_VOTERID,COUNTY_NUMBER,DATE_OF_BIRTH,VOTER_STATUS,general,primary) %>%
@@ -32,17 +32,18 @@ vtr_ohio <- lf_ohio %>% purrr::map(function(x){
     ## standardizing the variables needed
     ### for each age group
     dplyr::group_by(age) %>% 
+    dplyr::mutate(ag_geovo=n_distinct(id)) %>%
     dplyr::mutate(ag_voted=sum(voted, na.rm=T)) %>%
     dplyr::mutate(ag_regis=sum(registered, na.rm=T)) %>% 
     dplyr::mutate(ag_regra=ag_voted/ag_regis) %>% 
     ### for county
     dplyr::ungroup() %>%
-    dplyr::select(cou_nr,age,ag_voted,ag_regis,ag_regra) %>%
+    dplyr::select(cou_nr,age,ag_geovo,ag_regis,ag_voted,ag_regra) %>%
     dplyr::distinct() %>%
     dplyr::mutate(tot_voted=sum(ag_voted)) %>%
     dplyr::mutate(tot_regist=sum(ag_regis)) %>%
     dplyr::mutate(tur_ratio=tot_voted/tot_regist) %>%
     dplyr::mutate(key_ratio=ag_regra/tur_ratio)
 }) %>% dplyr::bind_rows(.) 
-vtr_ohio
 usethis::use_data(vtr_ohio, overwrite = TRUE)
+
