@@ -49,7 +49,7 @@ Voterrollanalysis$methods(predictinput=function(arg1=NULL){
 
 #' @export Voterrollgraphs
 Voterrollgraphs <- setRefClass("Voterrollgraphs", contains = c('Voterrollanalysis'))
-Voterrollgraphs$methods()(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','ag_regis','ag_vpred'), lp=list(x='Age category',y='Number of voters') 
+Voterrollgraphs$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','ag_regis','ag_vpred'), lp=list(x='Age category',y='Number of voters') 
 ){
   for (po in 1:length(polcou[[1]])){
     lg_pred[[po]] <<- lapply(polcou[[2]], function(x){
