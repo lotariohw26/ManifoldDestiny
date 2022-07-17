@@ -39,20 +39,20 @@ vtr_ohio <- lf_ohio %>% purrr::map(function(x){
     dplyr::mutate(ag_voted=sum(voted, na.rm=T)) %>%
     dplyr::mutate(ag_regis=sum(registered, na.rm=T)) %>% 
     dplyr::mutate(ag_gevos=ag_voted/ag_geovo) %>% 
-    dplyr::mutate(ag_revos=ag_voted/ag_regis) %>% 
+    dplyr::mutate(ag_revos=ag_voted/ag_regis) %>%
     ### for county
     dplyr::ungroup() %>%
-    dplyr::select(cou_nr,age,ag_geovo,ag_voted,ag_regis,ag_gevos,ag_revos) %>%
+    dplyr::select(cou_nr,age,ag_geovo,ag_regis,ag_voted,ag_gevos,ag_revos) %>%
     dplyr::distinct() %>%
-    dplyr::mutate(tot_geo=sum(ag_geovo)) %>%
+    dplyr::mutate(tot_geopo=sum(ag_geovo)) %>%
     dplyr::mutate(tot_voted=sum(ag_voted)) %>%
-    dplyr::mutate(tot_regist=sum(ag_regis)) %>%
-    dplyr::mutate(geo_ratio=tot_voted/tot_regist) %>%
-    dplyr::mutate(tur_ratio=tot_voted/tot_regist) %>%
-    dplyr::mutate(go_key_ratio=ag_geovo/tot_geo) %>%
-    dplyr::mutate(re_key_ratio=ag_regis/tur_ratio) %>%
+    dplyr::mutate(tot_regis=sum(ag_regis)) %>%
+    dplyr::mutate(geo_ratio=tot_voted/tot_geopo) %>%
+    dplyr::mutate(tur_ratio=tot_voted/tot_regis) %>%
+    dplyr::mutate(go_key_ratio=ag_gevos/geo_ratio) %>%
+    dplyr::mutate(re_key_ratio=ag_revos/tur_ratio) %>%
     ### add county names
     dplyr:: mutate(cou_na=cou_nal) %>% dplyr::relocate(cou_na,.after=cou_nr) 
 }) %>% dplyr::bind_rows(.) 
 usethis::use_data(vtr_ohio, overwrite = TRUE)
-View(vtr_ohio)
+View(sta_vot)

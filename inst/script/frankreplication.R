@@ -15,21 +15,20 @@ Voterrollanalysis$methods(initialize=function(coudatafile='vtr_ohio.rda',
   rotp <- rprojroot::find_rstudio_root_file()
   vfile <- paste0(rotp,'/data/',coudatafile)
   load(vfile)
-  #load("~/research/ManifoldDestiny/data/vtr_ohio.rda")
   voterroll <<- as.data.frame(vtr_ohio) 
   polcou[[1]] <<- polyo
   polcou[[2]] <<- unique(voterroll$cou_nr)
 })
 Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
 
-  polcou[[1]] <<- polyo
+  polyo <- polcou[[1]] 
   #polyov <<- polyo
   vr <- voterroll
   nrco <- unique(voterroll$cou_nr)
     lapply(nrco,function(x){
       lapply(1:length(polyo),function(y){
         dft <- dplyr::filter(voterroll,cou_nr==x)
-        ft <- paste0("dft$key_ratio~poly(dft$age,",polyo[y],",raw=T)")
+        ft <- paste0("dft$re_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
         lm(as.formula(ft))
       })
     }) ->> listscard
@@ -52,7 +51,7 @@ Voterrollanalysis$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted'
 ){
   for (po in 1:length(polcou[[1]])){
     lg_pred[[po]] <<- lapply(polcou[[2]], function(x){
-      dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(plotyvar) 
+      dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(all_of(plotyvar)) 
       ctitle <- paste0('County ',dfg$cou_nr[x])
       captionp <- paste0('correlation (r)= ',round(unique(dfg$corr), digits=5))
       lp <- ggplot2::ggplot(data=dfg , aes(x=age,y=value,color=name)) + geom_line() + 
@@ -60,7 +59,7 @@ Voterrollanalysis$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted'
       ggplot2::theme_bw()})
   }
 })
-Voterrollanalysis$methods(plot_keyrat=function(plotyvar=c('key_ratio','avg_key_ratio','tur_ratio')){
+Voterrollanalysis$methods(plot_keyrat=function(plotyvar=c('re_key_ratio','go_key_ratio','avg_key_ratio','tur_ratio')){
   for (po in 1:length(polcou[[1]])){
     lg_keyr[[po]] <<- lapply(polcou[[2]], function(x){
       dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(plotyvar) 
@@ -68,6 +67,7 @@ Voterrollanalysis$methods(plot_keyrat=function(plotyvar=c('key_ratio','avg_key_r
       scale_y_continuous(limits=c(0, 2)) + theme_bw()
     })
   }				  
+browser()
 })
 Voterrollanalysis$methods(plot_histio=function(plotyvar=c('pred_error')){
 for (po in 1:length(polcou[[1]])){
@@ -83,8 +83,9 @@ Voterrollanalysis$methods(gridarrange=function(arg1=NULL){})
 ohio_vr <- Voterrollanalysis()
 ohio_vr$scorecard()
 ohio_vr$predictinput()
+ohio_vr$plot_keyrat()
+ohio_v$lg_keyr[[1]][[1]]
 ohio_vr$plot_histio()
 ohio_vr$plot_predict()
-ohio_vr$plot_keyrat()
 ohio_vr$gridarrange()
 
