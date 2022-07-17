@@ -103,7 +103,15 @@ library(lattice)
 
 fla <- ggplot2::ggplot(dfg,aes(x=age,y=ag_gevos))+geom_line()
 p <- qplot(1,1)
+pl <- list(qplot(1,1))
 grid.arrange(fla, fla, fla, ncol=3)
+ggsave(file=plotfile)
+
+
+ag <- arrangeGrob(grobs=pl)
+plotname <- paste0(substr(nmlc,1,nchar(nmlc)),".png")
+plotfile <- paste0(rotp,'/inst/script/pngs/',plotname)
+ggsave(file=plotfile,ag)
 
 #gridExtra
 ?append
