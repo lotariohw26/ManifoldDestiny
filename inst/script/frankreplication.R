@@ -85,24 +85,20 @@ for (po in 1:length(polcou[[1]])){
 }				  
 })
 Voterrollanalysis$methods(gridarrange=function(arg1=NULL){
-browser()
-dfg <- voterroll %>% dplyr::filter(cou_nr==3)
-nmlc <- unique(voterroll$cou_na)
-for (lc in 1:3){
-lc <- 3
-nmlcl <- nmlc[lc]
-gr1 <- lg_keyr[[3]][[lc]] 
-gr2 <- lg_pred[[3]][[lc]] 
-gr3 <- lg_hist[[3]][[lc]] 
-# Test
-#grid.arrange(gr1, gr2, gr3, ncol=3)
-# True save
-ag <- gridExtra::arrangeGrob(grobs=gr1)
-plotname <- paste0(substr(nmlcl,1,nchar(nmlcl)),".png")
-plotfile <- paste0(rotp,'/inst/script/pngs/',plotname)
-ggsave(file=plotfile,ag)
-#list(plot=g)
-}
+
+  nmlc <- unique(voterroll$cou_na)
+  for (lc in 1:length(nmlc)){
+    nmlcl <- nmlc[lc]
+    gr1 <- lg_keyr[[3]][[lc]] 
+    gr2 <- lg_pred[[3]][[lc]] 
+    gr3 <- lg_hist[[3]][[lc]] 
+    #grid.arrange(gr1, gr2, gr3, ncol=3)
+    ag <- gridExtra::arrangeGrob(grobs=list(gr1,gr2,gr3),ncol=1,top=nmlcl)
+    plotname <- paste0(substr(nmlcl,1,nchar(nmlcl)),".png")
+    plotfile <- paste0(rotp,'/inst/script/pngs/',plotname)
+    ggsave(file=plotfile,ag)
+    #list(plot=g)
+  }
 })
 ohio_vr <- Voterrollanalysis()
 ohio_vr$scorecard()
