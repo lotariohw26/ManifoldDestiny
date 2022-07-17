@@ -101,11 +101,12 @@ Voterrollanalysis$methods(gridarrange=function(arg1=NULL){
 Voterrollgraphs <- setRefClass("Voterrollgraphs", contains = c('Voterrollanalysis'))
 #' @export Countinggraphs
 Voterrollreport <- setRefClass("Voterrollreport", contains = c('Voterrollanalysis'))
-Voterrollreport$methods(htmlreport=function(arg1=NULL){
-				browser()
-report <- voterroll
-htmlreport <- print(xtable::xtable(report), type="html", file="voterollexample.html")
-rotp <- htmlTable::htmlTable(report)
-reportfile <- paste0(rotp,"/inst/script/reports/abc.html")
+Voterrollreport$methods(htmlreport=function(reportn='Ohio'){
+  report <- voterroll
+  #rotp <- xtable::xtable(report)
+  rotp <<-  rprojroot::find_rstudio_root_file()
+  reportfile <- paste0(rotp,"/inst/script/reports/",reportn)
+  print('saved')
+  save(report,file=reportfile)
 })
 
