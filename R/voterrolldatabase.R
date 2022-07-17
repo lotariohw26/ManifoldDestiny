@@ -106,41 +106,64 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
 
 })
 Voterdatabase$methods(uploadvbase=function(
-				    truevotdf=NULL, 
-				    manipvotdf=NULL, 
-				    parameters=NULL 
+				    truev=NULL, 
+				    maniv=NULL, 
+				    param=NULL 
 				    ){
+browser()
 
+### Rreate diff 
+mv <- dplyr::select(maniv,P,all_of(param)) 
+colnames(mv)[-1]<- paste0(param,'_s')
 
- # # Breate diff 
- trvdf  <- dplyr::select(truevotdf,P,all_of(parameters))
- names(trvdf)[-1] <- paste0(names(trvdf)[-1],'_s')
- vdiff  <- merge(x=trvdf,y=select(manipvotdf,-pri),by="P",all.x=TRUE) %>%
- dplyr::mutate(Cp=C) %>%
- dplyr::mutate(T=V/R) %>%
- dplyr::mutate(diff_x=x_s-x) %>%
- dplyr::mutate(diff_y=y_s-y) %>%
- dplyr::mutate(diff_alpha=alpha_s-zeta) %>%
- dplyr::mutate(diff_a=0) %>%
- dplyr::mutate(diff_b=0) %>%
- dplyr::mutate(diff_c=ceiling(y_s*(c+d+Cp)-c)) %>%
- dplyr::mutate(diff_d=Cp-diff_c) 
- 
- vdiff_sel <- dplyr::select(vdiff,P,Cp,diff_c,diff_d)
- base_sel  <- dplyr::select(listvbase[[2]],P,idn,age,P,R,C,a,b,c,d) %>% dplyr::mutate(Cu=0)
- 
- listvbase[[3]] <<- base_sel %>% 
-         dplyr::arrange(P) %>% 
-         dplyr::left_join(vdiff_sel,by="P") %>%
-         base::split(.$P) %>%
-         purrr::map(function(x){
-           Cstock <- sum(x$C)
-           phantcan <- which(x$C==1)
-           drawphantom <- sample(x=phantcan,size=Cstock,replace=F)
-           x[drawphantom,'c'] <- 2
-           x
-         }) %>%
- dplyr::bind_rows(.) 
- listvbase[[4]] <<- vdiff_sel
- listvbase[[5]] <<- base_sel
+vdiff <- truev %>% dplyr::left_join(mv,by='P') %>% 
+  dplyr::mutate(Cp=C) %>%
+  dplyr::mutate(T=V/R) %>%
+  dplyr::mutate(diff_x=x_s-x) %>%
+  dplyr::mutate(diff_y=y_s-y) %>%
+  dplyr::mutate(diff_alpha=alpha_s-zeta) %>%
+  dplyr::mutate(diff_a=0) %>%
+  dplyr::mutate(diff_b=0) %>%
+  dplyr::mutate(diff_c=ceiling(y_s*(c+d+Cp)-c)) %>%
+  dplyr::mutate(diff_d=Cp-diff_c) 
+  
+vdiff_sel <- dplyr::select(vdiff,P,Cp,diff_c,diff_d)
+base_sel  <- dplyr::select(listvbase[[2]],P,idn,age,P,R,C,a,b,c,d) %>% dplyr::mutate(Cu=0)
+
+View(vdiff)
+'break'
+
+#View(vdiff)
+# tvdf  <- dplyr::select(truevotdf,P,all_of(parameters))
+# names(trvdf)[-1] <- paste0(names(trvdf)[-1],'_s')
+#manipvotdf
+#
+# vdiff  <- merge(x=trvdf,y=select(manipvotdf,-pri),by="P",all.x=TRUE) %>%
+# dplyr::mutate(Cp=C) %>%
+# dplyr::mutate(T=V/R) %>%
+# dplyr::mutate(diff_x=x_s-x) %>%
+# dplyr::mutate(diff_y=y_s-y) %>%
+# dplyr::mutate(diff_alpha=alpha_s-zeta) %>%
+# dplyr::mutate(diff_a=0) %>%
+# dplyr::mutate(diff_b=0) %>%
+# dplyr::mutate(diff_c=ceiling(y_s*(c+d+Cp)-c)) %>%
+# dplyr::mutate(diff_d=Cp-diff_c) 
+# 
+# vdiff_sel <- dplyr::select(vdiff,P,Cp,diff_c,diff_d)
+# base_sel  <- dplyr::select(listvbase[[2]],P,idn,age,P,R,C,a,b,c,d) %>% dplyr::mutate(Cu=0)
+# 
+# listvbase[[3]] <<- base_sel %>% 
+#         dplyr::arrange(P) %>% 
+#         dplyr::left_join(vdiff_sel,by="P") %>%
+#         base::split(.$P) %>%
+#         purrr::map(function(x){
+#           Cstock <- sum(x$C)
+#           phantcan <- which(x$C==1)
+#           drawphantom <- sample(x=phantcan,size=Cstock,replace=F)
+#           x[drawphantom,'c'] <- 2
+#           x
+#         }) %>%
+# dplyr::bind_rows(.) 
+# listvbase[[4]] <<- vdiff_sel
+# listvbase[[5]] <<- base_sel
 })

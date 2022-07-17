@@ -18,14 +18,15 @@ Countingprocess <- setRefClass("Countingprocess",
 					   parampre='data.frame', 
 					   se='list',
 					   lx='list',
-					   plot3dlist='list'))
+					   pl_2dsort='list',
+					   pl_corrxy='list',
+					   pl_rescro='list',
+					   pl_3dmani='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,
-					    selvar=c('R','C','a','b','c','d'), 
-					    polyn=6,
-					    sortby=alpha
-					    ){
-                                            
-
+					   selvar=c('R','C','a','b','c','d'), 
+					   polyn=6,
+					   sortby=alpha
+					   ){
   # Loading 
   rotp <- rprojroot::find_rstudio_root_file()
   load(paste0(rotp,'/data/eqpar.rda'))
@@ -34,7 +35,6 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   # Assigning parameters 
   parameters <<- stickers[['parameters']]
   # Assigning model equations
-  #pareqs <<- eqpar
   se <<- eqpar$meqs
   lx <<- eqpar$meql
 
@@ -153,9 +153,8 @@ Countinggraphs$methods(plot2d=function(selvp=c("x","y","alpha"),
     				       labs=list(x="precinct (normalized)",y=NULL,caption=NULL)
 				       ){
 
-
   longdf <- tidyr::pivot_longer(quintile,all_of(c(selvp,selvl)))
-  ggplot2::ggplot(data=longdf) +
+  pl_2dsort <<- ggplot2::ggplot(data=longdf) +
     ggplot2::geom_line(data=filter(longdf,name%in%selvl),aes(x=pri,y=value, color=name)) +
     ggplot2::geom_point(data=filter(longdf,name%in%selvp),aes(x=pri,y=value, color=name)) + 
     ggplot2::labs(x=labs$x,y=labs$y,caption=labs$caption) +
@@ -201,12 +200,16 @@ Countinggraphs$methods(plotly3d=function(
   plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers") %>%
   plotly::layout(scene = list(xaxis = list(title = names(gdf)[1]),
   yaxis = list(title = names(gdf)[2]),
-  zaxis = list(title = names(gdf)[3]))) }) ->> plot3dlist
+  zaxis = list(title = names(gdf)[3]))) }) ->> pl_3dmani
 
   ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
   	 div(plot3dlist[sel[[1]]], class="column"),
   	 div(plot3dlist[sel[[2]]],class="column"))
   list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=plot3dlist[[selid]])
 })
+Countinggraphs$methods(gridarrange=function(arg1=NULL){
+			       browser()
+})
+
 #' @exportClass Countingtables
 Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'), fields = list(ghi='list'))
