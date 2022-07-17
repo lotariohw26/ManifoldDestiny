@@ -13,7 +13,7 @@ library(plotly)
 library(ViewPipeSteps)
 library(ggpubr)
 library(htmltools)
-snr <- 1
+nr <- 1
 set.seed(snr)
 ##################################################################################################
 #### I: Voterdatabase ###
@@ -35,6 +35,23 @@ votr <- vrdf$listvbase[[2]]
 ###### A) Fair ###
 gsimf <- Countinggraphs(votr,selvar=c('P','a','b','c','d','probwd'))
 gsimf$sortpre(selvar=c('x','y','alpha','lambda','zeta','probwd'))
+#################################################################################################33
+##### B) Rigged ###
+### Part A:
+grig <- Countinggraphs(votr)
+grig$sortpre()
+grig$manfolimp(pres1=grig$quintile$x,
+	       pres2=grig$quintile$alpha-0.05,
+	       pres3=c("x-alpha","(alpha*zeta + alpha - x)/zeta")[1])
+grig$riggsta()
+grig$parameters$standard
+vrdf$uploadvbase(grig$sdfc,grig$rdfc,grig$parameters$standard)
+
+
+
+#################################################################################################33
+#################################################################################################33
+#################################################################################################33
 ########### Tab1
 gnt2a <- gsimf$plot2d(selvp=c("x","y","alpha","probwd"),selvl=c("x_pred","y_pred","alpha_pred"), 
   labs=list(x="precinct (normalized)",y="precentage",caption=gsimf$sumreg['alpha']))
