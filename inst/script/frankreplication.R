@@ -8,7 +8,7 @@ Voterrollanalysis <- setRefClass("Voterrollanalysis", fields=list(voterroll='dat
 								  polcou='list',  
 								  lg_pred='list',  
 								  lg_hist='list',  
-								  lg_resi='list' 
+								  lg_keyr='list' 
 								  ))
 Voterrollanalysis$methods(initialize=function(coudatafile='vtr_ohio.rda', 
 					      polyo=c(1,2,6,8)){
@@ -43,104 +43,48 @@ Voterrollanalysis$methods(predictinput=function(arg1=NULL){
     dplyr::group_by(cou_nr) %>%
     dplyr::mutate(avg_key_ratio=stats::predict(avg_key_poly,age)) %>%
     dplyr::mutate(ag_vpred=ag_regis*tur_ratio*avg_key_ratio) %>%
-    dplyr::mutate(prederror=ag_voted-ag_vpred) %>%
+    dplyr::mutate(pred_error=ag_voted-ag_vpred) %>%
     dplyr::mutate(corr=cor(ag_voted,ag_vpred)) %>%
     dplyr::ungroup() 
   }) 
 })
-Voterrollanalysis$methods(plot_predict=function( plotvage=c('ag_geovo','ag_voted','ag_regis','ag_vpred'), lp=list(x='Age category',y='Number of voters') 
+Voterrollanalysis$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','ag_regis','ag_vpred'), lp=list(x='Age category',y='Number of voters') 
 ){
+  for (po in 1:length(polcou[[1]])){
+    lg_pred[[po]] <<- lapply(polcou[[2]], function(x){
+      dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(plotyvar) 
+      ctitle <- paste0('County ',dfg$cou_nr[x])
+      captionp <- paste0('correlation (r)= ',round(unique(dfg$corr), digits=5))
+      lp <- ggplot2::ggplot(data=dfg , aes(x=age,y=value,color=name)) + geom_line() + 
+      ggplot2::labs(title=ctitle,x=lp$x,y=lp$y,caption =captionp) +
+      ggplot2::theme_bw()})
+  }
+})
+Voterrollanalysis$methods(plot_keyrat=function(plotyvar=c('key_ratio','avg_key_ratio','tur_ratio')){
+  for (po in 1:length(polcou[[1]])){
+    lg_keyr[[po]] <<- lapply(polcou[[2]], function(x){
+      dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(plotyvar) 
+      ggplot2::ggplot(data=dfg, aes(x=age,y=value, color=name)) + geom_point() + 
+      scale_y_continuous(limits=c(0, 2)) + theme_bw()
+    })
+  }				  
+})
+Voterrollanalysis$methods(plot_histio=function(plotyvar=c('pred_error')){
 for (po in 1:length(polcou[[1]])){
-  lg_pred[[po]] <<- lapply(polcou[[2]], function(x){
-    dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(plotvage) 
-    captionp <- paste0('correlation (r)= ',round(unique(dfg$corr), digits=5))
+  lg_keyr[[po]] <<- lapply(polcou[[2]], function(x){
+    dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(plotyvar)
     ctitle <- paste0('County ',dfg$cou_nr[x])
-    lp <- ggplot2::ggplot(data=dfg , aes(x=age,y=value,color=name)) + geom_line() + 
-    ggplot2::labs(title=ctitle,x=lp$x,y=lp$y,caption =captionp) +
-    ggplot2::theme_bw()})
-}
+    ggplot2::ggplot(data=dfg) + geom_histogram(aes(x=value)) + 
+	    ggplot2::labs(title = ctitle) + theme_bw()
 })
-Voterrollanalysis$methods(plot_histio=function(arg1=NULL){
-browser()
-po <- 1
-x <- 1
-#ggplot2::ggplot(data=x) + geom_histogram(aes(x=value)) + ggplot2::labs(title = label$title)
-})
-Voterrollanalysis$methods(plot_keyrat=function(arg1=NULL){
-po <- 1
-x <- 1
-#browser()
-# ggplot2::ggplot(data=x, aes(x=age,y=value, color=name)) + geom_point() + scale_y_continuous(limits=c(0, 2))
+}				  
 })
 Voterrollanalysis$methods(gridarrange=function(arg1=NULL){})
-
-
 ohio_vr <- Voterrollanalysis()
 ohio_vr$scorecard()
 ohio_vr$predictinput()
+ohio_vr$plot_histio()
 ohio_vr$plot_predict()
-ohio_vr$plot_histiot()
 ohio_vr$plot_keyrat()
-
-
 ohio_vr$gridarrange()
-#
 
-plotvage <- c('ag_geovo','ag_voted','ag_regis','ag_vpred')
-#  keys <- c('key_ratio','avg_key_ratio')
-#round(unique(polypredi[[1]]$corr),4)
-#   #tidyr::pivot_longer(keys) 
-#   tidyr::pivot_longer(plotvage) 
-#dfg <- polypredi[[1]] %>% dplyr::filter(cou_nr==3)
-#ggplot2::ggplot(data=dfg , aes(x=age,y=value,color=name)) + geom_line() 
-
-
-
-  
-#    dplyr::mutate(ballpred=registered*turnratio*avgpredkeyratio) %>%
-
-#  cou_data_trans <- foudatatidy(county) %>% tidyr::drop_na() %>% dplyr::select(county,age,keyratio,geovoter,voting,registered,turnratio)
-#  
-# dfinputreport <- scorecard %>%
-#    purrr::map_df(function(x) as.data.frame(left_join(x,cou_data_trans,by='age'))) %>%
-#    dplyr::group_by(polinc) %>%
-#    tidyr::drop_na() %>%
-#    dplyr::mutate(ballpred=registered*turnratio*avgpredkeyratio) %>%
-#    dplyr::mutate(prederror=voting-ballpred) %>%
-#    dplyr::mutate(corr=cor(ballpred,voting)) %>%
-#    tidyr::nest() %>%
-#    tidyr::unnest(data) %>%
-#    dplyr::ungroup() %>%
-#    tidyr::pivot_longer(c(avgpredkeyratio,keyratio,prederror,ballpred,geovoter,voting,registered)) %>%
-#    split(.$polinc)
-countyplot <- function(county=1,scorecard=NULL,dfinput=NULL){
-#
-#  df <- dfinputreport(county,scorecard)
-#  cou_name <-unique(df[[1]]$county)
-#  ck <- df %>% purrr::map(function(x) dplyr::filter(x,name%in%c('avgpredkeyratio')) %>% keyplot())
-#  cp <- df %>% purrr::map(function(x) dplyr::filter(x,name%in%c('geovoter','registered','voting','ballpred')) %>% votplot())
-#  ce <- df %>% purrr::map(function(x) dplyr::filter(x,name%in%c('prederror')) %>% histerrpred())
-#  g <- gridExtra::marrangeGrob(append(append(ck,cp),ce),nrow=length(scorecard),ncol=3,top=cou_name)
-#  plotname <- paste0(substr(cou_name,1,nchar(cou_name)-4),".png")
-#  plotfile <- paste0("pngs/",plotname)
-#  ggsave(file=plotfile,g)
-#  list(plot=g)
-#}
-#
-
-Voterrollanalysis$methods(teste=function(arg1=NULL){
-})
-names(ohio_vr$voterroll)
-head(ohio_vr$voterroll)
-dft <- dplyr::filter(ohio_vr$voterroll,cou_nr==3)
-names(dft)
-palette <- c("Registered voters","Ballot votes","Predicted votes")
-ggplot2::ggplot(data=dft) +
-  geom_line(aes(x=age,y=ag_regis,color=palette[1])) +
-  geom_line(aes(x=age,y=ag_voted,color=palette[2])) +
-  #geom_line(aes(x=age,y=ag_regra,color=palette[3])) +
-  labs(caption='test') +
-  ggplot2::xlab('xlab') +
-  ggplot2::ylab('ylab')+
-  theme_classic()
-ggplot2::ggplot(data=df,aes(x=df$age,y=df$key_ratio))+geom_point()
