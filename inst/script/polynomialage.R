@@ -1,6 +1,6 @@
-#library(ManifoldDestiny)
-sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
+library(ManifoldDestiny)
 library(ggplot2)
+sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
 library(dplyr)
 library(gridExtra)
 # Graphical

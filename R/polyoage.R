@@ -1,7 +1,8 @@
 #' @export Voterrollanalysis
 Voterrollanalysis <- setRefClass("Voterrollanalysis", fields=list(voterroll='data.frame', 
 								  listscard='list', 
-								  polyscard='list',
+								  polyscard1='list',
+								  polyscard2='list',
 								  polypredi='list', 
 								  polcou='list',  
 								  lg_pred='list',  
@@ -11,11 +12,11 @@ Voterrollanalysis <- setRefClass("Voterrollanalysis", fields=list(voterroll='dat
 								  ))
 Voterrollanalysis$methods(initialize=function(coudatafile='vtr_ohio.rda', 
 					      polyo=c(1,2,6,8)){
-
+  
   rotp <<- rprojroot::find_rstudio_root_file()
   vfile <- paste0(rotp,'/data/',coudatafile)
   load(vfile)
-  voterroll <<- as.data.frame(vtr_abc)
+  voterroll <<- as.data.frame(vtr_ohio)
   polcou[[1]] <<- polyo
   polcou[[2]] <<- unique(voterroll$cou_nr)
 })
@@ -28,13 +29,13 @@ Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
     lapply(nrco,function(x){
       lapply(1:length(polyo),function(y){
         dft <- dplyr::filter(voterroll,cou_nr==x)
-        ft <- paste0("dft$re_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
-        lm(as.formula(ft))
+        ft1 <- paste0("dft$go_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
+        ft2 <- paste0("dft$re_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
+        list(lm(as.formula(ft1)),lm(as.formula(ft2)))
       })
     }) ->> listscard
-    polyscard <<- lapply(1:4, function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]]$coeff)))	
-
-View(polyscard[[1]])
+    polyscard1 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
+    polyscard2 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
 })
 Voterrollanalysis$methods(predictinput=function(arg1=NULL){
 
