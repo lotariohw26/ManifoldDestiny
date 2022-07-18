@@ -69,8 +69,8 @@ Voterrollgraphs$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','
       cor1 <- round(unique(dfg$corr1), digits=5)
       cor2 <- round(unique(dfg$corr2), digits=5)
       captionp <- paste0('correlation 1 (r)=',cor1,' correlation 2 (r)=',cor2)
-      ggplot2::ggplot(data=dfg , aes(x=age,y=value,color=name)) + geom_line() +
-      ggplot2::labs(title=ctitle,x=lp$x,y=lp$y,caption =captionp) 
+      lp <- ggplot2::ggplot(data=dfg , aes(x=age,y=value,color=name)) + geom_line() +
+      ggplot2::labs(title=ctitle,x=lp$x,y=lp$y,caption =captionp) +
       ggplot2::theme_bw()})
   }
 })
@@ -79,7 +79,8 @@ Voterrollgraphs$methods(plot_keyrat=function(plotyvar=list(li=c('avg_key_ratio1'
   for (po in 1:length(polcou[[1]])){
     lg_keyr[[po]] <<- lapply(polcou[[2]], function(x){
       dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x)  %>% tidyr::pivot_longer(all_of(c(plotyvar$li,plotyvar$po)))
-      ggplot2::ggplot(data=dfg, aes(x=age,y=value, color=name)) + geom_point() + 
+      ctitle <- paste0('County:',dfg$cou_na[x])
+      lp <- ggplot2::ggplot(data=dfg, aes(x=age,y=value, color=name)) + geom_point() + ggplot2::labs(title = ctitle) + 
       scale_y_continuous(limits=c(0, 2)) + theme_bw()
     })
   }				  
@@ -89,13 +90,13 @@ Voterrollgraphs$methods(plot_histio=function(plotyvar=c('pred_error1','pred_erro
  for (po in 1:length(polcou[[1]])){
    lg_hist[[po]] <<- lapply(polcou[[2]], function(x){
      dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(all_of(plotyvar))
-     ctitle <- paste0('County ',dfg$cou_na[x])
-     ggplot2::ggplot(data=dfg) + geom_histogram(aes(x=value)) + ggplot2::labs(title = ctitle) + theme_bw()
+     ctitle <- paste0('County:',dfg$cou_na[x])
+     lp <- ggplot2::ggplot(data=dfg) + geom_histogram(aes(x=value)) + ggplot2::labs(title = ctitle) + theme_bw()
    })
  }				      
 })
 Voterrollgraphs$methods(gridarrange=function(arg1=NULL){
-browser()
+
   nmlc <- unique(voterroll$cou_na)
   for (lc in 1:length(nmlc)){
     #lc <- 1
@@ -105,7 +106,7 @@ browser()
     gr3 <- lg_hist[[3]][[lc]] 
     #grid.arrange(gr1, gr2, gr3, ncol=3)
     #!
-    #pdf("test.pdf", onefile=FALSE)
+    pdf("test.pdf", onefile=FALSE)
     ag <- gridExtra::arrangeGrob(grobs=list(gr1,gr2,gr3),ncol=1,top=nmlcl)
     plotname <- paste0(substr(nmlcl,1,nchar(nmlcl)),".png")
     plotfile <- paste0(rotp,'/inst/script/pngs/',plotname)
