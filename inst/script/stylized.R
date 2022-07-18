@@ -27,11 +27,11 @@ vrdf <- Voterdatabase(agebracketmax,numprec,regf,namebase=nb,newdraw=F)
 probwset <- c(0.50,0.00)
 probvset <- list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
 Znr <- c(0,1)
-vrdf$realizedgp(probv=probvset,
-		probw=probwset,
-		Ztech=Znr)
+vrdf$realizedgp(probv=probvset,probw=probwset,Ztech=Znr)
+vrdf$regvbase()
+
 votr <- vrdf$listvbase[[2]]
-#View(votr)
+View(votr)
 #################################################################################################33
 ###### A) Fair ###
 gsimf <- Countinggraphs(votr,selvar=c('R','C','a','b','c','d','probwd'))

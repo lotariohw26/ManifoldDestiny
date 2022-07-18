@@ -1,9 +1,3 @@
-
-
-
-
-
-
 library(ManifoldDestiny)
 library(dplyr)
 library(readxl)
@@ -55,6 +49,7 @@ vtr_ohio <-seq(1,length(lc_ohio)) %>% purrr::map(function(x){
     dplyr::mutate(tot_geopo=sum(ag_geovo)) %>%
     dplyr::mutate(tot_voted=sum(ag_voted)) %>%
     dplyr::mutate(tot_regis=sum(ag_regis)) %>%
+    ## Relationship between age and county
     dplyr::mutate(geo_ratio=tot_voted/tot_geopo) %>%
     dplyr::mutate(tur_ratio=tot_voted/tot_regis) %>%
     dplyr::mutate(go_key_ratio=ag_gevos/geo_ratio) %>%
@@ -63,3 +58,4 @@ vtr_ohio <-seq(1,length(lc_ohio)) %>% purrr::map(function(x){
     dplyr:: mutate(cou_na=cou_nal) %>% dplyr::relocate(cou_na,.after=cou_nr) 
 }) %>% dplyr::bind_rows(.) 
 usethis::use_data(vtr_ohio, overwrite = TRUE)
+names(vtr_ohio)

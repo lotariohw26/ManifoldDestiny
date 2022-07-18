@@ -105,6 +105,43 @@ Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
   dplyr::mutate(C=ifelse((voted==3|voted==6)&R==1,1,0)) 
 
 })
+Voterdatabase$methods(regvbase=function(){
+	browser()
+lrda <- listvbase[[2]] %>% dplyr::select(idn,age,voted,C) %>%
+	dplyr::mutate(cou_nr=1) %>%
+	dplyr::mutate(cou_na="abc") %>%
+	dplyr::group_by(age) %>%
+        dplyr::mutate(ag_geovo=n_distinct(id)) %>%
+        dplyr::mutate(ag_voted=sum(voted, na.rm=T)) %>%
+        dplyr::mutate(ag_regis=sum(registered, na.rm=T)) %>% 
+        dplyr::mutate(ag_gevos=ag_voted/ag_geovo) %>% 
+        dplyr::mutate(ag_revos=ag_voted/ag_regis) %>%
+	# Total
+        dplyr::ungroup() %>%
+        dplyr::select(cou_nr,age,ag_geovo,ag_regis,ag_voted,ag_gevos,ag_revos) %>%
+        dplyr::distinct() %>%
+        dplyr::mutate(tot_geopo=sum(ag_geovo)) %>%
+        dplyr::mutate(tot_voted=sum(ag_voted)) %>%
+        dplyr::mutate(tot_regis=sum(ag_regis)) %>%
+        ## relationship between age and county
+        dplyr::mutate(geo_ratio=tot_voted/tot_geopo) %>%
+        dplyr::mutate(tur_ratio=tot_voted/tot_regis) %>%
+        dplyr::mutate(go_key_ratio=ag_gevos/geo_ratio) %>%
+        dplyr::mutate(re_key_ratio=ag_revos/tur_ratio) 
+	# Connected
+
+
+
+
+
+
+View(lrda)
+names(listvbase[[2]])
+#  [1] "cou_nr"       "cou_na"       "age"          "ag_geovo"     "ag_regis"     "ag_voted"     "ag_gevos"     "ag_revos"     "tot_geopo"    "tot_voted"    "tot_regis"    "geo_ratio"    "tur_ratio"   
+# [14] "go_key_ratio" "re_key_ratio"
+
+View()
+})
 Voterdatabase$methods(uploadvbase=function(
 				    truev=NULL, 
 				    maniv=NULL, 
