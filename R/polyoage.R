@@ -19,6 +19,8 @@ Voterrollanalysis$methods(initialize=function(coudatafile='vtr_ohio.rda',
   voterroll <<- as.data.frame(vtr_ohio)
   polcou[[1]] <<- polyo
   polcou[[2]] <<- unique(voterroll$cou_nr)
+
+  callSuper(polypredi=polypredi)
 })
 Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
 
@@ -118,11 +120,13 @@ Voterrollgraphs$methods(gridarrange=function(arg1=NULL){
 #' @export Voterrollreport
 Voterrollreport <- setRefClass("Voterrollreport", contains = c('Voterrollanalysis'))
 Voterrollreport$methods(htmlreport=function(reportn='Ohio'){
-  report <- voterroll
-  #rotp <- xtable::xtable(report)
+				browser()
   rotp <<-  rprojroot::find_rstudio_root_file()
   reportfile <- paste0(rotp,"/inst/script/reports/",reportn)
-  print('saved')
+  report <- polypredi %>% dplyr::bind_rows(.) %>% dplyr::select(cou_nr,cou_na,corr1,corr2) %>%
+	  dplyr::distinct() %>% xtable::xtable(type="html")
   save(report,file=reportfile)
+  #htmltools::browsable(report)
 })
+
 

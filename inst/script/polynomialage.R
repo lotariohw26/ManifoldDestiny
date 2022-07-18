@@ -4,17 +4,23 @@ sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T)
 library(dplyr)
 library(gridExtra)
 # Graphical
-ohio_vrg <- Voterrollgraphs()
-ohio_vrg$scorecard()
-ohio_vrg$predictinput()
-ohio_vrg$plot_predict()
-#ohio_vrg$lg_pred[[3]][[3]]
-ohio_vrg$plot_keyrat()
-#ohio_vrg$lg_keyr[[3]][[2]]
-ohio_vrg$plot_histio()
-#ohio_vrg$lg_hist[[1]][[2]]
-ohio_vrg$gridarrange()
+#ohio_vrg <- Voterrollgraphs()
+#ohio_vrg$scorecard()
+##ohio_vrg$predictinput()
+#ohio_vrg$plot_predict()
+##ohio_vrg$lg_pred[[3]][[3]]
+#ohio_vrg$plot_keyrat()
+##ohio_vrg$lg_keyr[[3]][[2]]
+#ohio_vrg$plot_histio()
+##ohio_vrg$lg_hist[[1]][[2]]
+#ohio_vrg$gridarrange()
 # Report
 ohio_vrr <- Voterrollreport()
+ohio_vrg$scorecard()
+ohio_vrg$polyscard1
+ohio_vrg$polyscard2
+ohio_vrg$predictinput()
+ohio_vrg$polypredi
+ohio_vrg$polypredi
 ohio_vrr$htmlreport()
 
