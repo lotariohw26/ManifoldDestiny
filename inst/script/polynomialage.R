@@ -12,7 +12,7 @@ ohio_vrg$plot_predict()
 ohio_vrg$plot_keyrat()
 #ohio_vrg$lg_keyr[[3]][[2]]
 ohio_vrg$plot_histio()
-ohio_vrg$lg_hist
+#ohio_vrg$lg_hist[[1]][[3]]
 ohio_vrg$gridarrange()
 # Report
 ohio_vrr <- Voterrollreport()
