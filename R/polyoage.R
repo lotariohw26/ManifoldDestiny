@@ -38,15 +38,20 @@ Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
     polyscard2 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
 })
 Voterrollanalysis$methods(predictinput=function(arg1=NULL){
-
-  polypredi <<- lapply(1:length(polcou[[1]]), function(x){
-    avg_key_poly <- t(polyscard[[x]]) %>% base::colMeans() %>% polynom::polynomial()
+  
+    polypredi <<- lapply(1:length(polcou[[1]]), function(x){
+    avg_key_poly1 <- t(polyscard1[[x]]) %>% base::colMeans() %>% polynom::polynomial()
+    avg_key_poly2 <- t(polyscard2[[x]]) %>% base::colMeans() %>% polynom::polynomial()
     vr <- voterroll %>%
     dplyr::group_by(cou_nr) %>%
-    dplyr::mutate(avg_key_ratio=stats::predict(avg_key_poly,age)) %>%
-    dplyr::mutate(ag_vpred=ag_regis*tur_ratio*avg_key_ratio) %>%
-    dplyr::mutate(pred_error=ag_voted-ag_vpred) %>%
-    dplyr::mutate(corr=cor(ag_voted,ag_vpred)) %>%
+    # Predicting average scorecard
+    dplyr::mutate(avg_key_ratio1=stats::predict(avg_key_poly1,age)) %>%
+    dplyr::mutate(avg_key_ratio2=stats::predict(avg_key_poly2,age)) %>%
+    dplyr::mutate(ag_vpred1=ag_geovo*geo_ratio*avg_key_ratio1) %>%
+    dplyr::mutate(ag_vpred2=ag_regis*tur_ratio*avg_key_ratio2) %>%
+    dplyr::mutate(pred_error=ag_voted-ag_vpred1,ag_vpred2) %>%
+    dplyr::mutate(corr1=cor(ag_voted,ag_vpred1)) %>%
+    dplyr::mutate(corr2=cor(ag_voted,ag_vpred2)) %>%
     dplyr::ungroup() 
   }) 
 })
