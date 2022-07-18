@@ -85,14 +85,17 @@ Voterrollgraphs$methods(plot_keyrat=function(plotyvar=list(li=c('avg_key_ratio1'
   }				  
 })
 Voterrollgraphs$methods(plot_histio=function(plotyvar=c('pred_error1','pred_error2')){
-  lg_hist[[po]] <<- lapply(polcou[[2]], function(x){
-    dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(all_of(plotyvar))
-    ctitle <- paste0('County ',dfg$cou_na[x])
-    ggplot2::ggplot(data=dfg) + geom_histogram(aes(x=value)) + ggplot2::labs(title = ctitle) + theme_bw()
-})				  
+
+ for (po in 1:length(polcou[[1]])){
+   lg_hist[[po]] <<- lapply(polcou[[2]], function(x){
+     dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(all_of(plotyvar))
+     ctitle <- paste0('County ',dfg$cou_na[x])
+     ggplot2::ggplot(data=dfg) + geom_histogram(aes(x=value)) + ggplot2::labs(title = ctitle) + theme_bw()
+   })
+ }				      
 })
 Voterrollgraphs$methods(gridarrange=function(arg1=NULL){
-
+browser()
   nmlc <- unique(voterroll$cou_na)
   for (lc in 1:length(nmlc)){
     #lc <- 1
@@ -102,7 +105,7 @@ Voterrollgraphs$methods(gridarrange=function(arg1=NULL){
     gr3 <- lg_hist[[3]][[lc]] 
     #grid.arrange(gr1, gr2, gr3, ncol=3)
     #!
-    pdf("test.pdf", onefile=FALSE)
+    #pdf("test.pdf", onefile=FALSE)
     ag <- gridExtra::arrangeGrob(grobs=list(gr1,gr2,gr3),ncol=1,top=nmlcl)
     plotname <- paste0(substr(nmlcl,1,nchar(nmlcl)),".png")
     plotfile <- paste0(rotp,'/inst/script/pngs/',plotname)
