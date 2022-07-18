@@ -40,13 +40,15 @@ Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
     polyscard2 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
 })
 Voterrollanalysis$methods(predictinput=function(arg1=NULL){
-  
-    polypredi <<- lapply(1:length(polcou[[1]]), function(x){
+
+  polypredi <<- lapply(1:length(polcou[[1]]), function(x){
     avg_key_poly1 <- t(polyscard1[[x]]) %>% base::colMeans() %>% polynom::polynomial()
     avg_key_poly2 <- t(polyscard2[[x]]) %>% base::colMeans() %>% polynom::polynomial()
     vr <- voterroll %>%
     dplyr::group_by(cou_nr) %>%
-    # Predicting average scorecard
+    ## Predicting average scorecard
+    dplyr::mutate(polyo=polcou[[1]][x]) %>%
+    dplyr::relocate(polyo) %>%
     dplyr::mutate(avg_key_ratio1=stats::predict(avg_key_poly1,age)) %>%
     dplyr::mutate(avg_key_ratio2=stats::predict(avg_key_poly2,age)) %>%
     dplyr::mutate(ag_vpred1=ag_geovo*geo_ratio*avg_key_ratio1) %>%
@@ -55,9 +57,9 @@ Voterrollanalysis$methods(predictinput=function(arg1=NULL){
     dplyr::mutate(pred_error2=ag_voted-ag_vpred2) %>%
     dplyr::mutate(corr1=cor(ag_voted,ag_vpred1)) %>%
     dplyr::mutate(corr2=cor(ag_voted,ag_vpred2)) %>%
-    dplyr::ungroup() 
-  }) 
+    dplyr::ungroup()}) 
 })
+
 
 #' @export Voterrollgraphs
 Voterrollgraphs <- setRefClass("Voterrollgraphs", contains = c('Voterrollanalysis'))
@@ -119,12 +121,14 @@ Voterrollgraphs$methods(gridarrange=function(arg1=NULL){
 
 #' @export Voterrollreport
 Voterrollreport <- setRefClass("Voterrollreport", contains = c('Voterrollanalysis'))
-Voterrollreport$methods(htmlreport=function(reportn='Ohio'){
-				browser()
-  reportfile <- paste0(rotp,"/inst/script/reports/",reportn)
+Voterrollreport$methods(htmlreport=function(reportn='ohio'){
+
+  file_rep <- paste0(rotp,'/inst/script/reports/',reportn,'html')
   report <- polypredi %>% dplyr::bind_rows(.) %>% 
-	  dplyr::select(cou_nr,cou_na,corr1,corr2) %>% dplyr::distinct() %>% 
-	  xtable::xtable(type="html")
-  save(report,file=reportfile)
-  #htmltools::browsable(report)
+         dplyr::select(polyo,cou_nr,cou_na,polyo,corr1,corr2) %>% 
+	 dplyr::distinct() %>% 
+         xtable::xtable(type="html") %>% 
+	 print(type='html', file=file_rep)
 })
+
+

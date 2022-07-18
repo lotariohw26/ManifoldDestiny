@@ -4,8 +4,8 @@ sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T)
 library(dplyr)
 library(gridExtra)
 # Graphical
-#ohio_vrg <- Voterrollgraphs()
-#ohio_vrg$scorecard()
+ohio_vrg <- Voterrollgraphs()
+ohio_vrg$scorecard()
 ##ohio_vrg$predictinput()
 #ohio_vrg$plot_predict()
 ##ohio_vrg$lg_pred[[3]][[3]]
@@ -16,24 +16,8 @@ library(gridExtra)
 #ohio_vrg$gridarrange()
 # Report
 ohio_vrr <- Voterrollreport()
-ohio_vrg$scorecard()
-#ohio_vrg$polyscard1
-#ohio_vrg$polyscard2
-ohio_vrg$predictinput()
-#ohio_vrg$polypredi
-#ohio_vrg$polypredi
-#ohio_vrg$polypredi
+ohio_vrr$scorecard()
+ohio_vrr$predictinput()
 ohio_vrr$htmlreport()
-library(dplyr)
-library(huxtable)
-lego_hux <- as_hux(matrix(1:16, 4, 4)) %>% 
-      set_background_color(1:2, 1:2, "red") %>% 
-      set_background_color(1:2, 3:4, "yellow") %>% 
-      set_background_color(3:4, 1:2, "darkgreen") %>% 
-      set_background_color(3:4, 3:4, "blue") %>% 
-      set_text_color(3:4, 1:4, "white") %>% 
-      set_all_borders(brdr(2, "solid", "white"))
-lego_hux %>% set_caption("Original table")
-
 
 
