@@ -68,9 +68,9 @@ Voterrollgraphs$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','
       ctitle <- paste0('County: ',dfg$cou_na[x])
       cor1 <- round(unique(dfg$corr1), digits=5)
       cor2 <- round(unique(dfg$corr2), digits=5)
-      captionp <- paste0('correlation (r)= ',c(cor1,cor2))
-      lp <- ggplot2::ggplot(data=dfg , aes(x=age,y=value,color=name)) + geom_line() + 
-      ggplot2::labs(title=ctitle,x=lp$x,y=lp$y,caption =captionp) +
+      captionp <- paste0('correlation 1 (r)=',cor1,' correlation 2 (r)=',cor2)
+      ggplot2::ggplot(data=dfg , aes(x=age,y=value,color=name)) + geom_line() +
+      ggplot2::labs(title=ctitle,x=lp$x,y=lp$y,caption =captionp) 
       ggplot2::theme_bw()})
   }
 })
@@ -85,15 +85,11 @@ Voterrollgraphs$methods(plot_keyrat=function(plotyvar=list(li=c('avg_key_ratio1'
   }				  
 })
 Voterrollgraphs$methods(plot_histio=function(plotyvar=c('pred_error1','pred_error2')){
-
-  for (po in 1:length(polcou[[1]])){
   lg_hist[[po]] <<- lapply(polcou[[2]], function(x){
     dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(all_of(plotyvar))
     ctitle <- paste0('County ',dfg$cou_na[x])
-    ggplot2::ggplot(data=dfg) + geom_histogram(aes(x=value)) + 
-	    ggplot2::labs(title = ctitle) + theme_bw()
-})
-}				  
+    ggplot2::ggplot(data=dfg) + geom_histogram(aes(x=value)) + ggplot2::labs(title = ctitle) + theme_bw()
+})				  
 })
 Voterrollgraphs$methods(gridarrange=function(arg1=NULL){
 

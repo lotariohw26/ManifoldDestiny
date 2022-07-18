@@ -52,10 +52,8 @@ Ed. Solomon
 ```{r, echo=F, eval=T}
 knitr::knit_exit()
 ```
-
-# Now
-inst/script/frankreplication.R
-
+# R
+inst/script/polynomialage.R
 inst/odg/main_sheet.odg
 inst/Presentation.Rmd
 inst/script/application_clark_gsm.R
