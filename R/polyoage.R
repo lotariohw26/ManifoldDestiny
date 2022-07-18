@@ -58,13 +58,16 @@ Voterrollanalysis$methods(predictinput=function(arg1=NULL){
 
 #' @export Voterrollgraphs
 Voterrollgraphs <- setRefClass("Voterrollgraphs", contains = c('Voterrollanalysis'))
-Voterrollgraphs$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','ag_regis','ag_vpred'), lp=list(x='Age category',y='Number of voters') 
+Voterrollgraphs$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','ag_regis','ag_vpred1','ag_vpred2'), lp=list(x='Age category',y='Number of voters') 
 ){
+
   for (po in 1:length(polcou[[1]])){
     lg_pred[[po]] <<- lapply(polcou[[2]], function(x){
       dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(all_of(plotyvar)) 
-      ctitle <- paste0('County ',dfg$cou_nr[x])
-      captionp <- paste0('correlation (r)= ',round(unique(dfg$corr), digits=5))
+      ctitle <- paste0('County: ',dfg$cou_na[x])
+      cor1 <- round(unique(dfg$corr1), digits=5)
+      cor2 <- round(unique(dfg$corr2), digits=5)
+      captionp <- paste0('correlation (r)= ',c(cor1,cor2))
       lp <- ggplot2::ggplot(data=dfg , aes(x=age,y=value,color=name)) + geom_line() + 
       ggplot2::labs(title=ctitle,x=lp$x,y=lp$y,caption =captionp) +
       ggplot2::theme_bw()})
