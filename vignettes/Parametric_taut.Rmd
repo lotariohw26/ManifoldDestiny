@@ -9,6 +9,7 @@ rmarkdown::render(paste0(abs_path(),'/vignettes/Parametric_taut.Rmd'))
 system(paste0('brave ',paste0(abs_path(),'/vignettes/Parametric_taut.html')))
 #sympupd()
 ```
+
 ```{r include=FALSE}
 library(ManifoldDestiny)
 library(dplyr)
@@ -31,6 +32,16 @@ load(paste0(abs_path(),'/data/eqpar.rda'))
 load(paste0(abs_path(),'/data/stickers.rda'))
 modlat <- eqpar$meql
 labs <- stickers[['parameters']]
+library(dplyr)
+library(huxtable)
+lego_hux <- as_hux(matrix(1:16, 4, 4)) %>% 
+      set_background_color(1:2, 1:2, "red") %>% 
+      set_background_color(1:2, 3:4, "yellow") %>% 
+      set_background_color(3:4, 1:2, "darkgreen") %>% 
+      set_background_color(3:4, 3:4, "blue") %>% 
+      set_text_color(3:4, 1:4, "white") %>% 
+      set_all_borders(brdr(2, "solid", "white"))
+lego_hux %>% set_caption("Original table")
 ```
 
 ### Standard form
