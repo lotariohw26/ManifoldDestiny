@@ -49,7 +49,8 @@ Voterrollanalysis$methods(predictinput=function(arg1=NULL){
     dplyr::mutate(avg_key_ratio2=stats::predict(avg_key_poly2,age)) %>%
     dplyr::mutate(ag_vpred1=ag_geovo*geo_ratio*avg_key_ratio1) %>%
     dplyr::mutate(ag_vpred2=ag_regis*tur_ratio*avg_key_ratio2) %>%
-    dplyr::mutate(pred_error=ag_voted-ag_vpred1,ag_vpred2) %>%
+    dplyr::mutate(pred_error1=ag_voted-ag_vpred1) %>%
+    dplyr::mutate(pred_error2=ag_voted-ag_vpred2) %>%
     dplyr::mutate(corr1=cor(ag_voted,ag_vpred1)) %>%
     dplyr::mutate(corr2=cor(ag_voted,ag_vpred2)) %>%
     dplyr::ungroup() 
