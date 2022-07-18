@@ -29,6 +29,27 @@ probvset <- list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
 Znr <- c(0,1)
 vrdf$realizedgp(probv=probvset,probw=probwset,Ztech=Znr)
 vrdf$regvbase()
+#####
+abc_vrg <- Voterrollgraphs(coudatafile='vtr_abc.rda')
+abc_vrg$scorecard()
+abc_vrg$predictinput()
+abc_vrg$lg_pred()
+abc_vrg$plot_predict()
+
+
+abc_vrg$plot_keyrat()
+abc_vrg$lg_hist()
+abc_vrg$lg_pred
+abc_vrg$lg_keyr
+abc_vrg$gridarrange()
+# Report
+abc_vrr <- Voterrollreport()
+abc_vrr$htmlreport()
+
+
+
+
+
 
 votr <- vrdf$listvbase[[2]]
 View(votr)

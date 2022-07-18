@@ -11,15 +11,16 @@ Voterrollanalysis <- setRefClass("Voterrollanalysis", fields=list(voterroll='dat
 								  ))
 Voterrollanalysis$methods(initialize=function(coudatafile='vtr_ohio.rda', 
 					      polyo=c(1,2,6,8)){
+
   rotp <<- rprojroot::find_rstudio_root_file()
   vfile <- paste0(rotp,'/data/',coudatafile)
   load(vfile)
-  voterroll <<- as.data.frame(vtr_ohio) 
+  voterroll <<- as.data.frame(vtr_abc 
   polcou[[1]] <<- polyo
   polcou[[2]] <<- unique(voterroll$cou_nr)
 })
 Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
-
+browser()
   polyo <- polcou[[1]] 
   #polyov <<- polyo
   vr <- voterroll
@@ -32,6 +33,8 @@ Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
       })
     }) ->> listscard
     polyscard <<- lapply(1:4, function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]]$coeff)))	
+
+View(polyscard[[1]])
 })
 Voterrollanalysis$methods(predictinput=function(arg1=NULL){
 
