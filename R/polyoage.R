@@ -73,14 +73,11 @@ Voterrollgraphs$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','
       ggplot2::theme_bw()})
   }
 })
-Voterrollgraphs$methods(plot_keyrat=function(
-  plotyvar=list(li='avg_key_ratio',po=c('go_key_ratio','re_key_ratio','avg_key_ratio','tur_ratio')
-  )){
+Voterrollgraphs$methods(plot_keyrat=function(plotyvar=list(li=c('avg_key_ratio1','avg_key_ratio2'),po=c('go_key_ratio','re_key_ratio','avg_key_ratio1','avg_key_ratio2','tur_ratio'))){
+
   for (po in 1:length(polcou[[1]])){
     lg_keyr[[po]] <<- lapply(polcou[[2]], function(x){
-      dfg <- polypredi[[po]] %>% 
-	      dplyr::filter(cou_nr==x) %>% 
-	      tidyr::pivot_longer(all_of(c(plotyvar$li,plotyvar$po)))
+      dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x)  %>% tidyr::pivot_longer(all_of(c(plotyvar$li,plotyvar$po)))
       ggplot2::ggplot(data=dfg, aes(x=age,y=value, color=name)) + geom_point() + 
       scale_y_continuous(limits=c(0, 2)) + theme_bw()
     })
@@ -88,7 +85,9 @@ Voterrollgraphs$methods(plot_keyrat=function(
 })
 Voterrollgraphs$methods(plot_histio=function(plotyvar=c('pred_error')){
 for (po in 1:length(polcou[[1]])){
+	browser()
   lg_hist[[po]] <<- lapply(polcou[[2]], function(x){
+				   browser()
     dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(all_of(plotyvar))
     ctitle <- paste0('County ',dfg$cou_nr[x])
     ggplot2::ggplot(data=dfg) + geom_histogram(aes(x=value)) + 
