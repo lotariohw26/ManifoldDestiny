@@ -33,11 +33,13 @@ vrdf$regvbase()
 abc_vrg <- Voterrollgraphs(coudatafile='vtr_abc.rda')
 abc_vrg$scorecard()
 abc_vrg$predictinput()
-abc_vrg$lg_pred()
+View(abc_vrg$polypredi[[1]])
 abc_vrg$plot_predict()
-
-
+abc_vrg$lg_pred[3]
 abc_vrg$plot_keyrat()
+
+
+
 abc_vrg$lg_hist()
 abc_vrg$lg_pred
 abc_vrg$lg_keyr

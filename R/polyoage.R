@@ -15,12 +15,12 @@ Voterrollanalysis$methods(initialize=function(coudatafile='vtr_ohio.rda',
   rotp <<- rprojroot::find_rstudio_root_file()
   vfile <- paste0(rotp,'/data/',coudatafile)
   load(vfile)
-  voterroll <<- as.data.frame(vtr_abc 
+  voterroll <<- as.data.frame(vtr_abc)
   polcou[[1]] <<- polyo
   polcou[[2]] <<- unique(voterroll$cou_nr)
 })
 Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
-browser()
+
   polyo <- polcou[[1]] 
   #polyov <<- polyo
   vr <- voterroll
