@@ -74,9 +74,8 @@ Voterrollgraphs$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','
       cor2 <- round(unique(dfg$corr2), digits=5)
       captionp <- paste0('correlation 1 (r)=',cor1,' correlation 2 (r)=',cor2)
       lp <- ggplot2::ggplot() + 
-        geom_line(data=dfg , aes(x=age,y=value,color=name)) +
-      ggplot2::labs(title=ctitle,x=lp$x,y=lp$y,caption =captionp) 
-      #ggplot2::theme_bw()})
+	geom_line(data=dfg , aes(x=age,y=value,color=name)) + 
+	ggplot2::labs(x=lp$x,y=lp$y) 
   })
 }
 })
@@ -89,10 +88,7 @@ Voterrollgraphs$methods(plot_keyrat=function(plotyvar=list(li=c('avg_key_ratio1'
       ctitle <- paste0('County:',dfg$cou_na[x])
       lp <- ggplot2::ggplot() + 
 	      geom_line(data=dplyr::filter(dfg,name%in%plotyvar$li), aes(x=age,y=value, color=name)) + 
-	      geom_point(data=dplyr::filter(dfg,name%in%plotyvar$po), aes(x=age,y=value, color=name)) + 
-	      ggplot2::labs(title = ctitle) + 
-      scale_y_continuous(limits=c(0, 2)) 
-      #+ theme_bw()
+	      geom_point(data=dplyr::filter(dfg,name%in%plotyvar$po), aes(x=age,y=value, color=name)) + scale_y_continuous(limits=c(0, 2)) 
     })
   }				  
 })
@@ -103,20 +99,16 @@ Voterrollgraphs$methods(plot_histio=function(plotyvar=c('pred_error1','pred_erro
      dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(all_of(plotyvar))
      ctitle <- paste0('County:',dfg$cou_na[x])
      lp <- ggplot2::ggplot(data=dfg) + 
-	     geom_histogram(aes(x=value, fill=name),bins=30) + 
-	     ggplot2::labs(title = ctitle) 
+	     geom_histogram(aes(x=value, fill=name),bins=30) 
    })
  }				      
 })
 Voterrollgraphs$methods(gridarrange=function(arg1=NULL){
-				browser()
+
   nmlc <- unique(voterroll$cou_na)
   for (lc in 1:length(nmlc)){
-    lc <- 1
     nmlcl <- nmlc[lc]
-    gr1 <- lg_pred[[3]][[lc]]
-   # ggedit::remove_geom(gr1,"gglabs")
-    #gr1 <- gginnards::delete_layers(gr1,"geom_point")
+    gr1 <- lg_pred[[3]][[lc]] 
     gr2 <- lg_keyr[[3]][[lc]] 
     gr3 <- lg_hist[[3]][[lc]] 
     #grid.arrange(gr1, gr2, gr3, ncol=3)
@@ -124,7 +116,7 @@ Voterrollgraphs$methods(gridarrange=function(arg1=NULL){
     pdf("test.pdf", onefile=FALSE)
     ag <- gridExtra::arrangeGrob(grobs=list(gr1,gr2,gr3),ncol=1,top=nmlcl)
     plotname <- paste0(substr(nmlcl,1,nchar(nmlcl)),".png")
-    plotfile <- paste0(rotp,'/inst/script/pngs/',plotname)
+    plotfile <- paste0(rotp,'/inst/script/voterroll/ohio/',plotname)
     ggsave(file=plotfile,ag)
     #list(plot=g)
   }
@@ -134,8 +126,8 @@ Voterrollgraphs$methods(gridarrange=function(arg1=NULL){
 Voterrollreport <- setRefClass("Voterrollreport", contains = c('Voterrollanalysis'))
 Voterrollreport$methods(htmlreport=function(reportn='ohio'){
 
-  file_rep_cou <- paste0(rotp,'/inst/script/reports/',reportn,'_cou.html')
-  file_rep_sta <- paste0(rotp,'/inst/script/reports/',reportn,'_sta.html')
+  file_rep_cou <- paste0(rotp,'/inst/script/voterroll/',reportn,'report_cou.html')
+  file_rep_sta <- paste0(rotp,'/inst/script/voterroll/',reportn,'report_sta.html')
   
   pre_report <- polypredi %>% dplyr::bind_rows(.) %>% 
     dplyr::mutate(state=reportn) %>%
@@ -154,5 +146,4 @@ Voterrollreport$methods(htmlreport=function(reportn='ohio'){
   agg_report  %>% kableExtra::kbl() %>%
     kableExtra::kable_paper(full_width = T) %>%
     kableExtra::save_kable(file=file_rep_sta)
-
 })
