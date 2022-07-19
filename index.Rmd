@@ -52,6 +52,7 @@ Ed. Solomon
 ```{r, echo=F, eval=T}
 knitr::knit_exit()
 ```
+
 # R
 inst/script/polynomialage.R
 inst/odg/main_sheet.odg
