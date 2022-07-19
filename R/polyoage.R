@@ -134,12 +134,25 @@ Voterrollgraphs$methods(gridarrange=function(arg1=NULL){
 Voterrollreport <- setRefClass("Voterrollreport", contains = c('Voterrollanalysis'))
 Voterrollreport$methods(htmlreport=function(reportn='ohio'){
 
-  file_rep <- paste0(rotp,'/inst/script/reports/',reportn,'html')
-  report <- polypredi %>% dplyr::bind_rows(.) %>% 
-         dplyr::select(polyo,cou_nr,cou_na,polyo,corr1,corr2) %>% 
-	 dplyr::distinct() %>% 
-         xtable::xtable(type="html") %>% 
-	 print(type='html', file=file_rep)
+  file_rep_cou <- paste0(rotp,'/inst/script/reports/',reportn,'_cou.html')
+  file_rep_sta <- paste0(rotp,'/inst/script/reports/',reportn,'_sta.html')
+  
+  pre_report <- polypredi %>% dplyr::bind_rows(.) %>% 
+    dplyr::mutate(state=reportn) %>%
+    dplyr::select(state,cou_nr,cou_na,polyo,corr1,corr2) %>% 
+    dplyr::distinct()  
+  agg_report <- pre_report %>% 
+    dplyr::group_by(polyo) %>%
+    dplyr::mutate(mcorr1=mean(corr1)) %>%
+    dplyr::mutate(mcorr2=mean(corr2)) %>%
+    dplyr::select(state,polyo,mcorr1,mcorr2) %>% 
+    dplyr::distinct()
+    
+  pre_report %>% kableExtra::kbl() %>%
+    kableExtra::kable_paper(full_width = T) %>%
+    kableExtra::save_kable(file=file_rep_cou)
+  agg_report  %>% kableExtra::kbl() %>%
+    kableExtra::kable_paper(full_width = T) %>%
+    kableExtra::save_kable(file=file_rep_sta)
+
 })
-
-
