@@ -6,7 +6,7 @@ electiontechn <- function(probw=c(0.50,0.05),
 			  nprect=20){	
 #	browser()
   ### Election technology and voter sentiment
-  ztech <- data.frame(P=seq(1,nprect)) %>% 
+  ztech <- data.frame(prec_nr=seq(1,nprect)) %>% 
     dplyr::mutate(probwd=rnorm(nprect,probw[1],probw[2])) %>%
     dplyr::mutate(Zt=runif(n(), min=Ztech[1], max=Ztech[2])) %>%
     dplyr::mutate(p1=probv[[1]][1]) %>%
@@ -79,69 +79,34 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
   #dplyr::select(gender,name.first,name.last) %>%
   # Id-number for voters
   ztechdf <- electiontechn(probw,probv,Ztech,nprect)
-
-
-
   voterrolldatabase <- data.frame(idn=seq(1:popsize)) %>% 
     #!
     dplyr::mutate(county_nr=1) %>%
     dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>% 
-    dplyr::mutate(precinct_nr=sample(nprect,size=n(),replace=T)) %>% 
-    dplyr::arrange(precinct_nr) %>%
+    dplyr::mutate(prec_nr=sample(nprect,size=n(),replace=T)) %>% 
+    dplyr::arrange(prec_nr) %>%
     dplyr::mutate(registered=ifelse(idn%in%rvot,1,0)) %>% 
-    dplyr::left_join(electiontechn(), by="P") 
+    dplyr::left_join(ztechdf, by="prec_nr") 
     listvbase[[1]] <<- voterrolldatabase
-    names(voterrolldatabase)
     base::save(file=vfile,listvbase)
     #[1]"id""cou_nr""age""precinct_nr""registered"
     #"birthdate""general""primary""voted"          
   } 
   else {
-
-
-    listvbase <<- get(base::load(file=vfile))
+    #listvbase <<- get(base::load(file=vfile))
+    ztechdf <- electiontechn(probw,probv,Ztech,nprect)
+    coudatafile='vtr_ohio.rda'    
+    rotp <<- rprojroot::find_rstudio_root_file()
+    vfile <- paste0(rotp,'/data/',coudatafile)
+    voterrolldatabase <- data.frame(idn=seq(1:popsize)) 
+    View(voterrolldatabase)
+    load(vfile)
+    voterroll <<- as.data.frame(vtr_ohio)
   }
-})
-Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
-						     c(0.30,0.60,0.10)),
-					  probw=c(0.50,0.05),
-                                          Ztech=c(0,1),
-                                          tvoting=c('EDV','MIV')){
-
-  nprect <- max(listvbase[[1]]$P)
-  ## Election Technology and voter sentiment
-  ztech <- data.frame(P=seq(1,nprect)) %>%
-	  dplyr::mutate(probwd=rnorm(nprect,probw[1],probw[2])) %>%
-	  dplyr::mutate(Zt=runif(n(), min=Ztech[1], max=Ztech[2])) %>%
-          dplyr::mutate(p1=probv[[1]][1]) %>%
-          dplyr::mutate(p2=probv[[1]][2]+probv[[1]][3]*Zt) %>%
-          dplyr::mutate(p3=probv[[1]][3]*(1-Zt)) %>%
-          dplyr::mutate(p4=probv[[2]][1]) %>%
-          dplyr::mutate(p5=probv[[2]][2]+probv[[2]][3]*Zt) %>%
-          dplyr::mutate(p6=probv[[2]][3]*(1-Zt))
-
-  ## Technology
-  listvbase[[2]] <<- listvbase[[1]] %>% dplyr::left_join(ztech, by="P") %>%
-	  base::split(.$P) %>%
-  purrr::map(function(x){
-  x %>%  dplyr::mutate(candraw=rbinom(n(),1,probwd)) %>%
-	 dplyr::mutate(voted=ifelse(candraw==1,
-      		      sample(1:3,size=n(),prob=c(x$p1[1],x$p2[1],x$p3[1]),T),
-      		      sample(4:6,size=n(),prob=c(x$p4[1],x$p5[1],x$p6[1]),T)))
-  }) %>%
-  dplyr::bind_rows(.) %>%
-  # Prior voting for which candidate and type of voting
-  dplyr::mutate(a=ifelse(voted==1&R==1,1,0)) %>%
-  dplyr::mutate(c=ifelse(voted==2&R==1,1,0)) %>%
-  dplyr::mutate(b=ifelse(voted==4&R==1,1,0)) %>%
-  dplyr::mutate(d=ifelse(voted==5&R==1,1,0)) %>%
-  # Condition for becoming a credit voter: Registered and not voting
-  dplyr::mutate(C=ifelse((voted==3|voted==6)&R==1,1,0)) 
-
 })
 Voterdatabase$methods(regvbase=function(arg1=NULL){
 		
-  listvbase[[3]] <<-
+  listvbase[[2]] <<-
     vtr_abc <- 
     listvbase[[2]] %>% 
     dplyr::select(idn,age,voted,C,R) %>%
@@ -229,5 +194,42 @@ View(vdiff)
 # dplyr::bind_rows(.) 
 # listvbase[[4]] <<- vdiff_sel
 # listvbase[[5]] <<- base_sel
-})
+#})
 
+#Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
+#						     c(0.30,0.60,0.10)),
+#					  probw=c(0.50,0.05),
+#                                          Ztech=c(0,1),
+#                                          tvoting=c('EDV','MIV')){
+#
+#  nprect <- max(listvbase[[1]]$P)
+#  ## Election Technology and voter sentiment
+#  ztech <- data.frame(P=seq(1,nprect)) %>%
+#	  dplyr::mutate(probwd=rnorm(nprect,probw[1],probw[2])) %>%
+#	  dplyr::mutate(Zt=runif(n(), min=Ztech[1], max=Ztech[2])) %>%
+#          dplyr::mutate(p1=probv[[1]][1]) %>%
+#          dplyr::mutate(p2=probv[[1]][2]+probv[[1]][3]*Zt) %>%
+#          dplyr::mutate(p3=probv[[1]][3]*(1-Zt)) %>%
+#          dplyr::mutate(p4=probv[[2]][1]) %>%
+#          dplyr::mutate(p5=probv[[2]][2]+probv[[2]][3]*Zt) %>%
+#          dplyr::mutate(p6=probv[[2]][3]*(1-Zt))
+#
+#  ## Technology
+#  listvbase[[2]] <<- listvbase[[1]] %>% dplyr::left_join(ztech, by="P") %>%
+#	  base::split(.$P) %>%
+#  purrr::map(function(x){
+#  x %>%  dplyr::mutate(candraw=rbinom(n(),1,probwd)) %>%
+#	 dplyr::mutate(voted=ifelse(candraw==1,
+#      		      sample(1:3,size=n(),prob=c(x$p1[1],x$p2[1],x$p3[1]),T),
+#      		      sample(4:6,size=n(),prob=c(x$p4[1],x$p5[1],x$p6[1]),T)))
+#  }) %>%
+#  dplyr::bind_rows(.) %>%
+#  # Prior voting for which candidate and type of voting
+#  dplyr::mutate(a=ifelse(voted==1&R==1,1,0)) %>%
+#  dplyr::mutate(c=ifelse(voted==2&R==1,1,0)) %>%
+#  dplyr::mutate(b=ifelse(voted==4&R==1,1,0)) %>%
+#  dplyr::mutate(d=ifelse(voted==5&R==1,1,0)) %>%
+#  # Condition for becoming a credit voter: Registered and not voting
+#  dplyr::mutate(C=ifelse((voted==3|voted==6)&R==1,1,0)) 
+#
+#})
