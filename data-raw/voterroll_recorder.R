@@ -2,7 +2,7 @@ library(ManifoldDestiny)
 library(dplyr)
 library(readxl)
 # Standardized values
-vrsnames <- c('id','cou_nr','birthdate','general','primary','voted','registered','age')
+vrsnames <- c('id','cou_nr','birthdate','general','primary','precinct_nr','voted','registered','age')
 el_date='2020-01-04'
 age_limit <- c(19,100)
 gen_el <- 'GENERAL-11/03/2020'
@@ -13,6 +13,7 @@ lf_ohio <- list.files(path=paste0(rprojroot::find_rstudio_root_file(),'/data-raw
 lc_ohio <- list.files(path=paste0(rprojroot::find_rstudio_root_file(),'/data-raw/voterroll/ohio'),full.names=F)
 
 vtr_ohio <-seq(1,length(lc_ohio)) %>% purrr::map(function(x){
+  x <- 1
   # Standardized voterroll
   ## county names
   cou_nal <- substring(lc_ohio[x],1,nchar(lc_ohio[x])-5)
@@ -20,7 +21,7 @@ vtr_ohio <-seq(1,length(lc_ohio)) %>% purrr::map(function(x){
   ## read raw files
   sta_vot <- readxl::read_excel(xlsx_file) %>% 
     dplyr::rename(c(general=all_of(gen_el),primary=all_of(pri_el))) %>%
-    select(SOS_VOTERID,COUNTY_NUMBER,DATE_OF_BIRTH,VOTER_STATUS,general,primary) %>%
+    select(SOS_VOTERID,COUNTY_NUMBER,DATE_OF_BIRTH,VOTER_STATUS,general,primary,PRECINCT_CODE) %>% 
     ## Transform relevant data variables
     dplyr::mutate(voted=ifelse(general=='X',1,0)) %>%
     dplyr::mutate(registered=ifelse(VOTER_STATUS=='ACTIVE',1,0)) %>%
@@ -33,7 +34,7 @@ vtr_ohio <-seq(1,length(lc_ohio)) %>% purrr::map(function(x){
     dplyr::filter(age>=age_limit[1]) %>%
     dplyr::filter(age<=age_limit[2]) %>%
     ## standardizing the names
-    `colnames<-` (vrsnames) %>%
+    `colnames<-` (vrsnames) 
     ## standardizing the variables needed
     ### for each age group
     dplyr::group_by(age) %>% 

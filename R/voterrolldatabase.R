@@ -1,72 +1,102 @@
+#' @export electiontechn
+electiontechn <- function(probw=c(0.50,0.05), 
+			  probv=list(c(0.60,0.30,0.10),
+				     c(0.30,0.60,0.10)),
+			  Ztech=c(0,1), 
+			  nprect=20){	
+#	browser()
+  ### Election technology and voter sentiment
+  ztech <- data.frame(P=seq(1,nprect)) %>% 
+    dplyr::mutate(probwd=rnorm(nprect,probw[1],probw[2])) %>%
+    dplyr::mutate(Zt=runif(n(), min=Ztech[1], max=Ztech[2])) %>%
+    dplyr::mutate(p1=probv[[1]][1]) %>%
+    dplyr::mutate(p2=probv[[1]][2]+probv[[1]][3]*Zt) %>%
+    dplyr::mutate(p3=probv[[1]][3]*(1-Zt)) %>%
+    dplyr::mutate(p4=probv[[2]][1]) %>%
+    dplyr::mutate(p5=probv[[2]][2]+probv[[2]][3]*Zt) %>%
+    dplyr::mutate(p6=probv[[2]][3]*(1-Zt))
+}
+
+### Election technology and voter sentiment
 #' @export Voterdatabase
 Voterdatabase <- setRefClass("Voterdatabase", fields=list(
 							  listvbase='list')
 )
 Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
 					  nprect=20,
-					  reg=0.80,
+					  tot_regis=0.80,
+					  probw=c(0.50,0.05),
+					  probv=list(c(0.60,0.30,0.10),
+						     c(0.30,0.60,0.10)),
+                                          Ztech=c(0,1),
+                                          modes=c('EDV','MIV'), 
 					  namebase='defvotbase',
 					  newdraw=F
 					  ){
+	browser()
 
-    rotp <- rprojroot::find_rstudio_root_file()
-    vfile <- paste0(rotp,'/inst/script/voterbase/',namebase,'.rda')
+  ## Files
+  rotp <- rprojroot::find_rstudio_root_file()
+  vfile <- paste0(rotp,'/inst/script/voterbase/',namebase,'.rda')
 
-    if(newdraw == T) {
-    # Demograhpic structure
-    agelength <- agebracketmax[2]-agebracketmax[1]
-    brack <- seq(agebracketmax[1],agebracketmax[2])
-    halflength <- agelength/2  #! should be changed
-    earlpop <- matrix(1,agebracketmax[3],halflength)
-    stlate <- halflength+1
-    enlate <- length(brack)
-    ## Making decreasing rate of voters belonging to older age groups
-    latepop <- seq(stlate,enlate) %>% purrr::map_dfc(function(x,maxp=agebracketmax[3])
-          	{
-          		cf <-maxp/(enlate-stlate)
-          		one <- floor(maxp-cf*(x-stlate))
-          		zero <- maxp-one
-    		matrix(c(rep(0,zero),rep(1,one)))
-        		}) %>% as.matrix()
-    colnames(latepop) <- NULL
+  if(newdraw == T) {
+  # Demograhpic structure
+  agelength <- agebracketmax[2]-agebracketmax[1]
+  brack <- seq(agebracketmax[1],agebracketmax[2])
+  halflength <- agelength/2  #! should be changed
+  earlpop <- matrix(1,agebracketmax[3],halflength)
+  stlate <- halflength+1
+  enlate <- length(brack)
+  ## Making decreasing rate of voters belonging to older age groups
+  latepop <- seq(stlate,enlate) %>% purrr::map_dfc(function(x,maxp=agebracketmax[3])
+        	{
+        		cf <-maxp/(enlate-stlate)
+        		one <- floor(maxp-cf*(x-stlate))
+        		zero <- maxp-one
+  		matrix(c(rep(0,zero),rep(1,one)))
+      		}) %>% as.matrix()
+  colnames(latepop) <- NULL
 
-    # Total Population
-    totpop <- cbind(earlpop,latepop)
-    agebrack <- agebracketmax
-    
-    # Desc statistics
-    popvotgro <- colSums(totpop)           # Population for each age group
-    popsize <- sum(popvotgro) 	         # Total number of citizien
-    probage <- popvotgro/popsize 	         # Probability for each age group
-    precv <- sample(nprect,size=popsize,T) # Allocated to various precincts (uniform?)
+  # Total Population
+  totpop <- cbind(earlpop,latepop)
+  agebrack <- agebracketmax
+  
+  # Desc statistics
+  popvotgro <- colSums(totpop)           # Population for each age group
+  popsize <- sum(popvotgro) 	           # Total number of citizien
+  probage <- popvotgro/popsize 	   # Probability for each age group
+  precv <- sample(nprect,size=popsize,T) # Allocated to various precincts (uniform?)
 
-    # Registration
-    rvot <- sample(seq(1,popsize),size=popsize*reg,F) # Registered voters
+  # Registration
+  rvot <- sample(seq(1,popsize),size=popsize*tot_regis,F) # Registered voters
 
-    # Allocation
-    precv <-sample(nprect,size=popsize,T) # Allocated to various precincts (uniform)
+  # Allocation
+  precv <-sample(nprect,size=popsize,T) # Allocated to various precincts (uniform)
 
-    # Realvoters
-    #sci <- 500; hc <- floor(popsize/sci); resnr <- c(rep(sci,hc),popsize-sci*hc)
-    #voterrolldatabase <- resnr %>% purrr::map_df(randNames::rand_names,nationality="US") %>%
-    #dplyr::select(gender,name.first,name.last) %>%
-    # Id-number for voters
-    voterrolldatabase <- data.frame(idn=seq(1:popsize)) %>%
-      #dplyr::mutate(status='real') %>%
-      # Age being assigned to citizien making up the population
-      dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%     
-      # Assigned to different precincts
-      dplyr::mutate(P=sample(nprect,size=n(),replace=T)) %>% 
-      dplyr::arrange(P) %>%
-      # Assigned whether citizien register to vote or not
-      dplyr::mutate(R=ifelse(idn%in%rvot,1,0)) 
-      #listvbase[[1]] <<- list(voterrolldatabase,totpop,agebrack)
-      listvbase[[1]] <<- voterrolldatabase
-      base::save(file=vfile,listvbase)
-    } 
-    else {
-      listvbase <<- get(base::load(file=vfile))
-    }
+  # Realvoters
+  #sci <- 500; hc <- floor(popsize/sci); resnr <- c(rep(sci,hc),popsize-sci*hc)
+  #voterrolldatabase <- resnr %>% purrr::map_df(randNames::rand_names,nationality="US") %>%
+  #dplyr::select(gender,name.first,name.last) %>%
+  # Id-number for voters
+  voterrolldatabase <- data.frame(idn=seq(1:popsize)) %>% 
+    #!
+    dplyr::mutate(county_nr=1) %>%
+    dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>% 
+    dplyr::mutate(precinct_nr=sample(nprect,size=n(),replace=T)) %>% 
+    dplyr::arrange(precinct_nr) %>%
+    dplyr::mutate(registered=ifelse(idn%in%rvot,1,0)) %>% 
+    dplyr::left_join(electiontechn(), by="P") 
+    listvbase[[1]] <<- voterrolldatabase
+    names(voterrolldatabase)
+    base::save(file=vfile,listvbase)
+    #[1]"id""cou_nr""age""precinct_nr""registered"
+    #"birthdate""general""primary""voted"          
+  } 
+  else {
+
+
+    listvbase <<- get(base::load(file=vfile))
+  }
 })
 Voterdatabase$methods(realizedgp=function(probv=list(c(0.60,0.30,0.10),
 						     c(0.30,0.60,0.10)),
@@ -141,8 +171,6 @@ Voterdatabase$methods(uploadvbase=function(
 				    maniv=NULL, 
 				    param=NULL 
 				    ){
-browser()
-
 ### Rreate diff 
 mv <- dplyr::select(maniv,P,all_of(param)) 
 colnames(mv)[-1]<- paste0(param,'_s')
@@ -198,3 +226,4 @@ View(vdiff)
 # listvbase[[4]] <<- vdiff_sel
 # listvbase[[5]] <<- base_sel
 })
+
