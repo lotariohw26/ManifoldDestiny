@@ -78,6 +78,10 @@ Voterdatabase$methods(initialize=function(agebracketmax=c(18,100,30),
   #voterrolldatabase <- resnr %>% purrr::map_df(randNames::rand_names,nationality="US") %>%
   #dplyr::select(gender,name.first,name.last) %>%
   # Id-number for voters
+  ztechdf <- electiontechn(probw,probv,Ztech,nprect)
+
+
+
   voterrolldatabase <- data.frame(idn=seq(1:popsize)) %>% 
     #!
     dplyr::mutate(county_nr=1) %>%
