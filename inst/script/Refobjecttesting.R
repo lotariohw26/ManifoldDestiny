@@ -18,17 +18,24 @@ library(gridExtra)
 ### Voterrollanalysis (Based on Dr. Frank)
 ##################################################################################################
 # Voterbase
-#ohio_vb <- Voterdatabase()
+ohio_vb <- Voterdatabase()
 #ohio_vb$regvbase()
 #ohio_vb$scorecard()	
 #ohio_vb$predictinput()
 #ohio_vb$uploadvbase()
 ## Graphical
-#ohio_vg <- Voterdatabase()
-#ohio_vg$regvbase()
-#ohio_vg$scorecard()	
-#ohio_vg$predictinput()
-#ohio_vg$uploadvbase()
+ohio_vg <-Voterdatabaseplots()
+ohio_vg$regvbase()
+ohio_vg$scorecard()	
+ohio_vg$predictinput()
+ohio_vg$plot_predict()
+#ohio_vg$lg_pred[[1]]
+ohio_vg$plot_keyrat()
+#ohio_vg$lg_keyr[[1]]
+ohio_vg$plot_histio()
+#ohio_vg$lg_hist[[1]]
+ohio_vg$gridarrange()
+ohio_vg$uploadvbase()
 ## Report
 ohio_vr <- Voterrollreport()
 ohio_vr$regvbase()
