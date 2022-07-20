@@ -18,10 +18,20 @@ electiontechn <- function(probw=c(0.50,0.05),
 }
 ### Election technology and voter sentiment
 #' @export Voterdatabase
-Voterdatabase <- setRefClass("Voterdatabase", fields=
-			     list(listvbase='list')
-				polyscard1
-)
+Voterdatabase <- setRefClass("Voterdatabase",fields=listvbase='list')
+voterroll='data.frame') 
+listscard='list', 
+polyscard1='list',
+polyscard2='list',
+polypredi='list', 
+polcou='list',  
+lg_pred='list',  
+lg_hist='list',  
+lg_keyr='list', 
+rotp='character'
+
+
+
 Voterdatabase$methods(initialize=function(state=c('simulation'), 
 					  coudatafile='vtr_ohio.rda', 
 					  agebracketmax=c(18,100,30),
