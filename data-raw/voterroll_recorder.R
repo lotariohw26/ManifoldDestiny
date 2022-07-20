@@ -57,6 +57,6 @@ vtr_ohio <-seq(1,length(lc_ohio)) %>% purrr::map(function(x){
 #    dplyr::mutate(re_key_ratio=ag_revos/tur_ratio) %>%
 #    ### add county names
 #    dplyr:: mutate(cou_na=cou_nal) %>% dplyr::relocate(cou_na,.after=cou_nr) 
-#}) %>% dplyr::bind_rows(.) 
-#usethis::use_data(vtr_ohio, overwrite = TRUE)
-#names(vtr_ohio)
+}) %>% dplyr::bind_rows(.) 
+usethis::use_data(vtr_ohio, overwrite = TRUE)
+names(vtr_ohio)
