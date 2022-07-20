@@ -132,6 +132,6 @@ Voterdatabase$methods(uploadvbase=function(
 				    maniv=NULL, 
 				    param=NULL 
 				    ){
-listvbase[[3]] <- listvbase[[2]] 
+listvbase[[3]] <<- listvbase[[2]] 
 })
 
