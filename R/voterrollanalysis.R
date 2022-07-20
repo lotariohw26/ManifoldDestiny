@@ -27,11 +27,13 @@ lg_pred='list',
 lg_hist='list',  
 lg_keyr='list', 
 pr_path='character'))
+
 Voterdatabase$methods(initialize=function(type=c('simulation','recorded')[2]){
+
+###			      
 probw=c(0.50,0.05)
 probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
 Ztech=c(0,1)
-coudatafile='vtr_ohio.rda'
 state='ohio'
 agebracketmax=c(18,100,30)
 nprect=20
@@ -39,47 +41,42 @@ tot_regis=0.80
 probw=c(0.50,0.05)
 probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
 Ztech=c(0,1)
+###
 modes=c('EDV','MIV') 
 namebase='defvotbase'
 newdraw=F
 pr_path <<- rprojroot::find_rstudio_root_file()
 loadrec <- paste0(pr_path,'/data/',coudatafile)
-saveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',state,'/','abc.df')
-elect_type <- c ('sim','rec')[1]
-lsv <- 0
+elect_type <- c ('sim','rec')[2]
+lsv <- 1
+listvbase <- list()
+coudatafile='vtr_ohio.rda'
 ####
+reciniload <- paste0(pr_path,'/data/',coudatafile)
+recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',state,'/','abc.df')
+simsavloa <- paste0(pr_path,'/inst/script/voterroll/recorded/',state,'/','abc.df')
 
 if (elect_type=='sim') {
 'test1'
-  if (lsv==1) { 'load sim' }
+  if (lsv==1) {votdf <- get(base::load(file=recsavloa))}
   else {'save sim'}
 }
 if (elect_type=='rec') {
 'test1'
-  if (lsv==1) { 'load rec' }
-  else {'save rec'}
+  if (lsv==1) {votdf <- get(base::load(file=simsavloa))}
+  else {
+votdf <- as.data.frame(get(load(reciniload))) %>%
+	dplyr::select(id,cou_nr,cou_na,age,registered,prec_nr,voted) %>%
+	base::split(.$cou_nr) %>% 
+	purrr::map(function(x){
+          o <- x %>%dplyr::left_join(electiontechn(nprect=max(.$prec_nr)))
+        }) %>% dplyr::bind_rows(.) %>% `colnames<-` (stlvb1) 
+base::save(voterroll, file = saveload)
 }
-
-
-
-
-
-
-
-if(elect_type=='sim'){
-	if(lsv=1){		}
-	else{ }
-} else if(elect_type=='rec'){
-} else{
- break
 }
-
-
-''
-
-
-
-
+# Simulating votes
+listvbase[[1]] <<- votdf
+stlvb1 <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
 
 ##### 2 ###
 ####### initialize
