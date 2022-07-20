@@ -18,7 +18,9 @@ electiontechn <- function(probw=c(0.50,0.05),
 }
 ### Election technology and voter sentiment
 #' @export Voterdatabase
-Voterdatabase <- setRefClass("Voterdatabase",fields=list(base='list',voterroll='data.frame',
+Voterdatabase <- setRefClass("Voterdatabase",fields=list(
+listvbase='list',
+voterroll='data.frame',
 listscard='list', 
 polyscard1='list',
 polyscard2='list',
@@ -28,7 +30,6 @@ lg_pred='list',
 lg_hist='list',  
 lg_keyr='list', 
 rotp='character'))
-
 Voterdatabase$methods(initialize=function(state=c('simulation'), 
 					  coudatafile='vtr_ohio.rda', 
 					  agebracketmax=c(18,100,30),
@@ -73,7 +74,7 @@ Voterdatabase$methods(regvbase=function(arg1=NULL){
     dplyr::group_by(age) %>%
     dplyr::arrange(age) %>%
     dplyr::mutate(ag_geovo=n_distinct(id)) %>% 
-    dplyr::mutate(ag_voted=sum(V)) %>%
+    dplyr::mutate(ag_voted=sum(V,na.rm=T)) %>%
     dplyr::mutate(ag_regis=sum(R)) %>% 
     dplyr::mutate(ag_gevos=ag_voted/ag_geovo) %>% 
     dplyr::mutate(ag_revos=ag_voted/ag_regis) %>% 
@@ -91,14 +92,11 @@ Voterdatabase$methods(regvbase=function(arg1=NULL){
     dplyr::mutate(re_key_ratio=ag_revos/tur_ratio) 
 })
 Voterdatabase$methods(scorecard=function(polyo=c(1,2,6,8)){
-browser()
-  polyo <- polcou[[1]] 
-  #polyov <<- polyo
-  vr <- voterroll
-  nrco <- unique(voterroll$cou_nr)
+
+  nrco <- unique(listvbase[[2]]$cou_nr)
     lapply(nrco,function(x){
       lapply(1:length(polyo),function(y){
-        dft <- dplyr::filter(voterroll,cou_nr==x)
+        dft <- dplyr::filter(listvbase[[2]],cou_nr==x)
         ft1 <- paste0("dft$go_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
         ft2 <- paste0("dft$re_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
         list(lm(as.formula(ft1)),lm(as.formula(ft2)))
@@ -107,27 +105,26 @@ browser()
     polyscard1 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
     polyscard2 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
 })
-#Voterdatabase$methods(predictinput=function(arg1=NULL){
-##
-##  polypredi <<- lapply(1:length(polcou[[1]]), function(x){
-##    avg_key_poly1 <- t(polyscard1[[x]]) %>% base::colMeans() %>% polynom::polynomial()
-##    avg_key_poly2 <- t(polyscard2[[x]]) %>% base::colMeans() %>% polynom::polynomial()
-##    vr <- voterroll %>%
-##    dplyr::group_by(cou_nr) %>%
-##    ## Predicting average scorecard
-##    dplyr::mutate(polyo=polcou[[1]][x]) %>%
-##    dplyr::relocate(polyo) %>%
-##    dplyr::mutate(avg_key_ratio1=stats::predict(avg_key_poly1,age)) %>%
-##    dplyr::mutate(avg_key_ratio2=stats::predict(avg_key_poly2,age)) %>%
-##    dplyr::mutate(ag_vpred1=ag_geovo*geo_ratio*avg_key_ratio1) %>%
-##    dplyr::mutate(ag_vpred2=ag_regis*tur_ratio*avg_key_ratio2) %>%
-##    dplyr::mutate(pred_error1=ag_voted-ag_vpred1) %>%
-##    dplyr::mutate(pred_error2=ag_voted-ag_vpred2) %>%
-##    dplyr::mutate(corr1=cor(ag_voted,ag_vpred1)) %>%
-##    dplyr::mutate(corr2=cor(ag_voted,ag_vpred2)) %>%
-##    dplyr::ungroup()}) 
-#})
-#
+Voterdatabase$methods(predictinput=function(arg1=NULL){
+
+  polypredi <<- lapply(1:length(polcou[[1]]), function(x){
+  avg_key_poly1 <- t(polyscard1[[x]]) %>% base::colMeans() %>% polynom::polynomial()
+  avg_key_poly2 <- t(polyscard2[[x]]) %>% base::colMeans() %>% polynom::polynomial()
+  vr <- voterroll %>%
+  dplyr::group_by(cou_nr) %>%
+  ## Predicting average scorecard
+  dplyr::mutate(polyo=polcou[[1]][x]) %>%
+  dplyr::relocate(polyo) %>%
+  dplyr::mutate(avg_key_ratio1=stats::predict(avg_key_poly1,age)) %>%
+  dplyr::mutate(avg_key_ratio2=stats::predict(avg_key_poly2,age)) %>%
+  dplyr::mutate(ag_vpred1=ag_geovo*geo_ratio*avg_key_ratio1) %>%
+  dplyr::mutate(ag_vpred2=ag_regis*tur_ratio*avg_key_ratio2) %>%
+  dplyr::mutate(pred_error1=ag_voted-ag_vpred1) %>%
+  dplyr::mutate(pred_error2=ag_voted-ag_vpred2) %>%
+  dplyr::mutate(corr1=cor(ag_voted,ag_vpred1)) %>%
+  dplyr::mutate(corr2=cor(ag_voted,ag_vpred2)) %>%
+  dplyr::ungroup()}) 
+})
 
 
 
