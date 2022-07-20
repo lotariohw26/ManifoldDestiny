@@ -92,7 +92,6 @@ Voterdatabase$methods(regvbase=function(arg1=NULL){
     dplyr::mutate(re_key_ratio=ag_revos/tur_ratio) 
 })
 Voterdatabase$methods(scorecard=function(polyo=c(1,2,6,8)){
-			      browser()
 
   polcou[[1]] <<- polyo
   nrco <- polcou[[2]] <<- unique(listvbase[[2]]$cou_nr)
@@ -113,7 +112,7 @@ Voterdatabase$methods(predictinput=function(arg1=NULL){
   polypredi <<- lapply(1:length(polcou[[1]]), function(x){
   avg_key_poly1 <- t(polyscard1[[x]]) %>% base::colMeans() %>% polynom::polynomial()
   avg_key_poly2 <- t(polyscard2[[x]]) %>% base::colMeans() %>% polynom::polynomial()
-  vr <- voterroll %>%
+  vr <- listvbase[[2]] %>%
   dplyr::group_by(cou_nr) %>%
   ## Predicting average scorecard
   dplyr::mutate(polyo=polcou[[1]][x]) %>%
@@ -128,22 +127,4 @@ Voterdatabase$methods(predictinput=function(arg1=NULL){
   dplyr::mutate(corr2=cor(ag_voted,ag_vpred2)) %>%
   dplyr::ungroup()}) 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

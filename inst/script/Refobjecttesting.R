@@ -23,9 +23,6 @@ ohio_vrg$regvbase()
 ohio_vrg$scorecard()	
 ohio_vrg$predictinput()
 
-Voterrollgraphs()
-ohio_vrg$scorecard()
-ohio_vrg$predictinput()
 ohio_vrg$plot_predict()
 ##ohio_vrg$lg_pred[[3]][[3]]
 ohio_vrg$plot_keyrat()
