@@ -45,22 +45,22 @@ Voterdatabase$methods(initialize=function(state=c('simulation'),
 					  newdraw=F){
 
 pr_path <<- rprojroot::find_rstudio_root_file()
+loadrec <- paste0(pr_path,'/data/',coudatafile)
+saveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',coudatafile)
+
 ### 2 ###
 ##### initialize
 stlvb1 <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
-coudatafile='vtr_ohio.rda'
-loadrec <- paste0(pr_path,'/data/',coudatafile)
-saverec <- paste0(pr_path,'/inst/script/voterroll/recorded/',coudatafile)
-s <- listvbase[[1]] <<- as.data.frame(get(load(loadrec)))  %>% dplyr::select(id,cou_nr,cou_na,age,registered,prec_nr,voted) %>%
-base::split(.$cou_nr) %>%
-purrr::map(function(x){
-  o <- x %>%dplyr::left_join(electiontechn(nprect=max(.$prec_nr)))
-}) %>% 
-dplyr::bind_rows(.) %>% `colnames<-` (stlvb1) 
-base::save(file=saverec,s)
-####### load
-loadrec <- paste0(pr_path,'/inst/script/voterroll/recorded/',coudatafile)
-listvbase[[1]] <<- get(base::load(file=loadrec))
+s <- listvbase[[1]] <<- as.data.frame(get(load(loadrec)))  %>% 
+	dplyr::select(id,cou_nr,cou_na,age,registered,prec_nr,voted) %>%
+	base::split(.$cou_nr) %>% 
+	purrr::map(function(x){
+          o <- x %>%dplyr::left_join(electiontechn(nprect=max(.$prec_nr)))
+        }) %>% dplyr::bind_rows(.) %>% `colnames<-` (stlvb1) 
+base::save(file=saveload)
+######## load
+
+listvbase[[1]] <<- get(base::load(file=savloaerec))
 })
 Voterdatabase$methods(regvbase=function(arg1=NULL){
 
