@@ -22,7 +22,6 @@ ohio_vrg <- Voterdatabase()
 ohio_vrg$regvbase()
 ohio_vrg$scorecard()	
 ohio_vrg$predictinput()
-ohio_vrg$plot_predict()
 ohio_vrg$uploadvbase()
 
 

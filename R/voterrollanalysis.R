@@ -21,6 +21,7 @@ electiontechn <- function(probw=c(0.50,0.05),
 Voterdatabase <- setRefClass("Voterdatabase",fields=list(
 listvbase='list',
 voterroll='data.frame',
+predictsc='list', 
 listscard='list', 
 polyscard1='list',
 polyscard2='list',
@@ -112,7 +113,7 @@ Voterdatabase$methods(predictinput=function(arg1=NULL){
   polypredi <<- lapply(1:length(polcou[[1]]), function(x){
   avg_key_poly1 <- t(polyscard1[[x]]) %>% base::colMeans() %>% polynom::polynomial()
   avg_key_poly2 <- t(polyscard2[[x]]) %>% base::colMeans() %>% polynom::polynomial()
-  vr <- listvbase[[2]] %>%
+  predictsc[[1]] <<- listvbase[[2]] %>%
   dplyr::group_by(cou_nr) %>%
   ## Predicting average scorecard
   dplyr::mutate(polyo=polcou[[1]][x]) %>%
@@ -126,6 +127,20 @@ Voterdatabase$methods(predictinput=function(arg1=NULL){
   dplyr::mutate(corr1=cor(ag_voted,ag_vpred1)) %>%
   dplyr::mutate(corr2=cor(ag_voted,ag_vpred2)) %>%
   dplyr::ungroup()}) 
+
+  # For report
+  predictsc[[2]]  <<- predictsc[[1]] %>% dplyr::bind_rows(.) %>%
+  dplyr::mutate(state='state') %>%
+  dplyr::select(state,cou_nr,cou_na,polyo,corr1,corr2) %>% 
+  dplyr::distinct()  
+  # Agg report
+  predictsc[[3]] <<- predictsc[[2]] %>% 
+  dplyr::group_by(polyo) %>%
+  dplyr::mutate(mcorr1=mean(corr1)) %>%
+  dplyr::mutate(mcorr2=mean(corr2)) %>%
+  dplyr::select(state,polyo,mcorr1,mcorr2) %>% 
+  dplyr::distinct()
+ 
 })
 Voterdatabase$methods(uploadvbase=function(
 				    truev=NULL, 
@@ -133,5 +148,30 @@ Voterdatabase$methods(uploadvbase=function(
 				    param=NULL 
 				    ){
 listvbase[[3]] <<- listvbase[[2]] 
+})
+#' @export Voterrollreport
+Voterrollreport <- setRefClass("Voterrollreport", contains = c('Voterdatabase'))
+Voterrollreport$methods(htmlreport=function(reportn='ohio'){
+
+  file_rep_cou <- paste0(rotp,'/inst/script/voterroll/',reportn,'report_cou.html')
+  file_rep_sta <- paste0(rotp,'/inst/script/voterroll/',reportn,'report_sta.html')
+  
+  pre_report <- polypredi %>% dplyr::bind_rows(.) %>% 
+    dplyr::mutate(state=reportn) %>%
+    dplyr::select(state,cou_nr,cou_na,polyo,corr1,corr2) %>% 
+    dplyr::distinct()  
+  agg_report <- pre_report %>% 
+    dplyr::group_by(polyo) %>%
+    dplyr::mutate(mcorr1=mean(corr1)) %>%
+    dplyr::mutate(mcorr2=mean(corr2)) %>%
+    dplyr::select(state,polyo,mcorr1,mcorr2) %>% 
+    dplyr::distinct()
+    
+  pre_report %>% kableExtra::kbl() %>%
+    kableExtra::kable_paper(full_width = T) %>%
+    kableExtra::save_kable(file=file_rep_cou)
+  agg_report  %>% kableExtra::kbl() %>%
+    kableExtra::kable_paper(full_width = T) %>%
+    kableExtra::save_kable(file=file_rep_sta)
 })
 
