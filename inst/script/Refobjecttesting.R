@@ -1,6 +1,6 @@
 #################################################################################################33
 #library(ManifoldDestiny)
-sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
+#sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -18,7 +18,11 @@ library(gridExtra)
 ### Voterrollanalysis (Based on Dr. Frank)
 ##################################################################################################
 # Graphical
-ohio_vrg <- Voterrollgraphs()
+ohio_vrg <- Voterdatabase()
+ohio_vrg$regvbase()
+ohio_vrg$scorecard()
+	
+Voterrollgraphs()
 ohio_vrg$scorecard()
 ohio_vrg$predictinput()
 ohio_vrg$plot_predict()

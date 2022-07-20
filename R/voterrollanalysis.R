@@ -31,32 +31,34 @@ Voterdatabase$methods(initialize=function(state=c('simulation'),
                                           modes=c('EDV','MIV'), 
 					  namebase='defvotbase',
 					  newdraw=F){
+
 pr_path <- rprojroot::find_rstudio_root_file()
 ### 2 ###
-#### Init
-browser()
-stlvb1 <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
-coudatafile='vtr_ohio.rda'
-l_ivfile<- paste0(pr_path,'/data/',coudatafile)
-s_ivfile<- paste0(pr_path,'/inst/script/voterroll/',coudatafile)
-#voterroll_emp 
-names(listvbase[[1]])
-listvbase[[1]] <<-  as.data.frame(vtr_ohio) %>% 
-  dplyr::select(id,cou_nr,cou_na,age,registered,prec_nr,voted) %>%
-  base::split(.$cou_nr) %>%
-  purrr::map(function(x){
-    o <- x %>%dplyr::left_join(electiontechn(nprect=max(.$prec_nr)))
-  }) %>% 
-  dplyr::bind_rows(.) %>% `colnames<-` (stlvb1)
-base::save(file=s_ivfile,voterroll_emp)
-#### load
-l_lvfile<- paste0(pr_path,'/inst/script/voterroll/recorded/',coudatafile)
-listvbase[[1]] <<- get(base::load(file=l_lvfile))
+##### initialize
+#stlvb1 <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
+#coudatafile='vtr_ohio.rda'
+#loadrec <- paste0(pr_path,'/data/',coudatafile)
+#saverec <- paste0(pr_path,'/inst/script/voterroll/recorded/',coudatafile)
+##voterroll_emp 
+#names(listvbase[[1]])
+#as.data.frame(get(load(loadrec)))
+##!
+#s <- listvbase[[1]] <<- as.data.frame(get(load(l_ivfile))) %>% 
+#  dplyr::select(id,cou_nr,cou_na,age,registered,prec_nr,voted) %>%
+#  base::split(.$cou_nr) %>%
+#  purrr::map(function(x){
+#    o <- x %>%dplyr::left_join(electiontechn(nprect=max(.$prec_nr)))
+#  }) %>% 
+#  dplyr::bind_rows(.) %>% `colnames<-` (stlvb1)
+#base::save(file=saverec,s)
+###### load
+loadrec <- paste0(pr_path,'/inst/script/voterroll/recorded/',coudatafile)
+listvbase[[1]] <<- get(base::load(file=loadrec))
 })
 Voterdatabase$methods(regvbase=function(arg1=NULL){
-			      browser()
-    listvbase[[2]] <<- 
-    listvbase[[1]] %>% dplyr::select(cou_nr,cou_na,id,age,P,R,V) %>%
+
+    listvbase[[2]] <<- listvbase[[1]] %>% 
+    dplyr::select(cou_nr,cou_na,id,age,P,R,V) %>%
     ##dplyr::mutate(V=R-C) %>%
     dplyr::group_by(age) %>%
     dplyr::arrange(age) %>%
@@ -78,7 +80,43 @@ Voterdatabase$methods(regvbase=function(arg1=NULL){
     dplyr::mutate(go_key_ratio=ag_gevos/geo_ratio) %>%
     dplyr::mutate(re_key_ratio=ag_revos/tur_ratio) 
 })
-
+Voterdatabase$methods(scorecard=function(polyo=c(1,2,6,8)){
+browser()
+  polyo <- polcou[[1]] 
+  #polyov <<- polyo
+  vr <- voterroll
+  nrco <- unique(voterroll$cou_nr)
+    lapply(nrco,function(x){
+      lapply(1:length(polyo),function(y){
+        dft <- dplyr::filter(voterroll,cou_nr==x)
+        ft1 <- paste0("dft$go_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
+        ft2 <- paste0("dft$re_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
+        list(lm(as.formula(ft1)),lm(as.formula(ft2)))
+      })
+    }) ->> listscard
+    polyscard1 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
+    polyscard2 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
+})
+Voterdatabase$methods(predictinput=function(arg1=NULL){
+#
+#  polypredi <<- lapply(1:length(polcou[[1]]), function(x){
+#    avg_key_poly1 <- t(polyscard1[[x]]) %>% base::colMeans() %>% polynom::polynomial()
+#    avg_key_poly2 <- t(polyscard2[[x]]) %>% base::colMeans() %>% polynom::polynomial()
+#    vr <- voterroll %>%
+#    dplyr::group_by(cou_nr) %>%
+#    ## Predicting average scorecard
+#    dplyr::mutate(polyo=polcou[[1]][x]) %>%
+#    dplyr::relocate(polyo) %>%
+#    dplyr::mutate(avg_key_ratio1=stats::predict(avg_key_poly1,age)) %>%
+#    dplyr::mutate(avg_key_ratio2=stats::predict(avg_key_poly2,age)) %>%
+#    dplyr::mutate(ag_vpred1=ag_geovo*geo_ratio*avg_key_ratio1) %>%
+#    dplyr::mutate(ag_vpred2=ag_regis*tur_ratio*avg_key_ratio2) %>%
+#    dplyr::mutate(pred_error1=ag_voted-ag_vpred1) %>%
+#    dplyr::mutate(pred_error2=ag_voted-ag_vpred2) %>%
+#    dplyr::mutate(corr1=cor(ag_voted,ag_vpred1)) %>%
+#    dplyr::mutate(corr2=cor(ag_voted,ag_vpred2)) %>%
+#    dplyr::ungroup()}) 
+#})
 
 
 
@@ -148,7 +186,7 @@ Voterdatabase$methods(regvbase=function(arg1=NULL){
 #
 #listvbase[[1]] <- voterroll_sim %>% dplyr:::left_join(ztechdf,by='prec_nr')
 #View(listvbase)
-
+''
 
 
 
@@ -390,43 +428,6 @@ voterrolldatabase <- data.frame(idn=seq(1:popsize)) %>%
 #  polcou[[2]] <<- unique(voterroll$cou_nr)
 #
 #  callSuper(polypredi=polypredi,rotp=rotp)
-#})
-#Voterrollanalysis$methods(scorecard=function(polyo=c(1,2,6,8)){
-#
-#  polyo <- polcou[[1]] 
-#  #polyov <<- polyo
-#  vr <- voterroll
-#  nrco <- unique(voterroll$cou_nr)
-#    lapply(nrco,function(x){
-#      lapply(1:length(polyo),function(y){
-#        dft <- dplyr::filter(voterroll,cou_nr==x)
-#        ft1 <- paste0("dft$go_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
-#        ft2 <- paste0("dft$re_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
-#        list(lm(as.formula(ft1)),lm(as.formula(ft2)))
-#      })
-#    }) ->> listscard
-#    polyscard1 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
-#    polyscard2 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
-#})
-#Voterrollanalysis$methods(predictinput=function(arg1=NULL){
-#
-#  polypredi <<- lapply(1:length(polcou[[1]]), function(x){
-#    avg_key_poly1 <- t(polyscard1[[x]]) %>% base::colMeans() %>% polynom::polynomial()
-#    avg_key_poly2 <- t(polyscard2[[x]]) %>% base::colMeans() %>% polynom::polynomial()
-#    vr <- voterroll %>%
-#    dplyr::group_by(cou_nr) %>%
-#    ## Predicting average scorecard
-#    dplyr::mutate(polyo=polcou[[1]][x]) %>%
-#    dplyr::relocate(polyo) %>%
-#    dplyr::mutate(avg_key_ratio1=stats::predict(avg_key_poly1,age)) %>%
-#    dplyr::mutate(avg_key_ratio2=stats::predict(avg_key_poly2,age)) %>%
-#    dplyr::mutate(ag_vpred1=ag_geovo*geo_ratio*avg_key_ratio1) %>%
-#    dplyr::mutate(ag_vpred2=ag_regis*tur_ratio*avg_key_ratio2) %>%
-#    dplyr::mutate(pred_error1=ag_voted-ag_vpred1) %>%
-#    dplyr::mutate(pred_error2=ag_voted-ag_vpred2) %>%
-#    dplyr::mutate(corr1=cor(ag_voted,ag_vpred1)) %>%
-#    dplyr::mutate(corr2=cor(ag_voted,ag_vpred2)) %>%
-#    dplyr::ungroup()}) 
 #})
 #
 #
