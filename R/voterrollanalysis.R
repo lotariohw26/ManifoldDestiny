@@ -92,15 +92,18 @@ Voterdatabase$methods(regvbase=function(arg1=NULL){
     dplyr::mutate(re_key_ratio=ag_revos/tur_ratio) 
 })
 Voterdatabase$methods(scorecard=function(polyo=c(1,2,6,8)){
+			      browser()
 
-  nrco <- unique(listvbase[[2]]$cou_nr)
-    lapply(nrco,function(x){
-      lapply(1:length(polyo),function(y){
-        dft <- dplyr::filter(listvbase[[2]],cou_nr==x)
-        ft1 <- paste0("dft$go_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
-        ft2 <- paste0("dft$re_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
-        list(lm(as.formula(ft1)),lm(as.formula(ft2)))
-      })
+  polcou[[1]] <<- polyo
+  nrco <- polcou[[2]] <<- unique(listvbase[[2]]$cou_nr)
+
+  lapply(nrco,function(x){
+    lapply(1:length(polyo),function(y){
+      dft <- dplyr::filter(listvbase[[2]],cou_nr==x)
+      ft1 <- paste0("dft$go_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
+      ft2 <- paste0("dft$re_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
+      list(lm(as.formula(ft1)),lm(as.formula(ft2)))
+   })
     }) ->> listscard
     polyscard1 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
     polyscard2 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
