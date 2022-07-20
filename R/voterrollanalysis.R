@@ -30,7 +30,7 @@ polcou='list',
 lg_pred='list',  
 lg_hist='list',  
 lg_keyr='list', 
-rotp='character'))
+pr_path='character'))
 Voterdatabase$methods(initialize=function(state=c('simulation'), 
 					  coudatafile='vtr_ohio.rda', 
 					  agebracketmax=c(18,100,30),
@@ -44,7 +44,7 @@ Voterdatabase$methods(initialize=function(state=c('simulation'),
 					  namebase='defvotbase',
 					  newdraw=F){
 
-pr_path <- rprojroot::find_rstudio_root_file()
+pr_path <<- rprojroot::find_rstudio_root_file()
 ### 2 ###
 ##### initialize
 #stlvb1 <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
@@ -149,28 +149,79 @@ Voterdatabase$methods(uploadvbase=function(
 				    ){
 listvbase[[3]] <<- listvbase[[2]] 
 })
+
+##' @export Voterrollgraphs
+#Voterrollgraphs <- setRefClass("Voterrollgraphs", contains = c('Voterrollanalysis'))
+#Voterrollgraphs$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','ag_regis','ag_vpred1','ag_vpred2'), lp=list(x='Age category',y='Number of voters') 
+#){
+#
+#  for (po in 1:length(polcou[[1]])){
+#    lg_pred[[po]] <<- lapply(polcou[[2]], function(x){
+#      dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(all_of(plotyvar)) 
+#      ctitle <- paste0('County: ',dfg$cou_na[x])
+#      cor1 <- round(unique(dfg$corr1), digits=5)
+#      cor2 <- round(unique(dfg$corr2), digits=5)
+#      captionp <- paste0('correlation 1 (r)=',cor1,' correlation 2 (r)=',cor2)
+#      lp <- ggplot2::ggplot() + 
+#	geom_line(data=dfg , aes(x=age,y=value,color=name)) + 
+#	ggplot2::labs(x=lp$x,y=lp$y) 
+#  })
+#}
+#})
+#Voterrollgraphs$methods(plot_keyrat=function(plotyvar=list(li=c('avg_key_ratio1','avg_key_ratio2'),po=c('go_key_ratio','re_key_ratio','avg_key_ratio1','avg_key_ratio2','tur_ratio'))){
+#
+#  for (po in 1:length(polcou[[1]])){
+#    lg_keyr[[po]] <<- lapply(polcou[[2]], function(x){
+#      dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x)  %>% 
+#	      tidyr::pivot_longer(all_of(c(plotyvar$li,plotyvar$po)))
+#      ctitle <- paste0('County:',dfg$cou_na[x])
+#      lp <- ggplot2::ggplot() + 
+#	      geom_line(data=dplyr::filter(dfg,name%in%plotyvar$li), aes(x=age,y=value, color=name)) + 
+#	      geom_point(data=dplyr::filter(dfg,name%in%plotyvar$po), aes(x=age,y=value, color=name)) + scale_y_continuous(limits=c(0, 2)) 
+#    })
+#  }				  
+#})
+#Voterrollgraphs$methods(plot_histio=function(plotyvar=c('pred_error1','pred_error2')){
+#
+# for (po in 1:length(polcou[[1]])){
+#   lg_hist[[po]] <<- lapply(polcou[[2]], function(x){
+#     dfg <- polypredi[[po]] %>% dplyr::filter(cou_nr==x) %>% tidyr::pivot_longer(all_of(plotyvar))
+#     ctitle <- paste0('County:',dfg$cou_na[x])
+#     lp <- ggplot2::ggplot(data=dfg) + 
+#	     geom_histogram(aes(x=value, fill=name),bins=30) 
+#   })
+# }				      
+#})
+#Voterrollgraphs$methods(gridarrange=function(arg1=NULL){
+#
+#  nmlc <- unique(voterroll$cou_na)
+#  for (lc in 1:length(nmlc)){
+#    nmlcl <- nmlc[lc]
+#    gr1 <- lg_pred[[3]][[lc]] 
+#    gr2 <- lg_keyr[[3]][[lc]] 
+#    gr3 <- lg_hist[[3]][[lc]] 
+#    #grid.arrange(gr1, gr2, gr3, ncol=3)
+#    #!
+#    pdf("test.pdf", onefile=FALSE)
+#    ag <- gridExtra::arrangeGrob(grobs=list(gr1,gr2,gr3),ncol=1,top=nmlcl)
+#    plotname <- paste0(substr(nmlcl,1,nchar(nmlcl)),".png")
+#    plotfile <- paste0(rotp,'/inst/script/voterroll/ohio/',plotname)
+#    ggsave(file=plotfile,ag)
+#    #list(plot=g)
+#  }
+#})
+#
 #' @export Voterrollreport
 Voterrollreport <- setRefClass("Voterrollreport", contains = c('Voterdatabase'))
 Voterrollreport$methods(htmlreport=function(reportn='ohio'){
 
-  file_rep_cou <- paste0(rotp,'/inst/script/voterroll/',reportn,'report_cou.html')
-  file_rep_sta <- paste0(rotp,'/inst/script/voterroll/',reportn,'report_sta.html')
-  
-  pre_report <- polypredi %>% dplyr::bind_rows(.) %>% 
-    dplyr::mutate(state=reportn) %>%
-    dplyr::select(state,cou_nr,cou_na,polyo,corr1,corr2) %>% 
-    dplyr::distinct()  
-  agg_report <- pre_report %>% 
-    dplyr::group_by(polyo) %>%
-    dplyr::mutate(mcorr1=mean(corr1)) %>%
-    dplyr::mutate(mcorr2=mean(corr2)) %>%
-    dplyr::select(state,polyo,mcorr1,mcorr2) %>% 
-    dplyr::distinct()
-    
-  pre_report %>% kableExtra::kbl() %>%
+  file_rep_cou <- paste0(pr_path,'/inst/script/voterroll/recorded/',reportn,'report_cou.html')
+  file_rep_sta <- paste0(pr_path,'/inst/script/voterroll/recorded/',reportn,'report_sta.html')
+
+  v1 <-  predictsc[[2]] %>% kableExtra::kbl() %>%
     kableExtra::kable_paper(full_width = T) %>%
-    kableExtra::save_kable(file=file_rep_cou)
-  agg_report  %>% kableExtra::kbl() %>%
+    kableExtra::save_kable(file=file_rep_sta)
+  v2 <- predictsc[[3]] %>% kableExtra::kbl() %>%
     kableExtra::kable_paper(full_width = T) %>%
     kableExtra::save_kable(file=file_rep_sta)
 })

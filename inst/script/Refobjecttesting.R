@@ -18,23 +18,24 @@ library(gridExtra)
 ### Voterrollanalysis (Based on Dr. Frank)
 ##################################################################################################
 # Voterbase
-ohio_vb <- Voterdatabase()
-ohio_vb$regvbase()
-ohio_vb$scorecard()	
-ohio_vb$predictinput()
-ohio_vb$uploadvbase()
-# Graphical
-ohio_vg <- Voterdatabase()
-ohio_vg$regvbase()
-ohio_vg$scorecard()	
-ohio_vg$predictinput()
-ohio_vg$uploadvbase()
-# Report
-ohio_vr <- Voterdatabase()
+#ohio_vb <- Voterdatabase()
+#ohio_vb$regvbase()
+#ohio_vb$scorecard()	
+#ohio_vb$predictinput()
+#ohio_vb$uploadvbase()
+## Graphical
+#ohio_vg <- Voterdatabase()
+#ohio_vg$regvbase()
+#ohio_vg$scorecard()	
+#ohio_vg$predictinput()
+#ohio_vg$uploadvbase()
+## Report
+ohio_vr <- Voterrollreport()
 ohio_vr$regvbase()
 ohio_vr$scorecard()	
 ohio_vr$predictinput()
 ohio_vr$uploadvbase()
+ohio_vr$htmlreport()
 ##################################################################################################
 ### Election simulation (Based on Dr. Frank)
 ##################################################################################################
