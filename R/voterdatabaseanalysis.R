@@ -29,12 +29,13 @@ lg_keyr='list',
 pr_path='character'))
 
 Voterdatabase$methods(initialize=function(type=c('simulation','recorded')[2]){
-browser()
+
 ###			      
 probw=c(0.50,0.05)
 probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
 Ztech=c(0,1)
 state='ohio'
+agebracketmax=c(18,100,30)
 nprect=20
 tot_regis=0.80
 probw=c(0.50,0.05)
@@ -46,64 +47,19 @@ namebase='defvotbase'
 newdraw=F
 pr_path <<- rprojroot::find_rstudio_root_file()
 loadrec <- paste0(pr_path,'/data/',coudatafile)
-
-
-### Sim
-agebracketmax=c(18,100,30)
-### Rec
-
-### General
-elect_type <- c ('sim','rec')[1]
-lsv <- 0
+elect_type <- c ('sim','rec')[2]
+lsv <- 1
+listvbase <- list()
 coudatafile='vtr_ohio.rda'
 ####
-
 reciniload <- paste0(pr_path,'/data/',coudatafile)
 recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',state,'/','abc.df')
-simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated',state,'/','abc.df')
-#base::load(file=simsaveload)
+simsavloa <- paste0(pr_path,'/inst/script/voterroll/recorded/',state,'/','abc.df')
+
 if (elect_type=='sim') {
-  if (lsv==1) {votdf <- get(base::load(file=simsaveload))}
-  else {
-    'save sim'
-    # lapply
-    browser()
-    # Demograhpic structure
-    agelength <- agebracketmax[2]-agebracketmax[1]
-    brack <- seq(agebracketmax[1],agebracketmax[2])
-    halflength <- agelength/2  #! should be changed
-    earlpop <- matrix(1,agebracketmax[3],halflength)
-    stlate <- halflength+1
-    enlate <- length(brack)
-    # Stop here  
-    latepop <- seq(stlate,enlate) %>% purrr::map_dfc(function(x,maxp=agebracketmax[3])
-          	{
-          		cf <-maxp/(enlate-stlate)
-          		one <- floor(maxp-cf*(x-stlate))
-          		zero <- maxp-one
-    		matrix(c(rep(0,zero),rep(1,one)))
-        		}) %>% as.matrix()
-    colnames(latepop) <- NULL
-    totpop <- cbind(earlpop,latepop)
-    agebrack <- agebracketmax
-    popvotgro <- colSums(totpop)           # Population for each age group
-    popsize <- sum(popvotgro) 	         # Total number of citizien
-    probage <- popvotgro/popsize 	         # Probability for each age group
-    precv <- sample(nprect,size=popsize,T) # Allocated to various precincts (uniform?)
-    rvot <- sample(seq(1,popsize),size=popsize*0.80,F) #! Registered voters
-    precv <-sample(nprect,size=popsize,T) # Allocated to various precincts (uniform)
-    
-    simvoterrolldatabase <- data.frame(idn=seq(1:popsize)) %>%
-    dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%     
-    dplyr::mutate(P=sample(nprect,size=n(),replace=T)) %>% 
-    dplyr::arrange(P) %>%
-    dplyr::mutate(R=ifelse(idn%in%rvot,1,0)) %>% 
-    dplyr::left_join(electiontechn(probw,probv,Ztech,nprect=20), by='P')
-    
-    base::save(simvoterrolldatabase,file='abc.df')
-
-
-}
+'test1'
+  if (lsv==1) {votdf <- get(base::load(file=recsavloa))}
+  else {'save sim'}
 }
 if (elect_type=='rec') {
 'test1'
@@ -114,7 +70,7 @@ votdf <- as.data.frame(get(load(reciniload))) %>%
 	base::split(.$cou_nr) %>% 
 	purrr::map(function(x){
           o <- x %>%dplyr::left_join(electiontechn(nprect=max(.$prec_nr)))
-        }) %>% dplyr::bind_rows(.) #%>% `colnames<-` (stlvb1) 
+        }) %>% dplyr::bind_rows(.) %>% `colnames<-` (stlvb1) 
 base::save(voterroll, file = saveload)
 }
 }
