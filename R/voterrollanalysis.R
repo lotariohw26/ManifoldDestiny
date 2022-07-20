@@ -3,7 +3,7 @@ electiontechn <- function(probw=c(0.50,0.05),
 			  probv=list(c(0.60,0.30,0.10),
 				     c(0.30,0.60,0.10)),
 			  Ztech=c(0,1), 
-			  nprect=20){	
+			  nprect=NULL){	
 
   ### Election technology and voter sentiment
   ztech <- data.frame(prec_nr=seq(1,nprect)) %>% 
@@ -34,62 +34,67 @@ Voterdatabase$methods(initialize=function(state=c('simulation'),
 					  newdraw=F){
 browser()
 pr_path <- rprojroot::find_rstudio_root_file()
-
 # 1
-# Demograhpics
-agelength <- agebracketmax[2]-agebracketmax[1]
-brack <- seq(agebracketmax[1],agebracketmax[2])
-halflength <- agelength/2  #! should be changed
-earlpop <- matrix(1,agebracketmax[3],halflength)
-stlate <- halflength+1
-enlate <- length(brack)
-# Realvoters
-#sci <- 500; hc <- floor(popsize/sci); resnr <- c(rep(sci,hc),popsize-sci*hc)
-#voterrolldatabase <- resnr %>% purrr::map_df(randNames::rand_names,nationality="US") %>%
-#dplyr::select(gender,name.first,name.last) %>%
-## Making decreasing rate of voters belonging to older age groups
-latepop <- seq(stlate,enlate) %>% purrr::map_dfc(function(x,maxp=agebracketmax[3])
-      	{
-      		cf <-maxp/(enlate-stlate)
-      		one <- floor(maxp-cf*(x-stlate))
-      		zero <- maxp-one
-		matrix(c(rep(0,zero),rep(1,one)))
-    		}) %>% as.matrix()
-colnames(latepop) <- NULL
-# Total Population
-totpop <- cbind(earlpop,latepop)
-agebrack <- agebracketmax
-# Desc statistics
-popvotgro <- colSums(totpop)           # Population for each age group
-popsize <- sum(popvotgro) 	           # Total number of citizien
-probage <- popvotgro/popsize 	   # Probability for each age group
-precv <- sample(nprect,size=popsize,T) # Allocated to various precincts (uniform?)
-# Registration
-rvot <- sample(seq(1,popsize),size=popsize*tot_regis,F) # Registered voters
-# Allocation
-precv <-sample(nprect,size=popsize,T) # Allocated to various precincts (uniform)
-# Id-number for voters
-ztechdf <- electiontechn(probw,probv,Ztech,nprect)
-voterroll_sim <- data.frame(id=seq(1:popsize)) %>% 
-  dplyr::mutate(cou_nr=1) %>%
-  dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>% 
-  dplyr::mutate(prec_nr=sample(nprect,size=n(),replace=T)) %>% 
-  dplyr::arrange(prec_nr) %>%
-  dplyr::mutate(registered=ifelse(id%in%rvot,1,0))  
-#names(voterrolldatabase)
-#[1] "idn"        "county_nr"  "age"        "prec_nr"    "registered"
-# 2
-vfile <- paste0(rotp,'/inst/script/voterbase/',namebase,'.rda')
-vfile <- paste0(rotp,'/data/',coudatafile)
-voterroll_emp <<- as.data.frame(vtr_ohio) %>% dplyr::select(id,cou_nr,age,registered,prec_nr,voted)
-View(voterroll)
-names(voterroll)
+## Demograhpics
+#agelength <- agebracketmax[2]-agebracketmax[1]
+#brack <- seq(agebracketmax[1],agebracketmax[2])
+#halflength <- agelength/2  #! should be changed
+#earlpop <- matrix(1,agebracketmax[3],halflength)
+#stlate <- halflength+1
+#enlate <- length(brack)
+## Realvoters
+##sci <- 500; hc <- floor(popsize/sci); resnr <- c(rep(sci,hc),popsize-sci*hc)
+##voterrolldatabase <- resnr %>% purrr::map_df(randNames::rand_names,nationality="US") %>%
+##dplyr::select(gender,name.first,name.last) %>%
+### Making decreasing rate of voters belonging to older age groups
+#latepop <- seq(stlate,enlate) %>% purrr::map_dfc(function(x,maxp=agebracketmax[3])
+#      	{
+#      		cf <-maxp/(enlate-stlate)
+#      		one <- floor(maxp-cf*(x-stlate))
+#      		zero <- maxp-one
+#		matrix(c(rep(0,zero),rep(1,one)))
+#    		}) %>% as.matrix()
+#colnames(latepop) <- NULL
+## Total Population
+#totpop <- cbind(earlpop,latepop)
+#agebrack <- agebracketmax
+## Desc statistics
+#popvotgro <- colSums(totpop)           # Population for each age group
+#popsize <- sum(popvotgro) 	           # Total number of citizien
+#probage <- popvotgro/popsize 	   # Probability for each age group
+#precv <- sample(nprect,size=popsize,T) # Allocated to various precincts (uniform?)
+## Registration
+#rvot <- sample(seq(1,popsize),size=popsize*tot_regis,F) # Registered voters
+## Allocation
+#precv <-sample(nprect,size=popsize,T) # Allocated to various precincts (uniform)
+## Id-number for voters
+#ztechdf <- electiontechn(probw,probv,Ztech,nprect)
+#voterroll_sim <- data.frame(id=seq(1:popsize)) %>% 
+#  dplyr::mutate(cou_nr=1) %>%
+#  dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>% 
+#  dplyr::mutate(prec_nr=sample(nprect,size=n(),replace=T)) %>% 
+#  dplyr::arrange(prec_nr) %>%
+#  dplyr::mutate(registered=ifelse(id%in%rvot,1,0))  
+#
+#listvbase[[1]] <- voterroll_sim %>% dplyr:::left_join(ztechdf,by='prec_nr')
+#View(listvbase)
 
-# 3
+
+
+
+### 2 ###
+vfile <- paste0(pr_path,'/data/',coudatafile)
+voterroll_emp <<- as.data.frame(vtr_ohio) %>% 
+  dplyr::select(id,cou_nr,age,registered,prec_nr,voted) %>%
+  base::split(.$cou_nr) %>%
+  purrr::map(function(x){
+    o <- x %>%dplyr::left_join(electiontechn(nprect=max(.$prec_nr)))
+  }) %>% 
+  dplyr::bind_rows(.)
+View(voterroll_emp)
+### 3 ###
+
 # 4
-			  
-})
-Voterdatabase()
 # Part II
 vfile <- paste0(rotp,'/inst/script/voterbase/',namebase,'.rda')
 vfile <- paste0(rotp,'/data/',coudatafile)
