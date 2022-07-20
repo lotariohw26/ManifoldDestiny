@@ -2,7 +2,7 @@ library(ManifoldDestiny)
 library(dplyr)
 library(readxl)
 # Standardized values
-vrsnames <- c('id','cou_nr','birthdate','general','primary','prec_code','voted','registered','age','prec_nr')
+vrsnames <- c('id','cou_nr','cou_na','birthdate','general','primary','prec_code','voted','registered','age','prec_nr')
 el_date='2020-01-04'
 age_limit <- c(19,100)
 gen_el <- 'GENERAL-11/03/2020'
@@ -20,7 +20,8 @@ vtr_ohio <-seq(1,length(lc_ohio)) %>% purrr::map(function(x){
   ## read raw files
   sta_vot <- readxl::read_excel(xlsx_file) %>% 
     dplyr::rename(c(general=all_of(gen_el),primary=all_of(pri_el))) %>%
-    select(SOS_VOTERID,COUNTY_NUMBER,DATE_OF_BIRTH,VOTER_STATUS,general,primary,PRECINCT_CODE) %>% 
+    dplyr::mutate(cou_na=cou_nal) %>% 
+    select(SOS_VOTERID,COUNTY_NUMBER,cou_na,DATE_OF_BIRTH,VOTER_STATUS,general,primary,PRECINCT_CODE) %>% 
     ## Transform relevant data variables
     dplyr::mutate(voted=ifelse(general=='X',1,0)) %>%
     dplyr::mutate(registered=ifelse(VOTER_STATUS=='ACTIVE',1,0)) %>%
@@ -59,6 +60,6 @@ vtr_ohio <-seq(1,length(lc_ohio)) %>% purrr::map(function(x){
 #    dplyr:: mutate(cou_na=cou_nal) %>% dplyr::relocate(cou_na,.after=cou_nr) 
 }) %>% dplyr::bind_rows(.) 
 usethis::use_data(vtr_ohio, overwrite = TRUE)
-
+View(head(vtr_ohio))
 
 

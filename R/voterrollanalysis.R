@@ -34,34 +34,33 @@ Voterdatabase$methods(initialize=function(state=c('simulation'),
 pr_path <- rprojroot::find_rstudio_root_file()
 ### 2 ###
 #### Init
-#coudatafile='vtr_ohio.rda'
-#l_ivfile<- paste0(pr_path,'/data/',coudatafile)
-#s_ivfile<- paste0(pr_path,'/inst/script/voterroll_instances/',coudatafile)
-##voterroll_emp 
-#listvbase[[1]] <- as.data.frame(vtr_ohio) %>% 
-#  dplyr::select(id,cou_nr,age,registered,prec_nr,voted) %>%
-#  base::split(.$cou_nr) %>%
-#  purrr::map(function(x){
-#    o <- x %>%dplyr::left_join(electiontechn(nprect=max(.$prec_nr)))
-#  }) %>% 
-#  dplyr::bind_rows(.)
-#base::save(file=s_ivfile,voterroll_emp)
+browser()
+stlvb1 <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
+coudatafile='vtr_ohio.rda'
+l_ivfile<- paste0(pr_path,'/data/',coudatafile)
+s_ivfile<- paste0(pr_path,'/inst/script/voterroll/',coudatafile)
+#voterroll_emp 
+names(listvbase[[1]])
+listvbase[[1]] <<-  as.data.frame(vtr_ohio) %>% 
+  dplyr::select(id,cou_nr,cou_na,age,registered,prec_nr,voted) %>%
+  base::split(.$cou_nr) %>%
+  purrr::map(function(x){
+    o <- x %>%dplyr::left_join(electiontechn(nprect=max(.$prec_nr)))
+  }) %>% 
+  dplyr::bind_rows(.) %>% `colnames<-` (stlvb1)
+base::save(file=s_ivfile,voterroll_emp)
 #### load
-l_lvfile<- paste0(pr_path,'/inst/script/voterroll_instances/',coudatafile)
-listvbase[[1]] <<- base::load(file=l_lvfile)
+l_lvfile<- paste0(pr_path,'/inst/script/voterroll/recorded/',coudatafile)
+listvbase[[1]] <<- get(base::load(file=l_lvfile))
 })
 Voterdatabase$methods(regvbase=function(arg1=NULL){
 			      browser()
-#  listvbase[[2]] <<-
-    vtr_abc <- 
-    listvbase[[1]] %>% 
-    dplyr::select(idn,age,voted,C,R) %>%
-    dplyr::mutate(cou_nr=1) %>%
-    dplyr::mutate(cou_na="abc") %>%
-    dplyr::mutate(V=R-C) %>%
+    listvbase[[2]] <<- 
+    listvbase[[1]] %>% dplyr::select(cou_nr,cou_na,id,age,P,R,V) %>%
+    ##dplyr::mutate(V=R-C) %>%
     dplyr::group_by(age) %>%
     dplyr::arrange(age) %>%
-    dplyr::mutate(ag_geovo=n_distinct(idn)) %>% 
+    dplyr::mutate(ag_geovo=n_distinct(id)) %>% 
     dplyr::mutate(ag_voted=sum(V)) %>%
     dplyr::mutate(ag_regis=sum(R)) %>% 
     dplyr::mutate(ag_gevos=ag_voted/ag_geovo) %>% 
@@ -78,14 +77,7 @@ Voterdatabase$methods(regvbase=function(arg1=NULL){
     dplyr::mutate(tur_ratio=tot_voted/tot_regis) %>%
     dplyr::mutate(go_key_ratio=ag_gevos/geo_ratio) %>%
     dplyr::mutate(re_key_ratio=ag_revos/tur_ratio) 
-    # Connected
-    usethis::use_data(vtr_abc, overwrite = TRUE)
 })
-ti <- Voterdatabase()
-ti$regvbase()
-ti$listvbase[[1]]
-''
-
 
 
 
