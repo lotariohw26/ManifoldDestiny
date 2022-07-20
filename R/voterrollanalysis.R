@@ -1,9 +1,5 @@
 #' @export electiontechn
-electiontechn <- function(probw=c(0.50,0.05), 
-			  probv=list(c(0.60,0.30,0.10),
-				     c(0.30,0.60,0.10)),
-			  Ztech=c(0,1), 
-			  nprect=NULL){	
+electiontechn<-function(probw=NULL,probv=NULL,Ztech=NULL,nprect=NULL){	
 
   ### Election technology and voter sentiment
   ztech <- data.frame(prec_nr=seq(1,nprect)) %>% 
@@ -32,7 +28,9 @@ lg_hist='list',
 lg_keyr='list', 
 pr_path='character'))
 Voterdatabase$methods(initialize=function(type=c('simulation','recorded')[2]){
-
+probw=c(0.50,0.05)
+probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
+Ztech=c(0,1)
 coudatafile='vtr_ohio.rda'
 state='ohio'
 agebracketmax=c(18,100,30)
@@ -47,6 +45,42 @@ newdraw=F
 pr_path <<- rprojroot::find_rstudio_root_file()
 loadrec <- paste0(pr_path,'/data/',coudatafile)
 saveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',state,'/','abc.df')
+elect_type <- c ('sim','rec')[1]
+lsv <- 0
+####
+
+if (elect_type=='sim') {
+'test1'
+  if (lsv==1) { 'load sim' }
+  else {'save sim'}
+}
+if (elect_type=='rec') {
+'test1'
+  if (lsv==1) { 'load rec' }
+  else {'save rec'}
+}
+
+
+
+
+
+
+
+if(elect_type=='sim'){
+	if(lsv=1){		}
+	else{ }
+} else if(elect_type=='rec'){
+} else{
+ break
+}
+
+
+''
+
+
+
+
+
 ##### 2 ###
 ####### initialize
 #stlvb1 <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
