@@ -27,54 +27,46 @@ lg_pred='list',
 lg_hist='list',  
 lg_keyr='list', 
 pr_path='character'))
+
 Voterdatabase$methods(initialize=function(type=c('simulation','recorded')[2]){
-###			      
+##			      
 probw=c(0.50,0.05)
 probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
 Ztech=c(0,1)
-nprect=20
-tot_regis=0.80
-probw=c(0.50,0.05)
-probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
-Ztech=c(0,1)
-###
-modes=c('EDV','MIV') 
-namebase='defvotbase'
-newdraw=F
-pr_path <<- rprojroot::find_rstudio_root_file()
-#loadrec <- paste0(pr_path,'/data/',coudatafile)
 ## Sim
 agebracketmax=c(18,100,30)
+cou_prop <- list(cou_nr=1:2,cou_na=NULL,nprect=c(20,20),tot_regis=c(0.80,0.80))
 state_sim='state1'
+state_datafile_sim <- 'state1'
 ### Rec
-#coudatafile <- 'vtr_ohio.rda'
 state_rec='ohio'
-coudatafile_rec <- 'vtr_ohio'
-coudatafile_sim <- 'state1'
+state_datafile_rec <- 'vtr_ohio'
 probw=c(0.50,0.05)
 probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
 Ztech=c(0,1)
 # Starting
-reciniload <- paste0(pr_path,'/data/',coudatafile_sim,'.rda')
-recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',state_rec,'/',coudatafile_rec)
-simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated/',state_sim,'/',coudatafile_sim)
+pr_path <<- rprojroot::find_rstudio_root_file()
+reciniload <- paste0(pr_path,'/data/',state_datafile_sim,'.rda')
+recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',state_rec,'/',state_datafile_rec)
+simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated/',state_sim,'/',state_datafile_sim)
 ### General
-type_nr <- 2
+type_nr <- 1
 elect_type <- c ('sim','rec')[type_nr]
-lsv <- 1 
+lsv <- 0 
 if (elect_type=='sim') {
   if (lsv==1) {votdf <- get(base::load(file=simsaveload))}
   else {
-	  print('simulating')
     # lapply
-    # Demograhpic structure
+    cou_prop$cou_nr %>% lapply(function(x){
+
+    # Demograhpic architecture
     agelength <- agebracketmax[2]-agebracketmax[1]
     brack <- seq(agebracketmax[1],agebracketmax[2])
     halflength <- agelength/2  #! should be changed
     earlpop <- matrix(1,agebracketmax[3],halflength)
     stlate <- halflength+1
     enlate <- length(brack)
-    # Stop here  
+    ## building
     latepop <- seq(stlate,enlate) %>% purrr::map_dfc(function(x,maxp=agebracketmax[3])
           	{
           		cf <-maxp/(enlate-stlate)
@@ -83,24 +75,25 @@ if (elect_type=='sim') {
     		matrix(c(rep(0,zero),rep(1,one)))
         		}) %>% as.matrix()
     colnames(latepop) <- NULL
+    ## properties
     totpop <- cbind(earlpop,latepop)
     agebrack <- agebracketmax
     popvotgro <- colSums(totpop)           # Population for each age group
     popsize <- sum(popvotgro) 	         # Total number of citizien
     probage <- popvotgro/popsize 	         # Probability for each age group
-    precv <- sample(nprect,size=popsize,T) # Allocated to various precincts (uniform?)
-    rvot <- sample(seq(1,popsize),size=popsize*0.80,F) #! Registered voters
-    precv <-sample(nprect,size=popsize,T) # Allocated to various precincts (uniform)
-    
-    votdf <- data.frame(id=seq(1:popsize)) %>%
-    dplyr::mutate(cou_nr=1) %>%
-    dplyr::mutate(cou_na=1) %>%
+    precv <- sample(cou_prop$nprect[x],size=popsize,T) # Allocated to various precincts (uniform?)
+    rvot <- sample(seq(1,popsize),size=popsize*cou_prop$tot_regis[x],F) #! Registered voters
+    precv <-sample(cou_prop$nprect[x],size=popsize,T) # Allocated to various precincts (uniform)
+    votdf_cou <- data.frame(id=seq(1:popsize)) %>%
+    dplyr::mutate(cou_nr=cou_prop$cou_nr[x]) %>%
+    dplyr::mutate(cou_na=cou_prop$cou_na[x]) %>%
     dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%     
-    dplyr::mutate(prec_nr=sample(nprect,size=n(),replace=T)) %>% 
+    dplyr::mutate(prec_nr=sample(cou_prop$nprect[x],size=n(),replace=T)) %>% 
     dplyr::arrange(prec_nr) %>%
     dplyr::mutate(registered=ifelse(id%in%rvot,1,0)) %>% 
-    dplyr::left_join(electiontechn(probw,probv,Ztech,nprect=20), by='prec_nr')
-    base::save(votdf,file=simsaveload)
+    dplyr::left_join(electiontechn(probw,probv,Ztech,nprect=cou_prop$nprect[x]), by='prec_nr')
+    }) %>% dplyr::bind_rows(.) -> votdf
+    base::save(votdf, file =simsaveload)
 }
 }
 if (elect_type=='rec') {
@@ -112,7 +105,7 @@ if (elect_type=='rec') {
 	purrr::map(function(x){
           o <- x %>%dplyr::left_join(electiontechn(probw,probv,Ztech,nprect=max(.$prec_nr)))
         }) %>% dplyr::bind_rows(.) #%>% `colnames<-` (stlvb1) 
-	base::save(votdf_rec, file = recsaveload)
+	base::save(votdf, file = recsaveload)
 }
 }
 browser()
