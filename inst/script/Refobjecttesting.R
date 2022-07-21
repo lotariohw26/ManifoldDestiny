@@ -30,19 +30,19 @@ state1_vb$predictinput()
 ### Voterrollanalysis 
 ##################################################################################################
 # Voterbase
-ohio_vb <- Voterdatabase(type_nr=1,lsv=1,probw=c(0.50,0.05),probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10)),Ztech=c(0,1), rec_sim=list(state_rec='ohio',state_datafile_rec='vtr_ohio'))
+ohio_vb <- Voterdatabase(type_nr=2,lsv=1)
 ohio_vb$listvbase
 #ohio_vb$regvbase()
 #ohio_vb$scorecard()	
 #ohio_vb$predictinput()
 #ohio_vb$uploadvbase()
 ## Graphical
-ohio_vg <-Voterdatabaseplots()
+ohio_vg <-Voterdatabaseplots(type_nr=2)
 ohio_vg$regvbase()
 ohio_vg$scorecard()	
 ohio_vg$predictinput()
 ohio_vg$plot_predict()
-#ohio_vg$lg_pred[[1]]
+ohio_vg$lg_pred
 ohio_vg$plot_keyrat()
 #ohio_vg$lg_keyr[[1]]
 ohio_vg$plot_histio()

@@ -37,7 +37,7 @@ Voterdatabase$methods(initialize=function(type_nr=1,lsv=0,probw=c(0.50,0.05),pro
 pr_path <<- rprojroot::find_rstudio_root_file()
 reciniload <- paste0(pr_path,'/data/vtr_',rec_sim$state_rec,'.rda')
 simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated/',cou_sim$state_sim,'/',cou_sim$state_sim,'.df')
-recsaveload <- paste0(pr_path,'/inst/script/voterroll/recordedd/',rec_sim$state_rec,'/',rec_sim$state_rec,'.df')
+recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',rec_sim$state_rec,'/',rec_sim$state_rec,'.df')
 elect_type <- c ('sim','rec')[type_nr]
 if (elect_type=='sim') {
   if (lsv==1) {votdf <- get(base::load(file=simsaveload))}
@@ -81,7 +81,6 @@ if (elect_type=='sim') {
 }
 }
 if (elect_type=='rec') {
-	browser()
   if (lsv==1) {votdf <- get(base::load(file=recsaveload))}
   else {
 	votdf <- as.data.frame(get(load(reciniload))) %>%
