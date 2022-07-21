@@ -37,6 +37,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   # Assigning model equations
   se <<- eqpar$meqs
   lx <<- eqpar$meql
+  browser()
 
   ils <- c('a','b','c','d')
   sdfc <<- sdfinp %>% 
@@ -66,7 +67,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
     dplyr::mutate(xi=pareq(se[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     na.omit() %>% 
     dplyr::arrange(alpha) %>% 
-    dplyr::mutate(pri=row_number()/length(pre)) %>%
+    dplyr::mutate(pri=row_number()/length(P)) %>%
     dplyr::relocate(pri,.before=P) %>%
     dplyr::relocate(V,.after=C)
 

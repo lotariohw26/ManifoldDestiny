@@ -1,6 +1,8 @@
+library(dplyr)
 #library(ManifoldDestiny)
 sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
 library(testthat)
+abs_path <- rprojroot::find_rstudio_root_file()
 ################################################################################################
 # Expect values
 fn <- paste0(abs_path,'/data-raw/xlsx/Clark County, NV.xlsx')
