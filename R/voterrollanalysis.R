@@ -15,44 +15,42 @@ electiontechn<-function(probw=NULL,probv=NULL,Ztech=NULL,nprect=NULL){
 ### Election technology and voter sentiment
 #' @export Voterdatabase
 Voterdatabase <- setRefClass("Voterdatabase",fields=list(
-listvbase='list',
-voterroll='data.frame',
-predictsc='list', 
-listscard='list', 
-polyscard1='list',
-polyscard2='list',
-polypredi='list', 
-polcou='list',  
-lg_pred='list',  
-lg_hist='list',  
-lg_keyr='list', 
-pr_path='character'))
-
-Voterdatabase$methods(initialize=function(type=c('simulation','recorded')[2]){
+  listvbase='list',
+  voterroll='data.frame',
+  predictsc='list', 
+  listscard='list', 
+  polyscard1='list',
+  polyscard2='list',
+  polypredi='list', 
+  polcou='list',  
+  lg_pred='list',  
+  lg_hist='list',  
+  lg_keyr='list', 
+  pr_path='character')
+)
+Voterdatabase$methods(initialize=function(type_nr=1,lsv=1){
 ##			      
+			      
 probw=c(0.50,0.05)
 probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
 Ztech=c(0,1)
 ## Sim
 agebracketmax=c(18,100,30)
-cou_prop <- list(cou_nr=1:2,cou_na=NULL,nprect=c(20,20),tot_regis=c(0.80,0.80))
+cou_prop <- list(state_sim='state1',cou_nr=1:2,
+		 cou_na=c("A","B"),nprect=c(20,20),tot_regis=c(0.80,0.80),
+agebracketmax=c(18,100,30))
 state_sim='state1'
 state_datafile_sim <- 'state1'
 ### Rec
 state_rec='ohio'
 state_datafile_rec <- 'vtr_ohio'
-probw=c(0.50,0.05)
-probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
-Ztech=c(0,1)
 # Starting
 pr_path <<- rprojroot::find_rstudio_root_file()
-reciniload <- paste0(pr_path,'/data/',state_datafile_sim,'.rda')
+reciniload <- paste0(pr_path,'/data/',state_datafile_rec,'.rda')
 recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',state_rec,'/',state_datafile_rec)
 simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated/',state_sim,'/',state_datafile_sim)
 ### General
-type_nr <- 1
 elect_type <- c ('sim','rec')[type_nr]
-lsv <- 0 
 if (elect_type=='sim') {
   if (lsv==1) {votdf <- get(base::load(file=simsaveload))}
   else {
@@ -108,9 +106,7 @@ if (elect_type=='rec') {
 	base::save(votdf, file = recsaveload)
 }
 }
-browser()
-View(listvbase[[1]])
-listvbase[[1]] <<- head(votdf) %>% base::split(.$prec_nr) %>% 
+listvbase[[1]] <<- votdf %>% base::split(.$prec_nr) %>% 
   	purrr::map(function(x){
   x %>%  dplyr::mutate(candraw=rbinom(n(),1,probwd)) %>%
   dplyr::mutate(priorvote=ifelse(candraw==1,
@@ -122,8 +118,13 @@ listvbase[[1]] <<- head(votdf) %>% base::split(.$prec_nr) %>%
                dplyr::mutate(c=ifelse(priorvote==2&registered==1,1,0)) %>%
                dplyr::mutate(b=ifelse(priorvote==4&registered==1,1,0)) %>%
                dplyr::mutate(d=ifelse(priorvote==5&registered==1,1,0)) %>%
+	       dplyr::mutate(voted=ifelse(a+b+c+d>0,1,0)) %>%
                # Condition for becoming a credit voter: Registered and not voting
                dplyr::mutate(C=ifelse((priorvote==3|priorvote==6)&registered==1,1,0)) 
+
+listvbase[[1]] <<-  rename(listvbase[[1]],R=registered)
+listvbase[[1]] <<-  rename(listvbase[[1]],P=prec_nr)
+listvbase[[1]] <<-  rename(listvbase[[1]],V=voted)
 })
 Voterdatabase$methods(regvbase=function(arg1=NULL){
 #votdf <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")

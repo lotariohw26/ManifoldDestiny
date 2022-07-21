@@ -14,11 +14,19 @@ library(ViewPipeSteps)
 library(ggpubr)
 library(htmltools)
 library(gridExtra)
+#################################################################################################
+### Election simulation 
 ##################################################################################################
-### Voterrollanalysis (Based on Dr. Frank)
+state1_vb <- Voterdatabase(type_nr=1,lsv=0)
+View(state1_vb$listvbase)
+state1_vb$regvbase()
+state1_vb$scorecard()	
+state1_vb$predictinput()
+##################################################################################################
+### Voterrollanalysis 
 ##################################################################################################
 # Voterbase
-ohio_vb <- Voterdatabase()
+#ohio_vb <- Voterdatabase()
 #ohio_vb$regvbase()
 #ohio_vb$scorecard()	
 #ohio_vb$predictinput()
