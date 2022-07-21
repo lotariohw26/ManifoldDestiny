@@ -55,17 +55,15 @@ probw=c(0.50,0.05)
 probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
 Ztech=c(0,1)
 # Starting
-reciniload <- paste0(pr_path,'/data/',coudatafile,'.rda')
+reciniload <- paste0(pr_path,'/data/',coudatafile_sim,'.rda')
 recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',state_rec,'/',coudatafile_rec)
 simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated/',state_sim,'/',coudatafile_sim)
 ### General
-type_nr <- 1
+type_nr <- 2
 elect_type <- c ('sim','rec')[type_nr]
 lsv <- 1 
-browser()
-save(iris,file=simsaveload)
 if (elect_type=='sim') {
-  if (lsv==1) {votdf_sim <- get(base::load(file=simsaveload))}
+  if (lsv==1) {votdf <- get(base::load(file=simsaveload))}
   else {
 	  print('simulating')
     # lapply
@@ -94,7 +92,7 @@ if (elect_type=='sim') {
     rvot <- sample(seq(1,popsize),size=popsize*0.80,F) #! Registered voters
     precv <-sample(nprect,size=popsize,T) # Allocated to various precincts (uniform)
     
-    votdf_sim <- data.frame(id=seq(1:popsize)) %>%
+    votdf <- data.frame(id=seq(1:popsize)) %>%
     dplyr::mutate(cou_nr=1) %>%
     dplyr::mutate(cou_na=1) %>%
     dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%     
@@ -102,13 +100,13 @@ if (elect_type=='sim') {
     dplyr::arrange(prec_nr) %>%
     dplyr::mutate(registered=ifelse(id%in%rvot,1,0)) %>% 
     dplyr::left_join(electiontechn(probw,probv,Ztech,nprect=20), by='prec_nr')
-    base::save(votdf_sim,file=simsaveload)
+    base::save(votdf,file=simsaveload)
 }
 }
 if (elect_type=='rec') {
-  if (lsv==1) {votdf_rec <- get(base::load(file=recsaveload))}
+  if (lsv==1) {votdf <- get(base::load(file=recsaveload))}
   else {
-	votdf_rec <- as.data.frame(get(load(reciniload))) %>%
+	votdf <- as.data.frame(get(load(reciniload))) %>%
 	dplyr::select(id,cou_nr,cou_na,age,prec_nr,registered,voted) %>%
 	base::split(.$cou_nr) %>% 
 	purrr::map(function(x){
@@ -117,22 +115,22 @@ if (elect_type=='rec') {
 	base::save(votdf_rec, file = recsaveload)
 }
 }
-listvbase[[1]] <<- votdf_sim %>% base::split(.$prec_nr) %>% 
+browser()
+View(listvbase[[1]])
+listvbase[[1]] <<- head(votdf) %>% base::split(.$prec_nr) %>% 
   	purrr::map(function(x){
   x %>%  dplyr::mutate(candraw=rbinom(n(),1,probwd)) %>%
-  dplyr::mutate(voted=ifelse(candraw==1,
+  dplyr::mutate(priorvote=ifelse(candraw==1,
   sample(1:3,size=n(),prob=c(x$p1[1],x$p2[1],x$p3[1]),T),
   sample(4:6,size=n(),prob=c(x$p4[1],x$p5[1],x$p6[1]),T)))
 	}) %>% dplyr::bind_rows(.) %>%
                # Prior voting for which candidate and type of voting
-               dplyr::mutate(a=ifelse(voted==1&registered==1,1,0)) %>%
-               dplyr::mutate(c=ifelse(voted==2&registered==1,1,0)) %>%
-               dplyr::mutate(b=ifelse(voted==4&registered==1,1,0)) %>%
-               dplyr::mutate(d=ifelse(voted==5&registered==1,1,0)) %>%
+               dplyr::mutate(a=ifelse(priorvote==1&registered==1,1,0)) %>%
+               dplyr::mutate(c=ifelse(priorvote==2&registered==1,1,0)) %>%
+               dplyr::mutate(b=ifelse(priorvote==4&registered==1,1,0)) %>%
+               dplyr::mutate(d=ifelse(priorvote==5&registered==1,1,0)) %>%
                # Condition for becoming a credit voter: Registered and not voting
-               dplyr::mutate(C=ifelse((voted==3|voted==6)&registered==1,1,0)) 
-#View(listvbase[[1]])
-
+               dplyr::mutate(C=ifelse((priorvote==3|priorvote==6)&registered==1,1,0)) 
 })
 Voterdatabase$methods(regvbase=function(arg1=NULL){
 #votdf <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
