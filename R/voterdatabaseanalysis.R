@@ -29,7 +29,6 @@ lg_keyr='list',
 pr_path='character'))
 
 Voterdatabase$methods(initialize=function(type=c('simulation','recorded')[2]){
-
 ###			      
 probw=c(0.50,0.05)
 probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))

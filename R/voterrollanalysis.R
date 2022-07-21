@@ -46,8 +46,6 @@ namebase='defvotbase'
 newdraw=F
 pr_path <<- rprojroot::find_rstudio_root_file()
 loadrec <- paste0(pr_path,'/data/',coudatafile)
-
-
 ### Sim
 agebracketmax=c(18,100,30)
 ### Rec
@@ -55,7 +53,7 @@ agebracketmax=c(18,100,30)
 ### General
 elect_type <- c ('sim','rec')[1]
 lsv <- 0
-coudatafile='vtr_ohio.rda'
+coudatafile <- 'vtr_ohio.rda'
 ####
 
 reciniload <- paste0(pr_path,'/data/',coudatafile)
@@ -95,13 +93,12 @@ if (elect_type=='sim') {
     
     simvoterrolldatabase <- data.frame(idn=seq(1:popsize)) %>%
     dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%     
-    dplyr::mutate(P=sample(nprect,size=n(),replace=T)) %>% 
-    dplyr::arrange(P) %>%
-    dplyr::mutate(R=ifelse(idn%in%rvot,1,0)) %>% 
-    dplyr::left_join(electiontechn(probw,probv,Ztech,nprect=20), by='P')
-    
+    dplyr::mutate(prec_nr=sample(nprect,size=n(),replace=T)) %>% 
+    dplyr::arrange(prec_nr) %>%
+    dplyr::mutate(registered=ifelse(idn%in%rvot,1,0)) %>% 
+    dplyr::left_join(electiontechn(probw,probv,Ztech,nprect=20), by='prec_nr')
     base::save(simvoterrolldatabase,file='abc.df')
-
+View(simvoterrolldatabase)
 
 }
 }
