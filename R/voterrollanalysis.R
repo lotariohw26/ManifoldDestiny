@@ -44,31 +44,31 @@ namebase='defvotbase'
 newdraw=F
 pr_path <<- rprojroot::find_rstudio_root_file()
 #loadrec <- paste0(pr_path,'/data/',coudatafile)
-
-
-
-### General
-elect_type <- c ('sim','rec')[2]
-lsv <- 0
-### Sim
+## Sim
 agebracketmax=c(18,100,30)
-state='state10'
+state_sim='state1'
 ### Rec
 #coudatafile <- 'vtr_ohio.rda'
-state='ohio'
-coudatafile <- 'vtr_ohio'
+state_rec='ohio'
+coudatafile_rec <- 'vtr_ohio'
+coudatafile_sim <- 'state1'
 probw=c(0.50,0.05)
 probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
 Ztech=c(0,1)
-
 # Starting
 reciniload <- paste0(pr_path,'/data/',coudatafile,'.rda')
-recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',state,'/',coudatafile)
-simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated/',state,'/',coudatafile)
+recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',state_rec,'/',coudatafile_rec)
+simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated/',state_sim,'/',coudatafile_sim)
+### General
+type_nr <- 1
+elect_type <- c ('sim','rec')[type_nr]
+lsv <- 0 
+browser()
 save(iris,file=simsaveload)
 if (elect_type=='sim') {
-  if (lsv==1) {votdf <- get(base::load(file=simsaveload))}
+  if (lsv==1) {votdf_sim <- get(base::load(file=simsaveload))}
   else {
+	  print('simulating')
     # lapply
     # Demograhpic structure
     agelength <- agebracketmax[2]-agebracketmax[1]
@@ -95,50 +95,33 @@ if (elect_type=='sim') {
     rvot <- sample(seq(1,popsize),size=popsize*0.80,F) #! Registered voters
     precv <-sample(nprect,size=popsize,T) # Allocated to various precincts (uniform)
     
-    votdf <- data.frame(idn=seq(1:popsize)) %>%
+    votdf_sim <- data.frame(id=seq(1:popsize)) %>%
+    dplyr::mutate(cou_nr=1) %>%
+    dplyr::mutate(cou_na=1) %>%
     dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%     
     dplyr::mutate(prec_nr=sample(nprect,size=n(),replace=T)) %>% 
     dplyr::arrange(prec_nr) %>%
-    dplyr::mutate(registered=ifelse(idn%in%rvot,1,0)) %>% 
+    dplyr::mutate(registered=ifelse(id%in%rvot,1,0)) %>% 
     dplyr::left_join(electiontechn(probw,probv,Ztech,nprect=20), by='prec_nr')
-    base::save(votdf,file=simsaveload)
+    base::save(votdf_sim,file=simsaveload)
 }
 }
 if (elect_type=='rec') {
-  if (lsv==1) {votdf <- get(base::load(file=recsaveload))}
+  if (lsv==1) {votdf_rec <- get(base::load(file=recsaveload))}
   else {
-	votdf <- as.data.frame(get(load(reciniload))) %>%
-	dplyr::select(id,cou_nr,cou_na,age,registered,prec_nr,voted) %>%
+	votdf_rec <- as.data.frame(get(load(reciniload))) %>%
+	dplyr::select(id,cou_nr,cou_na,age,prec_nr,registered,voted) %>%
 	base::split(.$cou_nr) %>% 
 	purrr::map(function(x){
           o <- x %>%dplyr::left_join(electiontechn(probw,probv,Ztech,nprect=max(.$prec_nr)))
         }) %>% dplyr::bind_rows(.) #%>% `colnames<-` (stlvb1) 
-	base::save(voterroll, file = recsaveload)
+	base::save(votdf_rec, file = recsaveload)
 }
 }
+tdf <- listvbase[[1]] <<- list(votdf_sim,votdf_rec,)[type_nr]
+#votdf <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
+#names(tdf) <- tdf
 browser()
-names(votdf)
-# [1] "idn"        "age"        "prec_nr"    "registered" "probwd"     "Zt"         "p1"         "p2"         "p3"         "p4"         "p5"        
-#[12] "p6"        
-
-
-votdf <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
-names(votdf) <- votdf
-listvbase[[1]] <<- votdf
-
-##### 2 ###
-####### initialize
-#stlvb1 <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
-#voterroll <- as.data.frame(get(load(loadrec)))  %>% 
-#	dplyr::select(id,cou_nr,cou_na,age,registered,prec_nr,voted) %>%
-#	base::split(.$cou_nr) %>% 
-#	purrr::map(function(x){
-#          o <- x %>%dplyr::left_join(electiontechn(nprect=max(.$prec_nr)))
-#        }) %>% dplyr::bind_rows(.) %>% `colnames<-` (stlvb1) 
-#base::save(voterroll, file = saveload)
-#listvbase[[1]] <<- voterroll
-######### load
-listvbase[[1]] <<- get(base::load(file=saveload))
 })
 
 Voterdatabase$methods(regvbase=function(arg1=NULL){
