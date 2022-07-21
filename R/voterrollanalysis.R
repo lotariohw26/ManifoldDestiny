@@ -49,14 +49,16 @@ pr_path <<- rprojroot::find_rstudio_root_file()
 
 ### General
 elect_type <- c ('sim','rec')[2]
-lsv <- 1
+lsv <- 0
 state='ohio'
 ### Sim
 agebracketmax=c(18,100,30)
 ### Rec
 #coudatafile <- 'vtr_ohio.rda'
 coudatafile <- 'vtr_ohio'
-
+probw=c(0.50,0.05)
+probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
+Ztech=c(0,1)
 
 # Starting
 reciniload <- paste0(pr_path,'/data/',coudatafile,'.rda')
@@ -106,22 +108,19 @@ if (elect_type=='rec') {
 'test1'
   if (lsv==1) {votdf <- get(base::load(file=simsavloa))}
   else {
+	  browser()
 votdf <- as.data.frame(get(load(reciniload))) %>%
 	dplyr::select(id,cou_nr,cou_na,age,registered,prec_nr,voted) %>%
 	base::split(.$cou_nr) %>% 
 	purrr::map(function(x){
-          o <- x %>%dplyr::left_join(electiontechn(nprect=max(.$prec_nr)))
+          o <- x %>%dplyr::left_join(electiontechn(probw,probv,Ztech,nprect=max(.$prec_nr)))
         }) %>% dplyr::bind_rows(.) #%>% `colnames<-` (stlvb1) 
 base::save(voterroll, file = saveload)
 }
 }
-browser()
-
-# Simulating votes
-
-
+votdf <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
+names(votdf) <- votdf
 listvbase[[1]] <<- votdf
-stlvb1 <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
 
 ##### 2 ###
 ####### initialize
