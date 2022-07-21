@@ -29,12 +29,10 @@ lg_keyr='list',
 pr_path='character'))
 
 Voterdatabase$methods(initialize=function(type=c('simulation','recorded')[2]){
-browser()
 ###			      
 probw=c(0.50,0.05)
 probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
 Ztech=c(0,1)
-state='ohio'
 nprect=20
 tot_regis=0.80
 probw=c(0.50,0.05)
@@ -45,21 +43,25 @@ modes=c('EDV','MIV')
 namebase='defvotbase'
 newdraw=F
 pr_path <<- rprojroot::find_rstudio_root_file()
-loadrec <- paste0(pr_path,'/data/',coudatafile)
+#loadrec <- paste0(pr_path,'/data/',coudatafile)
+
+
+
+### General
+elect_type <- c ('sim','rec')[2]
+lsv <- 1
+state='ohio'
 ### Sim
 agebracketmax=c(18,100,30)
 ### Rec
+#coudatafile <- 'vtr_ohio.rda'
+coudatafile <- 'vtr_ohio'
 
-### General
-elect_type <- c ('sim','rec')[1]
-lsv <- 0
-coudatafile <- 'vtr_ohio.rda'
-####
 
-reciniload <- paste0(pr_path,'/data/',coudatafile)
-recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',state,'/','abc.df')
-simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated',state,'/','abc.df')
-#base::load(file=simsaveload)
+# Starting
+reciniload <- paste0(pr_path,'/data/',coudatafile,'.rda')
+recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',state,'/',coudatafile)
+simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated/',state,'/',coudatafile)
 if (elect_type=='sim') {
   if (lsv==1) {votdf <- get(base::load(file=simsaveload))}
   else {
@@ -98,8 +100,6 @@ if (elect_type=='sim') {
     dplyr::mutate(registered=ifelse(idn%in%rvot,1,0)) %>% 
     dplyr::left_join(electiontechn(probw,probv,Ztech,nprect=20), by='prec_nr')
     base::save(simvoterrolldatabase,file='abc.df')
-View(simvoterrolldatabase)
-
 }
 }
 if (elect_type=='rec') {
@@ -115,7 +115,11 @@ votdf <- as.data.frame(get(load(reciniload))) %>%
 base::save(voterroll, file = saveload)
 }
 }
+browser()
+
 # Simulating votes
+
+
 listvbase[[1]] <<- votdf
 stlvb1 <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
 

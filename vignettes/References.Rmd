@@ -37,6 +37,7 @@ BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown", 
 ```{r eval=T, include=FALSE}
 knitr::knit_exit()
 ```
+
 ### Dallas
 https://docs.google.com/document/d/1u8XTDJsyYVFOyuOly1Xs6XjOAAdKFW88C7q624lpAz4
 ## Clark and Washoe
