@@ -50,11 +50,12 @@ pr_path <<- rprojroot::find_rstudio_root_file()
 ### General
 elect_type <- c ('sim','rec')[2]
 lsv <- 0
-state='ohio'
 ### Sim
 agebracketmax=c(18,100,30)
+state='state10'
 ### Rec
 #coudatafile <- 'vtr_ohio.rda'
+state='ohio'
 coudatafile <- 'vtr_ohio'
 probw=c(0.50,0.05)
 probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10))
@@ -64,12 +65,11 @@ Ztech=c(0,1)
 reciniload <- paste0(pr_path,'/data/',coudatafile,'.rda')
 recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',state,'/',coudatafile)
 simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated/',state,'/',coudatafile)
+save(iris,file=simsaveload)
 if (elect_type=='sim') {
   if (lsv==1) {votdf <- get(base::load(file=simsaveload))}
   else {
-    'save sim'
     # lapply
-    browser()
     # Demograhpic structure
     agelength <- agebracketmax[2]-agebracketmax[1]
     brack <- seq(agebracketmax[1],agebracketmax[2])
@@ -95,29 +95,33 @@ if (elect_type=='sim') {
     rvot <- sample(seq(1,popsize),size=popsize*0.80,F) #! Registered voters
     precv <-sample(nprect,size=popsize,T) # Allocated to various precincts (uniform)
     
-    simvoterrolldatabase <- data.frame(idn=seq(1:popsize)) %>%
+    votdf <- data.frame(idn=seq(1:popsize)) %>%
     dplyr::mutate(age=as.vector(wakefield::age(n(),x=seq(agebrack[1],agebrack[2]),prob=probage))) %>%     
     dplyr::mutate(prec_nr=sample(nprect,size=n(),replace=T)) %>% 
     dplyr::arrange(prec_nr) %>%
     dplyr::mutate(registered=ifelse(idn%in%rvot,1,0)) %>% 
     dplyr::left_join(electiontechn(probw,probv,Ztech,nprect=20), by='prec_nr')
-    base::save(simvoterrolldatabase,file='abc.df')
+    base::save(votdf,file=simsaveload)
 }
 }
 if (elect_type=='rec') {
-'test1'
-  if (lsv==1) {votdf <- get(base::load(file=simsavloa))}
+  if (lsv==1) {votdf <- get(base::load(file=recsaveload))}
   else {
-	  browser()
-votdf <- as.data.frame(get(load(reciniload))) %>%
+	votdf <- as.data.frame(get(load(reciniload))) %>%
 	dplyr::select(id,cou_nr,cou_na,age,registered,prec_nr,voted) %>%
 	base::split(.$cou_nr) %>% 
 	purrr::map(function(x){
           o <- x %>%dplyr::left_join(electiontechn(probw,probv,Ztech,nprect=max(.$prec_nr)))
         }) %>% dplyr::bind_rows(.) #%>% `colnames<-` (stlvb1) 
-base::save(voterroll, file = saveload)
+	base::save(voterroll, file = recsaveload)
 }
 }
+browser()
+names(votdf)
+# [1] "idn"        "age"        "prec_nr"    "registered" "probwd"     "Zt"         "p1"         "p2"         "p3"         "p4"         "p5"        
+#[12] "p6"        
+
+
 votdf <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
 names(votdf) <- votdf
 listvbase[[1]] <<- votdf

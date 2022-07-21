@@ -1,6 +1,6 @@
 #################################################################################################33
 #library(ManifoldDestiny)
-sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
+sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R')[3],full.names=T), source)
 library(dplyr)
 library(ggplot2)
 library(tidyr)
