@@ -36,30 +36,8 @@ vtr_ohio <-seq(1,length(lc_ohio)) %>% purrr::map(function(x){
     dplyr::mutate(prec_nr=as.numeric(factor(PRECINCT_CODE))) %>%
     ## standardizing the names
     `colnames<-` (vrsnames)
-#    ## standardizing the variables needed
-#    ### for each age group
-#    dplyr::group_by(age) %>% 
-#    dplyr::mutate(ag_geovo=n_distinct(id)) %>%
-#    dplyr::mutate(ag_voted=sum(voted, na.rm=T)) %>%
-#    dplyr::mutate(ag_regis=sum(registered, na.rm=T)) %>% 
-#    dplyr::mutate(ag_gevos=ag_voted/ag_geovo) %>% 
-#    dplyr::mutate(ag_revos=ag_voted/ag_regis) %>%
-#    ### for county
-#    dplyr::ungroup() %>%
-#    dplyr::select(cou_nr,age,ag_geovo,ag_regis,ag_voted,ag_gevos,ag_revos) %>%
-#    dplyr::distinct() %>%
-#    dplyr::mutate(tot_geopo=sum(ag_geovo)) %>%
-#    dplyr::mutate(tot_voted=sum(ag_voted)) %>%
-#    dplyr::mutate(tot_regis=sum(ag_regis)) %>%
-#    ## relationship between age and county
-#    dplyr::mutate(geo_ratio=tot_voted/tot_geopo) %>%
-#    dplyr::mutate(tur_ratio=tot_voted/tot_regis) %>%
-#    dplyr::mutate(go_key_ratio=ag_gevos/geo_ratio) %>%
-#    dplyr::mutate(re_key_ratio=ag_revos/tur_ratio) %>%
-#    ### add county names
-#    dplyr:: mutate(cou_na=cou_nal) %>% dplyr::relocate(cou_na,.after=cou_nr) 
+    dplyr:: mutate(cou_na=cou_nal) %>% dplyr::relocate(cou_na,.after=cou_nr) 
 }) %>% dplyr::bind_rows(.) 
 usethis::use_data(vtr_ohio, overwrite = TRUE)
-View(head(vtr_ohio))
 
 

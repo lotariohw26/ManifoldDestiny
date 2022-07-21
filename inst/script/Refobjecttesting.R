@@ -14,11 +14,15 @@ library(ViewPipeSteps)
 library(ggpubr)
 library(htmltools)
 library(gridExtra)
+set.seed(1)
 #################################################################################################
 ### Election simulation 
 ##################################################################################################
-state1_vb <- Voterdatabase(type_nr=1,lsv=0)
-View(state1_vb$listvbase)
+state1_vb <- Voterdatabase(type_nr=1,lsv=0,probw=c(0.50,0.05),probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10)),Ztech=c(0,1), cou_sim=list(state_sim='state1',cou_nr=1:2,cou_na=c("A","B"),nprect=c(20,20),tot_regis=c(0.80,0.80), 
+						       agebrack=c(18,100,30)))
+state2_vb <- Voterdatabase(type_nr=1,lsv=0,probw=c(0.50,0.05),probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10)),Ztech=c(0,1), 
+					  cou_sim=list(state_sim='state2',cou_nr=1:2,cou_na=c("A","B"),nprect=c(10,10),tot_regis=c(0.80,0.80), 
+						       agebrack=c(18,100,30)))
 state1_vb$regvbase()
 state1_vb$scorecard()	
 state1_vb$predictinput()
@@ -26,7 +30,8 @@ state1_vb$predictinput()
 ### Voterrollanalysis 
 ##################################################################################################
 # Voterbase
-#ohio_vb <- Voterdatabase()
+ohio_vb <- Voterdatabase(type_nr=1,lsv=1,probw=c(0.50,0.05),probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10)),Ztech=c(0,1), rec_sim=list(state_rec='ohio',state_datafile_rec='vtr_ohio'))
+ohio_vb$listvbase
 #ohio_vb$regvbase()
 #ohio_vb$scorecard()	
 #ohio_vb$predictinput()
