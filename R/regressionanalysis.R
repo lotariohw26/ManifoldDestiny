@@ -15,10 +15,7 @@ Estimation <- setRefClass("Estimation", fields=list(
 						regsum='list', 
 						resplots='list'
 						))
-Estimation$methods(initialize=function(
-					rdfcinp=NULL
-					  ){
-
+Estimation$methods(initialize=function(rdfcinp=NULL){
   sdfc <<- rdfcinp
 })
 Estimation$methods(regression=function(regform=NULL){
@@ -29,8 +26,25 @@ Estimation$methods(regression=function(regform=NULL){
 		  tidy=broom::tidy(man_model), 
 		  glance=broom::glance(man_model), 
 		  augment=broom::augment(man_model))
-  ##0.005070874159	1.535448595	-0.549045972	-0.66148927	1.303368815	-0.632192474
 })
+Estimation$methods(polyest=function(regform=NULL){
+kvecall <- c(0.03669833672, 0.7650526952, -0.8295197129, 0.9938639181, 0.3074660656, 0.9281349898, -1.04633696, -0.1798626564)
+
+kvec <- c(0.03011967441,0.8193824172,-0.9499398397,1.064030566,0.2314017714,1.006207413,-1.094817236,-0.1217901096)
+
+quadr <- sdfc %P>% dplyr::select(P,g,h,alpha) %>%
+	dplyr::arrange(P) %>%
+	dplyr::mutate(A=kvec[6]) %>%
+	dplyr::mutate(B=kvec[3]+h*kvec[7]) %>%
+	dplyr::mutate(C=kvec[2]+h*kvec[4]) %>%
+	dplyr::mutate(D=kvec[1]+kvec[5]*h^2+kvec[8]*h^3-alpha) %>%
+	dplyr::filter(P%in%c(3775,3602))
+
+View(quadr)
+
+})
+
+
 Estimation$methods(diagnostics=function(){
 
   model <- regsum[[1]]

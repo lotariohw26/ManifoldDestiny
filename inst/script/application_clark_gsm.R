@@ -37,6 +37,10 @@ I(g^2)*h+
 I(h^2)+
 I(h^3)'
 est$regression(form2)
+est$polyest(form2)
+
+
+
 est$regsum[[3]]
 klist <- est$regsum[[3]][[2]]
 names(klist) <-est$regsum[[3]][[1]]
