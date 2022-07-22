@@ -20,10 +20,16 @@ rmarkdown::render("index.Rmd")
 #modlat <- eqpar$meql
 ```
 
-```{r, eval=F, echo=F}
+```{r, eval=F, echo=F, message=F, warning=F}
+# Build complete site
 pkgdown::build_site()
-pkgdown::build_home()
+system("cp inst/Presentation.html docs/articles/Presentation.html")
+system("cp -r inst/libs docs/articles")
+#system("cp inst/man_bib.bib docs/stuff/man_bib.bib")
+
+# Build elements of site
 pkgdown::build_articles()
+pkgdown::build_home()
 pkgdown::build_news()
 usethis::use_news_md("")
 git2r::config(user.name = "lotariohw26", user.email = "lotariohw26e@protonmail.com")

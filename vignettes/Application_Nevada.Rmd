@@ -1,19 +1,27 @@
 ---
 title: ""
-output: github_document
+output: html_document
 ---
+
+
+```{r, eval=F, echo=F}
+abs_path <- rprojroot::find_rstudio_root_file()
+rmarkdown::render(paste0(abs_path,'/vignettes/Application_Nevada.Rmd'))
+```
+
 
 ## Clark county
 
-```{r}
+```{r, echo=F, message=F}
 library(ManifoldDestiny)
 library(dplyr)
 library(ggplot2)
 ```
 
 ```{r, echo=F, eval=T, warnings=F, messages=F}
-sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
+#sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
 abs_path <- rprojroot::find_rstudio_root_file()
+library(ManifoldDestiny)
 library(dplyr)
 library(ggplot2)
 library(htmltools)
@@ -25,8 +33,6 @@ c_mi_st$plot2d()
 c_mi_st$plotly3d(partition=2)
 c_mi_st$gridarrange()
 ```
-
-
 
 ```{r, echo=F}
 knitr::knit_exit()
