@@ -13,7 +13,6 @@ rmarkdown::render("index.Rmd")
 ##gsimf$plot2d(selvp=c("x","y","alpha"),selvl=c("x_pred","y_pred","alpha_pred"))
 ```
 
-
 ```{r, echo=F, message=F, warning=F}
 ### Loading equations
 #source('inst/script/stylized.R')

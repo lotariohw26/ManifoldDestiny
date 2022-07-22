@@ -23,7 +23,7 @@ Countingprocess <- setRefClass("Countingprocess",
 					   pl_rescro='list',
 					   pl_3dmani='list'))
 Countingprocess$methods(initialize=function(sdfinp=NULL,
-					   selvar=c('R','C','a','b','c','d'), 
+					   selvar=c('R','a','b','c','d'), 
 					   polyn=6,
 					   sortby=alpha
 					   ){
@@ -43,16 +43,18 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   sdfc <<- sdfinp %>% 
     dplyr::select(P,all_of(selvar)) %>% 
     dplyr::arrange(P) %>% 
-    dplyr::group_by(P) %>%
-    dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) %>%
-    dplyr::mutate(R=sum(R),C=sum(C)) %>%
-    dplyr::mutate(V=R-C) %>%
-    dplyr::ungroup() %>% 
-    dplyr::distinct() %>%
-    #dplyr::filter(a>0) %>%
+    #!
+    #dplyr::group_by(P) %>%
+    #dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) 
+    #dplyr::mutate(R=sum(R)) %>% 
+    #dplyr::distinct() %>%
+    #dplyr::ungroup() %>% 
+    ##dplyr::filter(a>0) %>%
     #dplyr::filter(b>0) %>%
     #dplyr::filter(c>0) %>%
     #dplyr::filter(d>0) %>% 
+    dplyr::mutate(V=a+b+c+d) %>%
+    dplyr::mutate(C=R-V) %>%
     dplyr::mutate(x=pareq(se[['x_s']][1],lv=as.list(.[,ils]))) %>%
     dplyr::mutate(y=pareq(se[['y_s']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(g=pareq(se[['g_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
@@ -72,7 +74,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
       dplyr::relocate(V,.after=C)
   
   # Init values standard form
-  #polyc[['alpha']] <<- lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))
+  polyc[['alpha']] <<- lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))
   # Init values hybrid form
   #polyc[[2]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
   ### Init values opposition form
@@ -98,7 +100,6 @@ Countingprocess$methods(sortpre=function(poly=6,
 
   rcte <- polynom::polynomial(unname(coef(polyc[['alpha']])))
   rcr2 <- round(cor(quintile$alpha_pred,quintile$alpha)^2,4)
-
   sumreg['alpha'] <<- paste0(rcte,' with R² ',rcr2)
 })
 Countingprocess$methods(manfolimp=function(
@@ -206,16 +207,14 @@ Countinggraphs$methods(plotly3d=function(
   zaxis = list(title = names(gdf)[3]))) }) ->> pl_3dmani
 
 })
-Countinggraphs$methods(gridarrange=function(arg1=NULL){
-browser()
-#pl_2dsort
-#pl_corrxy
-#pl_rescro
-#pl_3dmani[[1]]
-##  ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
-#  	 div(pl_3dmani[sel[[1]]],class="column"),
-#  	 div(pl_3dmani[sel[[2]]],class="column"))
-#  list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=plot3dlist[[selid]])
+Countinggraphs$methods(gridarrange=function(
+					    pl3d=list(selo=1,selm=c(1:5,6:10))
+					    ){
+
+  ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
+    	 div(pl_3dmani[pl3d$sel[[1]]],class="column"),
+    	 div(pl_3dmani[pl3d$sel[[2]]],class="column"))
+  list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=pl_3dmani[[pl3d$selo]])
 })
 
 #' @exportClass Countingtables

@@ -15,16 +15,34 @@ library(ggpubr)
 library(htmltools)
 library(broom)
 #################################################################################################
-miller_stavros <- get(load(paste0(abs_path,'/data/clark_miller_stavros_sel.rda')))
-miller_stavros$C <- miller_stavros$R-rowSums(miller_stavros[,3:8])
-gclark <- Countinggraphs(miller_stavros)
-gclark$rdfc
-gclark$plotly3d(partition=1)
-gclark$gridarrange(partition=1)
+mi_st <- get(load(paste0(abs_path,'/data/clark_miller_stavros_sel.rda')))
+c_mi_st <- Countinggraphs(mi_st)
+c_mi_st$sortpre()
+c_mi_st$plot2d()
+c_mi_st$plotly3d(partition=2)
+c_mi_st$pl_3dmani
+c_mi_st$pl_2dsort
+c_mi_st$gridarrange()
 
 
+View(c_mi_st$quintile)
+
+form <- 'alpha~
+g+h'
+form <- 'alpha~
+g+
+I(g^2)+
+I(g^3)+
+g*h+
+I(g^2)*h+
+I(h^2)+
+I(h^3)'
+est$regression(form)
+est$regsum[[2]]
+est$regsum[[3]]
 
 
+est$regsum$estimate
 ### Sheriff
 ### Governor
 ### Senate
