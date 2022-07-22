@@ -24,23 +24,24 @@ c_mi_st$plotly3d(partition=2)
 #c_mi_st$pl_2dsort
 c_mi_st$gridarrange()
 ###################
-est <- Estimation(c_mi_st$rdfc)
-form1 <- 'alpha~g+h'
+ndft <- c_mi_st$rdfc %>% 
+	dplyr::mutate(gh=g*h,g2h=g^2*h) 
+est <- Estimation(ndft)
+form1 <- 'alpha~h+g'
 est$regression(form1)
-est$regsum[[2]]
+est$regsum[[1]]
 form2 <- 'alpha~
 g+
 I(g^2)+
-I(g^3)+
-g*h+
-I(g^2)*h+
+gh+
 I(h^2)+
+I(g^3)+
+g2h+
 I(h^3)'
-
-
 est$regression(form2)
-est$polyest(form2)
 est$regsum[[3]]
+
+
 klist <- est$regsum[[3]][[2]]
 names(klist) <-est$regsum[[3]][[1]]
 #################################################################################################
