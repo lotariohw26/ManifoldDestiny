@@ -21,7 +21,7 @@ c_mi_st$sortpre()
 c_mi_st$plot2d()
 c_mi_st$plotly3d(partition=2)
 #c_mi_st$pl_3dmani
-c_mi_st$pl_2dsort
+#c_mi_st$pl_2dsort
 c_mi_st$gridarrange()
 ###################
 est <- Estimation(c_mi_st$rdfc)
@@ -36,11 +36,10 @@ g*h+
 I(g^2)*h+
 I(h^2)+
 I(h^3)'
+
+
 est$regression(form2)
 est$polyest(form2)
-
-
-
 est$regsum[[3]]
 klist <- est$regsum[[3]][[2]]
 names(klist) <-est$regsum[[3]][[1]]

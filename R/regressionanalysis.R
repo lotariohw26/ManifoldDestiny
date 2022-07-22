@@ -32,15 +32,21 @@ kvecall <- c(0.03669833672, 0.7650526952, -0.8295197129, 0.9938639181, 0.3074660
 
 kvec <- c(0.03011967441,0.8193824172,-0.9499398397,1.064030566,0.2314017714,1.006207413,-1.094817236,-0.1217901096)
 
-quadr <- sdfc %P>% dplyr::select(P,g,h,alpha) %>%
+pr_path <- rprojroot::find_rstudio_root_file()
+fqs <- reticulate::import_from_path("fqs", path =path_fqs)
+cubicres <- sdfc %P>% dplyr::select(P,g,h,alpha) %>%
 	dplyr::arrange(P) %>%
 	dplyr::mutate(A=kvec[6]) %>%
 	dplyr::mutate(B=kvec[3]+h*kvec[7]) %>%
 	dplyr::mutate(C=kvec[2]+h*kvec[4]) %>%
 	dplyr::mutate(D=kvec[1]+kvec[5]*h^2+kvec[8]*h^3-alpha) %>%
-	dplyr::filter(P%in%c(3775,3602))
+	#dplyr::filter(P%in%c(3775,3602)) %>%
+	dplyr::group_by(P) %>%
+	dplyr::mutate(cubic=fqs$cubic_roots(c(A,B,C,D))) %>%
+	#dplyr::filter(P%in%c(3775)) %>%
+	dplyr::mutate(g_exp=Re(cubic)[1])
 
-View(quadr)
+cor(cubicres$g_exp,cubicres$g)
 
 })
 
