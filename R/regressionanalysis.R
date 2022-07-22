@@ -40,13 +40,16 @@ cubicres <- sdfc %P>% dplyr::select(P,g,h,alpha) %>%
 	dplyr::mutate(B=kvec[3]+h*kvec[7]) %>%
 	dplyr::mutate(C=kvec[2]+h*kvec[4]) %>%
 	dplyr::mutate(D=kvec[1]+kvec[5]*h^2+kvec[8]*h^3-alpha) %>%
-	#dplyr::filter(P%in%c(3775,3602)) %>%
 	dplyr::group_by(P) %>%
 	dplyr::mutate(cubic=fqs$cubic_roots(c(A,B,C,D))) %>%
-	#dplyr::filter(P%in%c(3775)) %>%
 	dplyr::mutate(g_exp=Re(cubic)[1])
 
 cor(cubicres$g_exp,cubicres$g)
+reg <- lm(g_exp ~ g, data =cubicres)
+coeff=coefficients(reg)
+# equation of the line : 
+eq = paste0("y = ", round(coeff[2],1), "*x ", round(coeff[1],1))
+plot(cubicres$g_exp,cubicres$g);abline(reg)
 
 })
 
