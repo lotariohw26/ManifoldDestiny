@@ -31,9 +31,11 @@ Estimation$methods(polyest=function(regform=NULL){
 browser()
 kvec <- c(0.03669833672, 0.7650526952, -0.8295197129, 0.9938639181, 0.3074660656, 0.9281349898, -1.04633696, -0.1798626564)
 
-kvecr <- c(0.03011967441,0.8193824172,-0.9499398397,1.064030566,0.2314017714,1.006207413,-1.094817236,-0.1217901096)
+#kvecr <- c(0.03011967441,0.8193824172,-0.9499398397,1.064030566,0.2314017714,1.006207413,-1.094817236,-0.1217901096)
 
 pr_path <- rprojroot::find_rstudio_root_file()
+
+
 fqs <- reticulate::import_from_path("fqs", path =path_fqs)
 cubicres <- sdfc %P>% dplyr::select(P,g,h,alpha) %>%
 	dplyr::arrange(P) %>%
