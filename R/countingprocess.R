@@ -207,14 +207,17 @@ Countinggraphs$methods(plotly3d=function(
   zaxis = list(title = names(gdf)[3]))) }) ->> pl_3dmani
 
 })
-Countinggraphs$methods(gridarrange=function(
-					    pl3d=list(selo=1,selm=list(1:5,6:10)), 
-					    ){
+Countinggraphs$methods(gridarrange=function(pl3d=list(selo=1,selm=list(1:5,6:10))){
+			       
   ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
-    	 div(pl_3dmani[[pl3d$sel[[1]]]],class="column"),
-    	 div(pl_3dmani[[pl3d$sel[[2]]]],class="column"))
+  	 div(pl_3dmani[pl3d$selm[[1]]],class="column"),
+  	 div(pl_3dmani[pl3d$selm[[2]]],class="column"))
 
-  list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=pl_3dmani[[pl3d$selo]])[[3]]
+  list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=pl_3dmani[[pl3d$selo]])[[1]]
 
+})
 #' @exportClass Countingtables
 Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'), fields = list(ghi='list'))
+
+
+

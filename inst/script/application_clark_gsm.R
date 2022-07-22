@@ -23,12 +23,12 @@ c_mi_st$plotly3d(partition=2)
 #c_mi_st$pl_3dmani
 c_mi_st$pl_2dsort
 c_mi_st$gridarrange()
-
-View(c_mi_st$quintile)
-
-form <- 'alpha~
-g+h'
-form <- 'alpha~
+###################
+est <- Estimation(c_mi_st$rdfc)
+form1 <- 'alpha~g+h'
+est$regression(form1)
+est$regsum[[2]]
+form2 <- 'alpha~
 g+
 I(g^2)+
 I(g^3)+
@@ -36,9 +36,12 @@ g*h+
 I(g^2)*h+
 I(h^2)+
 I(h^3)'
-est$regression(form)
+est$regression(form2)
 est$regsum[[2]]
-est$regsum[[3]]
+
+
+
+#################################################################################################
 
 
 est$regsum$estimate
