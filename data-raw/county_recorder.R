@@ -4,6 +4,11 @@ library(DataEditR)
 ## code to prepare `DATASET` dataset goes here
 ## To candidates
 # Dallas
+filename <- paste0(abs_path(),'/data-raw/xlsx/Miller vs Stavros.xlsx')
+clark_miller_stavros_sel <- openxlsx::read.xlsx(filename, sheet=2) %>% dplyr::select(1:8) %>% 
+	`colnames<-` (c("P","R","a","b","c","d","Stavros.EDV","Miller.EDV"))
+usethis::use_data(clark_miller_stavros_sel, overwrite = TRUE)
+
 filename <- paste0(abs_path(),'/data-raw/xlsx/Dallas Texas, Completed.xlsx')
 ctype <- c("pre","a","b","c","d","e","f")
 dallas_sel <- openxlsx::read.xlsx(filename, sheet="County Recorder Data") %>% dplyr::select(1:7) %>%

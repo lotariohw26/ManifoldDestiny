@@ -27,6 +27,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   polyn=6,
 					   sortby=alpha
 					   ){
+
   # Loading 
   rotp <- rprojroot::find_rstudio_root_file()
   load(paste0(rotp,'/data/eqpar.rda'))
@@ -37,7 +38,6 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   # Assigning model equations
   se <<- eqpar$meqs
   lx <<- eqpar$meql
-  browser()
 
   ils <- c('a','b','c','d')
   sdfc <<- sdfinp %>% 
@@ -65,16 +65,14 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
     dplyr::mutate(Omega=pareq(se[['Omega_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(Gamma=pareq(se[['Gamma_h']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
     dplyr::mutate(xi=pareq(se[['xi_o']][1],lv=list(a=a,b=b,c=c,d=d))) %>%
-    na.omit() %>% 
-    dplyr::arrange(alpha) %>% 
-    dplyr::mutate(pri=row_number()/length(P)) %>%
-    dplyr::relocate(pri,.before=P) %>%
-    dplyr::relocate(V,.after=C)
+    na.omit()  
 
-  rdfc <<- sdfc   # Init values standard form
+    rdfc <<- sdfc %>% dplyr::arrange(alpha) %>% dplyr::mutate(pri=row_number()/length(P)) %>%
+      dplyr::relocate(pri,.before=P) %>%
+      dplyr::relocate(V,.after=C)
   
   # Init values standard form
-  polyc[['alpha']] <<- lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))
+  #polyc[['alpha']] <<- lm(rdfc$alpha ~ poly(rdfc$pri, polyn, raw=TRUE))
   # Init values hybrid form
   #polyc[[2]] <<- unname(coef(lm(sdfc$alpha ~ poly(sdfc$pri, polyn, raw=TRUE))))
   ### Init values opposition form

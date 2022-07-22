@@ -28,7 +28,7 @@ Voterdatabase <- setRefClass("Voterdatabase",fields=list(
   lg_keyr='list', 
   pr_path='character')
 )
-Voterdatabase$methods(initialize=function(type_nr=1,lsv=0,probw=c(0.50,0.05),probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10)),Ztech=c(0,1), 
+Voterdatabase$methods(initialize=function(type_nr=1,lsv=1,probw=c(0.50,0.05),probv=list(c(0.60,0.30,0.10),c(0.30,0.60,0.10)),Ztech=c(0,1), 
 					  cou_sim=list(state_sim='state1',cou_nr=1:2,cou_na=c("A","B"),nprect=c(20,20),tot_regis=c(0.80,0.80), 
 						       agebrack=c(18,100,30)), 
 					  rec_sim=list(state_rec='ohio',state_datafile_rec='vtr_ohio')){
@@ -139,11 +139,11 @@ Voterdatabase$methods(regvbase=function(arg1=NULL){
     dplyr::mutate(re_key_ratio=ag_revos/tur_ratio) 
 })
 Voterdatabase$methods(scorecard=function(polyo=c(1,2,6,8)){
-
+			      
   polcou[[1]] <<- polyo
-  nrco <- polcou[[2]] <<- unique(listvbase[[2]]$cou_nr)
+  polcou[[2]] <<- unique(listvbase[[2]]$cou_nr)
 
-  lapply(nrco,function(x){
+  lapply(polcou[[2]] ,function(x){
     lapply(1:length(polyo),function(y){
       dft <- dplyr::filter(listvbase[[2]],cou_nr==x)
       ft1 <- paste0("dft$go_key_ratio~poly(dft$age,",polyo[y],",raw=T)")
@@ -151,31 +151,32 @@ Voterdatabase$methods(scorecard=function(polyo=c(1,2,6,8)){
       list(lm(as.formula(ft1)),lm(as.formula(ft2)))
    })
     }) ->> listscard
-    polyscard1 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
-    polyscard2 <<- lapply(1:length(polyo), function(x) sapply(1:length(nrco), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
+    polyscard1 <<- lapply(1:length(polyo), function(x) sapply(1:length(polcou[[2]]), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
+    polyscard2 <<- lapply(1:length(polyo), function(x) sapply(1:length(polcou[[2]]), function(y) unname(listscard[[y]][[x]][[1]]$coeff)))	
 })
 Voterdatabase$methods(predictinput=function(arg1=NULL){
-
+			     
   polypredi <<- lapply(1:length(polcou[[1]]), function(x){
-  avg_key_poly1 <- t(polyscard1[[x]]) %>% base::colMeans() %>% polynom::polynomial()
-  avg_key_poly2 <- t(polyscard2[[x]]) %>% base::colMeans() %>% polynom::polynomial()
-  predictsc[[1]] <<- listvbase[[2]] %>%
-  dplyr::group_by(cou_nr) %>%
-  ## Predicting average scorecard
-  dplyr::mutate(polyo=polcou[[1]][x]) %>%
-  dplyr::relocate(polyo) %>%
-  dplyr::mutate(avg_key_ratio1=stats::predict(avg_key_poly1,age)) %>%
-  dplyr::mutate(avg_key_ratio2=stats::predict(avg_key_poly2,age)) %>%
-  dplyr::mutate(ag_vpred1=ag_geovo*geo_ratio*avg_key_ratio1) %>%
-  dplyr::mutate(ag_vpred2=ag_regis*tur_ratio*avg_key_ratio2) %>%
-  dplyr::mutate(pred_error1=ag_voted-ag_vpred1) %>%
-  dplyr::mutate(pred_error2=ag_voted-ag_vpred2) %>%
-  dplyr::mutate(corr1=cor(ag_voted,ag_vpred1)) %>%
-  dplyr::mutate(corr2=cor(ag_voted,ag_vpred2)) %>%
-  dplyr::ungroup()}) 
-
+    avg_key_poly1 <- t(polyscard1[[x]]) %>% base::colMeans() %>% polynom::polynomial()
+    avg_key_poly2 <- t(polyscard2[[x]]) %>% base::colMeans() %>% polynom::polynomial()
+    predictsc[[1]] <<- listvbase[[2]] %>%
+    dplyr::group_by(cou_nr) %>%
+    ## Predicting average scorecard
+    dplyr::mutate(polyo=polcou[[1]][x]) %>%
+    dplyr::relocate(polyo) %>%
+    dplyr::mutate(avg_key_ratio1=stats::predict(avg_key_poly1,age)) %>%
+    dplyr::mutate(avg_key_ratio2=stats::predict(avg_key_poly2,age)) %>%
+    dplyr::mutate(ag_vpred1=ag_geovo*geo_ratio*avg_key_ratio1) %>%
+    dplyr::mutate(ag_vpred2=ag_regis*tur_ratio*avg_key_ratio2) %>%
+    dplyr::mutate(pred_error1=ag_voted-ag_vpred1) %>%
+    dplyr::mutate(pred_error2=ag_voted-ag_vpred2) %>%
+    dplyr::mutate(corr1=cor(ag_voted,ag_vpred1)) %>%
+    dplyr::mutate(corr2=cor(ag_voted,ag_vpred2)) %>%
+    dplyr::ungroup()}
+  ) 
+			       browser()
   # For report
-  predictsc[[2]]  <<- predictsc[[1]] %>% dplyr::bind_rows(.) %>%
+  predictsc[[2]]  <<- polypredi %>% dplyr::bind_rows(.) %>%
   dplyr::mutate(state='state') %>%
   dplyr::select(state,cou_nr,cou_na,polyo,corr1,corr2) %>% 
   dplyr::distinct()  
@@ -200,6 +201,7 @@ listvbase[[3]] <<- listvbase[[2]]
 Voterdatabaseplots <- setRefClass("Voterdatabaseplots", contains = c('Voterdatabase'))
 Voterdatabaseplots$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','ag_regis','ag_vpred1','ag_vpred2'), lp=list(x='Age category',y='Number of voters') 
 ){
+	browser()
 
   for (po in 1:length(polcou[[1]])){
     lg_pred[[po]] <<- lapply(polcou[[2]], function(x){
@@ -240,7 +242,7 @@ Voterdatabaseplots$methods(plot_histio=function(plotyvar=c('pred_error1','pred_e
 })
 Voterdatabaseplots$methods(gridarrange=function(arg1=NULL){
 
-  nmlc <- unique(voterroll$cou_na)
+  nmlc <- unique(listvbase[[2]]$cou_na)
   for (lc in 1:length(nmlc)){
     nmlcl <- nmlc[lc]
     gr1 <- lg_pred[[3]][[lc]] 

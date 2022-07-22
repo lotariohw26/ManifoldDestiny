@@ -15,6 +15,41 @@ library(ggpubr)
 library(htmltools)
 library(gridExtra)
 set.seed(1)
+##################################################################################################
+### Voterrollanalysis 
+##################################################################################################
+# Voterbase
+#ohio_vb <- Voterdatabase(type_nr=2,lsv=1)
+##ohio_vb$listvbase
+#ohio_vb$regvbase()
+#ohio_vb$scorecard()	
+#ohio_vb$predictinput()
+#ohio_vb$uploadvbase()
+### Graphical
+ohio_vg <-Voterdatabaseplots(type_nr=2)
+ohio_vg$regvbase()
+ohio_vg$scorecard()	
+ohio_vg$predictinput()
+
+ohio_vg$plot_predict()
+ohio_vg$predictsc[[2]]
+
+
+ohio_vg$lg_pred
+ohio_vg$plot_keyrat()
+ohio_vg$plot_histio()
+ohio_vg$gridarrange()
+ohio_vg$uploadvbase()
+#ohio_vg$lg_pred
+#ohio_vg$lg_keyr[[1]]
+#ohio_vg$lg_hist[[1]]
+## Report
+ohio_vr <- Voterrollreport()
+ohio_vr$regvbase()
+ohio_vr$scorecard()	
+ohio_vr$predictinput()
+ohio_vr$htmlreport()
+ohio_vr$uploadvbase()
 #################################################################################################
 ### Election simulation 
 ##################################################################################################
@@ -26,36 +61,6 @@ state2_vb <- Voterdatabase(type_nr=1,lsv=0,probw=c(0.50,0.05),probv=list(c(0.60,
 state1_vb$regvbase()
 state1_vb$scorecard()	
 state1_vb$predictinput()
-##################################################################################################
-### Voterrollanalysis 
-##################################################################################################
-# Voterbase
-ohio_vb <- Voterdatabase(type_nr=2,lsv=1)
-ohio_vb$listvbase
-#ohio_vb$regvbase()
-#ohio_vb$scorecard()	
-#ohio_vb$predictinput()
-#ohio_vb$uploadvbase()
-## Graphical
-ohio_vg <-Voterdatabaseplots(type_nr=2)
-ohio_vg$regvbase()
-ohio_vg$scorecard()	
-ohio_vg$predictinput()
-ohio_vg$plot_predict()
-ohio_vg$lg_pred
-ohio_vg$plot_keyrat()
-#ohio_vg$lg_keyr[[1]]
-ohio_vg$plot_histio()
-#ohio_vg$lg_hist[[1]]
-ohio_vg$gridarrange()
-ohio_vg$uploadvbase()
-## Report
-ohio_vr <- Voterrollreport()
-ohio_vr$regvbase()
-ohio_vr$scorecard()	
-ohio_vr$predictinput()
-ohio_vr$uploadvbase()
-ohio_vr$htmlreport()
 #################################################################################################
 ### Election simulation (Based on Dr. Frank)
 ##################################################################################################
