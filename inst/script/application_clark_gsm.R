@@ -41,8 +41,6 @@ est$regsum[[3]]
 klist <- est$regsum[[3]][[2]]
 names(klist) <-est$regsum[[3]][[1]]
 #################################################################################################
-
-
 est$regsum$estimate
 ### Sheriff
 ### Governor

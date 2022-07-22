@@ -286,6 +286,26 @@ class: inverse, center, middle
 
 ---
 
+## Application 4: Test
+
+```{r, echo=F, eval=T, warnings=F, messages=F}
+#sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
+#abs_path <- rprojroot::find_rstudio_root_file()
+#library(dplyr)
+#library(ggplot2)
+#library(htmltools)
+#library(broom)
+#mi_st <- get(load(paste0(abs_path,'/data/clark_miller_stavros_sel.rda')))
+#c_mi_st <- Countinggraphs(mi_st)
+#c_mi_st$sortpre()
+#c_mi_st$plot2d()
+#c_mi_st$plotly3d(partition=2)
+#c_mi_st$gridarrange()
+```
+
+
+---
+
 class: inverse, center, middle
 
 # Conclusions
