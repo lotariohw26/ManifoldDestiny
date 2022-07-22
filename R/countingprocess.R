@@ -21,13 +21,14 @@ Countingprocess <- setRefClass("Countingprocess",
 					   pl_2dsort='list',
 					   pl_corrxy='list',
 					   pl_rescro='list',
-					   pl_3dmani='list'))
+					   pl_3dmani='list',  
+					   all_pl_3dmani='list'
+					   ))
 Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   selvar=c('R','a','b','c','d'), 
 					   polyn=6,
 					   sortby=alpha
 					   ){
-
   # Loading 
   rotp <- rprojroot::find_rstudio_root_file()
   load(paste0(rotp,'/data/eqpar.rda'))
@@ -44,11 +45,6 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
     dplyr::select(P,all_of(selvar)) %>% 
     dplyr::arrange(P) %>% 
     #!
-    #dplyr::group_by(P) %>%
-    #dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d)) 
-    #dplyr::mutate(R=sum(R)) %>% 
-    #dplyr::distinct() %>%
-    #dplyr::ungroup() %>% 
     ##dplyr::filter(a>0) %>%
     #dplyr::filter(b>0) %>%
     #dplyr::filter(c>0) %>%
@@ -120,7 +116,6 @@ Countingprocess$methods(manfolimp=function(
   end2 <- pres2 
   # 3
   ## 
-  #browser()
   riggreal <- pareq(pres3,as.list(rdfc[,c("x","alpha","zeta")]))
   #end1-end2
   end3 <- riggreal
@@ -208,16 +203,14 @@ Countinggraphs$methods(plotly3d=function(
 
 })
 Countinggraphs$methods(gridarrange=function(pl3d=list(selo=1,selm=list(1:5,6:10))){
-			       
+
   ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
   	 div(pl_3dmani[pl3d$selm[[1]]],class="column"),
   	 div(pl_3dmani[pl3d$selm[[2]]],class="column"))
 
-  list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=pl_3dmani[[pl3d$selo]])[[1]]
+  all_pl_3dmani <<- list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=pl_3dmani[[pl3d$selo]])
 
 })
 #' @exportClass Countingtables
 Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'), fields = list(ghi='list'))
-
-
 

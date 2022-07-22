@@ -1,6 +1,6 @@
 #################################################################################################33
 #library(ManifoldDestiny)
-sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T)[4], source)
+sapply(list.files(paste0(rprojroot::find_rstudio_root_file(),'/R'),full.names=T), source)
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -18,6 +18,20 @@ set.seed(1)
 ##################################################################################################
 ### Voterrollanalysis 
 ##################################################################################################
+stat1_vg <- Voterdatabaseplots(type_nr=1,lsv=0)
+dtc <- filter(stat1_vg$listcbase, cou_nr==1)
+stat1_vg <- Countinggraphs(dtc)
+stat1_vg$sortpre(selvar=c('x','y','alpha','lambda','zeta'))
+stat1_vg$plot2d()
+stat1_vg$pl_2dsort
+stat1_vg$plotxy()
+stat1_vg$resplot()
+stat1_vg$plotly3d(partition=2)
+stat1_vg$gridarrange()
+stat1_vg$all_pl_3dmani[[1]]
+##################################################################################################
+### Voterrollanalysis 
+##################################################################################################
 # Voterbase
 #ohio_vb <- Voterdatabase(type_nr=2,lsv=1)
 ##ohio_vb$listvbase
@@ -30,11 +44,8 @@ ohio_vg <-Voterdatabaseplots(type_nr=2)
 ohio_vg$regvbase()
 ohio_vg$scorecard()	
 ohio_vg$predictinput()
-
 ohio_vg$plot_predict()
 ohio_vg$predictsc[[2]]
-
-
 ohio_vg$lg_pred
 ohio_vg$plot_keyrat()
 ohio_vg$plot_histio()
@@ -64,38 +75,11 @@ state1_vb$predictinput()
 #################################################################################################
 ### Election simulation (Based on Dr. Frank)
 ##################################################################################################
-
-snr <- 1
-set.seed(snr)
 ### Part A: Fair election
-
 ### Part B: Rigged election
-
-
-
 ##################################################################################################
 ### Regression analysis (Based on Dr. Frank)
 ##################################################################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #### I: Voterdatabase ###
 ### Inititating
 agebracketmax <- c(18,100,1000)
@@ -117,9 +101,6 @@ View(abc_vrg$polypredi[[1]])
 abc_vrg$plot_predict()
 abc_vrg$lg_pred[3]
 abc_vrg$plot_keyrat()
-
-
-
 abc_vrg$lg_hist()
 abc_vrg$lg_pred
 abc_vrg$lg_keyr
@@ -127,12 +108,6 @@ abc_vrg$gridarrange()
 # Report
 abc_vrr <- Voterrollreport()
 abc_vrr$htmlreport()
-
-
-
-
-
-
 votr <- vrdf$listvbase[[2]]
 View(votr)
 #################################################################################################33
@@ -157,6 +132,4 @@ grigg$riggsta()
 gsimf$gridarrange()
 vrdfg$uploadvbase(grig$sdfc,grig$rdfc,grig$parameters$standard)
 #################################################################################################33
-
-
 
