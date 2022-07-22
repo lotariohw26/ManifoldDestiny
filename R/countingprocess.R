@@ -208,14 +208,13 @@ Countinggraphs$methods(plotly3d=function(
 
 })
 Countinggraphs$methods(gridarrange=function(
-					    pl3d=list(selo=1,selm=c(1:5,6:10))
+					    pl3d=list(selo=1,selm=list(1:5,6:10)), 
 					    ){
-
   ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
-    	 div(pl_3dmani[pl3d$sel[[1]]],class="column"),
-    	 div(pl_3dmani[pl3d$sel[[2]]],class="column"))
-  list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=pl_3dmani[[pl3d$selo]])
-})
+    	 div(pl_3dmani[[pl3d$sel[[1]]]],class="column"),
+    	 div(pl_3dmani[[pl3d$sel[[2]]]],class="column"))
+
+  list(page=htmltools::browsable(ohtml),ohtml=ohtml,one=pl_3dmani[[pl3d$selo]])[[3]]
 
 #' @exportClass Countingtables
 Countingtables <- setRefClass("Countingtables", contains = c('Countingprocess'), fields = list(ghi='list'))

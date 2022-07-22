@@ -20,10 +20,9 @@ c_mi_st <- Countinggraphs(mi_st)
 c_mi_st$sortpre()
 c_mi_st$plot2d()
 c_mi_st$plotly3d(partition=2)
-c_mi_st$pl_3dmani
+#c_mi_st$pl_3dmani
 c_mi_st$pl_2dsort
 c_mi_st$gridarrange()
-
 
 View(c_mi_st$quintile)
 
