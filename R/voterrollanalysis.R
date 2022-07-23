@@ -94,33 +94,7 @@ if (elect_type=='rec') {
 	base::save(votdf, file = recsaveload)
 }
 }
-listvbase[[1]] <<- votdf %>% base::split(.$prec_nr) %>% 
-  	purrr::map(function(x){
-			     browser()
-  x %>%  dplyr::mutate(candraw=rbinom(n(),1,probwd)) %>%
-  dplyr::mutate(priorvote=ifelse(candraw==1,
-  sample(1:3,size=n(),prob=c(x$p1[1],x$p2[1],x$p3[1]),T),
-  sample(4:6,size=n(),prob=c(x$p4[1],x$p5[1],x$p6[1]),T)))
-	}) %>% dplyr::bind_rows(.) %>%
-               # Prior voting for which candidate and type of voting
-               dplyr::mutate(a=ifelse(priorvote==1&registered==1,1,0)) %>%
-               dplyr::mutate(c=ifelse(priorvote==2&registered==1,1,0)) %>%
-               dplyr::mutate(b=ifelse(priorvote==4&registered==1,1,0)) %>%
-               dplyr::mutate(d=ifelse(priorvote==5&registered==1,1,0)) %>%
-	       dplyr::mutate(voted=ifelse(a+b+c+d>0,1,0)) %>%
-               # Condition for becoming a credit voter: Registered and not voting
-               dplyr::mutate(C=ifelse((priorvote==3|priorvote==6)&registered==1,1,0)) 
 
-listvbase[[1]] <<-  rename(listvbase[[1]],R=registered)
-listvbase[[1]] <<-  rename(listvbase[[1]],P=prec_nr)
-listvbase[[1]] <<-  rename(listvbase[[1]],V=voted)
-
-listcbase <<- listvbase[[1]] %>% dplyr::select(c('cou_nr','P','R','a','b','c','d')) %>% 
-	dplyr::arrange(cou_nr,P) %>%  dplyr::group_by(cou_nr,P)  %>% 
-	dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d),R=sum(R)) %>%
-	dplyr::distinct() %>% 
-	dplyr::mutate(V=sum(a+b+c+d)) %>%
-	dplyr::ungroup()
 })
 Voterdatabase$methods(regvbase=function(arg1=NULL){
 #votdf <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
@@ -184,7 +158,6 @@ Voterdatabase$methods(predictinput=function(arg1=NULL){
     dplyr::mutate(corr2=cor(ag_voted,ag_vpred2)) %>%
     dplyr::ungroup()}
   ) 
-			       browser()
   # For report
   predictsc[[2]]  <<- polypredi %>% dplyr::bind_rows(.) %>%
   dplyr::mutate(state='state') %>%
@@ -211,7 +184,6 @@ listvbase[[3]] <<- listvbase[[2]]
 Voterdatabaseplots <- setRefClass("Voterdatabaseplots", contains = c('Voterdatabase'))
 Voterdatabaseplots$methods(plot_predict=function(plotyvar=c('ag_geovo','ag_voted','ag_regis','ag_vpred1','ag_vpred2'), lp=list(x='Age category',y='Number of voters') 
 ){
-	browser()
 
   for (po in 1:length(polcou[[1]])){
     lg_pred[[po]] <<- lapply(polcou[[2]], function(x){
