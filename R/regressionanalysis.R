@@ -27,6 +27,16 @@ Estimation$methods(regression=function(regform=NULL){
 		  glance=broom::glance(man_model), 
 		  augment=broom::augment(man_model))
 })
+Estimation$methods(diagnostics=function(){
+
+  model <- regsum[[1]]
+  l1 <- ggplot(model, aes(x = model$residuals)) +
+    geom_histogram(bins = 50, fill = 'steelblue', color = 'black') +
+    labs(title = 'Histogram of Residuals', x = 'Residuals', y = 'Frequency')+ 
+    theme_bw()
+  l2 <- ggplot(model, aes(x = .fitted, y = .resid)) + geom_point() + theme_bw()
+  resplots <<- list(hist=l1,res=l2)
+})
 Estimation$methods(polyest=function(regform=NULL){
 browser()
 kvec <- c(0.03669833672, 0.7650526952, -0.8295197129, 0.9938639181, 0.3074660656, 0.9281349898, -1.04633696, -0.1798626564)
@@ -35,7 +45,7 @@ kvec <- c(0.03669833672, 0.7650526952, -0.8295197129, 0.9938639181, 0.3074660656
 
 pr_path <- rprojroot::find_rstudio_root_file()
 
-
+path_fqs <- paste0(pr_path,'/inst/script/roots/fqs.py')
 fqs <- reticulate::import_from_path("fqs", path =path_fqs)
 cubicres <- sdfc %P>% dplyr::select(P,g,h,alpha) %>%
 	dplyr::arrange(P) %>%
@@ -54,18 +64,6 @@ coeff=coefficients(reg)
 eq = paste0("y = ", round(coeff[2],1), "*x ", round(coeff[1],1))
 plot(cubicres$g_exp,cubicres$g);abline(reg)
 
-})
-
-
-Estimation$methods(diagnostics=function(){
-
-  model <- regsum[[1]]
-  l1 <- ggplot(model, aes(x = model$residuals)) +
-    geom_histogram(bins = 20, fill = 'steelblue', color = 'black') +
-    labs(title = 'Histogram of Residuals', x = 'Residuals', y = 'Frequency')+ 
-    theme_bw()
-  l2 <- ggplot(model, aes(x = .fitted, y = .resid)) + geom_point() + theme_bw()
-  resplots <<- list(hist=l1,res=l2)
 })
 Estimation$methods(rotation=function(
 				     selvar=c('x','y','alpha'),

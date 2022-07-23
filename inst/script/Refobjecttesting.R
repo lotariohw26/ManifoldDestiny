@@ -19,8 +19,10 @@ set.seed(1)
 ### Voterrollanalysis 
 ##################################################################################################
 stat1_vg <- Voterdatabaseplots(type_nr=1,lsv=0)
-dtc <- filter(stat1_vg$listcbase, cou_nr==1)
+
+#dtc <- filter(stat1_vg$listcbase, cou_nr==1)
 stat1_vg <- Countinggraphs(dtc)
+#View(stat1_vg)
 stat1_vg$sortpre(selvar=c('x','y','alpha','lambda','zeta'))
 stat1_vg$plot2d()
 stat1_vg$pl_2dsort
@@ -132,4 +134,9 @@ grigg$riggsta()
 gsimf$gridarrange()
 vrdfg$uploadvbase(grig$sdfc,grig$rdfc,grig$parameters$standard)
 #################################################################################################33
+#################################################################################################33
+
+x <- rnorm(1000,0.5,0.075)
+y <- rnorm(100,0.5,0.075)
+
 

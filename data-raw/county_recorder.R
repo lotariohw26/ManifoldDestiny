@@ -7,6 +7,9 @@ library(DataEditR)
 filename <- paste0(abs_path(),'/data-raw/xlsx/Miller vs Stavros.xlsx')
 clark_miller_stavros_sel <- openxlsx::read.xlsx(filename, sheet=2) %>% dplyr::select(1:8) %>% 
 	`colnames<-` (c("P","R","a","b","c","d","Stavros.EDV","Miller.EDV"))
+
+(sum(clark_miller_stavros_sel$Stavros.EDV)+sum(clark_miller_stavros_sel$Miller.EDV))
+
 usethis::use_data(clark_miller_stavros_sel, overwrite = TRUE)
 
 filename <- paste0(abs_path(),'/data-raw/xlsx/Dallas Texas, Completed.xlsx')

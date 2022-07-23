@@ -21,15 +21,24 @@ c_mi_st$sortpre()
 c_mi_st$plot2d()
 c_mi_st$plotly3d(partition=2)
 #c_mi_st$pl_3dmani
-#c_mi_st$pl_2dsort
+c_mi_st$pl_2dsort
 c_mi_st$gridarrange()
 ###################
 ndft <- c_mi_st$rdfc %>% 
 	dplyr::mutate(gh=g*h,g2h=g^2*h) 
-est <- Estimation(ndft)
+
+plot(ndft$Gamma)
+
+View(ndft)
+ests <- Estimation(ndft)
 form1 <- 'alpha~h+g'
-est$regression(form1)
-est$regsum[[1]]
+ests$regression(form1)
+ests$diagnostics()
+ests$resplots[1]
+ests$resplots[2]
+
+esta <- Estimation(ndft)
+esta$regsum[[1]]
 form2 <- 'alpha~
 g+
 I(g^2)+
@@ -38,8 +47,11 @@ I(h^2)+
 I(g^3)+
 g2h+
 I(h^3)'
-est$regression(form2)
-est$regsum[[3]]
+esta$regression(form2)
+esta$diagnostics()
+esta$resplots[1]
+esta$resplots[2]
+esta$regsum[[3]]
 
 
 klist <- est$regsum[[3]][[2]]

@@ -29,18 +29,18 @@ Voterdatabase <- setRefClass("Voterdatabase",fields=list(
   lg_keyr='list', 
   pr_path='character')
 )
-Voterdatabase$methods(initialize=function(type_nr=1,lsv=1,
-  probw=c(0.50,0.05),
-  probv=list(c(0.50,0.40,0.10),c(0.40,0.50,0.10)),Ztech=c(0,1), 
-  cou_sim=list(state_sim='state1',cou_nr=1:2,cou_na=c("A","B"),nprect=c(150,20),tot_regis=c(0.80,0.80), agebrack=c(18,100,30)), 
+Voterdatabase$methods(initialize=function(type_nr=1,lsv=1,probw=c(0.51,0.30),
+  probv=list(c(0.70,0.30,0.00),c(0.30,0.60,0.10)),Ztech=c(0,1), 
+  cou_sim=list(state_sim='state1',cou_nr=1:2,cou_na=c("A","B"),nprect=c(20,20),tot_regis=c(0.80,0.80), agebrack=c(18,100,50)), 
   rec_sim=list(state_rec='ohio',state_datafile_rec='vtr_ohio')){
 
-# Setting filepaths
-pr_path <<- rprojroot::find_rstudio_root_file()
-reciniload <- paste0(pr_path,'/data/vtr_',rec_sim$state_rec,'.rda')
-simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated/',cou_sim$state_sim,'/',cou_sim$state_sim,'.df')
-recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',rec_sim$state_rec,'/',rec_sim$state_rec,'.df')
-elect_type <- c ('sim','rec')[type_nr]
+  # Setting filepaths
+  pr_path <<- rprojroot::find_rstudio_root_file()
+  reciniload <- paste0(pr_path,'/data/vtr_',rec_sim$state_rec,'.rda')
+  simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated/',cou_sim$state_sim,'/',cou_sim$state_sim,'.df')
+  recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',rec_sim$state_rec,'/',rec_sim$state_rec,'.df')
+  elect_type <- c ('sim','rec')[type_nr]
+
 if (elect_type=='sim') {
   if (lsv==1) {votdf <- get(base::load(file=simsaveload))}
   else {
@@ -68,7 +68,7 @@ if (elect_type=='sim') {
     popsize <- sum(popvotgro) 	         # Total number of citizien
     probage <- popvotgro/popsize 	         # Probability for each age group
     precv <- sample(cou_sim$nprect[x],size=popsize,T) # Allocated to various precincts (uniform?)
-    rvot <- sample(seq(1,popsize),size=popsize*cou_sim$tot_regis[x],F) #! Registered voters
+    rvot <- sample(seq(1,popsize),size=popsize*cou_sim$tot_regis[x],F) # Registered voters
     precv <-sample(cou_sim$nprect[x],size=popsize,T) # Allocated to various precincts (uniform)
     votdf_cou <- data.frame(id=seq(1:popsize)) %>%
     dplyr::mutate(cou_nr=cou_sim$cou_nr[x]) %>%
@@ -96,6 +96,7 @@ if (elect_type=='rec') {
 }
 listvbase[[1]] <<- votdf %>% base::split(.$prec_nr) %>% 
   	purrr::map(function(x){
+			     browser()
   x %>%  dplyr::mutate(candraw=rbinom(n(),1,probwd)) %>%
   dplyr::mutate(priorvote=ifelse(candraw==1,
   sample(1:3,size=n(),prob=c(x$p1[1],x$p2[1],x$p3[1]),T),

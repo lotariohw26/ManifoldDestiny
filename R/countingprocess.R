@@ -8,8 +8,8 @@ pareq2 <- function(ste=NULL,lv=NULL)eval(parse(text=ste),lv)
 #' @export Countingprocess
 #' @export class Countingprocess
 Countingprocess <- setRefClass("Countingprocess", 
-			       fields=list(sdfc='data.frame',
-					   rdfc='data.frame',
+			       fields=list(sdfc='list',
+					   rdfc='list',
 					   quintile='data.frame',
 					   sumreg='list', 
 					   polyc='list',
@@ -39,6 +39,16 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   # Assigning model equations
   se <<- eqpar$meqs
   lx <<- eqpar$meql
+
+  browser()
+
+  cou_nr <- unique(sdfinp$cou_nr)
+
+  lapply(unique(sdfinp$cou_nr),{
+
+  }
+  ) 
+
 
   ils <- c('a','b','c','d')
   sdfc <<- sdfinp %>% 

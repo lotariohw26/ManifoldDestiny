@@ -1,0 +1,80 @@
+---
+title: ""
+output: html_document
+---
+
+```{r eval=F, echo=F}
+setwd(rprojroot::find_rstudio_root_file())
+filp <- 'vignettes/abc.Rmd'
+rmarkdown::render(filp)
+system('brave vignettes/abc.html')
+```
+
+```{r setup, echo=F}
+library(ManifoldDestiny)
+load(paste0(abs_path(),'/data/eqpar.rda'))
+load(paste0(abs_path(),'/data/stickers.rda'))
+modlat <- eqpar$meql
+labs <- stickers[['parameters']]
+library(dplyr)
+library(huxtable)
+lego_hux <- as_hux(matrix(1:16, 4, 4)) %>% 
+      set_background_color(1:2, 1:2, "red") %>% 
+      set_background_color(1:2, 3:4, "yellow") %>% 
+      set_background_color(3:4, 1:2, "darkgreen") %>% 
+      set_background_color(3:4, 3:4, "blue") %>% 
+      set_text_color(3:4, 1:4, "white") %>% 
+      set_all_borders(brdr(2, "solid", "white"))
+lego_hux %>% set_caption("Original table")
+```
+
+
+### Standard form
+# Step 1
+# Step 2
+# Step 3
+Parameters: $x$, $y$, $\zeta$, $\alpha$, $\lambda$
+
+\begin{equation*}
+x=`r modlat$x_s[1]`
+\end{equation*}
+\begin{equation*}
+y=`r modlat$y_s[1]`
+\end{equation*}
+\begin{equation*}
+\zeta=`r modlat$zeta_s[1]`
+\end{equation*}
+\begin{equation*}
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
+\end{equation*}
+\begin{equation*}
+\lambda=`r modlat$lambda_s[1]`=`r modlat$lambda_s[2]`
+\end{equation*}
+
+# Step 4
+### Hybrid form
+Parameters: $g$, $h$, $\Gamma$, $\alpha$, $\Omega$
+
+\begin{equation*}
+g=`r modlat$g_h[1]`
+\end{equation*}
+\begin{equation*}
+h=`r modlat$h_h[1]`
+\end{equation*}
+\begin{equation*}
+\Gamma=`r modlat$Gamma_h[1]`
+\end{equation*}
+\begin{equation*}
+\alpha=`r modlat$alpha_h[1]`=`r modlat$alpha_h[2]`
+\end{equation*}
+\begin{equation*}
+\Omega=`r modlat$Omega_h[1]`=`r modlat$Omega_h[2]`
+\end{equation*}
+
+# Step 5
+
+# Step 6
+# Step 7
+# Step 8
+
+

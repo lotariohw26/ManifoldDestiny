@@ -59,6 +59,8 @@ knitr::knit_exit()
 ```
 
 # R
+vignettes/abc.Rmd
+
 inst/script/polynomialage.R
 inst/odg/main_sheet.odg
 inst/Presentation.Rmd
