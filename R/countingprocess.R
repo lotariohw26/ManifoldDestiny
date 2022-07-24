@@ -8,8 +8,8 @@ pareq2 <- function(ste=NULL,lv=NULL)eval(parse(text=ste),lv)
 #' @export Countingprocess
 #' @export class Countingprocess
 Countingprocess <- setRefClass("Countingprocess", 
-			       fields=list(sdfc='list',
-					   rdfc='list',
+			       fields=list(sdfc='data.frame',
+					   rdfc='data.frame',
 					   quintile='data.frame',
 					   sumreg='list', 
 					   polyc='list',
@@ -29,10 +29,14 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   polyn=6,
 					   sortby=alpha
 					   ){
+
   # Loading 
-  rotp <- rprojroot::find_rstudio_root_file()
-  load(paste0(rotp,'/data/eqpar.rda'))
-  load(paste0(rotp,'/data/stickers.rda'))
+  #rotp <- rprojroot::find_rstudio_root_file()
+  pr_path <- system.file(package='ManifoldDestiny')
+  #load(paste0(rotp,'/data/eqpar.rda'))
+  #load(paste0(rotp,'/data/stickers.rda'))
+  ManifoldDestiny::eqpar
+  ManifoldDestiny::stickers
 
   # Assigning parameters 
   parameters <<- stickers[['parameters']]
@@ -40,14 +44,10 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   se <<- eqpar$meqs
   lx <<- eqpar$meql
 
-  browser()
+  #lapply(unique(sdfinp$cou_nr),function(x){
 
-  cou_nr <- unique(sdfinp$cou_nr)
-
-  lapply(unique(sdfinp$cou_nr),{
-
-  }
-  ) 
+  #}
+  #) 
 
 
   ils <- c('a','b','c','d')

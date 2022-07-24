@@ -35,13 +35,20 @@ Voterdatabase$methods(initialize=function(type_nr=1,lsv=1,probw=c(0.51,0.30),
   rec_sim=list(state_rec='ohio',state_datafile_rec='vtr_ohio')){
 
   # Setting filepaths
-  pr_path <<- rprojroot::find_rstudio_root_file()
-  reciniload <- paste0(pr_path,'/data/vtr_',rec_sim$state_rec,'.rda')
-  simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated/',cou_sim$state_sim,'/',cou_sim$state_sim,'.df')
-  recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',rec_sim$state_rec,'/',rec_sim$state_rec,'.df')
-  elect_type <- c ('sim','rec')[type_nr]
+  #pr_path <<- rprojroot::find_rstudio_root_file()
+  #reciniload <- paste0(pr_path,'/data/vtr_',rec_sim$state_rec,'.rda')
+  #simsaveload <- paste0(pr_path,'/inst/script/voterroll/simulated/',cou_sim$state_sim,'/',cou_sim$state_sim,'.df')
+  #recsaveload <- paste0(pr_path,'/inst/script/voterroll/recorded/',rec_sim$state_rec,'/',rec_sim$state_rec,'.df')
+  #elect_type <- c ('sim','rec')[type_nr]
+  # Setting filepaths
+  pr_path <<- system.file(package='ManifoldDestiny')
+  reciniload <- ManifoldDestiny::vtr_ohio
+  # paste0('vtr_',rec_sim$state_rec,'.rda')
+  simsaveload <- paste0(pr_path,'/script/voterroll/simulated/',cou_sim$state_sim,'/',cou_sim$state_sim,'.df')
+  recsaveload <- paste0(pr_path,'/script/voterroll/recorded/',rec_sim$state_rec,'/',rec_sim$state_rec,'.df')
 
-if (elect_type=='sim') {
+  elect_type <- c ('sim','rec')[type_nr]
+  if (elect_type=='sim') {
   if (lsv==1) {votdf <- get(base::load(file=simsaveload))}
   else {
     # lapply
@@ -94,8 +101,33 @@ if (elect_type=='rec') {
 	base::save(votdf, file = recsaveload)
 }
 }
-
-})
+  listvbase[[1]] <<- votdf %>% base::split(.$prec_nr) %>% 
+    	purrr::map(function(x){
+    x %>%  dplyr::mutate(candraw=rbinom(n(),1,probw)) %>%
+    dplyr::mutate(priorvote=ifelse(candraw==1,
+    sample(1:3,size=n(),prob=c(x$p1[1],x$p2[1],x$p3[1]),T),
+    sample(4:6,size=n(),prob=c(x$p4[1],x$p5[1],x$p6[1]),T)))
+  	}) %>% dplyr::bind_rows(.) %>%
+                 # Prior voting for which candidate and type of voting
+                 dplyr::mutate(a=ifelse(priorvote==1&registered==1,1,0)) %>%
+                 dplyr::mutate(c=ifelse(priorvote==2&registered==1,1,0)) %>%
+                 dplyr::mutate(b=ifelse(priorvote==4&registered==1,1,0)) %>%
+                 dplyr::mutate(d=ifelse(priorvote==5&registered==1,1,0)) %>%
+  	       dplyr::mutate(voted=ifelse(a+b+c+d>0,1,0)) %>%
+                 # Condition for becoming a credit voter: Registered and not voting
+                 dplyr::mutate(C=ifelse((priorvote==3|priorvote==6)&registered==1,1,0)) 
+  
+  listvbase[[1]] <<-  rename(listvbase[[1]],R=registered)
+  listvbase[[1]] <<-  rename(listvbase[[1]],P=prec_nr)
+  listvbase[[1]] <<-  rename(listvbase[[1]],V=voted)
+  
+  listcbase <<- listvbase[[1]] %>% dplyr::select(c('cou_nr','P','R','a','b','c','d')) %>% 
+  	dplyr::arrange(cou_nr,P) %>%  dplyr::group_by(cou_nr,P)  %>% 
+  	dplyr::mutate(a=sum(a),b=sum(b),c=sum(c),d=sum(d),R=sum(R)) %>%
+  	dplyr::distinct() %>% 
+  	dplyr::mutate(V=sum(a+b+c+d)) %>%
+  	dplyr::ungroup()
+  })
 Voterdatabase$methods(regvbase=function(arg1=NULL){
 #votdf <- c("id","cou_nr","cou_na","age","R","P","V","probwd","Zt","p1","p2","p3","p4","p5","p6")
 

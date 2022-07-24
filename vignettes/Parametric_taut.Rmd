@@ -62,7 +62,6 @@ y=`r modlat$y_s[1]`
 \begin{equation*}
 \lambda=`r modlat$lambda_s[1]`=`r modlat$lambda_s[2]`
 \end{equation*}
-
 ---
 
 ### Hybrid form

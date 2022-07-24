@@ -23,9 +23,9 @@ c_mi_st$plotly3d(partition=2)
 #c_mi_st$pl_3dmani
 c_mi_st$pl_2dsort
 c_mi_st$gridarrange()
+c_mi_st$all_pl_3dmani[[1]]
 ###################
-ndft <- c_mi_st$rdfc %>% 
-	dplyr::mutate(gh=g*h,g2h=g^2*h) 
+ndft <- c_mi_st$rdfc %>% dplyr::mutate(gh=g*h,g2h=g^2*h) 
 
 plot(ndft$Gamma)
 

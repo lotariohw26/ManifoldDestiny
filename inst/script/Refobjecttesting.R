@@ -19,7 +19,7 @@ set.seed(1)
 ### Voterrollanalysis 
 ##################################################################################################
 stat1_vg <- Voterdatabaseplots(type_nr=1,lsv=0)
-
+stat1_vg$listvbase
 #dtc <- filter(stat1_vg$listcbase, cou_nr==1)
 stat1_vg <- Countinggraphs(dtc)
 #View(stat1_vg)
