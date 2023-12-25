@@ -7,6 +7,7 @@ project:
     - "laws.qmd"
     - "man_bib.qmd"
     - "tabsets.qmd"
+    - "paper.qmd"
     - "abc.qmd"
     - "def.qmd"
 website:
@@ -21,6 +22,19 @@ website:
             href: "presentation.qmd"
           - text: "Addendum 1: Arizona"
           - text: "Addendum 2: Nevada"
+      - text: "Paper"
+        href: paper.qmd
+      - text: Coding in the browser
+        menu:
+          - text: "R"
+            href: https://lotariohw26.github.io/MD_WASMS/r/examples/
+          - text: "Python"
+            href: https://lotariohw26.github.io/MD_WASMS/py/examples/
+          - text: "Python API"
+            href: "abc.qmd"
+          - text: "R API"
+            href: "def.html"
+              #href: https://webr.r-wasm.org/latest/
       - text: Shiny applications
         menu:
           - text: "R2 simulator"
@@ -32,25 +46,12 @@ website:
         menu:
           - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
             href: "https://lotariohw26.github.io/MD_BOOK1"
-      - text: R in the browser
-        menu:
-          - text: "R"
-            href: https://lotariohw26.github.io/MD_WASMS/r/examples/
-          - text: "Python"
-            href: https://lotariohw26.github.io/MD_WASMS/py/examples/
-          - text: "Python API"
-            href: "abc.qmd"
-          - text: "R API"
-            href: "def.html"
-              #href: https://webr.r-wasm.org/latest/
       - text: Bibliography
         href: man_bib.qmd
       - text: Appendix
         menu:
           - text: "20 laws and 40 isometries"
             href: laws.qmd
-          - text: "Tabsets from different simulations"
-            href: tabsets.qmd
   repo-url: https://github.com/lotariohw26/ManifoldDestiny
   site-url: https://lotariohw26.github.io/ManifoldDestiny/
   reader-mode: false

@@ -264,5 +264,12 @@
     "title": "Python",
     "section": "",
     "text": "Pyodide test page  Open your browser console to see Pyodide output\n\n\n\nknitr::knit_exit()"
+  },
+  {
+    "objectID": "paper.html",
+    "href": "paper.html",
+    "title": "Manifold Destiny",
+    "section": "",
+    "text": "#href: tabsets.qmd"
   }
 ]
