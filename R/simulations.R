@@ -13,10 +13,10 @@ ballcastsim <- function(
   probvrnd <<- dfm |>
     dplyr::mutate(ZV=rnorm(dplyr::n(),probw[1],probw[2])) |>
     dplyr::mutate(N=runif(dplyr::n(),ztech[1],ztech[2])) |>
-    dplyr::mutate(p3=(1-ztech)*(1-pmax(0, pmin(1,rnorm(n(),probva[1],probva[3]))))) |>
-    dplyr::mutate(p6=(1-ztech)*(1-pmax(0, pmin(1,rnorm(n(),probvb[1],probvb[3]))))) |>
-    dplyr::mutate(p2=(1-p3)*pmax(0, pmin(1,rnorm(n(),probva[2],probva[4])))) |>
-    dplyr::mutate(p5=(1-p6)*pmax(0, pmin(1,rnorm(n(),probvb[2],probvb[4])))) |>
+    dplyr::mutate(p3=(1-ztech)*(1-pmax(0, pmin(1,rnorm(dplyr::n(),probva[1],probva[3]))))) |>
+    dplyr::mutate(p6=(1-ztech)*(1-pmax(0, pmin(1,rnorm(dplyr::n(),probvb[1],probvb[3]))))) |>
+    dplyr::mutate(p2=(1-p3)*pmax(0, pmin(1,rnorm(dplyr::n(),probva[2],probva[4])))) |>
+    dplyr::mutate(p5=(1-p6)*pmax(0, pmin(1,rnorm(dplyr::n(),probvb[2],probvb[4])))) |>
     dplyr::mutate(p1=1-p2-p3) |>
     dplyr::mutate(p4=1-p5-p6) |>
     dplyr::select(P,ZV,N,p1,p2,p3,p4,p5,p6)
