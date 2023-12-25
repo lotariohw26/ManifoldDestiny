@@ -1,0 +1,3 @@
+[submodule "MD_WASMC"]
+	path = MD_WASMC
+	url = https://github.com/lotariohw26/MD_WASMC
