@@ -10,6 +10,7 @@ project:
     - "paper.qmd"
     - "abc.qmd"
     - "def.qmd"
+    - "jsonview.qmd"
 website:
   title: "Manifold Destiny"
   navbar:
@@ -52,6 +53,8 @@ website:
         menu:
           - text: "20 laws and 40 isometries"
             href: laws.qmd
+          - text: "Metadata"
+            href: jsonview.qmd
   repo-url: https://github.com/lotariohw26/ManifoldDestiny
   site-url: https://lotariohw26.github.io/ManifoldDestiny/
   reader-mode: false
