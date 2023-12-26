@@ -10,3 +10,6 @@
 [submodule "MD_BOOK1"]
 	path = MD_BOOK1
 	url = https://github.com/lotariohw26/MD_BOOK1
+[submodule "MD_WASMS"]
+	path = MD_WASMS
+	url = https://github.com/lotariohw26/MD_WASMS

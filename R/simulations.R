@@ -21,31 +21,31 @@ ballcastsim <- function(
     dplyr::mutate(p4=1-p5-p6) |>
     dplyr::select(P,ZV,N,p1,p2,p3,p4,p5,p6)
 
-  #ballcodf <- dfm |> dplyr::left_join(probvrnd,by='P') |> base::split(.$P) |>
-  #     purrr::map(function(x){
-  ## Assigning voters in each precinct
-  #cp <- stats::rbinom(x$R,1,x$ZV) 
-  ### Setting up vector frame
-  #dc <- data.frame(P=x$P,ZV=x$ZV,R=x$R,C=cp,p1=x$p1,p2=x$p2,p3=x$p3,p4=x$p4,p5=x$p5,p6=x$p6) |>
-  #  dplyr::mutate(Id=row_number()) |> 
-  #  dplyr::relocate(Id,.before=P)  |>
-  #  dplyr::group_by(Id) |> 
-  #  dplyr::mutate(V=ifelse(C==1,sample(1:3,1,prob=c(p1,p2,p3)),sample(4:6,1,prob=c(p4,p5,p6)))) |>
-  #  dplyr::ungroup() 
-  #})  |>
-  #dplyr::bind_rows(.) |>
-  #dplyr::mutate(Id=row_number(P)) |> 
-  #dplyr::relocate(Id,.before=P) |> 
-  #dplyr::mutate(S=ifelse(V==1,1,0)) |> 
-  #dplyr::mutate(T=ifelse(V==4,1,0)) |>  
-  #dplyr::mutate(U=ifelse(V==2,1,0)) |>
-  #dplyr::mutate(V=ifelse(V==5,1,0)) |>
-  #dplyr::arrange(P) |>  dplyr::group_by(P)  |> 
-  #dplyr::select(c('P','R','S','T','U','V')) |>
-  #dplyr::mutate(S=sum(S),T=sum(T),U=sum(U),V=sum(V)) |>
-  #dplyr::distinct() |> 
-  #dplyr::mutate(Z=sum(S+T+U+V)) |>
-  #dplyr::ungroup() 
+  ballcodf <- dfm |> dplyr::left_join(probvrnd,by='P') |> base::split(.$P) |>
+       purrr::map(function(x){
+  # Assigning voters in each precinct
+  cp <- stats::rbinom(x$R,1,x$ZV) 
+  ## Setting up vector frame
+  dc <- data.frame(P=x$P,ZV=x$ZV,R=x$R,C=cp,p1=x$p1,p2=x$p2,p3=x$p3,p4=x$p4,p5=x$p5,p6=x$p6) |>
+    dplyr::mutate(Id=row_number()) |> 
+    dplyr::relocate(Id,.before=P)  |>
+    dplyr::group_by(Id) |> 
+    dplyr::mutate(V=ifelse(C==1,sample(1:3,1,prob=c(p1,p2,p3)),sample(4:6,1,prob=c(p4,p5,p6)))) |>
+    dplyr::ungroup() 
+  })  |>
+  dplyr::bind_rows() %>%
+  dplyr::mutate(Id=row_number(P)) |> 
+  dplyr::relocate(Id,.before=P) |> 
+  dplyr::mutate(S=ifelse(V==1,1,0)) |> 
+  dplyr::mutate(T=ifelse(V==4,1,0)) |>  
+  dplyr::mutate(U=ifelse(V==2,1,0)) |>
+  dplyr::mutate(V=ifelse(V==5,1,0)) |>
+  dplyr::arrange(P) |>  dplyr::group_by(P)  |> 
+  dplyr::select(c('P','R','S','T','U','V')) |>
+  dplyr::mutate(S=sum(S),T=sum(T),U=sum(U),V=sum(V)) |>
+  dplyr::distinct() |> 
+  dplyr::mutate(Z=sum(S+T+U+V)) |>
+  dplyr::ungroup() 
 }
 print(ballcastsim())
 
