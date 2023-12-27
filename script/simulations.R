@@ -11,7 +11,6 @@ library(gridExtra)
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 #########################################################################################################################################################
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc_py.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
@@ -64,24 +63,23 @@ probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztech <- c(0,1)	
 app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
-#r2simn()
 #########################################################################################################################################################
-pro_rec_ex1_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=U,V=V,R=R)
-pro_rec_ex2_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=Up,V=Vp,R=R) 
-pro_rec_ex1 <- pro_rec_ex1_e[1:3,]
-pro_rec_ex2 <- pro_rec_ex2_e[1:3,]
-pro_elc_ex1 <- Countinggraphs(pro_rec_ex1,polyn=1)
-pro_elc_ex2 <- Countinggraphs(pro_rec_ex2,polyn=1)
-#pr_rep_1 <- seloutput <- seloutput(selreport(pro_elc_ex1,md$app4))
-#pr_rep_2 <- seloutput <- seloutput(selreport(pro_elc_ex2,md$app4))
-cx <- round(pro_elc_ex1$sdfc$x,2)
-cy <- round(pro_elc_ex1$sdfc$y,2)
-czeta <- round(pro_elc_ex1$sdfc$zeta,2)
-calpha <- round(pro_elc_ex1$sdfc$alpha,2)
-clambda <- round(pro_elc_ex1$sdfc$lamda,2)
-cg <- round(pro_elc_ex1$sdfc$g,2)
-ch <- round(pro_elc_ex1$sdfc$y,2)
-cGamma <- round(pro_elc_ex1$sdfc$Gamma,2)
+#pro_rec_ex1_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=U,V=V,R=R)
+#pro_rec_ex2_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=Up,V=Vp,R=R) 
+#pro_rec_ex1 <- pro_rec_ex1_e[1:3,]
+#pro_rec_ex2 <- pro_rec_ex2_e[1:3,]
+#pro_elc_ex1 <- Countinggraphs(pro_rec_ex1,polyn=1)
+#pro_elc_ex2 <- Countinggraphs(pro_rec_ex2,polyn=1)
+##pr_rep_1 <- seloutput <- seloutput(selreport(pro_elc_ex1,md$app4))
+##pr_rep_2 <- seloutput <- seloutput(selreport(pro_elc_ex2,md$app4))
+#cx <- round(pro_elc_ex1$sdfc$x,2)
+#cy <- round(pro_elc_ex1$sdfc$y,2)
+#czeta <- round(pro_elc_ex1$sdfc$zeta,2)
+#calpha <- round(pro_elc_ex1$sdfc$alpha,2)
+#clambda <- round(pro_elc_ex1$sdfc$lamda,2)
+#cg <- round(pro_elc_ex1$sdfc$g,2)
+#ch <- round(pro_elc_ex1$sdfc$y,2)
+#cGamma <- round(pro_elc_ex1$sdfc$Gamma,2)
 ##########################################################################################################################################################
 ##########################################################################################################################################################
 ########## Normal form

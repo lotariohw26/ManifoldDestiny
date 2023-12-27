@@ -173,3 +173,5 @@ Racegraphs$methods(plot2ddynamic_fac=function(){
      #gganimate::ease_aes('linear') +
      #ggplot2::theme_bw()
 })
+
+
