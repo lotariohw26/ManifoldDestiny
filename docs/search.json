@@ -38,64 +38,64 @@
     "objectID": "presentation.html#setting-up-the-election-system",
     "href": "presentation.html#setting-up-the-election-system",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "",
-    "text": "Two candidates: A, B\nCounty with three precincts: 1, 2, 3\nTwo modes of voting\n\nNumber of ballots mode 1: S, T\nNumber of ballots mode 2: U, V"
+    "section": "Setting up the election system",
+    "text": "Setting up the election system\n\nTwo candidates: A, B\nCounty with three precincts: 1, 2, 3\nTwo modes of voting\n\nNumber of ballots mode 1: S, T\nNumber of ballots mode 2: U, V"
   },
   {
     "objectID": "presentation.html#section-1",
     "href": "presentation.html#section-1",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "County_1\nCounty_2\nCounty_3\n\n\n60/40\n60/40\n60/40\n\n\n40/60\n40/60\n40/60\n\n\n\n80/120\n80/120\n\n\n\n\n120/180\n\n\n\n\n\n\n\n\n\n\n\n\nCounty_1\nCounty_2\nCounty_3\n\n\n60/40\n60/40\n60/40\n\n\n40/60\n40/60\n40/60\n\n\n\n75/125\n75/125\n\n\n\n\n105/195"
+    "text": "County_1\nCounty_2\nCounty_3\n\n\n60/40\n60/40\n60/40\n\n\n40/60\n40/60\n40/60\n\n\n\n40/60\n40/60\n\n\n\n\n40/60\n\n\n\n\n\n\n\n\n\n\n\n\nCounty_1\nCounty_2\nCounty_3\n\n\n60/40\n60/40\n60/40\n\n\n40/60\n40/60\n40/60\n\n\n\n35/65\n35/65\n\n\n\n\n30/70"
   },
   {
     "objectID": "presentation.html#parametric-tautologies-in-a-election-using-standard-form-north-vs.-south",
     "href": "presentation.html#parametric-tautologies-in-a-election-using-standard-form-north-vs.-south",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "",
-    "text": "S\nT\n\n\nV\nU\n\n\n\n\n\n\n\nParameters: ** \\(x\\), \\(y\\), \\(\\zeta\\), \\(\\alpha\\), \\(\\lambda\\) ** \\[\\begin{equation*}\nx=\\frac{S}{S + T} \\text{, }y=\\frac{U}{U + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\zeta=\\frac{U + V}{S + T}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\alpha=\\frac{S + U}{S + T + U + V}=\\frac{x + y \\zeta}{\\zeta + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\lambda=\\frac{S + V}{S + T + U + V}=\\frac{x + \\zeta \\left(1 - y\\right)}{\\zeta + 1}\n\\end{equation*}\\]"
+    "section": "Parametric tautologies in a election using standard form (north vs. south)",
+    "text": "Parametric tautologies in a election using standard form (north vs. south)\n\n\n\n\n\nS\nT\n\n\nV\nU\n\n\n\n\n\n\n\nParameters: ** \\(x\\), \\(y\\), \\(\\zeta\\), \\(\\alpha\\), \\(\\lambda\\) ** \\[\\begin{equation*}\nx=\\frac{S}{S + T} \\text{, }y=\\frac{U}{U + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\zeta=\\frac{U + V}{S + T}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\alpha=\\frac{S + U}{S + T + U + V}=\\frac{x + y \\zeta}{\\zeta + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\lambda=\\frac{S + V}{S + T + U + V}=\\frac{x + \\zeta \\left(1 - y\\right)}{\\zeta + 1}\n\\end{equation*}\\]"
   },
   {
     "objectID": "presentation.html#section-2",
     "href": "presentation.html#section-2",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Election results applying standard form on case I\n\n\nP\nS\nT\nU\nV\nx\ny\nzeta\nalpha\nlamda\n\n\n\n\n1\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5000\n0.6\n\n\n2\n60\n40\n80\n120\n0.6\n0.4\n2\n0.4667\n0.6\n\n\n3\n60\n40\n120\n180\n0.6\n0.4\n3\n0.4500\n0.6\n\n\n\n\n\n\n\nNumerical calculation of candidate one total percentage - Precinct 1 - \\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\) - Precinct 2 - \\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\) - Precinct 3 - \\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\)"
+    "text": "Election results applying standard form on case I\n\n\nP\nS\nT\nU\nV\nx\ny\nzeta\nalpha\nlamda\n\n\n\n\n1\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6\n\n\n2\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6\n\n\n3\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6\n\n\n\n\n\n\n\nNumerical calculation of candidate one total percentage - Precinct 1 - \\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\) - Precinct 2 - \\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\) - Precinct 3 - \\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\)"
   },
   {
     "objectID": "presentation.html#parametric-tautologies-in-a-election-using-hybrid-form-west-vs.-east",
     "href": "presentation.html#parametric-tautologies-in-a-election-using-hybrid-form-west-vs.-east",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "",
-    "text": "S\nU\n\n\nT\nV\n\n\n\n\n\n\n\nParameters: \\(g\\), \\(h\\), \\(\\Gamma\\), \\(\\alpha\\), \\(\\Omega\\) \\[\\begin{equation*}\ng=\\frac{S}{S + V} \\text{, } h=\\frac{U}{T + U}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Gamma=\\frac{T + U}{S + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\alpha=\\frac{S + U}{S + T + U + V}=\\frac{\\Gamma h + g}{\\Gamma + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Omega=\\frac{S + T}{S + T + U + V}=\\frac{\\Gamma \\left(1 - g\\right) + g}{\\Gamma + 1}\n\\end{equation*}\\]"
+    "section": "Parametric tautologies in a election using hybrid form (west vs. east)",
+    "text": "Parametric tautologies in a election using hybrid form (west vs. east)\n\n\n\n\n\nS\nU\n\n\nT\nV\n\n\n\n\n\n\n\nParameters: \\(g\\), \\(h\\), \\(\\Gamma\\), \\(\\alpha\\), \\(\\Omega\\) \\[\\begin{equation*}\ng=\\frac{S}{S + V} \\text{, } h=\\frac{U}{T + U}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Gamma=\\frac{T + U}{S + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\alpha=\\frac{S + U}{S + T + U + V}=\\frac{\\Gamma h + g}{\\Gamma + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Omega=\\frac{S + T}{S + T + U + V}=\\frac{\\Gamma \\left(1 - g\\right) + g}{\\Gamma + 1}\n\\end{equation*}\\]"
   },
   {
     "objectID": "presentation.html#section-3",
     "href": "presentation.html#section-3",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Election results applying hybrid form case I\n\n\nP\nS\nT\nU\nV\ng\nh\nGamma\nalpha\nOmega\n\n\n\n\n1\n60\n40\n40\n60\n0.5000\n0.5000\n0.6667\n0.5000\n0.5000\n\n\n2\n60\n40\n80\n120\n0.3333\n0.6667\n0.6667\n0.4667\n0.3333\n\n\n3\n60\n40\n120\n180\n0.2500\n0.7500\n0.6667\n0.4500\n0.2500\n\n\n\n\n\n\n\nNumerical calculation of candidate one total percentage - Precinct 1 - \\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\) - Precinct 2 - \\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\) - Precinct 3 - \\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\)\n\n\n\nElection results applying hybrid form case II\n\n\nP\nS\nT\nU\nV\ng\nh\nGamma\nalpha\nOmega\n\n\n\n\n1\n60\n40\n40\n60\n0.5000\n0.5000\n0.6667\n0.5000\n0.5000\n\n\n2\n60\n40\n75\n125\n0.3243\n0.6522\n0.6216\n0.4500\n0.3333\n\n\n3\n60\n40\n105\n195\n0.2353\n0.7241\n0.5686\n0.4125\n0.2500"
+    "text": "Election results applying hybrid form case I\n\n\nP\nS\nT\nU\nV\ng\nh\nGamma\nalpha\nOmega\n\n\n\n\n1\n60\n40\n40\n60\n0.5\n0.5\n0.6667\n0.5\n0.5\n\n\n2\n60\n40\n40\n60\n0.5\n0.5\n0.6667\n0.5\n0.5\n\n\n3\n60\n40\n40\n60\n0.5\n0.5\n0.6667\n0.5\n0.5\n\n\n\n\n\n\n\nNumerical calculation of candidate one total percentage - Precinct 1 - \\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\) - Precinct 2 - \\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\) - Precinct 3 - \\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\)\n\n\n\nElection results applying hybrid form case II\n\n\nP\nS\nT\nU\nV\ng\nh\nGamma\nalpha\nOmega\n\n\n\n\n1\n60\n40\n40\n60\n0.5000\n0.5000\n0.6667\n0.500\n0.5\n\n\n2\n60\n40\n35\n65\n0.4800\n0.4667\n0.6000\n0.475\n0.5\n\n\n3\n60\n40\n30\n70\n0.4615\n0.4286\n0.5385\n0.450\n0.5"
   },
   {
     "objectID": "presentation.html#parametric-tautologies-in-a-election-using-opposition-form-upper-diagonal-vs.-lower-diagonal",
     "href": "presentation.html#parametric-tautologies-in-a-election-using-opposition-form-upper-diagonal-vs.-lower-diagonal",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "",
-    "text": "S\nU\n\n\nT\nV\n\n\n\n\n\n\n\nParameters: \\(m\\), \\(n\\), \\(\\xi\\), \\(\\lambda\\), \\(\\Omega\\) \\[\\begin{equation*}\nn=\\frac{S}{S + U} \\text{ , } m=\\frac{T}{T + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\xi=\\frac{T + V}{S + U}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Omega=\\frac{S + T}{S + T + U + V}=\\frac{m + n \\xi}{\\xi + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\lambda=\\frac{S + V}{S + T + U + V}=- \\Omega + \\frac{2 m + \\xi}{\\xi + 1}\n\\end{equation*}\\]"
+    "section": "Parametric tautologies in a election using opposition form (upper diagonal vs. lower diagonal)",
+    "text": "Parametric tautologies in a election using opposition form (upper diagonal vs. lower diagonal)\n\n\n\n\n\nS\nU\n\n\nT\nV\n\n\n\n\n\n\n\nParameters: \\(m\\), \\(n\\), \\(\\xi\\), \\(\\lambda\\), \\(\\Omega\\) \\[\\begin{equation*}\nn=\\frac{S}{S + U} \\text{ , } m=\\frac{T}{T + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\xi=\\frac{T + V}{S + U}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Omega=\\frac{S + T}{S + T + U + V}=\\frac{m + n \\xi}{\\xi + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\lambda=\\frac{S + V}{S + T + U + V}=- \\Omega + \\frac{2 m + \\xi}{\\xi + 1}\n\\end{equation*}\\]"
   },
   {
     "objectID": "presentation.html#section-4",
     "href": "presentation.html#section-4",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Election results applying opposition form\n\n\nP\nS\nT\nU\nV\nn\nm\nxi\nOmega\nlamda\n\n\n\n\n1\n60\n40\n40\n60\n0.6000\n0.4000\n1.000\n0.5000\n0.6\n\n\n2\n60\n40\n80\n120\n0.4286\n0.2500\n1.143\n0.3333\n0.6\n\n\n3\n60\n40\n120\n180\n0.3333\n0.1818\n1.222\n0.2500\n0.6"
+    "text": "Election results applying opposition form\n\n\nP\nS\nT\nU\nV\nn\nm\nxi\nOmega\nlamda\n\n\n\n\n1\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6\n\n\n2\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6\n\n\n3\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6"
   },
   {
     "objectID": "presentation.html#modelling-the-election-process",
     "href": "presentation.html#modelling-the-election-process",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "",
-    "text": "Step 1: Each registered voter assign themself (independent of voting technology) to either candidate A or candidate B\nStep 2: Voting technology realized\nStep 3: Registered voters determine whether to vote or not to vote\nStep 4: If voting, do this by either mode 1 or by mode 2.\n\n\n\n\n\n\n  flowchart LR\n  A[Candidate A or B] --&gt; R[A]\n  R --&gt; RV[Vote]\n  RV --&gt; RVE[Non-Mail]\n  RV --&gt; RVM[Mail]\n  R --&gt; RN[Not Vote]\n  DV --&gt; DVE[Non-Mail]\n  DV --&gt; DVM[Mail]\n  A --&gt; D[B]\n  D --&gt; DV[Vote]\n  D --&gt; Dn[Not Vote]"
+    "section": "Modelling the election process",
+    "text": "Modelling the election process\n\nStep 1: Each registered voter assign themself (independent of voting technology) to either candidate A or candidate B\nStep 2: Voting technology realized\nStep 3: Registered voters determine whether to vote or not to vote\nStep 4: If voting, do this by either mode 1 or by mode 2.\n\n\n\n\n\n\n  flowchart LR\n  A[Candidate A or B] --&gt; R[A]\n  R --&gt; RV[Vote]\n  RV --&gt; RVE[Non-Mail]\n  RV --&gt; RVM[Mail]\n  R --&gt; RN[Not Vote]\n  DV --&gt; DVE[Non-Mail]\n  DV --&gt; DVM[Mail]\n  A --&gt; D[B]\n  D --&gt; DV[Vote]\n  D --&gt; Dn[Not Vote]"
   },
   {
     "objectID": "presentation.html#section-5",
@@ -108,8 +108,8 @@
     "objectID": "presentation.html#how-exogenous-factors-that-influence-the-voting-system-will-make-changes-to-the-election-outcome-through-zeta_i",
     "href": "presentation.html#how-exogenous-factors-that-influence-the-voting-system-will-make-changes-to-the-election-outcome-through-zeta_i",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "",
-    "text": "Differences in the cost of voting (e.g., topology, voting rules, dropboxes etc.) across precincts \\(\\Rightarrow\\)\nChanges to the likelihood of voting \\(\\Rightarrow\\)\nSimplify so that changes in the likelihood of voting only impact Mode 2 \\(\\Rightarrow\\)\nHigher \\(\\zeta_i\\) \\(\\Rightarrow\\)\nWhich changes the total election outcome through \\(\\alpha_i=\\frac{x_i+\\zeta_i y_i}{\\zeta_i+x_i}\\)"
+    "section": "How exogenous factors that influence the voting system will make changes to the election outcome through \\(\\zeta_i\\)",
+    "text": "How exogenous factors that influence the voting system will make changes to the election outcome through \\(\\zeta_i\\)\n\nDifferences in the cost of voting (e.g., topology, voting rules, dropboxes etc.) across precincts \\(\\Rightarrow\\)\nChanges to the likelihood of voting \\(\\Rightarrow\\)\nSimplify so that changes in the likelihood of voting only impact Mode 2 \\(\\Rightarrow\\)\nHigher \\(\\zeta_i\\) \\(\\Rightarrow\\)\nWhich changes the total election outcome through \\(\\alpha_i=\\frac{x_i+\\zeta_i y_i}{\\zeta_i+x_i}\\)"
   },
   {
     "objectID": "presentation.html#section-6",
@@ -122,8 +122,8 @@
     "objectID": "presentation.html#how-exogenous-factors-that-influence-the-voting-system-will-make-changes-to-the-election-outcome-through-gamma_i",
     "href": "presentation.html#how-exogenous-factors-that-influence-the-voting-system-will-make-changes-to-the-election-outcome-through-gamma_i",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "",
-    "text": "Differenc in the cost of voting (e.g., topology, voting rules, dropboxes, socio economics etc.) across precincts \\(\\Rightarrow\\)\nMake changes to the likelihood of voting \\(\\Rightarrow\\)\nSimplify so that changes in the likelihood of voting only impact mode 2 \\(\\Rightarrow\\)\nHigher \\(\\zeta_i\\) \\(\\Rightarrow\\)\nIf new and earlier sample not representative of each other, higher \\(\\Gamma_i\\) \\(\\Rightarrow\\)\nWhich changes the total election outcome through \\(\\alpha_i=\\frac{g_i+\\zeta_i h_i}{\\zeta_i+1}\\)"
+    "section": "How exogenous factors that influence the voting system will make changes to the election outcome through \\(\\Gamma_i\\)",
+    "text": "How exogenous factors that influence the voting system will make changes to the election outcome through \\(\\Gamma_i\\)\n\nDifferenc in the cost of voting (e.g., topology, voting rules, dropboxes, socio economics etc.) across precincts \\(\\Rightarrow\\)\nMake changes to the likelihood of voting \\(\\Rightarrow\\)\nSimplify so that changes in the likelihood of voting only impact mode 2 \\(\\Rightarrow\\)\nHigher \\(\\zeta_i\\) \\(\\Rightarrow\\)\nIf new and earlier sample not representative of each other, higher \\(\\Gamma_i\\) \\(\\Rightarrow\\)\nWhich changes the total election outcome through \\(\\alpha_i=\\frac{g_i+\\zeta_i h_i}{\\zeta_i+1}\\)"
   },
   {
     "objectID": "presentation.html#section-7",

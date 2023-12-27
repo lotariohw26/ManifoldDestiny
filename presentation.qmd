@@ -21,15 +21,12 @@ library(huxtable)
 modlat <- eqpar$meql
 metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 mda <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/script/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/simulations.R'))
 #source(paste0(rprojroot::find_rstudio_root_file(),'/script/applications.R'))
 ```
 
 # `r #metad$toc$sec1$nmn`
 
-```{r}
-knitr::knit_exit()
-```
 
  Ed. Solomon
 
@@ -307,8 +304,18 @@ of the existance of a *trivial* Manifold related to opposition form are not sati
 
 If none of this three cases are satisfied, variation in $\Gamma_i$ should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?
 
+---
+
+```{webr-r}
+2+2
+```
+
 
 # `r metad$toc$sec2$nmn`
+
+```{r}
+knitr::knit_exit()
+```
 
 ## `r metad$toc$sec2$unm[1]`
 
