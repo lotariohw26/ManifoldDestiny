@@ -180,6 +180,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   polyn=9, 
 					   sortby=alpha
 					   ){
+
+  library(ManifoldDestiny)
   parameters <<- stickers[['parameters']]
   se <<- eqpar$meqs
   lx <<- eqpar$meql
@@ -375,6 +377,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0)){
   }
   rdfc <<- dplyr::select(loss_df,P,R,S,T,U,V) %>% ballcount(se=se)
 })
+#' @import ManifoldDestiny
 #' @export Countinggraphs
 Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
 Countinggraphs$methods(plot2d=function(form=1,

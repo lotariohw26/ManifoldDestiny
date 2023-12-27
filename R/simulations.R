@@ -54,11 +54,11 @@ r2simn <- function(nprec=300,
                  std=c('alpha~n+m','alpha~n+m+xi'))[[form]]
     # Box
     dfb <- data.frame(P=seq(1,nprec)) %>%
-    dplyr::mutate(genreg=10^qnorm(runif(n()),regs[1],regs[2])) %>%
+    dplyr::mutate(genreg=10^qnorm(runif(dplyr::n()),regs[1],regs[2])) %>%
     dplyr::mutate(R=round(ifelse(genreg>minmax[2]|genreg<minmax[1],runif(1,minmax[1],minmax[2]),genreg))) %>%
-    dplyr::mutate(Z=round(R*qnorm(runif(n()),turn[1],turn[2]))) %>%
+    dplyr::mutate(Z=round(R*qnorm(runif(dplyr::n()),turn[1],turn[2]))) %>%
     # Form 
-    dplyr::mutate(!!paste0('OpT'):=round(Z*rnorm(n(),Invper[1],Invper[2]))) %>%
+    dplyr::mutate(!!paste0('OpT'):=round(Z*rnorm(dplyr::n(),Invper[1],Invper[2]))) %>%
     dplyr::mutate(!!paste0('TpF'):=Z-OpT) %>% dplyr::mutate(gen_u=rnorm(n(),u[1],u[2])) %>%
     dplyr::mutate(gen_v=rnorm(n(),dv[1],dv[2])+gen_u) %>%
     # Ballots

@@ -8,13 +8,14 @@ library(ggplot2)
 library(htmltools)
 library(huxtable)
 library(gridExtra)
+md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+#########################################################################################################################################################
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc_py.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
-md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 #########################################################################################################################################################
 ##### Proto example 1 and 2
 P  <- c(1,2,3,4,5,6)
@@ -55,6 +56,16 @@ towii <- as.data.frame(ex2m) %>%
 towii[3:4,1] <- ""
 towii[4,2] <- ""
 #########################################################################################################################################################
+###### Normal 
+######## R2 sim
+dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10)
+probw <- c(m=0.51,s=0.10)
+probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
+probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
+ztech <- c(0,1)	
+app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
+#r2simn()
+#########################################################################################################################################################
 pro_rec_ex1_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=U,V=V,R=R)
 pro_rec_ex2_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=Up,V=Vp,R=R) 
 pro_rec_ex1 <- pro_rec_ex1_e[1:3,]
@@ -72,14 +83,6 @@ cg <- round(pro_elc_ex1$sdfc$g,2)
 ch <- round(pro_elc_ex1$sdfc$y,2)
 cGamma <- round(pro_elc_ex1$sdfc$Gamma,2)
 ##########################################################################################################################################################
-###### Normal 
-######## R2 sim
-dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10)
-probw <- c(m=0.51,s=0.10)
-probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
-probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
-ztech <- c(0,1)	
-app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
 ##########################################################################################################################################################
 ########## Normal form
 #app_n_rep <- selreport(app_bal,md$app0)

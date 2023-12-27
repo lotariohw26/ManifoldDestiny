@@ -16,7 +16,7 @@ filters:
 ```{webr-r}
 webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
-webr::install(c("dplyr","purrr","magrittr","data.table"))
+webr::install(c("dplyr","purrr","magrittr","data.table","tidyr"))
 library(ManifoldDestinyWASMP)
 ls(package:ManifoldDestinyWASMP)
 library(ManifoldDestinyWASMD)
@@ -33,7 +33,9 @@ probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztech <- c(0,1)	
 app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
-app_bal 
+SimVoterdatabase(app_bal)
+library(dplyr)
+r2simn()
 ```
 
 ## Tower
@@ -77,6 +79,13 @@ towii[3:4,1] <- ""
 towii[4,2] <- ""
 
 ```
+
+## Tower
+```{webr-r}
+r2simn()
+```
+
+
 
 ## Countinggraphs
 ```{webr-r}

@@ -815,6 +815,7 @@ globalThis.qwebrCreateNonInteractiveSetupElement = function(qwebrCounter) {
   <ul class="collapse">
   <li><a href="#r2-sim" id="toc-r2-sim" class="nav-link" data-scroll-target="#r2-sim">R2 sim</a></li>
   <li><a href="#tower" id="toc-tower" class="nav-link" data-scroll-target="#tower">Tower</a></li>
+  <li><a href="#tower-1" id="toc-tower-1" class="nav-link" data-scroll-target="#tower-1">Tower</a></li>
   <li><a href="#countinggraphs" id="toc-countinggraphs" class="nav-link" data-scroll-target="#countinggraphs">Countinggraphs</a></li>
   </ul></li>
   <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
@@ -989,7 +990,7 @@ currentDocumentLocation.appendChild(initializedElement);
 qwebrCreateMonacoEditorInstance(
   `webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
-webr::install(c("dplyr","purrr","magrittr","data.table"))
+webr::install(c("dplyr","purrr","magrittr","data.table","tidyr"))
 library(ManifoldDestinyWASMP)
 ls(package:ManifoldDestinyWASMP)
 library(ManifoldDestinyWASMD)
@@ -1024,7 +1025,9 @@ probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztech <- c(0,1) 
 app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
-app_bal `, 
+SimVoterdatabase(app_bal)
+library(dplyr)
+r2simn()`, 
   2);
 </script>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -1087,8 +1090,8 @@ towii[4,2] <- ""`,
 </script>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="countinggraphs" class="level2">
-<h2 class="anchored" data-anchor-id="countinggraphs">Countinggraphs</h2>
+<section id="tower-1" class="level2">
+<h2 class="anchored" data-anchor-id="tower-1">Tower</h2>
 <div id="qwebr-insertion-location-4"></div>
 <script type="module">
 // Retrieve the insertion point
@@ -1097,6 +1100,28 @@ const currentDocumentLocation = document.getElementById("qwebr-insertion-locatio
 // Initalize an interactive element
 const initializedElement =   qwebrCreateInteractiveElement(
     4
+  );
+
+// Add the interactive element into the document scope
+currentDocumentLocation.appendChild(initializedElement);
+
+// Initialize a Monaco Editor Instance
+qwebrCreateMonacoEditorInstance(
+  `r2simn()`, 
+  4);
+</script>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="countinggraphs" class="level2">
+<h2 class="anchored" data-anchor-id="countinggraphs">Countinggraphs</h2>
+<div id="qwebr-insertion-location-5"></div>
+<script type="module">
+// Retrieve the insertion point
+const currentDocumentLocation = document.getElementById("qwebr-insertion-location-5");
+
+// Initalize an interactive element
+const initializedElement =   qwebrCreateInteractiveElement(
+    5
   );
 
 // Add the interactive element into the document scope
@@ -1120,21 +1145,21 @@ clambda <- round(pro_elc_ex1$sdfc$lamda,2)
 cg <- round(pro_elc_ex1$sdfc$g,2)
 ch <- round(pro_elc_ex1$sdfc$y,2)
 cGamma <- round(pro_elc_ex1$sdfc$Gamma,2)`, 
-  4);
+  5);
 </script>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 </section>
 <section id="applications" class="level1">
 <h1>Applications</h1>
-<div id="qwebr-insertion-location-5"></div>
+<div id="qwebr-insertion-location-6"></div>
 <script type="module">
 // Retrieve the insertion point
-const currentDocumentLocation = document.getElementById("qwebr-insertion-location-5");
+const currentDocumentLocation = document.getElementById("qwebr-insertion-location-6");
 
 // Initalize an interactive element
 const initializedElement =   qwebrCreateInteractiveElement(
-    5
+    6
   );
 
 // Add the interactive element into the document scope
@@ -1143,7 +1168,7 @@ currentDocumentLocation.appendChild(initializedElement);
 // Initialize a Monaco Editor Instance
 qwebrCreateMonacoEditorInstance(
   ``, 
-  5);
+  6);
 </script>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 

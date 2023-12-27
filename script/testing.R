@@ -11,6 +11,7 @@ library(DT)
 library(kableExtra)
 library(htmlTable)
 library(usethis)
+###########################################################################################################
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/raceanalysis.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/olsmethods.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
@@ -18,14 +19,6 @@ source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc_py.R'))
-vl <- ManifoldDestiny::recnav
-dfm <- ManifoldDestiny::miller_stavros_nevada_2020[[1]] %>%
-  dplyr::mutate(S=A1,T=B1,U=A2,V=B2) %>%
-  dplyr::mutate(Z=S+T+U+V+A3+B3, Psi=Z/R) %>%
-  dplyr::mutate(alpha=(S+U)/(Z)) %>% 
-  dplyr::mutate(map=U/(S+T)) %>%
-  dplyr::mutate(mbp=T/(T+V)) %>%
-  dplyr::select(P,R,S,T,U,V)
 ###########################################################################################################
 frm <- 2
 slv2 <- c('alpha'='k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3',solvf='g',root=1)
