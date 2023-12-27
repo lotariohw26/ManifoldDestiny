@@ -11,6 +11,7 @@ project:
     - "abc.qmd"
     - "def.qmd"
     - "jsonview.qmd"
+
 website:
   title: "Manifold Destiny"
   navbar:
@@ -63,3 +64,4 @@ format:
   html:
     theme: zephyr
     toc: true
+
