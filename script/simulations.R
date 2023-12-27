@@ -15,13 +15,6 @@ source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-dfm <- ManifoldDestiny::miller_stavros_nevada_2020[[1]] %>%
-  dplyr::mutate(S=A1,T=B1,U=A2,V=B2) %>%
-  dplyr::mutate(Z=S+T+U+V+A3+B3, Psi=Z/R) %>%
-  dplyr::mutate(alpha=(S+U)/(Z)) %>% 
-  dplyr::mutate(map=U/(S+T)) %>%
-  dplyr::mutate(mbp=T/(T+V)) %>%
-  dplyr::select(P,R,S,T,U,V)
 #########################################################################################################################################################
 ##### Proto example 1 and 2
 P  <- c(1,2,3,4,5,6)
@@ -81,11 +74,13 @@ cGamma <- round(pro_elc_ex1$sdfc$Gamma,2)
 ##########################################################################################################################################################
 ###### Normal 
 ######## R2 sim
+dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10)
 probw <- c(m=0.51,s=0.10)
 probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztech <- c(0,1)	
-#app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
+app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
+##########################################################################################################################################################
 ########## Normal form
 #app_n_rep <- selreport(app_bal,md$app0)
 #app_n_out <- seloutput(app_n_rep)

@@ -173,7 +173,6 @@ Countingprocess <- setRefClass("Countingprocess",
 					   gensysl='list',
 					   exnrs='vector',
 					   allvar='list',
-					   eqpar='list',
 					   loss_df='data.frame'
 					   ))
 Countingprocess$methods(initialize=function(sdfinp=NULL,
@@ -181,11 +180,6 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   polyn=9, 
 					   sortby=alpha
 					   ){
-
-  pr_path <- system.file(package='ManifoldDestiny')
-  eqpar <<- ManifoldDestiny::eqpar
-  stickers <- ManifoldDestiny::stickers
-  # Assigning parameters 
   parameters <<- stickers[['parameters']]
   se <<- eqpar$meqs
   lx <<- eqpar$meql
@@ -201,11 +195,11 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   ## Polynom
   pnset <- min(length(rdfci$pri)-1,polyn)
   ### Init values standard form
-  polyc[[1]] <<- lm(rdfci$alpha ~ poly(rdfci$pri, pnset, raw=TRUE))
-  ### Init values hybrid form
-  polyc[[2]] <<- lm(rdfci$alpha ~ poly(rdfci$pri, pnset, raw=TRUE))
-  ##### Init values opposition form
-  polyc[[3]] <<- lm(rdfci$lamda ~ poly(rdfci$pri, pnset, raw=TRUE))
+  polyc[[1]] <<- stats::lm(rdfci$alpha ~ poly(rdfci$pri, pnset, raw=TRUE))
+  ### Init valuesstats:: hybrid form
+  polyc[[2]] <<- stats::lm(rdfci$alpha ~ poly(rdfci$pri, pnset, raw=TRUE))
+  ##### Init valustats::es opposition form
+  polyc[[3]] <<- stats::lm(rdfci$lamda ~ poly(rdfci$pri, pnset, raw=TRUE))
 
 })
 Countingprocess$methods(r2siminput=function(form=1,latest=0)

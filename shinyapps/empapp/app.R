@@ -1,24 +1,24 @@
-options(scipen=999)
-set.seed(1)
-library(ManifoldDestiny)
-library(dplyr)
-library(ggplot2)
-library(plotly)
-library(htmltools)
-library(gridExtra)
 library(shiny)
-library(DT)
-library(kableExtra)
-library(htmlTable)
-library(usethis)
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
-md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+library(plotly)
+#options(scipen=999)
+#set.seed(1)
+#library(ManifoldDestiny)
+#library(dplyr)
+#library(ggplot2)
+#library(htmltools)
+#library(gridExtra)
+#library(DT)
+#library(kableExtra)
+#library(htmlTable)
+#library(usethis)
+#source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
+#md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 dlname <- c("app0","app1","app2")
-googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+#googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 ###############################################################################################################################################################
 ui <- fluidPage(
   titlePanel("Rigged election results analyzer"),
@@ -78,67 +78,67 @@ server <- function(input, output, session) {
   cformo <- reactive({
     # Manual
     seldata <- get(load(paste0(rprojroot::find_rstudio_root_file(),'/data/',input$app_select,".rda")))
-    mds <- md[[input$app_select]]
-    ## Purge
-    abc <- strsplit(input$purge,";")
-    mds$mtd$prg$cnd <- c(0)
-    mds$mtd$prg$stuv <- c(0,0,0,0)
-    mds$mtd$prg$blup[1] <- 0
-    mds$mtd$prg$blup[2] <- 1
-    ## Solution
-    mds$sgs$fr <- as.numeric(input$form)
-    mds$sgs$eq <- as.numeric(input$meqf)
-    mds$sgs$va <- as.numeric(input$solvf)
-    ## Rotation
-    mds$mtd$sgs$ro[1] <- input$theta*pi/180
-    mds$mtd$sgs$ro[2] <- input$phi*pi/180
-    mds$mtd$sgs$ro[3] <- input$rho*pi/180
-    ## Selreport
-    return(selreport(seldata,mds))
+    #mds <- md[[input$app_select]]
+    ### Purge
+    #abc <- strsplit(input$purge,";")
+    #mds$mtd$prg$cnd <- c(0)
+    #mds$mtd$prg$stuv <- c(0,0,0,0)
+    #mds$mtd$prg$blup[1] <- 0
+    #mds$mtd$prg$blup[2] <- 1
+    ### Solution
+    #mds$sgs$fr <- as.numeric(input$form)
+    #mds$sgs$eq <- as.numeric(input$meqf)
+    #mds$sgs$va <- as.numeric(input$solvf)
+    ### Rotation
+    #mds$mtd$sgs$ro[1] <- input$theta*pi/180
+    #mds$mtd$sgs$ro[2] <- input$phi*pi/180
+    #mds$mtd$sgs$ro[3] <- input$rho*pi/180
+    ### Selreport
+    #return(selreport(seldata,mds))
   })
   observe(print(cformo()[[1]]$desms))
   output$table_dsc <- renderPrint({
-    print(cformo()[[1]]$desms)
+    #print(cformo()[[1]]$desms)
   })
   output$plot_q <- renderPlot({
-    cformo()[[1]]$pl_2dsort[[1]]
+    #cformo()[[1]]$pl_2dsort[[1]]
   })
   output$plot_bow <- renderPlot({
-    cformo()[[5]]$pl_2dsort[[1]]
+    #cformo()[[5]]$pl_2dsort[[1]]
   })
   output$plot_xy <- renderPlot({
-    cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
+    #cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
   })
   output$plot_3d <- renderPlotly({
-    cformo()[[1]]$rotplotly[[1]]
+    #cformo()[[1]]$rotplotly[[1]]
   })
   output$plot_3ds <- renderUI({
-    cformo()[[1]]$all_pl_3d_mani[[1]]
+    #cformo()[[1]]$all_pl_3d_mani[[1]]
   })
   output$print_sum <- renderPrint({
-    list(summary(cformo()[[3]]$regsum[[1]]),
-	 summary(cformo()[[2]]$regsum[[1]]))
+    #list(summary(cformo()[[3]]$regsum[[1]]),
+#	 summary(cformo()[[2]]$regsum[[1]]))
   })
   output$plot_res <- renderPlot({
-    pla <- cformo()[[2]]$resplots[[1]][[c(1)]]
-    plb <- cformo()[[2]]$resplots[[2]][[c(1)]]
-    plc <- cformo()[[2]]$resplots[[3]][[c(1)]]
-    cowplot::plot_grid(plotlist=list(pla,plb,plc),ncol=1)
+    #pla <- cformo()[[2]]$resplots[[1]][[c(1)]]
+    #plb <- cformo()[[2]]$resplots[[2]][[c(1)]]
+    #plc <- cformo()[[2]]$resplots[[3]][[c(1)]]
+    #cowplot::plot_grid(plotlist=list(pla,plb,plc),ncol=1)
   })
   output$print_com <- renderPrint({
-    print(as.data.frame(cformo()[[2]]$comdesc)) #%>% dplyr::select(1,2,3,4)
-    print(as.data.frame(cformo()[[2]]$compare)) #%>% dplyr::select(1,2,3,4)
+    #print(as.data.frame(cformo()[[2]]$comdesc)) #%>% dplyr::select(1,2,3,4)
+    #print(as.data.frame(cformo()[[2]]$compare)) #%>% dplyr::select(1,2,3,4)
   })
   output$meta_dsc <- renderPrint({
-    library(RefManageR)
-    BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown", dashed = TRUE)
-    tes <- paste0(rprojroot::find_rstudio_root_file(),'/inst/references/man_bib.bib')	
-    bib <- RefManageR::ReadBib(tes)
-    RefManageR::NoCite(bib)
-    RefManageR::PrintBibliography(bib, .opts = list(check.entries = FALSE, sorting = "ynt"))
+    #library(RefManageR)
+    #BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown", dashed = TRUE)
+    #tes <- paste0(rprojroot::find_rstudio_root_file(),'/inst/references/man_bib.bib')	
+    #bib <- RefManageR::ReadBib(tes)
+    #RefManageR::NoCite(bib)
+    #RefManageR::PrintBibliography(bib, .opts = list(check.entries = FALSE, sorting = "ynt"))
   })
   output$sidebarText <- renderText({
-    paste0(cformo()[[6]]$mtd$sgs$eq)
+    #paste0(cformo()[[6]]$mtd$sgs$eq)
   })
 }
 runApp(shinyApp(ui = ui, server = server), port = 8100)

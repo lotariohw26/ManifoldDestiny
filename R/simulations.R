@@ -37,76 +37,6 @@ ballcastsim <- function(
     dplyr::mutate(Z=sum(S+T+U+V)) |>
     dplyr::ungroup() 
 }
-#' @export Countingprocess
-Countingprocess <- setRefClass("Countingprocess", 
-			       fields=list(sdfc='data.frame',
-					   rdfci='data.frame',
-					   rdfc='data.frame',
-					   rofc='data.frame',
-                                           rdfce='data.frame', 
-					   quintile='data.frame',
-					   desms='data.frame', 
-					   r2list='list', 
-					   predet='list',
-					   sumreg='vector', 
-					   psel='vector', 
-					   polyc='list',
-					   radpar='vector',
-					   parameters='list', 
-					   preend='list', 
-					   parampre='data.frame', 
-                                           rotplotly='list',
-					   se='list',
-					   lx='list',
-					   pl_2dsort='list',
-					   pl_corrxy='list',
-					   pl_rescro='list',
-					   pl_3d_mani='list',  
-					   all_pl_3d_mani='list',
-					   enf='list',
-					   mansysl='list',
-					   gensysl='list',
-					   exnrs='vector',
-					   allvar='list',
-					   eqpar='list',
-					   loss_df='data.frame'
-					   ))
-Countingprocess$methods(initialize=function(sdfinp=NULL,
-					   selvar=c('P','R','S','T','U','V'), 
-					   polyn=9, 
-					   sortby=alpha
-					   ){
-browser()
-  parameters <<- stickers[['parameters']]
-  se <<- eqpar$meqs
-  lx <<- eqpar$meql
-  ils <- c('S','T','U','V')
-  sdfc <<- ballcount(dplyr::select(sdfinp,all_of(selvar)),se=se)
-  rdfci <<- rdfc <<- sdfc %>% 
-    dplyr::arrange(alpha) %>%
-    dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
-    dplyr::relocate(pri,.before=P) %>%
-    dplyr::relocate(Z,.after=O) 
-    #dplyr::arrange(P)
-
-  ## Polynom
-  pnset <- min(length(rdfci$pri)-1,polyn)
-  ### Init values standard form
-  polyc[[1]] <<- lm(rdfci$alpha ~ poly(rdfci$pri, pnset, raw=TRUE))
-  ### Init values hybrid form
-  polyc[[2]] <<- lm(rdfci$alpha ~ poly(rdfci$pri, pnset, raw=TRUE))
-  ##### Init values opposition form
-  polyc[[3]] <<- lm(rdfci$lamda ~ poly(rdfci$pri, pnset, raw=TRUE))
-
-})
-
-library(dplyr)
-library(ManifoldDestiny)
-dfc <- ballcastsim()
-ballcous <<- Countingprocess(dfc)$sdfc
-
-#View(ballcous)
-#
 # Simulate prob
 #' @export r2simn
 r2simn <- function(nprec=300,
@@ -228,5 +158,4 @@ SimVoterdatabase$methods(gghist=function(){
     theme_minimal() +
     scale_fill_manual(values = c("#0072b2", "#e69f00"))  # set fill colors
 })
-
 

@@ -1,28 +1,28 @@
 ######################################################################################
-options(scipen=999)
-set.seed(1)
-library(ManifoldDestiny)
-library(kableExtra)
-library(dplyr)
-library(ggplot2)
-library(htmltools)
-library(gridExtra)
 library(shiny)
 library(plotly)
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
-#vl <- ManifoldDestiny::recnav
-dfm <- ManifoldDestiny::miller_stavros_nevada_2020[[1]] %>%
-  dplyr::mutate(S=A1,T=B1,U=A2,V=B2) %>%
-  dplyr::mutate(Z=S+T+U+V+A3+B3, Psi=Z/R) %>%
-  dplyr::mutate(alpha=(S+U)/(Z)) %>% 
-  dplyr::mutate(map=U/(S+T)) %>%
-  dplyr::mutate(mbp=T/(T+V)) %>%
-  dplyr::select(P,R,S,T,U,V)
-#####################################################################################
+#options(scipen=999)
+#set.seed(1)
+#library(ManifoldDestiny)
+#library(kableExtra)
+#library(dplyr)
+#library(ggplot2)
+#library(htmltools)
+#library(gridExtra)
+#source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
+##vl <- ManifoldDestiny::recnav
+#dfm <- ManifoldDestiny::miller_stavros_nevada_2020[[1]] %>%
+#  dplyr::mutate(S=A1,T=B1,U=A2,V=B2) %>%
+#  dplyr::mutate(Z=S+T+U+V+A3+B3, Psi=Z/R) %>%
+#  dplyr::mutate(alpha=(S+U)/(Z)) %>% 
+#  dplyr::mutate(map=U/(S+T)) %>%
+#  dplyr::mutate(mbp=T/(T+V)) %>%
+#  dplyr::select(P,R,S,T,U,V)
+######################################################################################
 # Simulation data
 ## Data used
 # Define a Shiny app that references the instance of the class in a reactive contex
@@ -372,38 +372,38 @@ ui <- fluidPage(
 server <- function(input, output) {
   # Create a reactive expression for the result
   result <- reactive({
-    pwn <- c(m=0.51,s=0.10); parv <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10) ;padv <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
-    los <- 1 
-    rots <- 0
-    kvec <- c(k0=0.0,k1=0.5,k2=0.5)
-    frm <- 1
-    linp <- 1
-    ends <- c("zeta","lamda")#input$endvar
-    pres <- c("alpha","x","y")#input$prevar
-    ### Interactive
-    isys <- list(frm=frm,pre=pres,end=ends,me=c(plnr=linp,rots=0))
-    ### Interactive
-    ### Simulation of ballot voting
-    app_bal <- ballcastsim(dfm,pwn,parv,padv)
-    ## Fair election
-    app_n_cou <- Countinggraphs(app_bal)
-    app_n_cou$sortpre()
-    app_n_cou$plotxy()
-    app_n_cou$plot2d()
-    ## Rigged election
-    app_exr_cou <- Countinggraphs(app_bal)
-    app_exr_cou$sortpre()
-    app_exr_cou$mansys(sygen=isys)
-    #app_exr_cou$enf[[3]]
-    #app_exr_cou$setres(pnc)
-    #app_exr_cou$manimp(init_par=kvec,man=TRUE,wn=c(wn[1],wn[2]))
-    app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
-    app_exm_cou$sortpre()
-    app_exm_cou$plotxy()
-    app_exm_cou$plot2d()
-    #browser()
-    abc <- 1+2
-    list(app_n_cou,app_exm_cou)
+    #pwn <- c(m=0.51,s=0.10); parv <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10) ;padv <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
+    #los <- 1 
+    #rots <- 0
+    #kvec <- c(k0=0.0,k1=0.5,k2=0.5)
+    #frm <- 1
+    #linp <- 1
+    #ends <- c("zeta","lamda")#input$endvar
+    #pres <- c("alpha","x","y")#input$prevar
+    #### Interactive
+    #isys <- list(frm=frm,pre=pres,end=ends,me=c(plnr=linp,rots=0))
+    #### Interactive
+    #### Simulation of ballot voting
+    #app_bal <- ballcastsim(dfm,pwn,parv,padv)
+    ### Fair election
+    #app_n_cou <- Countinggraphs(app_bal)
+    #app_n_cou$sortpre()
+    #app_n_cou$plotxy()
+    #app_n_cou$plot2d()
+    ### Rigged election
+    #app_exr_cou <- Countinggraphs(app_bal)
+    #app_exr_cou$sortpre()
+    #app_exr_cou$mansys(sygen=isys)
+    ##app_exr_cou$enf[[3]]
+    ##app_exr_cou$setres(pnc)
+    ##app_exr_cou$manimp(init_par=kvec,man=TRUE,wn=c(wn[1],wn[2]))
+    #app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
+    #app_exm_cou$sortpre()
+    #app_exm_cou$plotxy()
+    #app_exm_cou$plot2d()
+    ##browser()
+    #abc <- 1+2
+    #list(app_n_cou,app_exm_cou)
   })  
   output$table_dsc1 <- renderText({
     sugsol <- c(alpha='k0+k1*x+k2*y',alpha='k0+k1*x+k2*y+k3*zeta')
@@ -415,7 +415,6 @@ server <- function(input, output) {
     #nel$regression(sugsol[2])
     #n2 <- summary(nel$regsum[[1]])
     #list(n1,n2)
-    'abc'
   })
   output$table_dsc2 <- renderPrint({
     sugsol <- c(alpha='k0+k1*x+k2*y',alpha='k0+k1*x+k2*y+k3*zeta')
@@ -425,50 +424,48 @@ server <- function(input, output) {
     #ner$regression(sugsol[2])
     #r2 <- summary(ner$regsum[[1]])
     #list(r1,r2)
-    'def'
   })
    # Plot 
   output$plotrf <- renderPlot({
-    dft <- result()
-    gm1 <- dft[[1]]$pl_2dsort[[1]]
-    gm2 <- dft[[2]]$pl_2dsort[[1]]
-    cowplot::plot_grid(cowplot::plot_grid(gm1, labels = "Fair election"), cowplot::plot_grid(gm2, labels = "Rigged election"), ncol = 2, align = 'hv')
+    #dft <- result()
+    #gm1 <- dft[[1]]$pl_2dsort[[1]]
+    #gm2 <- dft[[2]]$pl_2dsort[[1]]
+    #cowplot::plot_grid(cowplot::plot_grid(gm1, labels = "Fair election"), cowplot::plot_grid(gm2, labels = "Rigged election"), ncol = 2, align = 'hv')
    })
   output$plotxyn <- renderPlot({
-     dft <- result()
-     gm1 <- dft[[1]]$pl_corrxy[[1]]
-     gm3 <- dft[[1]]$pl_corrxy[[1]]
-     cowplot::plot_grid(gm1, gm3, ncol = 2, labels = c("Column 1", "Column 2"))
+     #dft <- result()
+     #gm1 <- dft[[1]]$pl_corrxy[[1]]
+     #gm3 <- dft[[1]]$pl_corrxy[[1]]
+     #cowplot::plot_grid(gm1, gm3, ncol = 2, labels = c("Column 1", "Column 2"))
    })
   output$plotxyr <- renderPlot({
-     dft <- result()
-     gm2 <- dft[[2]]$pl_corrxy[[1]]
-     gm4 <- dft[[2]]$pl_corrxy[[1]]
-     cowplot::plot_grid(gm2, gm4, ncol = 2, labels = c("Column 1", "Column 2"))
+     #dft <- result()
+     #gm2 <- dft[[2]]$pl_corrxy[[1]]
+     #gm4 <- dft[[2]]$pl_corrxy[[1]]
+     #cowplot::plot_grid(gm2, gm4, ncol = 2, labels = c("Column 1", "Column 2"))
    })
   output$plot3d1 <- renderPlotly({
-     gdf <- result()[[1]]$rdfc %>% dplyr::select(c('alpha','x','y'))
-     mrdfc <- as.matrix(gdf)
-     z <- mrdfc[,1]
-     x <- mrdfc[,2]
-     y <- mrdfc[,3]
-     p1 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers", marker=list(size=3))
-     plotly::layout(p1,title = "Fair election")
+     #gdf <- result()[[1]]$rdfc %>% dplyr::select(c('alpha','x','y'))
+     #mrdfc <- as.matrix(gdf)
+     #z <- mrdfc[,1]
+     #x <- mrdfc[,2]
+     #y <- mrdfc[,3]
+     #p1 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers", marker=list(size=3))
+     #plotly::layout(p1,title = "Fair election")
   })
   output$plot3d2 <- renderPlotly({
-     gdf <- result()[[2]]$rdfc %>% dplyr::select(c('alpha','x','y'))
-     mrdfc <- as.matrix(gdf)
-     z <- mrdfc[,1]
-     x <- mrdfc[,2]
-     y <- mrdfc[,3]
-     p2 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers",marker = list(size = 3))
-     plotly::layout(p2,title = "Rigged election")
+     #gdf <- result()[[2]]$rdfc %>% dplyr::select(c('alpha','x','y'))
+     #mrdfc <- as.matrix(gdf)
+     #z <- mrdfc[,1]
+     #x <- mrdfc[,2]
+     #y <- mrdfc[,3]
+     #p2 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers",marker = list(size = 3))
+     #plotly::layout(p2,title = "Rigged election")
   })
   output$table_dsc <- renderPrint({
   })
   output$sidebarText <- renderText({
   })
 }
-#shinyApp(ui = ui, server = server)
-runApp(shinyApp(ui = ui, server = server), port = 8011)
+shinyApp(ui = ui, server = server)
 
