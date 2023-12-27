@@ -17,7 +17,7 @@ import rpy2.robjects as robjects
 from rpy2.robjects.packages import importr, data
 rroot=importr('rprojroot')
 abs_path = rroot.find_rstudio_root_file()[0]
-csvfile=abs_path+'/inst/script/python/csv/parameters.csv'
+csvfile=abs_path+'/script/python/csv/parameters.csv'
 readmodvar = pandas.read_csv(csvfile, sep=',') 
 sympy.var(readmodvar.iloc[:,0])
 beforems = set(dir())
