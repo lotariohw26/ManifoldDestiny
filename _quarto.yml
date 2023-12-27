@@ -31,11 +31,6 @@ website:
             href: https://lotariohw26.github.io/MD_WASMS/r/examples/
           - text: "Python"
             href: https://lotariohw26.github.io/MD_WASMS/py/examples/
-              #          - text: "Python API"
-              #            href: "abc.qmd"
-              #          - text: "R API"
-              #            href: "def.html"
-              #href: https://webr.r-wasm.org/latest/
       - text: Shiny applications
         menu:
           - text: "R2 simulator"

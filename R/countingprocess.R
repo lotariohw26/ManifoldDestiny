@@ -509,5 +509,3 @@ Countinggraphs$methods(gridarrange=function(pl3d=list(selo=1,selm=list(1:5,6:10)
   all_pl_3d_mani <<- list(page=htmltools::browsable(ohtml),ohtml=ohtml,one3d=pl_3d_mani,plot2d=pl_2dsort,plotxy=pl_corrxy,plotres=pl_rescro,r2list=r2list,sr=sumreg,abc=rotplotly)
 })
 
-
-
