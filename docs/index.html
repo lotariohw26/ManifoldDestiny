@@ -810,10 +810,10 @@ globalThis.qwebrCreateNonInteractiveSetupElement = function(qwebrCounter) {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#manifold-destiny---or-how-to-rig-an-election" id="toc-manifold-destiny---or-how-to-rig-an-election" class="nav-link active" data-scroll-target="#manifold-destiny---or-how-to-rig-an-election">Manifold Destiny - or how to rig an election</a></li>
-  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation">Simulation</a>
+  <li><a href="#manifold-destiny---or-how-to-rig-an-election" id="toc-manifold-destiny---or-how-to-rig-an-election" class="nav-link active" data-scroll-target="#manifold-destiny---or-how-to-rig-an-election">Manifold Destiny - or how to rig an election</a>
   <ul class="collapse">
-  <li><a href="#r2-sim" id="toc-r2-sim" class="nav-link" data-scroll-target="#r2-sim">R2 sim</a></li>
+  <li><a href="#install-and-load-packages" id="toc-install-and-load-packages" class="nav-link" data-scroll-target="#install-and-load-packages">Install and load packages</a></li>
+  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation">Simulation</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
@@ -969,6 +969,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (
 <section id="manifold-destiny---or-how-to-rig-an-election" class="level1">
 <h1>Manifold Destiny - or how to rig an election</h1>
 <p><strong>Based upon the ideas developed by Edward K. Solomon</strong> <img src="pngs/md.png" class="img-fluid"> tidyr</p>
+<section id="install-and-load-packages" class="level3">
+<h3 class="anchored" data-anchor-id="install-and-load-packages">Install and load packages</h3>
 <div id="qwebr-insertion-location-1"></div>
 <script type="module">
 // Retrieve the insertion point
@@ -986,7 +988,7 @@ currentDocumentLocation.appendChild(initializedElement);
 qwebrCreateMonacoEditorInstance(
   `webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
-webr::install(c("dplyr","purrr","magrittr","data.table","tidyr"))
+webr::install(c("dplyr","purrr","magrittr","data.table","tidyr","plotly"))
 library(ManifoldDestinyWASMP)
 ls(package:ManifoldDestinyWASMP)
 library(ManifoldDestinyWASMD)
@@ -996,10 +998,8 @@ library(magrittr)`,
 </script>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="simulation" class="level1">
-<h1>Simulation</h1>
-<section id="r2-sim" class="level2">
-<h2 class="anchored" data-anchor-id="r2-sim">R2 sim</h2>
+<section id="simulation" class="level3">
+<h3 class="anchored" data-anchor-id="simulation">Simulation</h3>
 <div id="qwebr-insertion-location-2"></div>
 <script type="module">
 // Retrieve the insertion point

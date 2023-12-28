@@ -13,10 +13,11 @@ filters:
 ![](pngs/md.png)
 tidyr
 
+### Install and load packages
 ```{webr-r}
 webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
-webr::install(c("dplyr","purrr","magrittr","data.table","tidyr"))
+webr::install(c("dplyr","purrr","magrittr","data.table","tidyr","plotly"))
 library(ManifoldDestinyWASMP)
 ls(package:ManifoldDestinyWASMP)
 library(ManifoldDestinyWASMD)
@@ -24,8 +25,7 @@ ls(package:ManifoldDestinyWASMD)
 library(magrittr)
 ```
 
-# Simulation
-## R2 sim
+### Simulation
 ```{webr-r}
 dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10)
 probw <- c(m=0.51,s=0.10)
@@ -35,11 +35,27 @@ ztech <- c(0,1)
 app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
 SimVoterdatabase(app_bal)
 ```
-
 **Last time updated: `r as.Date(Sys.time())`**
 
 ```{r, echo=F}
 knitr::knit_exit()
+```
+
+### Simulation
+```{webr-r}
+library(plotly)
+options(browser = 'brave') 
+mtcars$am[which(mtcars$am == 0)] <- 'Automatic'
+mtcars$am[which(mtcars$am == 1)] <- 'Manual'
+mtcars$am <- as.factor(mtcars$am)
+
+fig <- plot_ly(mtcars, x = ~wt, y = ~hp, z = ~qsec, color = ~am, colors = c('#BF382A', '#0C4B8E'))
+fig <- fig %>% add_markers()
+fig <- fig %>% layout(scene = list(xaxis = list(title = 'Weight'),
+                     yaxis = list(title = 'Gross horsepower'),
+                     zaxis = list(title = '1/4 mile time')))
+
+fig
 ```
 
 ## Tower
