@@ -25,7 +25,7 @@ website:
           - text: "Addendum 1: Arizona"
           - text: "Addendum 2: Nevada"
       - text: "Paper"
-        href: paper.qmd
+        #        href: paper.qmd
       - text: Coding in the browser
         menu:
           - text: "R"
