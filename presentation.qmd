@@ -1,14 +1,14 @@
 ---
 title: "Manifold Destiny - or how to rig an election"
 subtitle: "Based upon the ideas developed by Edward K. Solomon"
-#format:
-#  revealjs: 
-#    smaller: true
-#    toc-depth: 1
-#    toc: true 
-#webr: 
-#  show-startup-message: true    # Disable displaying status of webR initialization
-#  packages: ['dplyr'] # Install R packages on document open
+format:
+  revealjs: 
+    smaller: true
+    toc-depth: 1
+    toc: true 
+webr: 
+  show-startup-message: true    # Disable displaying status of webR initialization
+  packages: ['dplyr','purrr','magrittr','data.table','tidyr'] # Install R packages on document open
 filters:
 - webr 
 footer: <https://lotariohw26.github.io/ManifoldDestiny/>
@@ -34,7 +34,6 @@ source(paste0(rprojroot::find_rstudio_root_file(),'/script/simulations.R'))
 
 
 ## `r metad$toc$sec1$unm[1]`
-
 
 - Two candidates: A, B
 - County with three precincts: 1, 2, 3
@@ -112,9 +111,6 @@ x=`r modlat$x_s[1]` \text{, }y=`r modlat$y_s[1]`
 
 ##
 
-```{r}
-knitr::knit_exit()
-```
 
 
 ```{r, echo=F}
@@ -207,6 +203,7 @@ n=`r modlat$n_o[1]` \text{ , } m=`r modlat$m_o[1]`
 
 ##
 
+
 ```{r, echo=F}
 ctone_of <- 'Election results applying opposition form'
 stfo_sel <- dplyr::select(pro_elc_ex1$sdfc[1:3,],P,S,T,U,V,n,m,xi,Omega, lamda)
@@ -234,6 +231,7 @@ kableExtra::kbl(format(stfo_sel,digits=4), caption=ctone_of) %>% kableExtra::kab
   D --> DV[Vote]
   D --> Dn[Not Vote]
 ```
+
 
 ##
 
@@ -308,7 +306,17 @@ If none of this three cases are satisfied, variation in $\Gamma_i$ should explai
 ---
 
 ```{webr-r}
-2+2
+webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
+library(ManifoldDestinyWASMP)
+library(ManifoldDestinyWASMD)
+dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10)
+probw <- c(m=0.51,s=0.10)
+probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
+probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
+ztech <- c(0,1)	
+app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
+print(SimVoterdatabase(app_bal))
 ```
 
 
@@ -380,6 +388,7 @@ new_tbl <- data.frame(
   Equation3 = c("$x_{2} = (1-x_{1}) = \\frac{t}{s+t}$", "$g_{2} = (1-g_{1}) = \\frac{v}{s+v}$", "$m_{2} = (1-m_{1}) = \\frac{u}{s+u}$", "$\\alpha_{1} = (\\xi+1)^{-1}$", "$\\alpha_{2} = (\\xi^{-1}+1)^{-1}$", "$\\lambda_{1} = (\\gamma+1)^{-1}$", "$\\lambda_{2} = (\\gamma^{-1}+1)^{-1}$", "$\\Omega_{1} = (\\zeta+1)^{-1}$", "$\\Omega_{2} = (\\zeta^{-1}+1)^{-1}$"),
   Equation4 = c("$y_{2} = (1-y_{1}) = \\frac{v}{u+v}$", "$h_{2} = (1-h_{1}) = \\frac{t}{u+t}$", "$n_{2} = (1-n_{1}) = \\frac{v}{t+v}$", "$\\xi = \\frac{1-\\alpha_{1}}{\\alpha_{1}} = \\frac{\\alpha_{2}}{\\alpha_{1}}$", "$\\xi^{-1} = \\frac{1-\\alpha_{2}}{\\alpha_{2}} = \\frac{\\alpha_{1}}{\\alpha_{2}}$", "$\\gamma = \\frac{1-\\lambda_{1}}{\\lambda_{1}} = \\frac{\\lambda_{2}}{\\lambda_{1}}$", "$\\gamma^{-1} = \\frac{1-\\lambda_{2}}{\\lambda_{2}} = \\frac{\\lambda_{1}}{\\lambda_{2}}$", "$\\zeta = \\frac{1-\\Omega_{1}}{\\Omega_{1}} = \\frac{\\Omega_{2}}{\\Omega_{1}}$", "$\\zeta^{-1} = \\frac{1-\\Omega_{2}}{\\Omega_{2}} = \\frac{\\Omega_{1}}{\\Omega_{2}}$")
 )
+
 
 # Extract the columns
 V1 <- new_tbl$V1
@@ -454,6 +463,10 @@ app_n_out[['resp']]
 ```
 
 :::
+
+```{r}
+knitr::knit_exit()
+```
 
 
 ## `r metad$toc$sec3$unm[2]`

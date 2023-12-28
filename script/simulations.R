@@ -16,6 +16,14 @@ source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
 #########################################################################################################################################################
+dfm <- ManifoldDestiny::miller_stavros_nevada_2020[[1]] %>%
+  dplyr::mutate(S=A1,T=B1,U=A2,V=B2) %>%
+  dplyr::mutate(Z=S+T+U+V+A3+B3, Psi=Z/R) %>%
+  dplyr::mutate(alpha=(S+U)/(Z)) %>% 
+  dplyr::mutate(map=U/(S+T)) %>%
+  dplyr::mutate(mbp=T/(T+V)) %>%
+  dplyr::select(P,R,S,T,U,V)
+#########################################################################################################################################################
 ##### Proto example 1 and 2
 P  <- c(1,2,3,4,5,6)
 S  <- c(60,60,60,60,60,55)
@@ -64,29 +72,29 @@ probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztech <- c(0,1)	
 app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
 #########################################################################################################################################################
-#pro_rec_ex1_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=U,V=V,R=R)
-#pro_rec_ex2_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=Up,V=Vp,R=R) 
-#pro_rec_ex1 <- pro_rec_ex1_e[1:3,]
-#pro_rec_ex2 <- pro_rec_ex2_e[1:3,]
-#pro_elc_ex1 <- Countinggraphs(pro_rec_ex1,polyn=1)
-#pro_elc_ex2 <- Countinggraphs(pro_rec_ex2,polyn=1)
-##pr_rep_1 <- seloutput <- seloutput(selreport(pro_elc_ex1,md$app4))
-##pr_rep_2 <- seloutput <- seloutput(selreport(pro_elc_ex2,md$app4))
-#cx <- round(pro_elc_ex1$sdfc$x,2)
-#cy <- round(pro_elc_ex1$sdfc$y,2)
-#czeta <- round(pro_elc_ex1$sdfc$zeta,2)
-#calpha <- round(pro_elc_ex1$sdfc$alpha,2)
-#clambda <- round(pro_elc_ex1$sdfc$lamda,2)
-#cg <- round(pro_elc_ex1$sdfc$g,2)
-#ch <- round(pro_elc_ex1$sdfc$y,2)
-#cGamma <- round(pro_elc_ex1$sdfc$Gamma,2)
+pro_rec_ex1_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=U,V=V,R=R)
+pro_rec_ex2_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=Up,V=Vp,R=R) 
+pro_rec_ex1 <- pro_rec_ex1_e[1:3,]
+pro_rec_ex2 <- pro_rec_ex2_e[1:3,]
+pro_elc_ex1 <- Countinggraphs(pro_rec_ex1,polyn=1)
+pro_elc_ex2 <- Countinggraphs(pro_rec_ex2,polyn=1)
+#pr_rep_1 <- seloutput <- seloutput(selreport(pro_elc_ex1,md$app4))
+#pr_rep_2 <- seloutput <- seloutput(selreport(pro_elc_ex2,md$app4))
+cx <- round(pro_elc_ex1$sdfc$x,2)
+cy <- round(pro_elc_ex1$sdfc$y,2)
+czeta <- round(pro_elc_ex1$sdfc$zeta,2)
+calpha <- round(pro_elc_ex1$sdfc$alpha,2)
+clambda <- round(pro_elc_ex1$sdfc$lamda,2)
+cg <- round(pro_elc_ex1$sdfc$g,2)
+ch <- round(pro_elc_ex1$sdfc$y,2)
+cGamma <- round(pro_elc_ex1$sdfc$Gamma,2)
 ##########################################################################################################################################################
 ##########################################################################################################################################################
 ########## Normal form
-#app_n_rep <- selreport(app_bal,md$app0)
-#app_n_out <- seloutput(app_n_rep)
-#app_n_sim <- SimVoterdatabase(app_bal)
-######### Rigged example 1: standard form
+app_n_rep <- selreport(app_bal,md$app0)
+app_n_out <- seloutput(app_n_rep)
+app_n_sim <- SimVoterdatabase(app_bal)
+######## Rigged example 1: standard form
 #app_ex1_cou <- Countinggraphs(app_bal)
 ##print(app_ex1_cou$polyc[[1]][[1]])
 #app_ex1_cou$sortpre()
@@ -117,7 +125,7 @@ app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
 #app_ex3_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),wn=c(0,0))
 #app_ex3_out <- seloutput(selreport(app_ex3_cou$rdfc,md$app0))
 #app_ex3_sim <- SimVoterdatabase(app_ex3_cou$rdfc)
-####################################################################################################################################################################
+#####################################################################################################################################################################
 ##### Standard
 ###################################################################################################################################################################
 ####### Dr. Frank
