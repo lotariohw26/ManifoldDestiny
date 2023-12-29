@@ -1,3 +1,23 @@
+#' @export me
+me <- function(enfl=NULL,dfa=NULL){
+   la <- enfl
+   polyc <- setNames(as.vector(lapply(la, as.character)),LETTERS[1:5])
+   la_e <- unlist(polyc[c(LETTERS[1:5])])
+   pnr <- sum(la_e!="0") 
+   ghi <- dfa %>%
+   dplyr::mutate(A=pareq(la_e[1],c(as.list(.[,])))) %>%
+   dplyr::mutate(B=pareq(la_e[2],c(as.list(.[,])))) %>%
+   dplyr::mutate(C=pareq(la_e[3],c(as.list(.[,])))) %>% 
+   dplyr::mutate(D=pareq(la_e[3],c(as.list(.[,])))) %>% 
+   dplyr::mutate(E=pareq(la_e[3],c(as.list(.[,])))) %>%
+   dplyr::group_by(P) %>%
+   dplyr::mutate(polsolv=polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+   dplyr::mutate(!!paste0('y'):=Re(polsolv[1])) %>%
+   dplyr::ungroup() %>%
+   dplyr::select(y)
+   #print(ghi$y)
+   return(ghi$y)
+}
 #' @export Rall
 Rall <- function(sel=c(1,2,3)){
   Rxy <- function(rad) {

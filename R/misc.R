@@ -59,6 +59,79 @@ seloutput <- function(selreport=NULL){
   tab11 <- selreport[[6]]
   list(rdfc=tab0,decs=tab1,corxy=tab2,qunt=tab3,ro3d=tab4,r2li=tab5,regr=tab6,resp=tab7,cmp=tab8,md=tab9,bb=tab10,md=tab11)
 }
+#####################################################################################################
+#' @export py_genpolycoeff 
+py_genpolycoeff <- function(expr=NULL,solvd=NULL,solvf=NULL,eur=c(0, 0, 0),dnr=0){
+  #reticulate::source_python(system.file("www/script/sympy/functions.py",package = "ManifoldDestiny"))
+  reticulate::source_python(paste0(rprojroot::find_rstudio_root_file(),"/script/python/functions.py"))
+  reticulate::py$genpolycoeff(expr=expr,solvd=solvd,solvf=solvf,eur=as.integer(eur),dnr=dnr)
+}
+#' @export py_polysolver
+py_polysolver <- function(degree=1,kvec=NULL){
+  path_fqs <- paste0(rprojroot::find_rstudio_root_file(),"/script/python")
+  #path_fqs <- system.file("www/script/python",package = "ManifoldDestiny")
+  fqs <- reticulate::import_from_path("fqs", path =path_fqs)
+  np <- reticulate::import("numpy")
+  vec <- kvec[!is.na(kvec)] 
+  if (degree==1) {
+    retv <- np$roots(vec)[1]
+  }
+  if (degree==2) {
+    retv <- np$roots(vec)[1]
+  }
+  if (degree==3) {
+    retv <- fqs$cubic_roots(vec)[1]
+  }
+  if (degree==4) {
+    retv <- fqs$quartic_roots(vec)[1]
+  }
+  retv
+}
+#####################################################################################################
+##' @export bm
+bm <- function(){
+   devtools::document()
+   system(paste0('cd ',rprojroot::find_rstudio_root_file(),'; R CMD INSTALL --preclean --no-multiarch --with-keep.source .'))
+}
+#' @export k
+k <- function(){
+    df <-  clipr::write_last_clip()
+}
+#' @export l
+l <- function(){
+    open_command <- switch(Sys.info()[['sysname']],
+                           Windows= 'open',
+                           Linux  = 'xdg-open',
+                           Darwin = 'open')
+
+    temp_file <- paste0(tempfile(), '.xlsx')
+    df <-  clipr::write_last_clip()
+    openxlsx::write.xlsx(df, file = temp_file)
+    invisible(system(paste(open_command, temp_file),
+                     ignore.stdout = TRUE, ignore.stderr = TRUE))
+}
+
+#' @export ndf
+ndf <- function(df=head(iris)){
+  tf <- paste0(rprojroot::find_rstudio_root_file(),'/tmp.csv')
+  write.csv(df,tf)
+}
+#' @export recoudatr
+recoudatr <- function(mda=NULL){
+  gsh <- googlesheets4::read_sheet(mda$sht$url,sheet=mda$sht$pgn,range=mda$sht$rng) %>%
+    data.table::setnames(new=mda$sht$cln) %>%
+    dplyr::select(-starts_with('D')) %>%
+    dplyr::mutate(P=row_number(PN)) %>%
+    dplyr::mutate(R=row_number(RN)) %>%
+    dplyr::mutate(S=!!rlang::parse_expr(mda$sht$stuv[1])) %>%
+    dplyr::mutate(T=!!rlang::parse_expr(mda$sht$stuv[2])) %>%
+    dplyr::mutate(U=!!rlang::parse_expr(mda$sht$stuv[3])) %>%
+    dplyr::mutate(V=!!rlang::parse_expr(mda$sht$stuv[4]))
+  assign(mda$nid,gsh)
+  do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
+  return(gsh)
+}
+#####################################################################################################
 # Initiating 
   #browser()
   #vc  <- c('alpha=k0+k1*x+k2*y+k3*zeta','alpha=k0+k1*g+k2*h+k3*Gamma','#!')[frm]
@@ -119,22 +192,6 @@ seloutput <- function(selreport=NULL){
 #}
 #lapply(paste0("app",0:4), function(x){recoudatr(mda=md[[x]])})
 
-#' @export recoudatr
-recoudatr <- function(mda=NULL){
-  gsh <- googlesheets4::read_sheet(mda$sht$url,sheet=mda$sht$pgn,range=mda$sht$rng) %>%
-    data.table::setnames(new=mda$sht$cln) %>%
-    dplyr::select(-starts_with('D')) %>%
-    dplyr::mutate(P=row_number(PN)) %>%
-    dplyr::mutate(R=row_number(RN)) %>%
-    dplyr::mutate(S=!!rlang::parse_expr(mda$sht$stuv[1])) %>%
-    dplyr::mutate(T=!!rlang::parse_expr(mda$sht$stuv[2])) %>%
-    dplyr::mutate(U=!!rlang::parse_expr(mda$sht$stuv[3])) %>%
-    dplyr::mutate(V=!!rlang::parse_expr(mda$sht$stuv[4]))
-  assign(mda$nid,gsh)
-  do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
-  return(gsh)
-}
-
 #' @export gmp
 gmp <- function(terms=c("x2","xy","y2","x3","x2y","y2x","y3")){
   # Preallocate a list to store expressions
@@ -163,14 +220,6 @@ gmp <- function(terms=c("x2","xy","y2","x3","x2y","y2x","y3")){
   expre
 }
 
-#' @export pareq
-pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1)){
-	eval(parse(text=ste),lv)
-}
-#' @export vpareq
-vpareq <- function(dfr=NULL,enf=NULL,ste=NULL)({
-  dfr %>% dplyr::mutate(!!enf:=pareq(ste=ste,lv=as.list(.[,]))) %>% dplyr::select(any_of(enf)) %>% as.vector()
-})
 #' @export me
 me <- function(enfl=NULL,dfa=NULL){
    la <- enfl
@@ -195,37 +244,9 @@ me <- function(enfl=NULL,dfa=NULL){
 #' @param file character string with the path to the file to source.
 #' @param lines numeric vector of lines to source in \code{file}.
 ##' @export source_lines
-source_lines <- function(file, lines){
-    source(textConnection(readLines(file)[lines]))
-}
-##' @export bm
-bm <- function(){
-   devtools::document()
-   system(paste0('cd ',rprojroot::find_rstudio_root_file(),'; R CMD INSTALL --preclean --no-multiarch --with-keep.source .'))
-}
-#' @export k
-k <- function(){
-    df <-  clipr::write_last_clip()
-}
-#' @export l
-l <- function(){
-    open_command <- switch(Sys.info()[['sysname']],
-                           Windows= 'open',
-                           Linux  = 'xdg-open',
-                           Darwin = 'open')
-
-    temp_file <- paste0(tempfile(), '.xlsx')
-    df <-  clipr::write_last_clip()
-    openxlsx::write.xlsx(df, file = temp_file)
-    invisible(system(paste(open_command, temp_file),
-                     ignore.stdout = TRUE, ignore.stderr = TRUE))
-}
-
-#' @export ndf
-ndf <- function(df=head(iris)){
-  tf <- paste0(rprojroot::find_rstudio_root_file(),'/tmp.csv')
-  write.csv(df,tf)
-}
+#source_lines <- function(file, lines){
+#    source(textConnection(readLines(file)[lines]))
+#}
 #library(animation)
 #png_files <- dir(pattern = ".png$")
 #saveGIF({
@@ -239,45 +260,16 @@ ndf <- function(df=head(iris)){
 
 #dft <- data.frame(str=c("a","b"),a=1,b=2) %>% dplyr::mutate(abc=eval(parse(text(.[,"str"])))
 
+##
 #' @export runR2S
-runR2S <- function() {
-  appDir <- system.file("shinyapps/r2sim",package="ManifoldDestiny")
-  if (appDir == "") {
-    stop("Could not find myapp. Try re-installing `mypackage`.", call. = FALSE)
-  }
-  shiny::runApp(appDir, display.mode = "normal")
-}
-#' @export py_genpolycoeff 
-py_genpolycoeff <- function(expr=NULL,solvd=NULL,solvf=NULL,eur=c(0, 0, 0),dnr=0){
-  #reticulate::source_python(system.file("www/script/sympy/functions.py",package = "ManifoldDestiny"))
-  reticulate::source_python(paste0(rprojroot::find_rstudio_root_file(),"/script/python/functions.py"))
-  reticulate::py$genpolycoeff(expr=expr,solvd=solvd,solvf=solvf,eur=as.integer(eur),dnr=dnr)
-}
-#' @export py_polysolver
-py_polysolver <- function(degree=1,kvec=NULL){
-  path_fqs <- paste0(rprojroot::find_rstudio_root_file(),"/script/python")
-  #path_fqs <- system.file("www/script/python",package = "ManifoldDestiny")
-  fqs <- reticulate::import_from_path("fqs", path =path_fqs)
-  np <- reticulate::import("numpy")
-  vec <- kvec[!is.na(kvec)] 
-  if (degree==1) {
-    retv <- np$roots(vec)[1]
-  }
-  if (degree==2) {
-    retv <- np$roots(vec)[1]
-  }
-  if (degree==3) {
-    retv <- fqs$cubic_roots(vec)[1]
-  }
-  if (degree==4) {
-    retv <- fqs$quartic_roots(vec)[1]
-  }
-  retv
-}
+#runR2S <- function() {
+#  appDir <- system.file("shinyapps/r2sim",package="ManifoldDestiny")
+#  if (appDir == "") {
+#    stop("Could not find myapp. Try re-installing `mypackage`.", call. = FALSE)
+#  }
+#  shiny::runApp(appDir, display.mode = "normal")
+#}
 #reticulate::source_python(paste0(rprojroot::find_rstudio_root_file(),"/inst/www/script/python/functions.py"))
 #padf <- as.data.frame(reticulate::py$genpolycoeff()[2])
 #str(padf)
 #padf <- as.data.frame(reticulate::py$padf())
-
-
-
