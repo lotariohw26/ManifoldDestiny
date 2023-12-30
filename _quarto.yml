@@ -3,7 +3,7 @@ project:
   output-dir: docs
   render:
     - "index.qmd"
-    - "preseneation.qmd"
+    - "presentation.qmd"
     - "laws.qmd"
     - "man_bib.qmd"
     - "tabsets.qmd"
@@ -69,3 +69,7 @@ format:
       #webr: 
       #  show-startup-message: true    # Disable displaying status of webR initialization
       #  packages: ['dplyr'] # Install R packages on document open
+      #
+      #
+      #
+
