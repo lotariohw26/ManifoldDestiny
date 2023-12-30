@@ -8,6 +8,7 @@ filters:
   - webr
 ---
 
+
 # Manifold Destiny - or how to rig an election
 **Based upon the ideas developed by Edward K. Solomon**
 ![](pngs/md.png)
@@ -46,6 +47,7 @@ app_n_out <- seloutput(app_n_rep)
 ```
 
 **Last time updated: `r as.Date(Sys.time())`**
+
 
 
 ```{r, echo=F}

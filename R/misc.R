@@ -90,7 +90,6 @@ py_polysolver <- function(degree=1,kvec=NULL){
 #####################################################################################################
 ##' @export bm
 bm <- function(){
-   devtools::document()
    system(paste0('cd ',rprojroot::find_rstudio_root_file(),'; R CMD INSTALL --preclean --no-multiarch --with-keep.source .'))
 }
 #' @export k
