@@ -15,14 +15,16 @@ footer: <https://lotariohw26.github.io/ManifoldDestiny/>
 ---
 
 ```{r, echo=F, message=F, warning=F}
-library(ManifoldDestiny)
+library(ManifoldDestinyWASMP)
+library(ManifoldDestinyWASMD)
 library(RefManageR)
 library(huxtable)
 modlat <- eqpar$meql
+md <- ManifoldDestinyWASMD::metad
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/applications.R'))
 metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 mda <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/simulations.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/script/applications.R'))
 ```
 
 

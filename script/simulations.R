@@ -1,20 +1,17 @@
 #######################################################################################################################################################
-options(scipen=999)
-set.seed(1)
-library(kableExtra)
-library(plotly)
+library(ManifoldDestinyWASMP)
+library(ManifoldDestinyWASMD)
 library(dplyr)
 library(ggplot2)
 library(htmltools)
+library(plotly)
+library(kableExtra)
 library(huxtable)
 library(gridExtra)
-md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-#########################################################################################################################################################
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
+options(scipen=999)
+set.seed(1)
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmconverting.R'))
+md <- ManifoldDestinyWASMD::metad
 #########################################################################################################################################################
 dfm <- ManifoldDestiny::miller_stavros_nevada_2020[[1]] %>%
   dplyr::mutate(S=A1,T=B1,U=A2,V=B2) %>%
