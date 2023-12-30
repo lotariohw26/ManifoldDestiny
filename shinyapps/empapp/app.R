@@ -1,9 +1,9 @@
+webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
 library(shiny)
 library(plotly)
 library(ManifoldDestinyWASMP)
 library(ManifoldDestinyWASMD)
-options(scipen=999)
-set.seed(1)
 library(dplyr)
 library(ggplot2)
 library(htmltools)
@@ -12,9 +12,10 @@ library(DT)
 library(kableExtra)
 library(htmlTable)
 library(usethis)
-dlname <- c("app0","app1","app2")
+options(scipen=999)
+set.seed(1)
+dlname <- c("app0","app1","app2","app2","app2","app2")[1:2]
 md <- ManifoldDestinyWASMD::metad
-#googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 ###############################################################################################################################################################
 ui <- fluidPage(
   titlePanel("Rigged election results analyzer"),
@@ -73,8 +74,9 @@ server <- function(input, output, session) {
   })  
   cformo <- reactive({
     # Manual
-    seldata <- app0
-    mds <- md[['app0']]
+    sna <- input$app_select
+    seldata <- get(sna)
+    mds <- md[[sna]]
     ### Purge
     mds$mtd$prg$cnd <- c(0)
     mds$mtd$prg$stuv <- c(0,0,0,0)
@@ -137,6 +139,4 @@ server <- function(input, output, session) {
   })
 }
 shinyApp(ui = ui, server = server)
-
-
 

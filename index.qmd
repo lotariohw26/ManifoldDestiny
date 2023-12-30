@@ -67,7 +67,6 @@ app_4_out <- seloutput(app2_rp)
 
 **Last time updated: `r as.Date(Sys.time())`**
 
-
 ```{r, echo=F}
 knitr::knit_exit()
 ```

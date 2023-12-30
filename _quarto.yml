@@ -29,7 +29,7 @@ website:
           - text: "Addendum 2: Nevada"
             href: "addendum/Addendum_ne.qmd"
       - text: "Paper"
-        #        href: paper.qmd
+        href: paper.qmd
       - text: Coding in the browser
         menu:
           - text: "R"
@@ -73,8 +73,6 @@ format:
   html:
     theme: zephyr
     toc: true
-      #webr: 
-      #  show-startup-message: true    # Disable displaying status of webR initialization
-      #  packages: ['dplyr'] # Install R packages on document open
-
-
+#webr: 
+#  show-startup-message: true    # Disable displaying status of webR initialization
+#  packages: ['dplyr'] # Install R packages on document open
