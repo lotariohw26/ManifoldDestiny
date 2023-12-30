@@ -13,7 +13,7 @@ format:
 #    footer: <https://lotariohw26.github.io/ManifoldDestiny/>
 #execute: 
 #  cache: false
-bibliography: inst/references/man_bib.bib
+bibliography: man_bib.bib
 ---
 
 Tabcsets

@@ -1,7 +1,7 @@
 ---
 title: "References"
 output: html_document
-# inst/references/man_bib.bib
+# man_bib.bib
 ---
 
 
@@ -15,7 +15,6 @@ RefManageR::NoCite(bib)
 
 ```{r results = "asis", echo = FALSE}
 RefManageR::PrintBibliography(bib, .opts = list(check.entries = FALSE, sorting = "ynt"))
-# inst/references/man_bib.bib
 ```
 
 

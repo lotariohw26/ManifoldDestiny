@@ -2,17 +2,18 @@ library(shiny)
 library(plotly)
 library(ManifoldDestinyWASMP)
 library(ManifoldDestinyWASMD)
-#options(scipen=999)
-#set.seed(1)
-#library(dplyr)
-#library(ggplot2)
-#library(htmltools)
-#library(gridExtra)
-#library(DT)
-#library(kableExtra)
-#library(htmlTable)
-#library(usethis)
+options(scipen=999)
+set.seed(1)
+library(dplyr)
+library(ggplot2)
+library(htmltools)
+library(gridExtra)
+library(DT)
+library(kableExtra)
+library(htmlTable)
+library(usethis)
 dlname <- c("app0","app1","app2")
+md <- ManifoldDestinyWASMD::metad
 #googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 ###############################################################################################################################################################
 ui <- fluidPage(
@@ -73,6 +74,7 @@ server <- function(input, output, session) {
   cformo <- reactive({
     # Manual
     seldata <- app0
+    mds <- md[['app0']]
     ### Purge
     mds$mtd$prg$cnd <- c(0)
     mds$mtd$prg$stuv <- c(0,0,0,0)
@@ -86,31 +88,31 @@ server <- function(input, output, session) {
     mds$mtd$sgs$ro[1] <- input$theta*pi/180
     mds$mtd$sgs$ro[2] <- input$phi*pi/180
     mds$mtd$sgs$ro[3] <- input$rho*pi/180
-    ### Selreport
-    #return(selreport(seldata,mds))
+    ## Selreport
+    return(selreport(seldata,mds))
   })
   observe(print(cformo()[[1]]$desms))
   output$table_dsc <- renderPrint({
-    #print(cformo()[[1]]$desms)
+    print(cformo()[[1]]$desms)
   })
   output$plot_q <- renderPlot({
-    #cformo()[[1]]$pl_2dsort[[1]]
+    cformo()[[1]]$pl_2dsort[[1]]
   })
   output$plot_bow <- renderPlot({
-    #cformo()[[5]]$pl_2dsort[[1]]
+    cformo()[[5]]$pl_2dsort[[1]]
   })
   output$plot_xy <- renderPlot({
     #cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
   })
   output$plot_3d <- renderPlotly({
-    #cformo()[[1]]$rotplotly[[1]]
+    cformo()[[1]]$rotplotly[[1]]
   })
   output$plot_3ds <- renderUI({
-    #cformo()[[1]]$all_pl_3d_mani[[1]]
+    cformo()[[1]]$all_pl_3d_mani[[1]]
   })
   output$print_sum <- renderPrint({
-    #list(summary(cformo()[[3]]$regsum[[1]]),
-#	 summary(cformo()[[2]]$regsum[[1]]))
+    list(summary(cformo()[[3]]$regsum[[1]]),
+	 summary(cformo()[[2]]$regsum[[1]]))
   })
   output$plot_res <- renderPlot({
     #pla <- cformo()[[2]]$resplots[[1]][[c(1)]]
@@ -119,8 +121,8 @@ server <- function(input, output, session) {
     #cowplot::plot_grid(plotlist=list(pla,plb,plc),ncol=1)
   })
   output$print_com <- renderPrint({
-    #print(as.data.frame(cformo()[[2]]$comdesc)) #%>% dplyr::select(1,2,3,4)
-    #print(as.data.frame(cformo()[[2]]$compare)) #%>% dplyr::select(1,2,3,4)
+    print(as.data.frame(cformo()[[2]]$comdesc)) #%>% dplyr::select(1,2,3,4)
+    print(as.data.frame(cformo()[[2]]$compare)) #%>% dplyr::select(1,2,3,4)
   })
   output$meta_dsc <- renderPrint({
     #library(RefManageR)
@@ -131,10 +133,10 @@ server <- function(input, output, session) {
     #RefManageR::PrintBibliography(bib, .opts = list(check.entries = FALSE, sorting = "ynt"))
   })
   output$sidebarText <- renderText({
-    #paste0(cformo()[[6]]$mtd$sgs$eq)
+    paste0(cformo()[[6]]$mtd$sgs$eq)
   })
 }
-runApp(shinyApp(ui = ui, server = server), port = 8100)
+shinyApp(ui = ui, server = server)
 
 
 
