@@ -1,4 +1,5 @@
 #######################################################################################################################################################
+library(ManifoldDestiny)
 library(ManifoldDestinyWASMP)
 library(ManifoldDestinyWASMD)
 library(dplyr)
@@ -11,6 +12,7 @@ library(gridExtra)
 options(scipen=999)
 set.seed(1)
 source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmconverting.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmnonverting.R'))
 md <- ManifoldDestinyWASMD::metad
 #########################################################################################################################################################
 dfm <- ManifoldDestiny::miller_stavros_nevada_2020[[1]] %>%
@@ -92,36 +94,36 @@ app_n_rep <- selreport(app_bal,md$app0)
 app_n_out <- seloutput(app_n_rep)
 app_n_sim <- SimVoterdatabase(app_bal)
 ######## Rigged example 1: standard form
-#app_ex1_cou <- Countinggraphs(app_bal)
-##print(app_ex1_cou$polyc[[1]][[1]])
-#app_ex1_cou$sortpre()
-#app_ex1_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
-##app_ex1_cou$setres(NULL,0)
-#app_ex1_cou$setres(0.23,0)
-#app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),TRUE,wn=c(0,0))
-#app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
-#app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
-######### Rigged example 2: hybrid form
-#app_ex2_cou <- Countinggraphs(app_bal)
-#pri_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
-##print(app_ex2_cou$polyc[[1]][[1]])
-#app_ex2_cou$sortpre()
-#app_ex2_cou$mansys(sygen=list(frm=2,pre=c("alpha","g","h"),end=c("Gamma","Omega"),FALSE,me=c(plnr=1,rot=0)))
-#app_ex2_cou$setres(NULL,0)
-#app_ex2_cou$setres(0.23,0)
-#app_ex2_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),wn=c(0,0))
-#app_ex2_out <- seloutput(selreport(app_ex2_cou$rdfc,md$app0))
-#app_ex2_sim <- SimVoterdatabase(app_ex2_cou$rdfc)
-####### Rigged example 3: Hybrid form
-#app_ex3_cou <- Countinggraphs(app_bal)
-##pri_int_ex3 <- app_ex3_cou$polyc[[1]][[1]]
-#app_ex3_cou$sortpre()
-#app_ex3_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
-#app_ex3_cou$setres(NULL,0)
-#app_ex3_cou$setres(0.23,0)
-#app_ex3_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),wn=c(0,0))
-#app_ex3_out <- seloutput(selreport(app_ex3_cou$rdfc,md$app0))
-#app_ex3_sim <- SimVoterdatabase(app_ex3_cou$rdfc)
+app_ex1_cou <- Countinggraphs(app_bal)
+#print(app_ex1_cou$polyc[[1]][[1]])
+app_ex1_cou$sortpre()
+app_ex1_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
+#app_ex1_cou$setres(NULL,0)
+app_ex1_cou$setres(0.23,0)
+app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),TRUE,wn=c(0,0))
+app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
+app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
+######## Rigged example 2: hybrid form
+app_ex2_cou <- Countinggraphs(app_bal)
+pri_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
+#print(app_ex2_cou$polyc[[1]][[1]])
+app_ex2_cou$sortpre()
+app_ex2_cou$mansys(sygen=list(frm=2,pre=c("alpha","g","h"),end=c("Gamma","Omega"),FALSE,me=c(plnr=1,rot=0)))
+app_ex2_cou$setres(NULL,0)
+app_ex2_cou$setres(0.23,0)
+app_ex2_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),wn=c(0,0))
+app_ex2_out <- seloutput(selreport(app_ex2_cou$rdfc,md$app0))
+app_ex2_sim <- SimVoterdatabase(app_ex2_cou$rdfc)
+###### Rigged example 3: Hybrid form
+app_ex3_cou <- Countinggraphs(app_bal)
+#pri_int_ex3 <- app_ex3_cou$polyc[[1]][[1]]
+app_ex3_cou$sortpre()
+app_ex3_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
+app_ex3_cou$setres(NULL,0)
+app_ex3_cou$setres(0.23,0)
+app_ex3_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),wn=c(0,0))
+app_ex3_out <- seloutput(selreport(app_ex3_cou$rdfc,md$app0))
+app_ex3_sim <- SimVoterdatabase(app_ex3_cou$rdfc)
 #####################################################################################################################################################################
 ##### Standard
 ###################################################################################################################################################################
@@ -135,20 +137,20 @@ app_n_sim <- SimVoterdatabase(app_bal)
 ####tdf$predictinput()
 ################################################################################################################################################################
 ######## Concluding Tabl
-#ctone <-'Applications'
-#formved <- c('Opposition', 
-#	     'Opposition', 
-#	     'Normal', 
-#	     'Opposition')
-#casevec <- c('Miller vs. Stavros, 2020',
-#'Gilbert vs. Sisiolak vs. Lombardo 2020',
-#'Lake vs. Hobbs, 2022',
-#'Trump vs. Biden, 2020')
-#propv_vec <- c("1rd & 2th","1rd & 2th","1rd & 2th","1rd & 2th")
-#prope_vec <- c("5th & 6th","5th & 6th","3rd & 4th","5th & 6th")
-#cou_abc <- c("Case","Form of rigg","Properties","Violations")
-#concl_appps <- data.frame(case=casevec,
-#			  rig=formved,
-#			  propn=prope_vec, 
-#			  propv=propv_vec)
+ctone <-'Applications'
+formved <- c('Opposition', 
+	     'Opposition', 
+	     'Normal', 
+	     'Opposition')
+casevec <- c('Miller vs. Stavros, 2020',
+'Gilbert vs. Sisiolak vs. Lombardo 2020',
+'Lake vs. Hobbs, 2022',
+'Trump vs. Biden, 2020')
+propv_vec <- c("1rd & 2th","1rd & 2th","1rd & 2th","1rd & 2th")
+prope_vec <- c("5th & 6th","5th & 6th","3rd & 4th","5th & 6th")
+cou_abc <- c("Case","Form of rigg","Properties","Violations")
+concl_appps <- data.frame(case=casevec,
+			  rig=formved,
+			  propn=prope_vec, 
+			  propv=propv_vec)
 ##################################################################################################################################################################
