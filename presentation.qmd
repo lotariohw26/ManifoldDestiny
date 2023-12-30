@@ -467,11 +467,6 @@ app_n_out[['resp']]
 
 :::
 
-```{r}
-knitr::knit_exit()
-```
-
-
 ## `r metad$toc$sec3$unm[2]`
 
 **Example 1: Normal form**

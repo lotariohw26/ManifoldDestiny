@@ -25,21 +25,6 @@ googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #lapply(paste0("app",0:4), function(x){recoudatr(mda=md[[x]])})
 ```
 
-```{r, echo=F, warning=F, message=F}
-library(ManifoldDestiny)
-library(RefManageR)
-library(huxtable)
-library(ggplot2)
-library(dplyr)
-library(htmltools)
-library(plotly)
-library(usethis)
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
-```
 
 
 
@@ -47,7 +32,22 @@ source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
 
 
 
-```{r}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r, echo=F}
 # Start on 50
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 mda <- md[[paste0("app",params$name)]]

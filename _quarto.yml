@@ -4,6 +4,8 @@ project:
   render:
     - "index.qmd"
     - "presentation.qmd"
+    - "addendum/Addendum_az.qmd"
+    - "addendum/Addendum_ne.qmd"
     - "laws.qmd"
     - "man_bib.qmd"
     - "tabsets.qmd"
@@ -23,7 +25,9 @@ website:
           - text: "Manifold Destiny - or how to rig an election" 
             href: "presentation.qmd"
           - text: "Addendum 1: Arizona"
+            href: "addendum/Addendum_az.qmd"
           - text: "Addendum 2: Nevada"
+            href: "addendum/Addendum_ne.qmd"
       - text: "Paper"
         #        href: paper.qmd
       - text: Coding in the browser

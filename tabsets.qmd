@@ -18,21 +18,22 @@ bibliography: man_bib.bib
 
 Tabcsets
 
-```{r}
-knitr::knit_exit()
-```
 
 
 ```{r, echo=F, message=F, warning=F}
 library(ManifoldDestiny)
+library(ManifoldDestinyWASMP)
+library(ManifoldDestinyWASMD)
 library(RefManageR)
 library(huxtable)
-library(Hyperinflation)
+modlat <- eqpar$meql
+md <- ManifoldDestinyWASMD::metad
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/applications.R'))
+metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 mda <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-source(paste0(rprojroot::find_rstudio_root_file(),'/inst/script/simulations.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/inst/script/applications.R'))
-```
 
+```
 
 
 ::: {.callout-caution collapse="true"}
@@ -42,10 +43,16 @@ source(paste0(rprojroot::find_rstudio_root_file(),'/inst/script/applications.R')
 app_a_out <- app_n_out
 app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
 text <- readLines(app1_fil)
-cat(knitr::knit_child(text = paste(text[51:length(text)], collapse = "\n"), quiet = TRUE))
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
 ```
 
 :::
+
+```{r}
+knitr::knit_exit()
+```
+
+
 
 ::: {.callout-caution collapse="true"}
 ## `r md$tabhead[2]`
@@ -103,6 +110,10 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 ```
 :::
 
+```{r}
+knitr::knit_exit()
+```
+
 ::: {.callout-caution collapse="true"}
 ## Application 2 
 ```{r, echo=FALSE, results='asis',warning=F}
@@ -147,4 +158,5 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 
 ::: {#refs}
 :::
+
 
