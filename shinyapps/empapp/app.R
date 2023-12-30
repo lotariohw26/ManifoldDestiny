@@ -1,8 +1,9 @@
 library(shiny)
 library(plotly)
+library(ManifoldDestinyWASMP)
+library(ManifoldDestinyWASMD)
 #options(scipen=999)
 #set.seed(1)
-#library(ManifoldDestiny)
 #library(dplyr)
 #library(ggplot2)
 #library(htmltools)
@@ -11,12 +12,6 @@ library(plotly)
 #library(kableExtra)
 #library(htmlTable)
 #library(usethis)
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
-#md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 dlname <- c("app0","app1","app2")
 #googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 ###############################################################################################################################################################
@@ -77,22 +72,20 @@ server <- function(input, output, session) {
   })  
   cformo <- reactive({
     # Manual
-    seldata <- get(load(paste0(rprojroot::find_rstudio_root_file(),'/data/',input$app_select,".rda")))
-    #mds <- md[[input$app_select]]
+    seldata <- app0
     ### Purge
-    #abc <- strsplit(input$purge,";")
-    #mds$mtd$prg$cnd <- c(0)
-    #mds$mtd$prg$stuv <- c(0,0,0,0)
-    #mds$mtd$prg$blup[1] <- 0
-    #mds$mtd$prg$blup[2] <- 1
+    mds$mtd$prg$cnd <- c(0)
+    mds$mtd$prg$stuv <- c(0,0,0,0)
+    mds$mtd$prg$blup[1] <- 0
+    mds$mtd$prg$blup[2] <- 1
     ### Solution
-    #mds$sgs$fr <- as.numeric(input$form)
-    #mds$sgs$eq <- as.numeric(input$meqf)
-    #mds$sgs$va <- as.numeric(input$solvf)
+    mds$sgs$fr <- as.numeric(input$form)
+    mds$sgs$eq <- as.numeric(input$meqf)
+    mds$sgs$va <- as.numeric(input$solvf)
     ### Rotation
-    #mds$mtd$sgs$ro[1] <- input$theta*pi/180
-    #mds$mtd$sgs$ro[2] <- input$phi*pi/180
-    #mds$mtd$sgs$ro[3] <- input$rho*pi/180
+    mds$mtd$sgs$ro[1] <- input$theta*pi/180
+    mds$mtd$sgs$ro[2] <- input$phi*pi/180
+    mds$mtd$sgs$ro[3] <- input$rho*pi/180
     ### Selreport
     #return(selreport(seldata,mds))
   })

@@ -1,19 +1,15 @@
 library(shiny)
 library(magrittr)
+library(ManifoldDestinyWASMP)
+library(ManifoldDestinyWASMD)
+library(ggplot2)
 #options(scipen=999)
 #library(plotly)
 #library(DT)
-#library(ManifoldDestiny)
 #library(kableExtra)
 #library(dplyr)
-#library(ggplot2)
 #library(htmltools)
 #library(gridExtra)
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
 ui <- fluidPage(
   titlePanel("R2 Simulator"),
   tabsetPanel(
@@ -32,8 +28,8 @@ ui <- fluidPage(
                  actionButton("run", "Run Simulation")
                ),
                mainPanel(
-                 plotOutput("plot")
-                 #tableOutput("table")
+                 plotOutput("plot"),
+                 tableOutput("table")
                )
              ))
     ),
@@ -89,27 +85,27 @@ server <- function(input, output) {
   # Create plot
   output$plot <- renderPlot({
 	  #browser()
-    #      dfp <- dfgp()[[1]] %>% tidyr::pivot_longer(cols=c("r2a","r2b")) %>% dplyr::arrange(name,perc)
-    #ggplot(dfp,aes(x=value, fill=name)) + 
-    #  geom_histogram(position = "identity", alpha = 0.5, bins = 30) + 
-    #  labs(title = "Histogram of Values by Category", x = "Value", y = "Count") +
-    #  geom_vline(xintercept = as.numeric(dfgp()[[2]][1,1]), linetype = "dashed", color = "blue") +
-    #  geom_vline(xintercept = as.numeric(dfgp()[[2]][2,1]), linetype = "dashed", color = "blue") +
-    #  geom_vline(xintercept = as.numeric(dfgp()[[2]][3,1]), linetype = "dashed", color = "blue") +
-    #  geom_vline(xintercept = as.numeric(dfgp()[[2]][3,4]), linetype = "solid", color = "red") +
-    #  geom_label(y=0,x=as.numeric(dfgp()[[2]][1,1]),label="*",geom="label") +
-    #  geom_label(y=0,x=as.numeric(dfgp()[[2]][2,1]),label="**",geom="label") +
-    #  geom_label(y=0,x=as.numeric(dfgp()[[2]][3,1]),label="***",geom="label") +
-    #  theme_minimal() +
-    #  scale_fill_manual(values = c("#0072B2", "#E69F00"))  # set fill colors
+    dfp <- dfgp()[[1]] %>% tidyr::pivot_longer(cols=c("r2a","r2b")) %>% dplyr::arrange(name,perc)
+    ggplot(dfp,aes(x=value, fill=name)) + 
+      geom_histogram(position = "identity", alpha = 0.5, bins = 30) + 
+      labs(title = "Histogram of Values by Category", x = "Value", y = "Count") +
+      geom_vline(xintercept = as.numeric(dfgp()[[2]][1,1]), linetype = "dashed", color = "blue") +
+      geom_vline(xintercept = as.numeric(dfgp()[[2]][2,1]), linetype = "dashed", color = "blue") +
+      geom_vline(xintercept = as.numeric(dfgp()[[2]][3,1]), linetype = "dashed", color = "blue") +
+      geom_vline(xintercept = as.numeric(dfgp()[[2]][3,4]), linetype = "solid", color = "red") +
+      geom_label(y=0,x=as.numeric(dfgp()[[2]][1,1]),label="*",geom="label") +
+      geom_label(y=0,x=as.numeric(dfgp()[[2]][2,1]),label="**",geom="label") +
+      geom_label(y=0,x=as.numeric(dfgp()[[2]][3,1]),label="***",geom="label") +
+      theme_minimal() +
+      scale_fill_manual(values = c("#0072B2", "#E69F00"))  # set fill colors
   })
   
   ## Create table
   output$table1 <- renderUI({
-    #DT::datatable(round(dfgp()[[2]],digits=4))
+    DT::datatable(round(dfgp()[[2]],digits=4))
   })
   output$table2 <- renderUI({
-    #DT::datatable(round(dfgp()[[1]], digits=4), options = list(pageLength = 20))
+    DT::datatable(round(dfgp()[[1]], digits=4), options = list(pageLength = 20))
   })
 }
 # Run app
