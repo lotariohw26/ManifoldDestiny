@@ -816,6 +816,7 @@ globalThis.qwebrCreateNonInteractiveSetupElement = function(qwebrCounter) {
   <ul class="collapse">
   <li><a href="#install-and-load-packages" id="toc-install-and-load-packages" class="nav-link" data-scroll-target="#install-and-load-packages">Install and load packages</a></li>
   <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation">Simulation</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
@@ -1034,6 +1035,43 @@ SimVoterdatabase(app_bal)
 app_n_rep <- selreport(app0,md$app0)
 app_n_out <- seloutput(app_n_rep)`, 
   2);
+</script>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="applications" class="level3">
+<h3 class="anchored" data-anchor-id="applications">Applications</h3>
+<div id="qwebr-insertion-location-3"></div>
+<script type="module">
+// Retrieve the insertion point
+const currentDocumentLocation = document.getElementById("qwebr-insertion-location-3");
+
+// Initalize an interactive element
+const initializedElement =   qwebrCreateInteractiveElement(
+    3
+  );
+
+// Add the interactive element into the document scope
+currentDocumentLocation.appendChild(initializedElement);
+
+// Initialize a Monaco Editor Instance
+qwebrCreateMonacoEditorInstance(
+  `library(dplyr)
+library(combinat)
+library(htmltools)
+library(ggplot2)
+library(broom)
+library(combinat)
+app0_rp <- selreport(app0,md$app0)
+app_0_out <- seloutput(app0_rp)
+app1_rp <- selreport(app1,md$app1)
+app_1_out <- seloutput(app1_rp)
+app2_rp <- selreport(app2,md$app2)
+app_2_out <- seloutput(app2_rp)
+app3_rp <- selreport(app2,md$app2)
+app_3_out <- seloutput(app2_rp)
+app4_rp <- selreport(app2,md$app2)
+app_4_out <- seloutput(app2_rp)`, 
+  3);
 </script>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p><strong>Last time updated: 2023-12-30</strong></p>
