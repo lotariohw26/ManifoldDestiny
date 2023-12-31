@@ -25,6 +25,14 @@ googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #lapply(paste0("app",0:4), function(x){recoudatr(mda=md[[x]])})
 ```
 
+```{r, echo=F}
+md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+mda <- md[[paste0("app",params$name)]]
+apprda <- get(load(paste0(rprojroot::find_rstudio_root_file(),'/data/app',params$name,".rda")))
+app_a_out <- seloutput(selreport(apprda,mda))
+```
+
+
 
 
 
@@ -40,11 +48,8 @@ googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 
 
 ```{r, echo=F}
-# Start on 50
-md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-mda <- md[[paste0("app",params$name)]]
-apprda <- get(load(paste0(rprojroot::find_rstudio_root_file(),'/data/app',params$name,".rda")))
-app_a_out <- seloutput(selreport(apprda,mda))
+apn <- paste0('app','1')
+mda <- md[[apn]]
 ```
 
 ## Application: `r mda$nmn`
@@ -61,9 +66,11 @@ app_a_out <- seloutput(selreport(apprda,mda))
   - Solved for `r mda$mtd$sgs$va`
 
 [Link to raw data and independent calculcations](`r mda$sht$url`)
-[@sol2022_1]
+
+---
 
 ::: {.panel-tabset}
+
 ### `r mda$tabsets[[1]]`
 ```{r, echo=F}
 kableExtra::kbl(app_a_out[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
@@ -88,7 +95,8 @@ app_a_out[['regr']]
 ```{r, echo=F, out.width="60%"}
 app_a_out[['resp']]
 ```
-:::
+::: 
+
 
 ### Ballot predictions based on limit information implied by the estimated Manifold object(s)
 
@@ -97,8 +105,5 @@ app_a_out[['resp']]
 #kableExtra::kbl(app_a_out$cmp,row.names=F,col.names=c("Statistic","Value"),digits=2) %>% kableExtra::kable_paper(full_width = F) 
 ```
 
-### References
 
-::: {#refs}
-:::
 
