@@ -39,14 +39,6 @@ googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 
 
 
-
-
-
-
-
-
-
-
 ```{r, echo=F}
 # Start on 50
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))

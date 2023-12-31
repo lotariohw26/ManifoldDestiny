@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.533">
+<meta name="generator" content="quarto-1.4.515">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Manifold Destiny</title>
+<title>Manifold Destiny – jsonview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,7 +60,6 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -100,12 +99,20 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./presentation.html">
  <span class="dropdown-text">Manifold Destiny - or how to rig an election</span></a>
   </li>  
-        <li class="dropdown-header">Addendum 1: Arizona</li>
-        <li class="dropdown-header">Addendum 2: Nevada</li>
+        <li>
+    <a class="dropdown-item" href="./addendum/Addendum_az.html">
+ <span class="dropdown-text">Addendum 1: Arizona</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./addendum/Addendum_ne.html">
+ <span class="dropdown-text">Addendum 2: Nevada</span></a>
+  </li>  
     </ul>
   </li>
-  <li class="dropdown-header">
- <span class="menu-text">Paper</span></li>
+  <li class="nav-item">
+    <a class="nav-link" href="./paper.html"> 
+<span class="menu-text">Paper</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-coding-in-the-browser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Coding in the browser</span>
@@ -861,6 +868,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -875,14 +903,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
+        typesetMath(container);
         return container.innerHTML
       } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
+        typesetMath(note);
         return note.innerHTML;
       }
     } else {
@@ -891,9 +915,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
+      typesetMath(note);
       return note.innerHTML;
     }
   }

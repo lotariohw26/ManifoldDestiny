@@ -60,6 +60,8 @@ website:
             href: laws.qmd
           - text: "Metadata"
             href: jsonview.qmd
+          - text: "Tabsets"
+            href: tabsets.qmd
   repo-url: https://github.com/lotariohw26/ManifoldDestiny
   site-url: https://lotariohw26.github.io/ManifoldDestiny/
   reader-mode: false
