@@ -9,7 +9,7 @@ project:
     - "laws.qmd"
     - "man_bib.qmd"
     - "tabsets.qmd"
-      #    - "paper.qmd"
+    - "paper.qmd"
     - "abc.qmd"
     - "def.qmd"
     - "jsonview.qmd"
@@ -29,7 +29,7 @@ website:
           - text: "Addendum 2: Nevada"
             href: "addendum/Addendum_ne.qmd"
       - text: "Paper"
-        #  href: paper.qmd
+        href: paper.qmd
       - text: Coding in the browser
         menu:
           - text: "R"
