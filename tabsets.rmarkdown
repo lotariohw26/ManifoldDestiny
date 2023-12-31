@@ -31,7 +31,6 @@ mda <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/
 ```
 
 
-
 ::: {.callout-caution collapse="true"}
 ## `r md$tabhead[1]`
 
@@ -44,6 +43,7 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 
 :::
 
+
 ::: {.callout-caution collapse="true"}
 ## `r md$tabhead[2]`
 
@@ -51,9 +51,10 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 app_a_out <- app_ex1_out 
 app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
 text <- readLines(app1_fil)
-cat(knitr::knit_child(text = paste(text[51:length(text)], collapse = "\n"), quiet = TRUE))
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
 ```
 
+:::
 
 ::: {.callout-caution collapse="true"}
 ## `r md$tabhead[3]`
@@ -62,10 +63,12 @@ cat(knitr::knit_child(text = paste(text[51:length(text)], collapse = "\n"), quie
 app_a_out <- app_ex2_out 
 app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
 text <- readLines(app1_fil)
-cat(knitr::knit_child(text = paste(text[51:length(text)], collapse = "\n"), quiet = TRUE))
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
 ```
 
 :::
+
+
 
 ::: {.callout-caution collapse="true"}
 ## `r md$tabhead[4]`
@@ -74,7 +77,7 @@ cat(knitr::knit_child(text = paste(text[51:length(text)], collapse = "\n"), quie
 app_a_out <- app_ex3_out 
 app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
 text <- readLines(app1_fil)
-cat(knitr::knit_child(text = paste(text[51:length(text)], collapse = "\n"), quiet = TRUE))
+cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
 ```
 
 :::
@@ -147,14 +150,6 @@ text <- readLines(app1_fil)
 cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
 ```
 
-:::
-
-
-[@delfino2011analysis]
-
-## References
-
-::: {#refs}
 :::
 
 
