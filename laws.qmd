@@ -8,6 +8,7 @@ output:
 
 ```{r, echo=F}
 # Load necessary library
+library(huxtable)
 library(kableExtra)
 library(tibble)
 # Create the data.frame
@@ -35,7 +36,7 @@ laws_df <- tribble(
   "Twentieth Law", "$\\zeta=\\frac{\\lambda_{1}-\\alpha_{1}}{(y_{2}-y_{1})+(\\alpha_{1}-\\lambda_{1})}$", "$\\gamma=\\frac{\\Omega_{1}-\\alpha_{1}}{(h_{2}-h_{1})+(\\alpha_{1}-\\Omega_{1})}$", "$\\xi=\\frac{\\lambda_{1}-\\Omega_{1}}{(n_{2}-n_{1})+(\\Omega_{1}-\\lambda_{1})}$"
 )
 # Display the data.frame
-kable(laws_df, format = "markdown", escape = FALSE)
+kable(laws_df, format = "markdown", escape = FALSE) 
 ```
 
 # Proportions and ratios
