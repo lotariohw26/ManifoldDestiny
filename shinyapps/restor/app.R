@@ -1,3 +1,9 @@
+options(scipen=999)
+set.seed(1)
+webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
+library(ManifoldDestinyWASMP)
+library(ManifoldDestinyWASMD)
 library(shiny)
 library(magrittr)
 compute_residuals <- function(angle, data) {
@@ -14,34 +20,6 @@ compute_residuals <- function(angle, data) {
 }
 options(scipen=999)
 set.seed(1)
-#library(ManifoldDestiny)
-#library(kableExtra)
-#library(dplyr)
-#library(ggplot2)
-#library(htmltools)
-#library(gridExtra)
-#library(plotly)
-##source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
-##source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
-#set.seed(123) # for reproducible results
-#Sigma <- matrix(c(0.05^2, 0.5*0.05*0.05, 0.5*0.05*0.05, 0.05^2), 2) # correlation matrix
-#eleres <- as.data.frame(MASS::mvrnorm(num_rows, mu = c(0.5, 0.3), Sigma = Sigma))
-#colnames(eleres) <- c("x", "y")
-#eleres
-# UI
-#abc <- ManifoldDestiny::miller_stavros_nevada_2020[[1]] %>%
-#  dplyr::mutate(S=A1,T=B1,U=A2,V=B2) %>%
-#  dplyr::mutate(Z=S+T+U+V+A3+B3, Psi=Z/R) %>%
-#  dplyr::mutate(alpha=(S+U)/(Z)) %>% 
-#  dplyr::mutate(map=U/(S+T)) %>%
-#  dplyr::mutate(mbp=T/(T+V)) %>%
-#  dplyr::select(P,R,S,T,U,V)
-##    app_bal <- ballcastsim(dfm,pwn,parv,padv)
-#eleres <- Countinggraphs(abc)$sdfc %>% dplyr::mutate(Omega=0.8)
-
 ui <- fluidPage(
   titlePanel("Restoration"),
   sidebarLayout(
