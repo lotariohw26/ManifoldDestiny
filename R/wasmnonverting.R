@@ -26,4 +26,5 @@ py_genpolycoeff <- function(expr=NULL,solvd=NULL,solvf=NULL,eur=c(0, 0, 0),dnr=0
   reticulate::py$genpolycoeff(expr=expr,solvd=solvd,solvf=solvf,eur=as.integer(eur),dnr=dnr)
 }
 #####################################################################################################
-#py_genpolycoeff()
+#py_genpolycoeff(expr=NULL,solvd='z',solvf='u0',eur=c(1, 4, 2),dnr=0)
+#py_polysolver() 
