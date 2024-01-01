@@ -46,7 +46,7 @@
     "href": "presentation.html#section-1",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Our numerical example\n\n\nNormal election\n\n\n\n\n\nCounty_1\nCounty_2\nCounty_3\n\n\n60/40\n60/40\n60/40\n\n\n40/60\n40/60\n40/60\n\n\n\n40/60\n40/60\n\n\n\n\n40/60\n\n\n\n\n\n\n\nRigged election\n\n\n\n\n\nCounty_1\nCounty_2\nCounty_3\n\n\n60/40\n60/40\n60/40\n\n\n40/60\n40/60\n40/60\n\n\n\n35/65\n35/65\n\n\n\n\n30/70"
+    "text": "Our numerical example\n\n\nCase 1\n\n\n\n\n\nCounty_1\nCounty_2\nCounty_3\n\n\n60/40\n60/40\n60/40\n\n\n40/60\n40/60\n40/60\n\n\n\n40/60\n40/60\n\n\n\n\n40/60\n\n\n\n\n\n\n\nCase 2\n\n\n\n\n\nCounty_1\nCounty_2\nCounty_3\n\n\n60/40\n60/40\n60/40\n\n\n40/60\n40/60\n40/60\n\n\n\n35/65\n35/65\n\n\n\n\n30/70"
   },
   {
     "objectID": "presentation.html#parametric-tautologies-in-a-election-using-standard-form-north-vs.-south",
@@ -60,7 +60,7 @@
     "href": "presentation.html#section-2",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Election results applying standard form on case I\n\n\nP\nS\nT\nU\nV\nx\ny\nzeta\nalpha\nlamda\n\n\n\n\n1\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5000\n0.6\n\n\n2\n60\n40\n80\n120\n0.6\n0.4\n2\n0.4667\n0.6\n\n\n3\n60\n40\n120\n180\n0.6\n0.4\n3\n0.4500\n0.6\n\n\n\n\n\n\n\nNumerical calculation of candidate one total percentage - Precinct 1 - \\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\) - Precinct 2 - \\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\) - Precinct 3 - \\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\)"
+    "text": "Election results applying standard form on case I\n\n\nP\nS\nT\nU\nV\nx\ny\nzeta\nalpha\nlamda\n\n\n\n\n1\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5000\n0.6\n\n\n2\n60\n40\n80\n120\n0.6\n0.4\n2\n0.4667\n0.6\n\n\n3\n60\n40\n120\n180\n0.6\n0.4\n3\n0.4500\n0.6\n\n\n\n\n\n\n\nNumerical calculation of candidate one total percentage\n\nPrecinct 1\n\n\\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\)\n\nPrecinct 2\n\n\\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\)\n\nPrecinct 3\n\n\\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\)"
   },
   {
     "objectID": "presentation.html#parametric-tautologies-in-a-election-using-hybrid-form-west-vs.-east",
@@ -74,7 +74,7 @@
     "href": "presentation.html#section-3",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Election results applying hybrid form case I\n\n\nP\nS\nT\nU\nV\ng\nh\nGamma\nalpha\nOmega\n\n\n\n\n1\n60\n40\n40\n60\n0.5000\n0.5000\n0.6667\n0.5000\n0.5000\n\n\n2\n60\n40\n80\n120\n0.3333\n0.6667\n0.6667\n0.4667\n0.3333\n\n\n3\n60\n40\n120\n180\n0.2500\n0.7500\n0.6667\n0.4500\n0.2500\n\n\n\n\n\n\n\nNumerical calculation of candidate one total percentage - Precinct 1 - \\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\) - Precinct 2 - \\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\) - Precinct 3 - \\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\)\n\n\n\nElection results applying hybrid form case II\n\n\nP\nS\nT\nU\nV\ng\nh\nGamma\nalpha\nOmega\n\n\n\n\n1\n60\n40\n40\n60\n0.5000\n0.5000\n0.6667\n0.5000\n0.5000\n\n\n2\n60\n40\n75\n125\n0.3243\n0.6522\n0.6216\n0.4500\n0.3333\n\n\n3\n60\n40\n105\n195\n0.2353\n0.7241\n0.5686\n0.4125\n0.2500"
+    "text": "Election results applying hybrid form case I\n\n\nP\nS\nT\nU\nV\ng\nh\nGamma\nalpha\nOmega\n\n\n\n\n1\n60\n40\n40\n60\n0.5000\n0.5000\n0.6667\n0.5000\n0.5000\n\n\n2\n60\n40\n80\n120\n0.3333\n0.6667\n0.6667\n0.4667\n0.3333\n\n\n3\n60\n40\n120\n180\n0.2500\n0.7500\n0.6667\n0.4500\n0.2500\n\n\n\n\n\n\n\nNumerical calculation of candidate one total percentage\n\nPrecinct 1\n\n\\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\)\n\nPrecinct 2\n\n\\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\)\n\nPrecinct 3\n\n\\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\)\n\n\n\n\n\nElection results applying hybrid form case II\n\n\nP\nS\nT\nU\nV\ng\nh\nGamma\nalpha\nOmega\n\n\n\n\n1\n60\n40\n40\n60\n0.5000\n0.5000\n0.6667\n0.5000\n0.5000\n\n\n2\n60\n40\n75\n125\n0.3243\n0.6522\n0.6216\n0.4500\n0.3333\n\n\n3\n60\n40\n105\n195\n0.2353\n0.7241\n0.5686\n0.4125\n0.2500"
   },
   {
     "objectID": "presentation.html#parametric-tautologies-in-a-election-using-opposition-form-upper-diagonal-vs.-lower-diagonal",
