@@ -765,19 +765,19 @@ globalThis.qwebrCreateNonInteractiveSetupElement = function(qwebrCounter) {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-shiny-applications">    
         <li>
-    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/r/examples/#sliders">
+    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/r/examples/#r2-distribution-simulator">
  <span class="dropdown-text">R2 simulator</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/r/examples/#sliders">
+    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/r/examples/#rigged-election-simulator">
  <span class="dropdown-text">Rigging of a natural election</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/r/examples/#sliders">
+    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/r/examples/#election-analyzer">
  <span class="dropdown-text">Election results analyzer</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/r/examples/#sliders">
+    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/r/examples/#restoration-of-a-rigged-election">
  <span class="dropdown-text">Restoration of a rigged election</span></a>
   </li>  
     </ul>
@@ -1017,7 +1017,13 @@ ls(package:ManifoldDestinyWASMP)
 library(ManifoldDestinyWASMD)
 ls(package:ManifoldDestinyWASMD)
 library(magrittr)
-md <- ManifoldDestinyWASMD::metad`, 
+md <- ManifoldDestinyWASMD::metad
+library(dplyr)
+library(combinat)
+library(htmltools)
+library(ggplot2)
+library(broom)
+library(combinat)`, 
   1);
 </script>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -1039,27 +1045,24 @@ currentDocumentLocation.appendChild(initializedElement);
 
 // Initialize a Monaco Editor Instance
 qwebrCreateMonacoEditorInstance(
-  `library(dplyr)
-library(combinat)
-library(htmltools)
-library(ggplot2)
-library(broom)
-library(combinat)
-dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10)
+  `dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10)
 probw <- c(m=0.51,s=0.10)
 probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztech <- c(0,1) 
 app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
 SimVoterdatabase(app_bal)
-app_n_rep <- selreport(app0,md$app0)
-app_n_out <- seloutput(app_n_rep)`, 
+app_n_rep <- selreport(app_bal,md$app0)
+app_n_out <- seloutput(app_n_rep)
+app_n_sim <- SimVoterdatabase(app_bal)`, 
   2);
 </script>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="applications" class="level3">
 <h3 class="anchored" data-anchor-id="applications">Applications</h3>
+<section id="app1" class="level4">
+<h4 class="anchored" data-anchor-id="app1">App1</h4>
 <div id="qwebr-insertion-location-3"></div>
 <script type="module">
 // Retrieve the insertion point
@@ -1075,28 +1078,38 @@ currentDocumentLocation.appendChild(initializedElement);
 
 // Initialize a Monaco Editor Instance
 qwebrCreateMonacoEditorInstance(
-  `library(dplyr)
-library(combinat)
-library(htmltools)
-library(ggplot2)
-library(broom)
-library(combinat)
-app0_rp <- selreport(app0,md$app0)
-app_0_out <- seloutput(app0_rp)
-app1_rp <- selreport(app1,md$app1)
-app_1_out <- seloutput(app1_rp)
-app2_rp <- selreport(app2,md$app2)
-app_2_out <- seloutput(app2_rp)
-app3_rp <- selreport(app2,md$app2)
-app_3_out <- seloutput(app2_rp)
-app4_rp <- selreport(app2,md$app2)
-app_4_out <- seloutput(app2_rp)`, 
+  `app1_rp <- selreport(app1,md$app1)
+app_1_out <- seloutput(app1_rp)`, 
   3);
 </script>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Last time updated: 2023-12-31</strong></p>
+</section>
+<section id="app2" class="level4">
+<h4 class="anchored" data-anchor-id="app2">App2</h4>
+<div id="qwebr-insertion-location-4"></div>
+<script type="module">
+// Retrieve the insertion point
+const currentDocumentLocation = document.getElementById("qwebr-insertion-location-4");
+
+// Initalize an interactive element
+const initializedElement =   qwebrCreateInteractiveElement(
+    4
+  );
+
+// Add the interactive element into the document scope
+currentDocumentLocation.appendChild(initializedElement);
+
+// Initialize a Monaco Editor Instance
+qwebrCreateMonacoEditorInstance(
+  `app2_rp <- selreport(app2,md$app2)
+app_2_out <- seloutput(app2_rp)`, 
+  4);
+</script>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>Last time updated: 2024-01-01</strong></p>
 
 
+</section>
 </section>
 </section>
 

@@ -146,7 +146,7 @@
     "nmn":"General",
    "race": {
 	"rcn": "General Election",
-	"cnd": ["Stavros (R)","Millder(D)"],
+	"cnd": ["Stavros (R)","Miller(D)"],
 	"sta": "Nevada",
 	"cou": [],
 	"mod": ["ADV","MiV","EDV"],

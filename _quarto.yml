@@ -41,13 +41,13 @@ website:
       - text: Shiny applications
         menu:
           - text: "R2 simulator"
-            href: "https://lotariohw26.github.io/MD_WASMS/r/examples/#sliders"
+            href: "https://lotariohw26.github.io/MD_WASMS/r/examples/#r2-distribution-simulator"
           - text: "Rigging of a natural election"
-            href: "https://lotariohw26.github.io/MD_WASMS/r/examples/#sliders"
+            href: "https://lotariohw26.github.io/MD_WASMS/r/examples/#rigged-election-simulator"
           - text: "Election results analyzer"
-            href: "https://lotariohw26.github.io/MD_WASMS/r/examples/#sliders"
+            href: "https://lotariohw26.github.io/MD_WASMS/r/examples/#election-analyzer"
           - text: "Restoration of a rigged election"
-            href: "https://lotariohw26.github.io/MD_WASMS/r/examples/#sliders"
+            href: "https://lotariohw26.github.io/MD_WASMS/r/examples/#restoration-of-a-rigged-election"
       - text: E-books
         menu:
           - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
