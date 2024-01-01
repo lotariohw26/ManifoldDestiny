@@ -9,11 +9,6 @@ library(plotly)
 #library(ggplot2)
 #library(htmltools)
 #library(gridExtra)
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
 ##vl <- ManifoldDestiny::recnav
 #dfm <- ManifoldDestiny::miller_stavros_nevada_2020[[1]] %>%
 #  dplyr::mutate(S=A1,T=B1,U=A2,V=B2) %>%
