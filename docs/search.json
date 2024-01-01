@@ -95,7 +95,7 @@
     "href": "presentation.html#modelling-the-election-process",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "Modelling the election process",
-    "text": "Modelling the election process\n\nStep 1: Each registered voter assign themself (independent of voting technology) to either candidate A or candidate B\nStep 2: Voting technology realized\nStep 3: Registered voters determine whether to vote or not to vote\nStep 4: If voting, do this by either mode 1 or by mode 2.\n\n\n\n\n\n\n  flowchart LR\n  A[Candidate A or B] --&gt; R[A]\n  R --&gt; RV[Vote]\n  RV --&gt; RVE[Non-Mail]\n  RV --&gt; RVM[Mail]\n  R --&gt; RN[Not Vote]\n  DV --&gt; DVE[Non-Mail]\n  DV --&gt; DVM[Mail]\n  A --&gt; D[B]\n  D --&gt; DV[Vote]\n  D --&gt; Dn[Not Vote]"
+    "text": "Modelling the election process\n\nStep 1: Each registered voter assign themself (independent of voting technology) to either candidate A or candidate B\nStep 2: Voting technology realized\nStep 3: Registered voters determine whether to vote or not to vote\nStep 4: If voting, do this by either mode 1 or by mode 2.\n\n\n\n\n\n  flowchart LR\n  A[Candidate A or B] --&gt; R[A]\n  R --&gt; RV[Vote]\n  RV --&gt; RVE[Non-Mail]\n  RV --&gt; RVM[Mail]\n  R --&gt; RN[Not Vote]\n  DV --&gt; DVE[Non-Mail]\n  DV --&gt; DVM[Mail]\n  A --&gt; D[B]\n  D --&gt; DV[Vote]\n  D --&gt; Dn[Not Vote]"
   },
   {
     "objectID": "presentation.html#section-5",
