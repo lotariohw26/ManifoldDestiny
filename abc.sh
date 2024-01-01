@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## R
-cp -f R/wasmconverting.R MD_WASMP/wasmconverting.R
+cp -f R/wasmconverting.R MD_WASMP/R/wasmconverting
 cp -f R/wasmconverting.R MD_WASMS/examples/r/MD-sandbox/wasmconverting.R
 
 ## Shiny
