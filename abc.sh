@@ -11,4 +11,4 @@ cp -f shinyapps/restor/app.R MD_WASMS/examples/r/MD-restor/app.R
 cp -f shinyapps/manimp/app.R MD_WASMS/examples/r/MD-manimp/app.R
 
 # Python
-cp -f script/python/functions.py MD_WASMS/examples/python/sandbox/functions.py
+cp -f script/python/polysolver.py MD_WASMS/examples/python/sandbox/polysolver.py
