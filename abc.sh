@@ -5,5 +5,10 @@ cp -f R/wasmconverting.R MD_WASMP/wasmconverting.R
 cp -f R/wasmconverting.R MD_WASMS/examples/r/MD-sandbox/wasmconverting.R
 
 ## Shiny
-cp -f shinyapps/r2sim/app.R MD_WASMS/examples/r/MD-r2sim/app.R
-cp -f shinyapps/empapp/app.R MD_WASMS/examples/r/MD-reana/app.R
+cp -f shinyapps/r2rsim/app.R MD_WASMS/examples/r/MD-r2rsim/app.R
+cp -f shinyapps/empapp/app.R MD_WASMS/examples/r/MD-empapp/app.R
+cp -f shinyapps/restor/app.R MD_WASMS/examples/r/MD-restor/app.R
+cp -f shinyapps/manimp/app.R MD_WASMS/examples/r/MD-manimp/app.R
+
+# Python
+cp -f script/python/functions.py MD_WASMS/examples/python/sandbox/functions.py
