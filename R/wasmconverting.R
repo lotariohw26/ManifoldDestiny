@@ -537,6 +537,7 @@ Countingprocess$methods(sortpre=function(form=1,
   #sumreg <<- list(poleq=paste0(plso),polint=pintv,R2=paste0(plr2))
 })
 Countingprocess$methods(mansys=function(sygen=NULL){
+  browser()
   mansysl <<- sygen
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   allvar <<- list(pre=mansysl$pre,end=mansysl$end)

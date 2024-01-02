@@ -1,3 +1,6 @@
+# script/addendum_az.R
+# script/addendum_ne.R
+# script/simulations.R
 project:
   type: website
   output-dir: docs
@@ -75,6 +78,6 @@ format:
   html:
     theme: zephyr
     toc: true
-#webr: 
-#  show-startup-message: true    # Disable displaying status of webR initialization
-#  packages: ['dplyr'] # Install R packages on document open
+# webr: 
+# show-startup-message: true    # Disable displaying status of webR initialization
+# packages: ['dplyr'] # Install R packages on document open

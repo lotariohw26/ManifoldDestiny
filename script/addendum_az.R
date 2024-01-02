@@ -5,14 +5,7 @@ library(ManifoldDestiny)
 library(dplyr)
 library(ggplot2)
 library(htmltools)
-#library(gridextra)
 # Application
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/raceanalysis.R'))
 set_n <- c('k0+k1*y','k0+k1*x+k2*y','k0+k1*x+k2*y+k3*zeta')
 set_h <- c('k0+k1*g','k0+k1*g+k2*h','k0+k1*g+k2*h+k3*zeta')
 set_o <- c('k0+k1*n','k0+k1*n+k2*m','k0+k1*n+k2*m+k3*zeta')
@@ -24,6 +17,21 @@ app_ma_eqs <- list(alpha=c(set_n,sel_ma))
 ##### Maricopa
 ###### "US Senate","MASTERS, BLAKE","KELLY, MARK"
 canlet <- c("SNAP","RACE", "RACENR","TXT","P","PN","R","A1","B1","A2","B2")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 df_m1 <- data.table::rbindlist(ManifoldDestiny::lst_race_snap_all_az_ma,F)  %>% data.table::setnames(new=canlet) %>% dplyr::mutate(S=A1,T=B1,U=A2,V=B2) %>% 
 	dplyr::filter(RACENR%in%c(1)) %>% 
 	dplyr::filter(SNAP%in%c(1:12))
