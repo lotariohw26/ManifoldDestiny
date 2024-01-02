@@ -62,14 +62,6 @@ towii <- as.data.frame(ex2m) %>%
 towii[3:4,1] <- ""
 towii[4,2] <- ""
 #########################################################################################################################################################
-###### Normal 
-######## R2 sim
-dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10)
-probw <- c(m=0.51,s=0.10)
-probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
-probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
-ztech <- c(0,1)	
-app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
 #########################################################################################################################################################
 pro_rec_ex1_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=U,V=V,R=R)
 pro_rec_ex2_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=Up,V=Vp,R=R) 
@@ -88,7 +80,14 @@ cg <- round(pro_elc_ex1$sdfc$g,2)
 ch <- round(pro_elc_ex1$sdfc$y,2)
 cGamma <- round(pro_elc_ex1$sdfc$Gamma,2)
 ##########################################################################################################################################################
-##########################################################################################################################################################
+###### Normal 
+######## R2 sim
+dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10)
+probw <- c(m=0.51,s=0.10)
+probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
+probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
+ztech <- c(0,1)	
+app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
 ########## Normal form
 app_n_rep <- selreport(app_bal,md$app0)
 app_n_out <- seloutput(app_n_rep)

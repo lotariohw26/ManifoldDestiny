@@ -1059,11 +1059,8 @@ app_n_sim <- SimVoterdatabase(app_bal)`,
   2);
 </script>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="applications" class="level3">
-<h3 class="anchored" data-anchor-id="applications">Applications</h3>
-<section id="app1" class="level4">
-<h4 class="anchored" data-anchor-id="app1">App1</h4>
+<section id="normal" class="level4">
+<h4 class="anchored" data-anchor-id="normal">Normal</h4>
 <div id="qwebr-insertion-location-3"></div>
 <script type="module">
 // Retrieve the insertion point
@@ -1079,14 +1076,15 @@ currentDocumentLocation.appendChild(initializedElement);
 
 // Initialize a Monaco Editor Instance
 qwebrCreateMonacoEditorInstance(
-  `app1_rp <- selreport(app1,md$app1)
-app_1_out <- seloutput(app1_rp)`, 
+  `app_n_rep <- selreport(app_bal,md$app0)
+app_n_out <- seloutput(app_n_rep)
+app_n_sim <- SimVoterdatabase(app_bal)`, 
   3);
 </script>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="app2" class="level4">
-<h4 class="anchored" data-anchor-id="app2">App2</h4>
+<section id="rig-1-normal" class="level4">
+<h4 class="anchored" data-anchor-id="rig-1-normal">Rig 1: Normal</h4>
 <div id="qwebr-insertion-location-4"></div>
 <script type="module">
 // Retrieve the insertion point
@@ -1102,12 +1100,130 @@ currentDocumentLocation.appendChild(initializedElement);
 
 // Initialize a Monaco Editor Instance
 qwebrCreateMonacoEditorInstance(
-  `app2_rp <- selreport(app2,md$app2)
-app_2_out <- seloutput(app2_rp)`, 
+  `app_ex1_cou <- Countinggraphs(app_bal)
+print(app_ex1_cou$polyc[[1]][[1]])
+app_ex1_cou$sortpre()
+#app_ex1_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
+##app_ex1_cou$setres(NULL,0)
+#app_ex1_cou$setres(0.23,0)
+#app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),TRUE,wn=c(0,0))
+#app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
+#app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)`, 
   4);
 </script>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Last time updated: 2024-01-01</strong></p>
+</section>
+<section id="rig-2-hybdrid" class="level4">
+<h4 class="anchored" data-anchor-id="rig-2-hybdrid">Rig 2: Hybdrid</h4>
+<div id="qwebr-insertion-location-5"></div>
+<script type="module">
+// Retrieve the insertion point
+const currentDocumentLocation = document.getElementById("qwebr-insertion-location-5");
+
+// Initalize an interactive element
+const initializedElement =   qwebrCreateInteractiveElement(
+    5
+  );
+
+// Add the interactive element into the document scope
+currentDocumentLocation.appendChild(initializedElement);
+
+// Initialize a Monaco Editor Instance
+qwebrCreateMonacoEditorInstance(
+  `app_ex2_cou <- Countinggraphs(app_bal)
+pri_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
+print(app_ex2_cou$polyc[[1]][[1]])
+#app_ex2_cou$sortpre()
+#app_ex2_cou$mansys(sygen=list(frm=2,pre=c("alpha","g","h"),end=c("Gamma","Omega"),FALSE,me=c(plnr=1,rot=0)))
+#app_ex2_cou$setres(NULL,0)
+#app_ex2_cou$setres(0.23,0)
+#app_ex2_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),wn=c(0,0))
+#app_ex2_out <- seloutput(selreport(app_ex2_cou$rdfc,md$app0))
+#app_ex2_sim <- SimVoterdatabase(app_ex2_cou$rdfc)`, 
+  5);
+</script>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="rig-3-opposition" class="level4">
+<h4 class="anchored" data-anchor-id="rig-3-opposition">Rig 3: Opposition</h4>
+<div id="qwebr-insertion-location-6"></div>
+<script type="module">
+// Retrieve the insertion point
+const currentDocumentLocation = document.getElementById("qwebr-insertion-location-6");
+
+// Initalize an interactive element
+const initializedElement =   qwebrCreateInteractiveElement(
+    6
+  );
+
+// Add the interactive element into the document scope
+currentDocumentLocation.appendChild(initializedElement);
+
+// Initialize a Monaco Editor Instance
+qwebrCreateMonacoEditorInstance(
+  `app_ex3_cou <- Countinggraphs(app_bal)
+pri_int_ex3 <- app_ex3_cou$polyc[[1]][[1]]
+app_ex3_cou$sortpre()
+#app_ex3_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
+#app_ex3_cou$setres(NULL,0)
+#app_ex3_cou$setres(0.23,0)
+#app_ex3_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),wn=c(0,0))
+#app_ex3_out <- seloutput(selreport(app_ex3_cou$rdfc,md$app0))
+#app_ex3_sim <- SimVoterdatabase(app_ex3_cou$rdfc)
+#####################################################################################################################################################################`, 
+  6);
+</script>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+</section>
+<section id="applications" class="level3">
+<h3 class="anchored" data-anchor-id="applications">Applications</h3>
+<section id="app1" class="level4">
+<h4 class="anchored" data-anchor-id="app1">App1</h4>
+<div id="qwebr-insertion-location-7"></div>
+<script type="module">
+// Retrieve the insertion point
+const currentDocumentLocation = document.getElementById("qwebr-insertion-location-7");
+
+// Initalize an interactive element
+const initializedElement =   qwebrCreateInteractiveElement(
+    7
+  );
+
+// Add the interactive element into the document scope
+currentDocumentLocation.appendChild(initializedElement);
+
+// Initialize a Monaco Editor Instance
+qwebrCreateMonacoEditorInstance(
+  `app1_rp <- selreport(app1,md$app1)
+app_1_out <- seloutput(app1_rp)`, 
+  7);
+</script>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="app2" class="level4">
+<h4 class="anchored" data-anchor-id="app2">App2</h4>
+<div id="qwebr-insertion-location-8"></div>
+<script type="module">
+// Retrieve the insertion point
+const currentDocumentLocation = document.getElementById("qwebr-insertion-location-8");
+
+// Initalize an interactive element
+const initializedElement =   qwebrCreateInteractiveElement(
+    8
+  );
+
+// Add the interactive element into the document scope
+currentDocumentLocation.appendChild(initializedElement);
+
+// Initialize a Monaco Editor Instance
+qwebrCreateMonacoEditorInstance(
+  `app2_rp <- selreport(app2,md$app2)
+app_2_out <- seloutput(app2_rp)`, 
+  8);
+</script>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>Last time updated: 2024-01-02</strong></p>
 
 
 </section>
