@@ -12,3 +12,5 @@ cp -f shinyapps/restor/app.R MD_WASMS/examples/r/MD-restor/app.R
 
 # Python
 cp -f script/python/polysolver.py MD_WASMS/examples/python/sandbox/polysolver.py
+
+# Metadata

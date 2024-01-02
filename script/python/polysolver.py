@@ -33,7 +33,8 @@ def rall(sel=[0, 0, 0]):
     allrot = [ps[i] for i in sel]
     return allrot
 
-def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[1, 4, 2], plr=3,dnr=2):
+#def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[1, 4, 2], plr=3,dnr=2):
+def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[0, 0, 0], plr=3,dnr=2):
     sympy.var('alpha x y g h n m zeta Gamma lamda ui')
     x, y, z = sympy.symbols('x y z')
     sum_eur = sum(eur)
@@ -49,7 +50,7 @@ def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[1, 4, 2], plr=3,dnr=2):
         return ABCDE, abc, uvw
     # With rotation
     else:
-        expr = ['k0+k1*x+k2*y', 'k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2', 'k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3'][plr-1]
+        expr = ['k0+k1*x+k2*y','k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2','k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3'][plr-1]
         dxyz = {'x': 1, 'y': 2, 'z': 3}
         # Defining
         x,  y,  z  = sympy.symbols('x y z')
