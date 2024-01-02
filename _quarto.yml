@@ -22,10 +22,7 @@ website:
   navbar:
     left:
       - text: "Index"
-e       href: index.qmd
-################################################################################################################
-# Model
-###############################################################################################################
+        href: index.qmd
       - text: "Presentation"
         menu:
           - text: "Manifold Destiny - or how to rig an election" 

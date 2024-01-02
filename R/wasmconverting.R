@@ -1,17 +1,15 @@
 #' @export py_polysolver
 py_polysolverW <- function(degree=1,kvec=NULL){
   vec <- kvec[!is.na(kvec)] 
+  # Linear
   if (degree==1) {
     retv <- Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=0,D=0))[1]
   }
   if (degree==2) {
-    retv <- Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=0,D=0))[1]
+    retv <- Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=vec[3],D=0))[1]
   }
   if (degree==3) {
-    retv <- Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=0,D=0))[1]
-  }
-  if (degree==4) {
-    retv <- Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=0,D=0))[1]
+    retv <- Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=vec[3],D=vec[4]))[1]
   }
   retv
 }
@@ -601,6 +599,9 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0)){
     ### Presetting second variable
     dplyr::mutate(!!allvec[2]:=pareq(pre2,c(as.list(.[,])))) %>%
     ### Presetting the Manifold object
+    #dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,rdfci,allvec[3])) %>%
+    #!
+    #dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,.[,],allvec[3])) %>%
     dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,.[,],allvec[3])) %>%
     ### Adding some noise
     dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) %>%
