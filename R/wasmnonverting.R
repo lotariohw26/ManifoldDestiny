@@ -6,9 +6,11 @@ py_polysolver <- function(degree=1,kvec=NULL){
   np <- reticulate::import("numpy")
   vec <- kvec[!is.na(kvec)] 
   if (degree==1) {
+    #Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=0,D=0))[1]
     retv <- np$roots(vec)[1]
   }
   if (degree==2) {
+	  browser()
     retv <- np$roots(vec)[1]
   }
   if (degree==3) {

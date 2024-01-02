@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## R
-cp -f R/wasmconverting.R MD_WASMP/R/wasmconverting
+cp -f R/wasmconverting.R MD_WASMP/R/wasmconverting.R
 cp -f R/wasmconverting.R MD_WASMS/examples/r/MD-sandbox/wasmconverting.R
 
 ## Shiny
@@ -14,3 +14,5 @@ cp -f shinyapps/restor/app.R MD_WASMS/examples/r/MD-restor/app.R
 cp -f script/python/polysolver.py MD_WASMS/examples/python/sandbox/polysolver.py
 
 # Metadata
+cp -r -f data/* MD_WASMD/data
+
