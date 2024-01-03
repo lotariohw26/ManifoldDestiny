@@ -16,7 +16,6 @@ project:
     - "abc.qmd"
     - "def.qmd"
     - "jsonview.qmd"
-
 website:
   title: "Manifold Destiny"
   navbar:

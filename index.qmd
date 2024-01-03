@@ -11,7 +11,6 @@ filters:
 # Manifold Destiny - or how to rig an election
 **Based upon the ideas developed by Edward K. Solomon**
 ![](pngs/md.png)
-tidyr
 
 ### Install and load packages
 ```{webr-r}
