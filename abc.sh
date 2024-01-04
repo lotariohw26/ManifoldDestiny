@@ -4,6 +4,9 @@
 cp -f R/wasmconverting.R MD_WASMP/R/wasmconverting.R
 cp -f R/wasmconverting.R MD_WASMS/examples/r/MD-sandbox/wasmconverting.R
 
+## Script
+cp -f script/R/* MD_WASMS/examples/r/MD-script/
+
 ## Shiny
 cp -f shinyapps/r2rsim/app.R MD_WASMS/examples/r/MD-r2rsim/app.R
 cp -f shinyapps/manimp/app.R MD_WASMS/examples/r/MD-manimp/app.R
