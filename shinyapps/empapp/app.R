@@ -105,7 +105,7 @@ server <- function(input, output, session) {
     cformo()[[5]]$pl_2dsort[[1]]
   })
   output$plot_xy <- renderPlot({
-    #cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
+    cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
   })
   output$plot_3d <- renderPlotly({
     cformo()[[1]]$rotplotly[[1]]
@@ -124,8 +124,8 @@ server <- function(input, output, session) {
     #cowplot::plot_grid(plotlist=list(pla,plb,plc),ncol=1)
   })
   output$print_com <- renderPrint({
-    print(as.data.frame(cformo()[[2]]$comdesc)) #%>% dplyr::select(1,2,3,4)
-    print(as.data.frame(cformo()[[2]]$compare)) #%>% dplyr::select(1,2,3,4)
+    print(as.data.frame(cformo()[[2]]$comdesc)) %>% dplyr::select(1,2,3,4)
+    print(as.data.frame(cformo()[[2]]$compare)) %>% dplyr::select(1,2,3,4)
   })
   output$meta_dsc <- renderPrint({
     #library(RefManageR)
