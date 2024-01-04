@@ -1,4 +1,10 @@
 #######################################################################################################################################################
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmconverting.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmnonverting.R'))
+#webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+#webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
+#######################################################################################################################################################
+library(ManifoldDestiny)
 library(ManifoldDestinyWASMP)
 library(ManifoldDestinyWASMD)
 library(dplyr)
@@ -10,7 +16,6 @@ library(huxtable)
 library(gridExtra)
 options(scipen=999)
 set.seed(1)
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmconverting.R'))
 md <- ManifoldDestinyWASMD::metad
 #######################################################################################################################################################
 P  <- c(1,2,3,4,5,6)

@@ -20,14 +20,14 @@ abs_p <- rprojroot::find_rstudio_root_file()
 #################################################################################################################
 #################################################################################################################
 # General script for Pima
-googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
-ar_pi_el <- 'https://docs.google.com/spreadsheets/d/19MDOdXwLDXh2R93dF7uZV_UvWbsetMElvSAkP_8Ux4c/edit#gid=0'
-ar_pi_el_sel <-  googlesheets4::read_sheet(ar_pi_el, sheet=1, range='B1:Q250')
-tablenm <- c("P","PN,Name/Ward","Preinct,Name/Unit","R","A1","A2","A3","Biden,4th,Category","B1",
-"B2","B3","Trump,4th,Categotry","Other,EDV","Other,MiV","Other,Adv","Everything,Else")
-ar_pi_el_sel  <- data.table::setnames(ar_pi_el_sel, new=tablenm)
-usethis::use_data(ar_pi_el_sel, overwrite = TRUE)
-###############################################################################################################
+#googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+#ar_pi_el <- 'https://docs.google.com/spreadsheets/d/19MDOdXwLDXh2R93dF7uZV_UvWbsetMElvSAkP_8Ux4c/edit#gid=0'
+#ar_pi_el_sel <-  googlesheets4::read_sheet(ar_pi_el, sheet=1, range='B1:Q250')
+#tablenm <- c("P","PN,Name/Ward","Preinct,Name/Unit","R","A1","A2","A3","Biden,4th,Category","B1",
+#"B2","B3","Trump,4th,Categotry","Other,EDV","Other,MiV","Other,Adv","Everything,Else")
+#ar_pi_el_sel  <- data.table::setnames(ar_pi_el_sel, new=tablenm)
+#usethis::use_data(ar_pi_el_sel, overwrite = TRUE)
+################################################################################################################
 # General script for Maricopa
 ###############################################################################################################
 # setNames

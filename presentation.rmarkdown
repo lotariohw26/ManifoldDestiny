@@ -28,6 +28,7 @@ metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-ra
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 ```
 
+
 # `r #metad$toc$sec1$nmn`
 
  Ed. Solomon
@@ -51,6 +52,7 @@ md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/m
 ::: {.column width="50%"}
 Case 1
 :::
+
 ```{r, echo=F}
 clr <- c("black","green","red","blue")
 lego_hux_imp_i <- as_hux(towi[,1:3]) %>%
@@ -61,9 +63,11 @@ lego_hux_imp_i <- as_hux(towi[,1:3]) %>%
 lego_hux_imp_i
 ```
 
+
 ::: {.column width="50%"}
 Case 2
 :::
+
 ```{r, echo=F}
 lego_hux_imp_ii <- as_hux(towii[,1:3]) %>%
   set_text_color(5, 1:2, clr[1]) %>%
@@ -72,9 +76,11 @@ lego_hux_imp_ii <- as_hux(towii[,1:3]) %>%
   set_background_color(3:5, 1:3, clr[4]) 
 lego_hux_imp_ii
 ```
+
 ::::
 
 ## `r metad$toc$sec1$unm[2]`
+
 
 ```{r, echo=F}
 lego_hux_nor <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
@@ -84,6 +90,7 @@ lego_hux_nor <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
   set_all_borders(brdr(2, "solid", "black"))
 lego_hux_nor %>% set_caption("")
 ```
+
 
 
 Parameters: ** $x$, $y$, $\zeta$, $\alpha$, $\lambda$ **
@@ -104,12 +111,14 @@ x=`r modlat$x_s[1]` \text{, }y=`r modlat$y_s[1]`
 
 
 
+
 ```{r, echo=F}
 ctone_sf <- 'Election results applying standard form on case I'
 stfo_sel <- dplyr::select(pro_elc_ex1$sdfc[1:3,],P,S,T,U,V,x,y,zeta,alpha,lamda)
 cou_tb <- c("Precinct","S","T","U","V","x","y",'$\\zeta$',"$\\alpha$","$\\lambda$")
 kableExtra::kbl(format(stfo_sel,digits=4),caption=ctone_sf) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
+
 
 
 Numerical calculation of candidate one total percentage
@@ -122,6 +131,7 @@ Numerical calculation of candidate one total percentage
 
 ## `r metad$toc$sec1$unm[3]`
 
+
 ```{r, echo=F}
 lego_hux_imp <- as_hux(matrix(c("S","T","U","V"), 2, 2)) %>%
   set_background_color(1:2, 1, "black") %>% 
@@ -130,6 +140,7 @@ lego_hux_imp <- as_hux(matrix(c("S","T","U","V"), 2, 2)) %>%
   set_all_borders(brdr(2, "solid", "black"))
 lego_hux_imp %>% set_caption("")
 ```
+
 
 Parameters: $g$, $h$, $\Gamma$, $\alpha$, $\Omega$
 \begin{equation*}
@@ -147,11 +158,13 @@ g=`r modlat$g_h[1]` \text{, } h=`r modlat$h_h[1]`
 
 ##
 
+
 ```{r, echo=F}
 ctone_hf <- 'Election results applying hybrid form case I'
 stfo_sel <- dplyr::select(pro_elc_ex1$sdfc[1:3,],P,S,T,U,V,g,h,Gamma,alpha,Omega)
 kableExtra::kbl(format(stfo_sel,digits=4),caption=ctone_hf) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
+
 
 Numerical calculation of candidate one total percentage
 - Precinct 1
@@ -161,13 +174,16 @@ Numerical calculation of candidate one total percentage
 - Precinct 3
  - $\alpha=\frac{`r cg[3]`+`r ch[3]`\cdot `r cGamma[3]`}{1+`r cGamma[3]`}=`r calpha[3]`$
 
+
 ```{r, echo=F}
 ctone_hf <- 'Election results applying hybrid form case II'
 stfo_sel <- dplyr::select(pro_elc_ex2$sdfc[1:3,],P,S,T,U,V,g,h,Gamma,alpha,Omega)
 kableExtra::kbl(format(stfo_sel,digits=4),caption=ctone_hf) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
 
+
 ## `r metad$toc$sec1$unm[4]`
+
 
 ```{r, echo=F}
 lego_hux_opo <- as_hux(matrix(c("S","T","U","V"), 2, 2)) %>%
@@ -179,6 +195,7 @@ lego_hux_opo <- as_hux(matrix(c("S","T","U","V"), 2, 2)) %>%
   set_all_borders(brdr(2, "solid", "black"))
 lego_hux_opo %>% set_caption("")
 ```
+
 Parameters: $m$, $n$, $\xi$, $\lambda$, $\Omega$
 \begin{equation*}
 n=`r modlat$n_o[1]` \text{ , } m=`r modlat$m_o[1]`
@@ -196,11 +213,13 @@ n=`r modlat$n_o[1]` \text{ , } m=`r modlat$m_o[1]`
 ##
 
 
+
 ```{r, echo=F}
 ctone_of <- 'Election results applying opposition form'
 stfo_sel <- dplyr::select(pro_elc_ex1$sdfc[1:3,],P,S,T,U,V,n,m,xi,Omega, lamda)
 kableExtra::kbl(format(stfo_sel,digits=4), caption=ctone_of) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
+
 
 
 ## `r metad$toc$sec1$unm[5]`
@@ -209,6 +228,7 @@ kableExtra::kbl(format(stfo_sel,digits=4), caption=ctone_of) %>% kableExtra::kab
 - **Step 2:** Voting technology realized
 - **Step 3:** Registered voters determine whether to vote or not to vote 
 - **Step 4:** If voting, do this by either mode 1 or by mode 2.
+
 
 
 ```{mermaid}
@@ -224,6 +244,7 @@ kableExtra::kbl(format(stfo_sel,digits=4), caption=ctone_of) %>% kableExtra::kab
   D --> DV[Vote]
   D --> Dn[Not Vote]
 ```
+
 
 
 ##
@@ -316,6 +337,7 @@ If none of this three cases are satisfied, variation in $\Gamma_i$ should explai
 
 **20 laws and 40 isometris**
 
+
 ```{r, echo=F}
 # Load necessary library
 library(tibble)
@@ -348,10 +370,12 @@ laws_df <- tribble(
 kable(laws_df, format = "markdown", escape = FALSE)
 ```
 
+
 ##
 
 ::: {.callout-caution collapse="true"}
 ## Proportions
+
 
 ```{r, echo=F}
 library(kableExtra)
@@ -388,6 +412,7 @@ combined <- data.frame(
 kable(combined, format = "markdown", escape = FALSE)
 ```
 
+
 :::
 
 [@delfino2011analysis]
@@ -406,39 +431,51 @@ kable(combined, format = "markdown", escape = FALSE)
 
 ### `r metad$tabsets[[1]]`
 
+
 ```{r, echo=F}
 kableExtra::kbl(app_n_out[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
 ```
 
+
 ### `r metad$tabsets[[2]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_n_out[['corxy']]
 ```
 
+
 ### `r metad$tabsets[[3]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_n_out[['qunt']]
 ```
 
+
 ### `r metad$tabsets[[4]]`
+
 
 ```{r, echo=F}
 app_n_out[['ro3d']]
 ```
 
+
 ### `r metad$tabsets[[5]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_n_out[['regr']]
 ```
 
+
 ### `r metad$tabsets[[6]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_n_out[['resp']]
 ```
+
 
 :::
 
@@ -450,39 +487,51 @@ app_n_out[['resp']]
 
 ### `r metad$tabsets[[1]]`
 
+
 ```{r, echo=F}
 kableExtra::kbl(app_ex1_out[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
 ```
 
+
 ### `r metad$tabsets[[2]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_ex1_out[['corxy']]
 ```
 
+
 ### `r metad$tabsets[[3]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_ex1_out[['qunt']]
 ```
 
+
 ### `r metad$tabsets[[4]]`
+
 
 ```{r, echo=F}
 app_ex1_out[['ro3d']]
 ```
 
+
 ### `r metad$tabsets[[5]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_ex1_out[['regr']]
 ```
 
+
 ### `r metad$tabsets[[6]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_ex1_out[['resp']]
 ```
+
 
 :::
 
@@ -495,39 +544,51 @@ app_ex1_out[['resp']]
 
 ### `r metad$tabsets[[1]]`
 
+
 ```{r, echo=F}
 kableExtra::kbl(app_ex2_out[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
 ```
 
+
 ### `r metad$tabsets[[2]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_ex2_out[['corxy']]
 ```
 
+
 ### `r metad$tabsets[[3]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_ex2_out[['qunt']]
 ```
 
+
 ### `r metad$tabsets[[4]]`
+
 
 ```{r, echo=F}
 app_ex2_out[['ro3d']]
 ```
 
+
 ### `r metad$tabsets[[5]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_ex2_out[['regr']]
 ```
 
+
 ### `r metad$tabsets[[6]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_ex2_out[['resp']]
 ```
+
 
 :::
 
@@ -541,39 +602,51 @@ app_ex2_out[['resp']]
 
 ### `r metad$tabsets[[1]]`
 
+
 ```{r, echo=F}
 kableExtra::kbl(app_ex3_out[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
 ```
 
+
 ### `r metad$tabsets[[2]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_ex3_out[['corxy']]
 ```
 
+
 ### `r metad$tabsets[[3]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_ex3_out[['qunt']]
 ```
 
+
 ### `r metad$tabsets[[4]]`
+
 
 ```{r, echo=F}
 app_ex3_out[['ro3d']]
 ```
 
+
 ### `r metad$tabsets[[5]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_ex3_out[['regr']]
 ```
 
+
 ### `r metad$tabsets[[6]]`
+
 
 ```{r, echo=F, out.width="60%"}
 app_ex3_out[['resp']]
 ```
+
 
 :::
 
@@ -581,10 +654,12 @@ app_ex3_out[['resp']]
 # `r metad$toc$sec4$nmn` {#litrev}
 
 
+
 ```{r, echo=FALSE, out.width="20%", fig.cap=""}
 p1 <- paste0(rprojroot::find_rstudio_root_file(),'/pngs/ss.png')
 knitr::include_graphics(c(p1))
 ```
+
 
 `r #Citet(bib, "delfino2011analysis")`
 
@@ -609,10 +684,12 @@ found to be not only ineffective but a source of suspicion...
 
 > HYPOTHESIS: **In computerized centers**, official **results were forced to follow a linear relationship** with respect to the number of signatures.
 
+
 ```{r, echo=FALSE, out.width="85%", fig.cap=""}
 p3 <- paste0(rprojroot::find_rstudio_root_file(),'pngs/manifold.png')
 knitr::include_graphics(c(p3))
 ```
+
 
 # `r metad$toc$sec5$nmn` {#proced}
 
@@ -626,6 +703,7 @@ knitr::include_graphics(c(p3))
 If we can walk through all of the **four** steps here, property 1<sup>st</sup> and 2<sup>nd</sup> that we have stated for a normal election are violated and we can conclude that the estimated Manifold equation is inserted - Manifold Destiny - to distort the outcome of normal election.
 
 # `r metad$toc$sec6$nmn`
+
 
 
 ```{r, echo=FALSE, results='asis',warning=F}
@@ -664,6 +742,7 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 ```
 
 
+
 # `r metad$toc$sec7$nmn`
 
 - At the heart of the difference between a fair and rigged election is the issue of causation
@@ -678,12 +757,15 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 
 - Condition on that $R^2$ falls within the critical region.
   - Normal form
+
 ```{r, echo=F, out.width="40%", fig.cap=""}
 pr2n <- paste0(rprojroot::find_rstudio_root_file(),'/pngs/r2n.png')
 knitr::include_graphics(c(pr2n))
 ```
 
+
  - Hybrid form
+
 ```{r, echo=F, out.width="40%", fig.cap=""}
 pr2h <- paste0(rprojroot::find_rstudio_root_file(),'/pngs/r2h.png')
 knitr::include_graphics(c(pr2h))
@@ -691,16 +773,20 @@ knitr::include_graphics(c(pr2h))
 
 
 
+
 - Our four applications
+
 
 ```{r, echo=F, warning=F, message=F}
 #kableExtra::kbl(concl_appps,col.names=cou_abc) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
 
+
 # `r metad$toc$sec8$nmn`
 
 ::: {#refs}
 :::
+
 
 
 

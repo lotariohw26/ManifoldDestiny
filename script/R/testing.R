@@ -12,14 +12,6 @@ library(kableExtra)
 library(htmlTable)
 library(usethis)
 ###########################################################################################################
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/raceanalysis.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/olsmethods.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc_py.R'))
-###########################################################################################################
 frm <- 2
 slv2 <- c('alpha'='k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3',solvf='g',root=1)
 app4 <- get(load(paste0(rprojroot::find_rstudio_root_file(),"/data/app4.rda")))
@@ -255,9 +247,9 @@ summary(lm(as.formula('S~S_hat'),data=re$compare))
 re$comdesc
 library(googlesheets4)
 ls(package:googlesheets4)
-sheet_write(iris,"107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0",sheet=5)
-gs4_auth(scopes = "https://www.googleapis.com/auth/spreadsheets")
-https://developers.google.com/identity/protocols/oauth2/scopes
+sheet_write(iris,"",sheet=5)
+#gs4_auth(scopes = "https://www.googleapis.com/auth/spreadsheets")
+#https://developers.google.com/identity/protocols/oauth2/scopes
 # Define the loss function
 loss_function <- function(x) {
   # This is a dummy loss function

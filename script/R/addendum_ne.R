@@ -40,9 +40,6 @@ plotlymat3d(dplyr::select(fir$rdfc,V,Z,T))
 ggplot2::ggplot(fir$rdfc,aes(x=pri,y=lamda)) + geom_point() +geom_smooth(method = "lm", se = FALSE) + annotate("text", x = max(fir$rdfc$pri), y = max(fir$rdfc$lamda), 
            label = paste("y =", round(coef(lm(lamda ~ pri, data = fir$rdfc))[2], 2), 
                          "x +", round(coef(lm(lamda ~ pri, data = fir$rdfc))[1], 2)))
-
-
-
 #############################################################################################################################################################
 #############################################################################################################################################################
 ## Maricopa
