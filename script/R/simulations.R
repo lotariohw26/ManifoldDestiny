@@ -1,24 +1,5 @@
+library(ManifoldDEstiny)
 #######################################################################################################################################################
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmconverting.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmnonverting.R'))
-#webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-#webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
-#######################################################################################################################################################
-library(ManifoldDestiny)
-library(ManifoldDestinyWASMP)
-library(ManifoldDestinyWASMD)
-library(dplyr)
-library(ggplot2)
-library(htmltools)
-library(plotly)
-library(kableExtra)
-library(huxtable)
-library(gridExtra)
-options(scipen=999)
-set.seed(1)
-md <- ManifoldDestinyWASMD::metad
-#########################################################################################################################################################
-#########################################################################################################################################################
 ##### Proto example 1 and 2
 P  <- c(1,2,3,4,5,6)
 S  <- c(60,60,60,60,60,55)

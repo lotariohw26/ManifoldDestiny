@@ -1,3 +1,17 @@
+#' @export wasmnonload
+wasmnonload <- function(){
+  source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmconverting.R'))
+  source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmnonverting.R'))
+  # Import
+  library(dplyr)
+  library(ggplot2)
+  library(htmltools)
+  library(plotly)
+  library(kableExtra)
+  library(huxtable)
+  library(gridExtra)
+  # New
+}
 #' @export py_polysolver
 py_polysolver <- function(degree=1,kvec=NULL){
   path_fqs <- paste0(rprojroot::find_rstudio_root_file(),"/script/python")

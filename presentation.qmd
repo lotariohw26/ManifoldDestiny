@@ -22,8 +22,8 @@ library(RefManageR)
 library(huxtable)
 modlat <- eqpar$meql
 md <- ManifoldDestinyWASMD::metad
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/r/simulations.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/r/applications.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
 metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 ```
