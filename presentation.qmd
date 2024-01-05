@@ -21,6 +21,7 @@ metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-ra
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
+modlat <- eqpar$meql
 ```
 
 # `r #metad$toc$sec1$nmn`
