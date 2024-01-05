@@ -22,6 +22,7 @@ wasmconload <- function(){
       source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmconverting.R'))
       source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmnonverting.R'))
       # Import
+      library(ManifoldDestiny)
       library(dplyr)
       library(ggplot2)
       library(htmltools)
