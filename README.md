@@ -12,7 +12,9 @@ Open project file ManifoldDestiny.Rproj in RStudio
 ### Step 3:
 Build install
 
-### Step 3:
+### Step 4:
 In R console write:
 quarto::preview()
+
+
 

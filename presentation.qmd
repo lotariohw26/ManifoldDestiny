@@ -15,17 +15,11 @@ format:
 ---
 
 ```{r, echo=F, message=F, warning=F}
-library(ManifoldDestiny)
-library(ManifoldDestinyWASMP)
-library(ManifoldDestinyWASMD)
-library(RefManageR)
-library(huxtable)
-modlat <- eqpar$meql
-md <- ManifoldDestinyWASMD::metad
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
+ManifoldDestiny::wasmnonload()
 metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
 ```
 
 # `r #metad$toc$sec1$nmn`
