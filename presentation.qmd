@@ -15,6 +15,7 @@ format:
 ---
 
 ```{r, echo=F, message=F, warning=F}
+library(ManifoldDestiny)
 ManifoldDestiny::wasmnonload()
 metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
@@ -23,6 +24,7 @@ source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
 ```
 
 # `r #metad$toc$sec1$nmn`
+
 
  Ed. Solomon
 
@@ -78,6 +80,7 @@ lego_hux_nor <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
   set_all_borders(brdr(2, "solid", "black"))
 lego_hux_nor %>% set_caption("")
 ```
+
 
 
 Parameters: ** $x$, $y$, $\zeta$, $\alpha$, $\lambda$ **
@@ -696,6 +699,9 @@ knitr::include_graphics(c(pr2h))
 ::: {#refs}
 :::
 
+```{r}
+knitr::knit_exit()
+```
 
 
 
