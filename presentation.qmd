@@ -15,6 +15,7 @@ format:
 ---
 
 ```{r, echo=F, message=F, warning=F}
+#Sys.info()[['sysname']]=="Emscripten"
 library(ManifoldDestiny)
 ManifoldDestiny::wasmnonload()
 metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
