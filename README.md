@@ -10,7 +10,7 @@ git clone --recursive https://github.com/lotariohw26/ManifoldDestiny
 Open project file ManifoldDestiny.Rproj in RStudio
 
 ### Step 3:
-Build install
+In RStudio push: Build install
 
 ### Step 4:
 In R console write:

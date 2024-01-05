@@ -45,13 +45,13 @@ website:
       - text: Shiny applications
         menu:
           - text: "R2 simulator"
-            href: "https://lotariohw26.github.io/MD_WASMS/r/examples/#r2-distribution-simulator"
+            href: "{{< var shn1 >}}"
           - text: "Rigging of a natural election"
-            href: "https://lotariohw26.github.io/MD_WASMS/r/examples/#rigged-election-simulator"
+            href: "{{< var shn2 >}}"
           - text: "Election results analyzer"
-            href: "https://lotariohw26.github.io/MD_WASMS/r/examples/#election-analyzer"
+            href: "{{< var shn3 >}}"
           - text: "Restoration of a rigged election"
-            href: "https://lotariohw26.github.io/MD_WASMS/r/examples/#restoration-of-a-rigged-election"
+            href: "{{< var shn4 >}}"
       - text: E-books
         menu:
           - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
@@ -60,11 +60,11 @@ website:
         href: man_bib.qmd
       - text: Appendix
         menu:
-          - text: "20 laws and 40 isometries"
+          - text: "20 laws and 40 isometries "
             href: laws.qmd
           - text: "Metadata"
             href: jsonview.qmd
-          - text: "Tabsets"
+          - text: "Tabsets {{< var version >}}"
             href: tabsets.qmd
   repo-url: https://github.com/lotariohw26/ManifoldDestiny
   site-url: https://lotariohw26.github.io/ManifoldDestiny/
