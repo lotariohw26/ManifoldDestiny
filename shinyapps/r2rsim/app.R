@@ -1,17 +1,5 @@
-options(scipen=999)
-#webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-#webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
-library(ManifoldDestinyWASMP)
-library(ManifoldDestinyWASMD)
-library(shiny)
-library(magrittr)
-library(ggplot2)
-library(plotly)
-library(DT)
-library(kableExtra)
-library(dplyr)
-library(htmltools)
-library(gridExtra)
+webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+ManifoldDestinyWASMP::wasmconload()
 ui <- fluidPage(
   titlePanel("R2 Simulator"),
   tabsetPanel(

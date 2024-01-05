@@ -1,20 +1,8 @@
+######################################################################################
 options(scipen=999)
 set.seed(1)
-# source()
-#webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-#webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
-library(ManifoldDestinyWASMP)
-library(ManifoldDestinyWASMD)
-library(shiny)
-library(plotly)
-library(dplyr)
-library(ggplot2)
-library(htmltools)
-library(gridExtra)
-library(DT)
-library(kableExtra)
-library(htmlTable)
-library(usethis)
+webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+ManifoldDestinyWASMP::wasmconload()
 dlname <- c("app0","app1","app2","app2","app2","app2")[1:2]
 md <- ManifoldDestinyWASMD::metad
 ###############################################################################################################################################################

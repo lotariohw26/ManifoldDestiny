@@ -1,17 +1,8 @@
 ######################################################################################
 options(scipen=999)
 set.seed(1)
-#webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-#webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
-library(shiny)
-library(plotly)
-library(ManifoldDestinyWASMP)
-library(ManifoldDestinyWASMD)
-library(kableExtra)
-library(dplyr)
-library(ggplot2)
-library(htmltools)
-library(gridExtra)
+webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+ManifoldDestinyWASMP::wasmconload()
 ######################################################################################
 ui <- fluidPage(
   titlePanel("Election simulator for the rigging of a natural election"),
