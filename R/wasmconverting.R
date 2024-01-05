@@ -5,6 +5,7 @@ wasmconload <- function(){
       # commands to be executed if the condition is TRUE
       #webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
       webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
+      webr::install("ggplot2")
       library(ManifoldDestinyWASMP)
       library(ManifoldDestinyWASMD)
       # Import
