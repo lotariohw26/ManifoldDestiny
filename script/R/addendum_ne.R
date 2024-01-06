@@ -1,15 +1,7 @@
 ##############################################################################################################################################################
 options(scipen=999)
 set.seed(1)
-library(ManifoldDestiny)
-library(dplyr)
-library(ggplot2)
-library(htmltools)
-library(gridextra)
-# Application
-set_n <- c('k0+k1*y','k0+k1*x+k2*y','k0+k1*x+k2*y+k3*zeta')
-set_h <- c('k0+k1*g','k0+k1*g+k2*h','k0+k1*g+k2*h+k3*zeta')
-set_o <- c('k0+k1*n','k0+k1*n+k2*m','k0+k1*n+k2*m+k3*zeta')
+ManifoldDestiny::wasmconload()
 #############################################################################################################################################################
 sel_ma <- 'k0+k1*x+k2*y'
 app_ma_sel <- list(alpha=sel_ma,solvf='y',form=1)

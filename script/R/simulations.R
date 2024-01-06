@@ -1,3 +1,4 @@
+ManifoldDestiny::wasmconload()
 #######################################################################################################################################################
 ##### Proto example 1 and 2
 P  <- c(1,2,3,4,5,6)
@@ -64,7 +65,7 @@ app_n_out <- seloutput(app_n_rep)
 app_n_sim <- SimVoterdatabase(app_bal)
 ######## Rigged example 1: standard form
 app_ex1_cou <- Countinggraphs(app_bal)
-print(app_ex1_cou$polyc[[1]][[1]])
+#print(app_ex1_cou$polyc[[1]][[1]])
 app_ex1_cou$sortpre()
 app_ex1_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
 app_ex1_cou$setres(0.23,0)
@@ -74,7 +75,7 @@ app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
 ######## Rigged example 2: hybrid form
 app_ex2_cou <- Countinggraphs(app_bal)
 pri_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
-print(app_ex2_cou$polyc[[1]][[1]])
+#print(app_ex2_cou$polyc[[1]][[1]])
 app_ex2_cou$sortpre()
 app_ex2_cou$mansys(sygen=list(frm=2,pre=c("alpha","g","h"),end=c("Gamma","Omega"),FALSE,me=c(plnr=1,rot=0)))
 app_ex2_cou$setres(0.23,0)
@@ -111,11 +112,3 @@ concl_appps <- data.frame(case=casevec,
 			  propn=prope_vec, 
 			  propv=propv_vec)
 ################################################################################################################################################################
-####### Dr. Frank
-####countys <- seq(1,88)
-####polinclude <- c(1,2,6)
-####polreport <- 3
-####tdf <- ManifoldDestiny::Voterrollreport()
-####tdf$regvbase()
-####tdf$scorecard()
-####tdf$predictinput()

@@ -1,8 +1,7 @@
 ######################################################################################
-options(scipen=999)
-set.seed(1)
-webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-ManifoldDestinyWASMP::wasmconload()
+#webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+#ManifoldDestinyWASMP::wasmconload()
+ManifoldDestiny::wasmconload()
 ######################################################################################
 ui <- fluidPage(
   titlePanel("Election simulator for the rigging of a natural election"),
@@ -35,13 +34,18 @@ ui <- fluidPage(
       #selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3))
     ),
     mainPanel(
-      #verbatimTextOutput(outputId = "table_dsc1")
-      verbatimTextOutput(outputId = "table_dsc2"),
-      plotOutput("plotxyn"),
-      plotOutput("plotxyr"),
-      plotOutput("plotxyr2"),
-      plotlyOutput("plot3d1"),
-      plotlyOutput("plot3d2")
+      tabsetPanel(
+        tabPanel("Normal election",
+                 plotOutput("plotq_f"),
+		 plotlyOutput("plot3d1")
+		 ),
+        tabPanel("Rigged election",
+                 plotOutput("plotxy_n"),
+		 plotlyOutput("plot3d2")
+		 )
+        #tabPanel(#verbatimTextOutput(outputId = "table_dsc1")
+        #tabPanel(#verbatimTextOutput(outputId = "table_dsc2")
+      )
     )
   )
 )
@@ -105,7 +109,7 @@ server <- function(input, output) {
     #list(r1,r2)
   })
   # # Plot 
-  output$plotxyr <- renderPlot({
+  output$plotq_f <- renderPlot({
     dft <- result()
     gm1 <- dft[[1]]$pl_2dsort[[1]]
     gm2 <- dft[[2]]$pl_2dsort[[1]]
@@ -118,7 +122,7 @@ server <- function(input, output) {
      gm3 <- dft[[1]]$pl_corrxy[[1]]
      cowplot::plot_grid(gm1, gm3, ncol = 2, labels = c("Column 1", "Column 2"))
   })
-  output$plotxyr2 <- renderPlot({
+  output$plotxy_r <- renderPlot({
      dft <- result()
      gm2 <- dft[[2]]$pl_corrxy[[1]]
      gm4 <- dft[[2]]$pl_corrxy[[1]]
@@ -142,10 +146,7 @@ server <- function(input, output) {
      p2 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers",marker = list(size = 3))
      plotly::layout(p2,title = "Rigged election")
   })
-  #output$table_dsc <- renderPrint({
-  #})
-  #output$sidebarText <- renderText({
-  #})
 }
 shinyApp(ui = ui, server = server)
-
+#options(scipen=999)
+#set.seed(1)

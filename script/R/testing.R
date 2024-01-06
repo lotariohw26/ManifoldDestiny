@@ -1,16 +1,4 @@
-options(scien=999)
-set.seed(1)
-library(ManifoldDestiny)
-library(dplyr)
-library(ggplot2)
-library(plotly)
-library(htmltools)
-library(gridExtra)
-library(shiny)
-library(DT)
-library(kableExtra)
-library(htmlTable)
-library(usethis)
+ManifoldDestiny::wasmconload()
 ###########################################################################################################
 frm <- 2
 slv2 <- c('alpha'='k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3',solvf='g',root=1)

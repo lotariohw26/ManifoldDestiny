@@ -1,38 +1,30 @@
 #' @export wasmconload
 wasmconload <- function(){
   ifelse(Sys.info()[['sysname']]=="Emscripten", 
-    {
-      # commands to be executed if the condition is TRUE
-      #webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+  {
+      # Commands to be executed if the condition is TRUE
+      webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
       webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
-      webr::install("ggplot2")
+      webr::install(c("AlgebraicHaploPackage","cowplot","broom","htmltools","combinat","DT","dplyr","purrr","magrittr","data.table","tidyr","plotly"))
       library(ManifoldDestinyWASMP)
       library(ManifoldDestinyWASMD)
-      # Import
-      library(dplyr)
-      library(ggplot2)
-      library(htmltools)
-      library(plotly)
-      library(kableExtra)
-      library(huxtable)
-      library(gridExtra)
-      # New
-    },
-    {
-      # commands to be executed if the condition is FALSE
+  },
+  {
+      # Commands to be executed if the condition is FALSE
+      library(ManifoldDestiny)
       source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmconverting.R'))
       source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmnonverting.R'))
-      # Import
-      library(ManifoldDestiny)
-      library(dplyr)
-      library(ggplot2)
-      library(htmltools)
-      library(plotly)
-      library(kableExtra)
-      library(huxtable)
-      library(gridExtra)
-      # New
-    })
+  })
+  library(plotly)
+  library(dplyr)
+  library(shiny)
+  library(combinat)
+  library(htmltools)
+  library(ggplot2)
+  library(broom)
+  library(tidyr)
+  library(combinat)
+  library(AlgebraicHaploPackage)
 }
 #########################################################################################################################################################
 #' @export py_polysolverW

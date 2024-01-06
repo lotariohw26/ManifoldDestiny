@@ -1,10 +1,8 @@
+source(paste0(rprojroot::find_rstudio_root_file(),'/R/raceanalysis.R'))
 #############################################################################################################################################################
 options(scipen=999)
 set.seed(1)
-library(ManifoldDestiny)
-library(dplyr)
-library(ggplot2)
-library(htmltools)
+ManifoldDestiny::wasmconload()
 # Application
 set_n <- c('k0+k1*y','k0+k1*x+k2*y','k0+k1*x+k2*y+k3*zeta')
 set_h <- c('k0+k1*g','k0+k1*g+k2*h','k0+k1*g+k2*h+k3*zeta')
@@ -17,12 +15,13 @@ app_ma_eqs <- list(alpha=c(set_n,sel_ma))
 ##### Maricopa
 ###### "US Senate","MASTERS, BLAKE","KELLY, MARK"
 canlet <- c("SNAP","RACE", "RACENR","TXT","P","PN","R","A1","B1","A2","B2")
-df_m1 <- data.table::rbindlist(ManifoldDestiny::lst_race_snap_all_az_ma,F)  %>% data.table::setnames(new=canlet) %>% dplyr::mutate(S=A1,T=B1,U=A2,V=B2) %>% 
+df_m1 <- data.table::rbindlist(ManifoldDestiny::lst_race_snap_all_az_ma,F)  %>% 
+	data.table::setnames(new=canlet) %>% dplyr::mutate(S=A1,T=B1,U=A2,V=B2) %>% 
 	dplyr::filter(RACENR%in%c(1)) %>% 
 	dplyr::filter(SNAP%in%c(1:12))
 ### Facets
 dyndf <- df_m1 
-#View(dyndf)
+View(dyndf)
 snap_mar <- Racegraphs(dyndf) 
 filtered <- snap_mar$quints_rank %>% dplyr::filter(P==425)
 #View(filtered)

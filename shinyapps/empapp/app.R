@@ -1,8 +1,8 @@
 ######################################################################################
-options(scipen=999)
-set.seed(1)
-webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-ManifoldDestinyWASMP::wasmconload()
+#webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+ManifoldDestiny::wasmconload()
+md <- ManifoldDestinyWASMD::metad
+###############################################################################################################################################################
 dlname <- c("app0","app1","app2","app2","app2","app2")[1:2]
 md <- ManifoldDestinyWASMD::metad
 ###############################################################################################################################################################
@@ -128,4 +128,6 @@ server <- function(input, output, session) {
   })
 }
 shinyApp(ui = ui, server = server)
+#options(scipen=999)
+#set.seed(1)
 

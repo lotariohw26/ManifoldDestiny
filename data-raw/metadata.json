@@ -52,12 +52,18 @@
 	]
     },
     "sec7": {
-	"nmn": ["Conclusions"],
+	"nmn": ["Restoration of a rigged election"],
 	"unm": [
            "Procedure"
 	]
     },
     "sec8": {
+	"nmn": ["Conclusions"],
+	"unm": [
+           "Procedure"
+	]
+    },
+    "sec9": {
 	"nmn": ["References"],
 	"unm": [
            "Application 1:",
