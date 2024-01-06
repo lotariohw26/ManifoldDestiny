@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.515">
+<meta name="generator" content="quarto-1.4.533">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -60,6 +60,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -765,7 +766,7 @@ globalThis.qwebrCreateNonInteractiveSetupElement = function(qwebrCounter) {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-shiny-applications">    
         <li>
-    <a class="dropdown-item" href="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRASwgGdSoAbbgCgA6YALJQILAGZFuAEwAicTmwCeAdQCCAZWEAFIbgAEDOKiLsDAXgNCAFqVKp2iAPTPuRLgxZEb1AEwAbBgA5iykNgCudBjezsJyAPoa2gDCQgCUAhCi4lKyCkoQalq6zNRQ7DDEEO5QMnyZEBEsBgA8ALQGEtzNMjpQwXCCEAYGpGHccP0QcPxCWH4GmiwwEdxQpEQMGbhZo1x07HCk07PDo-tQdKdzYADiDGg2+tYjF+8f7Cwy9FAMADJQZRECKkc4fCEXL4-Oh-G7gyGIo6TAikACSEFQoMEYAAbn8WFdJi8hJpZnBUQYoF0tjBEC8CDiAHK0ng0hgwISWayQVncElgAASykY33ZnLA3NsIq8MgFAHl0GYwt4RlIOVyrEIiEqvuMSBl0rs3ojIU14F4CBisWChJjjAQBUyIjA6HAGAYiBIDKgHWxUU4XvienBuQBmAAMEaNe1NkPIAA90ZjsUJjMFcQKsHBQpx3XAZAZcR53eY+PAxLhODJMngizwInALAByMMYACMAFZDBGMH5O82Yya4+9E8mbTiYGwYFAEwLhGwqRBCzOE-WQ+ZzW6PV6iyWGOwgw2m82ACxRwznqOD40jiFj62psCkCIMCACnQMIiwugsbhhZRPW9YtxggYJ6TrYNG25Zte27Axe3bCMb1jO8LgfFNbTANhcVQd0BQAURRfURnYZQ8xgesvCuP8AIgwwoNDFs4J7DtkKHNDRzgJNHywiIPy-H9aNIQDdwTZxgmcCB6PXaCrFgjAAlYpCUOHNCMInIQZEzOshDkSRvV9b8aP-ESgIMcTJOko8Qxg9pez8ViIwADlUziLnNd0WCtTCcRkR5qEPXSwGdV13XM-yoECmy5IMSMOPcqlUVVAAhUFNggHEGAid9gqwHKlhWNYNlVDJULvBK0JnNh4XKtDUHcUh5VBTSwAajwdjqu8DkmZqHCfHq4DKtS40aND0jGi5KrGK5arAAAVIlFBJEb4yuI4TjEM4utNA45sWuhJgMdt9B2xKDGhX4ASBEFbVW87Rku2EGHhaaHveaqIFq+73pmw64D61rBpOsBJt+94wfByGRzeuM9q224DqOvxTp+9ynr+QFgVTNHEoxl6EYaW9wY+qAasJs7fsGwGBqWlHQcp87ofe5nTVZiFIcaRoAGJuYMBQJDYUMjgYXF8I4d0xY9Douhy5KSD4NgbUMW6bXSAwQFjWM+fy0iivWEjYxkCRglQNpOjgMWyGzKBkrFxXMIAEmyiBDE14c+d4-mADETuHdNcXNql2AwTzLT4TgDwasIHZtZ2c1xQxTtB4BgHbABddPIanCBVyDipQ5dLzGUj9ho7BJXQUdnPVyTvAMlTjOs-Kl833zkOw+8iPSCj0zY6r1vXZ5XYU7TzPIZwvDpc6AvO5Lnuy77yvSEdyf3Trkf0kb8fyoidvC4tLvS-L-uV4iDeG7H5vh20-e5+73uY+Xx3tIv0em8h0hvRl4xo4IDYhjP0ioFXADA-BfBgJle0FJuTP2gQQYmiJ0zmCsIyAOY9DDoL8FnRBkIa6zm5IyfBCYMHEOANgo0YxXwjFQXwQeGCqFvnITggwGJcLhVoWvBgDCuHMNhu8PetCIgMOERQ3BEJb60O0gw6RYjGbqkolYdsW9GTtlwI5MM6Rr7vGNqbIOMgNhQAwBIR48A+BgKgBYHK-5OB0IkMAI4ABHPgajJhgXCHYo0micFgLoFYmoLBbFfwcXAZxjk3HBA8V-LxWiJoGAAKQAD54kGFWFwcgfAp4EG5GQP8QwLGGCQtGdW5VPaYR9ijYcWSKDjEmOYGWjIACcEZDCNPgo0xpkMOCkELA0lx6jcCdkhtWIOFZMq6NQM7PwUB0gAGpukyAAFTsHqBMqZMzypZPbEHRxEQxC1KGGsgpRlDjcmqbkupBhnDHSjJDLJiwZa7P2XkvgRy-B0FwCclBPp3QEBqXk8w1yil3N+cbfRhjjGmKGFsz5vzHILKrD09WSSUkGK4BgQazANrQHgOwPgjIhA6F+UYaZyciUMGyb45OTJqzJwAGq0tBiU4cNiwQTNhRS42k0AC+k0+YpGMAAn0jVYyqyru1UgQdjDLndDoRqfB3YCElQYbmjAiCBXdA0cqxszYywmQ0be6cEnJLGN8ZQTBECoBYCBBI7gwKauINwdgFgCVgAscnKlTLjWooaua5gfxHj2r4DiuAHKCCQ2CKbeVOrcBQEUHwBMFhGKGEFrwCwIa4mzNeBCQYRAYAJBsIEzYwRTGZOVCRKU2Efi5JEi8HgqAbDUisCxAwv4ODhmjAYLNXV1iHDoRMJiPJBRFqICW2A5k6XHnMHQQCKQAHBC2MoF4a4tRgEnSGF4gFV0pBBGQDIXauq5vzbif8MwE1sHIBSkwkqrCzyLuHfVW9mHpzTrgDOlDT3HGUHhStBj2A2ALAyaQWxK2HUbPu2Zh64B5oSCeoW56yC-OvdyO9h9GSPtTtgl9jl32GE-SJH9q6-0AblHWR1IHV1gaGqDA9I0j2wc-Qhy9fzUA3uDgfYuryTaoANc+4AYY30sPw9+wdWkKgkaA+4D0lGN00cg3R6Dx7GMJgvUh1jKGO73q7hhvjAnTxCaFgR0TYB2DSG+JJijPJjCkfVvJnNinbVXDOMoCwLTE2oc4zprDr7cO9tmBYIQiz9BHoC2APz-I5NQZg+FvgLm3MWA8w+7jvHvM4ZweF0Liygt4BC0IcLEGov5pi3F3A7nNNoa46bFLmd+OCaNBlwLWXguKdC-lyLI1whwHgAkHOKweANFoxCdg-9JgJFTdwHrYg9n8EYt8113MowAHY-ApXpnXbmBEAiNO9lGQ0ow+YbS6H+bgBhyMHljLyrWbxeYGAFXAIVg1RUtQHktbZP8KA-AYAAVTRAq8qch5rMDRYY-65jd2rOS0+rDuAZAsFCKQZ1p4JoXcmmKleg0HmdGlZ9n7f3hwA6B4YwaYOcoQ6q0+puhhYfw8R5QnUJFvmssyQMOA-wKCRJsNyPwxSUdZG5VkHWBU0CoCyP+lQ6h0B8GaNyZohgRZS25PL90jQshgG5enIAA">
+    <a class="dropdown-item" href="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRASwgGdSoAbbgCgA6YALJQILAGZFuAEwAicTmwCeAdQCCAZWEAFIbgAEDOKiLsDAXgNCAFqVKp2iAPTPuRLgxZEb1AEwAbBgA5iykNgCudBjezsJyAPoa2gDCQgCUAhCi4lKyCkoQalq6zNRQ7DDEEO5QMnyZEBEsBgA8ALQGEtzNMjpQwXCCEAYGpGHccP0QcPxCWH4GmiwwEdxQpEQMGbhZo1x07HCk07PDo-tQdKdzYADiDGg2+tYjF+8f7Cwy9FAMADJQZRECKkc4fCEXL4-Oh-G7gyGIo6TAikACSEFQoMEYAAbn8WFdJi8hJpZnBUQYoF0tjBEC8CDiAHK0ng0hgwISWayQVncElgAASykY33ZnLA3NsIq8MgFAHl0GYwt4RlIOVyrEIiEqvuMSBl0rs3ojIU14F4CBisWChJjjAQBUyIjA6HAGAYiBIDKgHWxUU4XvienBuQBmAAMEaNe1NkPIAA90ZjsUJjMFcQKsHBQpx3XAZAZcR53eY+PAxLhODJMngizwInALAByMMYACMAFZDBGMH5O82Yya4+9E8mbTiYGwYFAEwLhGwqRBCzOE-WQ+ZzW6PV6iyWGOwgw2m82ACxRwznqOD40jiFj62psCkCIMCACnQMIiwugsbhhZRPW9YtxggYJ6TrYNG25Zte27Axe3bCMb1jO8LgfFNbTANhcVQd0BQAURRfURnYZQ8xgesvCuP8AIgwwoNDFs4J7DtkKHNDRzgJNHywiIPy-H9aNIQDdwTZxgmcCB6PXaCrFgjAAlYpCUOHNCMInIQZEzOshDkSRvV9b8aP-ESgIMcTJOko8Qxg9pez8ViIwADlUziLnNd0WCtTCcRkR5qEPXSwGdV13XM-yoECmy5IMSMOPcqlUVVAAhUFNggHEGAid9gqwHKlhWNYNlVDJULvBK0JnNh4XKtDUHcUh5VBTSwAajwdjqu8DkmZqHCfHq4DKtS40aND0jGi5KrGK5arAAAVIlFBJEb4yuI4TjEM4utNA45sWuhJgMdt9B2xKDGhX4ASBEFbVW87Rku2EGHhaaHveaqIFq+73pmw64D61rBpOsBJt+94wfByGRzeuM9q224DqOvxTp+9ynr+QFgVTNHEoxl6EYaW9wY+qAasJs7fsGwGBqWlHQcp87ofe5nTVZiFIcaRoAGJuYMBQJDYUMjgYXF8I4d0xY9Douhy5KSD4NgbUMW6bXSAwQFjWM+fy0iivWEjYxkCRglQNpOjgMWyGzKBkrFxXMIAEmyiBDE14c+d4-mADETuHdNcXNql2AwTzLT4TgDwasIHZtZ2c1xQxTtB4BgHbABddPIanCBVyDipQ5dLzGUj9ho7BJXQUdnPVyTvAMlTjOs-Kl833zkOw+8iPSCj0zY6r1vXZ5XYU7TzPIZwvDpc6AvO5Lnuy77yvSEdyf3Trkf0kb8fyoidvC4tLvS-L-uV4iDeG7H5vh20-e5+73uY+Xx3tIv0em8h0hvRl4xo4IDYhjP0ioFXADA-BfBgJle0FJuTP2gQQYmiJ0zmCsIyAOY9DDoL8FnRBkIa6zm5IyfBCYMHEOANgo0YxXwjFQXwQeGCqFvnITggwGJcLhVoWvBgDCuHMNhu8PetCIgMOERQ3BEJb60O0gw6RYjGbqkolYdsW9GTtlwI5MM6Rr7vGNqbIOMgNhQAwBIR48A+BgKgBYHK-5OB0IkMAI4ABHPgajJhgXCHYo0micFgLoFYmoLBbFfwcXAZxjk3HBA8V-LxWiJoGAAKQAD54kGFWFwcgfAp4EG5GQP8QwLGGCQtGdW5VPaYR9ijYcWSKDjEmOYGWjIACcEZDCNPgo0xpkMOCkELA0lx6jcCdkhtWIOFZMq6NQM7PwUB0gAGpukyAAFTsHqBMqZMzypZPbEHRxEQxC1KGGsgpRlDjcmqbkupBhnDHSjJDLJiwZa7P2XkvgRy-B0FwCclBPp3QEBqXk8w1yil3N+cbfRhjjGmKGFsz5vzHILKrD09WSSUkGK4BgQazANrQHgOwPgjIhA6F+UYaZyciUMGyb45OTJqzJwAGq0tBiU4cNiwQTNhRS42k0AC+k0+YpGMAAn0jVYyqyru1UgQdjDLndDoRqfB3YCElQYbmjAiCBXdA0cqxszYywmQ0be6cEnJLGN8ZQTBECoBYCBBI7gwKauINwdgFgCVgAscnKlTLjWooaua5gfxHj2r4DiuAHKCCQ2CKbeVOrcBQEUHwBMFhGKGEFrwCwIa4mzNeBCQYRAYAJBsIEzYwRTGZOVCRKU2Efi5JEi8HgqAbDUisCxAwv4ODhmjAYLNXV1iHDoRMJiPJBRFqICW2A5k6XHnMHQQCKQAHBC2MoF4a4tRgEnSGF4gFV0pBBGQDIXauq5vzbif8MwE1sHIBSkwkqrCzyLuHfVW9mHpzTrgDOlDT3HGUHhStBj2A2ALAyaQWxK2HUbPu2Zh64B5oSCeoW56yC-OvdyO9h9GSPtTtgl9jl32GE-SJH9q6-0AblHWR1IHV1gaGqDA9I0j2wc-Qhy9fzUA3uDgfYuryTaoANc+4AYY30sPw9+wdWkKgkaA+4D0lGN00cg3R6Dx7GMJgvUh1jKGO73q7hhvjAnTxCaFgR0TYB2DSG+JJijPJjCkfVvJnNinbVXDOMoCwLTE2oc4zprDr7cO9tmBYIQiz9BHoC2APz-I5NQZg+FvgLm3MWA8w+7jvHvM4ZweF0Liygt4BC0IcLEGov5pi3F3A7nNNoa46bFLmd+OCaNBlwLWXguKdC-lyLI1whwHgAkHOKweANFoxCdg-9JgJFTdwHrYg9n8EYt8113MowAHY-ApXpnXbmBEAiNO9lGQ0ow+YbS6H+bgBhyMHljLyrWbxeYGAFXAIVg1RUtQHktbZP8KA-AYAAVTRAq8qch5rMDRYY-65jd2rOS0+rDuAZAsFCKQZ1p4JoXcmmKleg0HmdGlZ9n7f3hwA6B4YwaYOcoQ6q0+puhhYfw8R5QnUJFvmssyQMOA-wKCRJsNyPwxSUdZG5VkHWBU0CoCyP+lQ6h0B8GaNyZohgRZS25PL90jQshgG5enIAA">
  <span class="dropdown-text">R2 simulator</span></a>
   </li>  
         <li>
@@ -1242,7 +1243,7 @@ app_2_out <- seloutput(app2_rp)`,
   9);
 </script>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Last time updated: 2024-01-05</strong></p>
+<p><strong>Last time updated: 2024-01-06</strong></p>
 
 
 </section>
@@ -1378,27 +1379,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -1413,10 +1393,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1425,7 +1409,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
       return note.innerHTML;
     }
   }
@@ -1655,7 +1641,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

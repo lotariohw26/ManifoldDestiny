@@ -294,7 +294,7 @@ of the existance of a *trivial* Manifold related to opposition form are not sati
 
 If none of this three cases are satisfied, variation in $\Gamma_i$ should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?
 
-[Link to R2 simulator for testing](https://shinylive.io/r/app/#h=0&code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRASwgGdSoAbbgCgA6YALJQILAGZFuAEwAicTmwCeAdQCCAZWEAFIbgAEDOKiLsDAXgNCAFqVKp2iAPTPuRLgxZEb1AEwAbBgA5iykNgCudBjezsJyAPoa2gDCQgCUAhC0jMxsnDz8QqLiUrIKShBqWvH6RiZmltZgdg5Oru6e3r6BIWGR0bHxSTVpYJkQ3CyMUAzKfCWS0vKKpCrJuhNTM3MLYkvlq+s1clvTDLPz7DYqZzvzMFDBXvYMdxe7wcGonX4TRKg1iR2Hx2AQWKgKBYAJyw96XPg-DzcZTw3ZyAAqaPmAGsoHRuHAAKIAD1IF2xfBkP2Ubyy2w+8zsMG4pCI0nYlOeLBkpPJUAmERYBgAPABaAwSbhCmQ6J5wQQQAwGNakQlyiBwIpgLB+AyaFgwCLcKBshgZXBZZVcOjsOCkDVaxXK634x3agDiF1QNjqVpdAcD7B59FmABkoMoiBFSM7A-GXcGZKGGO64wmM3bCQRSABJCCoGOCMAAN1mLHxhL9YE0WrgOYMUElRAYMEQdQIxYAci3Htxm62hE0hBBezxqwAJZSMHkDmBDqy2adeGTVgDy6DMYW8Sqkg7Aw7AANMwaBEAy6UtSozGYgEXgXgI+cLsZHqGMBGrXfvdDgDAMRASAY771mwOZOHUZbSnATQAMwAAzwZe-o3vG5Bks+RZCMYwQltWWBwKEnB-nAMgGCWHh-uYfDwGIuCcDImR4ORPARHAFgAOSwRgACMACshjwRgfh8RxyHXqhgboXmBZYWAMBsI8JLVsIbCNhAZFKSx0HmHeMC-v+gHkZRDDsJBrHsRxAAsiGGDZiFiVekloXAGGya+YCkBEDDnsxQg6AwRB0PiLBTKQygAUBFFrBAwTtsxUFsU0HFCQJBhCTx8GOShznWq5MkvsWbAlpC5p+WARLZmeBjsMoxEwCxXghWFyjxYYiUwZxqWCbxWXiblAbSZhHkRNWAVBc1YQRUZJLOMEzgQG12lJVYKUYAEPWZdlEkDUN7nFjIeHlXIkhAe+E10KFU2RQYs3zYt5nQclYpCX4PXwQAHNtA0unpf4sE++1CDIFzUGZ5Xfvpf43SDUBg49K0GAh-U-Y2OY7gAQjGbIQMWDARL5hhCFgBP6oaxqmjuGQ5ZJKO5Y8bBpjTzlIqQa4xoVQisxazOSTahLsw4cn83A1M7bTvPxukEwBnTKpumITpCBilaKH64sZjadoOorRQazeNpM2AKsEjBPH6JLqNJimEZRlh+uo4mIbBamut8HLjuBgzEBMw7nuuqbguc55qvm+MluOzL-uyxHgYe6hhtu8rqsGH4Ft+z91su7b0avhnVvO7Mabx9H3u+9Hmuq0Hwuq2n4f5z9UcVwYTfOa3N6txMEwAMTdwYCgSGwMF2gwJZ-lkI9j-+4qSgT6MkHwbAvoYucvukBggP6-p9yTSrBkaJpnv6MgSN8ooSnAY9kARUDo2Pi-uQAJPjECGJvO198N-cAGLmztOElnPo2dgGA-qPlBOSdgPwwgPxfM-QiJYiZ4AyMAYAPEAC66DW4KQgFpGeUAQFgIBhA0y0DYxLxjI-HBSkkGWnGKgjBWCcpeR8kAghoD7z-U7JwUhYVYGUJYa-ZodD0gMMwa3YqpU2GEM4eAnhUC+EUNII-SRf5aEoLQeInKERpEcIfMQ+RZD+HKIiOo+hmimE7UOrooh3DIFGKUY-Q6ZjREWNbqQICM9jDQIIKaBUjjYZg1wAwPw+9cYFg-E0RxET6xORvDhcwVhOwAM0YYFJfgsFxIzNQqAJImidhySSVJhTgAZMvCqbySokl8EEakipPlSmZIMPmEq0NqmqIYHUjpjSS4uh0dUiIdTBllKyQmax1TDp1MmSMiOe4GpWB4qIzsPFcBvVgukSxAYT5nxnjIU0UAMASAuPAPgISoAWAJlMTgNSJDADtAARz4CswksVwg3MvOszJIS6AXMmCwa5Hi7lwEeW9F5wQ3keI+Rs6WBgACkAA+WFBgjRcHIIiP8BAmhkFCgqM5hhMpIXXjlT+7kf5px2qVAgFA1iEnMDPTs0J4KGGhGlOEOUOCkDIvSp5qzcB8VbgxIBtFcbbNQM-PwAoADUHKZAACp2AyCpKfMVZzW6Up4kA+5EQxA0oVKK8VUBcDnVtE0Sl1KcXmGcAYAlaqMV6hnlqnVOKlXfHFXQI1gUTVWDNdi2lBgrU2pypSk+QC9lcEOcchU6qjV2twDK+inL14IqRWGg5ItmDa2gPAEEnZ-IYqMBKi2YAdD5u+UWrsDEi0ADVK3jCJTtK5sZRUxoYAQE+UcAC+Uc+4pGMH44CnR-Sr0oazIBxgNJ-h0J0Pg78BCkGVN3RgRAwZ-ndjlE+qBQ3KvdmI9BcLEUqh5LSZgqAWDRQSO4WKq7iDcHYBYXNYAzlFrLXW-dKaaRMEQLMC4V6+BZrgC2ggrcvisyVagXAUBFB8BJBYDqhhB68AsP+mFkrrAa2CHAIgMAEg3E4EQZ4sBERbmqouMAIZsXhTqDwH0TYrDdQMJdDgcEkIGFQ8zE0toalhEJIeCc-y2QEYakZKtFlzB0AiikPxwQWzKDqHk0jInoJ1AiqRlI0YyAZFY8zDDWGEglimJqaDbByCtpMPOqw7DbEutQDuxp6C0G4AweUgz9plCQkPHs64pEOzSBbIeAkbFNOSu05h7D+mh5GbIBiszTRLOyOIaK2zGT7NvSc4YFz4V3Okc8zYbzzEb1+dIwF0W4wtPodC3plzkWTNUsBLFmR+jOyJdccl4AsFHNNIy25zqzQct5cMAV-8RWlOleC+V3T4XDMkmM9FurFmGtcOs0lzBbXcBWU60PTLPWhDsGkDyHz7ghvNGMKuUbIXdMcadMoCwTKYNxca0tlrK2Vlpcu9wCwQhZX6B0zAD7YA3tBfO9ht7fBru3YsPdxbzXUGtdS5kt7f3ZVfbwD9v7AOzvjeB-iK7N3cB3YW+A6HdnVuvex+9z7SPvuhbR2TwHGtwhwHgAkHBhoeDuzK-GMEPA4AJAQ9wZnYhtX8A6okgwD7u6IQAOx+AxnXJB3ciQBGhN-RCF4F01XtJKUK-ZBtmWvF2re15e4GF7XAftIsh0cwEaHMdFBkwMAAKq5hnTlTEzBU0i1OepxVRPku4BkCwUIpA71WWlv6A315h3KJFvaiU477dO5dztN3iAPeqy9wTH327XGMMMAHoPIfykAjPKLxtiJ5RhgoOCmwTQ-CEvDxMDtWQd6kzQKgCeNwqjqHQHwIUTQhSGEnm0jXo8-wTCyGADt6CgA)
+[R2 simulator application]({{< var shn1 >}})
 
 # `r metad$toc$sec2$nmn`
 
@@ -575,6 +575,11 @@ app_ex3_out[['resp']]
 
 :::
 
+---
+
+[xxx application]({{< var shn2 >}})
+
+---
 
 # `r metad$toc$sec4$nmn` {#litrev}
 
@@ -660,7 +665,17 @@ app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
 text <- readLines(app1_fil)
 cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
 ```
+---
 
+[xxx application]({{< var shn3 >}})
+
+---
+
+# Restoration
+
+[xxx application]({{< var shn4 >}})
+
+---
 
 # `r metad$toc$sec7$nmn`
 
