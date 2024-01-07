@@ -244,7 +244,6 @@ kableExtra::kbl(format(stfo_sel,digits=4), caption=ctone_of) %>% kableExtra::kab
   - Candidate A, $p_{m1,a,i}=1-p_{m2,a,i}-p_{nz,a,i}$ 
   - Candidate B, $p_{m1,b,i}=1-p_{m2,b,i}-p_{nz,b,i}$ 
 
-[Application 1: Election process simulator]({{< var shn1 >}})
 
 ---
 
@@ -279,6 +278,8 @@ of the existance of a *trivial* Manifold occuranse related to normal form are no
 	
 If none of this three cases are satisfied, variation in $\zeta_i$ should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?
 
+[Application 1: Election process simulator]({{< var shn1 >}})
+
 ## `r metad$toc$sec1$unm[7]`
 
 1. Differenc in the cost of voting (e.g., topology, voting rules, dropboxes, socio economics etc.) across precincts $\Rightarrow$ 
@@ -302,6 +303,7 @@ of the existance of a *trivial* Manifold related to opposition form are not sati
 
 If none of this three cases are satisfied, variation in $\Gamma_i$ should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?
 
+[Application 1: Election process simulator]({{< var shn1 >}})
 
 # `r metad$toc$sec2$nmn`
 
@@ -440,6 +442,8 @@ Backsolve for
 :::
 
 ::::
+
+[Application 2: Rigged election process simulator]({{< var shn2 >}})
 
 ---
 
@@ -874,9 +878,9 @@ knitr::include_graphics(c(p3))
 
 If we can walk through all of the **four** steps here, property 1<sup>st</sup> and 2<sup>nd</sup> that we have stated for a normal election are violated and we can conclude that the estimated Manifold equation is inserted - Manifold Destiny - to distort the outcome of normal election.
 
-# `r metad$toc$sec6$nmn`
+[Application 3: Rigged election analyzer]({{< var shn3 >}})
 
-[Application]({{< var shn2 >}})
+# `r metad$toc$sec6$nmn`
 
 
 ```{r, echo=FALSE, results='asis',warning=F}
@@ -915,13 +919,9 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 ```
 ---
 
-[xxx application]({{< var shn3 >}})
-
----
-
 # `r metad$toc$sec7$nmn`
 
-[xxx application]({{< var shn4 >}})
+[Application 4: Restoration of a rigged election]({{< var shn4 >}})
 
 ---
 
@@ -955,7 +955,7 @@ knitr::include_graphics(c(pr2h))
 - Our four applications
 
 ```{r, echo=F, warning=F, message=F}
-#kableExtra::kbl(concl_appps,col.names=cou_abc) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+kableExtra::kbl(concl_appps,col.names=cou_abc) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
 
 # `r metad$toc$sec9$nmn`
