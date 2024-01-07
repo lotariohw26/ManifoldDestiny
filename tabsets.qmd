@@ -16,11 +16,6 @@ format:
 bibliography: man_bib.bib
 ---
 
-[R2 simulator]({{< var shn1 >}})
-
-```{r}
-knitr::knit_exit()
-```
 
 ```{r, echo=F, message=F, warning=F}
 library(ManifoldDestiny)
