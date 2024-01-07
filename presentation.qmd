@@ -764,6 +764,8 @@ p1 <- paste0(rprojroot::find_rstudio_root_file(),'/pngs/ss.png')
 knitr::include_graphics(c(p1))
 ```
 
+---
+
 `r #Citet(bib, "delfino2011analysis")`
 
 > Abstract: On August 15th, **2004**, Venezuelans had the opportunity to vote
