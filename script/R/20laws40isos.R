@@ -2,7 +2,7 @@ library(ManifoldDestiny)
 library(huxtable)
 library(kableExtra)
 library(tibble)
-abc <- ManifoldDestiny::eqdef$meql
-def <- ManifoldDestiny::eqdef$meqs
+laws_df1 <- ManifoldDestiny::eqdef$meql
+laws_df2 <- ManifoldDestiny::eqdef$meqs
 
 

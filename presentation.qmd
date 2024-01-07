@@ -20,6 +20,7 @@ format:
 ManifoldDestiny::wasmconload()
 metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/20laws40isos.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
 modlat <- eqpar$meql
@@ -326,6 +327,10 @@ If none of this three cases are satisfied, variation in $\Gamma_i$ should explai
 
 
 **20 laws and 40 isometris**
+
+```{r}
+kable(laws_df1, format = "markdown", escape = FALSE) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=12)
+```
 
 
 ## `r metad$toc$sec2$unm[3]`
