@@ -8,8 +8,8 @@ output:
 
 ```{r, echo=F}
 library(ManifoldDestiny)
-ManifoldDestiny::eqdef$meql
-ManifoldDestiny::eqdef$meqs
+#ManifoldDestiny::eqdef$meql
+#ManifoldDestiny::eqdef$meqs
 # Load necessary library
 library(huxtable)
 library(kableExtra)
