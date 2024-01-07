@@ -6,12 +6,17 @@ execute:
   cache: false
 filters:
   - webr
+format: 
+  html:
+    css: "https://kineticgraphs.org/css/kg.0.2.7.css"
+    include-in-body:
+          - text: |
+              <script src="https://kineticgraphs.org/js/kg.0.2.7.js"></script>
 ---
 
 # Manifold Destiny - or how to rig an election
 **Based upon the ideas developed by Edward K. Solomon**
 ![](pngs/md.png)
-
 
 ### Install and load packages
 ```{webr-r}

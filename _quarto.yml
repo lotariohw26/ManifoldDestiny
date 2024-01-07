@@ -7,6 +7,7 @@ project:
   type: website
   output-dir: docs
   render:
+    - "abc.qmd"
     - "index.qmd"
     - "presentation.qmd"
     - "addendum/Addendum_az.qmd"
@@ -24,6 +25,8 @@ website:
     left:
       - text: "Index"
         href: index.qmd
+      - text: "abc"
+        href: abc.qmd
       - text: "Presentation"
         menu:
           - text: "Manifold Destiny - or how to rig an election" 

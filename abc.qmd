@@ -1,11 +1,63 @@
 ---
-title: "Python"
+title: "econ"
+#format: 
+#  html:
+#    css: "https://kineticgraphs.org/css/kg.0.2.7.css"
+#    include-in-body:
+#          - text: |
+#              <script src="https://kineticgraphs.org/js/kg.0.2.7.js"></script>
 ---
+
+<head>
+      <script src="https://kineticgraphs.org/js/kg.0.2.7.js"></script>
+      <link rel="stylesheet" href="https://kineticgraphs.org/css/kg.0.2.7.css">
+</head>
+
+<div class="kg-container">
+schema: EconSchema
+layout:
+  OneGraph:
+    graph:
+      xAxis: 
+        title: "Good 1"
+      yAxis: 
+        title: "Good 2"
+      objects: 
+      - EconBudgetLine:
+          p1: 1
+          p2: 2
+          m: 8
+          label: {text: M, location: 0.9}
+</div>
+
+::: {.kg-container}
+schema: EconSchema
+layout:
+  OneGraph:
+    graph:
+      xAxis: 
+        title: "Good 1"
+      yAxis: 
+        title: "Good 2"
+      objects: 
+      - EconBudgetLine:
+          p1: 1
+          p2: 2
+          m: 8
+          label: {text: M, location: 0.9}
+:::
+
+```{r}
+knitr::knit_exit()
+```
+
 
 <p id=ary></p>
 <p id=nmb></p>
 <p id=str></p>
-    
+
+
+
 <head>
       <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
 </head>

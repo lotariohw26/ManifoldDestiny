@@ -9,9 +9,9 @@
   {
     "objectID": "abc.html",
     "href": "abc.html",
-    "title": "Python",
+    "title": "econ",
     "section": "",
-    "text": "Pyodide test page  Open your browser console to see Pyodide output\n\n\n\nknitr::knit_exit()"
+    "text": "schema: EconSchema layout: OneGraph: graph: xAxis: title: “Good 1” yAxis: title: “Good 2” objects: - EconBudgetLine: p1: 1 p2: 2 m: 8 label: {text: M, location: 0.9}\n\n\nschema: EconSchema layout: OneGraph: graph: xAxis: title: “Good 1” yAxis: title: “Good 2” objects: - EconBudgetLine: p1: 1 p2: 2 m: 8 label: {text: M, location: 0.9}\n\n\nknitr::knit_exit()"
   },
   {
     "objectID": "tabsets.html",
@@ -109,7 +109,7 @@
     "href": "index.html",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Manifold Destiny - or how to rig an election\nBased upon the ideas developed by Edward K. Solomon \n\nInstall and load packages\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nSimulation\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nNormal\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nFunctions\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nRig 1: Normal\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nRig 2: Hybdrid\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nRig 3: Opposition\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nApplications\n\nApp1\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nApp2\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLast time updated: 2024-01-06"
+    "text": "Manifold Destiny - or how to rig an election\nBased upon the ideas developed by Edward K. Solomon \n\nInstall and load packages\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nSimulation\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nNormal\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nFunctions\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nRig 1: Normal\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nRig 2: Hybdrid\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nRig 3: Opposition\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nApplications\n\nApp1\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nApp2\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLast time updated: 2024-01-07"
   },
   {
     "objectID": "presentation.html#setting-up-the-election-system",
