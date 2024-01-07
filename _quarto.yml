@@ -25,8 +25,6 @@ website:
     left:
       - text: "Index"
         href: index.qmd
-      - text: "abc"
-        href: abc.qmd
       - text: "Presentation"
         menu:
           - text: "Manifold Destiny - or how to rig an election" 

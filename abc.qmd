@@ -7,28 +7,93 @@ title: "econ"
 #          - text: |
 #              <script src="https://kineticgraphs.org/js/kg.0.2.7.js"></script>
 ---
-
 <head>
-      <script src="https://kineticgraphs.org/js/kg.0.2.7.js"></script>
       <link rel="stylesheet" href="https://kineticgraphs.org/css/kg.0.2.7.css">
+      <script src="https://kineticgraphs.org/js/kg.0.2.7.js"></script>
 </head>
 
+<body>
 <div class="kg-container">
 schema: EconSchema
-layout:
-  OneGraph:
-    graph:
-      xAxis: 
-        title: "Good 1"
-      yAxis: 
-        title: "Good 2"
-      objects: 
-      - EconBudgetLine:
-          p1: 1
-          p2: 2
-          m: 8
-          label: {text: M, location: 0.9}
+  layout:
+    OneGraph:
+      graph:
+        xAxis: 
+          title: "Good 1"
+        yAxis: 
+          title: "Good 2"
+        objects: 
+        - EconBudgetLine:
+            p1: 1
+            p2: 2
+            m: 8
+            label: {text: M, location: 0.9}
 </div>
+</body>
+
+
+```{r, eval=T}
+knitr::knit_exit()
+```
+
+<head>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+</head>
+
+<body>
+  <p>
+    You can execute any Python code. Just enter something in the box below and
+    click the button.
+  </p>
+  <input id="code" value="sum([1, 2, 3, 4, 5])" />
+  <button onclick="evaluatePython()">Run</button>
+  <br />
+  <br />
+  <div>Output:</div>
+  <textarea id="output" style="width: 100%;" rows="6" disabled></textarea>
+
+  <script>
+    const output = document.getElementById("output");
+    const code = document.getElementById("code");
+
+    function addToOutput(s) {
+      output.value += ">>>" + code.value + "\n" + s + "\n";
+    }
+
+    output.value = "Initializing...\n";
+    // init Pyodide
+    async function main() {
+      let pyodide = await loadPyodide();
+      output.value += "Ready!\n";
+      return pyodide;
+    }
+    let pyodideReadyPromise = main();
+
+    async function evaluatePython() {
+      let pyodide = await pyodideReadyPromise;
+      try {
+        let output = pyodide.runPython(code.value);
+        addToOutput(output);
+      } catch (err) {
+        addToOutput(err);
+      }
+    }
+  </script>
+</body>
+
+
+
+
+
+
+
+
+
+```{r}
+knitr::knit_exit()
+```
+
+
 
 ::: {.kg-container}
 schema: EconSchema
@@ -46,87 +111,6 @@ layout:
           m: 8
           label: {text: M, location: 0.9}
 :::
-
-```{r}
-knitr::knit_exit()
-```
-
-
-<p id=ary></p>
-<p id=nmb></p>
-<p id=str></p>
-
-
-
-<head>
-      <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
-</head>
-<body>
-    Pyodide test page <br>
-    Open your browser console to see Pyodide output
-    <script type="text/javascript">
-      async function main(){
-        let pyodide = await loadPyodide();
-        console.log(pyodide.runPython(`
-            import sys
-            sys.version
-        `));
-        pyodide.runPython("print(1*5)");
-      }
-      main();
-    </script>
-</body>
-
-```{r}
-knitr::knit_exit()
-```
-
-<html>
-  <head>
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
-  </head>
-
-  <body>
-    <p>
-      You can execute any Python code. Just enter something in the box below and
-      click the button.
-    </p>
-    <input id="code" value="sum([1, 2, 3, 4, 5])" />
-    <button onclick="evaluatePython()">Run</button>
-    <br />
-    <br />
-    <div>Output:</div>
-    <textarea id="output" style="width: 100%;" rows="6" disabled></textarea>
-
-    <script>
-      const output = document.getElementById("output");
-      const code = document.getElementById("code");
-
-      function addToOutput(s) {
-        output.value += ">>>" + code.value + "\n" + s + "\n";
-      }
-
-      output.value = "Initializing...\n";
-      // init Pyodide
-      async function main() {
-        let pyodide = await loadPyodide();
-        output.value += "Ready!\n";
-        return pyodide;
-      }
-      let pyodideReadyPromise = main();
-
-      async function evaluatePython() {
-        let pyodide = await pyodideReadyPromise;
-        try {
-          let output = pyodide.runPython(code.value);
-          addToOutput(output);
-        } catch (err) {
-          addToOutput(err);
-        }
-      }
-    </script>
-  </body>
-</html>
 
 #! fix deviation from mean
 import sympy, pandas, numpy
@@ -280,3 +264,28 @@ def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[1, 4, 2], plr=3,dnr=2):
     msl = ['u0','v0','w0','expr','expr2']
     matarch[msl]=matarch[msl].astype(str)
     return ABCDE, matarch, abc
+
+
+<head>
+      <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+</head>
+<body>
+    Pyodide test page <br>
+    Open your browser console to see Pyodide output
+    <script type="text/javascript">
+      async function main(){
+        let pyodide = await loadPyodide();
+        console.log(pyodide.runPython(`
+            import sys
+            sys.version
+        `));
+        pyodide.runPython("print(1*5)");
+      }
+      main();
+    </script>
+</body>
+
+<p id=ary></p>
+<p id=nmb></p>
+<p id=str></p>
+

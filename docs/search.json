@@ -11,7 +11,7 @@
     "href": "abc.html",
     "title": "econ",
     "section": "",
-    "text": "schema: EconSchema layout: OneGraph: graph: xAxis: title: “Good 1” yAxis: title: “Good 2” objects: - EconBudgetLine: p1: 1 p2: 2 m: 8 label: {text: M, location: 0.9}\n\n\nschema: EconSchema layout: OneGraph: graph: xAxis: title: “Good 1” yAxis: title: “Good 2” objects: - EconBudgetLine: p1: 1 p2: 2 m: 8 label: {text: M, location: 0.9}\n\n\nknitr::knit_exit()"
+    "text": "schema: EconSchema layout: OneGraph: graph: xAxis: title: “Good 1” yAxis: title: “Good 2” objects: - EconBudgetLine: p1: 1 p2: 2 m: 8 label: {text: M, location: 0.9}\n\n\n\nknitr::knit_exit()"
   },
   {
     "objectID": "tabsets.html",
