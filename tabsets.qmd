@@ -18,11 +18,7 @@ bibliography: man_bib.bib
 
 
 ```{r, echo=F, message=F, warning=F}
-library(ManifoldDestiny)
-library(ManifoldDestinyWASMP)
-library(ManifoldDestinyWASMD)
-library(RefManageR)
-library(huxtable)
+ManifoldDestiny::wasmconload()
 modlat <- eqpar$meql
 md <- ManifoldDestinyWASMD::metad
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
