@@ -31,15 +31,15 @@
 	]
     },
     "sec4": {
-	"nmn": ["Literature review"],
-	"unm": [
-           ""
-	]
-    },
-    "sec5": {
 	"nmn": ["Checking for a rigged election"],
 	"unm": [
            "Procedure"
+	]
+    },
+    "sec5": {
+	"nmn": ["Literature review"],
+	"unm": [
+           ""
 	]
     },
     "sec6": {
@@ -52,7 +52,7 @@
 	]
     },
     "sec7": {
-	"nmn": ["Restoration of a rigged election"],
+	"nmn": ["The restoration of an rigged election"],
 	"unm": [
            "Procedure"
 	]
