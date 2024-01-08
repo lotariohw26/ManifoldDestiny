@@ -13,7 +13,8 @@ wasmconload <- function(){
       # Commands to be executed if the condition is FALSE
       library(ManifoldDestiny)
       source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmconverting.R'))
-      source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmnonverting.R'))
+      #source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmnonverting.R'))
+      #source(paste0(rprojroot::find_rstudio_root_file(),'/R/raceanalysis.R'))
   })
   library(plotly)
   library(dplyr)
@@ -21,6 +22,7 @@ wasmconload <- function(){
   library(combinat)
   library(htmltools)
   library(ggplot2)
+  library(gridExtra)
   library(broom)
   library(tidyr)
   library(combinat)

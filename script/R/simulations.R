@@ -65,6 +65,7 @@ app_n_out <- seloutput(app_n_rep)
 app_n_sim <- SimVoterdatabase(app_bal)
 ######## Rigged example 1: standard form
 app_ex1_cou <- Countinggraphs(app_bal)
+pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 #print(app_ex1_cou$polyc[[1]][[1]])
 app_ex1_cou$sortpre()
 app_ex1_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
