@@ -70,6 +70,7 @@ pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 app_ex1_cou$sortpre()
 app_ex1_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
 app_ex1_cou$setres(0.23,0)
+pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),TRUE,wn=c(0,0))
 app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
 app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
@@ -80,6 +81,7 @@ pri_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
 app_ex2_cou$sortpre()
 app_ex2_cou$mansys(sygen=list(frm=2,pre=c("alpha","g","h"),end=c("Gamma","Omega"),FALSE,me=c(plnr=1,rot=0)))
 app_ex2_cou$setres(0.23,0)
+pos_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
 app_ex2_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),wn=c(0,0))
 app_ex2_out <- seloutput(selreport(app_ex2_cou$rdfc,md$app0))
 app_ex2_sim <- SimVoterdatabase(app_ex2_cou$rdfc)
@@ -89,6 +91,7 @@ pri_int_ex3 <- app_ex3_cou$polyc[[1]][[1]]
 app_ex3_cou$sortpre()
 app_ex3_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
 app_ex3_cou$setres(0.23,0)
+pos_int_ex3 <- app_ex3_cou$polyc[[1]][[1]]
 app_ex3_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),wn=c(0,0))
 app_ex3_out <- seloutput(selreport(app_ex3_cou$rdfc,md$app0))
 app_ex3_sim <- SimVoterdatabase(app_ex3_cou$rdfc)

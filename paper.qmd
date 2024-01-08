@@ -491,7 +491,7 @@ sum(dplyr::select(app_n_out[['rdfc']],S,U))/sum(dplyr::select(app_n_out[['rdfc']
 **Rigged**
 <br>
 
-$f(x)_{0}^{1}=`r paste0(round(polynom::polynomial(unname(pri_int_ex1)),3))`$
+$f(x)_{0}^{1}=`r paste0(round(polynom::polynomial(unname(pos_int_ex1)),3))`$
 
 Election outome
 ```{r, echo=F}
@@ -612,7 +612,7 @@ sum(dplyr::select(app_n_out[['rdfc']],S,U))/sum(dplyr::select(app_n_out[['rdfc']
 **Rigged**
 <br>
 
-$f(x)_{0}^{1}=`r paste0(round(polynom::polynomial(unname(pri_int_ex1)),3))`$
+$f(x)_{0}^{1}=`r paste0(round(polynom::polynomial(unname(pos_int_ex1)),3))`$
 
 Election outome
 ```{r, echo=F}
