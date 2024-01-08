@@ -36,12 +36,14 @@ ui <- fluidPage(
     mainPanel(
       tabsetPanel(
         tabPanel("Normal election",
-                 plotOutput("plotq_f"),
-		 plotlyOutput("plot3d1")
+		 plotOutput("plotq_n"),
+		 plotOutput("plotxy_n"),
+		 plotlyOutput("plot3d_n")
 		 ),
         tabPanel("Rigged election",
-                 plotOutput("plotxy_n"),
-		 plotlyOutput("plot3d2")
+		 plotOutput("plotq_r"),
+		 plotOutput("plotxy_r"),
+		 plotlyOutput("plot3d_r")
 		 )
         #tabPanel(#verbatimTextOutput(outputId = "table_dsc1")
         #tabPanel(#verbatimTextOutput(outputId = "table_dsc2")
@@ -108,14 +110,22 @@ server <- function(input, output) {
     #r2 <- summary(ner$regsum[[1]])
     #list(r1,r2)
   })
-  # # Plot 
-  output$plotq_f <- renderPlot({
+  # Plot 
+  output$plotq_n <- renderPlot({
     dft <- result()
     gm1 <- dft[[1]]$pl_2dsort[[1]]
-    gm2 <- dft[[2]]$pl_2dsort[[1]]
-    cowplot::plot_grid(cowplot::plot_grid(gm1, labels = "Fair election"), cowplot::plot_grid(gm2, labels = "Rigged election"), ncol = 2, align = 'hv')
+    cowplot::plot_grid(gm1, labels = "Fair election")
+    #gm2 <- dft[[2]]$pl_2dsort[[1]]
+    #cowplot::plot_grid(cowplot::plot_grid(gm1, labels = "Fair election"), cowplot::plot_grid(gm2, labels = "Rigged election"), ncol = 2, align = 'hv')
   })
-  output$plotxyn <- renderPlot({
+  output$plotq_r <- renderPlot({
+    dft <- result()
+    #gm1 <- dft[[1]]$pl_2dsort[[1]]
+    gm2 <- dft[[2]]$pl_2dsort[[1]]
+    cowplot::plot_grid(gm2, labels = "Fair election")
+    #cowplot::plot_grid(cowplot::plot_grid(gm1, labels = "Fair election"), cowplot::plot_grid(gm2, labels = "Rigged election"), ncol = 2, align = 'hv')
+  })
+  output$plotxy_n <- renderPlot({
      #browser()
      dft <- result()
      gm1 <- dft[[1]]$pl_corrxy[[1]]
@@ -128,7 +138,7 @@ server <- function(input, output) {
      gm4 <- dft[[2]]$pl_corrxy[[1]]
      cowplot::plot_grid(gm2, gm4, ncol = 2, labels = c("Column 1", "Column 2"))
   })
-  output$plot3d1 <- renderPlotly({
+  output$plot3d_n <- renderPlotly({
      gdf <- result()[[1]]$rdfc %>% dplyr::select(c('alpha','x','y'))
      mrdfc <- as.matrix(gdf)
      z <- mrdfc[,1]
@@ -137,7 +147,7 @@ server <- function(input, output) {
      p1 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers", marker=list(size=3))
      plotly::layout(p1,title = "Fair election")
   })
-  output$plot3d2 <- renderPlotly({
+  output$plot3d_r <- renderPlotly({
      gdf <- result()[[2]]$rdfc %>% dplyr::select(c('alpha','x','y'))
      mrdfc <- as.matrix(gdf)
      z <- mrdfc[,1]
@@ -150,3 +160,6 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 #options(scipen=999)
 #set.seed(1)
+
+
+
