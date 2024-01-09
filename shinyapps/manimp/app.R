@@ -54,30 +54,24 @@ ui <- fluidPage(
 server <- function(input, output) {
   # Create a reactive expression for the result
   result <- reactive({
-    #
-
-    #
-    pwn  <- input$probw 
-    parv <- input$prob_rv 
-    padv <- input$prob_rm 
-    parv <- input$prob_dv 
-    padv <- input$prob_dm 
-    #
-    form <- input$form
-    form <- input$endvar
-    form <- input$prevar
-    form <- input$pn
-    form <- input$linear
-    form <- input$wn
-    kvec <- input$kvec
-    #kvec <- input$loss
-    #kvec <- input$rotation
+    # Input values
+    prn <- 100
+    browser()
+    frm <- input$form
+    pwn <- input$probw 
+    whn <- input$wn
+    kvc <- input$kvec
+    prcr <- c(input$prob_rv,input$prob_rm)
+    prcd <- c(input$prob_dv,input$prob_dm)
+    endv <- input$endvar
+    parv <- input$prevar
+    polc <- input$pn
     #### Interactive
     isys <- list(frm=frm,pre=pres,end=ends,me=c(plnr=linp,rots=0))
     #### Interactive
     #### Simulation of ballot voting
-    dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10)
-    app_bal <- ballcastsim(dfm,pwn,parv,padv,ztech)
+    dfm <- (function(x){data.frame(P=seq(1,prn),RV=as.integer(rnorm(x,1000,30)))})(10)
+    app_bal <- ballcastsim(dfm,pwn,prcr,prcd,ztech=c(0,0))
     ### Fair election
     app_n_cou <- Countinggraphs(app_bal)
     app_n_cou$sortpre()
@@ -87,11 +81,11 @@ server <- function(input, output) {
     app_exr_cou <- Countinggraphs(app_bal)
     app_exr_cou$sortpre()
     #app_exr_cou$mansys(sygen=isys)
-    app_exr_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
+    app_exr_cou$mansys(sygen=list(frm=frm,pre=endv,end=parv,me=c(plnr=1,rot=0)))
     #app_exr_cou$setres(pnc)
-    app_exr_cou$setres(0.23,0)
+    app_exr_cou$setres(polc,0)
     #app_exr_cou$manimp(init_par=kvec,man=TRUE,wn=c(wn[1],wn[2]))
-    app_exr_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),TRUE,wn=c(0,0))
+    app_exr_cou$manimp(init_par=c(k0=kvc[1],k1=kvc[2],k2=kvc[3]),TRUE,wn=whn)
     app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
     app_exm_cou$sortpre()
     app_exm_cou$plotxy()
@@ -172,4 +166,15 @@ shinyApp(ui = ui, server = server)
 #set.seed(1)
 
 
+#pwn <- c(m=0.51,s=0.10); parv <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10) ;padv <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
+#los <- 1 
+#rots <- 0
+#kvec <- c(k0=0.0,k1=0.5,k2=0.5)
+#frm <- 1
+#linp <- 1
+#ends <- c("zeta","lamda")#input$endvar
+#pres <- c("alpha","x","y")#input$prevar
+#ztech <- c(0,1)	
+##### Simulation of ballot voting
+#dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10)
 
