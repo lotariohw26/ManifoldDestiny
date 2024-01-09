@@ -54,15 +54,24 @@ ui <- fluidPage(
 server <- function(input, output) {
   # Create a reactive expression for the result
   result <- reactive({
-    pwn <- c(m=0.51,s=0.10); parv <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10) ;padv <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
-    los <- 1 
-    rots <- 0
-    kvec <- c(k0=0.0,k1=0.5,k2=0.5)
-    frm <- 1
-    linp <- 1
-    ends <- c("zeta","lamda")#input$endvar
-    pres <- c("alpha","x","y")#input$prevar
-    ztech <- c(0,1)	
+    #
+
+    #
+    pwn  <- input$probw 
+    parv <- input$prob_rv 
+    padv <- input$prob_rm 
+    parv <- input$prob_dv 
+    padv <- input$prob_dm 
+    #
+    form <- input$form
+    form <- input$endvar
+    form <- input$prevar
+    form <- input$pn
+    form <- input$linear
+    form <- input$wn
+    kvec <- input$kvec
+    #kvec <- input$loss
+    #kvec <- input$rotation
     #### Interactive
     isys <- list(frm=frm,pre=pres,end=ends,me=c(plnr=linp,rots=0))
     #### Interactive
@@ -112,6 +121,7 @@ server <- function(input, output) {
   })
   # Plot 
   output$plotq_n <- renderPlot({
+    browser()
     dft <- result()
     gm1 <- dft[[1]]$pl_2dsort[[1]]
     cowplot::plot_grid(gm1, labels = "Fair election")
