@@ -8,6 +8,7 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       h4("Simulation settings:"),
+      textInput("prec",  "Numer of precinct", value='100'),
       textInput("probw",  "Prob of assigning to R:", value='0.51, 0.10'),
       textInput("prob_rv", "Prob of R voting:", value='0.7, 0.10'),
       textInput("prob_rm", "Prob of voting by mail if voting by R:", value='0.4, 0.10'),
@@ -55,19 +56,16 @@ server <- function(input, output) {
   # Create a reactive expression for the result
   result <- reactive({
     # Input values
-    prn <- 100
-    browser()
-    frm <- input$form
-    pwn <- input$probw 
-    whn <- input$wn
-    kvc <- input$kvec
-    prcr <- c(input$prob_rv,input$prob_rm)
-    prcd <- c(input$prob_dv,input$prob_dm)
+    prn <- as.numeric(input$prec)
+    frm <- as.numeric(input$form)
+    pwn <- as.numeric(strsplit(input$probw, ',')[[1]])
+    whn <- as.numeric(strsplit(input$wn, ',')[[1]])
+    kvc <- as.numeric(strsplit(input$kvec, ',')[[1]])
+    prcr <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10) #c(input$prob_rv,input$prob_rm)
+    prcd <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10) #c(input$prob_dv,input$prob_dm)
     endv <- input$endvar
     parv <- input$prevar
-    polc <- input$pn
-    #### Interactive
-    isys <- list(frm=frm,pre=pres,end=ends,me=c(plnr=linp,rots=0))
+    polc <- as.numeric(input$pn)
     #### Interactive
     #### Simulation of ballot voting
     dfm <- (function(x){data.frame(P=seq(1,prn),RV=as.integer(rnorm(x,1000,30)))})(10)
@@ -80,12 +78,9 @@ server <- function(input, output) {
     ### Rigging an election
     app_exr_cou <- Countinggraphs(app_bal)
     app_exr_cou$sortpre()
-    #app_exr_cou$mansys(sygen=isys)
-    app_exr_cou$mansys(sygen=list(frm=frm,pre=endv,end=parv,me=c(plnr=1,rot=0)))
-    #app_exr_cou$setres(pnc)
+    app_exr_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
     app_exr_cou$setres(polc,0)
-    #app_exr_cou$manimp(init_par=kvec,man=TRUE,wn=c(wn[1],wn[2]))
-    app_exr_cou$manimp(init_par=c(k0=kvc[1],k1=kvc[2],k2=kvc[3]),TRUE,wn=whn)
+    app_exr_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),TRUE,wn=c(0,0))
     app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
     app_exm_cou$sortpre()
     app_exm_cou$plotxy()
@@ -115,7 +110,7 @@ server <- function(input, output) {
   })
   # Plot 
   output$plotq_n <- renderPlot({
-    browser()
+    #browser()
     dft <- result()
     gm1 <- dft[[1]]$pl_2dsort[[1]]
     cowplot::plot_grid(gm1, labels = "Fair election")
