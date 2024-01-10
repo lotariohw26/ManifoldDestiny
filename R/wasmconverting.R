@@ -117,6 +117,7 @@ selreport <- function(
   #co$rotation(rpar=rparv)
   #co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
+  #browser()
   ges$regression(md$mtd$sgs$eq)
   #ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
   ges$diagnostics()

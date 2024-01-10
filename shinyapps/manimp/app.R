@@ -36,18 +36,22 @@ ui <- fluidPage(
     ),
     mainPanel(
       tabsetPanel(
-        tabPanel("Normal election",
+        tabPanel("Quantile",
 		 plotOutput("plotq_n"),
-		 plotOutput("plotxy_n"),
-		 plotlyOutput("plot3d_n")
+		 plotOutput("plotq_r")
 		 ),
-        tabPanel("Rigged election",
-		 plotOutput("plotq_r"),
-		 plotOutput("plotxy_r"),
+        tabPanel("3d",
+		 plotlyOutput("plot3d_n"),
 		 plotlyOutput("plot3d_r")
+		 ),
+        tabPanel("Plot",
+		 plotOutput("plotxy_n"),
+		 plotOutput("plotxy_r")
+		 ),
+        tabPanel("Desc",
+		verbatimTextOutput("table_dsc_n"),
+		verbatimTextOutput("table_dsc_r")
 		 )
-        #tabPanel(#verbatimTextOutput(outputId = "table_dsc1")
-        #tabPanel(#verbatimTextOutput(outputId = "table_dsc2")
       )
     )
   )
@@ -61,10 +65,12 @@ server <- function(input, output) {
     pwn <- as.numeric(strsplit(input$probw, ',')[[1]])
     whn <- as.numeric(strsplit(input$wn, ',')[[1]])
     kvc <- as.numeric(strsplit(input$kvec, ',')[[1]])
+    #prcr <-  c(as.numeric(trimws(strsplit(input$prob_rv, ",")[[1]])),as.numeric(trimws(strsplit(input$prob_rm, ",")[[1]])))
+    #prcd <-  c(as.numeric(trimws(strsplit(input$prob_rv, ",")[[1]])),as.numeric(trimws(strsplit(input$prob_rm, ",")[[1]])))
     prcr <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10) #c(input$prob_rv,input$prob_rm)
     prcd <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10) #c(input$prob_dv,input$prob_dm)
-    endv <- input$endvar
-    parv <- input$prevar
+    endv <- c(strsplit(input$endvar, " ")[[1]],strsplit(input$endvar, " ")[[1]])
+    parv <- c(strsplit(input$prevar, " ")[[1]],strsplit(input$prevar, " ")[[2]],strsplit(input$prevar, " ")[[3]])
     polc <- as.numeric(input$pn)
     #### Interactive
     #### Simulation of ballot voting
@@ -80,52 +86,44 @@ server <- function(input, output) {
     app_exr_cou$sortpre()
     app_exr_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
     app_exr_cou$setres(polc,0)
-    app_exr_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),TRUE,wn=c(0,0))
+    app_exr_cou$manimp(init_par=c(k0=kvc[1],k1=kvc[2],k2=kvc[3]),TRUE,wn=whn)
     app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
     app_exm_cou$sortpre()
     app_exm_cou$plotxy()
     app_exm_cou$plot2d()
     list(app_n_cou,app_exm_cou)
   })  
-  output$table_dsc1 <- renderText({
-    #browser()
-    #sugsol <- c(alpha='k0+k1*x+k2*y',alpha='k0+k1*x+k2*y+k3*zeta')
-    #result()[[1]]$rdfc
-    #nel <- Estimation(result()[[1]]$rdfc,1)
-    #nel$regression(sugsol[1])
-    #nel$regsum[[1]]
-    #n1 <- summary(nel$regsum[[1]])
-    #nel$regression(sugsol[2])
-    #n2 <- summary(nel$regsum[[1]])
-    ##list(n1,n2)
+  output$table_dsc_n <- renderPrint({
+    sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
+    nel <- Estimation(result()[[1]]$rdfc,1)
+    nel$regression(sugsol[1])
+    n1 <- summary(nel$regsum[[1]])
+    nel$regression(sugsol[2])
+    n2 <- summary(nel$regsum[[1]])
+    list(n1,n2)
   })
-  output$table_dsc2 <- renderPrint({
-    #sugsol <- c(alpha='k0+k1*x+k2*y',alpha='k0+k1*x+k2*y+k3*zeta')
-    #ner <- Estimation(result()[[2]]$rdfc,1)
-    #ner$regression(sugsol[1])
-    #r1 <- summary(ner$regsum[[1]])
-    #ner$regression(sugsol[2])
-    #r2 <- summary(ner$regsum[[1]])
-    #list(r1,r2)
+  output$table_dsc_r <- renderPrint({
+    sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
+    ner <- Estimation(result()[[2]]$rdfc,1)
+    ner$regression(sugsol[1])
+    r1 <- summary(ner$regsum[[1]])
+    ner$regression(sugsol[2])
+    r2 <- summary(ner$regsum[[1]])
+    list(r1,r2)
   })
   # Plot 
   output$plotq_n <- renderPlot({
-    #browser()
     dft <- result()
     gm1 <- dft[[1]]$pl_2dsort[[1]]
     cowplot::plot_grid(gm1, labels = "Fair election")
-    #gm2 <- dft[[2]]$pl_2dsort[[1]]
-    #cowplot::plot_grid(cowplot::plot_grid(gm1, labels = "Fair election"), cowplot::plot_grid(gm2, labels = "Rigged election"), ncol = 2, align = 'hv')
   })
   output$plotq_r <- renderPlot({
     dft <- result()
     #gm1 <- dft[[1]]$pl_2dsort[[1]]
     gm2 <- dft[[2]]$pl_2dsort[[1]]
     cowplot::plot_grid(gm2, labels = "Fair election")
-    #cowplot::plot_grid(cowplot::plot_grid(gm1, labels = "Fair election"), cowplot::plot_grid(gm2, labels = "Rigged election"), ncol = 2, align = 'hv')
   })
   output$plotxy_n <- renderPlot({
-     #browser()
      dft <- result()
      gm1 <- dft[[1]]$pl_corrxy[[1]]
      gm3 <- dft[[1]]$pl_corrxy[[1]]
@@ -157,10 +155,8 @@ server <- function(input, output) {
   })
 }
 shinyApp(ui = ui, server = server)
-#options(scipen=999)
+options(scipen=999)
 #set.seed(1)
-
-
 #pwn <- c(m=0.51,s=0.10); parv <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10) ;padv <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 #los <- 1 
 #rots <- 0
