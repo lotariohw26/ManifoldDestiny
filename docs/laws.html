@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.533">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Manifold Destiny</title>
+<title>Manifold Destiny – laws</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -45,13 +45,7 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -60,7 +54,6 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -70,42 +63,15 @@ ul.task-list li input[type="checkbox"] {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Manifold Destiny</span>
     </a>
@@ -117,112 +83,112 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Index</span></a>
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Index</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-presentation" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-presentation" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Presentation</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-presentation">    
         <li>
-    <a class="dropdown-item" href="./presentation.html">
+    <a class="dropdown-item" href="./presentation.html" rel="" target="">
  <span class="dropdown-text">Manifold Destiny - or how to rig an election</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./addendum/Addendum_az.html">
+    <a class="dropdown-item" href="./addendum/Addendum_az.html" rel="" target="">
  <span class="dropdown-text">Addendum 1: Arizona</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./addendum/Addendum_ne.html">
+    <a class="dropdown-item" href="./addendum/Addendum_ne.html" rel="" target="">
  <span class="dropdown-text">Addendum 2: Nevada</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./paper.html"> 
-<span class="menu-text">Paper</span></a>
+    <a class="nav-link" href="./paper.html" rel="" target="">
+ <span class="menu-text">Paper</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-coding-in-the-browser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-coding-in-the-browser" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Coding in the browser</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-coding-in-the-browser">    
         <li>
-    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/r/examples/">
+    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/r/examples/" rel="" target="">
  <span class="dropdown-text">R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/py/examples/">
+    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/py/examples/" rel="" target="">
  <span class="dropdown-text">Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://webr.r-wasm.org/latest/">
+    <a class="dropdown-item" href="https://webr.r-wasm.org/latest/" rel="" target="">
  <span class="dropdown-text">REPL for R</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shiny-applications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shiny-applications" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Shiny applications</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-shiny-applications">    
         <li>
-    <a class="dropdown-item" href="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRASwgGdSoAbbgCgA6YALJQILAGZFuAEwAicTmwCeAdQCCAZWEAFIbgAEDOKiLsDAXgNCAFqVKp2iAPTPuRLgxZEb1AEwAbBgA5iykNgCudBjezsJyAPoa2gDCQgCUAhCi4lKyCkoQalq6zNRQ7DDEEO5QMnyZEBEsBgA8ALQGEtzNMjpQwXCCEAYGpGHccP0QcPxCWH4GmiwwEdxQpEQMGbhZo1x07HCk07PDo-tQdKdzYADiDGg2+tYjF+8f7Cwy9FAMADJQZRECKkc4fCEXL4-Oh-G7gyGIo6TAikACSEFQoMEYAAbn8WFdJi8hJpZnBUQYoF0tjBEC8CDiAHK0ng0hgwISWayQVncElgAASykY33ZnLA3NsIq8MgFAHl0GYwt4RlIOVyrEIiEqvuMSBl0rs3ojIU14F4CBisWChJjjAQBUyIjA6HAGAYiBIDKgHWxUU4XvienBuQBmAAMEaNe1NkPIAA90ZjsUJjMFcQKsHBQpx3XAZAZcR53eY+PAxLhODJMngizwInALAByMMYACMAFZDBGMH5O82Yya4+9E8mbTiYGwYFAEwLhGwqRBCzOE-WQ+ZzW6PV6iyWGOwgw2m82ACxRwznqOD40jiFj62psCkCIMCACnQMIiwugsbhhZRPW9YtxggYJ6TrYNG25Zte27Axe3bCMb1jO8LgfFNbTANhcVQd0BQAURRfURnYZQ8xgesvCuP8AIgwwoNDFs4J7DtkKHNDRzgJNHywiIPy-H9aNIQDdwTZxgmcCB6PXaCrFgjAAlYpCUOHNCMInIQZEzOshDkSRvV9b8aP-ESgIMcTJOko8Qxg9pez8ViIwADlUziLnNd0WCtTCcRkR5qEPXSwGdV13XM-yoECmy5IMSMOPcqlUVVAAhUFNggHEGAid9gqwHKlhWNYNlVDJULvBK0JnNh4XKtDUHcUh5VBTSwAajwdjqu8DkmZqHCfHq4DKtS40aND0jGi5KrGK5arAAAVIlFBJEb4yuI4TjEM4utNA45sWuhJgMdt9B2xKDGhX4ASBEFbVW87Rku2EGHhaaHveaqIFq+73pmw64D61rBpOsBJt+94wfByGRzeuM9q224DqOvxTp+9ynr+QFgVTNHEoxl6EYaW9wY+qAasJs7fsGwGBqWlHQcp87ofe5nTVZiFIcaRoAGJuYMBQJDYUMjgYXF8I4d0xY9Douhy5KSD4NgbUMW6bXSAwQFjWM+fy0iivWEjYxkCRglQNpOjgMWyGzKBkrFxXMIAEmyiBDE14c+d4-mADETuHdNcXNql2AwTzLT4TgDwasIHZtZ2c1xQxTtB4BgHbABddPIanCBVyDipQ5dLzGUj9ho7BJXQUdnPVyTvAMlTjOs-Kl833zkOw+8iPSCj0zY6r1vXZ5XYU7TzPIZwvDpc6AvO5Lnuy77yvSEdyf3Trkf0kb8fyoidvC4tLvS-L-uV4iDeG7H5vh20-e5+73uY+Xx3tIv0em8h0hvRl4xo4IDYhjP0ioFXADA-BfBgJle0FJuTP2gQQYmiJ0zmCsIyAOY9DDoL8FnRBkIa6zm5IyfBCYMHEOANgo0YxXwjFQXwQeGCqFvnITggwGJcLhVoWvBgDCuHMNhu8PetCIgMOERQ3BEJb60O0gw6RYjGbqkolYdsW9GTtlwI5MM6Rr7vGNqbIOMgNhQAwBIR48A+BgKgBYHK-5OB0IkMAI4ABHPgajJhgXCHYo0micFgLoFYmoLBbFfwcXAZxjk3HBA8V-LxWiJoGAAKQAD54kGFWFwcgfAp4EG5GQP8QwLGGCQtGdW5VPaYR9ijYcWSKDjEmOYGWjIACcEZDCNPgo0xpkMOCkELA0lx6jcCdkhtWIOFZMq6NQM7PwUB0gAGpukyAAFTsHqBMqZMzypZPbEHRxEQxC1KGGsgpRlDjcmqbkupBhnDHSjJDLJiwZa7P2XkvgRy-B0FwCclBPp3QEBqXk8w1yil3N+cbfRhjjGmKGFsz5vzHILKrD09WSSUkGK4BgQazANrQHgOwPgjIhA6F+UYaZyciUMGyb45OTJqzJwAGq0tBiU4cNiwQTNhRS42k0AC+k0+YpGMAAn0jVYyqyru1UgQdjDLndDoRqfB3YCElQYbmjAiCBXdA0cqxszYywmQ0be6cEnJLGN8ZQTBECoBYCBBI7gwKauINwdgFgCVgAscnKlTLjWooaua5gfxHj2r4DiuAHKCCQ2CKbeVOrcBQEUHwBMFhGKGEFrwCwIa4mzNeBCQYRAYAJBsIEzYwRTGZOVCRKU2Efi5JEi8HgqAbDUisCxAwv4ODhmjAYLNXV1iHDoRMJiPJBRFqICW2A5k6XHnMHQQCKQAHBC2MoF4a4tRgEnSGF4gFV0pBBGQDIXauq5vzbif8MwE1sHIBSkwkqrCzyLuHfVW9mHpzTrgDOlDT3HGUHhStBj2A2ALAyaQWxK2HUbPu2Zh64B5oSCeoW56yC-OvdyO9h9GSPtTtgl9jl32GE-SJH9q6-0AblHWR1IHV1gaGqDA9I0j2wc-Qhy9fzUA3uDgfYuryTaoANc+4AYY30sPw9+wdWkKgkaA+4D0lGN00cg3R6Dx7GMJgvUh1jKGO73q7hhvjAnTxCaFgR0TYB2DSG+JJijPJjCkfVvJnNinbVXDOMoCwLTE2oc4zprDr7cO9tmBYIQiz9BHoC2APz-I5NQZg+FvgLm3MWA8w+7jvHvM4ZweF0Liygt4BC0IcLEGov5pi3F3A7nNNoa46bFLmd+OCaNBlwLWXguKdC-lyLI1whwHgAkHOKweANFoxCdg-9JgJFTdwHrYg9n8EYt8113MowAHY-ApXpnXbmBEAiNO9lGQ0ow+YbS6H+bgBhyMHljLyrWbxeYGAFXAIVg1RUtQHktbZP8KA-AYAAVTRAq8qch5rMDRYY-65jd2rOS0+rDuAZAsFCKQZ1p4JoXcmmKleg0HmdGlZ9n7f3hwA6B4YwaYOcoQ6q0+puhhYfw8R5QnUJFvmssyQMOA-wKCRJsNyPwxSUdZG5VkHWBU0CoCyP+lQ6h0B8GaNyZohgRZS25PL90jQshgG5enIAA">
+    <a class="dropdown-item" href="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRASwgGdSoAbbgCgA6YALJQILAGZFuAEwAicTmwCeAdQCCAZWEAFIbgAEDOKiLsDAXgNCAFqVKp2iAPTPuRLgxZEb1AEwAbBgA5iykNgCudBjezsJyAPoa2gDCQgCUAhCi4lKyCkoQalq6zNRQ7DDEEO5QMnyZEBEsBgA8ALQGEtzNMjpQwXCCEAYGpGHccP0QcPxCWH4GmiwwEdxQpEQMGbhZo1x07HCk07PDo-tQdKdzYADiDGg2+tYjF+8f7Cwy9FAMADJQZRECKkc4fCEXL4-Oh-G7gyGIo6TAikACSEFQoMEYAAbn8WFdJi8hJpZnBUQYoF0tjBEC8CDiAHK0ng0hgwISWayQVncElgAASykY33ZnLA3NsIq8MgFAHl0GYwt4RlIOVyrEIiEqvuMSBl0rs3ojIU14F4CBisWChJjjAQBUyIjA6HAGAYiBIDKgHWxUU4XvienBuQBmAAMEaNe1NkPIAA90ZjsUJjMFcQKsHBQpx3XAZAZcR53eY+PAxLhODJMngizwInALAByMMYACMAFZDBGMH5O82Yya4+9E8mbTiYGwYFAEwLhGwqRBCzOE-WQ+ZzW6PV6iyWGOwgw2m82ACxRwznqOD40jiFj62psCkCIMCACnQMIiwugsbhhZRPW9YtxggYJ6TrYNG25Zte27Axe3bCMb1jO8LgfFNbTANhcVQd0BQAURRfURnYZQ8xgesvCuP8AIgwwoNDFs4J7DtkKHNDRzgJNHywiIPy-H9aNIQDdwTZxgmcCB6PXaCrFgjAAlYpCUOHNCMInIQZEzOshDkSRvV9b8aP-ESgIMcTJOko8Qxg9pez8ViIwADlUziLnNd0WCtTCcRkR5qEPXSwGdV13XM-yoECmy5IMSMOPcqlUVVAAhUFNggHEGAid9gqwHKlhWNYNlVDJULvBK0JnNh4XKtDUHcUh5VBTSwAajwdjqu8DkmZqHCfHq4DKtS40aND0jGi5KrGK5arAAAVIlFBJEb4yuI4TjEM4utNA45sWuhJgMdt9B2xKDGhX4ASBEFbVW87Rku2EGHhaaHveaqIFq+73pmw64D61rBpOsBJt+94wfByGRzeuM9q224DqOvxTp+9ynr+QFgVTNHEoxl6EYaW9wY+qAasJs7fsGwGBqWlHQcp87ofe5nTVZiFIcaRoAGJuYMBQJDYUMjgYXF8I4d0xY9Douhy5KSD4NgbUMW6bXSAwQFjWM+fy0iivWEjYxkCRglQNpOjgMWyGzKBkrFxXMIAEmyiBDE14c+d4-mADETuHdNcXNql2AwTzLT4TgDwasIHZtZ2c1xQxTtB4BgHbABddPIanCBVyDipQ5dLzGUj9ho7BJXQUdnPVyTvAMlTjOs-Kl833zkOw+8iPSCj0zY6r1vXZ5XYU7TzPIZwvDpc6AvO5Lnuy77yvSEdyf3Trkf0kb8fyoidvC4tLvS-L-uV4iDeG7H5vh20-e5+73uY+Xx3tIv0em8h0hvRl4xo4IDYhjP0ioFXADA-BfBgJle0FJuTP2gQQYmiJ0zmCsIyAOY9DDoL8FnRBkIa6zm5IyfBCYMHEOANgo0YxXwjFQXwQeGCqFvnITggwGJcLhVoWvBgDCuHMNhu8PetCIgMOERQ3BEJb60O0gw6RYjGbqkolYdsW9GTtlwI5MM6Rr7vGNqbIOMgNhQAwBIR48A+BgKgBYHK-5OB0IkMAI4ABHPgajJhgXCHYo0micFgLoFYmoLBbFfwcXAZxjk3HBA8V-LxWiJoGAAKQAD54kGFWFwcgfAp4EG5GQP8QwLGGCQtGdW5VPaYR9ijYcWSKDjEmOYGWjIACcEZDCNPgo0xpkMOCkELA0lx6jcCdkhtWIOFZMq6NQM7PwUB0gAGpukyAAFTsHqBMqZMzypZPbEHRxEQxC1KGGsgpRlDjcmqbkupBhnDHSjJDLJiwZa7P2XkvgRy-B0FwCclBPp3QEBqXk8w1yil3N+cbfRhjjGmKGFsz5vzHILKrD09WSSUkGK4BgQazANrQHgOwPgjIhA6F+UYaZyciUMGyb45OTJqzJwAGq0tBiU4cNiwQTNhRS42k0AC+k0+YpGMAAn0jVYyqyru1UgQdjDLndDoRqfB3YCElQYbmjAiCBXdA0cqxszYywmQ0be6cEnJLGN8ZQTBECoBYCBBI7gwKauINwdgFgCVgAscnKlTLjWooaua5gfxHj2r4DiuAHKCCQ2CKbeVOrcBQEUHwBMFhGKGEFrwCwIa4mzNeBCQYRAYAJBsIEzYwRTGZOVCRKU2Efi5JEi8HgqAbDUisCxAwv4ODhmjAYLNXV1iHDoRMJiPJBRFqICW2A5k6XHnMHQQCKQAHBC2MoF4a4tRgEnSGF4gFV0pBBGQDIXauq5vzbif8MwE1sHIBSkwkqrCzyLuHfVW9mHpzTrgDOlDT3HGUHhStBj2A2ALAyaQWxK2HUbPu2Zh64B5oSCeoW56yC-OvdyO9h9GSPtTtgl9jl32GE-SJH9q6-0AblHWR1IHV1gaGqDA9I0j2wc-Qhy9fzUA3uDgfYuryTaoANc+4AYY30sPw9+wdWkKgkaA+4D0lGN00cg3R6Dx7GMJgvUh1jKGO73q7hhvjAnTxCaFgR0TYB2DSG+JJijPJjCkfVvJnNinbVXDOMoCwLTE2oc4zprDr7cO9tmBYIQiz9BHoC2APz-I5NQZg+FvgLm3MWA8w+7jvHvM4ZweF0Liygt4BC0IcLEGov5pi3F3A7nNNoa46bFLmd+OCaNBlwLWXguKdC-lyLI1whwHgAkHOKweANFoxCdg-9JgJFTdwHrYg9n8EYt8113MowAHY-ApXpnXbmBEAiNO9lGQ0ow+YbS6H+bgBhyMHljLyrWbxeYGAFXAIVg1RUtQHktbZP8KA-AYAAVTRAq8qch5rMDRYY-65jd2rOS0+rDuAZAsFCKQZ1p4JoXcmmKleg0HmdGlZ9n7f3hwA6B4YwaYOcoQ6q0+puhhYfw8R5QnUJFvmssyQMOA-wKCRJsNyPwxSUdZG5VkHWBU0CoCyP+lQ6h0B8GaNyZohgRZS25PL90jQshgG5enIAA" rel="" target="">
  <span class="dropdown-text">R2 simulator</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAYlrvocaeZdbfeYB0IjVSBLEgGcAFEIL9UFALwBOeQEpuQuKQwq4AExEBGJRADucAEYAnRIn4QhpKABs7IzmACyUCPwBmRO5oAicDZWAJ4A6gCCAMouAArOuAAEpnCoREIJ0gnOABakpKhCiAD0RXZEtqaC2QYATABsGADm-KTZAK7GGIJFLn4A+hHRAMLO+m4e3r4BQRBhUbEWBlBCMMQQZVDa+hw7u3v7bNxt-AkAPAC0CZ52x5oxUI1wThAJCQKkdnD3EHCOzgCinwIAhICSE-BgbTsUFIRFMVzhb2ycCS-EazQgjQSRE8CSgCWgpDapnsCV+cGBgggo1w3Fe4M0JigpgAMlBgkQ2qRnq96fxGcZmd9fjzea9sgAWJxgSIQqEwqlg1QCTGFGl0sVvOAAD1IAEkIKgudLUKYiMYDPFXs4YmbjNjcctwY0PJi3kQElhEFaAG72NpwaQAcgADBgAKw6RJhnQhoMKWkvTXkXUGo3c5ym819Uw+q02u0Oz0JH3lKyNb14Ev+wOhjAAdmjGFj8cTmq1qcNxszdpzMHzYFt5qLpZVWOMwQSMCg-DsCS8JbLbonnsriT9N1rYYlTZbCY1YpT+q7GbAWeMfU0earBeHOISfkXY7X1c3wbD4d3cf3ScPOuP6Ymr2mj9jeg6Fveo7lgkK7TrO864lBy6Tn4L4bgG74YHUX6tgevIqECAHdmA3imKBiTOFgaKPJoa54e2DEJAQ2REPwBCBBkTHSgAcnC05zgAYnxzicc4OjxPRjFSYxzgABLBGY-IJEJZEiZkzg1BJv7STp7bOAA8ugaQtIqKmgaJYAAMw0kqhFaBZ4lgD+7YERSAgAF5wGmxGmnAfqmBJ4FaHAZFWPZ-n8FAxifEI8TMax7FCNIBDSvYqDZFAgXaoFwSBZ5tiBUQ8CNJlTm4JCdgCKgnwZAAKlgACq-y4LwILWNIdj8DYIjTtqerkDASWWc5mqucC9mZClzhpRlA7ZWBuVOSNYpjR5XkntKFBXsygW2sFoU-Jo1aVFFMVxSxbGBMlqV2OlpW0mA80PYtD35fdzjQjAmilQmFVVTV0j1U1LV8FSSWdd1vX9XAg3SDUCa2W5WjXc4b2BZ932jMtvJHt5p6oNSYExD4wQ8DAkV2L6NaYTUlm4dp9LksCePSp1Pw7UTJNkxTdEM7pTEXYlnFTWALJhRzDlafz0u8s4ACKbSbCSAgEGpWRgJpeCSTLUnOEMHRsWrzjWVrfM6zJYAK8yKtG2AEo2atE3q452OvLjG3OAYhMUWAoTZC0KI8F1cBU2+dYhk235tsm-4s84ADWPoUgOqDMrAqghbFVboVuuAfnnEbxpJ1CrXHYBlEIWc+yyaTpJ4bQQJSJC8+21C6fFl3pJN0rhMYqtgJLput+bDHOAEni25rCOO0d6lgC70diiXTNrWXZq2G1A7-FCIXnOvCqgnCjLwiIrVUvYShVh3Qvd1GCQ1IklmJDuCSfgkdQI39kgAwkQPNWfwhOIQ25FDAaXcEjDX0GKbGcEIDCj+HzagSdTCCgEDAWq-59JckApyfIXI9Sz3VrYaKcBLziBdpJZBqCIQYN1FgvB3JcHpgIRZYhnwyEECnovXk1Vyj0MApmMopBtSk3VHzXhpB+E+SESIgKZVJISKkfjGRwRTBcIUUIuwwQlEmiEZZTQC8NHlC0TowR5R9FTzwlAhI+h9AqFzCFM4lx66NzaiIKw6ZEhMK5AoBIIANRtyGMkGEKJ8TBMpEnMk2pfKV0VKRJEKJkhCChKQDUSSUlOKSHAKAESnj+O0qgL2mSUowGkB+KMSUYwhgUAAbgSKnXMxSRA+hAmUhs5VWnblwC0ypzYI5fV6bGXxNTU5XiaS00p+cvqTKwt0zQgz+nzLaUMvCFdMk6CyNpde6QLgJBDHhROFImnxxDG0iO8cdBtM-PHGoVzrGvE8GRdZqyPHPO0ltHZlwRZoy1uXWAmMnLUA8VyAAJFtfyeEYlNOmrdWavynrOEWgoIFJ4QW+Qhdpdy5BmJNIjnoTgqTtL0ASAacgJJcl4S6sET5CRgEiEeaUhluBfLSBibgLa0gPnlUDClaqEBTAdQ8bgbZZSFD3ISMS0lIUckCCTnhYlsoKoHxePeQUDhyhPnLHhTQngYCZPpQ3JuEARDagUCAb6tgMCPPTiIGI0gVAAEddC4FNbgLAAA1aQywuhkDgI8UwIhTA8DIia3AsYQwR0stUsVABfBQuhql4TQKgPoarMlqrsAQZYpBwQwBEDqmAzKvbMuZD6EtV5cBYopNkcVdBlIznhCvKkSb0B9AgH0YgbRMlDE5GQcsjQSTpVEMm1NF8W0pvbZ2kFQg4T5GSCIcVI7J2cjRSohd4620dpXRImoWx5W0E9NRaC7gySEWbdpEdOpTBbq7bsntDcxwDrQNkYdra1WLtbVem907Z2+XXUSy92pr1TunNYalYhgiPAgNIKlQgP0pq-SB9wQhwMoag4K7qDLpBRhZSLGa71Ho5RpBy75qgCMYx+ty66fKBVRnXqKsV8rAPAZXSoUgSSRAEwIPBvoiHWOqA42GWmeda3Me-aBiEqB3EeFIH0Bp0hDkEHKu4QGjVmpe2ul7YAOgAC6uAtM1B04xi9n6gPifcJJ6TLQ5PMmuics5uALlXMc7cj8CY-76egylCO0aN06hgDe7tvbH2DpfSIMTU7TA6u4357UAWp0ztMHOp4PH-PfokSI-9YpAPxe3UI3dWXeR0qXTe3AOWb3WLjdaJM3jSAgrYaQ+ZBANm7OSBAY+tDuT5KXmYIgBh7GFdeCXNojQZ1zl2SlfDwYTkAGoLkACptRzZqPN4IQYyuwqgNNkMc2dCLeW6tubll5tvSLkS9JlUF3AG0zpnTIKoueFVkSn443Lj-CCNONxF3uQKGu7pu7D2lP4ue78e7fqknghIGIEbY2bu1pe2D0bbQYB-du-KiALXLjJJgNOUwwQRAI+SEjlHN2jPo9B0TiHVJoejZ8MAQz8OaiZOx7j-HhO-XY9R2Tol1A6UY9wBAeGGo40alq-V06jXxBM9a1tEKtorBdflck2nr2uJTaDLNhbS2bmrfW+rzXe3tcreCEdk7ZGztLx+PCXZ720HKsDYEFJV36e3fu9FsN8OQqI6p1D5XsPdO1tMJjsEyPWcE690TznpPPemG94ESHxq-d04Z-KtRzPQ-MjZxHjnyOue1rpUH4VQukwi6TG3NuMQhGbNeGLjLqjMltePpX8oIhuu8h1aQBvjvLvisaDAYPHeuerr6LuxLpAud4T79Ly4g+Xd3eqiP+Zs6J-aWIAYCRFgJF9AHfyEQa+N+IC3zv7Qfe77QmML8cBzgBINtPW5ZtZUmJ9YP0fyoJ+YAP1pVFS-FkqLonsk2iQDZI3D4JxJ-vYGiC8JkEGNkD6BbgkKXjXtgqCnXi8DLu1nLkIq3vRNQL1v1iFINq8B3l3skj3vRKfpkrPv9sPsQKYKYCIivpqH3pZJQZ4OPqTjQXCPQcEIwWKPvkIpvkItvm-iIKfokMwYkCAXOJkJ-ufj-t3HrD4Mji8I5D7D2jcDAC8FPJVtYrXiomnugU3lgW3u3mwSQU7uKgkFPqwewYZvPnYFunQQwaTuQTABKDYddnYZwU4TwS4QzPweUIIeUMIbvlPuIW4ZIcQNIffIkHIXYOAiLOocoQkKoerEkZoffFjMLrocgXVhIvosHo3pgcYvjiYa8I0DquYT3kPoDgkAAKQAB8dRCQmg1UqiFgq0e+IgQY+G62QY2ofRa2xmmoMAtRuy3qn2lQ2oohOqlh7kmSox0WwAYaOm9E2oCxgOyxhm9Ek4uyixj2yxlkqxDMqAweEiWiQRsmWiJq0g2ouAwQ0gwQla0g7kuApAwQUg0gzg4gMIZK+iVoMARAjIXxYAuO8cmcAJzI4JAqdK4Ink0gkC9E5xwQFg0IHIxopxbxLQP81+t+gBhMOhouuRq65img0+WSGBpgzeHwpR5BlRMupBP2nhrutRjRzRrRWi5giAnRKUPRm2fRAxuAQYQxlh+xBAmSExMIUxMxngcxGxSxKxax8pBxuA2xDMuxlwYphxxxmoqA5JyJlxfQ1x2otx9xjxzxrx7xnx3xWaeQIU-xVYgJwJzgYJEJeArp8ImQsJ-AnknEiJJxmiKJiAaJuCnGD87wOJYAf+NEd+Rqow2RASYuDWHCXelJ8uZA2BZeiBEqYuDITIpgnWqZHW-4mZQ2peMayg-ssw4Q6AIgxwnExwiQ9iyCnEzZIU+g3AYAMaOmQAA">
+    <a class="dropdown-item" href="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAYlrvocaeZdbfeYB0IjVSBLEgGcAFEIL9UFALwBOeQEpuQuKQwq4AExEBGJRADucAEYAnRIn4QhpKABs7IzmACyUCPwBmRO5oAicDZWAJ4A6gCCAMouAArOuAAEpnCoREIJ0gnOABakpKhCiAD0RXZEtqaC2QYATABsGADm-KTZAK7GGIJFLn4A+hHRAMLO+m4e3r4BQRBhUbEWBlBCMMQQZVDa+hw7u3v7bNxt-AkAPAC0CZ52x5oxUI1wThAJCQKkdnD3EHCOzgCinwIAhICSE-BgbTsUFIRFMVzhb2ycCS-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-PfokSI-9YpAPxe3UI3dWXeR0qXTe3AOWb3WLjdaJM3jSAgrYaQ+ZBANm7OSBAY+tDuT5KXmYIgBh7GFdeCXNojQZ1zl2SlfDwYTkAGoLkACptRzZqPN4IQYyuwqgNNkMc2dCLeW6tubll5tvSLkS9JlUF3AG0zpnTIKoueFVkSn443Lj-CCNONxF3uQKGu7pu7D2lP4ue78e7fqknghIGIEbY2bu1pe2D0bbQYB-du-KiALXLjJJgNOUwwQRAI+SEjlHN2jPo9B0TiHVJoejZ8MAQz8OaiZOx7j-HhO-XY9R2Tol1A6UY9wBAeGGo40alq-V06jXxBM9a1tEKtorBdflck2nr2uJTaDLNhbS2bmrfW+rzXe3tcreCEdk7ZGztLx+PCXZ720HKsDYEFJV36e3fu9FsN8OQqI6p1D5XsPdO1tMJjsEyPWcE690TznpPPemG94ESHxq-d04Z-KtRzPQ-MjZxHjnyOue1rpUH4VQukwi6TG3NuMQhGbNeGLjLqjMltePpX8oIhuu8h1aQBvjvLvisaDAYPHeuerr6LuxLpAud4T79Ly4g+Xd3eqiP+Zs6J-aWIAYCRFgJF9AHfyEQa+N+IC3zv7Qfe77QmML8cBzgBINtPW5ZtZUmJ9YP0fyoJ+YAP1pVFS-FkqLonsk2iQDZI3D4JxJ-vYGiC8JkEGNkD6BbgkKXjXtgqCnXi8DLu1nLkIq3vRNQL1v1iFINq8B3l3skj3vRKfpkrPv9sPsQKYKYCIivpqH3pZJQZ4OPqTjQXCPQcEIwWKPvkIpvkItvm-iIKfokMwYkCAXOJkJ-ufj-t3HrD4Mji8I5D7D2jcDAC8FPJVtYrXiomnugU3lgW3u3mwSQU7uKgkFPqwewYZvPnYFunQQwaTuQTABKDYddnYZwU4TwS4QzPweUIIeUMIbvlPuIW4ZIcQNIffIkHIXYOAiLOocoQkKoerEkZoffFjMLrocgXVhIvosHo3pgcYvjiYa8I0DquYT3kPoDgkAAKQAB8dRCQmg1UqiFgq0e+IgQY+G62QY2ofRa2xmmoMAtRuy3qn2lQ2oohOqlh7kmSox0WwAYaOm9E2oCxgOyxhm9Ek4uyixj2yxlkqxDMqAweEiWiQRsmWiJq0g2ouAwQ0gwQla0g7kuApAwQUg0gzg4gMIZK+iVoMARAjIXxYAuO8cmcAJzI4JAqdK4Ink0gkC9E5xwQFg0IHIxopxbxLQP81+t+gBhMOhouuRq65img0+WSGBpgzeHwpR5BlRMupBP2nhrutRjRzRrRWi5giAnRKUPRm2fRAxuAQYQxlh+xBAmSExMIUxMxngcxGxSxKxax8pBxuA2xDMuxlwYphxxxmoqA5JyJlxfQ1x2otx9xjxzxrx7xnx3xWaeQIU-xVYgJwJzgYJEJeArp8ImQsJ-AnknEiJJxmiKJiAaJuCnGD87wOJYAf+NEd+Rqow2RASYuDWHCXelJ8uZA2BZeiBEqYuDITIpgnWqZHW-4mZQ2peMayg-ssw4Q6AIgxwnExwiQ9iyCnEzZIU+g3AYAMaOmQAA" rel="" target="">
  <span class="dropdown-text">Rigging of a natural election</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAYlrvocaeZdbfeYB0IjVSBLEgGcAFEIL9UFALwBOeQEpuQuKQwq4AExEBGJRADucAEYAnRIn4QhpKABs7IzmACyUCPwBmRO5oAicDZWAJ4A6gCCAMouAArOuAAEpnCoREIJ0gnOABakpKhCiAD0RXZEtqaC2QYATABsGADm-KTZAK7GGIJFLn4A+hHRAMLO+m4e3r4BQRBhUbEWBlBCMMQQZVDa+pp20PAJADwAtAkETijoAAzxzmioOjcXqDWPdy94t+jvuJ-Po8A6RA1AC63BgmkOJ3GXh8-kCAlmg16Fngtk03A4mKx2JxuLx+IJjG4bX4kISnjsJM0MSgjTgTggCQSAlIdjgNIgcEcziw-EadIhXLgBAEJCSgTadlI6Xc9mCAC84KZRj9GQkhPxNCYoKYADJQYJENqkBlMpkarXGHUcrmms3moUigCSEFQxpEVjdpCdEMyvz6KjZIviCTsUGMXIyWTAkUdpAS7gSccEjM8piIMGZ2Tgof4Zh1wRuavtJbNBGyRH4BECUZ2ezgqtLTfVca0Uecxk1FD6pFMbRgqD6nIAbpsoH0apdJyruKXA8Lva73c5vKYYCGeXyBYgi8296cK1Wa5kzs4AHJENf2BIAMUv67A7bADw+xf379LzgAEsEzJrb-ezhPt8s4fmB9rOAA8ugaQtCmAFrkBfpgAAzCqLZBuQvrRu8CiNiW5AAB6Ll65xuqYdIbmAMRtBROYEJU5CVFAO54KOlJwNIziXAA3Lx1xgHhoH2kRJHLmA8AAI6eFR0KTBCRDGAAVguYgKKx+HgexbQ5sh9ioNkUDSAA1pcADUxk6AAVI0Fk1FZ2Qzm+TKiS6pHOEIPjDjJeDRpEXk5quGnCWB2m6dGjROaWZgiEJzkJNkAAs5xYOUUCioysZ5FYjTpCIACikpKkogmaWa84ivwipueJ6a2BlVGFWyphHHV6XwZeWqmAkIi8Bl9glYk5aVtW6QnroiQ1IkKGJIliQAKyJHUeEJDAkoCKgbJRgAKlgACq+W4H1KZjbmNgiDAUCEU65AwKdKEKHFc52F2pg1SazitKoUBUdt2a2Bpq1WFGlyJJdhFRihdSgwkYUg09JZCC9XXvWR2T8FRMTo4DMDA5kMPg5D0OJHD+MI-aSOvajzimBWVFYBWON4wkBNXUTMOkyz5Nmkl5yRG0-Lwm2nmUhlrHcy5cDEZBxruWAFraqY21S6QoxMtQCQy-kxpJmy8BkOSl4JJowR7FWzIqyF3OXVYNrcvFtjGCopB23apaO67zjTAxkgCMOcAhv7phWgIMDK9Lsvuka2vethn3hmyfSaOIowS2aHvuLazg1H4CSRAQ6VMQkMRlNKIabeUWukdHXo+k+FekH0hGFoJacueGntgAAim07gCFtJflOXpdV1Hkex-Xpd9JJqdlSJHeZ9yYAAEJEAYxel8Plfj714918hDd9MYa+zyF8-GJ3KG521DW+Q3djBKPJo18a+-RofKHoq3c-pwvnJL1fdUBc8hKgSA3IQIZcgwDsE-XeMc37OA-snU+8V24X0XilOAjRkhCA1MIQOSoQ78DDirWBL8J4H0qGQAM-YUHNgzv-TBFpe52AgXfEeO9yEILAIfHBdCmwMKzmAIYGZUA6n4J5CABDg7tRIRHGOcDa5xx4VQxuxAHyPR-mgzuLhvqaHSj9XyQciFyNIGQveyjUTjmTgQVOZ8Ej6HtI4hx3B9AqFMEHMkng2gQEqiQD0S5SCJHIYkFQuCUwKASCAUCil3H+3yv7MgASvQABJVwwESNE5y1A9qoH0eQLMOYtSeCgOtWG9gdIJCIJ4Qp0YYg+FNhmfg158qSV7hlNSQFRIJE9MaEKXgeq9NIGk+8GRkIvkiVk0sbQ8npTgOHMSJowl4IgIkZwUkfIkwqeFW4dgDJGVMhZayhE7JWRbs4+0Mz8nzJVqjZZKY1nyy8ps8pHEnznJCgAX11ioHpNTknGhGWuMZOE1ZTJLFcuZCy7mBBWY8jZgdtlPn0oZEy5lLI2VOY5QS9jIXkGhYEsQsKHnRhFt5RFbzkKRRxW+b5XJfkDIBcM9JILnBoUElE3Fsz8W3MJfckg8K4DSQpZUvSezUWHIxTAU5UiaXTO5Tc4iMLwkCtJc8kVOyJKjC+aBT5kSshqgIOkogZJkhQEqv7EQ4L1YJHGCwkKQhoBkiGSku4AY4wOq5PkqAZI6RLOgBc1aycyTgmAMAR1UBgSgjfHQYutFKJvnBEIFJMBSCaBSagCiKSCAQAhMcU4IhLiBqTSmtNGas02DaMOMkZxQZ1twEWkKJbU3pszY0FJxhKSoABMCMk1xE3J1La2rNnaZnABBGSB4MbaB5x8MaFMTbB1CFymk7q+blgYAgP2JUVYmVApgMWpdK6hVkg3Vu+AlQzguo2Ye5Ny7k2jlPUITd27L17rJZ4QNsbUr1QXQO5NLaUn3pSemHtzrAkpK+rYKyqB+BFB0AADn7faZtZbgOgYnfml1Bl+Awbg4h5DZpUPpvQ0QYAKFe1YYg7TIgeH4NIZCjO2MdhkipFMKrN8yRSC0QgESljKRLxLK9QY3ASbHq6ucbEpUlrM1WBNEa+8RBYphp0FGlJWoVhCHE2qchkGE5wCTuIU1FAuoxFUVakKsmkkKbXEphQKm1Mabus4vVMTx4ZqnpJYzualSDxNNa04xrlM9uBB5icydBMOejUyVzOn3OH2PuvfNyQfOmD8xZt8NmYB2bDfNNTm1wueXY1FiTbmY4efKE3YI3nTOlwy-aYgBgG4WEPtgzUIh74SNINILLOWQtheIKYUwzdgBnB0LgGoChgS4F8T4aQk3StxfK0gmrvnS4P3q2WIL9n+t1XvsEErapYtMl00g9IyWTNKj2k6TbTJevBdU6F+wdg+gFc-n0S6HhDsxck-F1RNDMwXdS2ZuTt2zpLP7JdUwwQRD3Z2xR0LyRcr9ii3FTg8YhCQ4LLD7bYaQSI6wZjmAqOXO-eW1PHBq20t1YC9QTaPr81w7x2pnB4CothrG1N6LZo6d2GMDW3H46WeBDZ0L4EHPdBc8Y5tAgAvFPBfxyBkXpchBhoRxLvQUbGONea4gVrlRtCdZsNIF6516e4E2sYC3dgCB4Vm3YaQehFsnb+3Jvo6iqcg6SQFqzJoN3eowGmWA9Imdi+zRmDTtvIkAFIAB80fjabWCOYRAFUTTjamjNRKgbfciH9wYwPphg84-lztxX6ixHJEegkOPCfNBJ5T2niamfcDZ+d1U9zVjDOy6B6Z8ztOXr5mhyILAcBPDjFpHALAX7l55mghlUQ5ZhTGQwBQXs-Bjy3nCLqSIh0Eidk6DYYIW09LGgrNDuAOoQxH5P9GKHxlNBr1lYkfRQhszYV2gdL95BzsnDETYOAS4EQUwTNIgJSdMcoCwTwKwTQPoUwStTQQQOAogSraAtkWKXAAAciKCsBsCKGSE8CVAoFGiKE+yPjzAwAP0wKUA43tGoAPzJFH3H1lDpCwAsFH02Fn2MBEB-y-SYIn1YIsAvCGBaHpAPz4LHwEKnwsC91IC4JeiIGwTQGyBhwP0SAwD6lOlN3k2zAIBXzX0qE3xvG3131CUExyneTIDsSOzJ1SQVitCVhVipwWTB3-3ICANDzqDU0A2AyFVJ24E+WUHRlmHCHQBEBJCjBJFCWk1AUyDiWKm4G4DAE+WBCAA">
+    <a class="dropdown-item" href="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAYlrvocaeZdbfeYB0IjVSBLEgGcAFEIL9UFALwBOeQEpuQuKQwq4AExEBGJRADucAEYAnRIn4QhpKABs7IzmACyUCPwBmRO5oAicDZWAJ4A6gCCAMouAArOuAAEpnCoREIJ0gnOABakpKhCiAD0RXZEtqaC2QYATABsGADm-KTZAK7GGIJFLn4A+hHRAMLO+m4e3r4BQRBhUbEWBlBCMMQQZVDa+pp20PAJADwAtAkETijoAAzxzmioOjcXqDWPdy94t+jvuJ-Po8A6RA1AC63BgmkOJ3GXh8-kCAlmg16Fngtk03A4mKx2JxuLx+IJjG4bX4kISnjsJM0MSgjTgTggCQSAlIdjgNIgcEcziw-EadIhXLgBAEJCSgTadlI6Xc9mCAC84KZRj9GQkhPxNCYoKYADJQYJENqkBlMpkarXGHUcrmms3moUigCSEFQxpEVjdpCdEMyvz6KjZIviCTsUGMXIyWTAkUdpAS7gSccEjM8piIMGZ2Tgof4Zh1wRuavtJbNBGyRH4BECUZ2ezgqtLTfVca0Uecxk1FD6pFMbRgqD6nIAbpsoH0apdJyruKXA8Lva73c5vKYYCGeXyBYgi8296cK1Wa5kzs4AHJENf2BIAMUv67A7bADw+xf379LzgAEsEzJrb-ezhPt8s4fmB9rOAA8ugaQtCmAFrkBfpgAAzCqLZBuQvrRu8CiNiW5AAB6Ll65xuqYdIbmAMRtBROYEJU5CVFAO54KOlJwNIziXAA3Lx1xgHhoH2kRJHLmA8AAI6eFR0KTBCRDGAAVguYgKKx+HgexbQ5sh9ioNkUDSAA1pcADUxk6AAVI0Fk1FZ2Qzm+TKiS6pHOEIPjDjJeDRpEXk5quGnCWB2m6dGjROaWZgiEJzkJNkAAs5xYOUUCioysZ5FYjTpCIACikpKkogmaWa84ivwipueJ6a2BlVGFWyphHHV6XwZeWqmAkIi8Bl9glYk5aVtW6QnroiQ1IkKGJIliQAKyJHUeEJDAkoCKgbJRgAKlgACq+W4H1KZjbmNgiDAUCEU65AwKdKEKHFc52F2pg1SazitKoUBUdt2a2Bpq1WFGlyJJdhFRihdSgwkYUg09JZCC9XXvWR2T8FRMTo4DMDA5kMPg5D0OJHD+MI-aSOvajzimBWVFYBWON4wkBNXUTMOkyz5Nmkl5yRG0-Lwm2nmUhlrHcy5cDEZBxruWAFraqY21S6QoxMtQCQy-kxpJmy8BkOSl4JJowR7FWzIqyF3OXVYNrcvFtjGCopB23apaO67zjTAxkgCMOcAhv7phWgIMDK9Lsvuka2vethn3hmyfSaOIowS2aHvuLazg1H4CSRAQ6VMQkMRlNKIabeUWukdHXo+k+FekH0hGFoJacueGntgAAim07gCFtJflOXpdV1Hkex-Xpd9JJqdlSJHeZ9yYAAEJEAYxel8Plfj714918hDd9MYa+zyF8-GJ3KG521DW+Q3djBKPJo18a+-RofKHoq3c-pwvnJL1fdUBc8hKgSA3IQIZcgwDsE-XeMc37OA-snU+8V24X0XilOAjRkhCA1MIQOSoQ78DDirWBL8J4H0qGQAM-YUHNgzv-TBFpe52AgXfEeO9yEILAIfHBdCmwMKzmAIYGZUA6n4J5CABDg7tRIRHGOcDa5xx4VQxuxAHyPR-mgzuLhvqaHSj9XyQciFyNIGQveyjUTjmTgQVOZ8Ej6HtI4hx3B9AqFMEHMkng2gQEqiQD0S5SCJHIYkFQuCUwKASCAUCil3H+3yv7MgASvQABJVwwESNE5y1A9qoH0eQLMOYtSeCgOtWG9gdIJCIJ4Qp0YYg+FNhmfg158qSV7hlNSQFRIJE9MaEKXgeq9NIGk+8GRkIvkiVk0sbQ8npTgOHMSJowl4IgIkZwUkfIkwqeFW4dgDJGVMhZayhE7JWRbs4+0Mz8nzJVqjZZKY1nyy8ps8pHEnznJCgAX11ioHpNTknGhGWuMZOE1ZTJLFcuZCy7mBBWY8jZgdtlPn0oZEy5lLI2VOY5QS9jIXkGhYEsQsKHnRhFt5RFbzkKRRxW+b5XJfkDIBcM9JILnBoUElE3Fsz8W3MJfckg8K4DSQpZUvSezUWHIxTAU5UiaXTO5Tc4iMLwkCtJc8kVOyJKjC+aBT5kSshqgIOkogZJkhQEqv7EQ4L1YJHGCwkKQhoBkiGSku4AY4wOq5PkqAZI6RLOgBc1aycyTgmAMAR1UBgSgjfHQYutFKJvnBEIFJMBSCaBSagCiKSCAQAhMcU4IhLiBqTSmtNGas02DaMOMkZxQZ1twEWkKJbU3pszY0FJxhKSoABMCMk1xE3J1La2rNnaZnABBGSB4MbaB5x8MaFMTbB1CFymk7q+blgYAgP2JUVYmVApgMWpdK6hVkg3Vu+AlQzguo2Ye5Ny7k2jlPUITd27L17rJZ4QNsbUr1QXQO5NLaUn3pSemHtzrAkpK+rYKyqB+BFB0AADn7faZtZbgOgYnfml1Bl+Awbg4h5DZpUPpvQ0QYAKFe1YYg7TIgeH4NIZCjO2MdhkipFMKrN8yRSC0QgESljKRLxLK9QY3ASbHq6ucbEpUlrM1WBNEa+8RBYphp0FGlJWoVhCHE2qchkGE5wCTuIU1FAuoxFUVakKsmkkKbXEphQKm1Mabus4vVMTx4ZqnpJYzualSDxNNa04xrlM9uBB5icydBMOejUyVzOn3OH2PuvfNyQfOmD8xZt8NmYB2bDfNNTm1wueXY1FiTbmY4efKE3YI3nTOlwy-aYgBgG4WEPtgzUIh74SNINILLOWQtheIKYUwzdgBnB0LgGoChgS4F8T4aQk3StxfK0gmrvnS4P3q2WIL9n+t1XvsEErapYtMl00g9IyWTNKj2k6TbTJevBdU6F+wdg+gFc-n0S6HhDsxck-F1RNDMwXdS2ZuTt2zpLP7JdUwwQRD3Z2xR0LyRcr9ii3FTg8YhCQ4LLD7bYaQSI6wZjmAqOXO-eW1PHBq20t1YC9QTaPr81w7x2pnB4CothrG1N6LZo6d2GMDW3H46WeBDZ0L4EHPdBc8Y5tAgAvFPBfxyBkXpchBhoRxLvQUbGONea4gVrlRtCdZsNIF6516e4E2sYC3dgCB4Vm3YaQehFsnb+3Jvo6iqcg6SQFqzJoN3eowGmWA9Imdi+zRmDTtvIkAFIAB80fjabWCOYRAFUTTjamjNRKgbfciH9wYwPphg84-lztxX6ixHJEegkOPCfNBJ5T2niamfcDZ+d1U9zVjDOy6B6Z8ztOXr5mhyILAcBPDjFpHALAX7l55mghlUQ5ZhTGQwBQXs-Bjy3nCLqSIh0Eidk6DYYIW09LGgrNDuAOoQxH5P9GKHxlNBr1lYkfRQhszYV2gdL95BzsnDETYOAS4EQUwTNIgJSdMcoCwTwKwTQPoUwStTQQQOAogSraAtkWKXAAAciKCsBsCKGSE8CVAoFGiKE+yPjzAwAP0wKUA43tGoAPzJFH3H1lDpCwAsFH02Fn2MBEB-y-SYIn1YIsAvCGBaHpAPz4LHwEKnwsC91IC4JeiIGwTQGyBhwP0SAwD6lOlN3k2zAIBXzX0qE3xvG3131CUExyneTIDsSOzJ1SQVitCVhVipwWTB3-3ICANDzqDU0A2AyFVJ24E+WUHRlmHCHQBEBJCjBJFCWk1AUyDiWKm4G4DAE+WBCAA" rel="" target="">
  <span class="dropdown-text">Election results analyzer</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAYlrvocaeZdbfeYB0IjVSBLEgGcAFEIL9UFALwBOeQEpuQuKQwq4AExEBGJRADucAEYAnRIn4QhpKABs7IzmACyUCPwBmRO5oAicDZWAJ4A6gCCAMouAArOuAAEpnCoREIJ0gnOABakpKhCiAD0RXZEtqaC2QYATABsGADm-KTZAK7GGIJFLn4A+hHRAMLO+m4e3r4BQRBhUbEWBlBCMMQQZVDa+hw7u3v7bNzEMKht5H3JQvyabfbpADwAtAmebRAEAiQi7o12cImaKC2BQJEDcBIJagJIZEE5nOAJVoI0zlIFaBLEIimTRWNFCcEJQG2AAkPz+CSeCTJCIAVAlUPwEkUEjoABwABgJRKgxIAHhcKc9uXyEnTiKJhdSQUKgTzgqKElcICJJRBfnB9BDhcEBZThbyFUqVbLSWq-iCANSEk3ysVpY0kqUEglQmFw8iI7LIwLXW52fEQCGXX13QXWkn80wJGUknWmZ2ByEJLCqNqmQNIxVtGAJIieRUAR1uyU0SR9NzuBOSpDTyvg7hEwYr-oAejUFPoAL7cXifaxiCRSCByRTKVTqOBaXT6NqMymeOyzzQxKCNOBORMCUh-FcQOCOZwpmxYoGCCCjXAEq6aExQUwAGSgwSIZw3EIh19vpl3+7f74-djXHApgAJIQKcpBOGAKK2H28RZGAWCon2VJmgiIhWIScCNMkgQKIg8EwJhmSPGy7KJDAUAGpkZGJAAbvYbQIpk7Kau+CiXomEKUVYP4Hlx76oGUpAAPJnBBUFCeUF4Ev+tjGH8Yn5K+zjyX8oyyQkbH6NsCSRMBdHAWOpiGVG85vB8Z4YeBZyJC+ymkCCYKJtyYbJFAlmGSIzn-tQ1JhlYEHEjBp4kAqDJMiyHIQq6JCmaQqHqoiRBJJs-DuAGvn7sBgR9KQpgZd4pjwKWlLZZcCQAKQAHyVZpUIJDAZxoiIkYZAkBp2qIUrRgktqKlY3xoRx9X-mNcbtZ1A3Kj1Vr9eKQ3qiNAkNWNEL2Kg2RQDo7UifAjRQAqBpWrovV7dhUAgnSwScb5a3vhtW01Lt+2HXSbUnTtzznQdV19RcIL1ZcbR2AllKATYIjlbl+WFViJV2Xw-CUXYfTUiIHb1dQWMJAAqionoIr2yMvBZKGkClnhWKWmb+a0QKNVYyP8AAXoEhNZjmeaFsW6JNn6mXvtQwOg2GxMwCI5EYrCEFwBc5YCwCsrtdDQiJGs+U+O1EOQZ41gEPYzHRnoFGqNkRClpkzgAELJGQ8FlEYUYkbRCRtOgwHtWRbExdWtaNoEIOOUDqbpgHQhB2xnYglkiYugkMTCQS9lBVJYPPHbN7fsJ3n1Zong7XqsoY8AwA6AAuuX9WNI0acOodmT5zoiRQIErWTRciTypkcYdgkFqjQka6wn0qRWJBreiMQZTOwh1twEVCJIbBZ6jJag-DzAo9EOP9cq38lwt231F9V3k3qz4WLtc44SeOQUbL6F55gH3A8rRCdhQMYogn84AAa8Fu4IQAJrwWnlfK2iFkKrxfv3Qe4hDZ9H5BrKwbQXyiEAkRUg6RMgEElokPQloYoJHvMzBKvJHhUX4OkYwqgjAUASOyVCpYdDwINn8PoOoUEQDQW0DBZCcEYnwSyV+xDSFYL6pQ3k1CEi0NIPQwMTD3AsI3nAEeX9AJ7msvfAgKQEosUSEIMoUgvaJE0aoYIJjIGAiEF6TQYDL6z2cCWUY-diHhE0KWAALAAVkeDeHCk4EjmMHkieAfQiIeBRhjAk0cEzEIACoaLgMncSZxiRqQRJSTOwEkkKXXD5IWTcwzchLmXSu9VeApSLrYMpNRK7ElQHeWAedPDPT1AXKqtVCRCWCOYRAEcYCUUqGzEQW9HrbWkPWGadhNrbQ4uM2ZT0plwAbBM9suBYQXRWQ2H6l1EgxGSBId42DpDKg4rmPgcAQamEyFU0uFdy5Ry7LHKEWA3gczQKgZQ2QQjhHQCIWc7VZyGIMp7TIKgTLAX0NwMAnZy5AA">
+    <a class="dropdown-item" href="https://shinylive.io/r/editor/#code=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" rel="" target="">
  <span class="dropdown-text">Restoration of a rigged election</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-e-books" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-e-books" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">E-books</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-e-books">    
         <li>
-    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_BOOK1">
+    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_BOOK1" rel="" target="">
  <span class="dropdown-text">Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./man_bib.html"> 
-<span class="menu-text">Bibliography</span></a>
+    <a class="nav-link" href="./man_bib.html" rel="" target="">
+ <span class="menu-text">Bibliography</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-appendix" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-appendix" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Appendix</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-appendix">    
         <li>
-    <a class="dropdown-item" href="./laws.html">
+    <a class="dropdown-item" href="./laws.html" rel="" target="">
  <span class="dropdown-text">20 laws and 40 isometries</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./jsonview.html">
+    <a class="dropdown-item" href="./jsonview.html" rel="" target="">
  <span class="dropdown-text">Metadata</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./tabsets.html">
+    <a class="dropdown-item" href="./tabsets.html" rel="" target="">
  <span class="dropdown-text">Tabsets</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-          </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools ms-auto">
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -238,11 +204,10 @@ window.Quarto = {
   <li><a href="#laws-and-40-isometris" id="toc-laws-and-40-isometris" class="nav-link active" data-scroll-target="#laws-and-40-isometris">20 laws and 40 isometris</a></li>
   <li><a href="#proportions-and-ratios" id="toc-proportions-and-ratios" class="nav-link" data-scroll-target="#proportions-and-ratios">Proportions and ratios</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/laws.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/laws.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
 
 
 
@@ -616,9 +581,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -628,17 +594,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -651,120 +608,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      return note.innerHTML;
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -808,7 +651,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -834,32 +676,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -927,7 +743,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/laws.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+    </div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -940,7 +756,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-
 
 
 

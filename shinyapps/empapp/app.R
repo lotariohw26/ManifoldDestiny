@@ -3,7 +3,7 @@
 ManifoldDestiny::wasmconload()
 md <- ManifoldDestinyWASMD::metad
 ###############################################################################################################################################################
-dlname <- c("app0","app1","app2","app2","app2","app2")[1:2]
+dlname <- c("app0","app1","app2","app3","app4","app5")
 md <- ManifoldDestinyWASMD::metad
 ###############################################################################################################################################################
 ui <- fluidPage(
@@ -37,7 +37,7 @@ ui <- fluidPage(
         tabPanel("2D Scatter Plots", plotOutput(outputId = "plot_xy")),
         tabPanel("Quantile Plot", plotOutput(outputId = "plot_q")),
         tabPanel("Bow Plot", plotOutput(outputId = "plot_bow")),
-        tabPanel("3D rotation", plotlyOutput(outputId = "plot_3d")),
+        tabPanel("3D rotation", plotlyOutput(outputId = "plot_3d_rot")),
         tabPanel("3D scatter plots", htmlOutput(outputId = "plot_3ds")),
         tabPanel("Regressions", verbatimTextOutput(outputId = "print_sum")),
         tabPanel("Residuals", plotOutput(outputId = "plot_res")),
@@ -95,8 +95,8 @@ server <- function(input, output, session) {
   output$plot_xy <- renderPlot({
     cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
   })
-  output$plot_3d <- renderPlotly({
-    cformo()[[1]]$rotplotly[[1]]
+  output$plot_3d_rot <- renderPlotly({
+    #cformo()[[1]]$rotplotly[[1]]
   })
   output$plot_3ds <- renderUI({
     cformo()[[1]]$all_pl_3d_mani[[1]]
@@ -106,10 +106,10 @@ server <- function(input, output, session) {
 	 summary(cformo()[[2]]$regsum[[1]]))
   })
   output$plot_res <- renderPlot({
-    #pla <- cformo()[[2]]$resplots[[1]][[c(1)]]
+    pla <- cformo()[[2]]$resplots[[1]][[c(1)]]
     #plb <- cformo()[[2]]$resplots[[2]][[c(1)]]
     #plc <- cformo()[[2]]$resplots[[3]][[c(1)]]
-    #cowplot::plot_grid(plotlist=list(pla,plb,plc),ncol=1)
+    cowplot::plot_grid(plotlist=list(pla,pla,pla),ncol=1)
   })
   output$print_com <- renderPrint({
     print(as.data.frame(cformo()[[2]]$comdesc)) %>% dplyr::select(1,2,3,4)

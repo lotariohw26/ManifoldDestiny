@@ -74,7 +74,7 @@ format:
   html:
     theme: zephyr
     toc: true
-# script/R/simulations.R
+# scriet/R/simulations.R
 # script/R/applications.R
 # script/R/addendum_ne.R
 # script/R/addendum_az.R
