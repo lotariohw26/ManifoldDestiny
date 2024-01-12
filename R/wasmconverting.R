@@ -116,9 +116,9 @@ selreport <- function(
   #	    mmeanv=c(710.76471,257.67059,151.07059),
   #	    sli=50)
   co$rotation(rpar=rparv)
-  #co$rotgraph()
+  browser()
+  co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
-  #browser()
   ges$regression(md$mtd$sgs$eq)
   #ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
   ges$diagnostics()
@@ -362,7 +362,7 @@ erotation <-function(
 
   if (is.null(mvec)) 'ho' else 'abc'
   Ralv <- Rall(sel=rs)
-  rofc <<- dfe %>%
+  rofc <- dfe %>%
     dplyr::select(P,all_of(selvar)) %>%
     dplyr::arrange(P) %>%
     # Standardize variable names
@@ -741,18 +741,19 @@ Countinggraphs$methods(plotly3d=function(
 
 })
 Countinggraphs$methods(rotgraph=function(){
-  u0 <- rofc$u0
-  v0 <- rofc$v0
-  w0 <- rofc$w0
-  u1 <- rofc$u1
-  v1 <- rofc$v1
-  w1 <- rofc$w1
-  u2 <- rofc$u2
-  v2 <- rofc$v2
-  w2 <- rofc$w2
-  u3 <- rofc$u3
-  v3 <- rofc$v3
-  w3 <- rofc$w3
+  browser()
+  u0 <- rdfc$u0
+  v0 <- rdfc$v0
+  w0 <- rdfc$w0
+  u1 <- rdfc$u1
+  v1 <- rdfc$v1
+  w1 <- rdfc$w1
+  u2 <- rdfc$u2
+  v2 <- rdfc$v2
+  w2 <- rdfc$w2
+  u3 <- rdfc$u3
+  v3 <- rdfc$v3
+  w3 <- rdfc$w3
   # Creating the 3D scatter plot
   rotplotly <<- list(plot_ly(type = "scatter3d", mode = "markers", marker = list(size = 3)) %>%
     add_trace(
@@ -787,7 +788,7 @@ Countinggraphs$methods(rotgraph=function(){
       type = "scatter3d",
       marker = list(color = "red")
     ) 
-    #%>% layout(scene = list(aspectmode = "cube"))
+    %>% layout(scene = list(aspectmode = "cube"))
   )
 })
 Countinggraphs$methods(gridarrange=function(pl3d=list(selo=1,selm=list(1:5,6:10))){

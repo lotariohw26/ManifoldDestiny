@@ -96,7 +96,7 @@ server <- function(input, output, session) {
     cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
   })
   output$plot_3d_rot <- renderPlotly({
-    #cformo()[[1]]$rotplotly[[1]]
+    cformo()[[1]]$rotplotly[[1]]
   })
   output$plot_3ds <- renderUI({
     cformo()[[1]]$all_pl_3d_mani[[1]]
@@ -116,12 +116,7 @@ server <- function(input, output, session) {
     print(as.data.frame(cformo()[[2]]$compare)) %>% dplyr::select(1,2,3,4)
   })
   output$meta_dsc <- renderPrint({
-    #library(RefManageR)
-    #BibOptions(check.entries = FALSE, bib.style = "authoryear", style = "markdown", dashed = TRUE)
-    #tes <- paste0(rprojroot::find_rstudio_root_file(),'/inst/references/man_bib.bib')	
-    #bib <- RefManageR::ReadBib(tes)
-    #RefManageR::NoCite(bib)
-    #RefManageR::PrintBibliography(bib, .opts = list(check.entries = FALSE, sorting = "ynt"))
+    mdapp <- cformo()[[6]][[1]]
   })
   output$sidebarText <- renderText({
     paste0(cformo()[[6]]$mtd$sgs$eq)
@@ -130,4 +125,3 @@ server <- function(input, output, session) {
 shinyApp(ui = ui, server = server)
 #options(scipen=999)
 #set.seed(1)
-
