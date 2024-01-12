@@ -13,6 +13,7 @@ wasmconload <- function(){
       # Commands to be executed if the condition is FALSE
       library(ManifoldDestiny)
       source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmconverting.R'))
+      print('local')
       #source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmnonverting.R'))
       #source(paste0(rprojroot::find_rstudio_root_file(),'/R/raceanalysis.R'))
   })
@@ -114,7 +115,7 @@ selreport <- function(
   #	    rs=c(1,4,2),
   #	    mmeanv=c(710.76471,257.67059,151.07059),
   #	    sli=50)
-  #co$rotation(rpar=rparv)
+  co$rotation(rpar=rparv)
   #co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
   #browser()
@@ -507,7 +508,7 @@ Countingprocess$methods(descriptive=function(form=1){
 
 Countingprocess$methods(rotation=function(selvar=c('x','y','alpha'),
 				     rpar=c(theta=0,phi=0,rho=0),
-				     rs=c(0,0,0),
+				     rs=c(1,4,2),
 				     mmeanv=NULL,
 			             sli=NULL)
 				     {
