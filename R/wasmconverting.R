@@ -107,8 +107,8 @@ selreport <- function(
   co$resplot(frm)
   co$plotly3d(partition=frm)
   co$gridarrange()
-  #co$rotation(rpar=rparv)
-  #co$rotgraph()
+  co$rotation(rpar=rparv)
+  co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$mtd$sgs$eq)
   ges$diagnostics()
@@ -344,7 +344,7 @@ Rzy <- function(rad) {
 erotation <-function(
 		     dfe=NULL,
 		     selvar=NULL,
-                     rpar=c(theta=0.2509451852,phi=0.8685213889,rho=0.2020759661),
+                     rpar=c(theta=0,phi=0,rho=0),
 		     rs=c(1,4,2),
                      mvec=NULL,
 		     slice=20
@@ -359,6 +359,7 @@ erotation <-function(
     dplyr::mutate(ui=.[[2]]) %>%
     dplyr::mutate(vi=.[[3]]) %>%
     dplyr::mutate(wi=.[[4]]) %>%
+    # Settings
     dplyr::mutate(m1=cos(rpar[1]),m2=cos(rpar[2]),m3=cos(rpar[3])) %>%
     dplyr::mutate(n1=sin(rpar[1]),n2=sin(rpar[2]),n3=sin(rpar[3])) %>%
     # Abc
@@ -369,9 +370,9 @@ erotation <-function(
     dplyr::mutate(mu=if (is.null(mvec)) mean(ui) else mvec[1]) %>%
     dplyr::mutate(mv=if (is.null(mvec)) mean(vi) else mvec[2]) %>%
     dplyr::mutate(mw=if (is.null(mvec)) mean(wi) else mvec[3]) %>%
-    dplyr::mutate(u0=ui-mu) %>%
-    dplyr::mutate(v0=vi-mv) %>%
-    dplyr::mutate(w0=wi-mw) %>%
+    dplyr::mutate(u0=ui-0*mu) %>%
+    dplyr::mutate(v0=vi-0*mv) %>%
+    dplyr::mutate(w0=wi-0*mw) %>%
     ##
     dplyr::mutate(u1=Ralv[[1]](rpar[1])[1,1]*u0+Ralv[[1]](rpar[1])[1,2]*v0+Ralv[[1]](rpar[2])[1,3]*w0) %>%
     dplyr::mutate(v1=Ralv[[1]](rpar[1])[2,1]*u0+Ralv[[1]](rpar[1])[2,2]*v0+Ralv[[1]](rpar[2])[2,3]*w0) %>%
@@ -381,12 +382,11 @@ erotation <-function(
     dplyr::mutate(v2=Ralv[[2]](rpar[2])[2,1]*u1+Ralv[[2]](rpar[2])[2,2]*v1+Ralv[[2]](rpar[2])[2,3]*w1) %>%
     dplyr::mutate(w2=Ralv[[2]](rpar[2])[3,1]*u1+Ralv[[2]](rpar[2])[3,2]*v1+Ralv[[2]](rpar[2])[3,3]*w1) %>%
     ##
-    dplyr::mutate(x=Ralv[[3]](rpar[3])[1,1]*u2+Ralv[[3]](rpar[3])[1,2]*v2+Ralv[[3]](rpar[3])[1,3]*w2) %>%
-    dplyr::mutate(y=Ralv[[3]](rpar[3])[2,1]*u2+Ralv[[3]](rpar[3])[2,2]*v2+Ralv[[3]](rpar[3])[2,3]*w2) %>%
-    dplyr::mutate(z=Ralv[[3]](rpar[3])[3,1]*u2+Ralv[[3]](rpar[3])[3,2]*v2+Ralv[[3]](rpar[3])[3,3]*w2) %>%
-    dplyr::mutate(slide=floor(z*50))
+    dplyr::mutate(u3=Ralv[[3]](rpar[3])[1,1]*u2+Ralv[[3]](rpar[3])[1,2]*v2+Ralv[[3]](rpar[3])[1,3]*w2) %>%
+    dplyr::mutate(v3=Ralv[[3]](rpar[3])[2,1]*u2+Ralv[[3]](rpar[3])[2,2]*v2+Ralv[[3]](rpar[3])[2,3]*w2) %>%
+    dplyr::mutate(w3=Ralv[[3]](rpar[3])[3,1]*u2+Ralv[[3]](rpar[3])[3,2]*v2+Ralv[[3]](rpar[3])[3,3]*w2) 
+    #dplyr::mutate(slide=floor(z*50))
 }
-
 #' @export ballcount
 ballcount <- function(ballotsdf=NULL,se=se){
   # Assigning model equations
@@ -496,15 +496,31 @@ Countingprocess$methods(descriptive=function(form=1){
   desms <<- data.frame(variable=rownames(sta),mean=c(sdv[,1],mdv[,1]),std=sta[,1])
 })
 
-Countingprocess$methods(rotation=function(selvar=c('x','y','alpha'),
+Countingprocess$methods(rotation=function(selvar=c('P','Z','R','S','T','U','V','x','y','alpha'),
 				     rpar=c(theta=0,phi=0,rho=0),
 				     rs=c(1,4,2),
 				     mmeanv=NULL,
 			             sli=NULL)
 				     {
-  dfe <- erotation(dfe=rdfc,selvar=selvar,rpar=rpar,rs=rs,mvec=mmeanv,slice=20)
-  rdfc <<- dfe
 
+  #if (all(rpar)!=0){
+    rdfc <<- erotation(dfe=rdfc,selvar=selvar,rpar=rpar,rs=rs,mvec=mmeanv,slice=20)
+  #} else {
+
+  #u0 <- rdfc$ui
+  #v0 <- rdfc$vi
+  #w0 <- rdfc$wi
+  #u1 <- rdfc$u1
+  #v1 <- rdfc$v1
+  #w1 <- rdfc$w1
+  #u2 <- rdfc$u2
+  #v2 <- rdfc$v2
+  #w2 <- rdfc$w2
+  #u3 <- rdfc$u3
+  #v3 <- rdfc$v3
+  #w3 <- rdfc$w3
+
+  #}
 })
 
 Countingprocess$methods(plext=function(){
@@ -734,15 +750,15 @@ Countinggraphs$methods(rotgraph=function(){
   u0 <- rdfc$ui
   v0 <- rdfc$vi
   w0 <- rdfc$wi
-  u1 <- rdfc$u0
-  v1 <- rdfc$v0
-  w1 <- rdfc$w0
-  u2 <- rdfc$u1
-  v2 <- rdfc$v1
-  w2 <- rdfc$w1
-  u3 <- rdfc$u2
-  v3 <- rdfc$v2
-  w3 <- rdfc$w2
+  u1 <- rdfc$u1
+  v1 <- rdfc$v1
+  w1 <- rdfc$w1
+  u2 <- rdfc$u2
+  v2 <- rdfc$v2
+  w2 <- rdfc$w2
+  u3 <- rdfc$u3
+  v3 <- rdfc$v3
+  w3 <- rdfc$w3
   # Creating the 3D scatter plot
   rotplotly <<- list(plot_ly(type = "scatter3d", mode = "markers", marker = list(size = 3)) %>%
     add_trace(
@@ -836,11 +852,11 @@ Estimation <- setRefClass("Estimation", fields=list(
 						))
 Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   edfc <<- rdfcinp
-  roto <<- ifelse(all(c("ui", "vi", "wi") %in% colnames(edfc)), 1, 0)
+  roto <<- ifelse(sum(unique(dplyr::select(edfc,m1,m2,m3)))==3, 0, 1)
   fnr <<- form
   param <<- stickers[['parameters']][[fnr]]
   syequ <<- eqpar$meqs
-  radpar <<- c(theta=0,phi=0,rho=0)
+  #radpar <<- c(theta=0,phi=0,rho=0)
   lpku <<- list(
     S = list(
       x = c(Sd = 'x*(Z-U-V)', Td = '(1-x)*(Z-U-V)', Ud = 'U', Vd = 'V'),'S~S_hat',
@@ -935,7 +951,7 @@ Estimation$methods(hat_intcomp=function(){
   slvh <- slv <- c(BLM,svf)
   slvh[slvh==svf] <- paste0(svf,'_hat')
   compare <<- dplyr::select(pred_df_pol,all_of(slvh)) %>% data.table::setnames(slv) %>%
-  # Backsolving for ballots S,T,U,V
+  ### Backsolving for ballots S,T,U,V
   dplyr::mutate(!!names(lpkus[1]):=pareq(lpkus[1],as.list(.[]))) %>%
   dplyr::mutate(!!names(lpkus[2]):=pareq(lpkus[2],as.list(.[]))) %>%
   dplyr::mutate(!!names(lpkus[3]):=pareq(lpkus[3],as.list(.[]))) %>%
