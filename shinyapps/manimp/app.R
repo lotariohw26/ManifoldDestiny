@@ -1,3 +1,4 @@
+options(scipen=999)
 ######################################################################################
 #webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 #ManifoldDestinyWASMP::wasmconload()
@@ -28,11 +29,11 @@ ui <- fluidPage(
                               "Cubic" = "3",
                               "Quartic" = "4"), selected = "1"),
       textInput("wn", "White noise", value='0.0, 0.0'),
-      textInput("kvec", "parameters", value='0,0.5,0.5')
-      #selectInput("loss", "Loss function:",
-      #            choices = c("Abc" = "1",
-      #                        "Def" = "2"), selected = "1"),
-      #selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3))
+      textInput("kvec", "parameters", value='0,0.5,0.5'),
+      selectInput("loss", "Loss function:",
+                  choices = c("Abc" = "1",
+                              "Def" = "2"), selected = "1"),
+      selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3))
     ),
     mainPanel(
       tabsetPanel(
@@ -155,17 +156,3 @@ server <- function(input, output) {
   })
 }
 shinyApp(ui = ui, server = server)
-options(scipen=999)
-#set.seed(1)
-#pwn <- c(m=0.51,s=0.10); parv <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10) ;padv <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
-#los <- 1 
-#rots <- 0
-#kvec <- c(k0=0.0,k1=0.5,k2=0.5)
-#frm <- 1
-#linp <- 1
-#ends <- c("zeta","lamda")#input$endvar
-#pres <- c("alpha","x","y")#input$prevar
-#ztech <- c(0,1)	
-##### Simulation of ballot voting
-#dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10)
-
