@@ -55,8 +55,8 @@ manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
     dplyr::mutate(D=pareq(la_e[3],c(as.list(.[,])))) %>% 
     dplyr::mutate(E=pareq(la_e[3],c(as.list(.[,])))) %>%
     dplyr::group_by(P) %>%
-    dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
-    #dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+    #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+    dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
     dplyr::mutate(!!paste0(svar):=Re(polsolv[1])) %>%
     dplyr::ungroup() 
   rootdf[[svar]]
@@ -107,13 +107,13 @@ selreport <- function(
   co$resplot(frm)
   co$plotly3d(partition=frm)
   co$gridarrange()
-  co$rotation(rpar=rparv)
-  co$rotgraph()
+  #co$rotation(rpar=rparv)
+  #co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$mtd$sgs$eq)
-  ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
   ges$diagnostics()
-  #ges$hat_intcomp()
+  ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
+  ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$mtd$sgs$eq)
@@ -153,7 +153,6 @@ ballcastsim <- function(
   probva=c(0.7,0.2,0.03,0.00),
   probvb=c(0.7,0.2,0.03,0.00),
   ztech=c(0,0)){
-
   probvrnd <<- dfm |>
     dplyr::mutate(ZV=rnorm(dplyr::n(),probw[1],probw[2])) |>
     dplyr::mutate(N=runif(dplyr::n(),ztech[1],ztech[2])) |>
@@ -897,7 +896,7 @@ Estimation$methods(diagnostics=function(){
 Estimation$methods(hat_predict=function(svf='y',rnr=1){
   kvec <<- broom::tidy(regsum[[1]])$estimate
   names(kvec) <<- paste0("k", 0:(length(kvec) - 1))
-  #if (roto==0){
+  if (roto==0){
     ex <- gsub("\\^","**",regform[2])
     sd <- regform[1]
     eurv <- c(0,0,0)
@@ -905,16 +904,16 @@ Estimation$methods(hat_predict=function(svf='y',rnr=1){
     lpy <<- py_genpolycoeff(expr=ex,solvd=sd,solvf=svfi[2],eur=eurv)
     setNames(as.vector(lapply(lpy[[1]], as.character)),LETTERS[1:5])
     pnr <- sum(lpy[[1]]!="0")
-  #}
-  #if (roto==1){
-  #  ex <- gsub("\\^","**",regform[2])
-  #  sd <- regform[1]
-  #  eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
-  #  lpy <<- py_genpolycoeff(expr=NULL,solvd=sd,solvf='Z',eur=eurv,dnr=2)
-  #  lpy[[1]] <<- setNames(as.vector(lapply(lpy[[1]],as.character)),LETTERS[1:5])
-  #  lpy[[2]] <<- setNames(as.vector(lapply(lpy[[2]],as.character)),c("x","y","z"))
-  #  lpy[[3]] <<- setNames(as.vector(lapply(lpy[[3]],as.character)),paste0(rep(letters[1:3],each=3),seq(1,3)))
-  #}
+  }
+  if (roto==1){
+    ex <- gsub("\\^","**",regform[2])
+    sd <- regform[1]
+    eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
+    lpy <<- py_genpolycoeff(expr=NULL,solvd=sd,solvf='Z',eur=eurv,dnr=2)
+    lpy[[1]] <<- setNames(as.vector(lapply(lpy[[1]],as.character)),LETTERS[1:5])
+    lpy[[2]] <<- setNames(as.vector(lapply(lpy[[2]],as.character)),c("x","y","z"))
+    lpy[[3]] <<- setNames(as.vector(lapply(lpy[[3]],as.character)),paste0(rep(letters[1:3],each=3),seq(1,3)))
+  }
   pred_df_pol <<- predict_df %>% dplyr::arrange(P) %>%
     dplyr::mutate(nr=pnr) %>%
     dplyr::mutate(!!!kvec) %>%
@@ -924,7 +923,7 @@ Estimation$methods(hat_predict=function(svf='y',rnr=1){
     dplyr::mutate(D=pareq(as.character(lpy[[1]][[4]]),.[,])) %>%
     dplyr::mutate(E=pareq(as.character(lpy[[1]][[5]]),.[,])) %>%
     dplyr::group_by(P) %>%
-    dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+    dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
     dplyr::mutate(!!paste0(svf[1],'_hat'):=Re(polsolv[1])) %>%
     dplyr::ungroup()
   regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=pred_df_pol)
