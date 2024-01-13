@@ -13,9 +13,7 @@ wasmconload <- function(){
       # Commands to be executed if the condition is FALSE
       library(ManifoldDestiny)
       source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmconverting.R'))
-      print('local')
-      #source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmnonverting.R'))
-      #source(paste0(rprojroot::find_rstudio_root_file(),'/R/raceanalysis.R'))
+      source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmnonverting.R'))
   })
   library(plotly)
   library(dplyr)
@@ -97,7 +95,6 @@ selreport <- function(
 		      md=NULL
 		      ){
 
-
   frm <- md$mtd$sgs$fr
   rparv <- md$mtd$sgs$ro ; names(rparv) <- c("theta","phi","rho")
   co <- Countinggraphs(baldata)
@@ -110,17 +107,11 @@ selreport <- function(
   co$resplot(frm)
   co$plotly3d(partition=frm)
   co$gridarrange()
-  #co$rotation(selvar=c('Z','S','V'),
-  #	    rpar=rparv,
-  #	    rs=c(1,4,2),
-  #	    mmeanv=c(710.76471,257.67059,151.07059),
-  #	    sli=50)
   co$rotation(rpar=rparv)
-  browser()
   co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$mtd$sgs$eq)
-  #ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
+  ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
   ges$diagnostics()
   #ges$hat_intcomp()
   ### Identify
@@ -741,19 +732,18 @@ Countinggraphs$methods(plotly3d=function(
 
 })
 Countinggraphs$methods(rotgraph=function(){
-  browser()
-  u0 <- rdfc$u0
-  v0 <- rdfc$v0
-  w0 <- rdfc$w0
-  u1 <- rdfc$u1
-  v1 <- rdfc$v1
-  w1 <- rdfc$w1
-  u2 <- rdfc$u2
-  v2 <- rdfc$v2
-  w2 <- rdfc$w2
-  u3 <- rdfc$u3
-  v3 <- rdfc$v3
-  w3 <- rdfc$w3
+  u0 <- rdfc$ui
+  v0 <- rdfc$vi
+  w0 <- rdfc$wi
+  u1 <- rdfc$u0
+  v1 <- rdfc$v0
+  w1 <- rdfc$w0
+  u2 <- rdfc$u1
+  v2 <- rdfc$v1
+  w2 <- rdfc$w1
+  u3 <- rdfc$u2
+  v3 <- rdfc$v2
+  w3 <- rdfc$w2
   # Creating the 3D scatter plot
   rotplotly <<- list(plot_ly(type = "scatter3d", mode = "markers", marker = list(size = 3)) %>%
     add_trace(
@@ -907,7 +897,7 @@ Estimation$methods(diagnostics=function(){
 Estimation$methods(hat_predict=function(svf='y',rnr=1){
   kvec <<- broom::tidy(regsum[[1]])$estimate
   names(kvec) <<- paste0("k", 0:(length(kvec) - 1))
-  if (roto==0){
+  #if (roto==0){
     ex <- gsub("\\^","**",regform[2])
     sd <- regform[1]
     eurv <- c(0,0,0)
@@ -915,16 +905,16 @@ Estimation$methods(hat_predict=function(svf='y',rnr=1){
     lpy <<- py_genpolycoeff(expr=ex,solvd=sd,solvf=svfi[2],eur=eurv)
     setNames(as.vector(lapply(lpy[[1]], as.character)),LETTERS[1:5])
     pnr <- sum(lpy[[1]]!="0")
-  }
-  if (roto==1){
-    ex <- gsub("\\^","**",regform[2])
-    sd <- regform[1]
-    eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
-    lpy <<- py_genpolycoeff(expr=NULL,solvd=sd,solvf='Z',eur=eurv,dnr=2)
-    lpy[[1]] <<- setNames(as.vector(lapply(lpy[[1]],as.character)),LETTERS[1:5])
-    lpy[[2]] <<- setNames(as.vector(lapply(lpy[[2]],as.character)),c("x","y","z"))
-    lpy[[3]] <<- setNames(as.vector(lapply(lpy[[3]],as.character)),paste0(rep(letters[1:3],each=3),seq(1,3)))
-  }
+  #}
+  #if (roto==1){
+  #  ex <- gsub("\\^","**",regform[2])
+  #  sd <- regform[1]
+  #  eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
+  #  lpy <<- py_genpolycoeff(expr=NULL,solvd=sd,solvf='Z',eur=eurv,dnr=2)
+  #  lpy[[1]] <<- setNames(as.vector(lapply(lpy[[1]],as.character)),LETTERS[1:5])
+  #  lpy[[2]] <<- setNames(as.vector(lapply(lpy[[2]],as.character)),c("x","y","z"))
+  #  lpy[[3]] <<- setNames(as.vector(lapply(lpy[[3]],as.character)),paste0(rep(letters[1:3],each=3),seq(1,3)))
+  #}
   pred_df_pol <<- predict_df %>% dplyr::arrange(P) %>%
     dplyr::mutate(nr=pnr) %>%
     dplyr::mutate(!!!kvec) %>%

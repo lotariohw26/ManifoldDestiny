@@ -10,7 +10,6 @@ py_polysolver <- function(degree=1,kvec=NULL){
     retv <- np$roots(vec)[1]
   }
   if (degree==2) {
-	  browser()
     retv <- np$roots(vec)[1]
   }
   if (degree==3) {
@@ -28,7 +27,7 @@ py_genpolycoeff <- function(expr=NULL,solvd=NULL,solvf=NULL,eur=c(0, 0, 0),dnr=0
   reticulate::py$genpolycoeff(expr=expr,solvd=solvd,solvf=solvf,eur=as.integer(eur),dnr=dnr)
 }
 #####################################################################################################
-#py_genpolycoeff(expr=NULL,solvd='z',solvf='u0',eur=c(1, 4, 2),dnr=0)
+#py_genpolycoeff(expr=NULL,solvd='z',solvf='u0',eur=c(1, 1, 1),dnr=0)
 #py_polysolver() 
 ##' @export bm
 bm <- function(){
