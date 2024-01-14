@@ -69,7 +69,7 @@ pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 #print(app_ex1_cou$polyc[[1]][[1]])
 app_ex1_cou$sortpre()
 app_ex1_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
-app_ex1_cou$setres(0.23,0)
+app_ex1_cou$setres(0.15,0)
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),TRUE,wn=c(0,0))
 app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
@@ -116,3 +116,6 @@ concl_appps <- data.frame(case=casevec,
 			  propn=prope_vec, 
 			  propv=propv_vec)
 ################################################################################################################################################################
+#sum(dplyr::select(app_n_out[['rdfc']],S,U))/sum(dplyr::select(app_n_out[['rdfc']],S,T,U,V))
+#sum(dplyr::select(app_ex1_cou[['rdfc']],S,U))/sum(dplyr::select(app_ex1_cou[['rdfc']],S,T,U,V))
+
