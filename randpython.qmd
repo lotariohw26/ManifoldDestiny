@@ -3,3 +3,13 @@ title: "abc"
 ---
 
 # Abc
+
+
+[Coatless](https://www.youtube.com/watch?v=PZx9d21HnTo)
+
+
+@thecoatlessprofessor7674
+1 month ago
+Great question. The short gist is yes in the *interactive* context for now.
+
+We'll likely need to make another extension that wraps before {quarto-webr} and {quarto-pyodide} to enable cross talk in the *non-interactive**/**output* contexts.

@@ -13,6 +13,7 @@ project:
     - "abc.qmd"
     - "def.qmd"
     - "jsonview.qmd"
+    - "randpython.qmd"
 website:
   title: "Manifold Destiny"
   navbar:
@@ -37,6 +38,8 @@ website:
             href: https://lotariohw26.github.io/MD_WASMS/py/examples/
           - text: "REPL for R"
             href: https://webr.r-wasm.org/latest/
+          - text: "R and Pyhon together"
+            href: "randpython.qmd"
       - text: Shiny applications
         menu:
           - text: "R2 simulator"

@@ -5,6 +5,7 @@ md <- ManifoldDestinyWASMD::metad
 ###############################################################################################################################################################
 dlname <- c("app0","app1","app2","app3","app4","app5")
 md <- ManifoldDestinyWASMD::metad
+md$app1$bib
 ###############################################################################################################################################################
 ui <- fluidPage(
   titlePanel("Rigged election results analyzer"),
@@ -116,10 +117,12 @@ server <- function(input, output, session) {
     print(as.data.frame(cformo()[[2]]$compare)) %>% dplyr::select(1,2,3,4)
   })
   output$meta_dsc <- renderPrint({
-    mdapp <- cformo()[[6]][[1]]
+    #mdapp <- cformo()[[6]][[1]]
+    paste0("def")
   })
-  output$sidebarText <- renderText({
-    paste0(cformo()[[6]]$mtd$sgs$eq)
+  output$sidebarText <- renderPrint({
+    #paste0(cformo()[[6]]$mtd$sgs$eq)
+    paste0("abc")
   })
 }
 shinyApp(ui = ui, server = server)
