@@ -112,7 +112,7 @@ server <- function(input, output, session) {
     cowplot::plot_grid(plotlist=list(pla,pla,pla),ncol=1)
   })
   output$print_com <- renderPrint({
-    print(as.data.frame(cformo()[[2]]$comdesc)) %>% dplyr::select(1,2,3,4)
+    #print(as.data.frame(cformo()[[2]]$comdesc)) %>% dplyr::select(1,2,3,4)
     print(as.data.frame(cformo()[[2]]$compare)) %>% dplyr::select(1,2,3,4)
   })
   output$meta_dsc <- renderPrint({
@@ -123,5 +123,7 @@ server <- function(input, output, session) {
   })
 }
 shinyApp(ui = ui, server = server)
-#options(scipen=999)
+options(scipen=999)
+
+
 #set.seed(1)
