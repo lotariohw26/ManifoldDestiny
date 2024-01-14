@@ -646,8 +646,8 @@
   {
     "objectID": "randpython.html",
     "href": "randpython.html",
-    "title": "abc",
+    "title": "R and Python integration",
     "section": "",
-    "text": "Abc\nCoatless\n@thecoatlessprofessor7674 1 month ago Great question. The short gist is yes in the interactive context for now.\nWe’ll likely need to make another extension that wraps before {quarto-webr} and {quarto-pyodide} to enable cross talk in the non-interactive/output contexts."
+    "text": "Coatless\n@thecoatlessprofessor7674 1 month ago Great question. The short gist is yes in the interactive context for now.\nWe’ll likely need to make another extension that wraps before {quarto-webr} and {quarto-pyodide} to enable cross talk in the non-interactive/output contexts.\n\nPython\n\n\n\n\n\nYou can execute any Python code. Just enter something in the box below and click the button.\n\n Run  \n\nOutput:\n\n\n\n\n\n\nR\n\nLoading webR, please wait...\n Run"
   }
 ]
