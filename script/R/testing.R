@@ -1,3 +1,5 @@
+# ../../R/wasmconverting.R  
+# 631
 ManifoldDestiny::wasmconload()
 md <- ManifoldDestinyWASMD::metad
 ###########################################################################################################
@@ -9,12 +11,11 @@ probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztech <- c(0,1)	
 app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
 ########## Normal form
-app_n_rep <- selreport(app_bal,md$app0)
-app_n_rep[[2]]$resplots
 ###########################################################################################################
 ###########################################################################################################
 ### Loss-function
 # Define the loss function
+### Structure
 loss_function <- function(x) {
   # This is a dummy loss function
   # Replace this with your actual function
@@ -34,31 +35,17 @@ result <- optim(
   upper = upper_bounds
 )
 print(result$par)  # Print the optimized parameters
+### Applications
+app_ex1_cou <- Countinggraphs(app_bal)
+pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
+app_ex1_cou$sortpre()
+app_ex1_cou$mansys(sygen=list(frm=2,pre=c("alpha","g","h"),end=c("Gamma","Omega"),FALSE,me=c(plnr=1,rot=0)))
+app_ex1_cou$setres(0.25,1)
+app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.5),man=TRUE,wn=c(0,0.0))
+#app_ex1_cou$rdfc$alpha-app_ex1_cou$rdfci$alpha
+app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.5),man=FALSE,wn=c(0,0.0))
+View(app_ex1_cou$rdfc)
 ###########################################################################################################
-###########################################################################################################
-probw <- c(m=0.51,s=0.15)
-probva <- c(vdm=0.7,mdm=0.4,vds=0.1,mds=0.01)
-probvb <- c(vdm=0.5,mdm=0.6,vds=0.1,mds=0.01)
-ztech <- c(0,1)	
-app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
-######## Normal form
-frm <- 4
-co <- Countinggraphs(app_bal,selvar=names(app_bal))
-co$sortpre(form=4,polyn=3)
-co$plot2d(frm,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.5,size=0.5))
-fp <- co$pl_2dsort
-####### Rigged example 2: hybrid form
-app_ex2_cou <- Countinggraphs(app_bal)
-pri_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
-app_ex2_cou$sortpre()
-app_ex2_cou$mansys(sygen=list(frm=2,pre=c("alpha","g","h"),end=c("Gamma","Omega"),FALSE,me=c(plnr=1,rot=0)))
-app_ex2_cou$setres(NULL,0)
-app_ex2_cou$setres(0.12,1)
-app_ex2_cou$manimp(init_par=c(k0=0.0,k1=0.050,k2=0.5),wn=c(0,0.0015))
-co <- Countinggraphs(app_ex2_cou$rdfc)
-co$sortpre(form=4,polyn=3)
-co$plot2d(frm,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.5,size=0.5))
-mp <- co$pl_2dsort
 ###########################################################################################################
 ###########################################################################################################
 ### Complex estimation
@@ -94,6 +81,8 @@ co$rotation(selvar=c('Z','S','V'),
 	    rs=c(1,4,2),
 	    mmeanv=c(710.76471,257.67059,151.07059),
 	    sli=50)
+co$rotgraph()
+#co$rotplotly
 edf1 <- c('z=k0+k1*x+k2*y')
 edf2 <- c('z=k0+k1*x+k2*y+k3*x**2+k4*xy+k5*y**2')
 edf3 <- c('z=k0+k1*x+k2*y+k3*x**2+k4*xy+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3')

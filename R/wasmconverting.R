@@ -625,7 +625,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0)){
   pre3 <- enf[[3]]
   end1 <- se[[endp[1]]][2]
   end2 <- se[[endp[2]]][2]
-  lstr   <- paste0("(",allvec[4],"-",altvec[4],")^2")
+  lstr <- paste0("(",allvec[1],"-",altvec[1],")^2")
   lof <- function(kvec=NULL){
   #View(loss_df)
   loss_df <<- rdfci %>%
@@ -664,13 +664,20 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0)){
     clvl <- sum(lofdf$LSV)+ifelse(nrv>0,nrv*sum(loss_df$LSV),0)
   }
   if (man) {
+    print('man')
     man_lores <- lv(param=init_par)
   } else {
+    print('ite')
+    browser()
     opt_lores <- optim(par = init_par, 
-		       fn = lv, 
-		       method='L-BFGS-B',
-		       lower=c(k0=0,k1=0,k2=0),
-		       upper=c(k0=0,k1=0,k2=0))
+                       method='L-BFGS-B'
+		       fn = lv)
+    opt_lores$par
+#    opt_lores <- optim(par = init_par, 
+#		       fn = lv, 
+#		       method='L-BFGS-B',
+#		       lower=c(k0=0,k1=0,k2=0),
+#		       upper=c(k0=0,k1=0,k2=0))
   }
   rdfc <<- dplyr::select(loss_df,P,R,S,T,U,V) %>% ballcount(se=se)
 })
