@@ -1,3 +1,4 @@
+set.seed(1)
 ManifoldDestiny::wasmconload()
 #######################################################################################################################################################
 ##### Proto example 1 and 2
@@ -53,7 +54,7 @@ cGamma <- round(pro_elc_ex1$sdfc$Gamma,2)
 ##########################################################################################################################################################
 ###### Normal 
 ######## R2 sim
-dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10)
+dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,100,30)))})(100)
 probw <- c(m=0.51,s=0.10)
 probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
@@ -69,7 +70,7 @@ pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 #print(app_ex1_cou$polyc[[1]][[1]])
 app_ex1_cou$sortpre()
 app_ex1_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
-app_ex1_cou$setres(0.15,0)
+app_ex1_cou$setres(0.22,0)
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),TRUE,wn=c(0,0))
 app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
@@ -118,4 +119,3 @@ concl_appps <- data.frame(case=casevec,
 ################################################################################################################################################################
 #sum(dplyr::select(app_n_out[['rdfc']],S,U))/sum(dplyr::select(app_n_out[['rdfc']],S,T,U,V))
 #sum(dplyr::select(app_ex1_cou[['rdfc']],S,U))/sum(dplyr::select(app_ex1_cou[['rdfc']],S,T,U,V))
-

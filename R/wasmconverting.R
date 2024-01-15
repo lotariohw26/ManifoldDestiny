@@ -55,8 +55,8 @@ manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
     dplyr::mutate(D=pareq(la_e[3],c(as.list(.[,])))) %>% 
     dplyr::mutate(E=pareq(la_e[3],c(as.list(.[,])))) %>%
     dplyr::group_by(P) %>%
-    #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
-    dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+    dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+    #dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
     dplyr::mutate(!!paste0(svar):=Re(polsolv[1])) %>%
     dplyr::ungroup() 
   rootdf[[svar]]
@@ -627,6 +627,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0)){
   end2 <- se[[endp[2]]][2]
   lstr   <- paste0("(",allvec[4],"-",altvec[4],")^2")
   lof <- function(kvec=NULL){
+  #View(loss_df)
   loss_df <<- rdfci %>%
     dplyr::select(P,S,T,U,V,R,Z,all_of(allvec)) %>%
     #dplyr::select(pri,P,S,T,U,V,R,Z,all_of(allvec)) %>%
@@ -638,9 +639,8 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0)){
     ### Presetting second variable
     dplyr::mutate(!!allvec[2]:=pareq(pre2,c(as.list(.[,])))) %>%
     ### Presetting the Manifold object
-    #dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,rdfci,allvec[3])) %>%
-    #!
-    #dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,.[,],allvec[3])) %>%
+    #dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,rdfci,allvec[3])) 
+    #!RWASM
     dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,.[,],allvec[3])) %>%
     ### Adding some noise
     dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) %>%

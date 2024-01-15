@@ -117,12 +117,10 @@ server <- function(input, output, session) {
     print(as.data.frame(cformo()[[2]]$compare)) %>% dplyr::select(1,2,3,4)
   })
   output$meta_dsc <- renderPrint({
-    #mdapp <- cformo()[[6]][[1]]
-    paste0("def")
+    paste0(cformo()[[6]]$sht$url)
   })
   output$sidebarText <- renderPrint({
-    #paste0(cformo()[[6]]$mtd$sgs$eq)
-    paste0("abc")
+    paste0(cformo()[[6]]$mtd$sgs$eq)
   })
 }
 shinyApp(ui = ui, server = server)
