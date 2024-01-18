@@ -445,7 +445,8 @@ Countingprocess <- setRefClass("Countingprocess",
 					   gensysl='list',
 					   exnrs='vector',
 					   allvar='list',
-					   loss_df='data.frame'
+					   loss_df='data.frame',
+					   loss_ls='list'
 					   ))
 Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   selvar=c('P','R','S','T','U','V'),
@@ -663,23 +664,28 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0)){
     nrv <- sum(dplyr::select(lofdf, S, T, U, V) < 0)
     clvl <- sum(lofdf$LSV)+ifelse(nrv>0,nrv*sum(loss_df$LSV),0)
   }
-  if (man) {
-    print('man')
-    man_lores <- lv(param=init_par)
-  } else {
-    print('ite')
-    browser()
-    opt_lores <- optim(par = init_par, 
-                       method='L-BFGS-B'
-		       fn = lv)
-    opt_lores$par
-#    opt_lores <- optim(par = init_par, 
-#		       fn = lv, 
-#		       method='L-BFGS-B',
-#		       lower=c(k0=0,k1=0,k2=0),
-#		       upper=c(k0=0,k1=0,k2=0))
-  }
-  rdfc <<- dplyr::select(loss_df,P,R,S,T,U,V) %>% ballcount(se=se)
+
+
+
+  #if (man) {
+  #  print('man')
+  #  man_lores <- lv(param=init_par)
+  #} else {
+  #  print('ite')
+  opt_lores <- optim(par = init_par, 
+                     method=c("Nelder-Mead","BFGS","CG","L-BFGS-B")[1],
+     	       fn = lv)
+#  opt_lores <- optim(par = init_par, 
+#	       fn = lv, 
+#	       method='L-BFGS-B',
+#	       lower=c(k0=0,k1=0,k2=0),
+#	       upper=c(k0=0,k1=0,k2=0))
+ # }
+  #rdfc <<- dplyr::select(loss_df,P,R,S,T,U,V) %>% ballcount(se=se)
+  #  opt_lores <- optim(par = init_par, 
+  #                     method='L-BFGS-B',
+#		       fn = lv)
+  loss_ls <<- opt_lores
 })
 ############################################################################################################################################################
 ############################################################################################################################################################
