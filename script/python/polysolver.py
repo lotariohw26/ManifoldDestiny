@@ -151,3 +151,6 @@ def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[0, 0, 0], plr=3,dnr=2):
     msl = ['u0','v0','w0','expr','expr2']
     matarch[msl]=matarch[msl].astype(str)
     return ABCDE, matarch, abc
+genpolycoeff(expr='k0+k1*x+k2*y', solvd='alpha', solvf='y', eur=[0, 0, 0])
+#
+

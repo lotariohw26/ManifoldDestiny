@@ -600,12 +600,15 @@ Countingprocess$methods(mansys=function(sygen=NULL){
   exnrs <<- gsub('v',mansysl$pre[2], gsub('u',mansysl$pre[3],peqs[mansysl$me[['plnr']]]))
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
-  # wasmcompiled
-  enf[[3]] <<- list(list('k1','-alpha + k0 + k2*x',0,0,0),
-       list('k1','-alpha + k0 + k2*g',0,0,0),
-       list('k1','-alpha + k0 + k2*g',0,0,0))[[mansysl$frm]]
-  # wasmnonpiled
+  #!
+  browser()
   #enf[[3]] <<- py_genpolycoeff(exnrs[[1]],mansysl$pre[[1]],mansysl$pre[[3]])[[1]]
+  enf[[3]] <<- py_genpolycoeff('k0+k1*x+k2*y','alpha','y')[[1]]
+  # wasmcompiled
+  #enf[[3]] <<- list(list('k1','-alpha + k0 + k2*x',0,0,0),
+  #     list('k1','-alpha + k0 + k2*g',0,0,0),
+  #     list('k1','-alpha + k0 + k2*g',0,0,0))[[mansysl$frm]]
+  ### wasmnonpiled
 })
 Countingprocess$methods(setres=function(czset=NULL,prnt=0){
   frp <- mansysl$frm
@@ -617,18 +620,9 @@ Countingprocess$methods(setres=function(czset=NULL,prnt=0){
 })
 Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0)){
   ## Variables
-  allvec <- c(unlist(allvar$pre),unlist(allvar$end))
-  sho <- c("_s","_h","_o")[[mansysl$frm]]
-  altvec <- paste0(as.vector(unlist(allvar)),sho)
-  endp <- paste0(allvec,sho)[c(4,5)]
-  pre1 <- enf[[1]]
-  pre2 <- enf[[2]]
-  pre3 <- enf[[3]]
-  end1 <- se[[endp[1]]][2]
-  end2 <- se[[endp[2]]][2]
-  lstr <- paste0("(",allvec[1],"-",altvec[1],")^2")
+				browser()
   lof <- function(kvec=NULL){
-  #View(loss_df)
+	browser()
   loss_df <<- rdfci %>%
     dplyr::select(P,S,T,U,V,R,Z,all_of(allvec)) %>%
     #dplyr::select(pri,P,S,T,U,V,R,Z,all_of(allvec)) %>%
@@ -664,7 +658,19 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0)){
     nrv <- sum(dplyr::select(lofdf, S, T, U, V) < 0)
     clvl <- sum(lofdf$LSV)+ifelse(nrv>0,nrv*sum(loss_df$LSV),0)
   }
+  man_lores <- lv(param=init_par)
 
+  "abc"
+
+  #allvec <- c(unlist(allvar$pre),unlist(allvar$end))
+  #sho <- c("_s","_h","_o")[[mansysl$frm]]
+  #altvec <- paste0(as.vector(unlist(allvar)),sho)
+  #endp <- paste0(allvec,sho)[c(4,5)]
+  #pre1 <- enf[[1]]
+  #pre2 <- enf[[2]]
+  #pre3 <- enf[[3]]
+  #end1 <- se[[endp[1]]][2]
+  #end2 <- se[[endp[2]]][2]
 
 
   #if (man) {

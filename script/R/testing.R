@@ -34,14 +34,13 @@ result <- optim(
   lower = lower_bounds,
   upper = upper_bounds
 )
-print(result$par)  # Print the optimized parameters
 ### Applications
 app_ex1_cou <- Countinggraphs(app_bal)
 pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 app_ex1_cou$sortpre()
-app_ex1_cou$mansys(sygen=list(frm=2,pre=c("alpha","g","h"),end=c("Gamma","Omega"),FALSE,me=c(plnr=1,rot=0)))
+app_ex1_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","Lambda"),FALSE,me=c(plnr=1,rot=0),lf="(alpha-alpha)^2"))
 app_ex1_cou$setres(0.25,1)
-#app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.5),man=TRUE,wn=c(0,0.0))
+app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.5),man=TRUE,wn=c(0,0.0))
 app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.30,k2=0.7),man=FALSE,wn=c(0,0.0))
 #app_ex1_cou$rdfc$alpha-app_ex1_cou$rdfci$alpha
 app_ex1_cou$loss_ls[[1]]
