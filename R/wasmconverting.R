@@ -620,7 +620,6 @@ Countingprocess$methods(setres=function(czset=NULL,prnt=0){
 Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
   ## Variables
   lof <- function(kvec=NULL){
-#	  browser()
     loss_df <<- rdfci %>%
       dplyr::select(P,S,T,U,V,R,Z,all_of(allvec)) %>%
       #dplyr::select(pri,P,S,T,U,V,R,Z,all_of(allvec)) %>%
@@ -640,8 +639,9 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
       ### Backsolving for the two remaining parameter
       dplyr::mutate(!!allvec[4]:=pareq(end1,c(as.list(.[,])))) %>%
       dplyr::mutate(!!allvec[5]:=pareq(end2,c(as.list(.[,])))) %>%
-      dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
-      #### Backsolving for ballots
+      dplyr::mutate(LSV:=pareq(paste0('(alpha-alpha_s)^2'),c(as.list(.[,])))) %>%
+      #dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
+      ##### Backsolving for ballots
       data.table::setnames(c("S","T","U","V"),c("S_o","T_o","U_o","V_o")) %>%
       dplyr::mutate(S=floor(pareq(se[[paste0('S',sho)]][2],as.list(.[]))))  %>%
       dplyr::mutate(T=floor(pareq(se[[paste0('T',sho)]][2],as.list(.[]))))  %>%
@@ -665,12 +665,15 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
   endp <- paste0(allvec,sho)[c(4,5)]
   end1 <- se[[endp[1]]][2]
   end2 <- se[[endp[2]]][2]
-  #loss_ls <<- lv(param=init_par)
-  loss_ls <<- optim(par = init_par,method=c("Nelder-Mead","BFGS","CG","L-BFGS-B")[lfs],fn = lv)
+  print(lfs)
+  loss_ls <<- optim(par = init_par,		    
+		    fn = lv,
+		    method=c("Nelder-Mead","BFGS","CG","L-BFGS-B")[lfs]
+
+  )
   rdfc <<- dplyr::select(loss_df,P,R,S,T,U,V) %>% ballcount(se=se)
 })
-############################################################################################################################################################
-############################################################################################################################################################
+############################################################################################################################################################ #########################################################################################################################################################
 #' @export Countinggraphs
 Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
 Countinggraphs$methods(plot2d=function(form=1,
