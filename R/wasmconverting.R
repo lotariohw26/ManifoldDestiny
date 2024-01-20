@@ -601,7 +601,6 @@ Countingprocess$methods(mansys=function(sygen=NULL){
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
   #!
-  browser()
   #enf[[3]] <<- py_genpolycoeff(exnrs[[1]],mansysl$pre[[1]],mansysl$pre[[3]])[[1]]
   enf[[3]] <<- py_genpolycoeff('k0+k1*x+k2*y','alpha','y')[[1]]
   # wasmcompiled
@@ -618,80 +617,57 @@ Countingprocess$methods(setres=function(czset=NULL,prnt=0){
     print(polynom::integral(polynom::polynomial(vec),c(0,1)))
   }
 })
-Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0)){
+Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
   ## Variables
-				browser()
   lof <- function(kvec=NULL){
-	browser()
-  loss_df <<- rdfci %>%
-    dplyr::select(P,S,T,U,V,R,Z,all_of(allvec)) %>%
-    #dplyr::select(pri,P,S,T,U,V,R,Z,all_of(allvec)) %>%
-    data.table::setnames(allvec,altvec) %>%
-    ### Parameters
-    dplyr::mutate(!!!kvec) %>%
-    ### Presetting the first variables
-    dplyr::mutate(!!allvec[1]:=enf[[1]]) %>%
-    ### Presetting second variable
-    dplyr::mutate(!!allvec[2]:=pareq(pre2,c(as.list(.[,])))) %>%
-    ### Presetting the Manifold object
-    #dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,rdfci,allvec[3])) 
-    #!RWASM
-    dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,.[,],allvec[3])) %>%
-    ### Adding some noise
-    dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) %>%
-    ### Backsolving for the two remaining parameter
-    dplyr::mutate(!!allvec[4]:=pareq(end1,c(as.list(.[,])))) %>%
-    dplyr::mutate(!!allvec[5]:=pareq(end2,c(as.list(.[,])))) %>%
-    dplyr::mutate(LSV:=pareq(lstr,c(as.list(.[,])))) %>%
-    #### Backsolving for ballots
-    data.table::setnames(c("S","T","U","V"),c("S_o","T_o","U_o","V_o")) %>%
-    dplyr::mutate(S=floor(pareq(se[[paste0('S',sho)]][2],as.list(.[]))))  %>%
-    dplyr::mutate(T=floor(pareq(se[[paste0('T',sho)]][2],as.list(.[]))))  %>%
-    dplyr::mutate(U=floor(pareq(se[[paste0('U',sho)]][2],as.list(.[]))))  %>%
-    dplyr::mutate(V=floor(pareq(se[[paste0('V',sho)]][2],as.list(.[]))))  %>%
-    dplyr::rename(Z_o=Z) %>%
-    dplyr::mutate(Z=S+T+U+V)
-    ## Loss value
+#	  browser()
+    loss_df <<- rdfci %>%
+      dplyr::select(P,S,T,U,V,R,Z,all_of(allvec)) %>%
+      #dplyr::select(pri,P,S,T,U,V,R,Z,all_of(allvec)) %>%
+      data.table::setnames(allvec,altvec) %>%
+      ### Parameters
+      dplyr::mutate(!!!kvec) %>%
+      ### Presetting the first variables
+      dplyr::mutate(!!allvec[1]:=enf[[1]]) %>%
+      ### Presetting second variable
+      dplyr::mutate(!!allvec[2]:=pareq(pre2,c(as.list(.[,])))) %>%
+      ### Presetting the Manifold object
+      #dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,rdfci,allvec[3])) 
+      #!RWASM
+      dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,.[,],allvec[3])) %>%
+      ### Adding some noise
+      dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) %>%
+      ### Backsolving for the two remaining parameter
+      dplyr::mutate(!!allvec[4]:=pareq(end1,c(as.list(.[,])))) %>%
+      dplyr::mutate(!!allvec[5]:=pareq(end2,c(as.list(.[,])))) %>%
+      dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
+      #### Backsolving for ballots
+      data.table::setnames(c("S","T","U","V"),c("S_o","T_o","U_o","V_o")) %>%
+      dplyr::mutate(S=floor(pareq(se[[paste0('S',sho)]][2],as.list(.[]))))  %>%
+      dplyr::mutate(T=floor(pareq(se[[paste0('T',sho)]][2],as.list(.[]))))  %>%
+      dplyr::mutate(U=floor(pareq(se[[paste0('U',sho)]][2],as.list(.[]))))  %>%
+      dplyr::mutate(V=floor(pareq(se[[paste0('V',sho)]][2],as.list(.[]))))  %>%
+      dplyr::rename(Z_o=Z) %>%
+      dplyr::mutate(Z=S+T+U+V)
+      ## Loss value
   }
   lv <- function(param=NULL){
     lofdf <- lof(kvec=param)
     nrv <- sum(dplyr::select(lofdf, S, T, U, V) < 0)
     clvl <- sum(lofdf$LSV)+ifelse(nrv>0,nrv*sum(loss_df$LSV),0)
   }
-  man_lores <- lv(param=init_par)
-
-  "abc"
-
-  #allvec <- c(unlist(allvar$pre),unlist(allvar$end))
-  #sho <- c("_s","_h","_o")[[mansysl$frm]]
-  #altvec <- paste0(as.vector(unlist(allvar)),sho)
-  #endp <- paste0(allvec,sho)[c(4,5)]
-  #pre1 <- enf[[1]]
-  #pre2 <- enf[[2]]
-  #pre3 <- enf[[3]]
-  #end1 <- se[[endp[1]]][2]
-  #end2 <- se[[endp[2]]][2]
-
-
-  #if (man) {
-  #  print('man')
-  #  man_lores <- lv(param=init_par)
-  #} else {
-  #  print('ite')
-  opt_lores <- optim(par = init_par, 
-                     method=c("Nelder-Mead","BFGS","CG","L-BFGS-B")[1],
-     	       fn = lv)
-#  opt_lores <- optim(par = init_par, 
-#	       fn = lv, 
-#	       method='L-BFGS-B',
-#	       lower=c(k0=0,k1=0,k2=0),
-#	       upper=c(k0=0,k1=0,k2=0))
- # }
-  #rdfc <<- dplyr::select(loss_df,P,R,S,T,U,V) %>% ballcount(se=se)
-  #  opt_lores <- optim(par = init_par, 
-  #                     method='L-BFGS-B',
-#		       fn = lv)
-  loss_ls <<- opt_lores
+  allvec <- c(unlist(allvar$pre),unlist(allvar$end))
+  sho <- c("_s","_h","_o")[[mansysl$frm]]
+  altvec <- paste0(as.vector(unlist(allvar)),sho)
+  pre1 <- enf[[1]]
+  pre2 <- enf[[2]]
+  pre3 <- enf[[3]]
+  endp <- paste0(allvec,sho)[c(4,5)]
+  end1 <- se[[endp[1]]][2]
+  end2 <- se[[endp[2]]][2]
+  #loss_ls <<- lv(param=init_par)
+  loss_ls <<- optim(par = init_par,method=c("Nelder-Mead","BFGS","CG","L-BFGS-B")[lfs],fn = lv)
+  rdfc <<- dplyr::select(loss_df,P,R,S,T,U,V) %>% ballcount(se=se)
 })
 ############################################################################################################################################################
 ############################################################################################################################################################

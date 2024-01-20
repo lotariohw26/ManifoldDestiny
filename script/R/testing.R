@@ -38,11 +38,11 @@ result <- optim(
 app_ex1_cou <- Countinggraphs(app_bal)
 pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 app_ex1_cou$sortpre()
-app_ex1_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","Lambda"),FALSE,me=c(plnr=1,rot=0),lf="(alpha-alpha)^2"))
+app_ex1_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),FALSE,me=c(plnr=1,rot=0),lf="(alpha-alpha)^2"))
 app_ex1_cou$setres(0.25,1)
 app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.5),man=TRUE,wn=c(0,0.0))
-app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.30,k2=0.7),man=FALSE,wn=c(0,0.0))
-#app_ex1_cou$rdfc$alpha-app_ex1_cou$rdfci$alpha
+app_ex1_cou$loss_ls
+app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.30,k2=0.7),man=FALSE,wn=c(0,0.0),2)
 app_ex1_cou$loss_ls[[1]]
 app_ex1_cou$loss_ls[[2]]
 app_ex1_cou$loss_ls[[3]]
