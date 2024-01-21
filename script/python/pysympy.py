@@ -48,7 +48,7 @@ Omega_o   = [Eq(Omega,(S+T)/(S+T+U+V)),Eq(Omega,(m+xi*n)/(xi+1))]
 S_s = [Eq(s,S),Eq(s,x*Z*(alpha-y)/(x-y))]
 T_s = [Eq(t,T),Eq(t,(1-x)*Z*(alpha-y)/(x-y))]
 U_s = [Eq(u,y*(Z-S-T)),Eq(u,y*Z*(alpha-y)/(x-y)*zeta)]
-V_s = [Eq(v,y*(Z-S-T)),Eq(v,(1-y)*Z*(alpha-y)/(x-y)*zeta)]
+V_s = [Eq(v,(1-y)*(Z-S-T)),Eq(v,(1-y)*Z*(alpha-y)/(x-y)*zeta)]
 ##
 S_h = [Eq(s,g*(Z-T-U)),Eq(s,g*Z*(alpha - h)/(g - h))]
 T_h = [Eq(t,T),Eq(t,(1-h)*Z*(alpha - h)/(g - h)*Gamma)]

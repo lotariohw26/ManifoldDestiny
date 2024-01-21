@@ -620,9 +620,10 @@ Countingprocess$methods(setres=function(czset=NULL,prnt=0){
 Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
   ## Variables
   lof <- function(kvec=NULL){
+	  browser()
+    View(loss_df)
     loss_df <<- rdfci %>%
-      dplyr::select(P,S,T,U,V,R,Z,all_of(allvec)) %>%
-      #dplyr::select(pri,P,S,T,U,V,R,Z,all_of(allvec)) %>%
+      dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
       ### Parameters
       dplyr::mutate(!!!kvec) %>%
@@ -631,24 +632,28 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
       ### Presetting second variable
       dplyr::mutate(!!allvec[2]:=pareq(pre2,c(as.list(.[,])))) %>%
       ### Presetting the Manifold object
-      #dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,rdfci,allvec[3])) 
-      #!RWASM
       dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,.[,],allvec[3])) %>%
+      #!RWASM
+      #dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,rdfci,allvec[3])) 
       ### Adding some noise
-      dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) %>%
+      #dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) %>%
       ### Backsolving for the two remaining parameter
       dplyr::mutate(!!allvec[4]:=pareq(end1,c(as.list(.[,])))) %>%
       dplyr::mutate(!!allvec[5]:=pareq(end2,c(as.list(.[,])))) %>%
       dplyr::mutate(LSV:=pareq(paste0('(alpha-alpha_s)^2'),c(as.list(.[,])))) %>%
       #dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
       ##### Backsolving for ballots
-      data.table::setnames(c("S","T","U","V"),c("S_o","T_o","U_o","V_o")) %>%
-      dplyr::mutate(S=floor(pareq(se[[paste0('S',sho)]][2],as.list(.[]))))  %>%
-      dplyr::mutate(T=floor(pareq(se[[paste0('T',sho)]][2],as.list(.[]))))  %>%
-      dplyr::mutate(U=floor(pareq(se[[paste0('U',sho)]][2],as.list(.[]))))  %>%
-      dplyr::mutate(V=floor(pareq(se[[paste0('V',sho)]][2],as.list(.[]))))  %>%
-      dplyr::rename(Z_o=Z) %>%
-      dplyr::mutate(Z=S+T+U+V)
+      #dplyr::group_by(P) %>%
+      dplyr::mutate(S_m=S,T_M=T) %>%
+      dplyr::mutate(U_m=floor(pareq(se[[paste0('U',sho)]][1],as.list(.[]))))  
+      #dplyr::mutate(T_m=S,T_M=T(floor(pareq(se[[paste0('T',sho)]][1],as.list(.[]))))  %>%
+      dplyr::mutate(S_m=floor(pareq(se[[paste0('S',sho)]][1],as.list(.[]))))  %>%
+      dplyr::mutate(T_m=floor(pareq(se[[paste0('T',sho)]][1],as.list(.[]))))  %>%
+      dplyr::mutate(U_m=floor(pareq(se[[paste0('U',sho)]][1],as.list(.[]))))  %>%
+      dplyr::mutate(V_m=floor(pareq(se[[paste0('V',sho)]][1],as.list(.[]))))  
+      #! other options
+      dplyr::rename(Z_m=Z) %>%
+      dplyr::rename(R_m=R) 
       ## Loss value
   }
   lv <- function(param=NULL){
@@ -665,13 +670,18 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
   endp <- paste0(allvec,sho)[c(4,5)]
   end1 <- se[[endp[1]]][2]
   end2 <- se[[endp[2]]][2]
-  print(lfs)
-  loss_ls <<- optim(par = init_par,		    
-		    fn = lv,
-		    method=c("Nelder-Mead","BFGS","CG","L-BFGS-B")[lfs]
-
-  )
-  rdfc <<- dplyr::select(loss_df,P,R,S,T,U,V) %>% ballcount(se=se)
+  lome <- c("Nelder-Mead","BFGS","CG","L-BFGS-B")[lfs]
+  ##
+  abc <- lv(init_par)
+  ##
+  #loss_ls <<- optim(
+  #  par = init_par,
+  #  fn = lv,
+  #  method = lome,
+  #  lower = c(0,0,0),
+  #  upper = c(1,1,1) 
+  #)
+  rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) %>% ballcount(se=se)
 })
 ############################################################################################################################################################ #########################################################################################################################################################
 #' @export Countinggraphs
