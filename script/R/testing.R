@@ -45,7 +45,7 @@ app_ex1_cou$mansys(sygen=list(frm=1,
 			      me=c(plnr=1,rot=0),
 			      lf="(alpha-alpha_s)^2"))
 app_ex1_cou$setres(0.25,1)
-app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),man=TRUE,wn=c(0,0.0),4)
+app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),man=true,wn=c(0,0.0),4)
 app_ex1_cou$loss_ls[[1]]
 app_ex1_cou$loss_ls[[2]]
 app_ex1_cou$loss_ls[[3]]

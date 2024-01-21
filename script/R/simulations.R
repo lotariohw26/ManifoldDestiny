@@ -54,6 +54,7 @@ cGamma <- round(pro_elc_ex1$sdfc$Gamma,2)
 ##########################################################################################################################################################
 ###### Normal 
 ######## R2 sim
+set.seed(1)
 dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,100,30)))})(100)
 probw <- c(m=0.51,s=0.10)
 probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
@@ -69,19 +70,28 @@ app_ex1_cou <- Countinggraphs(app_bal)
 pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 #print(app_ex1_cou$polyc[[1]][[1]])
 app_ex1_cou$sortpre()
-app_ex1_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
-app_ex1_cou$setres(0.22,0)
+app_ex1_cou$mansys(sygen=list(frm=1,
+			      pre=c("alpha","x","y"),
+			      end=c("zeta","lamda"),
+			      me=c(plnr=1,rot=0),
+			      lf="(alpha-alpha_s)^2"))
+app_ex1_cou$setres(0.20,0)
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
-app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),TRUE,wn=c(0,0))
+app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),man=true,wn=c(0,0.0),1)
 app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
 app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
 ######## Rigged example 2: hybrid form
 app_ex2_cou <- Countinggraphs(app_bal)
 pri_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
 #print(app_ex2_cou$polyc[[1]][[1]])
+
 app_ex2_cou$sortpre()
-app_ex2_cou$mansys(sygen=list(frm=2,pre=c("alpha","g","h"),end=c("Gamma","Omega"),FALSE,me=c(plnr=1,rot=0)))
-app_ex2_cou$setres(0.23,0)
+app_ex2_cou$mansys(sygen=list(frm=2,
+			      pre=c("alpha","h","g"),
+			      end=c("Gamma","Omega"),
+			      me=c(plnr=1,rot=0),
+			      lf="(alpha-alpha_h)^2"))
+app_ex2_cou$setres(0.20,0)
 pos_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
 app_ex2_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),wn=c(0,0))
 app_ex2_out <- seloutput(selreport(app_ex2_cou$rdfc,md$app0))
@@ -90,10 +100,14 @@ app_ex2_sim <- SimVoterdatabase(app_ex2_cou$rdfc)
 app_ex3_cou <- Countinggraphs(app_bal)
 pri_int_ex3 <- app_ex3_cou$polyc[[1]][[1]]
 app_ex3_cou$sortpre()
-app_ex3_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
-app_ex3_cou$setres(0.23,0)
+app_ex3_cou$mansys(sygen=list(frm=1,
+			      pre=c("alpha","x","y"),
+			      end=c("zeta","lamda"),
+			      me=c(plnr=1,rot=0),
+			      lf="(alpha-alpha_s)^2"))
+app_ex3_cou$setres(0.20,0)
 pos_int_ex3 <- app_ex3_cou$polyc[[1]][[1]]
-app_ex3_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),wn=c(0,0))
+app_ex3_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),man=true,wn=c(0,0.0),1)
 app_ex3_out <- seloutput(selreport(app_ex3_cou$rdfc,md$app0))
 app_ex3_sim <- SimVoterdatabase(app_ex3_cou$rdfc)
 #####################################################################################################################################################################
