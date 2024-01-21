@@ -39,8 +39,8 @@ Omega_h   = [Eq(Omega,(S+T)/(S+T+U+V)),Eq(Omega,(g+Gamma*(1-g))/(Gamma+1)),Eq(Om
 ###############################################################################################################################
 ###### Oppostion form proportions
 xi_o      = [Eq(xi,(T+V)/(S+U)),Eq(xi,(m-Omega)/(Omega-n)),Eq(xi,(m-lamda)/(lamda-(1-n)))]
-n_o       = [Eq(n,S/(S+U))]
 m_o       = [Eq(m,T/(T+V))]
+n_o       = [Eq(n,S/(S+U))]
 lamda_o   = [Eq(lamda,(S+V)/(S+T+U+V)),Eq(lamda,(2*m+xi)/(xi+1)-Omega)]
 Omega_o   = [Eq(Omega,(S+T)/(S+T+U+V)),Eq(Omega,(m+xi*n)/(xi+1))]
 #############################################################################################################################
@@ -49,18 +49,16 @@ S_s = [Eq(s,S),Eq(s,x*Z*(alpha-y)/(x-y))]
 T_s = [Eq(t,T),Eq(t,(1-x)*Z*(alpha-y)/(x-y))]
 U_s = [Eq(u,y*(Z-S-T)),Eq(u,y*Z*(alpha-y)/(x-y)*zeta)]
 V_s = [Eq(v,(1-y)*(Z-S-T)),Eq(v,(1-y)*Z*(alpha-y)/(x-y)*zeta)]
-#U_s = [Eq(u,Z,Eq(u,y*Z*(alpha-y)/(x-y)*zeta)]
-#V_s = [Eq(v,Z,Eq(v,(1-y)*Z*(alpha-y)/(x-y)*zeta)]
 ##
-S_h = [Eq(s,g*(Z-T-U)),Eq(s,g*Z*(alpha - h)/(g - h))]
 T_h = [Eq(t,T),Eq(t,(1-h)*Z*(alpha - h)/(g - h)*Gamma)]
 U_h = [Eq(u,U),Eq(u,h*Z*(alpha - h)/(g - h)*Gamma)]
+S_h = [Eq(s,g*(Z-T-U)),Eq(s,g*Z*(alpha - h)/(g - h))]
 V_h = [Eq(v,(1-g)*(Z-T-U)),Eq(v,(1-g)*Z*(alpha - h)/(g - h))]
 ##
-S_o = [Eq(s,Z*n/(1+xi)),Eq(s,t+u)]
-T_o = [Eq(t,(Z*m)/(1+1/xi))]
-U_o = [Eq(u,Z*(1-n)/(1+xi))]
-V_o = [Eq(v,(Z*(1-m))/(1+1/xi))]
+S_o = [Eq(s,S),Eq(s,Z*n/(1+xi))]
+U_o = [Eq(u,U),Eq(u,Z*(1-n)/(1+xi))]
+T_o = [Eq(t,m*(Z-S-U)),Eq(t,(Z*m)/(1+1/xi))]
+V_o = [Eq(v,(1-m)*(Z-S-U)),Eq(v,(Z*(1-m))/(1+1/xi))]
 ###########################################################################################################################
 ###### Implications:
 ### Standard form

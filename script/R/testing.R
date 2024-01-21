@@ -32,7 +32,8 @@ result <- optim(
   fn = loss_function,
   method = "L-BFGS-B",
   lower = lower_bounds,
-  upper = upper_bounds
+  upper = upper_bounds,
+  hessian = TRUE
 )
 ### Applications
 app_ex1_cou <- Countinggraphs(app_bal)
@@ -45,17 +46,12 @@ app_ex1_cou$mansys(sygen=list(frm=1,
 			      lf="(alpha-alpha_s)^2"))
 app_ex1_cou$setres(0.25,1)
 app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),man=TRUE,wn=c(0,0.0),4)
-View(app_ex1_cou$rdfc)
-sum(app_ex1_cou$rdfc$LSV)
-head(app_ex1_cou$rdfc$alpha)
-head(app_ex1_cou$rdfci$alpha)
 app_ex1_cou$loss_ls[[1]]
 app_ex1_cou$loss_ls[[2]]
 app_ex1_cou$loss_ls[[3]]
 app_ex1_cou$loss_ls[[4]]
 app_ex1_cou$loss_ls[[5]]
 mean(app_ex1_cou$rdfci$x-app_ex1_cou$rdfc$x)
-#12+24+9+34
 ###########################################################################################################
 ###########################################################################################################
 ###########################################################################################################

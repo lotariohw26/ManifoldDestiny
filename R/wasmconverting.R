@@ -622,6 +622,8 @@ Countingprocess$methods(setres=function(czset=NULL,prnt=0){
 Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
   ## Variables
   lof <- function(kvec=NULL){
+    names(kvec) <- paste0("k",seq(0,length(kvec)-1))
+    print(kvec)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -651,25 +653,31 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
       dplyr::mutate(R_m=R) 
       ## Loss value
   }
-  lv <- function(param=NULL){
-    lofdf <- lof(kvec=param)
-    nrv <- sum(dplyr::select(lofdf, S, T, U, V) < 0)
+  lv <- function(params=NULL){
+    lofdf <- lof(kvec=params)
+    nrv <- sum(dplyr::select(lofdf, S_m, T_m, U_m, V_m) < 0)
+    #print(nrv)
     clvl <- sum(lofdf$LSV)+ifelse(nrv>0,nrv*sum(loss_df$LSV),0)
+    #print(clvl)
   }
+  # Init
   allvec <- c(unlist(allvar$pre),unlist(allvar$end))
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   altvec <- paste0(as.vector(unlist(allvar)),sho)
   endp <- paste0(allvec,sho)[c(4,5)]
-  lome <- c("Nelder-Mead","BFGS","CG","L-BFGS-B")[lfs]
-  ##
-  abc <- lv(init_par)
-  loss_ls <<- optim(
-    par = init_par,
-    fn = lv,
-    method = lome
-  #  lower = c(0,0,0),
-  #  upper = c(1,1,1) 
-  )
+  # Loss
+  #lfs <- 1
+  #lome <- c("Nelder-Mead","BFGS","CG","L-BFGS-B")[lfs]
+  #abc <- optim(
+  #  par =as.vector(init_par),
+  #  fn = lv,
+  #  method = lome
+  #  #lower = c(0.0001,051,0.51),
+  #  #upper = c(1,1,1) 
+  #)
+  ## Manual
+  def <- lv(param=as.vector(init_par))
+  # Deliver
   rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m,LSV) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) %>% ballcount(se=se)
 })
 ############################################################################################################################################################ #########################################################################################################################################################
