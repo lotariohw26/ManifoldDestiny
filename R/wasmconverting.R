@@ -29,20 +29,20 @@ wasmconload <- function(){
 }
 #########################################################################################################################################################
 #' @export py_polysolverW
-py_polysolverW <- function(degree=1,kvec=NULL){
-  vec <- kvec[!is.na(kvec)] 
-  # Linear
-  if (degree==1) {
-    retv <- Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=0,D=0))[1]
-  }
-  if (degree==2) {
-    retv <- Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=vec[3],D=0))[1]
-  }
-  if (degree==3) {
-    retv <- Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=vec[3],D=vec[4]))[1]
-  }
-  retv
-}
+#py_polysolverW <- function(degree=1,kvec=NULL){
+#  vec <- kvec[!is.na(kvec)] 
+#  # Linear
+#  if (degree==1) {
+#    retv <- Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=0,D=0))[1]
+#  }
+#  if (degree==2) {
+#    retv <- Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=vec[3],D=0))[1]
+#  }
+#  if (degree==3) {
+#    retv <- Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=vec[3],D=vec[4]))[1]
+#  }
+#  retv
+#}
 #' @export manobj
 manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
   polyc <- setNames(as.vector(lapply(enfl, as.character)),LETTERS[1:5])
@@ -55,8 +55,8 @@ manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
     dplyr::mutate(D=pareq(la_e[3],c(as.list(.[,])))) %>% 
     dplyr::mutate(E=pareq(la_e[3],c(as.list(.[,])))) %>%
     dplyr::group_by(P) %>%
-    dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
-    #dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+    #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+    dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
     dplyr::mutate(!!paste0(svar):=Re(polsolv[1])) %>%
     dplyr::ungroup() 
   rootdf[[svar]]
@@ -112,8 +112,8 @@ selreport <- function(
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$mtd$sgs$eq)
   ges$diagnostics()
-  ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
-  ges$hat_intcomp()
+  #ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
+  #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$mtd$sgs$eq)
@@ -455,9 +455,9 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   ){
 
   parameters <<- stickers[['parameters']]
-  fdm <- paste0(rprojroot::find_rstudio_root_file(),'/script/python/pysympy.py')
-  reticulate::source_python(fdm)
-  eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
+  #fdm <- paste0(rprojroot::find_rstudio_root_file(),'/script/python/pysympy.py')
+  #reticulate::source_python(fdm)
+  #eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
   se <<- eqpar$meqs
   lx <<- eqpar$meql
   ils <- c('S','T','U','V')
@@ -944,7 +944,8 @@ Estimation$methods(hat_predict=function(svf='y',rnr=1){
     dplyr::mutate(D=pareq(as.character(lpy[[1]][[4]]),.[,])) %>%
     dplyr::mutate(E=pareq(as.character(lpy[[1]][[5]]),.[,])) %>%
     dplyr::group_by(P) %>%
-    dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+    dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+    #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
     dplyr::mutate(!!paste0(svf[1],'_hat'):=Re(polsolv[1])) %>%
     dplyr::ungroup()
   regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=pred_df_pol)

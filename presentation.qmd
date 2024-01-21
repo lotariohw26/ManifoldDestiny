@@ -29,6 +29,7 @@ library(huxtable)
 library(kableExtra)
 ```
 
+
 # `r metad$toc$sec1$nmn`
 
 
@@ -469,6 +470,7 @@ app_n_out[[4]]
 
 :::
 
+
 ::: {.column width="50%"}
 
 Rigged election using standard form
@@ -482,6 +484,7 @@ app_ex1_out[[4]]
 
 ---
 
+
 **Normal**
 <br>
 \begin{equation*}
@@ -489,9 +492,10 @@ f(x)_{0}^{1}=`r paste0(round(polynom::polynomial(unname(pri_int_ex1)),3))`$
 \end{equation*}
 
 
-Election outome
+Election outome 
 ```{r, echo=F}
-sum(dplyr::select(app_n_out[['rdfc']],S,U))/sum(dplyr::select(app_n_out[['rdfc']],S,T,U,V))
+#sum(dplyr::select(app_n_out[['rdfc']],S,U))/sum(dplyr::select(app_n_out[['rdfc']],S,T,U,V))
+polynom::integral(round(polynom::polynomial(unname(pri_int_ex1))),c(0,1))
 ```
 
 
@@ -503,7 +507,8 @@ $f(x)_{0}^{1}=`r paste0(round(polynom::polynomial(unname(pos_int_ex1)),3))`$
 
 Election outome
 ```{r, echo=F}
-sum(dplyr::select(app_ex1_out[['rdfc']],S,U))/sum(dplyr::select(app_ex1_out[['rdfc']],S,T,U,V))
+#sum(dplyr::select(app_ex1_out[['rdfc']],S,U))/sum(dplyr::select(app_ex1_out[['rdfc']],S,T,U,V))
+polynom::integral(round(polynom::polynomial(unname(pos_int_ex1))),c(0,1))
 ```
 
 ---
@@ -607,25 +612,31 @@ app_ex1_out[[4]]
 **Normal**
 <br>
 \begin{equation*}
-f(x)_{0}^{1}=`r paste0(round(polynom::polynomial(unname(pri_int_ex1)),3))`$
+f(x)_{0}^{1}=`r paste0(round(polynom::polynomial(unname(pri_int_ex3)),3))`$
 \end{equation*}
 
 
 Election outome
 ```{r, echo=F}
-sum(dplyr::select(app_n_out[['rdfc']],S,U))/sum(dplyr::select(app_n_out[['rdfc']],S,T,U,V))
+#sum(dplyr::select(app_n_out[['rdfc']],S,U))/sum(dplyr::select(app_n_out[['rdfc']],S,T,U,V))
+polynom::integral(round(polynom::polynomial(unname(pri_int_ex3))),c(0,1))
 ```
 
 <br>
 **Rigged**
 <br>
 
-$f(x)_{0}^{1}=`r paste0(round(polynom::polynomial(unname(pos_int_ex1)),3))`$
+$f(x)_{0}^{1}=`r paste0(round(polynom::polynomial(unname(pos_int_ex3)),3))`$
 
 Election outome
 ```{r, echo=F}
-sum(dplyr::select(app_ex1_out[['rdfc']],S,U))/sum(dplyr::select(app_ex1_out[['rdfc']],S,T,U,V))
+#sum(dplyr::select(app_ex1_out[['rdfc']],S,U))/sum(dplyr::select(app_ex1_out[['rdfc']],S,T,U,V))
+polynom::integral(round(polynom::polynomial(unname(pos_int_ex3))),c(0,1))
 ```
+```{r}
+knitr::knit_exit()
+```
+
 
 ---
 
@@ -868,6 +879,7 @@ knitr::include_graphics(c(p3))
 ```
 
 
+
 # `r metad$toc$sec5$nmn` {#proced}
 
 # `r metad$toc$sec5$unm[1]` 
@@ -880,6 +892,10 @@ knitr::include_graphics(c(p3))
 If we can walk through all of the **four** steps here, property 1<sup>st</sup> and 2<sup>nd</sup> that we have stated for a normal election are violated and we can conclude that the estimated Manifold equation is inserted - Manifold Destiny - to distort the outcome of normal election.
 
 [Application 3: Rigged election analyzer]({{< var shn3 >}})
+
+```{r}
+knitr::knit_exit()
+```
 
 # `r metad$toc$sec6$nmn`
 
