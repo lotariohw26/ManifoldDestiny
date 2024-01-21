@@ -453,7 +453,11 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   polyn=9,
 					   sortby=alpha
 					   ){
+
   parameters <<- stickers[['parameters']]
+  fdm <- paste0(rprojroot::find_rstudio_root_file(),'/script/python/pysympy.py')
+  reticulate::source_python(fdm)
+  eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
   se <<- eqpar$meqs
   lx <<- eqpar$meql
   ils <- c('S','T','U','V')
@@ -621,7 +625,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
   ## Variables
   lof <- function(kvec=NULL){
 	  browser()
-    View(loss_df)
+	  View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -644,16 +648,13 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
       #dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
       ##### Backsolving for ballots
       #dplyr::group_by(P) %>%
-      dplyr::mutate(S_m=S,T_M=T) %>%
-      dplyr::mutate(U_m=floor(pareq(se[[paste0('U',sho)]][1],as.list(.[]))))  
-      #dplyr::mutate(T_m=S,T_M=T(floor(pareq(se[[paste0('T',sho)]][1],as.list(.[]))))  %>%
       dplyr::mutate(S_m=floor(pareq(se[[paste0('S',sho)]][1],as.list(.[]))))  %>%
       dplyr::mutate(T_m=floor(pareq(se[[paste0('T',sho)]][1],as.list(.[]))))  %>%
       dplyr::mutate(U_m=floor(pareq(se[[paste0('U',sho)]][1],as.list(.[]))))  %>%
-      dplyr::mutate(V_m=floor(pareq(se[[paste0('V',sho)]][1],as.list(.[]))))  
+      dplyr::mutate(V_m=floor(pareq(se[[paste0('V',sho)]][1],as.list(.[]))))  %>%
       #! other options
-      dplyr::rename(Z_m=Z) %>%
-      dplyr::rename(R_m=R) 
+      dplyr::mutate(Z_m=S_m+T_m+U_m+V_m) %>%
+      dplyr::mutate(R_m=R) 
       ## Loss value
   }
   lv <- function(param=NULL){
@@ -681,6 +682,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
   #  lower = c(0,0,0),
   #  upper = c(1,1,1) 
   #)
+  browser()
   rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) %>% ballcount(se=se)
 })
 ############################################################################################################################################################ #########################################################################################################################################################
