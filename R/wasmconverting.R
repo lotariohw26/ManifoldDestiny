@@ -600,13 +600,11 @@ Countingprocess$methods(mansys=function(sygen=NULL){
   mansysl <<- sygen
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   allvar <<- list(pre=mansysl$pre,end=mansysl$end)
-  #formpolv
   exnrs <<- gsub('v',mansysl$pre[2], gsub('u',mansysl$pre[3],peqs[mansysl$me[['plnr']]]))
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
-  #!
-  #enf[[3]] <<- py_genpolycoeff(exnrs[[1]],mansysl$pre[[1]],mansysl$pre[[3]])[[1]]
-  enf[[3]] <<- py_genpolycoeff('k0+k1*x+k2*y','alpha','y')[[1]]
+  enf[[3]] <<- py_genpolycoeff(exnrs[[1]],mansysl$pre[[1]],mansysl$pre[[3]])[[1]]
+  #enf[[3]] <<- py_genpolycoeff('k0+k1*x+k2*y','alpha','y')[[1]]
   # wasmcompiled
   #enf[[3]] <<- list(list('k1','-alpha + k0 + k2*x',0,0,0),
   #     list('k1','-alpha + k0 + k2*g',0,0,0),
@@ -624,8 +622,6 @@ Countingprocess$methods(setres=function(czset=NULL,prnt=0){
 Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
   ## Variables
   lof <- function(kvec=NULL){
-	  browser()
-	  View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -634,20 +630,18 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
       ### Presetting the first variables
       dplyr::mutate(!!allvec[1]:=enf[[1]]) %>%
       ### Presetting second variable
-      dplyr::mutate(!!allvec[2]:=pareq(pre2,c(as.list(.[,])))) %>%
+      dplyr::mutate(!!allvec[2]:=pareq(enf[[2]],c(as.list(.[,])))) %>%
       ### Presetting the Manifold object
-      dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,.[,],allvec[3])) %>%
+      dplyr::mutate(!!allvec[3]:=manobj(enfl=enf[[3]],.[,],allvec[3])) %>%
       #!RWASM
       #dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,rdfci,allvec[3])) 
       ### Adding some noise
-      #dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) %>%
+      dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) %>%
       ### Backsolving for the two remaining parameter
-      dplyr::mutate(!!allvec[4]:=pareq(end1,c(as.list(.[,])))) %>%
-      dplyr::mutate(!!allvec[5]:=pareq(end2,c(as.list(.[,])))) %>%
-      dplyr::mutate(LSV:=pareq(paste0('(alpha-alpha_s)^2'),c(as.list(.[,])))) %>%
-      #dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
+      dplyr::mutate(!!allvec[4]:=pareq(se[[endp[1]]][2],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!allvec[5]:=pareq(se[[endp[2]]][2],c(as.list(.[,])))) %>%
+      dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
       ##### Backsolving for ballots
-      #dplyr::group_by(P) %>%
       dplyr::mutate(S_m=floor(pareq(se[[paste0('S',sho)]][1],as.list(.[]))))  %>%
       dplyr::mutate(T_m=floor(pareq(se[[paste0('T',sho)]][1],as.list(.[]))))  %>%
       dplyr::mutate(U_m=floor(pareq(se[[paste0('U',sho)]][1],as.list(.[]))))  %>%
@@ -665,25 +659,18 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
   allvec <- c(unlist(allvar$pre),unlist(allvar$end))
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   altvec <- paste0(as.vector(unlist(allvar)),sho)
-  pre1 <- enf[[1]]
-  pre2 <- enf[[2]]
-  pre3 <- enf[[3]]
   endp <- paste0(allvec,sho)[c(4,5)]
-  end1 <- se[[endp[1]]][2]
-  end2 <- se[[endp[2]]][2]
   lome <- c("Nelder-Mead","BFGS","CG","L-BFGS-B")[lfs]
   ##
   abc <- lv(init_par)
-  ##
-  #loss_ls <<- optim(
-  #  par = init_par,
-  #  fn = lv,
-  #  method = lome,
+  loss_ls <<- optim(
+    par = init_par,
+    fn = lv,
+    method = lome
   #  lower = c(0,0,0),
   #  upper = c(1,1,1) 
-  #)
-  browser()
-  rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) %>% ballcount(se=se)
+  )
+  rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m,LSV) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) %>% ballcount(se=se)
 })
 ############################################################################################################################################################ #########################################################################################################################################################
 #' @export Countinggraphs
