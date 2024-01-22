@@ -27,9 +27,9 @@ selreport <- function(
   #co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$mtd$sgs$eq)
-  #ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
+  ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
   ges$diagnostics()
-  #ges$hat_intcomp()
+  ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$mtd$sgs$eq)
