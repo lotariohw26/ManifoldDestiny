@@ -31,8 +31,7 @@ ui <- fluidPage(
       textInput("wn", "White noise", value='0.0, 0.0'),
       textInput("kvec", "parameters", value='0,0.5,0.5'),
       selectInput("loss", "Loss function:",
-                  choices = c("Abc" = "1",
-                              "Def" = "2"), selected = "1"),
+                  choices = c("(alpha-alpha_s)^2" = "1","Def" = "2"), selected = "1"),
       selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3))
     ),
     mainPanel(
@@ -67,11 +66,12 @@ server <- function(input, output) {
     prcd <-  c(as.numeric(trimws(strsplit(input$prob_rv, ",")[[1]])),as.numeric(trimws(strsplit(input$prob_dm, ",")[[1]])))[c(1,3,2,4)]
     #prcr <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10) #c(input$prob_rv,input$prob_rm)
     #prcd <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10) #c(input$prob_dv,input$prob_dm)
-    frm <- as.numeric(input$form)
-    whn <- as.numeric(strsplit(input$wn, ',')[[1]])
-    kvc <- as.numeric(strsplit(input$kvec, ',')[[1]])
-    endv <- unlist(strsplit(trimws(input$endvar), '\\s+'))
-    parv <- unlist(strsplit(trimws(input$prevar), '\\s+'))
+    ifrm <- as.numeric(input$form)
+    inpn <- input$pn
+    iwtn <- as.numeric(strsplit(input$wn, ',')[[1]])
+    kvec <- as.numeric(strsplit(input$kvec, ',')[[1]])
+    ipre <- unlist(strsplit(trimws(input$prevar), '\\s+'))
+    iend <- unlist(strsplit(trimws(input$endvar), '\\s+'))
     #### Simulation of ballot voting
     dfm <- (function(x){data.frame(P = seq(1, x), RV = as.integer(pmax(rnorm(x, prn[2], prn[3]), 0)))})(prn[1])
     app_bal <- ballcastsim(dfm,pwn,prcr,prcd,ztech=c(0,0))
@@ -82,26 +82,23 @@ server <- function(input, output) {
     app_n_cou$plot2d()
     ### Rigging an election
     app_exr_cou <- Countinggraphs(app_bal)
-    #app_exr_cou$sortpre()
-    #app_exr_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
-    app_exr_cou$mansys(sygen=list(frm=1,
-    			      pre=c("alpha","x","y"),
-    			      end=c("zeta","lamda"),
+    app_exr_cou$sortpre()
+    app_exr_cou$mansys(sygen=list(frm=ifrm,
+    			      pre=ipre,
+    			      end=iend,
     			      me=c(plnr=1,rot=0),
     			      lf="(alpha-alpha_s)^2"))
-    app_exr_cou$setres(0.14,1)
-    app_exr_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),man=true,wn=c(0,0.0),1)
+    app_exr_cou$setres(inpn,1)
+    app_exr_cou$manimp(init_par=kvec,man=true,wn=c(iwtn[1],iwtn[2]),1)
+    #app_exr_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),man=true,wn=c(iwtn[1],iwtn[2]),1)
     app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
     app_exm_cou$sortpre()
     app_exm_cou$plotxy()
     app_exm_cou$plot2d()
-    #browser()
-    #list(app_n_cou,app_n_cou)
     list(app_n_cou,app_exm_cou)
   })  
   output$table_dsc_n <- renderPrint({
-#	  browser()
-    #sugsol <- c("k0+k1*x+k2*y","k0+k1*x+k2*y+k3*zeta")
+    sugsol <- c("k0+k1*x+k2*y","k0+k1*x+k2*y+k3*zeta")
     #nel <- Estimation(result()[[1]]$rdfc,1)
     #nel$regression(sugsol[1])
     #n1 <- summary(nel$regsum[[1]])
