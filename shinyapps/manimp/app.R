@@ -9,7 +9,7 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       h4("Simulation settings:"),
-      textInput("prec",  "Numer of precinct", value='100'),
+      textInput("prec",  "Numer of precinct", value='100, 100, 5'),
       textInput("probw",  "Prob of assigning to R:", value='0.51, 0.10'),
       textInput("prob_rv", "Prob of R voting:", value='0.7, 0.10'),
       textInput("prob_rm", "Prob of voting by mail if voting by R:", value='0.4, 0.10'),
@@ -38,20 +38,20 @@ ui <- fluidPage(
     mainPanel(
       tabsetPanel(
         tabPanel("Quantile",
-		 plotOutput("plotq_n"),
-		 plotOutput("plotq_r")
+		 plotOutput("plotq_n")
+		 #plotOutput("plotq_r")
 		 ),
         tabPanel("3d",
-		 plotlyOutput("plot3d_n"),
-		 plotlyOutput("plot3d_r")
+		 #PlotlyOutput("plot3d_n"),
+		 #PlotlyOutput("plot3d_r")
 		 ),
         tabPanel("Plot",
-		 plotOutput("plotxy_n"),
-		 plotOutput("plotxy_r")
+		 #plotOutput("plotxy_n"),
+		 #plotOutput("plotxy_r")
 		 ),
         tabPanel("Desc",
-		verbatimTextOutput("table_dsc_n"),
-		verbatimTextOutput("table_dsc_r")
+		#verbatimTextOutput("table_dsc_n")
+		#verbatimTextOutput("table_dsc_r")
 		 )
       )
     )
@@ -61,98 +61,103 @@ server <- function(input, output) {
   # Create a reactive expression for the result
   result <- reactive({
     # Input values
-    prn <- as.numeric(input$prec)
-    frm <- as.numeric(input$form)
-    pwn <- as.numeric(strsplit(input$probw, ',')[[1]])
-    whn <- as.numeric(strsplit(input$wn, ',')[[1]])
-    kvc <- as.numeric(strsplit(input$kvec, ',')[[1]])
-    #prcr <-  c(as.numeric(trimws(strsplit(input$prob_rv, ",")[[1]])),as.numeric(trimws(strsplit(input$prob_rm, ",")[[1]])))
-    #prcd <-  c(as.numeric(trimws(strsplit(input$prob_rv, ",")[[1]])),as.numeric(trimws(strsplit(input$prob_rm, ",")[[1]])))
-    prcr <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10) #c(input$prob_rv,input$prob_rm)
-    prcd <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10) #c(input$prob_dv,input$prob_dm)
-    endv <- c(strsplit(input$endvar, " ")[[1]],strsplit(input$endvar, " ")[[1]])
-    parv <- c(strsplit(input$prevar, " ")[[1]],strsplit(input$prevar, " ")[[2]],strsplit(input$prevar, " ")[[3]])
-    polc <- as.numeric(input$pn)
+    #prn <- as.numeric(strsplit(input$prec, ',')[[1]])
+    #frm <- as.numeric(input$form)
+    #pwn <- as.numeric(strsplit(input$probw, ',')[[1]])
+    #whn <- as.numeric(strsplit(input$wn, ',')[[1]])
+    #kvc <- as.numeric(strsplit(input$kvec, ',')[[1]])
+    ##prcr <-  c(as.numeric(trimws(strsplit(input$prob_rv, ",")[[1]])),as.numeric(trimws(strsplit(input$prob_rm, ",")[[1]])))
+    ##prcd <-  c(as.numeric(trimws(strsplit(input$prob_rv, ",")[[1]])),as.numeric(trimws(strsplit(input$prob_rm, ",")[[1]])))
+    #prcr <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10) #c(input$prob_rv,input$prob_rm)
+    #prcd <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10) #c(input$prob_dv,input$prob_dm)
+    #endv <- c(strsplit(input$endvar, " ")[[1]],strsplit(input$endvar, " ")[[1]])
+    #parv <- c(strsplit(input$prevar, " ")[[1]],strsplit(input$prevar, " ")[[2]],strsplit(input$prevar, " ")[[3]])
+    #polc <- as.numeric(input$pn)
     #### Interactive
     #### Simulation of ballot voting
-    dfm <- (function(x){data.frame(P=seq(1,prn),RV=as.integer(rnorm(x,1000,30)))})(10)
-    app_bal <- ballcastsim(dfm,pwn,prcr,prcd,ztech=c(0,0))
-    ### Fair election
-    app_n_cou <- Countinggraphs(app_bal)
-    app_n_cou$sortpre()
-    app_n_cou$plotxy()
-    app_n_cou$plot2d()
+    browser()
+    dfm <- (function(x){data.frame(P=seq(1,10),RV=as.integer(rnorm(x,100,30)))})(10)
+    #app_bal <- ballcastsim(dfm,pwn,prcr,prcd,ztech=c(0,0))
+    #### Fair election
+    #app_n_cou <- Countinggraphs(app_bal)
+    #app_n_cou$sortpre()
+    #app_n_cou$plotxy()
+    #app_n_cou$plot2d()
     ### Rigging an election
-    app_exr_cou <- Countinggraphs(app_bal)
-    app_exr_cou$sortpre()
-    app_exr_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
-    app_exr_cou$setres(polc,0)
-    app_exr_cou$manimp(init_par=c(k0=kvc[1],k1=kvc[2],k2=kvc[3]),TRUE,wn=whn)
-    app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
-    app_exm_cou$sortpre()
-    app_exm_cou$plotxy()
-    app_exm_cou$plot2d()
-    list(app_n_cou,app_exm_cou)
+    #app_exr_cou <- Countinggraphs(app_bal)
+    #app_exr_cou$sortpre()
+    #app_exr_cou$mansys(sygen=list(frm=1,pre=c("alpha","x","y"),end=c("zeta","lamda"),me=c(plnr=1,rot=0)))
+    #app_exr_cou$setres(polc,0)
+    #app_exr_cou$manimp(init_par=c(k0=kvc[1],k1=kvc[2],k2=kvc[3]),TRUE,wn=whn)
+    #app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
+    #app_exm_cou$sortpre()
+    #app_exm_cou$plotxy()
+    #app_exm_cou$plot2d()
+    list(dfm)
+    #list(app_n_cou,app_n_cou)
+    #list(app_n_cou,app_exm_cou)
   })  
   output$table_dsc_n <- renderPrint({
-    sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
-    nel <- Estimation(result()[[1]]$rdfc,1)
-    nel$regression(sugsol[1])
-    n1 <- summary(nel$regsum[[1]])
-    nel$regression(sugsol[2])
-    n2 <- summary(nel$regsum[[1]])
-    list(n1,n2)
+    #sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
+    #nel <- Estimation(result()[[1]]$rdfc,1)
+    #nel$regression(sugsol[1])
+    ##n1 <- summary(nel$regsum[[1]])
+    ##nel$regression(sugsol[2])
+    ##n2 <- summary(nel$regsum[[1]])
+    #list(n1)
+    ##list(n1,n2)
   })
   output$table_dsc_r <- renderPrint({
-    sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
-    ner <- Estimation(result()[[2]]$rdfc,1)
-    ner$regression(sugsol[1])
-    r1 <- summary(ner$regsum[[1]])
-    ner$regression(sugsol[2])
-    r2 <- summary(ner$regsum[[1]])
-    list(r1,r2)
+    #sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
+    #ner <- Estimation(result()[[2]]$rdfc,1)
+    #ner$regression(sugsol[1])
+    #r1 <- summary(ner$regsum[[1]])
+    #ner$regression(sugsol[2])
+    #r2 <- summary(ner$regsum[[1]])
+    #list(r1,r2)
   })
   # Plot 
   output$plotq_n <- renderPlot({
-    dft <- result()
-    gm1 <- dft[[1]]$pl_2dsort[[1]]
-    cowplot::plot_grid(gm1, labels = "Fair election")
+	  browser()
+    #dft <- result()
+    #gm1 <- dft[[1]]$pl_2dsort[[1]]
+    #cowplot::plot_grid(gm1, labels = "Fair election")
   })
   output$plotq_r <- renderPlot({
-    dft <- result()
-    #gm1 <- dft[[1]]$pl_2dsort[[1]]
-    gm2 <- dft[[2]]$pl_2dsort[[1]]
-    cowplot::plot_grid(gm2, labels = "Fair election")
+    #dft <- result()
+    ##gm1 <- dft[[1]]$pl_2dsort[[1]]
+    #gm2 <- dft[[2]]$pl_2dsort[[1]]
+    #cowplot::plot_grid(gm2, labels = "Fair election")
   })
   output$plotxy_n <- renderPlot({
-     dft <- result()
-     gm1 <- dft[[1]]$pl_corrxy[[1]]
-     gm3 <- dft[[1]]$pl_corrxy[[1]]
-     cowplot::plot_grid(gm1, gm3, ncol = 2, labels = c("Column 1", "Column 2"))
+     #dft <- result()
+     #gm1 <- dft[[1]]$pl_corrxy[[1]]
+     #gm3 <- dft[[1]]$pl_corrxy[[1]]
+     #cowplot::plot_grid(gm1, gm3, ncol = 2, labels = c("Column 1", "Column 2"))
   })
   output$plotxy_r <- renderPlot({
-     dft <- result()
-     gm2 <- dft[[2]]$pl_corrxy[[1]]
-     gm4 <- dft[[2]]$pl_corrxy[[1]]
-     cowplot::plot_grid(gm2, gm4, ncol = 2, labels = c("Column 1", "Column 2"))
+     #dft <- result()
+     #gm2 <- dft[[2]]$pl_corrxy[[1]]
+     #gm4 <- dft[[2]]$pl_corrxy[[1]]
+     #cowplot::plot_grid(gm2, gm4, ncol = 2, labels = c("Column 1", "Column 2"))
   })
   output$plot3d_n <- renderPlotly({
-     gdf <- result()[[1]]$rdfc %>% dplyr::select(c('alpha','x','y'))
-     mrdfc <- as.matrix(gdf)
-     z <- mrdfc[,1]
-     x <- mrdfc[,2]
-     y <- mrdfc[,3]
-     p1 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers", marker=list(size=3))
-     plotly::layout(p1,title = "Fair election")
+     #gdf <- result()[[1]]$rdfc %>% dplyr::select(c('alpha','x','y'))
+     #mrdfc <- as.matrix(gdf)
+     #z <- mrdfc[,1]
+     #x <- mrdfc[,2]
+     #y <- mrdfc[,3]
+     #p1 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers", marker=list(size=3))
+     #plotly::layout(p1,title = "Fair election")
   })
   output$plot3d_r <- renderPlotly({
-     gdf <- result()[[2]]$rdfc %>% dplyr::select(c('alpha','x','y'))
-     mrdfc <- as.matrix(gdf)
-     z <- mrdfc[,1]
-     x <- mrdfc[,2]
-     y <- mrdfc[,3]
-     p2 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers",marker = list(size = 3))
-     plotly::layout(p2,title = "Rigged election")
+     #gdf <- result()[[2]]$rdfc %>% dplyr::select(c('alpha','x','y'))
+     #mrdfc <- as.matrix(gdf)
+     #z <- mrdfc[,1]
+     #x <- mrdfc[,2]
+     #y <- mrdfc[,3]
+     #p2 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers",marker = list(size = 3))
+     #plotly::layout(p2,title = "Rigged election")
   })
 }
 shinyApp(ui = ui, server = server)

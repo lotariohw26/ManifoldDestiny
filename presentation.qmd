@@ -16,6 +16,12 @@ format:
 
 
 
+
+
+
+
+
+
 ```{r, echo=F, message=F, warning=F, results='hide'}
 #Sys.info()[['sysname']]=="Emscripten"
 ManifoldDestiny::wasmconload()
