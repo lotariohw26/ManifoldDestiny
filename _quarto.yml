@@ -38,7 +38,7 @@ website:
             href: https://lotariohw26.github.io/MD_WASMS/py/examples/
           - text: "REPL for R"
             href: https://webr.r-wasm.org/latest/
-          - text: "R and Pyhon together"
+          - text: "R and Python together"
             href: "randpython.qmd"
       - text: Shiny applications
         menu:
@@ -82,28 +82,3 @@ format:
 # script/R/addendum_ne.R
 # script/R/addendum_az.R
 # script/R/testing.R
-#
-#library(shiny)
-#
-#ui <- fluidPage(
-#  sidebarLayout(
-#    sidebarPanel(
-#      selectInput("show_panel", "Show Panel?", choices = c("Yes", "No")),
-#      conditionalPanel(
-#        condition = "input.show_panel == 'Yes'",
-#        textInput("conditional_text", "Enter some text:")
-#      )
-#    ),
-#    mainPanel(
-#      # Main content goes here
-#    )
-#  )
-#)
-#
-#server <- function(input, output) {
-#  # Server logic, if needed
-#}
-#
-#shinyApp(ui, server)
-#
-

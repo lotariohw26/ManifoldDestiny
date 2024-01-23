@@ -620,7 +620,7 @@ Countingprocess$methods(setres=function(czset=NULL,prnt=0){
     print(polynom::integral(polynom::polynomial(vec),c(0,1)))
   }
 })
-Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0),lfs=1){
+Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),man=TRUE,lfpar=list(lfs=1)){
   ## Variables
   lof <- function(kvec=NULL){
     names(kvec) <- paste0("k",seq(0,length(kvec)-1))

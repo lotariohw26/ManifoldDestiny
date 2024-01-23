@@ -32,7 +32,14 @@ ui <- fluidPage(
       textInput("kvec", "parameters", value='0,0.5,0.5'),
       selectInput("loss", "Loss function:",
                   choices = c("(alpha-alpha_s)^2" = "1","Def" = "2"), selected = "1"),
-      selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3))
+      selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
+    sidebarPanel(
+      selectInput("show_panel", "Show Panel?", choices = c("Yes", "No")),
+      conditionalPanel(
+        condition = "input.show_panel == 'Yes'",
+        textInput("conditional_text", "Enter some text:")
+      )
+    ),
     ),
     mainPanel(
       tabsetPanel(
@@ -60,6 +67,7 @@ server <- function(input, output) {
   # Create a reactive expression for the result
   result <- reactive({
     # Input values
+	  browser()
     prn <- as.numeric(strsplit(input$prec, ',')[[1]])
     pwn <- as.numeric(strsplit(input$probw, ',')[[1]])
     prcr <-  c(as.numeric(trimws(strsplit(input$prob_rv, ",")[[1]])),as.numeric(trimws(strsplit(input$prob_rm, ",")[[1]])))[c(1,3,2,4)]
@@ -90,7 +98,6 @@ server <- function(input, output) {
     			      lf="(alpha-alpha_s)^2"))
     app_exr_cou$setres(inpn,1)
     app_exr_cou$manimp(init_par=kvec,man=true,wn=c(iwtn[1],iwtn[2]),1)
-    #app_exr_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),man=true,wn=c(iwtn[1],iwtn[2]),1)
     app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
     app_exm_cou$sortpre()
     app_exm_cou$plotxy()
@@ -98,10 +105,12 @@ server <- function(input, output) {
     list(app_n_cou,app_exm_cou)
   })  
   output$table_dsc_n <- renderPrint({
-    sugsol <- c("k0+k1*x+k2*y","k0+k1*x+k2*y+k3*zeta")
+    #sugsol <- c("k0+k1*x+k2*y","k0+k1*x+k2*y+k3*zeta")
     #nel <- Estimation(result()[[1]]$rdfc,1)
     #nel$regression(sugsol[1])
     #n1 <- summary(nel$regsum[[1]])
+    #print('hallo')
+    #browser()
     #nel$regression(sugsol[2])
     #n2 <- summary(nel$regsum[[1]])
     #list(n1,n1)
