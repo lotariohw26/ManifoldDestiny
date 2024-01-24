@@ -76,8 +76,7 @@ app_ex1_cou$mansys(sygen=list(frm=1,
 app_ex1_cou$setres(0.14,1)
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 #polynom::integral(polynom::polynomial(unname(pos_int_ex1)),c(0,1))
-app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),man=true,wn=c(0,0.05),1)
-
+app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
 app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
 app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
 ######## Rigged example 2: hybrid form
@@ -90,7 +89,7 @@ app_ex2_cou$mansys(sygen=list(frm=2,
 			      lf="(alpha-alpha_h)^2"))
 app_ex2_cou$setres(0.14,0)
 pos_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
-app_ex2_cou$manimp(init_par=c(k0=0.0,k1=0.5,k2=0.5),wn=c(0,0))
+app_ex2_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
 app_ex2_out <- seloutput(selreport(app_ex2_cou$rdfc,md$app0))
 app_ex2_sim <- SimVoterdatabase(app_ex2_cou$rdfc)
 ###### Rigged example 3: Hybrid form
@@ -104,7 +103,7 @@ app_ex3_cou$mansys(sygen=list(frm=1,
 			      lf="(alpha-alpha_s)^2"))
 app_ex3_cou$setres(0.14,0)
 pos_int_ex3 <- app_ex3_cou$polyc[[1]][[1]]
-app_ex3_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),man=true,wn=c(0,0.0),1)
+app_ex3_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
 app_ex3_out <- seloutput(selreport(app_ex3_cou$rdfc,md$app0))
 app_ex3_sim <- SimVoterdatabase(app_ex3_cou$rdfc)
 #####################################################################################################################################################################

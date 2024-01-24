@@ -620,7 +620,9 @@ Countingprocess$methods(setres=function(czset=NULL,prnt=0){
     print(polynom::integral(polynom::polynomial(vec),c(0,1)))
   }
 })
-Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),man=FALSE,lfpar=list(mtd=1,lwr= c(0.0001,051,0.51),upr = c(1,1,1))){
+Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
+					man=FALSE,
+					lfpar=list(mtd=1,lwr= c(0.0001,051,0.51),upr = c(1,1,1))){
   ## Variables
   lof <- function(kvec=NULL){
     names(kvec) <- paste0("k",seq(0,length(kvec)-1))
@@ -666,7 +668,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),man=FALSE,lfpar=
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   altvec <- paste0(as.vector(unlist(allvar)),sho)
   endp <- paste0(allvec,sho)[c(4,5)]
-  if (man==TRUE){
+  if (man){
     print('manual')
     loss_ls <<- list(lsv=lv(params=init_par))
   } else {
