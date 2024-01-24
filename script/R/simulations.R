@@ -62,9 +62,9 @@ probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztech <- c(0,1)	
 app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
 ########### Normal form
-#app_n_rep <- selreport(app_bal,md$app0)
-#app_n_out <- seloutput(app_n_rep)
-#app_n_sim <- SimVoterdatabase(app_bal)
+app_n_rep <- selreport(app_bal,md$app0)
+app_n_out <- seloutput(app_n_rep)
+app_n_sim <- SimVoterdatabase(app_bal)
 ########## Rigged example 1: standard form
 app_ex1_cou <- Countinggraphs(app_bal)
 pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
@@ -77,6 +77,7 @@ app_ex1_cou$setres(0.14,1)
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 #polynom::integral(polynom::polynomial(unname(pos_int_ex1)),c(0,1))
 app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),man=true,wn=c(0,0.05),1)
+
 app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
 app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
 ######## Rigged example 2: hybrid form
