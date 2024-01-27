@@ -1,5 +1,6 @@
 set.seed(1)
 ManifoldDestiny::wasmconload()
+
 #######################################################################################################################################################
 ##### Proto example 1 and 2
 P  <- c(1,2,3,4,5,6)
@@ -73,21 +74,14 @@ app_ex1_cou$mansys(sygen=list(frm=1,
 			      end=c("zeta","lamda"),
 			      me=c(plnr=1,rot=0),
 			      lf="(alpha-alpha_s)^2"))
-app_ex1_cou$setres(0.14,1)
+app_ex1_cou$setres(0.17,1)
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
-app_ex1_cou$loss_ls[1]
-#app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.20,k2=0.60),wn=c(0,0),man=FALSE,lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1)))
-#app_ex1_cou$loss_ls[2]
+View(app_ex1_cou$loss_df)
+mean(Countingprocess(dplyr::select(app_ex1_cou$rdfc,P,R,S,T,U,V))$rdfci$alpha)
 
-#polynom::integral(polynom::polynomial(unname(pos_int_ex1)),c(0,1))
-#app_ex1_o <- Countinggraphs(app_ex1_cou$rdfc)
-#app_ex1_o$sortpre()
-#app_ex1_o$plotxy()
-#app_ex1_o$plot2d()
-#app_ex1_o$plotly3d()
-##app_ex1_o$pl_3d_mani[[1]]
-
+sum(app_ex1_cou$loss_df$U-app_ex1_cou$loss_df$U_m)
+sum(app_ex1_cou$loss_df$V-app_ex1_cou$loss_df$V_m)
 
 app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
 app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
@@ -97,10 +91,6 @@ pri_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
 app_ex2_cou$mansys(sygen=list(frm=2,
 			      pre=c("alpha","h","g"),
 			      end=c("Gamma","Omega"),
-
-
-
-
 			      me=c(plnr=1,rot=0),
 			      lf="(alpha-alpha_h)^2"))
 app_ex2_cou$setres(0.14,0)
@@ -161,4 +151,24 @@ concl_appps <- data.frame(case=casevec,
 #
 ## Print the minimum value of the function
 #cat("Minimum value of the function:", result$value, "\n")
+#app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.20,k2=0.60),wn=c(0,0),man=FALSE,lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1)))
+#app_ex1_cou$loss_ls[2]
 #
+##polynom::integral(polynom::polynomial(unname(pos_int_ex1)),c(0,1))
+#head(app_bal)
+#head(dplyr::arrange(app_ex1_o$rdfc,P))
+#app_bal
+#2+2
+polynom::integral(polynom::polynomial(unname(pri_int_ex1)),c(0,1))
+polynom::integral(polynom::polynomial(unname(pos_int_ex1)),c(0,1))
+app_ex1_o <- Countinggraphs(app_ex1_cou$rdfc)
+app_ex1_o$sortpre()
+app_ex1_o$plotxy()
+app_ex1_o$plot2d()
+app_ex1_o$plotly3d()
+app_ex1_o$pl_3d_mani
+#
+#
+##app_ex1_cou$loss_ls[1]
+##
+#View(app_ex1_cou$rdfc)

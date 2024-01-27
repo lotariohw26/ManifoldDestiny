@@ -1,6 +1,6 @@
 #' @export wasmconload
 wasmconload <- function(){
-  ifelse(Sys.info()[['sysname']]=="Emscripten", 
+  ifelse(Sys.info()[['sysname']]=="Emscripten",
   {
       # Commands to be executed if the condition is TRUE
       webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
@@ -28,9 +28,9 @@ wasmconload <- function(){
   library(AlgebraicHaploPackage)
 }
 #########################################################################################################################################################
-#' @export py_polysolverW
+# ' @export py_polysolverW
 #py_polysolverW <- function(degree=1,kvec=NULL){
-#  vec <- kvec[!is.na(kvec)] 
+#  vec <- kvec[!is.na(kvec)]
 #  # Linear
 #  if (degree==1) {
 #    retv <- Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=0,D=0))[1]
@@ -47,18 +47,18 @@ wasmconload <- function(){
 manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
   polyc <- setNames(as.vector(lapply(enfl, as.character)),LETTERS[1:5])
   la_e <- unlist(polyc[c(LETTERS[1:5])])
-  pnr <- sum(la_e!="0") 
+  pnr <- sum(la_e!="0")
   rootdf <- dfa  %>%
     dplyr::mutate(A=pareq(la_e[1],c(as.list(.[,])))) %>%
     dplyr::mutate(B=pareq(la_e[2],c(as.list(.[,])))) %>%
-    dplyr::mutate(C=pareq(la_e[3],c(as.list(.[,])))) %>% 
-    dplyr::mutate(D=pareq(la_e[3],c(as.list(.[,])))) %>% 
+    dplyr::mutate(C=pareq(la_e[3],c(as.list(.[,])))) %>%
+    dplyr::mutate(D=pareq(la_e[3],c(as.list(.[,])))) %>%
     dplyr::mutate(E=pareq(la_e[3],c(as.list(.[,])))) %>%
     dplyr::group_by(P) %>%
     #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
     dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
     dplyr::mutate(!!paste0(svar):=Re(polsolv[1])) %>%
-    dplyr::ungroup() 
+    dplyr::ungroup()
   rootdf[[svar]]
 }
 #' @export gmp
@@ -78,7 +78,7 @@ gmp <- function(terms=c("x2","xy","y2","x3","x2y","y2x","y3")){
       cht <- substring(term,lcl,lcl+1)
       if (substring(cht,2,2) %in% nrc){
         aaa <- paste0(rep(substring(cht,1,1),as.numeric(substring(cht,2,2))),collapse="*")
-      } 
+      }
       else{
        aaa  <- substring(cht,1,1)
       }
@@ -384,7 +384,7 @@ erotation <-function(
     ##
     dplyr::mutate(u3=Ralv[[3]](rpar[3])[1,1]*u2+Ralv[[3]](rpar[3])[1,2]*v2+Ralv[[3]](rpar[3])[1,3]*w2) %>%
     dplyr::mutate(v3=Ralv[[3]](rpar[3])[2,1]*u2+Ralv[[3]](rpar[3])[2,2]*v2+Ralv[[3]](rpar[3])[2,3]*w2) %>%
-    dplyr::mutate(w3=Ralv[[3]](rpar[3])[3,1]*u2+Ralv[[3]](rpar[3])[3,2]*v2+Ralv[[3]](rpar[3])[3,3]*w2) 
+    dplyr::mutate(w3=Ralv[[3]](rpar[3])[3,1]*u2+Ralv[[3]](rpar[3])[3,2]*v2+Ralv[[3]](rpar[3])[3,3]*w2)
     #dplyr::mutate(slide=floor(z*50))
 }
 #' @export ballcount
@@ -458,6 +458,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   #fdm <- paste0(rprojroot::find_rstudio_root_file(),'/script/python/pysympy.py')
   #reticulate::source_python(fdm)
   #eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
+
   se <<- eqpar$meqs
   lx <<- eqpar$meql
   ils <- c('S','T','U','V')
@@ -639,7 +640,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       ### Presetting the Manifold object
       dplyr::mutate(!!allvec[3]:=manobj(enfl=enf[[3]],.[,],allvec[3])) %>%
       #!RWASM
-      #dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,rdfci,allvec[3])) 
+      #dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,rdfci,allvec[3]))
       ### Adding some noise
       dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) %>%
       ### Backsolving for the two remaining parameter
@@ -647,13 +648,13 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       dplyr::mutate(!!allvec[5]:=pareq(se[[endp[2]]][2],c(as.list(.[,])))) %>%
       dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
       ##### Backsolving for ballots
-      dplyr::mutate(S_m=floor(pareq(se[[paste0('S',sho)]][1],as.list(.[]))))  %>%
-      dplyr::mutate(T_m=floor(pareq(se[[paste0('T',sho)]][1],as.list(.[]))))  %>%
+      dplyr::mutate(S_m=pareq(se[[paste0('S',sho)]][1],as.list(.[])))  %>%
+      dplyr::mutate(T_m=pareq(se[[paste0('T',sho)]][1],as.list(.[])))  %>%
       dplyr::mutate(U_m=floor(pareq(se[[paste0('U',sho)]][1],as.list(.[]))))  %>%
       dplyr::mutate(V_m=floor(pareq(se[[paste0('V',sho)]][1],as.list(.[]))))  %>%
       #! other options
       dplyr::mutate(Z_m=S_m+T_m+U_m+V_m) %>%
-      dplyr::mutate(R_m=R) 
+      dplyr::mutate(R_m=R)
       ## Loss value
   }
   lv <- function(params=NULL){
@@ -796,7 +797,7 @@ Countinggraphs$methods(rotgraph=function(){
       mode = "markers",
       type = "scatter3d",
       marker = list(color = "red")
-    ) 
+    )
     %>% layout(scene = list(aspectmode = "cube"))
   )
 })

@@ -6,6 +6,8 @@ format:
     smaller: true
     toc-depth: 1
     toc: true 
+execute: 
+  cache: false
 #webr: 
 #  show-startup-message: true    # Disable displaying status of webR initialization
 #  packages: ['dplyr','purrr','magrittr','data.table','tidyr'] # Install R packages on document open
@@ -42,6 +44,7 @@ library(kableExtra)
  Ed. Solomon
 
 > "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
+
 
 ## `r metad$toc$sec1$unm[1]`
 
@@ -295,6 +298,7 @@ If none of this three cases are satisfied, variation in $\zeta_i$ should explain
 [Application 1: Election process simulator]({{< var shn1 >}})
 
 ## `r metad$toc$sec1$unm[7]`
+
 
 1. Differenc in the cost of voting (e.g., topology, voting rules, dropboxes, socio economics etc.) across precincts $\Rightarrow$ 
 1. Make changes to the likelihood of voting $\Rightarrow$ 
@@ -639,25 +643,22 @@ Election outome
 #sum(dplyr::select(app_ex1_out[['rdfc']],S,U))/sum(dplyr::select(app_ex1_out[['rdfc']],S,T,U,V))
 polynom::integral(round(polynom::polynomial(unname(pos_int_ex3))),c(0,1))
 ```
-```{r}
-knitr::knit_exit()
-```
-
 
 ---
 
 ## `r metad$toc$sec2$unm[5]`
 
-- Loss function
-  - $M(,)=$x+y$
-    - Use: Linear, quadratic, cubic or quartic (all have analytical solutions)
-    - Also: Euler rotation
-  - System approach Demands mulitvariate Manifold Equations
-    - Abc
-    - Def
-  - Constrain on implementation
-    - Flipping votes on one mode
-    - Vote registration until upper limit
+- Specify a loss function
+  - $\sum_{p=1}^{P}(\alpha_p-\overline{\alpha})^2$
+- $M(,)=$x+y$
+  - Use: Linear, quadratic, cubic or quartic (all have analytical solutions)
+  - Also: Euler rotation
+- System approach Demands mulitvariate Manifold Equations
+  - Univariate manifold Equation
+  - Multivariate Manifold Equations
+- Constrain on implementation
+  - Flipping votes on one mode
+  - Vote registration until upper limit
 
 ---
 
@@ -710,6 +711,8 @@ app_n_out[['resp']]
 
 :::
 
+
+
 ## `r metad$toc$sec3$unm[2]`
 
 **Example 1: Normal form**
@@ -754,6 +757,9 @@ app_ex1_out[['resp']]
 
 :::
 
+```{r}
+knitr::knit_exit()
+```
 
 ##
 
@@ -899,12 +905,12 @@ If we can walk through all of the **four** steps here, property 1<sup>st</sup> a
 
 [Application 3: Rigged election analyzer]({{< var shn3 >}})
 
-```{r}
-knitr::knit_exit()
-```
 
 # `r metad$toc$sec6$nmn`
 
+```{r}
+knitr::knit_exit()
+```
 
 ```{r, echo=FALSE, results='asis',warning=F}
 params <- list(name="1")
