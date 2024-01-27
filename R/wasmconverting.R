@@ -622,11 +622,11 @@ Countingprocess$methods(setres=function(czset=NULL,prnt=0){
 })
 Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
 					man=FALSE,
-					lfpar=list(mtd=1,lwr= c(0.0001,051,0.51),upr = c(1,1,1))){
+					lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1))){
   ## Variables
   lof <- function(kvec=NULL){
     names(kvec) <- paste0("k",seq(0,length(kvec)-1))
-    #print(kvec)
+    print(kvec)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -668,19 +668,13 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   altvec <- paste0(as.vector(unlist(allvar)),sho)
   endp <- paste0(allvec,sho)[c(4,5)]
-  if (man){
-    print('manual')
-    loss_ls <<- list(lsv=lv(params=init_par))
+  if (identical(man,TRUE)){
+    #print('non-algo')
+    loss_ls <<- list(value=lv(params=init_par))
   } else {
-    print('nonmanual')
-    lome <- c("Nelder-Mead","BFGS","CG","L-BFGS-B")[lfpar$mtd]
-    loss_ls <<- optim(
-      par =as.vector(init_par),
-      fn = lv,
-      method = lome
-      #lower = lfpar$lwr,
-      #upper = lfpar$upr 
-    )
+    lome <- c("Nelder-Mead", "BFGS", "CG", "L-BFGS-B", "SANN","Brent")[1] #[lfpar$mtd]
+    argvec <- list(c(1,2,3),c(1,2,3,4,5))[[ifelse(lome == 4 || lome == 6, 2, 1)]]
+    loss_ls <<- do.call(optim,list(par=as.vector(init_par),fn=lv,method=lome,lower=lfpar$lwr,upper=lfpar$lwr)[argvec])[c(2,1,3,4,5)]
   }
   # Deliver
   rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m,LSV) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) %>% ballcount(se=se)

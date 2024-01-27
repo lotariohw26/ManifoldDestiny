@@ -556,9 +556,10 @@ Countingprocess$methods(manimp=function(init_par=NULL,man=TRUE,wn=c(0,0)){
     clvl <- sum(lofdf$LSV)+ifelse(nrv>0,nrv*sum(loss_df$LSV),0)
   }
   if (man) {
-    man_lores <- lv(param=init_par)
+    #man_lores <- lv(param=init_par)
   } else {
-    opt_lores <- optim(par = init_par, fn = lv, method='L-BFGS-B',lower=c(k0=0,k1=0,k2=0),upper=c(k0=0,k1=0,k2=0))
+    #do.call(optim,c(list())
+    #opt_lores <- optim(par = init_par, fn = lv, method='L-BFGS-B',lower=c(k0=0,k1=0,k2=0),upper=c(k0=0,k1=0,k2=0))
   }
   rdfc <<- dplyr::select(loss_df,P,R,S,T,U,V) %>% ballcount(se=se)
 })

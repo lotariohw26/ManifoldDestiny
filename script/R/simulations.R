@@ -75,8 +75,12 @@ app_ex1_cou$mansys(sygen=list(frm=1,
 			      lf="(alpha-alpha_s)^2"))
 app_ex1_cou$setres(0.14,1)
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
+app_ex1_cou$manimp(init_par=c(k0=0.2,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
+app_ex1_cou$loss_ls[1]
+app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.20,k2=0.60),wn=c(0,0),man=FALSE,lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1)))
+app_ex1_cou$loss_ls[2]
+
 #polynom::integral(polynom::polynomial(unname(pos_int_ex1)),c(0,1))
-app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
 app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
 app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
 ######## Rigged example 2: hybrid form
@@ -85,6 +89,10 @@ pri_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
 app_ex2_cou$mansys(sygen=list(frm=2,
 			      pre=c("alpha","h","g"),
 			      end=c("Gamma","Omega"),
+
+
+
+
 			      me=c(plnr=1,rot=0),
 			      lf="(alpha-alpha_h)^2"))
 app_ex2_cou$setres(0.14,0)
@@ -129,3 +137,20 @@ concl_appps <- data.frame(case=casevec,
 ################################################################################################################################################################
 #sum(dplyr::select(app_n_out[['rdfc']],S,U))/sum(dplyr::select(app_n_out[['rdfc']],S,T,U,V))
 #sum(dplyr::select(app_ex1_cou[['rdfc']],S,U))/sum(dplyr::select(app_ex1_cou[['rdfc']],S,T,U,V))
+# Create a function to optimize
+#my_function <- function(x) {
+#  return((x - 2)^2)
+#}
+#
+## Set initial parameter values
+#initial_params <- c(0)
+#
+## Use do.call and optim to optimize the function
+#result <- do.call(optim, c(list(par = initial_params, fn = my_function), list()))
+#
+## Print the optimized parameter values
+#cat("Optimized parameter values:", result$par, "\n")
+#
+## Print the minimum value of the function
+#cat("Minimum value of the function:", result$value, "\n")
+#
