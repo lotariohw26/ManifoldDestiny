@@ -75,12 +75,20 @@ app_ex1_cou$mansys(sygen=list(frm=1,
 			      lf="(alpha-alpha_s)^2"))
 app_ex1_cou$setres(0.14,1)
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
-app_ex1_cou$manimp(init_par=c(k0=0.2,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
+app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
 app_ex1_cou$loss_ls[1]
-app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.20,k2=0.60),wn=c(0,0),man=FALSE,lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1)))
-app_ex1_cou$loss_ls[2]
+#app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.20,k2=0.60),wn=c(0,0),man=FALSE,lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1)))
+#app_ex1_cou$loss_ls[2]
 
 #polynom::integral(polynom::polynomial(unname(pos_int_ex1)),c(0,1))
+#app_ex1_o <- Countinggraphs(app_ex1_cou$rdfc)
+#app_ex1_o$sortpre()
+#app_ex1_o$plotxy()
+#app_ex1_o$plot2d()
+#app_ex1_o$plotly3d()
+##app_ex1_o$pl_3d_mani[[1]]
+
+
 app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
 app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
 ######## Rigged example 2: hybrid form

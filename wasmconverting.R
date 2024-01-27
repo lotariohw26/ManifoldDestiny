@@ -469,6 +469,7 @@ Countingprocess$methods(sortpre=function(form=1,
 					 polyn=6,
 					 sortby='alpha'
 					 ){
+  browser()
   frmsel <- list(c(1,2,4,10,3),c(6,7,9,5,8),c(11,12,14,4,13),c(1,2,4,11,12,15))[[form]]
   selvar <- unname(unlist(parameters))[frmsel]
   psel <<- selvar[1:ifelse(form %in% 1:3,5,6)]

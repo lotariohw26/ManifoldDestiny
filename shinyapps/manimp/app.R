@@ -67,19 +67,20 @@ server <- function(input, output) {
   # Create a reactive expression for the result
   result <- reactive({
     # Input values
-	  browser()
+    #browser()
+    ## Normal election parameter values
     prn <- as.numeric(strsplit(input$prec, ',')[[1]])
     pwn <- as.numeric(strsplit(input$probw, ',')[[1]])
     prcr <-  c(as.numeric(trimws(strsplit(input$prob_rv, ",")[[1]])),as.numeric(trimws(strsplit(input$prob_rm, ",")[[1]])))[c(1,3,2,4)]
     prcd <-  c(as.numeric(trimws(strsplit(input$prob_rv, ",")[[1]])),as.numeric(trimws(strsplit(input$prob_dm, ",")[[1]])))[c(1,3,2,4)]
-    #prcr <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10) #c(input$prob_rv,input$prob_rm)
-    #prcd <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10) #c(input$prob_dv,input$prob_dm)
+    ## Rigged election parameter values
     ifrm <- as.numeric(input$form)
-    inpn <- input$pn
-    iwtn <- as.numeric(strsplit(input$wn, ',')[[1]])
-    kvec <- as.numeric(strsplit(input$kvec, ',')[[1]])
     ipre <- unlist(strsplit(trimws(input$prevar), '\\s+'))
     iend <- unlist(strsplit(trimws(input$endvar), '\\s+'))
+    inpn <- input$pn
+    kvec <- as.numeric(strsplit(input$kvec, ',')[[1]])
+    iwtn <- as.numeric(strsplit(input$wn, ',')[[1]])
+    loss <- input$loss
     #### Simulation of ballot voting
     dfm <- (function(x){data.frame(P = seq(1, x), RV = as.integer(pmax(rnorm(x, prn[2], prn[3]), 0)))})(prn[1])
     app_bal <- ballcastsim(dfm,pwn,prcr,prcd,ztech=c(0,0))
@@ -92,12 +93,13 @@ server <- function(input, output) {
     app_exr_cou <- Countinggraphs(app_bal)
     app_exr_cou$sortpre()
     app_exr_cou$mansys(sygen=list(frm=ifrm,
-    			      pre=ipre,
-    			      end=iend,
-    			      me=c(plnr=1,rot=0),
-    			      lf="(alpha-alpha_s)^2"))
+      pre=ipre,
+      end=iend,
+      me=c(plnr=1,rot=0),
+      lf=loss))
     app_exr_cou$setres(inpn,1)
-    app_exr_cou$manimp(init_par=kvec,man=true,wn=c(iwtn[1],iwtn[2]),1)
+    app_exr_cou$manimp(init_par=kvec,wn=iwtn,man=c(FALSE,TRUE)[1],lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(1,1,1)))
+    #app_exr_cou$manimp(init_par=kvec,wn=iwtn,man=c(FALSE,TRUE)[2],lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(1,1,1))
     app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
     app_exm_cou$sortpre()
     app_exm_cou$plotxy()
@@ -129,6 +131,7 @@ server <- function(input, output) {
   })
   # Plot 
   output$plotq_n <- renderPlot({
+#	  browser()
     dft <- result()
     gm1 <- dft[[1]]$pl_2dsort[[1]]
     cowplot::plot_grid(gm1, labels = "Fair election")
@@ -171,7 +174,4 @@ server <- function(input, output) {
   })
 }
 shinyApp(ui = ui, server = server)
-
-
-
 
