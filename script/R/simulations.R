@@ -75,8 +75,13 @@ app_ex1_cou$mansys(sygen=list(frm=1,
 			      me=c(plnr=1,rot=0),
 			      lf="(alpha-alpha_s)^2"))
 app_ex1_cou$setres(0.17,1)
+app_ex1_cou$enf[[1]]
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
+sum(app_ex1_cou$rdfc[c('S','U')])/sum(app_ex1_cou$rdfc[c('S','T','U','V')])
+
+
+
 View(app_ex1_cou$loss_df)
 mean(Countingprocess(dplyr::select(app_ex1_cou$rdfc,P,R,S,T,U,V))$rdfci$alpha)
 

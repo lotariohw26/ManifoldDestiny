@@ -628,6 +628,10 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   lof <- function(kvec=NULL){
     names(kvec) <- paste0("k",seq(0,length(kvec)-1))
     print(kvec)
+    #    browser()
+    #View(loss_df)
+    #loss_df$U_m-loss_df$U
+    #loss_df$V_m-loss_df$U
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -656,6 +660,9 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       dplyr::mutate(Z_m=S_m+T_m+U_m+V_m) %>%
       dplyr::mutate(R_m=R)
       ## Loss value
+      #browser()
+      #sum(loss_df[c('S_m','U_m')])/sum(loss_df[c('S_m','T_m','U_m','V_m')])
+
   }
   lv <- function(params=NULL){
     lofdf <- lof(kvec=params)
@@ -678,7 +685,10 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
     loss_ls <<- do.call(optim,list(par=as.vector(init_par),fn=lv,method=lome,lower=lfpar$lwr,upper=lfpar$lwr)[argvec])[c(2,1,3,4,5)]
   }
   # Deliver
-  rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m,LSV) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) %>% ballcount(se=se)
+  #browser()
+  #sum(loss_df[c('S_m','U_m')])/sum(loss_df[c('S_m','T_m','U_m','V_m')])
+  #sum(rdfc[c('S_m','U_m')])/sum(rdfc[c('S','T','U','V')])
+  rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m,LSV) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) #%>% ballcount(se=se)
 })
 ############################################################################################################################################################ #########################################################################################################################################################
 #' @export Countinggraphs
