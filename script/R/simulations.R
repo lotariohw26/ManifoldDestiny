@@ -1,6 +1,5 @@
 set.seed(1)
 ManifoldDestiny::wasmconload()
-
 #######################################################################################################################################################
 ##### Proto example 1 and 2
 P  <- c(1,2,3,4,5,6)
@@ -71,23 +70,12 @@ app_ex1_cou <- Countinggraphs(app_bal)
 pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 app_ex1_cou$mansys(sygen=list(frm=1,
 			      pre=c("alpha","x","y"),
-			      end=c("zeta","lamda"),
+			      end=c("zeta","lamda","Omega"),
 			      me=c(plnr=1,rot=0),
 			      lf="(alpha-alpha_s)^2"))
-app_ex1_cou$setres(0.17,1)
-app_ex1_cou$enf[[1]]
+app_ex1_cou$setres(0.19,1)
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
-sum(app_ex1_cou$rdfc[c('S','U')])/sum(app_ex1_cou$rdfc[c('S','T','U','V')])
-
-
-
-View(app_ex1_cou$loss_df)
-mean(Countingprocess(dplyr::select(app_ex1_cou$rdfc,P,R,S,T,U,V))$rdfci$alpha)
-
-sum(app_ex1_cou$loss_df$U-app_ex1_cou$loss_df$U_m)
-sum(app_ex1_cou$loss_df$V-app_ex1_cou$loss_df$V_m)
-
 app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
 app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
 ######## Rigged example 2: hybrid form
@@ -95,10 +83,10 @@ app_ex2_cou <- Countinggraphs(app_bal)
 pri_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
 app_ex2_cou$mansys(sygen=list(frm=2,
 			      pre=c("alpha","h","g"),
-			      end=c("Gamma","Omega"),
+			      end=c("Gamma","Omega","lamda"),
 			      me=c(plnr=1,rot=0),
 			      lf="(alpha-alpha_h)^2"))
-app_ex2_cou$setres(0.14,0)
+app_ex2_cou$setres(0.19,0)
 pos_int_ex2 <- app_ex2_cou$polyc[[1]][[1]]
 app_ex2_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
 app_ex2_out <- seloutput(selreport(app_ex2_cou$rdfc,md$app0))
@@ -112,7 +100,7 @@ app_ex3_cou$mansys(sygen=list(frm=1,
 			      end=c("zeta","lamda"),
 			      me=c(plnr=1,rot=0),
 			      lf="(alpha-alpha_s)^2"))
-app_ex3_cou$setres(0.14,0)
+app_ex3_cou$setres(0.19,0)
 pos_int_ex3 <- app_ex3_cou$polyc[[1]][[1]]
 app_ex3_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
 app_ex3_out <- seloutput(selreport(app_ex3_cou$rdfc,md$app0))
@@ -164,14 +152,17 @@ concl_appps <- data.frame(case=casevec,
 #head(dplyr::arrange(app_ex1_o$rdfc,P))
 #app_bal
 #2+2
-polynom::integral(polynom::polynomial(unname(pri_int_ex1)),c(0,1))
-polynom::integral(polynom::polynomial(unname(pos_int_ex1)),c(0,1))
-app_ex1_o <- Countinggraphs(app_ex1_cou$rdfc)
-app_ex1_o$sortpre()
-app_ex1_o$plotxy()
-app_ex1_o$plot2d()
-app_ex1_o$plotly3d()
-app_ex1_o$pl_3d_mani
+#polynom::integral(polynom::polynomial(unname(pri_int_ex1)),c(0,1))
+#polynom::integral(polynom::polynomial(unname(pos_int_ex1)),c(0,1))
+#app_ex1_o <- Countinggraphs(app_ex1_cou$rdfc)
+#View(app_ex1_o$rdfci)
+#mean(app_ex1_o$rdfci$alpha)
+#app_ex1_o$sortpre()
+#app_ex1_o$plotxy()
+#app_ex1_o$plot2d()
+#app_ex1_o$plotly3d()
+#app_ex1_o$pl_3d_mani
+#app_ex1_cou$rdfc[c('U','V')]/sum(app_ex1_cou$rdfc[c('S','T')])
 #
 #
 ##app_ex1_cou$loss_ls[1]

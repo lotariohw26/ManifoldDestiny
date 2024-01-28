@@ -458,7 +458,6 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   #fdm <- paste0(rprojroot::find_rstudio_root_file(),'/script/python/pysympy.py')
   #reticulate::source_python(fdm)
   #eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
-
   se <<- eqpar$meqs
   lx <<- eqpar$meql
   ils <- c('S','T','U','V')
@@ -615,7 +614,10 @@ Countingprocess$methods(mansys=function(sygen=NULL){
 })
 Countingprocess$methods(setres=function(czset=NULL,prnt=0){
   frp <- mansysl$frm
-  if (!is.null(czset)) polyc[[frp]][[1]][[1]] <<- czset
+  if (!is.null(czset)) {
+    polyc[[frp]][[1]][[1]] <<- czset   
+    enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
+  }
   if (prnt==1) {
     vec <- unname(polyc[[frp]][[1]])
     print(polynom::integral(polynom::polynomial(vec),c(0,1)))
@@ -627,11 +629,6 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   ## Variables
   lof <- function(kvec=NULL){
     names(kvec) <- paste0("k",seq(0,length(kvec)-1))
-    print(kvec)
-    #    browser()
-    #View(loss_df)
-    #loss_df$U_m-loss_df$U
-    #loss_df$V_m-loss_df$U
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -650,6 +647,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       ### Backsolving for the two remaining parameter
       dplyr::mutate(!!allvec[4]:=pareq(se[[endp[1]]][2],c(as.list(.[,])))) %>%
       dplyr::mutate(!!allvec[5]:=pareq(se[[endp[2]]][2],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!allvec[6]:=pareq(se[[endp[2]]][2],c(as.list(.[,])))) %>%
       dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
       ##### Backsolving for ballots
       dplyr::mutate(S_m=pareq(se[[paste0('S',sho)]][1],as.list(.[])))  %>%
@@ -660,9 +658,6 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       dplyr::mutate(Z_m=S_m+T_m+U_m+V_m) %>%
       dplyr::mutate(R_m=R)
       ## Loss value
-      #browser()
-      #sum(loss_df[c('S_m','U_m')])/sum(loss_df[c('S_m','T_m','U_m','V_m')])
-
   }
   lv <- function(params=NULL){
     lofdf <- lof(kvec=params)
