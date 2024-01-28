@@ -445,6 +445,7 @@ Countingprocess <- setRefClass("Countingprocess",
 					   gensysl='list',
 					   exnrs='vector',
 					   allvar='list',
+					   allstuv='list',
 					   loss_df='data.frame',
 					   loss_ls='list'
 					   ))
@@ -601,6 +602,7 @@ Countingprocess$methods(mansys=function(sygen=NULL){
   mansysl <<- sygen
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   allvar <<- list(pre=mansysl$pre,end=mansysl$end)
+  allstuv <<- list(mansysl$stuv)
   exnrs <<- gsub('v',mansysl$pre[2], gsub('u',mansysl$pre[3],peqs[mansysl$me[['plnr']]]))
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
@@ -629,6 +631,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   ## Variables
   lof <- function(kvec=NULL){
     names(kvec) <- paste0("k",seq(0,length(kvec)-1))
+    #View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -650,13 +653,15 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       dplyr::mutate(!!allvec[6]:=pareq(se[[endp[2]]][2],c(as.list(.[,])))) %>%
       dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
       ##### Backsolving for ballots
-      dplyr::mutate(S_m=pareq(se[[paste0('S',sho)]][1],as.list(.[])))  %>%
-      dplyr::mutate(T_m=pareq(se[[paste0('T',sho)]][1],as.list(.[])))  %>%
-      dplyr::mutate(U_m=floor(pareq(se[[paste0('U',sho)]][1],as.list(.[]))))  %>%
-      dplyr::mutate(V_m=floor(pareq(se[[paste0('V',sho)]][1],as.list(.[]))))  %>%
+      dplyr::mutate(!!stuv[1]:=pareq(se[[paste0('S',sho)]][1],as.list(.[])))  %>%
+      dplyr::mutate(!!stuv[2]:=pareq(se[[paste0('T',sho)]][1],as.list(.[])))  %>%
+      dplyr::mutate(!!stuv[3]:=floor(pareq(se[[paste0('U',sho)]][1],as.list(.[]))))  %>%
+      dplyr::mutate(!!stuv[4]:=floor(pareq(se[[paste0('V',sho)]][1],as.list(.[]))))  %>%
       #! other options
       dplyr::mutate(Z_m=S_m+T_m+U_m+V_m) %>%
-      dplyr::mutate(R_m=R)
+      dplyr::mutate(R_m=R) 
+      ## testing
+      #dplyr::mutate(alpha_test=(S_m+U_m)/(Z_m))
       ## Loss value
   }
   lv <- function(params=NULL){
@@ -668,6 +673,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   }
   # Init
   allvec <- c(unlist(allvar$pre),unlist(allvar$end))
+  stuv <- paste0(c(unlist(allstuv)),'_m')
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   altvec <- paste0(as.vector(unlist(allvar)),sho)
   endp <- paste0(allvec,sho)[c(4,5)]
@@ -680,10 +686,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
     loss_ls <<- do.call(optim,list(par=as.vector(init_par),fn=lv,method=lome,lower=lfpar$lwr,upper=lfpar$lwr)[argvec])[c(2,1,3,4,5)]
   }
   # Deliver
-  #browser()
-  #sum(loss_df[c('S_m','U_m')])/sum(loss_df[c('S_m','T_m','U_m','V_m')])
-  #sum(rdfc[c('S_m','U_m')])/sum(rdfc[c('S','T','U','V')])
-  rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m,LSV) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) #%>% ballcount(se=se)
+  rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m,LSV) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) %>% ballcount(se=se)
 })
 ############################################################################################################################################################ #########################################################################################################################################################
 #' @export Countinggraphs
