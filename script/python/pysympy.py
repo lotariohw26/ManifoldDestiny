@@ -37,7 +37,7 @@ h_h       = [Eq(h,U/(T+U))]
 Gamma_h   = [Eq(Gamma,(T+U)/(S+V)),Eq(Gamma,(g-alpha)/(alpha-h))]
 alpha_h   = [Eq(alpha,(S+U)/(S+T+U+V)),Eq(alpha,(g+Gamma*h)/(1+Gamma))]
 Omega_h   = [Eq(Omega,(S+T)/(S+T+U+V)),Eq(Omega,(g+Gamma*(1-g))/(Gamma+1)),Eq(Omega,(2*g+Gamma)/(Gamma+1)-alpha)]
-lamda_h   = [Eq(Omega,Gamma/(1+Gamma))]
+lamda_h   = [Eq(lamda,(S+V)/(S+T+U+V)),Eq(lamda,Gamma/(1+Gamma))]
 ###############################################################################################################################
 ###### Oppostion form proportions
 xi_o      = [Eq(xi,(T+V)/(S+U)),Eq(xi,(m-Omega)/(Omega-n)),Eq(xi,(m-lamda)/(lamda-(1-n)))]
@@ -55,8 +55,8 @@ V_s = [Eq(v,(1-y)*zeta*(S+T))]
 ###
 S_h = [Eq(s,S)]
 T_h = [Eq(t,T)]
-U_h = [Eq(u,lamda*Z-S)]
-V_h = [Eq(v,(1-lamda)*Z-T)]
+U_h = [Eq(u,(1-lamda)*Z-T)]
+V_h = [Eq(v,lamda*Z-S)]
 ###
 S_o = [Eq(s,S),Eq(s,Z*n/(1+xi))]
 T_o = [Eq(t,m*(Z-S-U)),Eq(t,(Z*m)/(1+1/xi))]

@@ -631,7 +631,6 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   ## Variables
   lof <- function(kvec=NULL){
     names(kvec) <- paste0("k",seq(0,length(kvec)-1))
-    #View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -650,7 +649,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       ### Backsolving for the two remaining parameter
       dplyr::mutate(!!allvec[4]:=pareq(se[[endp[1]]][2],c(as.list(.[,])))) %>%
       dplyr::mutate(!!allvec[5]:=pareq(se[[endp[2]]][2],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!allvec[6]:=pareq(se[[endp[2]]][2],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!allvec[6]:=pareq(se[[endp[3]]][2],c(as.list(.[,])))) %>%
       dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
       ##### Backsolving for ballots
       dplyr::mutate(!!stuv[1]:=pareq(se[[paste0('S',sho)]][1],as.list(.[])))  %>%
@@ -676,7 +675,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   stuv <- paste0(c(unlist(allstuv)),'_m')
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   altvec <- paste0(as.vector(unlist(allvar)),sho)
-  endp <- paste0(allvec,sho)[c(4,5)]
+  endp <- paste0(allvec,sho)[c(4,5,6)]
   if (identical(man,TRUE)){
     #print('non-algo')
     loss_ls <<- list(value=lv(params=init_par))
@@ -686,6 +685,13 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
     loss_ls <<- do.call(optim,list(par=as.vector(init_par),fn=lv,method=lome,lower=lfpar$lwr,upper=lfpar$lwr)[argvec])[c(2,1,3,4,5)]
   }
   # Deliver
+  #View(rdfc)
+  #loss_df[[c('S_m')]]+loss_df[[c('U_m')]])/loss_df[['Z_m']]
+  #browser()
+  #View(loss_df)
+  #mean((loss_df[[c('S_m')]]+loss_df[[c('V_m')]])/loss_df[['Z_m']])
+  #mean((loss_df[[c('S_m')]]+loss_df[[c('U_m')]])/loss_df[['Z_m']])
+  #View(rdfc)
   rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m,LSV) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) %>% ballcount(se=se)
 })
 ############################################################################################################################################################ #########################################################################################################################################################
