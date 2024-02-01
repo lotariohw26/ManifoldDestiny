@@ -653,6 +653,8 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   #loss_df[['Z']][1]*(loss_df[['lamda']][1])-loss_df$S[1]
   #loss_df[['Z']][1]*(1-loss_df[['lamda']][1])
   #(12+14)/loss_df[['Z']][1]
+    #browser()
+    #View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%

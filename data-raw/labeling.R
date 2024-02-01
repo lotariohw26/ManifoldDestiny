@@ -46,7 +46,15 @@ peqs <-c(
 usethis::use_data(peqs, overwrite = TRUE)
 ###############################################################################################################
 ###############################################################################################################
-#ManifoldDestiny::bm()
+ManifoldDestiny::bm()
+#gamma=(T+U)/(S+V)
+#(S+V)*gamma=(T+U+S+V)
+#(S+V)*gamma+S+V=(T+U+S+V)
+#(S+V)(gamma+1)=(T+U+S+V)
+#(gamma+1)=(T+U+S+V)/(S+V)
+#1/(gamma+1)=(S+V)/(T+U+S+V)
+#1/(gamma+1)=lamda
+#lamda=(S+V)/(T+U+S+V)
 
 
 
