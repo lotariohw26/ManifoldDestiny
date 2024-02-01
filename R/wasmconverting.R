@@ -631,6 +631,28 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   ## Variables
   lof <- function(kvec=NULL){
     names(kvec) <- paste0("k",seq(0,length(kvec)-1))
+    print(kvec)
+  #browser()
+  #View(loss_df)
+  #A
+  #names(loss_df)
+  #loss_df$alpha_h[1]
+  #loss_df$alpha[1]
+  #(loss_df$x[2]-loss_df$alpha[2])/(loss_df$alpha[2]-loss_df$y[2])
+  #g <- (loss_df$alpha[1]-kvec[[1]]-kvec[[3]]*loss_df$h[1])/kvec[[2]]
+  #g
+  #(g-loss_df$alpha[1])/(loss_df$alpha[1]-loss_df$h[1])
+  #(loss_df$h[1]-loss_df$alpha[1])/(loss_df$alpha[1]-g)
+  #loss_df$alpha_h
+  #loss_df$alpha
+  #0.5
+  #loss_df[['Gamma_h']][1]
+  #loss_df[['Gamma']][1]
+  #loss_df[['lamda_h']][1]
+  #loss_df[['Z']][1]*(loss_df[['lamda_h']][1])-loss_df$S[1]
+  #loss_df[['Z']][1]*(loss_df[['lamda']][1])-loss_df$S[1]
+  #loss_df[['Z']][1]*(1-loss_df[['lamda']][1])
+  #(12+14)/loss_df[['Z']][1]
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -658,9 +680,9 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       dplyr::mutate(!!stuv[4]:=floor(pareq(se[[paste0('V',sho)]][1],as.list(.[]))))  %>%
       #! other options
       dplyr::mutate(Z_m=S_m+T_m+U_m+V_m) %>%
-      dplyr::mutate(R_m=R) 
+      dplyr::mutate(R_m=R) %>%
       ## testing
-      #dplyr::mutate(alpha_test=(S_m+U_m)/(Z_m))
+      dplyr::mutate(alpha_test=(S_m+U_m)/(Z_m))
       ## Loss value
   }
   lv <- function(params=NULL){
@@ -687,11 +709,17 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   # Deliver
   #View(rdfc)
   #loss_df[[c('S_m')]]+loss_df[[c('U_m')]])/loss_df[['Z_m']]
-  #browser()
   #View(loss_df)
   #mean((loss_df[[c('S_m')]]+loss_df[[c('V_m')]])/loss_df[['Z_m']])
-  #mean((loss_df[[c('S_m')]]+loss_df[[c('U_m')]])/loss_df[['Z_m']])
-  #View(rdfc)
+  #loss_df
+  #l()
+  #(loss_df[[c('U_m')]])/(loss_df[['T_m']]+loss_df[['U_m']])
+  #(loss_df[[c('S_m')]])/(loss_df[['S_m']]+loss_df[['V_m']])
+  #(loss_df[[c('S_m')]]+loss_df[[c('U_m')]])/loss_df[['Z_m']]
+  ##View(rdfc)
+  #browser()
+  #View(loss_df)
+  #mean(loss_df$alpha_test)
   rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m,LSV) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) %>% ballcount(se=se)
 })
 ############################################################################################################################################################ #########################################################################################################################################################

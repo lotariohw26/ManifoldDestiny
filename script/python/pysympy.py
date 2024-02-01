@@ -23,7 +23,7 @@ sympy.var(readmodvar.iloc[:,0])
 beforems = set(dir())
 ########################################################################################################################
 #########################################################################################################################
-### Stanvarv form proportions
+### Standard form proportions
 x_s       = [Eq(x,S/(S+T))]
 y_s       = [Eq(y,U/(U+V))]
 zeta_s    = [Eq(zeta,(U+V)/(S+T)),Eq(zeta,(x-alpha)/(alpha-y))]
@@ -55,8 +55,8 @@ V_s = [Eq(v,(1-y)*zeta*(S+T))]
 ###
 S_h = [Eq(s,S)]
 T_h = [Eq(t,T)]
-U_h = [Eq(u,(1-lamda)*Z-T)]
-V_h = [Eq(v,lamda*Z-S)]
+U_h = [Eq(u,(1-lamda)*Z-S)]
+V_h = [Eq(v,lamda*Z-T)]
 ###
 S_o = [Eq(s,S),Eq(s,Z*n/(1+xi))]
 T_o = [Eq(t,m*(Z-S-U)),Eq(t,(Z*m)/(1+1/xi))]
@@ -104,3 +104,8 @@ modeql[parv] = dfl
 modeqs.pop('empty')
 modeql.pop('empty')
 ##########################################################################################################################
+#kappa*(alpha-y)=((x-alpha)
+#alpha=k0+k1*x+k2*y
+#y=k0+k1*x+k2*y
+
+
