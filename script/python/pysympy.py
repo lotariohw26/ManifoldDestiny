@@ -29,7 +29,7 @@ y_s       = [Eq(y,U/(U+V))]
 zeta_s    = [Eq(zeta,(U+V)/(S+T)),Eq(zeta,(x-alpha)/(alpha-y))]
 alpha_s   = [Eq(alpha,(S+U)/(S+T+U+V)),Eq(alpha,(x+zeta*y)/(1+zeta))]
 lamda_s   = [Eq(lamda,(S+V)/(S+T+U+V)),Eq(lamda,(x+zeta*(1-y))/(zeta+1))]
-Omega_s   = [Eq(Omega,zeta/(1+zeta))]
+Omega_s   = [Eq(Omega,(S+T)/(S+T+U+V)),Eq(Omega,zeta/(1+zeta))]
 ###########################################################################################################################
 ######### Hybrid form proportions
 g_h       = [Eq(g,S/(S+V))]
@@ -55,8 +55,8 @@ V_s = [Eq(v,(1-y)*zeta*(S+T))]
 ###
 S_h = [Eq(s,S)]
 T_h = [Eq(t,T)]
-U_h = [Eq(u,(1-lamda)*Z-S)]
-V_h = [Eq(v,lamda*Z-T)]
+U_h = [Eq(u,(1-lamda)*Z-T)]
+V_h = [Eq(v,lamda*Z-S)]
 ###
 S_o = [Eq(s,S),Eq(s,Z*n/(1+xi))]
 T_o = [Eq(t,m*(Z-S-U)),Eq(t,(Z*m)/(1+1/xi))]
