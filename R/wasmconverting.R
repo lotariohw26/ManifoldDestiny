@@ -653,10 +653,12 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       dplyr::mutate(!!allvec[6]:=pareq(se[[endp[3]]][2],c(as.list(.[,])))) %>%
       dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
       ##### Backsolving for ballots
+      ## Observatinal values
       dplyr::mutate(!!stuv[1]:=pareq(se[[paste0('S',sho)]][1],as.list(.[])))  %>%
       dplyr::mutate(!!stuv[2]:=pareq(se[[paste0('T',sho)]][1],as.list(.[])))  %>%
-      dplyr::mutate(!!stuv[3]:=floor(pareq(se[[paste0('U',sho)]][1],as.list(.[]))))  %>%
-      dplyr::mutate(!!stuv[4]:=floor(pareq(se[[paste0('V',sho)]][1],as.list(.[]))))  %>%
+      ## Changed ballots
+      dplyr::mutate(!!stuv[3]:=floor(pareq(se[[paste0('U',sho)]][2],as.list(.[]))))  %>%
+      dplyr::mutate(!!stuv[4]:=floor(pareq(se[[paste0('V',sho)]][2],as.list(.[]))))  %>%
       #! other options
       dplyr::mutate(Z_m=S_m+T_m+U_m+V_m) %>%
       dplyr::mutate(R_m=R) %>%

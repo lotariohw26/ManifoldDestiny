@@ -74,11 +74,11 @@ app_ex1_cou$mansys(sygen=list(frm=1,
 			      stuv=c("S","T","U","V"),
 			      me=c(plnr=1,rot=0),
 			      lf="(alpha-alpha_s)^2"))
-app_ex1_cou$setres(0.19,1)
+s1o <- app_ex1_cou$setres(0.19,1)
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
-app_ex1_cou$manimp(init_par=c(k0=-0.,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
+app_ex1_cou$manimp(init_par=c(k0=0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
 app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
-app_ex1_out[[2]]
+#app_ex1_out[[2]]
 app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
 ######## Rigged example 2: hybrid form
 app_ex2_cou <- Countinggraphs(app_bal)
@@ -89,11 +89,12 @@ app_ex2_cou$mansys(sygen=list(frm=2,
 			      stuv=c("T","U","S","V"),
 			      me=c(plnr=1,rot=0),
 			      lf="(alpha-alpha_h)^2"))
-app_ex2_cou$setres(0.19,1)
+s2o <- app_ex2_cou$setres(0.19,1)
 pos_int_ex2 <- app_ex2_cou$polyc[[2]][[1]]
 app_ex2_o <- Countinggraphs(app_ex2_cou$rdfc)
 app_ex2_cou$manimp(init_par=c(k0=0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
 app_ex2_out <- seloutput(selreport(app_ex2_cou$rdfc,md$app0))
+#app_ex2_out[[2]]
 app_ex2_sim <- SimVoterdatabase(app_ex2_cou$rdfc)
 ###### Rigged example 3: Hybrid form
 app_ex3_cou <- Countinggraphs(app_bal)
@@ -104,10 +105,12 @@ app_ex3_cou$mansys(sygen=list(frm=1,
 			      stuv=c("S","T","U","V"),
 			      me=c(plnr=1,rot=0),
 			      lf="(alpha-alpha_s)^2"))
-app_ex3_cou$setres(0.19,0)
+s3o <- app_ex2_cou$setres(0.19,1)
+app_ex3_cou$setres(0.19,1)
 pos_int_ex3 <- app_ex3_cou$polyc[[1]][[1]]
 app_ex3_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
 app_ex3_out <- seloutput(selreport(app_ex3_cou$rdfc,md$app0))
+#app_ex3_out[2]
 app_ex3_sim <- SimVoterdatabase(app_ex3_cou$rdfc)
 #####################################################################################################################################################################
 ##### Standard
