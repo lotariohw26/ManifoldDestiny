@@ -104,7 +104,7 @@ selreport <- function(
   co$r2siminput(frm)
   co$plot2d(frm)
   co$plotxy(frm)
-  co$resplot(frm)
+  #co$resplot(frm)
   co$plotly3d(partition=frm)
   co$gridarrange()
   co$rotation(rpar=rparv)
@@ -574,8 +574,9 @@ Countingprocess$methods(sortpre=function(form=1,
 					 polyn=6,
 					 sortby='alpha'
 					 ){
-
-  frmsel <- list(c(1,2,4,10,3),c(6,7,9,5,8),c(11,12,14,4,13),c(1,2,4,11,12,15))[[form]]
+  frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11),c(12,13,14,14,13),c(1,2,4,11,12,15))[[form]]
+  #  [1] "alpha" "x"     "y"     "Omega" "zeta"  "lamda" "alpha" "g"     "h"     "lamda" "Gamma" "Omega" "alpha"
+  # [14] "m"     "n"     "Omega" "xi"    "lamda"
   selvar <- unname(unlist(parameters))[frmsel]
   psel <<- selvar[1:ifelse(form %in% 1:3,5,6)]
   proppar <- rev(selvar)[1]
@@ -632,7 +633,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   lof <- function(kvec=NULL){
     names(kvec) <- paste0("k",seq(0,length(kvec)-1))
     print(kvec)
-    #browser()
+    browser()
     #View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
@@ -699,10 +700,9 @@ Countinggraphs$methods(plot2d=function(form=1,
 				       alpha=1,size=1)
 				       ){
   longdf <- tidyr::pivot_longer(quintile,all_of(c(psel,paste0(psel,'_pred'))))
-psel
   go <- ggplot2::ggplot(data=longdf) +
-    ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel,'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +
-    ggplot2::geom_point(data=filter(longdf,name%in%psel),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
+    ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel[1:4],'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +
+    ggplot2::geom_point(data=filter(longdf,name%in%psel[1:4]),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
     ggplot2::labs(title=labs$title,x=labs$x,y=labs$y,caption=labs$caption) +
     ggplot2::ylim(0,1) +
     ggplot2::theme_bw()

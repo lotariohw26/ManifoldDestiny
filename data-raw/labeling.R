@@ -30,9 +30,9 @@ usethis::use_data(eqdef, overwrite = TRUE)
 ###############################################################################################################
 stickers <-
   list(parameters=list(
-  standard=c("x","y","zeta","alpha","lamda"),
-  hybrid=c("g","h","Gamma","alpha","Omega"),
-  opposition=c("m","n","xi","lamda","Omega")),
+  standard=c("alpha","x","y","Omega","zeta","lamda"),
+  hybrid=c("alpha","g","h","lamda","Gamma","Omega"),
+  opposition=c("alpha","m","n","Omega","xi","lamda")),
   forms=list('_s','o_h','h_o')) 
 usethis::use_data(stickers, overwrite = TRUE)
 ###############################################################################################################
@@ -47,5 +47,4 @@ usethis::use_data(peqs, overwrite = TRUE)
 ###############################################################################################################
 ###############################################################################################################
 ManifoldDestiny::bm()
-
 

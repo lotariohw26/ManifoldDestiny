@@ -70,15 +70,16 @@ app_ex1_cou <- Countinggraphs(app_bal)
 pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 app_ex1_cou$mansys(sygen=list(frm=1,
 			      pre=c("alpha","x","y"),
-			      end=c("zeta","lamda","Omega"),
+			      end=c("zeta","Omega","lamda"),
 			      stuv=c("S","T","U","V"),
 			      me=c(plnr=1,rot=0),
 			      lf="(alpha-alpha_s)^2"))
 s1o <- app_ex1_cou$setres(0.19,1)
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
-app_ex1_cou$manimp(init_par=c(k0=0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
+app_ex1_cou$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=TRUE)
+mean(app_ex1_cou$loss_df[['alpha_test']])
 app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
-# app_ex1_out[[2]]
+# app_ex1_out[[4]]
 app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
 ######## Rigged example 2: hybrid form
 app_ex2_cou <- Countinggraphs(app_bal)

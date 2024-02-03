@@ -91,15 +91,21 @@ server <- function(input, output) {
     app_n_cou$plot2d()
     ### Rigging an election
     app_exr_cou <- Countinggraphs(app_bal)
-    app_exr_cou$sortpre()
-    app_exr_cou$mansys(sygen=list(frm=ifrm,
-      pre=ipre,
-      end=iend,
-      me=c(plnr=1,rot=0),
-      lf=loss))
-    app_exr_cou$setres(inpn,1)
-    app_exr_cou$manimp(init_par=kvec,wn=iwtn,man=c(FALSE,TRUE)[1],lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(1,1,1)))
-    #app_exr_cou$manimp(init_par=kvec,wn=iwtn,man=c(FALSE,TRUE)[2],lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(1,1,1))
+    app_exr_cou$mansys(sygen=list(frm=1,
+    			      pre=c("alpha","x","y"),
+    			      end=c("zeta","lamda","Omega"),
+    			      stuv=c("S","T","U","V"),
+    			      me=c(plnr=1,rot=0),
+    			      lf="(alpha-alpha_s)^2"))
+    app_exr_cou$setres(0.19,0)
+    app_exr_cou$manimp(init_par=c(k0=0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
+    #  pre=ipre,
+    #  end=iend,
+    #  me=c(plnr=1,rot=0),
+    #  lf=loss))
+    #app_exr_cou$setres(inpn,1)
+    #app_exr_cou$manimp(init_par=kvec,wn=iwtn,man=c(FALSE,TRUE)[1],lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(1,1,1)))
+    ##app_exr_cou$manimp(init_par=kvec,wn=iwtn,man=c(FALSE,TRUE)[2],lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(1,1,1))
     app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
     app_exm_cou$sortpre()
     app_exm_cou$plotxy()
