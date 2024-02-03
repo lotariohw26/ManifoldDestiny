@@ -40,28 +40,28 @@ Omega_h   = [Eq(Omega,(S+T)/(S+T+U+V)),Eq(Omega,(g+Gamma*(1-g))/(Gamma+1)),Eq(Om
 lamda_h   = [Eq(lamda,(S+V)/(S+T+U+V)),Eq(lamda,1/(Gamma+1))]
 ###############################################################################################################################
 ###### Oppostion form proportions
-xi_o      = [Eq(xi,(T+V)/(S+U)),Eq(xi,(m-Omega)/(Omega-n)),Eq(xi,(m-lamda)/(lamda-(1-n)))]
-m_o       = [Eq(m,T/(T+V))]
-n_o       = [Eq(n,S/(S+U))]
 lamda_o   = [Eq(lamda,(S+V)/(S+T+U+V)),Eq(lamda,(2*m+xi)/(xi+1)-Omega)]
 Omega_o   = [Eq(Omega,(S+T)/(S+T+U+V)),Eq(Omega,(m+xi*n)/(xi+1))]
-lamda_o   = [Eq(Omega,Gamma/(1+Gamma))]
+m_o       = [Eq(m,T/(T+V))]
+n_o       = [Eq(n,S/(S+U))]
+xi_o      = [Eq(xi,(T+V)/(S+U)),Eq(xi,(m-Omega)/(Omega-n)),Eq(xi,(m-lamda)/(lamda-(1-n)))]
+lamda_o   = [Eq(lamda,(S+V)/(S+T+U+V)),Eq(Omega,Gamma/(1+Gamma))]
 #############################################################################################################################
 ##### Integers
-S_s = [Eq(s,S)]
-T_s = [Eq(t,T)]
-U_s = [Eq(u,y*zeta*(S+T))]
-V_s = [Eq(v,(1-y)*zeta*(S+T))]
+S_s = [Eq(s,S),Eq(u,x*Z*Omega)]
+T_s = [Eq(t,T),Eq(u,(1-x)*Z*Omega)]
+U_s = [Eq(u,U), Eq(u,y*Z*(1-Omega))]
+V_s = [Eq(v,V), Eq(v,(1-y)*Z*(1-Omega))]
 ###
-S_h = [Eq(s,S)]
-T_h = [Eq(t,T)]
-U_h = [Eq(u,(1-lamda)*Z-T)]
-V_h = [Eq(v,lamda*Z-S)]
+S_h = [Eq(s,S), Eq(s,g*Z*lamda)]
+V_h = [Eq(v,V), Eq(v,(1-g)*Z*lamda)]
+U_h = [Eq(u,U), Eq(u,h*Z*lamda)]
+T_h = [Eq(t,T), Eq(s,(1-h)*Z*lamda)]
 ###
-S_o = [Eq(s,S),Eq(s,Z*n/(1+xi))]
-T_o = [Eq(t,m*(Z-S-U)),Eq(t,(Z*m)/(1+1/xi))]
-U_o = [Eq(u,U),Eq(u,Z*(1-n)/(1+xi))]
-V_o = [Eq(v,(1-m)*(Z-S-U)),Eq(v,(Z*(1-m))/(1+1/xi))]
+S_o = [Eq(s,S), Eq(s,S)]
+T_o = [Eq(s,T), Eq(t,T)]
+U_o = [Eq(u,U), Eq(u,U)]
+V_o = [Eq(v,V), Eq(v,V)]
 ############################################################################################################################
 ###### Implications:
 ### Standard form
@@ -103,9 +103,6 @@ modeqs[parv] = dfs
 modeql[parv] = dfl
 modeqs.pop('empty')
 modeql.pop('empty')
-##########################################################################################################################
-#kappa*(alpha-y)=((x-alpha)
-#alpha=k0+k1*x+k2*y
-#y=k0+k1*x+k2*y
+#########################################################################################################################
 
 

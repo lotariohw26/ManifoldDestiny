@@ -632,8 +632,6 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   lof <- function(kvec=NULL){
     names(kvec) <- paste0("k",seq(0,length(kvec)-1))
     print(kvec)
-    browser()
-    View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -658,7 +656,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       dplyr::mutate(!!stuv[1]:=pareq(se[[paste0('S',sho)]][1],as.list(.[])))  %>%
       dplyr::mutate(!!stuv[2]:=pareq(se[[paste0('T',sho)]][1],as.list(.[])))  %>%
       dplyr::mutate(!!stuv[3]:=floor(pareq(se[[paste0('U',sho)]][1],as.list(.[]))))  %>%
-      dplyr::mutate(!!stuv[4]:=Z-S_m-T_m-U_m) %>%
+      dplyr::mutate(!!stuv[4]:=floor(pareq(se[[paste0('V',sho)]][1],as.list(.[]))))  %>%
       #! other options
       dplyr::mutate(Z_m=S_m+T_m+U_m+V_m) %>%
       dplyr::mutate(R_m=R) %>%
@@ -687,8 +685,6 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
     argvec <- list(c(1,2,3),c(1,2,3,4,5))[[ifelse(lome == 4 || lome == 6, 2, 1)]]
     loss_ls <<- do.call(optim,list(par=as.vector(init_par),fn=lv,method=lome,lower=lfpar$lwr,upper=lfpar$lwr)[argvec])[c(2,1,3,4,5)]
   }
-  browser()
-  View(loss_df)
   rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m,LSV) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) %>% ballcount(se=se)
 })
 ############################################################################################################################################################ #########################################################################################################################################################
