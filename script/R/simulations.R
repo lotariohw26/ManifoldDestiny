@@ -66,20 +66,20 @@ app_n_rep <- selreport(app_bal,md$app0)
 app_n_out <- seloutput(app_n_rep)
 app_n_sim <- SimVoterdatabase(app_bal)
 ########## Rigged example 1: standard form
-app_ex1_cou <- Countinggraphs(app_bal)
-pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
-app_ex1_cou$mansys(sygen=list(frm=1,
-			      pre=c("alpha","x","y"),
-			      end=c("zeta","lamda","Omega"),
-			      stuv=c("S","T","U","V"),
-			      me=c(plnr=1,rot=0),
-			      lf="(alpha-alpha_s)^2"))
-s1o <- app_ex1_cou$setres(0.19,1)
-pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
-app_ex1_cou$manimp(init_par=c(k0=0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
-app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
-#app_ex1_out[[2]]
-app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
+#app_ex1_cou <- Countinggraphs(app_bal)
+#pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
+#app_ex1_cou$mansys(sygen=list(frm=1,
+#			      pre=c("alpha","x","y"),
+#			      end=c("zeta","lamda","Omega"),
+#			      stuv=c("S","T","U","V"),
+#			      me=c(plnr=1,rot=0),
+#			      lf="(alpha-alpha_s)^2"))
+#s1o <- app_ex1_cou$setres(0.19,1)
+#pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
+#app_ex1_cou$manimp(init_par=c(k0=0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
+#app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
+## app_ex1_out[[2]]
+#app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
 ######## Rigged example 2: hybrid form
 app_ex2_cou <- Countinggraphs(app_bal)
 pri_int_ex2 <- app_ex2_cou$polyc[[2]][[1]]
@@ -94,7 +94,7 @@ pos_int_ex2 <- app_ex2_cou$polyc[[2]][[1]]
 app_ex2_o <- Countinggraphs(app_ex2_cou$rdfc)
 app_ex2_cou$manimp(init_par=c(k0=0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
 app_ex2_out <- seloutput(selreport(app_ex2_cou$rdfc,md$app0))
-#app_ex2_out[[2]]
+# app_ex2_out[[2]]
 app_ex2_sim <- SimVoterdatabase(app_ex2_cou$rdfc)
 ###### Rigged example 3: Hybrid form
 app_ex3_cou <- Countinggraphs(app_bal)
@@ -133,48 +133,3 @@ concl_appps <- data.frame(case=casevec,
 			  propn=prope_vec, 
 			  propv=propv_vec)
 ################################################################################################################################################################
-#sum(dplyr::select(app_n_out[['rdfc']],S,U))/sum(dplyr::select(app_n_out[['rdfc']],S,T,U,V))
-#sum(dplyr::select(app_ex1_cou[['rdfc']],S,U))/sum(dplyr::select(app_ex1_cou[['rdfc']],S,T,U,V))
-# Create a function to optimize
-#my_function <- function(x) {
-#  return((x - 2)^2)
-#}
-#
-## Set initial parameter values
-#initial_params <- c(0)
-#
-## Use do.call and optim to optimize the function
-#result <- do.call(optim, c(list(par = initial_params, fn = my_function), list()))
-#
-## Print the optimized parameter values
-#cat("Optimized parameter values:", result$par, "\n")
-#
-## Print the minimum value of the function
-#cat("Minimum value of the function:", result$value, "\n")
-#app_ex1_cou$manimp(init_par=c(k0=0.0,k1=0.20,k2=0.60),wn=c(0,0),man=FALSE,lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1)))
-#app_ex1_cou$loss_ls[2]
-#
-##polynom::integral(polynom::polynomial(unname(pos_int_ex1)),c(0,1))
-#head(app_bal)
-#head(dplyr::arrange(app_ex1_o$rdfc,P))
-##app_bal
-##2+2
-#polynom::integral(polynom::polynomial(unname(pri_int_ex2)),c(0,1))
-#polynom::integral(polynom::polynomial(unname(pos_int_ex2)),c(0,1))
-#app_ex1_o <- Countinggraphs(app_ex1_cou$rdfc)
-#app_ex2_o <- Countinggraphs(app_ex2_cou$rdfc)
-#View(app_ex2_o$rdfci)
-#
-##View(app_ex1_o$rdfci)
-#mean(app_ex1_o$rdfci$alpha)
-#app_ex1_o$sortpre()
-#app_ex1_o$plotxy()
-#app_ex1_o$plot2d()
-#app_ex1_o$plotly3d()
-#app_ex1_o$pl_3d_mani
-#app_ex1_cou$rdfc[c('U','V')]/sum(app_ex1_cou$rdfc[c('S','T')])
-#
-#
-##app_ex1_cou$loss_ls[1]
-##
-#View(app_ex1_cou$rdfc)

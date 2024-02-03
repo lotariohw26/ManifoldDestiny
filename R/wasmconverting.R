@@ -632,6 +632,8 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   lof <- function(kvec=NULL){
     names(kvec) <- paste0("k",seq(0,length(kvec)-1))
     print(kvec)
+    #browser()
+    #View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -654,11 +656,11 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
       ##### Backsolving for ballots
       ## Observatinal values
-      dplyr::mutate(!!stuv[1]:=pareq(se[[paste0('S',sho)]][1],as.list(.[])))  %>%
-      dplyr::mutate(!!stuv[2]:=pareq(se[[paste0('T',sho)]][1],as.list(.[])))  %>%
+      dplyr::mutate(!!paste0(stuv[1],'_m'):=pareq(se[[paste0(stuv[1],sho)]][1],as.list(.[])))  %>%
+      dplyr::mutate(!!paste0(stuv[2],'_m'):=pareq(se[[paste0(stuv[2],sho)]][1],as.list(.[])))  %>%
       ## Changed ballots
-      dplyr::mutate(!!stuv[3]:=floor(pareq(se[[paste0('U',sho)]][2],as.list(.[]))))  %>%
-      dplyr::mutate(!!stuv[4]:=floor(pareq(se[[paste0('V',sho)]][2],as.list(.[]))))  %>%
+      dplyr::mutate(!!paste0(stuv[3],'_m'):=floor(pareq(se[[paste0(stuv[3],sho)]][2],as.list(.[]))))  %>%
+      dplyr::mutate(!!paste0(stuv[4],'_m'):=floor(pareq(se[[paste0(stuv[4],sho)]][2],as.list(.[]))))  %>%
       #! other options
       dplyr::mutate(Z_m=S_m+T_m+U_m+V_m) %>%
       dplyr::mutate(R_m=R) %>%
@@ -675,7 +677,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   }
   # Init
   allvec <- c(unlist(allvar$pre),unlist(allvar$end))
-  stuv <- paste0(c(unlist(allstuv)),'_m')
+  stuv <- paste0(c(unlist(allstuv)))
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   altvec <- paste0(as.vector(unlist(allvar)),sho)
   endp <- paste0(allvec,sho)[c(4,5,6)]
