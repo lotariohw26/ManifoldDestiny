@@ -67,7 +67,6 @@ server <- function(input, output) {
   # Create a reactive expression for the result
   result <- reactive({
     # Input values
-    #browser()
     ## Normal election parameter values
     prn <- as.numeric(strsplit(input$prec, ',')[[1]])
     pwn <- as.numeric(strsplit(input$probw, ',')[[1]])
@@ -77,7 +76,7 @@ server <- function(input, output) {
     ifrm <- as.numeric(input$form)
     ipre <- unlist(strsplit(trimws(input$prevar), '\\s+'))
     iend <- unlist(strsplit(trimws(input$endvar), '\\s+'))
-    inpn <- input$pn
+    inpn <- as.numeric(input$pn)
     kvec <- as.numeric(strsplit(input$kvec, ',')[[1]])
     iwtn <- as.numeric(strsplit(input$wn, ',')[[1]])
     loss <- input$loss
@@ -91,21 +90,14 @@ server <- function(input, output) {
     app_n_cou$plot2d()
     ### Rigging an election
     app_exr_cou <- Countinggraphs(app_bal)
-    app_exr_cou$mansys(sygen=list(frm=1,
+    app_exr_cou$mansys(sygen=list(frm=ifrm,
     			      pre=c("alpha","x","y"),
     			      end=c("zeta","lamda","Omega"),
     			      stuv=c("S","T","U","V"),
     			      me=c(plnr=1,rot=0),
-    			      lf="(alpha-alpha_s)^2"))
-    app_exr_cou$setres(0.19,0)
-    app_exr_cou$manimp(init_par=c(k0=0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
-    #  pre=ipre,
-    #  end=iend,
-    #  me=c(plnr=1,rot=0),
-    #  lf=loss))
-    #app_exr_cou$setres(inpn,1)
-    #app_exr_cou$manimp(init_par=kvec,wn=iwtn,man=c(FALSE,TRUE)[1],lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(1,1,1)))
-    ##app_exr_cou$manimp(init_par=kvec,wn=iwtn,man=c(FALSE,TRUE)[2],lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(1,1,1))
+    			      lf=loss))
+    app_exr_cou$setres(inpn,0)
+    app_exr_cou$manimp(init_par=kvec,wn=iwtn,man=c(FALSE,TRUE)[2])
     app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
     app_exm_cou$sortpre()
     app_exm_cou$plotxy()

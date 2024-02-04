@@ -30,9 +30,9 @@ usethis::use_data(eqdef, overwrite = TRUE)
 ###############################################################################################################
 stickers <-
   list(parameters=list(
-  standard=c("alpha","x","y","Omega","zeta","lamda"),
-  hybrid=c("alpha","g","h","lamda","Gamma","Omega"),
-  opposition=c("alpha","m","n","Omega","xi","lamda")),
+  standard=c("alpha","x","y","zeta","lamda","Omega"),
+  hybrid=c("alpha","g","h","Gamma","Omega","lamda"),
+  opposition=c("alpha","m","n","xi","lamda","Omega")),
   forms=list('_s','o_h','h_o')) 
 usethis::use_data(stickers, overwrite = TRUE)
 ###############################################################################################################

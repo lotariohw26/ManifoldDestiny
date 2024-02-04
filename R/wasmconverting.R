@@ -112,8 +112,8 @@ selreport <- function(
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$mtd$sgs$eq)
   ges$diagnostics()
-  #ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
-  #ges$hat_intcomp()
+  ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
+  ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$mtd$sgs$eq)
@@ -131,7 +131,7 @@ seloutput <- function(selreport=NULL){
   tab1 <- selreport[[1]]$desms
   tab2 <- selreport[[1]]$pl_corrxy[[1]]
   tab3 <- selreport[[1]]$pl_2dsort[[1]]
-  tab4 <- selreport[[1]]$pl_3d_mani[[4]]
+  tab4 <- selreport[[1]]$pl_3d_mani[[1]]
   tab5 <- selreport[[1]]$r2list
   tab6 <- list(summary(selreport[[2]]$regsum[[1]]))
   l1 <- selreport[[2]]$resplots[[1]][[1]]
@@ -633,7 +633,6 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   lof <- function(kvec=NULL){
     names(kvec) <- paste0("k",seq(0,length(kvec)-1))
     print(kvec)
-    browser()
     #View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
@@ -657,8 +656,8 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
       ##### Backsolving for ballots
       ## Observatinal values
-      dplyr::mutate(!!paste0(stuv[1],'_m'):=pareq(se[[paste0(stuv[1],sho)]][1],as.list(.[])))  %>%
-      dplyr::mutate(!!paste0(stuv[2],'_m'):=pareq(se[[paste0(stuv[2],sho)]][1],as.list(.[])))  %>%
+      dplyr::mutate(!!paste0(stuv[1],'_m'):=pareq(se[[paste0(stuv[1],sho)]][2],as.list(.[])))  %>%
+      dplyr::mutate(!!paste0(stuv[2],'_m'):=pareq(se[[paste0(stuv[2],sho)]][2],as.list(.[])))  %>%
       ## Changed ballots
       dplyr::mutate(!!paste0(stuv[3],'_m'):=floor(pareq(se[[paste0(stuv[3],sho)]][2],as.list(.[]))))  %>%
       dplyr::mutate(!!paste0(stuv[4],'_m'):=floor(pareq(se[[paste0(stuv[4],sho)]][2],as.list(.[]))))  %>%
@@ -741,8 +740,7 @@ Countinggraphs$methods(plotly3d=function(
 					 sel=list(1:5,6:10),
 					 selid=1
 					 ){
-
-  rdfcpar <- rdfc %>% dplyr::select(parameters[[partition]][c(4,5,1,2,3)])
+  rdfcpar <- rdfc %>% dplyr::select(parameters[[partition]][c(1,2,3,4,5)])
   mrdfc <- as.matrix(rdfcpar)
   combi <- combinat::combn(5, 3)
   seq(1,dim(combi)[2]) %>% purrr::map(function(x,comb=combi,df=rdfcpar){
@@ -760,7 +758,6 @@ Countinggraphs$methods(plotly3d=function(
       yaxis  = list(title = names(gdf)[2]),
       zaxis  = list(title = names(gdf)[3])))
   }) ->> pl_3d_mani
-
 })
 Countinggraphs$methods(rotgraph=function(){
   u0 <- rdfc$ui

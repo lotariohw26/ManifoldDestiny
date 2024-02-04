@@ -17,3 +17,4 @@ cat(knitr::knit_child(text = paste(textm[25:length(textm)], collapse = "\n"), qu
 
 
 
+

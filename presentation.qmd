@@ -47,9 +47,6 @@ Ed. Solomon
 
 > "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
 
-```{r}
-knitr::knit_exit()
-```
 
 ## `r metad$toc$sec1$unm[1]`
 
@@ -61,7 +58,7 @@ knitr::knit_exit()
 
 ##
 
-**Our two stylized numerical example**
+**Our two stylized numerical cases**
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -299,6 +296,11 @@ of the existance of a *trivial* Manifold occuranse related to normal form are no
   - Note: Invariance across precincts would imply that $\zeta_i=\zeta$, so that election outcome only determined by variations in two parameters: $\alpha_i(y_i,x_i)=\frac{x_i+\zeta y_i}{\zeta+x_i}$
 	
 If none of this three cases are satisfied, variation in $\zeta_i$ should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?
+
+```{r}
+knitr::knit_exit()
+```
+
 
 [Application 1: Election process simulator]({{< var shn1 >}})
 
