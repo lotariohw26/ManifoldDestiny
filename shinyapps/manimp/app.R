@@ -109,12 +109,9 @@ server <- function(input, output) {
     #nel <- Estimation(result()[[1]]$rdfc,1)
     #nel$regression(sugsol[1])
     #n1 <- summary(nel$regsum[[1]])
-    #print('hallo')
-    #browser()
     #nel$regression(sugsol[2])
     #n2 <- summary(nel$regsum[[1]])
     #list(n1,n1)
-    #list(n1,n2)
     list('abc','def')
   })
   output$table_dsc_r <- renderPrint({
@@ -129,7 +126,6 @@ server <- function(input, output) {
   })
   # Plot 
   output$plotq_n <- renderPlot({
-#	  browser()
     dft <- result()
     gm1 <- dft[[1]]$pl_2dsort[[1]]
     cowplot::plot_grid(gm1, labels = "Fair election")

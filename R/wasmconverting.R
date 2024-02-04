@@ -740,24 +740,33 @@ Countinggraphs$methods(plotly3d=function(
 					 sel=list(1:5,6:10),
 					 selid=1
 					 ){
+
   rdfcpar <- rdfc %>% dplyr::select(parameters[[partition]][c(1,2,3,4,5)])
   mrdfc <- as.matrix(rdfcpar)
   combi <- combinat::combn(5, 3)
-  seq(1,dim(combi)[2]) %>% purrr::map(function(x,comb=combi,df=rdfcpar){
-    gdf <- df %>% dplyr::select(combi[,x])
+  pl_3d_mani <<- lapply(seq(1, dim(combi)[2]), function(x, comb = combi, df = rdfcpar) {
+    gdf <- df %>% dplyr::select(comb[, x])
+    nml <- paste(names(gdf), collapse = "")
     mrdfc <- as.matrix(gdf)
-    z <- mrdfc[,1]
-    x <- mrdfc[,2]
-    y <- mrdfc[,3]
+    z <- mrdfc[, 1]
+    x <- mrdfc[, 2]
+    y <- mrdfc[, 3]
     plotly::plot_ly(x = x, y = y, z = z, type = "scatter3d", mode = "markers", marker = list(size = 3)) %>%
       plotly::layout(
-		     title =paste0('R2 = ',round(summary(lm(data=gdf))$r.squared,4)),
-		     scene =
-      list(xaxis = list(title = names(gdf)[1]),
-	   text='abc',
-      yaxis  = list(title = names(gdf)[2]),
-      zaxis  = list(title = names(gdf)[3])))
-  }) ->> pl_3d_mani
+        title = paste0('R2 = ', round(summary(lm(data = gdf))$r.squared, 4)),
+        scene = list(
+          xaxis = list(title = names(gdf)[1]),
+          text = 'abc',
+          yaxis = list(title = names(gdf)[2]),
+          zaxis = list(title = names(gdf)[3])
+        )
+      ) #%>% {names(.) <- nml; .}  # Assign name to the list element
+  })
+  # Assign names to the list
+  names(pl_3d_mani) <<- sapply(seq(1, dim(combi)[2]), function(x, comb = combi, df = rdfcpar) {
+    gdf <- df %>% dplyr::select(comb[, x])
+    paste(names(gdf), collapse = "")
+  })
 })
 Countinggraphs$methods(rotgraph=function(){
   u0 <- rdfc$ui
