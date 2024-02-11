@@ -1,13 +1,13 @@
 ---
-title: "Manifold Destiny - or how to rig an election"
-subtitle: "Based upon the ideas developed by Edward K. Solomon"
-format:
-  revealjs: 
-    smaller: true
-    toc-depth: 1
-    toc: true 
-execute: 
-  cache: false
+title: Manifold Destiny - or how to rig an election
+#subtitle: "Based upon the ideas developed by Edward K. Solomon"
+#format:
+#  revealjs: 
+#    smaller: true
+#    toc-depth: 1
+#    toc: true 
+#execute: 
+#  cache: false
 #webr: 
 #  show-startup-message: true    # Disable displaying status of webR initialization
 #  packages: ['dplyr','purrr','magrittr','data.table','tidyr'] # Install R packages on document open
@@ -297,10 +297,6 @@ of the existance of a *trivial* Manifold occuranse related to normal form are no
 	
 If none of this three cases are satisfied, variation in $\zeta_i$ should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?
 
-```{r}
-knitr::knit_exit()
-```
-
 
 [Application 1: Election process simulator]({{< var shn1 >}})
 
@@ -511,8 +507,9 @@ f(x)_{0}^{1}=`r paste0(round(polynom::polynomial(unname(pri_int_ex1)),3))`$
 
 Election outome 
 ```{r, echo=F}
-#sum(dplyr::select(app_n_out[['rdfc']],S,U))/sum(dplyr::select(app_n_out[['rdfc']],S,T,U,V))
-polynom::integral(round(polynom::polynomial(unname(pri_int_ex1))),c(0,1))
+#pri_int_ex1
+#polynom::integral(round(polynom::polynomial(unname(pri_int_ex1))),c(0,1))
+mean(app_ex1_cou$rdfc$alpha)
 ```
 
 
@@ -524,12 +521,11 @@ $f(x)_{0}^{1}=`r paste0(round(polynom::polynomial(unname(pos_int_ex1)),3))`$
 
 Election outome
 ```{r, echo=F}
-#sum(dplyr::select(app_ex1_out[['rdfc']],S,U))/sum(dplyr::select(app_ex1_out[['rdfc']],S,T,U,V))
-polynom::integral(round(polynom::polynomial(unname(pos_int_ex1))),c(0,1))
+#polynom::integral(round(polynom::polynomial(unname(pos_int_ex1))),c(0,1))
+pos_int_ex1
 ```
 
 ---
-
 
 ### Rigged election example 1: applying normal form
 
@@ -600,6 +596,12 @@ polynom::integral(round(polynom::polynomial(unname(pos_int_ex1))),c(0,1))
 
 ---
 
+```{r}
+knitr::knit_exit()
+```
+
+
+
 
 **Setting the prefered election outcome**
 
@@ -652,6 +654,11 @@ polynom::integral(round(polynom::polynomial(unname(pos_int_ex3))),c(0,1))
 ```
 
 ---
+
+```{r}
+knitr::knit_exit()
+```
+
 
 ## `r metad$toc$sec2$unm[5]`
 

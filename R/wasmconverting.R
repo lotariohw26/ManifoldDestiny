@@ -700,8 +700,8 @@ Countinggraphs$methods(plot2d=function(form=1,
 				       ){
   longdf <- tidyr::pivot_longer(quintile,all_of(c(psel,paste0(psel,'_pred'))))
   go <- ggplot2::ggplot(data=longdf) +
-    ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel[1:4],'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +
-    ggplot2::geom_point(data=filter(longdf,name%in%psel[1:4]),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
+    ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel[c(1,2,3)],'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +
+    ggplot2::geom_point(data=filter(longdf,name%in%psel[c(1,2,3)]),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
     ggplot2::labs(title=labs$title,x=labs$x,y=labs$y,caption=labs$caption) +
     ggplot2::ylim(0,1) +
     ggplot2::theme_bw()
@@ -746,7 +746,6 @@ Countinggraphs$methods(plotly3d=function(
   combi <- combinat::combn(5, 3)
   pl_3d_mani <<- lapply(seq(1, dim(combi)[2]), function(x, comb = combi, df = rdfcpar) {
     gdf <- df %>% dplyr::select(comb[, x])
-    nml <- paste(names(gdf), collapse = "")
     mrdfc <- as.matrix(gdf)
     z <- mrdfc[, 1]
     x <- mrdfc[, 2]
@@ -760,7 +759,7 @@ Countinggraphs$methods(plotly3d=function(
           yaxis = list(title = names(gdf)[2]),
           zaxis = list(title = names(gdf)[3])
         )
-      ) #%>% {names(.) <- nml; .}  # Assign name to the list element
+      ) 
   })
   # Assign names to the list
   names(pl_3d_mani) <<- sapply(seq(1, dim(combi)[2]), function(x, comb = combi, df = rdfcpar) {
@@ -874,10 +873,11 @@ Estimation <- setRefClass("Estimation", fields=list(
 						))
 Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   edfc <<- rdfcinp
-  roto <<- ifelse(sum(unique(dplyr::select(edfc,m1,m2,m3)))==3, 0, 1)
+  #roto <<- ifelse(sum(unique(dplyr::select(edfc,m1,m2,m3)))==3, 0, 1)
   fnr <<- form
   param <<- stickers[['parameters']][[fnr]]
   syequ <<- eqpar$meqs
+  #browser()
   #radpar <<- c(theta=0,phi=0,rho=0)
   lpku <<- list(
     S = list(

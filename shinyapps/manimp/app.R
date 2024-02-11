@@ -30,14 +30,15 @@ ui <- fluidPage(
                               "Quartic" = "4"), selected = "1"),
       textInput("wn", "White noise", value='0.0, 0.0'),
       textInput("kvec", "parameters", value='0,0.5,0.5'),
+      selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
       selectInput("loss", "Loss function:",
                   choices = c("(alpha-alpha_s)^2" = "1","Def" = "2"), selected = "1"),
-      selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
     sidebarPanel(
       selectInput("show_panel", "Show Panel?", choices = c("Yes", "No")),
       conditionalPanel(
         condition = "input.show_panel == 'Yes'",
-        textInput("conditional_text", "Enter some text:")
+        textInput("conditional_text", "Enter some text:"),
+        textInput("conditional_text", "Enter some text2:")
       )
     ),
     ),
@@ -63,8 +64,17 @@ ui <- fluidPage(
     )
   )
 )
-server <- function(input, output) {
-  # Create a reactive expression for the result
+server <- function(input, output, session) {
+  #observeEvent(input$form, {
+  #    # Update the default value of the "Polynomial Equation(s)" text input
+  #    if (input$form == "1") {
+  #        updateTextInput(session, "wn", value ="0,0")
+  #    } else if (input$form == "2") {
+  #        updateTextInput(session, "wn", value ="0,0001")
+  #    } else if (input$form == "3") {
+  #        updateTextInput(session, "wnf", value ="0,0002")
+  #    }
+  #})    # Create a reactive expression for the result
   result <- reactive({
     # Input values
     ## Normal election parameter values
@@ -97,7 +107,7 @@ server <- function(input, output) {
     			      me=c(plnr=1,rot=0),
     			      lf=loss))
     app_exr_cou$setres(inpn,0)
-    app_exr_cou$manimp(init_par=kvec,wn=iwtn,man=c(FALSE,TRUE)[2])
+    app_exr_cou$manimp(init_par=kvec,wn=c(0,0),man=c(FALSE,TRUE)[2])
     app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
     app_exm_cou$sortpre()
     app_exm_cou$plotxy()
@@ -105,66 +115,64 @@ server <- function(input, output) {
     list(app_n_cou,app_exm_cou)
   })  
   output$table_dsc_n <- renderPrint({
-    #sugsol <- c("k0+k1*x+k2*y","k0+k1*x+k2*y+k3*zeta")
-    #nel <- Estimation(result()[[1]]$rdfc,1)
-    #nel$regression(sugsol[1])
-    #n1 <- summary(nel$regsum[[1]])
-    #nel$regression(sugsol[2])
-    #n2 <- summary(nel$regsum[[1]])
-    #list(n1,n1)
-    list('abc','def')
+    sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
+    nel <- Estimation(result()[[1]]$rdfc,1)
+    nel$regression(sugsol[1])
+    n1 <- summary(nel$regsum[[1]])
+    nel$regression(sugsol[2])
+    n2 <- summary(nel$regsum[[1]])
+    list(n1,n1)
   })
   output$table_dsc_r <- renderPrint({
-    #sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
-    #ner <- Estimation(result()[[2]]$rdfc,1)
-    #ner$regression(sugsol[1])
-    #r1 <- summary(ner$regsum[[1]])
-    #ner$regression(sugsol[2])
-    #r2 <- summary(ner$regsum[[1]])
-    #list(r1,r2)
-    list('ghi','jkl')
+    sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
+    ner <- Estimation(result()[[2]]$rdfc,1)
+    ner$regression(sugsol[1])
+    r1 <- summary(ner$regsum[[1]])
+    ner$regression(sugsol[2])
+    r2 <- summary(ner$regsum[[1]])
+    list(r1,r2)
   })
   # Plot 
   output$plotq_n <- renderPlot({
     dft <- result()
     gm1 <- dft[[1]]$pl_2dsort[[1]]
+    browser()
     cowplot::plot_grid(gm1, labels = "Fair election")
   })
   output$plotq_r <- renderPlot({
     dft <- result()
-    gm1 <- dft[[1]]$pl_2dsort[[1]]
     gm2 <- dft[[2]]$pl_2dsort[[1]]
     cowplot::plot_grid(gm2, labels = "Rigged election")
   })
   output$plotxy_n <- renderPlot({
-     dft <- result()
-     gm1 <- dft[[1]]$pl_corrxy[[1]]
-     gm3 <- dft[[1]]$pl_corrxy[[1]]
-     cowplot::plot_grid(gm1, gm3, ncol = 2, labels = c("Column 1", "Column 2"))
+    dft <- result()
+    gm1 <- dft[[1]]$pl_corrxy[[1]]
+    gm3 <- dft[[1]]$pl_corrxy[[1]]
+    cowplot::plot_grid(gm1, gm3, ncol = 2, labels = c("Column 1", "Column 2"))
   })
   output$plotxy_r <- renderPlot({
-     dft <- result()
-     gm2 <- dft[[2]]$pl_corrxy[[1]]
-     gm4 <- dft[[2]]$pl_corrxy[[1]]
-     cowplot::plot_grid(gm2, gm4, ncol = 2, labels = c("Column 1", "Column 2"))
+    dft <- result()
+    gm2 <- dft[[2]]$pl_corrxy[[1]]
+    gm4 <- dft[[2]]$pl_corrxy[[1]]
+    cowplot::plot_grid(gm2, gm4, ncol = 2, labels = c("Column 1", "Column 2"))
   })
   output$plot3d_n <- renderPlotly({
-     gdf <- result()[[1]]$rdfc %>% dplyr::select(c('alpha','x','y'))
-     mrdfc <- as.matrix(gdf)
-     z <- mrdfc[,1]
-     x <- mrdfc[,2]
-     y <- mrdfc[,3]
-     p1 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers", marker=list(size=3))
-     plotly::layout(p1,title = "Fair election")
+    gdf <- result()[[1]]$rdfc %>% dplyr::select(c('alpha','x','y'))
+    mrdfc <- as.matrix(gdf)
+    z <- mrdfc[,1]
+    x <- mrdfc[,2]
+    y <- mrdfc[,3]
+    p1 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers", marker=list(size=3))
+    plotly::layout(p1,title = "Fair election")
   })
   output$plot3d_r <- renderPlotly({
-     gdf <- result()[[2]]$rdfc %>% dplyr::select(c('alpha','x','y'))
-     mrdfc <- as.matrix(gdf)
-     z <- mrdfc[,1]
-     x <- mrdfc[,2]
-     y <- mrdfc[,3]
-     p2 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers",marker = list(size = 3))
-     plotly::layout(p2,title = "Rigged election")
+    gdf <- result()[[2]]$rdfc %>% dplyr::select(c('alpha','x','y'))
+    mrdfc <- as.matrix(gdf)
+    z <- mrdfc[,1]
+    x <- mrdfc[,2]
+    y <- mrdfc[,3]
+    p2 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers",marker = list(size = 3))
+    plotly::layout(p2,title = "Rigged election")
   })
 }
 shinyApp(ui = ui, server = server)
