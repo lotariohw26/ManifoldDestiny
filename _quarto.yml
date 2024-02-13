@@ -79,6 +79,7 @@ format:
   html:
     theme: zephyr
     toc: true
+
 # script/python/pysympy.py
 # data-raw/labeling.R
 # R/wasmconverting.R
@@ -87,46 +88,3 @@ format:
 # script/R/addendum_ne.R
 # script/R/addendum_az.R
 # script/R/testing.R
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

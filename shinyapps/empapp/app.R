@@ -1,6 +1,6 @@
 ######################################################################################
 #webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-ManifoldDestiny::wasmconload()
+#ManifoldDestiny::wasmconload()
 md <- ManifoldDestinyWASMD::metad
 ###############################################################################################################################################################
 dlname <- c("app0","app1","app2","app3","app4","app5")
@@ -128,3 +128,6 @@ options(scipen=999)
 
 
 #set.seed(1)
+
+
+

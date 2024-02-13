@@ -34,11 +34,11 @@ ui <- fluidPage(
       selectInput("loss", "Loss function:",
                   choices = c("(alpha-alpha_s)^2" = "1","Def" = "2"), selected = "1"),
     sidebarPanel(
-      selectInput("show_panel", "Show Panel?", choices = c("Yes", "No")),
+      selectInput("auto", "Manual", choices = c("Yes", "No")),
       conditionalPanel(
         condition = "input.show_panel == 'Yes'",
-        textInput("conditional_text", "Enter some text:"),
-        textInput("conditional_text", "Enter some text2:")
+        textInput("ABC","T", value='0.0, 0.0'),
+        textInput("DEF","F", value='0.0, 0.0')
       )
     ),
     ),
@@ -90,6 +90,9 @@ server <- function(input, output, session) {
     kvec <- as.numeric(strsplit(input$kvec, ',')[[1]])
     iwtn <- as.numeric(strsplit(input$wn, ',')[[1]])
     loss <- input$loss
+    # Now
+    #browser()
+    inpm <- input$auto=="No"
     #### Simulation of ballot voting
     dfm <- (function(x){data.frame(P = seq(1, x), RV = as.integer(pmax(rnorm(x, prn[2], prn[3]), 0)))})(prn[1])
     app_bal <- ballcastsim(dfm,pwn,prcr,prcd,ztech=c(0,0))
@@ -107,7 +110,7 @@ server <- function(input, output, session) {
     			      me=c(plnr=1,rot=0),
     			      lf=loss))
     app_exr_cou$setres(inpn,0)
-    app_exr_cou$manimp(init_par=kvec,wn=c(0,0),man=c(FALSE,TRUE)[2])
+    app_exr_cou$manimp(init_par=kvec,wn=c(0,0),man=inpm)
     app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
     app_exm_cou$sortpre()
     app_exm_cou$plotxy()
@@ -136,7 +139,6 @@ server <- function(input, output, session) {
   output$plotq_n <- renderPlot({
     dft <- result()
     gm1 <- dft[[1]]$pl_2dsort[[1]]
-    browser()
     cowplot::plot_grid(gm1, labels = "Fair election")
   })
   output$plotq_r <- renderPlot({
@@ -176,4 +178,16 @@ server <- function(input, output, session) {
   })
 }
 shinyApp(ui = ui, server = server)
+
+
+
+
+
+
+
+
+
+
+
+
 
