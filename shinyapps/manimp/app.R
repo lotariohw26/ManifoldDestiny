@@ -33,12 +33,13 @@ ui <- fluidPage(
       selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
       selectInput("loss", "Loss function:",
                   choices = c("(alpha-alpha_s)^2" = "1","Def" = "2"), selected = "1"),
+      downloadButton("downloadData", "Download"),
     sidebarPanel(
       selectInput("auto", "Manual", choices = c("Yes", "No")),
       conditionalPanel(
-        condition = "input.show_panel == 'Yes'",
+        condition = "input.auto == 'No'",
         textInput("ABC","T", value='0.0, 0.0'),
-        textInput("DEF","F", value='0.0, 0.0')
+        selectizeInput("lossalog","Loss algorithm",choices=c("alpha","x","y","zeta","lamda"),multiple =FALSE,options=list(maxItems=1))
       )
     ),
     ),
@@ -92,7 +93,7 @@ server <- function(input, output, session) {
     loss <- input$loss
     # Now
     #browser()
-    inpm <- input$auto=="No"
+    inpm <- input$auto=="Yes"
     #### Simulation of ballot voting
     dfm <- (function(x){data.frame(P = seq(1, x), RV = as.integer(pmax(rnorm(x, prn[2], prn[3]), 0)))})(prn[1])
     app_bal <- ballcastsim(dfm,pwn,prcr,prcd,ztech=c(0,0))
@@ -176,18 +177,14 @@ server <- function(input, output, session) {
     p2 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers",marker = list(size = 3))
     plotly::layout(p2,title = "Rigged election")
   })
+  output$downloadData <- downloadHandler(
+    filename = function() {
+      paste("data-", Sys.Date(), ".csv", sep="")
+    },
+    content = function(file) {
+      write.csv(data, file)
+  })
 }
 shinyApp(ui = ui, server = server)
-
-
-
-
-
-
-
-
-
-
-
 
 

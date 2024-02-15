@@ -1,11 +1,15 @@
+options(scipen=999)
+######################################################################################
+#webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+#ManifoldDestinyWASMP::wasmconload()
+ManifoldDestiny::wasmconload()
 ######################################################################################
 #webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 #ManifoldDestiny::wasmconload()
-md <- ManifoldDestinyWASMD::metad
 ###############################################################################################################################################################
 dlname <- c("app0","app1","app2","app3","app4","app5")
-md <- ManifoldDestinyWASMD::metad
-md$app1$bib
+#md <- ManifoldDestiny
+#md$app1
 ###############################################################################################################################################################
 ui <- fluidPage(
   titlePanel("Rigged election results analyzer"),
@@ -64,70 +68,67 @@ server <- function(input, output, session) {
   })  
   cformo <- reactive({
     # Manual
-    sna <- input$app_select
-    seldata <- get(sna)
-    mds <- md[[sna]]
-    ### Purge
-    mds$mtd$prg$cnd <- c(0)
-    mds$mtd$prg$stuv <- c(0,0,0,0)
-    mds$mtd$prg$blup[1] <- 0
-    mds$mtd$prg$blup[2] <- 1
-    ### Solution
-    mds$sgs$fr <- as.numeric(input$form)
-    mds$sgs$eq <- as.numeric(input$meqf)
-    mds$sgs$va <- as.numeric(input$solvf)
-    ### Rotation
-    mds$mtd$sgs$ro[1] <- input$theta*pi/180
-    mds$mtd$sgs$ro[2] <- input$phi*pi/180
-    mds$mtd$sgs$ro[3] <- input$rho*pi/180
-    ## Selreport
-    return(selreport(seldata,mds))
+    #sna <- input$app_select
+    #seldata <- get(sna)
+    #mds <- md[[sna]]
+    #### Purge
+    #mds$mtd$prg$cnd <- c(0)
+    #mds$mtd$prg$stuv <- c(0,0,0,0)
+    #mds$mtd$prg$blup[1] <- 0
+    #mds$mtd$prg$blup[2] <- 1
+    #### Solution
+    #mds$sgs$fr <- as.numeric(input$form)
+    #mds$sgs$eq <- as.numeric(input$meqf)
+    #mds$sgs$va <- as.numeric(input$solvf)
+    #### Rotation
+    #mds$mtd$sgs$ro[1] <- input$theta*pi/180
+    #mds$mtd$sgs$ro[2] <- input$phi*pi/180
+    #mds$mtd$sgs$ro[3] <- input$rho*pi/180
+    ### Selreport
+    #return(selreport(seldata,mds))
   })
   observe(print(cformo()[[1]]$desms))
   output$table_dsc <- renderPrint({
     print(cformo()[[1]]$desms)
   })
   output$plot_q <- renderPlot({
-    cformo()[[1]]$pl_2dsort[[1]]
+    #cformo()[[1]]$pl_2dsort[[1]]
   })
   output$plot_bow <- renderPlot({
-    cformo()[[5]]$pl_2dsort[[1]]
+    #cformo()[[5]]$pl_2dsort[[1]]
   })
   output$plot_xy <- renderPlot({
-    cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
+    #cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
   })
   output$plot_3d_rot <- renderPlotly({
-    cformo()[[1]]$rotplotly[[1]]
+    #cformo()[[1]]$rotplotly[[1]]
   })
   output$plot_3ds <- renderUI({
-    cformo()[[1]]$all_pl_3d_mani[[1]]
+    #cformo()[[1]]$all_pl_3d_mani[[1]]
   })
   output$print_sum <- renderPrint({
-    list(summary(cformo()[[3]]$regsum[[1]]),
-	 summary(cformo()[[2]]$regsum[[1]]))
+    #list(summary(cformo()[[3]]$regsum[[1]]),
+    # summary(cformo()[[2]]$regsum[[1]]))
   })
   output$plot_res <- renderPlot({
-    pla <- cformo()[[2]]$resplots[[1]][[c(1)]]
-    #plb <- cformo()[[2]]$resplots[[2]][[c(1)]]
-    #plc <- cformo()[[2]]$resplots[[3]][[c(1)]]
-    cowplot::plot_grid(plotlist=list(pla,pla,pla),ncol=1)
+    #pla <- cformo()[[2]]$resplots[[1]][[c(1)]]
+    ##plb <- cformo()[[2]]$resplots[[2]][[c(1)]]
+    ##plc <- cformo()[[2]]$resplots[[3]][[c(1)]]
+    #cowplot::plot_grid(plotlist=list(pla,pla,pla),ncol=1)
   })
   output$print_com <- renderPrint({
     #print(as.data.frame(cformo()[[2]]$comdesc)) %>% dplyr::select(1,2,3,4)
-    print(as.data.frame(cformo()[[2]]$compare)) %>% dplyr::select(1,2,3,4)
+    #print(as.data.frame(cformo()[[2]]$compare)) %>% dplyr::select(1,2,3,4)
   })
   output$meta_dsc <- renderPrint({
-    paste0(cformo()[[6]]$sht$url)
+    #paste0(cformo()[[6]]$sht$url)
   })
   output$sidebarText <- renderPrint({
-    paste0(cformo()[[6]]$mtd$sgs$eq)
+    #paste0(cformo()[[6]]$mtd$sgs$eq)
   })
 }
 shinyApp(ui = ui, server = server)
-options(scipen=999)
-
-
+#options(scipen=999)
 #set.seed(1)
-
 
 
