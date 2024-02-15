@@ -21,6 +21,9 @@ title: Manifold Destiny - or how to rig an election
 
 
 
+```{r}
+knitr::knit_exit()
+```
 
 
 

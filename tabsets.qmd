@@ -16,6 +16,10 @@ format:
 bibliography: man_bib.bib
 ---
 
+```{r}
+knitr::knit_exit()
+```
+
 
 ```{r, echo=F, message=F, warning=F}
 ManifoldDestiny::wasmconload()
