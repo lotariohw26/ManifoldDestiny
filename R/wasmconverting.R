@@ -103,11 +103,11 @@ selreport <- function(
   co$r2siminput(frm)
   co$plot2d(frm)
   co$plotxy(frm)
-  #co$resplot(frm)
+  co$resplot(frm)
   co$plotly3d(partition=frm)
   co$gridarrange()
-  #co$rotation(rpar=rparv)
-  #co$rotgraph()
+  co$rotation(rpar=rparv)
+  co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$mtd$sgs$eq)
   ges$diagnostics()
@@ -723,16 +723,16 @@ Countinggraphs$methods(plotxy=function(form=1,Pexc=NULL){
   })
 })
 Countinggraphs$methods(resplot=function(form=1){
-
-  selvar <- c(paste0(parameters[[form]][c(1,2,4)],'_res'),paste0(parameters[[form]][c(3)],c("","_m","_mr")))
-  dfg <- dplyr::select(quintile,all_of(selvar))
-  cmb <- combinat::combn(3, 2)
-  pl_rescro <<- lapply(seq(1,dim(cmb)[2]), function(x){
-    ggplot2::ggplot(data=dfg,ggplot2::aes(x=selvar[3],y=selvar[3+x])) +
-    ggplot2::geom_point() +
-    ggplot2::geom_smooth(method=lm,se=F,show.legend = F) +
-    ggplot2::labs(x='x',y='y',title="")
-    })
+  #selvar <- c(paste0(parameters[[form]][c(1,2,4)],'_res'),paste0(parameters[[form]][c(3)],c("","_m","_mr")))
+  #names(quintile)
+  #dfg <- dplyr::select(quintile,all_of(selvar))
+  #cmb <- combinat::combn(3, 2)
+  #pl_rescro <<- lapply(seq(1,dim(cmb)[2]), function(x){
+  #  ggplot2::ggplot(data=dfg,ggplot2::aes(x=selvar[3],y=selvar[3+x])) +
+  #  ggplot2::geom_point() +
+  #  ggplot2::geom_smooth(method=lm,se=F,show.legend = F) +
+  #  ggplot2::labs(x='x',y='y',title="")
+  #  })
 })
 Countinggraphs$methods(plotly3d=function(
 					 partition=1,

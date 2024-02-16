@@ -39,7 +39,6 @@ ui <- fluidPage(
         tabPanel("Descriptive", verbatimTextOutput(outputId = "table_dsc")),
         tabPanel("2D Scatter Plots", plotOutput(outputId = "plot_xy")),
         tabPanel("Quantile Plot", plotOutput(outputId = "plot_q")),
-        tabPanel("Bow Plot", plotOutput(outputId = "plot_bow")),
         tabPanel("3D rotation", plotlyOutput(outputId = "plot_3d_rot")),
         tabPanel("3D scatter plots", htmlOutput(outputId = "plot_3ds")),
         tabPanel("Regressions", verbatimTextOutput(outputId = "print_sum")),
@@ -90,43 +89,38 @@ server <- function(input, output, session) {
     print(cformo()[[1]]$desms)
   })
   output$plot_q <- renderPlot({
-    #cformo()[[1]]$pl_2dsort[[1]]
-  })
-  output$plot_bow <- renderPlot({
-    #cformo()[[5]]$pl_2dsort[[1]]
+    cformo()[[1]]$pl_2dsort[[1]]
   })
   output$plot_xy <- renderPlot({
-    #cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
+    cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
   })
   output$plot_3d_rot <- renderPlotly({
-    #cformo()[[1]]$rotplotly[[1]]
+    cformo()[[1]]$rotplotly[[1]]
   })
   output$plot_3ds <- renderUI({
     cformo()[[1]]$all_pl_3d_mani[[1]]
   })
   output$print_sum <- renderPrint({
-    #list(summary(cformo()[[3]]$regsum[[1]]),
-    # summary(cformo()[[2]]$regsum[[1]]))
+    list(summary(cformo()[[3]]$regsum[[1]]),
+     summary(cformo()[[2]]$regsum[[1]]))
   })
   output$plot_res <- renderPlot({
-    #pla <- cformo()[[2]]$resplots[[1]][[c(1)]]
-    ##plb <- cformo()[[2]]$resplots[[2]][[c(1)]]
-    ##plc <- cformo()[[2]]$resplots[[3]][[c(1)]]
-    #cowplot::plot_grid(plotlist=list(pla,pla,pla),ncol=1)
+    pla <- cformo()[[2]]$resplots[[1]][[c(1)]]
+    #plb <- cformo()[[2]]$resplots[[2]][[c(1)]]
+    #plc <- cformo()[[2]]$resplots[[3]][[c(1)]]
+    cowplot::plot_grid(plotlist=list(pla,pla,pla),ncol=1)
   })
   output$print_com <- renderPrint({
-    #print(as.data.frame(cformo()[[2]]$comdesc)) %>% dplyr::select(1,2,3,4)
-    #print(as.data.frame(cformo()[[2]]$compare)) %>% dplyr::select(1,2,3,4)
+    print(as.data.frame(cformo()[[2]]$comdesc)) %>% dplyr::select(1,2,3,4)
+    print(as.data.frame(cformo()[[2]]$compare)) %>% dplyr::select(1,2,3,4)
   })
   output$meta_dsc <- renderPrint({
     paste0(cformo()[[6]]$sht$url)
   })
   output$sidebarText <- renderPrint({
-    #paste0(cformo()[[6]]$mtd$sgs$eq)
+    paste0(cformo()[[6]]$mtd$sgs$eq)
   })
 }
 shinyApp(ui = ui, server = server)
-#options(scipen=999)
-#set.seed(1)
 
 
