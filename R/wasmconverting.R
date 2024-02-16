@@ -94,7 +94,6 @@ selreport <- function(
 		      baldata=NULL,
 		      md=NULL
 		      ){
-
   frm <- md$mtd$sgs$fr
   rparv <- md$mtd$sgs$ro ; names(rparv) <- c("theta","phi","rho")
   co <- Countinggraphs(baldata)
@@ -107,8 +106,8 @@ selreport <- function(
   #co$resplot(frm)
   co$plotly3d(partition=frm)
   co$gridarrange()
-  co$rotation(rpar=rparv)
-  co$rotgraph()
+  #co$rotation(rpar=rparv)
+  #co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$mtd$sgs$eq)
   ges$diagnostics()
@@ -873,7 +872,7 @@ Estimation <- setRefClass("Estimation", fields=list(
 						))
 Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   edfc <<- rdfcinp
-  #roto <<- ifelse(sum(unique(dplyr::select(edfc,m1,m2,m3)))==3, 0, 1)
+  roto <<- 0 #ifelse(sum(unique(dplyr::select(edfc,m1,m2,m3)))==3, 0, 1)
   fnr <<- form
   param <<- stickers[['parameters']][[fnr]]
   syequ <<- eqpar$meqs

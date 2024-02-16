@@ -5,16 +5,15 @@ library(googlesheets4)
 library(htmltools)
 library(gridExtra)
 library(usethis)
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
-googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/realregression.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/countingprocess.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/simulations.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/voterrollanalysis.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/R/misc.R'))
-lapply(paste0("app",4:4), function(x){recoudatr(mda=md[[x]])})
-#2+2
+#googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+#gs4_auth()
+lapply(paste0("app",1:4), function(x){recoudatr(mda=md[[x]])})
+
+
+
 #recoudatr(list(recn=recnav[1], 
   #      	 race='Presidential', 
   #      	 candidates=c('Trump (R)','Biden (D)'), 
