@@ -9,9 +9,14 @@ probw <- c(m=0.51,s=0.10)
 probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztech <- c(0,1)	
-app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
-app0_rp <- selreport(app_bal,md$app0)
+app0 <- ballcastsim(dfm,probw,probva,probvb,ztech)
+usethis::use_data(app0, overwrite=TRUE)
 
 
+# Shin
+## shinyapps/empapp/app.R
+# Create a vector of file names
+file_names <- paste0("data/", c("app0.rda", "app1.rda", "app2.rda", "app3.rda", "app4.rda"))
+loaded_data <- lapply(file_names, function(file_name) { load(file_name) })
 
-
+# Use lapply to load all the RDA files

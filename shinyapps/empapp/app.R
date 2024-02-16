@@ -1,23 +1,21 @@
 options(scipen=999)
 ######################################################################################
-#webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-#ManifoldDestinyWASMP::wasmconload()
 ManifoldDestiny::wasmconload()
 ######################################################################################
 #webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 #ManifoldDestiny::wasmconload()
 ###############################################################################################################################################################
-dlname <- c("app0","app1","app2","app3","app4","app5")
-#md <- ManifoldDestiny
-#md$app1
+md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+file_names <- paste0(paste0(rprojroot::find_rstudio_root_file(),"/data/"), c("app0.rda", "app1.rda", "app2.rda", "app3.rda", "app4.rda"))
+loaded_data <- lapply(file_names, function(file_name) { load(file_name) })
 ###############################################################################################################################################################
 ui <- fluidPage(
   titlePanel("Rigged election results analyzer"),
   sidebarLayout(
     sidebarPanel(
       selectInput(inputId = "app_select", label = "Select an election from the library",
-              choices = dlname,
-              selected = "biden_trump_nevada_2020"),
+              choices = c("app0","app1"),
+              selected = "app0"),
       selectInput("form", "Rigged:",
                   choices = c("Normal Form" = "1",
                               "Hybrid Form" = "2",
@@ -68,24 +66,24 @@ server <- function(input, output, session) {
   })  
   cformo <- reactive({
     # Manual
-    #sna <- input$app_select
-    #seldata <- get(sna)
-    #mds <- md[[sna]]
+    sna <- input$app_select
+    seldata <- get(sna)
+    mds <- md[[sna]]
     #### Purge
-    #mds$mtd$prg$cnd <- c(0)
-    #mds$mtd$prg$stuv <- c(0,0,0,0)
-    #mds$mtd$prg$blup[1] <- 0
-    #mds$mtd$prg$blup[2] <- 1
+    mds$mtd$prg$cnd <- c(0)
+    mds$mtd$prg$stuv <- c(0,0,0,0)
+    mds$mtd$prg$blup[1] <- 0
+    mds$mtd$prg$blup[2] <- 1
     #### Solution
-    #mds$sgs$fr <- as.numeric(input$form)
-    #mds$sgs$eq <- as.numeric(input$meqf)
-    #mds$sgs$va <- as.numeric(input$solvf)
+    mds$sgs$fr <- as.numeric(input$form)
+    mds$sgs$eq <- as.numeric(input$meqf)
+    mds$sgs$va <- as.numeric(input$solvf)
     #### Rotation
     #mds$mtd$sgs$ro[1] <- input$theta*pi/180
     #mds$mtd$sgs$ro[2] <- input$phi*pi/180
     #mds$mtd$sgs$ro[3] <- input$rho*pi/180
     ### Selreport
-    #return(selreport(seldata,mds))
+    return(selreport(seldata,mds))
   })
   observe(print(cformo()[[1]]$desms))
   output$table_dsc <- renderPrint({
@@ -104,7 +102,7 @@ server <- function(input, output, session) {
     #cformo()[[1]]$rotplotly[[1]]
   })
   output$plot_3ds <- renderUI({
-    #cformo()[[1]]$all_pl_3d_mani[[1]]
+    cformo()[[1]]$all_pl_3d_mani[[1]]
   })
   output$print_sum <- renderPrint({
     #list(summary(cformo()[[3]]$regsum[[1]]),
@@ -121,7 +119,7 @@ server <- function(input, output, session) {
     #print(as.data.frame(cformo()[[2]]$compare)) %>% dplyr::select(1,2,3,4)
   })
   output$meta_dsc <- renderPrint({
-    #paste0(cformo()[[6]]$sht$url)
+    paste0(cformo()[[6]]$sht$url)
   })
   output$sidebarText <- renderPrint({
     #paste0(cformo()[[6]]$mtd$sgs$eq)
