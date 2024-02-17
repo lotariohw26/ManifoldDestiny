@@ -1,7 +1,5 @@
 options(scipen=999)
 ######################################################################################
-#webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-#ManifoldDestinyWASMP::wasmconload()
 ManifoldDestiny::wasmconload()
 ######################################################################################
 ui <- fluidPage(
@@ -87,12 +85,12 @@ server <- function(input, output, session) {
     ifrm <- as.numeric(input$form)
     ipre <- unlist(strsplit(trimws(input$prevar), '\\s+'))
     iend <- unlist(strsplit(trimws(input$endvar), '\\s+'))
+    ipln <- as.numeric(input$linear)
     inpn <- as.numeric(input$pn)
     kvec <- as.numeric(strsplit(input$kvec, ',')[[1]])
     iwtn <- as.numeric(strsplit(input$wn, ',')[[1]])
     loss <- input$loss
     # Now
-    #browser()
     inpm <- input$auto=="Yes"
     #### Simulation of ballot voting
     dfm <- (function(x){data.frame(P = seq(1, x), RV = as.integer(pmax(rnorm(x, prn[2], prn[3]), 0)))})(prn[1])
@@ -108,7 +106,7 @@ server <- function(input, output, session) {
     			      pre=c("alpha","x","y"),
     			      end=c("zeta","lamda","Omega"),
     			      stuv=c("S","T","U","V"),
-    			      me=c(plnr=1,rot=0),
+    			      me=c(plnr=ipln,rot=0),
     			      lf=loss))
     app_exr_cou$setres(inpn,0)
     app_exr_cou$manimp(init_par=kvec,wn=c(0,0),man=inpm)
@@ -186,5 +184,4 @@ server <- function(input, output, session) {
   })
 }
 shinyApp(ui = ui, server = server)
-
 

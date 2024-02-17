@@ -16,6 +16,7 @@ app0_rp <- selreport(app0,md$app0)
 app_0_out <- seloutput(app0_rp)
 
 # Shiny
+## shinyapps/manimp/app.R
 ## shinyapps/empapp/app.R
 # Create a vector of file names
 file_names <- paste0("data/", c("app0.rda", "app1.rda", "app2.rda", "app3.rda", "app4.rda"))

@@ -607,12 +607,6 @@ Countingprocess$methods(mansys=function(sygen=NULL){
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
   enf[[3]] <<- py_genpolycoeff(exnrs[[1]],mansysl$pre[[1]],mansysl$pre[[3]])[[1]]
-  #enf[[3]] <<- py_genpolycoeff('k0+k1*x+k2*y','alpha','y')[[1]]
-  # wasmcompiled
-  #enf[[3]] <<- list(list('k1','-alpha + k0 + k2*x',0,0,0),
-  #     list('k1','-alpha + k0 + k2*g',0,0,0),
-  #     list('k1','-alpha + k0 + k2*g',0,0,0))[[mansysl$frm]]
-  ### wasmnonpiled
 })
 Countingprocess$methods(setres=function(czset=NULL,prnt=0){
   frp <- mansysl$frm
@@ -629,15 +623,17 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
 					man=FALSE,
 					lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1))){
   ## Variables
-  lof <- function(kvec=NULL){
-    names(kvec) <- paste0("k",seq(0,length(kvec)-1))
-    print(kvec)
-    #View(loss_df)
+  lof <- function(kvec=NULL,prn=T){
+    kvnr <- c(3,6,10,17)[mansysl$me['plnr']]
+    kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
+    kvea[1:length(kvec)] <- kvec
+    #if(prn) {print(kvec)}
+    print(kvea)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
       ### Parameters
-      dplyr::mutate(!!!kvec) %>%
+      dplyr::mutate(!!!kvea) %>%
       ### Presetting the first variables
       dplyr::mutate(!!allvec[1]:=enf[[1]]) %>%
       ### Presetting second variable
