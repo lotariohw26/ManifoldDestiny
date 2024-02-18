@@ -80,6 +80,7 @@ format:
     theme: zephyr
     toc: true
 
+# script/python/polysolver.py
 # script/python/pysympy.py
 # data-raw/labeling.R
 # R/wasmnonverting.R
