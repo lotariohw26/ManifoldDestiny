@@ -6,16 +6,18 @@ ManifoldDestiny::wasmconload()
 #ManifoldDestiny::wasmconload()
 ###############################################################################################################################################################
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-file_names <- paste0(paste0(rprojroot::find_rstudio_root_file(),"/data/"), c("app0.rda", "app1.rda", "app2.rda", "app3.rda", "app4.rda"))
-loaded_data <- lapply(file_names, function(file_name) { load(file_name) })
+apps <- c("app0","app0nr","app0hr","app0or","app1","app2","app3","app4")
+file_names <- paste0(paste0(rprojroot::find_rstudio_root_file(),"/data/"),paste0(apps,".rda"))
+lapply(file_names, function(file_name) { load(file_name) })
+#View(app0nr)
 ###############################################################################################################################################################
 ui <- fluidPage(
   titlePanel("Rigged election results analyzer"),
   sidebarLayout(
     sidebarPanel(
       selectInput(inputId = "app_select", label = "Select an election from the library",
-              choices = c("app0","app1"),
-              selected = "app0"),
+              choices = apps,
+              selected = "app0hr"),
       selectInput("form", "Rigged:",
                   choices = c("Normal Form" = "1",
                               "Hybrid Form" = "2",
@@ -78,9 +80,9 @@ server <- function(input, output, session) {
     mds$sgs$eq <- as.numeric(input$meqf)
     mds$sgs$va <- as.numeric(input$solvf)
     #### Rotation
-    #mds$mtd$sgs$ro[1] <- input$theta*pi/180
-    #mds$mtd$sgs$ro[2] <- input$phi*pi/180
-    #mds$mtd$sgs$ro[3] <- input$rho*pi/180
+    mds$mtd$sgs$ro[1] <- input$theta*pi/180
+    mds$mtd$sgs$ro[2] <- input$phi*pi/180
+    mds$mtd$sgs$ro[3] <- input$rho*pi/180
     ### Selreport
     return(selreport(seldata,mds))
   })
@@ -122,5 +124,11 @@ server <- function(input, output, session) {
   })
 }
 shinyApp(ui = ui, server = server)
+
+
+
+
+
+
 
 

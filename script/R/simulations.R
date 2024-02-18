@@ -77,8 +77,8 @@ app_ex1_cou$mansys(sygen=list(frm=1,
 s1o <- app_ex1_cou$setres(0.19,1)
 app_ex1_cou$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=F)
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
-View(app_ex1_cou$loss_df)
-
+assign("app0nr",app_ex1_cou$loss_df)
+usethis::use_data(app0nr,overwrite = TRUE)
 app_ex1_out <- seloutput(selreport(app_ex1_cou$rdfc,md$app0))
 app_ex1_sim <- SimVoterdatabase(app_ex1_cou$rdfc)
 ######## Rigged example 2: hybrid form
@@ -94,8 +94,8 @@ s2o <- app_ex2_cou$setres(0.19,1)
 pos_int_ex2 <- app_ex2_cou$polyc[[2]][[1]]
 app_ex2_o <- Countinggraphs(app_ex2_cou$rdfc)
 app_ex2_cou$manimp(init_par=c(k0=0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
-app_ex2_out <- seloutput(selreport(app_ex2_cou$rdfc,md$app0))
-# app_ex2_out[[5]]
+assign("app0hr",app_ex2_cou$loss_df)
+usethis::use_data(app0hr,overwrite = TRUE)
 app_ex2_sim <- SimVoterdatabase(app_ex2_cou$rdfc)
 ###### Rigged example 3: Hybrid form
 app_ex3_cou <- Countinggraphs(app_bal)
@@ -110,6 +110,8 @@ s3o <- app_ex2_cou$setres(0.19,1)
 app_ex3_cou$setres(0.19,1)
 pos_int_ex3 <- app_ex3_cou$polyc[[1]][[1]]
 app_ex3_cou$manimp(init_par=c(k0=0.0,k1=0.50,k2=0.50),wn=c(0,0),man=TRUE)
+assign("app0or",app_ex3_cou$loss_df)
+usethis::use_data(app0or,overwrite = TRUE)
 app_ex3_out <- seloutput(selreport(app_ex3_cou$rdfc,md$app0))
 # app_ex3_out[[5]]
 app_ex3_sim <- SimVoterdatabase(app_ex3_cou$rdfc)
@@ -134,4 +136,3 @@ concl_appps <- data.frame(case=casevec,
 			  propn=prope_vec, 
 			  propv=propv_vec)
 ################################################################################################################################################################
-

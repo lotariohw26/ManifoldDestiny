@@ -119,6 +119,102 @@
       }
   }
   },
+  "app0nr": {
+    "nid":"app0",
+    "nmn":"Simulation",
+   "race": {
+	"rcn": "Proto",
+	"cnd": ["T","B"],
+	"sta": "",
+	"cou": [],
+	"mod": ["EDV","MiV"],
+	"yea": 2023
+   },
+   "sht":{
+	"url":"https://docs.google.com/spreadsheets/d/107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0",
+	"pgn":1,
+	"rng":"A1:F23",
+        "cln":["PN","RN","A1","B1","A2","B2"],
+	"stuv":["A1","B1","A2","B2"]
+    },
+    "mtd" : {
+      "prg": {
+	"cnd":[0],
+	"stuv":[0,0,0,0],
+	"blup":[0,1]
+      },
+      "sgs": {
+        "eq":"alpha=k0+k1*x+k2*y",
+        "va":"y",
+        "fr":1,
+	"ro":[0,0,0]
+      }
+  }
+  },
+  "app0hr": {
+    "nid":"app0",
+    "nmn":"Simulation",
+   "race": {
+	"rcn": "Proto",
+	"cnd": ["T","B"],
+	"sta": "",
+	"cou": [],
+	"mod": ["EDV","MiV"],
+	"yea": 2023
+   },
+   "sht":{
+	"url":"https://docs.google.com/spreadsheets/d/107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0",
+	"pgn":1,
+	"rng":"A1:F23",
+        "cln":["PN","RN","A1","B1","A2","B2"],
+	"stuv":["A1","B1","A2","B2"]
+    },
+    "mtd" : {
+      "prg": {
+	"cnd":[0],
+	"stuv":[0,0,0,0],
+	"blup":[0,1]
+      },
+      "sgs": {
+        "eq":"alpha=k0+k1*x+k2*y",
+        "va":"y",
+        "fr":1,
+	"ro":[0,0,0]
+      }
+  }
+  },
+  "app0or": {
+    "nid":"app0",
+    "nmn":"Simulation",
+   "race": {
+	"rcn": "Proto",
+	"cnd": ["T","B"],
+	"sta": "",
+	"cou": [],
+	"mod": ["EDV","MiV"],
+	"yea": 2023
+   },
+   "sht":{
+	"url":"https://docs.google.com/spreadsheets/d/107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0",
+	"pgn":1,
+	"rng":"A1:F23",
+        "cln":["PN","RN","A1","B1","A2","B2"],
+	"stuv":["A1","B1","A2","B2"]
+    },
+    "mtd" : {
+      "prg": {
+	"cnd":[0],
+	"stuv":[0,0,0,0],
+	"blup":[0,1]
+      },
+      "sgs": {
+        "eq":"alpha=k0+k1*x+k2*y",
+        "va":"y",
+        "fr":1,
+	"ro":[0,0,0]
+      }
+  }
+  },
   "app1": {
     "nid":"app1",
     "nmn":"Presidential ...",
