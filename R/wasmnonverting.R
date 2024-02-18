@@ -21,10 +21,10 @@ py_polysolver <- function(degree=1,kvec=NULL){
   retv
 }
 #' @export py_genpolycoeff 
-py_genpolycoeff <- function(expr=NULL,solvd=NULL,solvf=NULL,eur=c(0, 0, 0),dnr=0){
+py_genpolycoeff <- function(expr=NULL,solvd=NULL,solvf=NULL,eur=c(0, 0, 0)){
   #reticulate::source_python(system.file("script/sympy/polysolver.py",package = "ManifoldDestiny"))
   reticulate::source_python(paste0(rprojroot::find_rstudio_root_file(),"/script/python/polysolver.py"))
-  reticulate::py$genpolycoeff(expr=expr,solvd=solvd,solvf=solvf,eur=as.integer(eur),dnr=dnr)
+  reticulate::py$genpolycoeff(expr=expr,solvd=solvd,solvf=solvf,eur=as.integer(eur))
 }
 #####################################################################################################
 #py_genpolycoeff(expr=NULL,solvd='z',solvf='u0',eur=c(1, 1, 1),dnr=0)

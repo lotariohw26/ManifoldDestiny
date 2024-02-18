@@ -607,7 +607,7 @@ Countingprocess$methods(mansys=function(sygen=NULL){
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
   enf[[3]] <<- py_genpolycoeff(exnrs[[1]],mansysl$pre[[1]],mansysl$pre[[3]])[[1]]
-  browser()
+  #enf[[3]] <<- py_genpolycoeff(expr=exnrs[[1]],solvd='z',solvf='u0',eur=c(1, 1, 1))
   #py_genpolycoeff(expr=NULL,solvd='z',solvf='u0',eur=c(1, 1, 1),dnr=0)
   #py_genpolycoeff(expr=NULL,solvd='z',solvf='u0',eur=c(1, 1, 1),dnr=0)
 })
@@ -945,7 +945,7 @@ Estimation$methods(hat_predict=function(svf='y',rnr=1){
     ex <- gsub("\\^","**",regform[2])
     sd <- regform[1]
     eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
-    lpy <<- py_genpolycoeff(expr=NULL,solvd=sd,solvf='Z',eur=eurv,dnr=2)
+    lpy <<- py_genpolycoeff(expr=NULL,solvd=sd,solvf='Z',eur=eurv)
     lpy[[1]] <<- setNames(as.vector(lapply(lpy[[1]],as.character)),LETTERS[1:5])
     lpy[[2]] <<- setNames(as.vector(lapply(lpy[[2]],as.character)),c("x","y","z"))
     lpy[[3]] <<- setNames(as.vector(lapply(lpy[[3]],as.character)),paste0(rep(letters[1:3],each=3),seq(1,3)))
