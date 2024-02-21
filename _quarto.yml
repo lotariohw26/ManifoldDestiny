@@ -79,7 +79,6 @@ format:
   html:
     theme: zephyr
     toc: true
-
 # script/python/polysolver.py
 # script/python/pysympy.py
 # data-raw/labeling.R
@@ -90,4 +89,3 @@ format:
 # script/R/addendum_ne.R
 # script/R/addendum_az.R
 # script/R/testing.R
-# abc.R
