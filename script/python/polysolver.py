@@ -95,15 +95,19 @@ def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[0, 0, 0], plr=3):
         Eu = Eq(x, a1 * u0 + a2 * v0 + a3 * w0)
         Ev = Eq(y, b1 * u0 + b2 * v0 + b3 * w0)
         Ew = Eq(z, c1 * u0 + c2 * v0 + c3 * w0)
+        # Start with non-rotated
         exprf = sympify(expr + '-' + solvd)
+        # Replace with mean
         exprc = exprf.subs([(x, solve(Eu, x)[0]), (y, solve(Ev, y)[0]), (z, solve(Ew, z)[0])])
+        # Reorganize
         exprr = collect(expand(exprc), pvar)
         xr = [] 
         yr = []
         zr = []
         clma = ['u0','v0','w0','d','var','expr','expr2']
         eqsn = len(exprr.args)
-        data = [["0"] * 7 for _ in range(eqsn)]
+        data = [["0"] * 7 for _ in range(20)]
+        #data = [["0"] * 7 for _ in range(eqsn)]
         matarch = pandas.DataFrame(data, columns=clma)
         matarch.loc[0, ['expr','expr2']]=exprr.args[0]
         matarch.loc[0, ['d']]='d_000'
@@ -112,46 +116,47 @@ def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[0, 0, 0], plr=3):
             expr = expt.args[-1]
             varn = expt / expr
             nrfs = len(varn.free_symbols)
-            matarch.loc[i, 'var'] = str(varn)
+            #matarch.loc[i, 'var'] = str(varn)
+            #breakpoint()
+            #print(expr,expt,varn,nrfs,matarch)
             for j in range(0,nrfs):
                 varn = expt.args[j].as_base_exp()[0]
                 pown = expt.args[j].as_base_exp()[1]
                 matarch.loc[i, str(varn)] = pown
-            subd = {a1: a1s, a2: a2s, a3: a3s,b1: b1s, b2: b2s, b3: b3s,c1: c1s, c2: c2s, c3: c3s}
-            matarch.loc[i, 'expr'] = expr
-            matarch.loc[i, 'expr2'] = expr.subs(subd) 
+                subd = {a1: a1s, a2: a2s, a3: a3s,b1: b1s, b2: b2s, b3: b3s,c1: c1s, c2: c2s, c3: c3s}
+                matarch.loc[i, 'expr'] = expr
+                matarch.loc[i, 'expr2'] = expr.subs(subd) 
             cmbx = int(matarch.loc[i, 'u0'])
             cmby = int(matarch.loc[i, 'v0'])
             cmbz = int(matarch.loc[i, 'w0'])
             dr = sum([cmbx, cmby, cmbz])
             matarch.loc[i,'d']='d_'+"".join([str(dr),str(cmbx),str(cmby)])
-    dic1 = matarch.set_index('d')['expr'].to_dict()
-    dic2 = matarch.set_index('d')['expr2'].to_dict()
-    dic = [dic1,dic2][0]
-    nrs = dxyz[solvd]-1
-    ABCDE = [0, 0, 0, 0, 0]
-    #A=[dic['d_330'],
-    #   dic['d_303'],
-    #   dic['d_300']]
-    #ABCDE[0] = str(A[nrs])
-    #B=[dic['d_320']*z+dic['d_321']*y+dic['d_220'],
-    #   dic['d_302']*z+dic['d_312']*x+dic['d_202'],
-    #   dic['d_301']*x+dic['d_310']*y+dic['d_200']]
-    #ABCDE[1] = str(B[nrs])
-    #C=[dic['d_310']*z**2+dic['d_311']*y*z+dic['d_312']*y**2+dic['d_210']*z+dic['d_211']*y+dic['d_110'],
-    #    dic['d_301']*z**2+dic['d_311']*y*z+dic['d_321']*y**2+dic['d_201']*z+dic['d_211']*y+dic['d_101'],
-    #    dic['d_302']*z**2+dic['d_311']*y*z+dic['d_320']*y**2+dic['d_201']*z+dic['d_210']*y+dic['d_110']]
-    #ABCDE[2] = str(C[nrs])
-    #D=[dic['d_300']*z**3+dic['d_301']*y*z**2+dic['d_302']*y**2*z+dic['d_303']*y**3+dic['d_200']*z**2+dic['d_201']*y*z+dic['d_202']*y**2+dic['d_100']*z+dic['d_101']*y+dic['d_000'],
-    #       dic['d_300']*z**3+dic['d_310']*y*z**2+dic['d_320']*y**2*z+dic['d_330']*y**3+dic['d_200']*z**2+dic['d_210']*y*z+dic['d_220']*y**2+dic['d_100']*z+dic['d_110']*y+dic['d_000'],
-    #       dic['d_303']*z**3+dic['d_312']*y*z**2+dic['d_321']*y**2*z+dic['d_330']*y**3+dic['d_202']*z**2+dic['d_211']*y*z+dic['d_220']*y**2+dic['d_101']*z+dic['d_110']*y+dic['d_000']]
-    #ABCDE[3] = str(D[nrs])
-    msl = ['u0','v0','w0','expr','expr2']
-    matarch[msl]=matarch[msl].astype(str)
-    return ABCDE, matarch, abc
-#genpolycoeff(expr='k0+k1*x+k2*y', solvd='alpha', solvf='y', eur=[0, 0, 0])
-genpolycoeff(expr='k0+k1*x+k2*y', solvd='z', solvf='u0', eur=[1, 4, 2], plr=1)[1]
-
+            dic1 = matarch.set_index('d')['expr'].to_dict()
+            dic2 = matarch.set_index('d')['expr2'].to_dict()
+            dic = [dic1,dic2][0]
+            nrs = dxyz[solvd]-1
+        ABCDE = [0, 0, 0, 0, 0]
+        A=[dic['d_330'],
+           dic['d_303'],
+           dic['d_300']]
+        ABCDE[0] = str(A[nrs])
+        B=[dic['d_320']*z+dic['d_321']*y+dic['d_220'],
+           dic['d_302']*z+dic['d_312']*x+dic['d_202'],
+           dic['d_301']*x+dic['d_310']*y+dic['d_200']]
+        ABCDE[1] = str(B[nrs])
+        C=[dic['d_310']*z**2+dic['d_311']*y*z+dic['d_312']*y**2+dic['d_210']*z+dic['d_211']*y+dic['d_110'],
+            dic['d_301']*z**2+dic['d_311']*y*z+dic['d_321']*y**2+dic['d_201']*z+dic['d_211']*y+dic['d_101'],
+            dic['d_302']*z**2+dic['d_311']*y*z+dic['d_320']*y**2+dic['d_201']*z+dic['d_210']*y+dic['d_110']]
+        ABCDE[2] = str(C[nrs])
+        D=[dic['d_300']*z**3+dic['d_301']*y*z**2+dic['d_302']*y**2*z+dic['d_303']*y**3+dic['d_200']*z**2+dic['d_201']*y*z+dic['d_202']*y**2+dic['d_100']*z+dic['d_101']*y+dic['d_000'],
+               dic['d_300']*z**3+dic['d_310']*y*z**2+dic['d_320']*y**2*z+dic['d_330']*y**3+dic['d_200']*z**2+dic['d_210']*y*z+dic['d_220']*y**2+dic['d_100']*z+dic['d_110']*y+dic['d_000'],
+               dic['d_303']*z**3+dic['d_312']*y*z**2+dic['d_321']*y**2*z+dic['d_330']*y**3+dic['d_202']*z**2+dic['d_211']*y*z+dic['d_220']*y**2+dic['d_101']*z+dic['d_110']*y+dic['d_000']]
+        ABCDE[3] = str(D[nrs])
+        msl = ['u0','v0','w0','expr','expr2']
+        matarch[msl]=matarch[msl].astype(str)
+        return ABCDE, matarch, abc
+#genpolycoeff(expr='k0+k1*x+k2*y', solvd='alpha', solvf='y', eur=[0, 0, 0])[0]
+genpolycoeff(expr='k0+k1*x+k2*y', solvd='z', solvf='u0', eur=[1, 4, 2], plr=3)[0]
 
 
 
