@@ -33,7 +33,6 @@ def rall(sel=[0, 0, 0]):
     allrot = [ps[i] for i in sel]
     return allrot
 
-#def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[1, 4, 2], plr=3,dnr=2):
 def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[0, 0, 0], plr=3):
     sympy.var('alpha x y g h n m zeta Gamma lamda ui')
     x, y, z = sympy.symbols('x y z')
@@ -167,11 +166,11 @@ def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[0, 0, 0], plr=3):
             D[0] += dic['d_100']*z+dic['d_101']*y+dic['d_000']
             D[1] += dic['d_100']*z+dic['d_110']*y+dic['d_000']
             D[2] += dic['d_101']*z+dic['d_110']*y+dic['d_000']
-        ABCDE[0] = str(D[nrs])
-        ABCDE[1] = str(C[nrs])
-        ABCDE[2] = str(B[nrs])
-        ABCDE[3] = str(A[nrs])
-        ABCDE[4] = '0'
+        ABCDE[0] = D[nrs]
+        ABCDE[1] = C[nrs]
+        ABCDE[2] = B[nrs]
+        ABCDE[3] = A[nrs]
+        ABCDE[4] = 0 # E
         msl = ['u0','v0','w0','expr','expr2']
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, matarch
