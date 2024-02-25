@@ -116,9 +116,7 @@ def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[0, 0, 0], plr=3):
             expr = expt.args[-1]
             varn = expt / expr
             nrfs = len(varn.free_symbols)
-            #matarch.loc[i, 'var'] = str(varn)
-            #breakpoint()
-            #print(expr,expt,varn,nrfs,matarch)
+            matarch.loc[i, 'var'] = str(varn)
             for j in range(0,nrfs):
                 varn = expt.args[j].as_base_exp()[0]
                 pown = expt.args[j].as_base_exp()[1]
@@ -126,37 +124,46 @@ def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[0, 0, 0], plr=3):
                 subd = {a1: a1s, a2: a2s, a3: a3s,b1: b1s, b2: b2s, b3: b3s,c1: c1s, c2: c2s, c3: c3s}
                 matarch.loc[i, 'expr'] = expr
                 matarch.loc[i, 'expr2'] = expr.subs(subd) 
-            cmbx = int(matarch.loc[i, 'u0'])
-            cmby = int(matarch.loc[i, 'v0'])
-            cmbz = int(matarch.loc[i, 'w0'])
-            dr = sum([cmbx, cmby, cmbz])
-            matarch.loc[i,'d']='d_'+"".join([str(dr),str(cmbx),str(cmby)])
-            dic1 = matarch.set_index('d')['expr'].to_dict()
-            dic2 = matarch.set_index('d')['expr2'].to_dict()
-            dic = [dic1,dic2][0]
-            nrs = dxyz[solvd]-1
-        ABCDE = [0, 0, 0, 0, 0]
-        A=[dic['d_330'],
-           dic['d_303'],
-           dic['d_300']]
-        ABCDE[0] = str(A[nrs])
-        B=[dic['d_320']*z+dic['d_321']*y+dic['d_220'],
-           dic['d_302']*z+dic['d_312']*x+dic['d_202'],
-           dic['d_301']*x+dic['d_310']*y+dic['d_200']]
-        ABCDE[1] = str(B[nrs])
-        C=[dic['d_310']*z**2+dic['d_311']*y*z+dic['d_312']*y**2+dic['d_210']*z+dic['d_211']*y+dic['d_110'],
-            dic['d_301']*z**2+dic['d_311']*y*z+dic['d_321']*y**2+dic['d_201']*z+dic['d_211']*y+dic['d_101'],
-            dic['d_302']*z**2+dic['d_311']*y*z+dic['d_320']*y**2+dic['d_201']*z+dic['d_210']*y+dic['d_110']]
-        ABCDE[2] = str(C[nrs])
-        D=[dic['d_300']*z**3+dic['d_301']*y*z**2+dic['d_302']*y**2*z+dic['d_303']*y**3+dic['d_200']*z**2+dic['d_201']*y*z+dic['d_202']*y**2+dic['d_100']*z+dic['d_101']*y+dic['d_000'],
-               dic['d_300']*z**3+dic['d_310']*y*z**2+dic['d_320']*y**2*z+dic['d_330']*y**3+dic['d_200']*z**2+dic['d_210']*y*z+dic['d_220']*y**2+dic['d_100']*z+dic['d_110']*y+dic['d_000'],
-               dic['d_303']*z**3+dic['d_312']*y*z**2+dic['d_321']*y**2*z+dic['d_330']*y**3+dic['d_202']*z**2+dic['d_211']*y*z+dic['d_220']*y**2+dic['d_101']*z+dic['d_110']*y+dic['d_000']]
-        ABCDE[3] = str(D[nrs])
+                cmbx = int(matarch.loc[i, 'u0'])
+                cmby = int(matarch.loc[i, 'v0'])
+                cmbz = int(matarch.loc[i, 'w0'])
+                dr = sum([cmbx, cmby, cmbz])
+                matarch.loc[i,'d']='d_'+"".join([str(dr),str(cmbx),str(cmby)])
+                dic1 = matarch.set_index('d')['expr'].to_dict()
+                dic2 = matarch.set_index('d')['expr2'].to_dict()
+                dic = [dic1,dic2][0]
+                nrs = dxyz[solvd]-1
+        breakpoint()
+        A=[0,0,0]
+        B=[0,0,0]
+        C=[0,0,0]
+        D=[0,0,0]
+        if plr>=2:
+            #A=[dic['d_330']
+            #    dic['d_303']
+            #    dic['d_300']]
+            #B=[dic['d_320']*z+dic['d_321']*y
+            #   dic['d_302']*z+dic['d_312']*x
+            #   dic['d_301']*x+dic['d_310']*y]
+            #C=[dic['d_310']*z**2+dic['d_311']*y*z+dic['d_312']*y**2dic['d_110'],
+            #   dic['d_301']*z**2+dic['d_311']*y*z+dic['d_321']*y**2dic['d_101'],
+            #   dic['d_302']*z**2+dic['d_311']*y*z+dic['d_320']*y**2+dic['d_201']*z+dic['d_210']*y+dic['d_110']]
+            #D=[dic['d_300']*z**3+dic['d_301']*y*z**2+dic['d_302']*y**2*z+dic['d_303']*y**3,
+            #   dic['d_300']*z**3+dic['d_310']*y*z**2+dic['d_320']*y**2*z+dic['d_330']*y**3,
+            #   dic['d_303']*z**3+dic['d_312']*y*z**2+dic['d_321']*y**2*z+dic['d_330']*y**3]
+        if plr>=1:
+            B=1
+            C=1
+            D=1
+        if plr==1:
+            breakpoint()
+            C=1
+            D=1
         msl = ['u0','v0','w0','expr','expr2']
         matarch[msl]=matarch[msl].astype(str)
-        return ABCDE, matarch, abc
+        return ABCDE, matarch
 #genpolycoeff(expr='k0+k1*x+k2*y', solvd='alpha', solvf='y', eur=[0, 0, 0])[0]
-genpolycoeff(expr='k0+k1*x+k2*y', solvd='z', solvf='u0', eur=[1, 4, 2], plr=3)[0]
+genpolycoeff(expr='k0+k1*x+k2*y', solvd='z', solvf='u0', eur=[1, 4, 2], plr=1)
 
 
 

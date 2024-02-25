@@ -1,10 +1,10 @@
 #' @export py_polysolver
-py_polysolver <- function(degree=1,kvec=NULL){
+py_polysolver <- function(degree=1,abcde=NULL){
   path_fqs <- paste0(rprojroot::find_rstudio_root_file(),"/script/python")
   #path_fqs <- system.file("script/python",package = "ManifoldDestiny")
   fqs <- reticulate::import_from_path("fqs", path =path_fqs)
   np <- reticulate::import("numpy")
-  vec <- kvec[!is.na(kvec)] 
+  vec <- abcde[!is.na(abcde)] 
   if (degree==1) {
     #Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=0,D=0))[1]
     retv <- np$roots(vec)[1]
@@ -26,8 +26,10 @@ py_genpolycoeff <- function(expr=NULL,solvd=NULL,solvf=NULL,eur=c(0, 0, 0)){
   reticulate::source_python(paste0(rprojroot::find_rstudio_root_file(),"/script/python/polysolver.py"))
   reticulate::py$genpolycoeff(expr=expr,solvd=solvd,solvf=solvf,eur=as.integer(eur))
 }
+#py_genpolycoeff(expr='k0+k1*x+k2*y', solvd='alpha', solvf='y', eur=c(0, 0, 0))[1]
+#py_genpolycoeff(expr='k0+k1*x+k2*y', solvd='z', solvf='u0', eur=[1, 4, 2], plr=3)[1]
 #####################################################################################################
-#py_genpolycoeff(expr=NULL,solvd='z',solvf='u0',eur=c(1, 1, 1),dnr=0)
+#py_genpolycoeff(expr=NULL,solvd='z',solvf='u0',eur=c(1, 1, 1))
 #py_polysolver() 
 ##' @export bm
 bm <- function(){
@@ -69,3 +71,10 @@ recoudatr <- function(mda=NULL){
   return(gsh)
 }
 #####################################################################################################
+#py_genpolycoeff(expr='k0+k1*x+k2*y', solvd='alpha', solvf='y', eur=c(0, 0, 0))
+#py_genpolycoeff(expr='k0+k1*x+k2*y', solvd='z', solvf='u0', eur=c(1, 4, 2))
+
+
+
+
+
