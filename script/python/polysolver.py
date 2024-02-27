@@ -95,85 +95,84 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
         Ev = Eq(y, b1 * u0 + b2 * v0 + b3 * w0)
         Ew = Eq(z, c1 * u0 + c2 * v0 + c3 * w0)
         # Start with non-rotated
-        exprf = expr
-        # Replace with mean
+        exprf = solve(expr,z)[0]-z
         exprc = exprf.subs([(x, solve(Eu, x)[0]), (y, solve(Ev, y)[0]), (z, solve(Ew, z)[0])])
         # Reorganize
-        #  exprr = collect(expand(exprc), pvar)
-        #  xr = [] 
-        #  yr = []
-        #  zr = []
-        #  clma = ['u0','v0','w0','d','var','expr','expr2']
-        #  eqsn = len(exprr.args)
-        #  data = [["0"] * 7 for _ in range(eqsn)]
-        #  matarch = pandas.DataFrame(data, columns=clma)
-        #  matarch.loc[0, ['expr','expr2']]=exprr.args[0]
-        #  matarch.loc[0, ['d']]='d_000'
-        #  for i in range(1, eqsn):
-        #      expt = exprr.args[i]
-        #      expr = expt.args[-1]
-        #      varn = expt / expr
-        #      nrfs = len(varn.free_symbols)
-        #      matarch.loc[i, 'var'] = str(varn)
-        #      for j in range(0,nrfs):
-        #          varn = expt.args[j].as_base_exp()[0]
-        #          pown = expt.args[j].as_base_exp()[1]
-        #          matarch.loc[i, str(varn)] = pown
-        #          subd = {a1: a1s, a2: a2s, a3: a3s,b1: b1s, b2: b2s, b3: b3s,c1: c1s, c2: c2s, c3: c3s}
-        #          matarch.loc[i, 'expr'] = expr
-        #          matarch.loc[i, 'expr2'] = expr.subs(subd) 
-        #          cmbx = int(matarch.loc[i, 'u0'])
-        #          cmby = int(matarch.loc[i, 'v0'])
-        #          cmbz = int(matarch.loc[i, 'w0'])
-        #          dr = sum([cmbx, cmby, cmbz])
-        #          matarch.loc[i,'d']='d_'+"".join([str(dr),str(cmbx),str(cmby)])
-        #          dic1 = matarch.set_index('d')['expr'].to_dict()
-        #          dic2 = matarch.set_index('d')['expr2'].to_dict()
-        #          dic = [dic1,dic2][0]
-        #          nrs = dxyz[solvd]-1
-        #  ABCDE = [0, 0, 0, 0, 0]
-        #  A=[0,0,0]
-        #  B=[0,0,0]
-        #  C=[0,0,0]
-        #  D=[0,0,0]
-        #  if plr in [3]:
-        #      A[0] +=  dic['d_330']
-        #      A[1] +=  dic['d_303']
-        #      A[2] +=  dic['d_300']
-        #      B[0] +=  dic['d_320']*z+dic['d_321']*y
-        #      B[1] +=  dic['d_302']*z+dic['d_312']*x
-        #      B[2] +=  dic['d_301']*x+dic['d_310']*y
-        #      C[0] +=  dic['d_310']*z**2+dic['d_311']*y*z+dic['d_312']*y**2+dic['d_110']
-        #      C[1] +=  dic['d_301']*z**2+dic['d_311']*y*z+dic['d_321']*y**2+dic['d_101']
-        #      C[2] +=  dic['d_302']*z**2+dic['d_311']*y*z+dic['d_320']*y**2+dic['d_201']*z+dic['d_210']*y+dic['d_110']
-        #      D[0] += dic['d_300']*z**3+dic['d_301']*y*z**2+dic['d_302']*y**2*z+dic['d_303']*y**3
-        #      D[1] += dic['d_300']*z**3+dic['d_310']*y*z**2+dic['d_320']*y**2*z+dic['d_330']*y**3
-        #      D[2] += dic['d_303']*z**3+dic['d_312']*y*z**2+dic['d_321']*y**2*z+dic['d_330']*y**3
-        #  if plr in [2,3]:
-        #      B[0] += dic['d_220']
-        #      B[1] += dic['d_202']
-        #      B[2] += dic['d_200']
-        #      C[0] += dic['d_210']*z+dic['d_211']*y
-        #      C[1] += dic['d_201']*z+dic['d_211']*y
-        #      C[2] += dic['d_201']*z+dic['d_210']*y
-        #      D[0] += dic['d_200']*z**2+dic['d_201']*y*z+dic['d_202']*y**2
-        #      D[1] += dic['d_200']*z**2+dic['d_210']*y*z+dic['d_220']*y**2
-        #      D[2] += dic['d_202']*z**2+dic['d_211']*y*z+dic['d_220']*y**2
-        #  if plr in [1,2,3]:
-        #      C[0] += dic['d_110']
-        #      C[1] += dic['d_101']
-        #      C[2] += dic['d_110']
-        #      D[0] += dic['d_100']*z+dic['d_101']*y+dic['d_000']
-        #      D[1] += dic['d_100']*z+dic['d_110']*y+dic['d_000']
-        #      D[2] += dic['d_101']*z+dic['d_110']*y+dic['d_000']
-        #  ABCDE[0] = D[nrs]
-        #  ABCDE[1] = C[nrs]
-        #  ABCDE[2] = B[nrs]
-        #  ABCDE[3] = A[nrs]
-        #  ABCDE[4] = 0 # E
-        #  msl = ['u0','v0','w0','expr','expr2']
-        #  matarch[msl]=matarch[msl].astype(str)
+        exprr = collect(expand(exprc), pvar)
+        xr = [] 
+        yr = []
+        zr = []
+        clma = ['u0','v0','w0','d','var','expr','expr2']
+        eqsn = len(exprr.args)
+        data = [["0"] * 7 for _ in range(eqsn)]
+        matarch = pandas.DataFrame(data, columns=clma)
+        matarch.loc[0, ['expr','expr2']]=exprr.args[0]
+        matarch.loc[0, ['d']]='d_000'
+        for i in range(1, eqsn):
+            expt = exprr.args[i]
+            expr = expt.args[-1]
+            varn = expt / expr
+            nrfs = len(varn.free_symbols)
+            matarch.loc[i, 'var'] = str(varn)
+            for j in range(0,nrfs):
+                varn = expt.args[j].as_base_exp()[0]
+                pown = expt.args[j].as_base_exp()[1]
+                matarch.loc[i, str(varn)] = pown
+                subd = {a1: a1s, a2: a2s, a3: a3s,b1: b1s, b2: b2s, b3: b3s,c1: c1s, c2: c2s, c3: c3s}
+                matarch.loc[i, 'expr'] = expr
+                matarch.loc[i, 'expr2'] = expr.subs(subd) 
+                cmbx = int(matarch.loc[i, 'u0'])
+                cmby = int(matarch.loc[i, 'v0'])
+                cmbz = int(matarch.loc[i, 'w0'])
+                dr = sum([cmbx, cmby, cmbz])
+                matarch.loc[i,'d']='d_'+"".join([str(dr),str(cmbx),str(cmby)])
+                dic1 = matarch.set_index('d')['expr'].to_dict()
+                dic2 = matarch.set_index('d')['expr2'].to_dict()
+                dic = [dic1,dic2][0]
+                nrs = dxyz[solvd]-1
+        ABCDE = [0, 0, 0, 0, 0]
+        A=[0,0,0]
+        B=[0,0,0]
+        C=[0,0,0]
+        D=[0,0,0]
+        if plr in [3]:
+            A[0] +=  dic['d_330']
+            A[1] +=  dic['d_303']
+            A[2] +=  dic['d_300']
+            B[0] +=  dic['d_320']*z+dic['d_321']*y
+            B[1] +=  dic['d_302']*z+dic['d_312']*x
+            B[2] +=  dic['d_301']*x+dic['d_310']*y
+            C[0] +=  dic['d_310']*z**2+dic['d_311']*y*z+dic['d_312']*y**2+dic['d_110']
+            C[1] +=  dic['d_301']*z**2+dic['d_311']*y*z+dic['d_321']*y**2+dic['d_101']
+            C[2] +=  dic['d_302']*z**2+dic['d_311']*y*z+dic['d_320']*y**2+dic['d_201']*z+dic['d_210']*y+dic['d_110']
+            D[0] += dic['d_300']*z**3+dic['d_301']*y*z**2+dic['d_302']*y**2*z+dic['d_303']*y**3
+            D[1] += dic['d_300']*z**3+dic['d_310']*y*z**2+dic['d_320']*y**2*z+dic['d_330']*y**3
+            D[2] += dic['d_303']*z**3+dic['d_312']*y*z**2+dic['d_321']*y**2*z+dic['d_330']*y**3
+        if plr in [2,3]:
+            B[0] += dic['d_220']
+            B[1] += dic['d_202']
+            B[2] += dic['d_200']
+            C[0] += dic['d_210']*z+dic['d_211']*y
+            C[1] += dic['d_201']*z+dic['d_211']*y
+            C[2] += dic['d_201']*z+dic['d_210']*y
+            D[0] += dic['d_200']*z**2+dic['d_201']*y*z+dic['d_202']*y**2
+            D[1] += dic['d_200']*z**2+dic['d_210']*y*z+dic['d_220']*y**2
+            D[2] += dic['d_202']*z**2+dic['d_211']*y*z+dic['d_220']*y**2
+        if plr in [1,2,3]:
+            C[0] += dic['d_110']
+            C[1] += dic['d_101']
+            C[2] += dic['d_110']
+            D[0] += dic['d_100']*z+dic['d_101']*y+dic['d_000']
+            D[1] += dic['d_100']*z+dic['d_110']*y+dic['d_000']
+            D[2] += dic['d_101']*z+dic['d_110']*y+dic['d_000']
+        ABCDE[0] = D[nrs]
+        ABCDE[1] = C[nrs]
+        ABCDE[2] = B[nrs]
+        ABCDE[3] = A[nrs]
+        ABCDE[4] = 0 # E
+        msl = ['u0','v0','w0','expr','expr2']
+        matarch[msl]=matarch[msl].astype(str)
         return ABCDE, matarch
-#genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='alpha')
-#genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='x',eur=[1, 4, 2])
+genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='alpha')
+genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='x',eur=[1, 4, 2])
 
