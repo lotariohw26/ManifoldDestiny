@@ -33,15 +33,16 @@ def rall(sel=[0, 0, 0]):
     allrot = [ps[i] for i in sel]
     return allrot
 
-def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[0, 0, 0], plr=3):
-    sympy.var('alpha x y g h n m zeta Gamma lamda ui')
+def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
     x, y, z = sympy.symbols('x y z')
+    k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
+    sympy.var('alpha x y g h n m zeta Gamma lamda ui')
+    expr = [Eq(z,k0+k1*x+k2*y),Eq(z,k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2),Eq(z,k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3)][plr-1]
     sum_eur = sum(eur)
     # Without rotation
     if sum_eur == 0:
-        exprc = expr + '-' + solvd
-        asexpr = sympify(exprc)
-        polys = poly(asexpr, sympify(solvf)).all_coeffs()
+        exprc = expr.subs([(z,parm[0]),(x,parm[1]),(y,parm[2])])
+        polys = poly(exprc, sympify(solvd)).all_coeffs()
         abc = []
         uvw = []
         ABCDE = [0, 0, 0, 0, 0]
@@ -49,7 +50,6 @@ def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[0, 0, 0], plr=3):
         return ABCDE, abc, uvw
     # With rotation
     else:
-        expr = ['k0+k1*x+k2*y','k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2','k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3'][plr-1]
         dxyz = {'x': 1, 'y': 2, 'z': 3}
         # Defining
         x,  y,  z  = sympy.symbols('x y z')
@@ -95,10 +95,11 @@ def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[0, 0, 0], plr=3):
         Ev = Eq(y, b1 * u0 + b2 * v0 + b3 * w0)
         Ew = Eq(z, c1 * u0 + c2 * v0 + c3 * w0)
         # Start with non-rotated
-        exprf = sympify(expr + '-' + solvd)
+        exprf = expr
         # Replace with mean
         exprc = exprf.subs([(x, solve(Eu, x)[0]), (y, solve(Ev, y)[0]), (z, solve(Ew, z)[0])])
         # Reorganize
+        breakpoint()
         exprr = collect(expand(exprc), pvar)
         xr = [] 
         yr = []
@@ -174,6 +175,6 @@ def genpolycoeff(expr=None, solvd='z', solvf='u0', eur=[0, 0, 0], plr=3):
         msl = ['u0','v0','w0','expr','expr2']
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, matarch
-#genpolycoeff(expr='k0+k1*x+k2*y', solvd='alpha', solvf='y', eur=[0, 0, 0])[0]
-#genpolycoeff(expr='k0+k1*x+k2*y', solvd='z', solvf='u0', eur=[1, 4, 2], plr=1)[0]
+#genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='alpha')
+genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='x',eur=[1, 4, 2])
 
