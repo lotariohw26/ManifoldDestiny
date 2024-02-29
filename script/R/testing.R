@@ -1,4 +1,5 @@
 # ../../R/wasmconverting.R  
+source("R/wasmconverting.R")
 # 631
 ManifoldDestiny::wasmconload()
 md <- ManifoldDestinyWASMD::metad
