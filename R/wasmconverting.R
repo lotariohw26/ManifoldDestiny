@@ -55,7 +55,6 @@ manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
     dplyr::mutate(D=pareq(la_e[3],c(as.list(.[,])))) %>%
     dplyr::mutate(E=pareq(la_e[3],c(as.list(.[,])))) %>%
     dplyr::group_by(P) %>%
-    #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
     dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
     dplyr::mutate(!!paste0(svar):=Re(polsolv[1])) %>%
     dplyr::ungroup()
@@ -282,9 +281,7 @@ SimVoterdatabase$methods(r2sim=function(rept=10,form=1)
     r2dflook <<- list(dfgp,percdf)
 })
 SimVoterdatabase$methods(htmltable=function(){
-
   htmlr2 <<- r2dflook[[1]] #kableExtra::kbl() #%>% kableExtra::kable_paper(full_width = F)
-
 })
 SimVoterdatabase$methods(gghist=function(){
   dfgp <- r2dflook[[1]] %>% tidyr::pivot_longer(cols=c("r2a","r2b")) %>% dplyr::arrange(name,perc)
@@ -624,11 +621,10 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
 					lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1))){
   ## Variables
   lof <- function(kvec=NULL,prn=T){
-    kvnr <- c(3,6,10,17)[mansysl$me['plnr']]
+    kvnr <- c(3,6,10,17)[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
     #if(prn) {print(kvec)}
-    print(kvea)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -639,9 +635,8 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       ### Presetting second variable
       dplyr::mutate(!!allvec[2]:=pareq(enf[[2]],c(as.list(.[,])))) %>%
       ### Presetting the Manifold object
-      dplyr::mutate(!!allvec[3]:=manobj(enfl=enf[[3]],.[,],allvec[3])) %>%
+      dplyr::mutate(!!allvec[3]:=manobj(enfl=enf[[3]],.[,],allvec[3])) 
       #!RWASM
-      #dplyr::mutate(!!allvec[3]:=manobj(enfl=pre3,rdfci,allvec[3]))
       ### Adding some noise
       dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) %>%
       ### Backsolving for the two remaining parameter
@@ -1001,4 +996,3 @@ Estimation$methods(hat_intcomp=function(){
   comdesc <<- data.frame(stats=names(vnd),values=vnd)
 })
 ############################################################################################################################################################
-
