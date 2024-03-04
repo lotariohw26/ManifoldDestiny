@@ -16,8 +16,8 @@ app_n_out <- seloutput(app_n_rep)
 app_n_sim <- SimVoterdatabase(app_bal)
 ########## Rigged example 1: standard form without rotation
 frms <- 1
-plnrvec <- c(1,2,3)[2]
-rotv <- list(c(0,0,0),c(1,4,2))[[1]]
+plnrvec <- c(1,2,3)[1]
+rotv <- list(c(0,0,0),c(1,4,2))[[2]]
 app_ex1_cou <- Countinggraphs(app_bal)
 pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 app_ex1_cou$mansys(sygen=list(frm=frms,

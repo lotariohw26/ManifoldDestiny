@@ -47,7 +47,7 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
         uvw = []
         ABCDE = [0, 0, 0, 0, 0]
         ABCDE[:len(polys)] = polys
-        return ABCDE, abc, uvw
+        return ABCDE
     # With rotation
     else:
         dxyz = {'x': 1, 'y': 2, 'z': 3}
@@ -135,6 +135,7 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
         B=[0,0,0]
         C=[0,0,0]
         D=[0,0,0]
+        E=[0,0,0]
         if plr in [3]:
             A[0] +=  dic['d_330']
             A[1] +=  dic['d_303']
@@ -173,6 +174,6 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
         msl = ['u0','v0','w0','expr','expr2']
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, matarch
-genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='alpha')
-genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='x',eur=[1, 4, 2])
+# genpolycoeff(plr=3,parm=["alpha", "x", "y"], solvd='y')
+# genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='x',eur=[1, 4, 2])
 

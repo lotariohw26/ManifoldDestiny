@@ -625,11 +625,14 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
     #if(prn) {print(kvec)}
+    #a1,c1
+    #browser()
+    #View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
       ### Parameters
-      dplyr::mutate(!!!kvea) %>%
+      dplyr::mutate(!!!kvea) 
       ### Presetting the first variables
       dplyr::mutate(!!allvec[1]:=enf[[1]]) %>%
       ### Presetting second variable
