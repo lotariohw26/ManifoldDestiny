@@ -603,7 +603,7 @@ Countingprocess$methods(mansys=function(sygen=NULL){
   exnrs <<- gsub('v',mansysl$pre[2], gsub('u',mansysl$pre[3],peqs[mansysl$me[['plnr']]]))
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
-  enf[[3]] <<- py_genpolycoeff(plr=mansysl$plnr,parm=mansysl$pre,solvd=mansysl$pre[3],eur=mansysl$rot)[[1]]
+  enf[[3]] <<- py_genpolycoeff(plr=mansysl$plnr,parm=mansysl$pre,solvd=mansysl$pre[3],eur=mansysl$rot)
 })
 Countingprocess$methods(setres=function(czset=NULL,prnt=0){
   frp <- mansysl$frm

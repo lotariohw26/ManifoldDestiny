@@ -26,7 +26,7 @@ py_genpolycoeff <- function(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(1, 
   reticulate::py$genpolycoeff(plr=as.integer(plr),parm=parm, solvd=solvd,eur=as.integer(eur))
 }
 #py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(0, 0, 0))
-#py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(1, 4, 2))
+#py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(1, 4, 2))[[3]]
 #####################################################################################################
 #py_genpolycoeff(expr=NULL,solvd='z',solvf='u0',eur=c(1, 1, 1))
 #py_polysolver() 

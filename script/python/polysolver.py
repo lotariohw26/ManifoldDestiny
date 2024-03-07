@@ -75,7 +75,6 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
         av = sympy.collect(sympy.expand(RR.row(0)[0]), (u0, v0, w0))
         bv = sympy.collect(sympy.expand(RR.row(1)[0]), (u0, v0, w0))
         cv = sympy.collect(sympy.expand(RR.row(2)[0]), (u0, v0, w0))
-        breakpoint()
         a1s = av.coeff(u0)
         a2s = av.coeff(v0)
         a3s = av.coeff(w0)
