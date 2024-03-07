@@ -624,15 +624,18 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
     kvnr <- c(3,6,10,17)[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
-    #if(prn) {print(kvec)}
-    #a1,c1
-    #browser()
-    #View(loss_df)
+    grad <- c(14.3781,11.5781,49.76261)
+    rad <- grad*(pi/180)
+    mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
+    nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
+    View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
       ### Parameters
-      dplyr::mutate(!!!kvea) 
+      dplyr::mutate(!!!kvea) %>%
+      ### MN
+      dplyr::mutate(!!!mv,!!!nv) 
       ### Presetting the first variables
       dplyr::mutate(!!allvec[1]:=enf[[1]]) %>%
       ### Presetting second variable
