@@ -45,11 +45,12 @@ wasmconload <- function(){
 #}
 #' @export manobj
 manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
+#	browser()
   polyc <- setNames(as.vector(lapply(enfl[[1]], as.character)),LETTERS[1:5])
   la_e <- unlist(polyc[c(LETTERS[1:5])])
   pnr <- sum(la_e!="0")
   rootdf <- dfa  %>%
-    dplyr::mutate(A=pareq(la_e[1],c(as.list(.[,])))) 
+    dplyr::mutate(A=pareq(la_e[1],c(as.list(.[,])))) %>%
     dplyr::mutate(B=pareq(la_e[2],c(as.list(.[,])))) %>%
     dplyr::mutate(C=pareq(la_e[3],c(as.list(.[,])))) %>%
     dplyr::mutate(D=pareq(la_e[3],c(as.list(.[,])))) %>%
@@ -621,7 +622,6 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
 					lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1))){
   ## Variables
   lof <- function(kvec=NULL,prn=T){
-	  browser()
     kvnr <- c(3,6,10,17)[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
@@ -629,7 +629,6 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
     abcv <- setNames(as.vector(lapply(enf[[3]][[3]], as.character)),c(paste0(rep(letters[1:3], each=3), rep(1:3, times=3))))
     mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
     nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
-    View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -645,11 +644,11 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%
       dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%
       dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%
-      dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) 
+      dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%
       ### Presetting the first variables
       dplyr::mutate(!!allvec[1]:=enf[[1]]) %>%
       ### Presetting second variable
-      dplyr::mutate(!!allvec[2]:=pareq(enf[[2]],c(as.list(.[,])))) 
+      dplyr::mutate(!!allvec[2]:=pareq(enf[[2]],c(as.list(.[,])))) %>%
       ### Presetting the Manifold object
       dplyr::mutate(!!allvec[3]:=manobj(enfl=enf[[3]],.[,],allvec[3])) %>%
       #!RWASM
