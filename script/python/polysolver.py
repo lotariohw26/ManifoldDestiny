@@ -131,51 +131,52 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
                 dic = [dic1,dic2][0]
                 nrs = dxyz[solvd]-1
         ABCDE = [0, 0, 0, 0, 0]
-        A=[0,0,0]
-        B=[0,0,0]
-        C=[0,0,0]
-        D=[0,0,0]
-        E=[0,0,0]
+        A=Matrix([0,0,0])
+        B=Matrix([0,0,0])
+        C=Matrix([0,0,0])
+        D=Matrix([0,0,0])
+        E=Matrix([0,0,0])
         if plr in [3]:
             A[0] +=  dic['d_330']
             A[1] +=  dic['d_303']
             A[2] +=  dic['d_300']
-            B[0] +=  dic['d_320']*z+dic['d_321']*y
-            B[1] +=  dic['d_302']*z+dic['d_312']*x
-            B[2] +=  dic['d_301']*x+dic['d_310']*y
-            C[0] +=  dic['d_310']*z**2+dic['d_311']*y*z+dic['d_312']*y**2+dic['d_110']
-            C[1] +=  dic['d_301']*z**2+dic['d_311']*y*z+dic['d_321']*y**2+dic['d_101']
-            C[2] +=  dic['d_302']*z**2+dic['d_311']*y*z+dic['d_320']*y**2+dic['d_201']*z+dic['d_210']*y+dic['d_110']
-            D[0] += dic['d_300']*z**3+dic['d_301']*y*z**2+dic['d_302']*y**2*z+dic['d_303']*y**3
-            D[1] += dic['d_300']*z**3+dic['d_310']*y*z**2+dic['d_320']*y**2*z+dic['d_330']*y**3
-            D[2] += dic['d_303']*z**3+dic['d_312']*y*z**2+dic['d_321']*y**2*z+dic['d_330']*y**3
+            B[0] +=  dic['d_320']*u0+dic['d_321']*w0
+            B[1] +=  dic['d_302']*u0+dic['d_312']*v0
+            B[2] +=  dic['d_301']*w0+dic['d_310']*v0
+            C[0] +=  dic['d_310']*u0**2+dic['d_311']*u0*w0+dic['d_312']*w0**2+dic['d_110']
+            C[1] +=  dic['d_301']*u0**2+dic['d_311']*u0*v0+dic['d_321']*v0**2+dic['d_101']
+            C[2] +=  dic['d_302']*w0**2+dic['d_311']*w0*v0+dic['d_320']*w0**2+dic['d_201']*v0+dic['d_210']*w0+dic['d_110']
+            D[0] += dic['d_300']*u0**3+dic['d_301']*w0*u0**2+dic['d_302']*w0**2*u0+dic['d_303']*w0**3
+            D[1] += dic['d_300']*u0**3+dic['d_310']*u0*v0**2+dic['d_320']*v0**2*u0+dic['d_330']*v0**3
+            D[2] += dic['d_303']*v0**3+dic['d_312']*w0*v0**2+dic['d_321']*w0**2*v0+dic['d_330']*v0**3
         if plr in [2,3]:
             B[0] += dic['d_220']
             B[1] += dic['d_202']
             B[2] += dic['d_200']
-            C[0] += dic['d_210']*z+dic['d_211']*y
-            C[1] += dic['d_201']*z+dic['d_211']*y
-            C[2] += dic['d_201']*z+dic['d_210']*y
-            D[0] += dic['d_200']*z**2+dic['d_201']*y*z+dic['d_202']*y**2
-            D[1] += dic['d_200']*z**2+dic['d_210']*y*z+dic['d_220']*y**2
-            D[2] += dic['d_202']*z**2+dic['d_211']*y*z+dic['d_220']*y**2
+            C[0] += dic['d_210']*u0+dic['d_211']*w0
+            C[1] += dic['d_201']*u0+dic['d_211']*v0
+            C[2] += dic['d_201']*v0+dic['d_210']*w0
+            D[0] += dic['d_200']*u0**2+dic['d_201']*w0*u0+dic['d_202']*w0**2
+            D[1] += dic['d_200']*u0**2+dic['d_210']*v0*u0+dic['d_220']*v0**2
+            D[2] += dic['d_202']*v0**2+dic['d_211']*v0*w0+dic['d_220']*w0**2
         if plr in [1,2,3]:
             C[0] += dic['d_110']
             C[1] += dic['d_101']
             C[2] += dic['d_110']
-            D[0] += dic['d_100']*z+dic['d_101']*y+dic['d_000']
-            D[1] += dic['d_100']*z+dic['d_110']*y+dic['d_000']
-            D[2] += dic['d_101']*z+dic['d_110']*y+dic['d_000']
-        ABCDE[0] = D[nrs]
-        ABCDE[1] = C[nrs]
-        ABCDE[2] = B[nrs]
-        ABCDE[3] = A[nrs]
-        ABCDE[4] = 0 # E
+            D[0] += dic['d_100']*u0+dic['d_101']*w0+dic['d_000']
+            D[1] += dic['d_100']*u0+dic['d_110']*v0+dic['d_000']
+            D[2] += dic['d_101']*v0+dic['d_110']*w0+dic['d_000']
+            breakpoint()
+        ABCDE[0] = D[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
+        ABCDE[1] = C[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
+        ABCDE[2] = B[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
+        ABCDE[3] = A[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
+        ABCDE[4] = E[nrs]
         msl = ['u0','v0','w0','expr','expr2']
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, matarch, abc
 #genpolycoeff(plr=3,parm=["alpha", "x", "y"], solvd='y')
-#genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='x',eur=[1, 4, 2])
+genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='x',eur=[1, 4, 2])[0]
 
 
 
