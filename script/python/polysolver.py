@@ -166,7 +166,6 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
             D[0] += dic['d_100']*u0+dic['d_101']*w0+dic['d_000']
             D[1] += dic['d_100']*u0+dic['d_110']*v0+dic['d_000']
             D[2] += dic['d_101']*v0+dic['d_110']*w0+dic['d_000']
-            breakpoint()
         ABCDE[0] = D[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
         ABCDE[1] = C[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
         ABCDE[2] = B[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
@@ -176,7 +175,7 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, matarch, abc
 #genpolycoeff(plr=3,parm=["alpha", "x", "y"], solvd='y')
-genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='x',eur=[1, 4, 2])[0]
+#genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='x',eur=[1, 4, 2])[0]
 
 
 
