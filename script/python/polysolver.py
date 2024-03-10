@@ -47,7 +47,7 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
         uvw = []
         ABCDE = [0, 0, 0, 0, 0]
         ABCDE[:len(polys)] = polys
-        return ABCDE
+        return ABCDE 
     # With rotation
     else:
         dxyz = {'x': 1, 'y': 2, 'z': 3}
@@ -166,16 +166,18 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
             D[0] += dic['d_100']*u0+dic['d_101']*w0+dic['d_000']
             D[1] += dic['d_100']*u0+dic['d_110']*v0+dic['d_000']
             D[2] += dic['d_101']*v0+dic['d_110']*w0+dic['d_000']
-        ABCDE[0] = D[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
-        ABCDE[1] = C[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
-        ABCDE[2] = B[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
-        ABCDE[3] = A[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
+        ABCDE[0] = A[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
+        ABCDE[1] = B[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
+        ABCDE[2] = C[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
+        ABCDE[3] = D[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
         ABCDE[4] = E[nrs]
+        indpr = [[2,3,4,0,1],[1,2,3,4,0],[0,1,2,3,4]]
+        ABCDE = [ABCDE[i] for i in indpr[plr-1]]
         msl = ['u0','v0','w0','expr','expr2']
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, matarch, abc
-#genpolycoeff(plr=3,parm=["alpha", "x", "y"], solvd='y')
-#genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='x',eur=[1, 4, 2])[0]
+#genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y') 
+#genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y',eur=[1, 4, 2])[0]
 
 
 
