@@ -19,7 +19,7 @@ ui <- fluidPage(
                               "Opposition Form" = "3"), selected = "1"),
       selectizeInput("prevar","Predermined variables",choices=c("alpha","x","y","zeta","omega"),multiple =TRUE,options=list(maxItems=3),
       selected = c("alpha", "x", "y")),
-      selectizeInput("endvar","Predermined variables",choices=c("alpha","x","y","zeta","lamda"),multiple =TRUE,options=list(maxItems=2), selected=c("zeta","lamda")),
+      selectizeInput("endvar","Endogenous variables",choices=c("alpha","x","y","zeta","lamda"),multiple =TRUE,options=list(maxItems=2), selected=c("zeta","lamda")),
       textInput("pn", "Polynomial", value='0.23'),
       selectInput("linear", "Polynomial:",
                   choices = c("Linear" = "1",
@@ -30,18 +30,12 @@ ui <- fluidPage(
       textInput("kvec", "parameters", value='0,0.5,0.5'),
       selectInput("loss", "Loss function:",
                   choices = c("(alpha-alpha_s)^2" = "1","Def" = "2"), selected = "1"),
-      downloadButton("downloadData", "Download"),
     sidebarPanel(
-      selectInput("auto2", "Manual2", choices = c("Yes", "No")),
+      selectInput("cidr", "Complex rotator", choices = c("No", "Yes")),
       conditionalPanel(
-        condition = "input.auto2 == 'No'",
+        condition = "input.cidr == 'Yes'",
         selectInput("auto2", "Manual", choices = c("Yes", "No")),
-        conditionalPanel(
-          condition = "input2.auto == 'No'",
-          textInput("ABC","T", value='0.0, 0.0'),
-          selectizeInput("lossalog","Loss algorithm",choices=c("alpha","x","y","zeta","lamda"),multiple =FALSE,options=list(maxItems=1))
-        ),
-        h4("Rotation Settings (Euler)"),
+        h4("Settings (Euler)"),
         selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
         sliderInput("theta", "Theta:", min = 0, max = 360, value = 0),
         sliderInput("phi", "Phi:", min = 0, max = 360, value = 0),
