@@ -28,10 +28,26 @@ ui <- fluidPage(
                               "Quartic" = "4"), selected = "1"),
       textInput("wn", "White noise", value='0.0, 0.0'),
       textInput("kvec", "parameters", value='0,0.5,0.5'),
-      selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
       selectInput("loss", "Loss function:",
                   choices = c("(alpha-alpha_s)^2" = "1","Def" = "2"), selected = "1"),
       downloadButton("downloadData", "Download"),
+    sidebarPanel(
+      selectInput("auto2", "Manual2", choices = c("Yes", "No")),
+      conditionalPanel(
+        condition = "input.auto2 == 'No'",
+        selectInput("auto2", "Manual", choices = c("Yes", "No")),
+        conditionalPanel(
+          condition = "input2.auto == 'No'",
+          textInput("ABC","T", value='0.0, 0.0'),
+          selectizeInput("lossalog","Loss algorithm",choices=c("alpha","x","y","zeta","lamda"),multiple =FALSE,options=list(maxItems=1))
+        ),
+        h4("Rotation Settings (Euler)"),
+        selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
+        sliderInput("theta", "Theta:", min = 0, max = 360, value = 0),
+        sliderInput("phi", "Phi:", min = 0, max = 360, value = 0),
+        sliderInput("rho", "Rho:", min = 0, max = 360, value = 0),
+      ),
+    ),
     sidebarPanel(
       selectInput("auto", "Manual", choices = c("Yes", "No")),
       conditionalPanel(
@@ -102,12 +118,20 @@ server <- function(input, output, session) {
     app_n_cou$plot2d()
     ### Rigging an election
     app_exr_cou <- Countinggraphs(app_bal)
+    #app_exr_cou$mansys(sygen=list(frm=ifrm,
+    #			      pre=c("alpha","x","y"),
+    #			      end=c("zeta","lamda","Omega"),
+    #			      stuv=c("S","T","U","V"),
+    #			      me=c(plnr=ipln,rot=0),
+    #			      lf=loss))
+    rotv<-list(list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),list(fr=c(1,14.378100),sr=c(4,49.762610),tr=c(2,11.5781)))[[1]]
     app_exr_cou$mansys(sygen=list(frm=ifrm,
-    			      pre=c("alpha","x","y"),
-    			      end=c("zeta","lamda","Omega"),
-    			      stuv=c("S","T","U","V"),
-    			      me=c(plnr=ipln,rot=0),
-    			      lf=loss))
+      pre=c("alpha","x","y"),
+      end=c("zeta","lamda","Omega"),
+      stuv=c("S","T","U","V"),
+      plnr=ipln,
+      rot=rotv,
+      lf="(alpha-alpha_s)^2"))
     app_exr_cou$setres(inpn,0)
     app_exr_cou$manimp(init_par=kvec,wn=c(0,0),man=inpm)
     app_exm_cou <- Countinggraphs(app_exr_cou$rdfc)
@@ -184,4 +208,15 @@ server <- function(input, output, session) {
   })
 }
 shinyApp(ui = ui, server = server)
-
+#      selectInput("auto2", "Manual", choices = c("Yes", "No")),
+#      conditionalPanel(
+#        condition = "input2.auto == 'No'",
+#        textInput("ABC","T", value='0.0, 0.0'),
+#        selectizeInput("lossalog","Loss algorithm",choices=c("alpha","x","y","zeta","lamda"),multiple =FALSE,options=list(maxItems=1))
+#      ),
+#      h4("Rotation Settings (Euler)"),
+#      selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
+#      sliderInput("theta", "Theta:", min = 0, max = 360, value = 0),
+#      sliderInput("phi", "Phi:", min = 0, max = 360, value = 0),
+#      sliderInput("rho", "Rho:", min = 0, max = 360, value = 0),
+#

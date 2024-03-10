@@ -17,7 +17,7 @@ app_n_sim <- SimVoterdatabase(app_bal)
 ########## Rigged example 1: standard form without rotation
 frms <- 1
 plnrvec <- c(1,2,3)[1]
-rotv <- list(list(fr=c(1,0),sr=c(4,0),tr=c(2,0)),list(fr=c(1,14.378100),sr=c(4,49.762610),tr=c(2,11.5781)))[[1]]
+rotv <- list(list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),list(fr=c(1,14.378100),sr=c(4,49.762610),tr=c(2,11.5781)))[[1]]
 app_ex1_cou <- Countinggraphs(app_bal)
 pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 app_ex1_cou$mansys(sygen=list(frm=frms,
@@ -32,5 +32,6 @@ app_ex1_cou$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=F)
 pos_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
 assign("app0nr",app_ex1_cou$loss_df)
 usethis::use_data(app0nr,overwrite = TRUE)
+View(app0nr)
 
 
