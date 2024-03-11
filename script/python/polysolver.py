@@ -179,6 +179,10 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
 #genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y') 
 #genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y',eur=[1, 4, 2])[0]
 
-
-
-
+#pexr = genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y') 
+#def calcexpr(expr, par=[0, 0], k=[0, 0, 0], a=[0, 0, 0], b=[0, 0, 0], c=[0, 0, 0]):
+#    A=expr[0]
+#    expr2 = expr.subs({k0: k[0], k1: k[1], k2: k[2]})
+#    return expr2
+#pexr
+calcexpr(expr=pexr)
