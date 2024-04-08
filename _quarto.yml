@@ -82,8 +82,8 @@ format:
 # script/python/polysolver.py
 # script/python/pysympy.py
 # data-raw/labeling.R
+# R/wasmconverting.e
 # R/wasmnonverting.R
-# R/wasmconverting.R
 # script/R/simulations.R
 # script/R/applications.R
 # script/R/addendum_ne.R
