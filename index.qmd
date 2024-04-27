@@ -19,60 +19,21 @@ format:
 ![](pngs/md.png)
 
 ```{mermaid}
-%% R/wasmconverting.R
 %%| echo: false
 classDiagram
-    note for abc "a"
-    note for cde "b"
-    note for fgh "c"
     class SimVoterdatabase{
         +field1
         +abc1()
     }
-    class Abc{
-        +field1
-        +abc1()
-    }
-    class Def{
-        +field1
-        +abc1()
-    }
-    class Ghi{
-        +field1
-        +abc1()
-    }
-    Initmodelnum --|> Abc
-    Initmodelnum --|> Def
-    Initmodelnum --|> Ghi
 ```
 
 ```{mermaid}
-%% R/wasmconverting.R
-%% Countinggraphs 
 %%| echo: false
 classDiagram
-    note for abc "a"
-    note for cde "b"
-    note for fgh "c"
     class Countingprocess{
         +field1
         +abc1()
     }
-    class Abc{
-        +field1
-        +abc1()
-    }
-    class Def{
-        +field1
-        +abc1()
-    }
-    class Ghi{
-        +field1
-        +abc1()
-    }
-    Initmodelnum --|> Abc
-    Initmodelnum --|> Def
-    Initmodelnum --|> Ghi
     class Countinggraphs{
         +field1
         +abc1()
@@ -80,33 +41,14 @@ classDiagram
 ```
 
 ```{mermaid}
-%% R/wasmconverting.R
-%% Countinggraphs 
 %%| echo: false
 classDiagram
-    note for abc "a"
-    note for cde "b"
-    note for fgh "c"
-    class Estimation{
+    class SimVoterdatabase{
         +field1
         +abc1()
     }
-    class Abc{
-        +field1
-        +abc1()
-    }
-    class Def{
-        +field1
-        +abc1()
-    }
-    class Ghi{
-        +field1
-        +abc1()
-    }
-    Initmodelnum --|> Abc
-    Initmodelnum --|> Def
-    Initmodelnum --|> Ghi
 ```
+
 
 **Last time updated: `r as.Date(Sys.time())`**
 

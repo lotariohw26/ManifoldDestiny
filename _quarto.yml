@@ -3,11 +3,11 @@ project:
   output-dir: docs
   render:
     - "index.qmd"
+    - "shinyapps/manimp/app.R"
     - "presentation.qmd"
     - "paper.qmd"
     - "addendum/Addendum_az.qmd"
     - "addendum/Addendum_ne.qmd"
-    - "shinyapps/manimp/app.R"
     - "laws.qmd"
     - "man_bib.qmd"
     - "tabsets.qmd"
