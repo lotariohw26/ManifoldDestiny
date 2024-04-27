@@ -7,12 +7,11 @@ project:
     - "paper.qmd"
     - "addendum/Addendum_az.qmd"
     - "addendum/Addendum_ne.qmd"
+    - "shinyapps/manimp/app.R"
     - "laws.qmd"
     - "man_bib.qmd"
     - "tabsets.qmd"
     - "paper.qmd"
-    - "abc.qmd"
-    - "def.qmd"
     - "jsonview.qmd"
     - "randpython.qmd"
     - "git_terminal.qmd"
@@ -79,15 +78,16 @@ format:
   html:
     theme: zephyr
     toc: true
+# R/wasmconverting.R
+# R/wasmnonverting.R
+# shinyapps/manimp/app.R
+# shinyapps/manimp/app.R
 # script/python/polysolver.py
 # script/python/pysympy.py
 # data-raw/labeling.R
-# R/wasmconverting.e
-# R/wasmnonverting.R
 # script/R/simulations.R
 # script/R/applications.R
 # script/R/addendum_ne.R
 # script/R/addendum_az.R
 # script/R/testing.R
-# shinyapps/manimp/app.R
 # shinyapps/empapp/app.R

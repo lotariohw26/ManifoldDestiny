@@ -703,6 +703,7 @@ Countinggraphs$methods(plot2d=function(form=1,
     				       labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,
 				       alpha=1,size=1)
 				       ){
+  #browser() #1
   longdf <- tidyr::pivot_longer(quintile,all_of(c(psel,paste0(psel,'_pred'))))
   go <- ggplot2::ggplot(data=longdf) +
     ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel[c(1,2,3)],'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +

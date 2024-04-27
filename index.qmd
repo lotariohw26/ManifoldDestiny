@@ -18,6 +18,103 @@ format:
 **Based upon the ideas developed by Edward K. Solomon**
 ![](pngs/md.png)
 
+```{mermaid}
+%% R/wasmconverting.R
+%%| echo: false
+classDiagram
+    note for abc "a"
+    note for cde "b"
+    note for fgh "c"
+    class SimVoterdatabase{
+        +field1
+        +abc1()
+    }
+    class Abc{
+        +field1
+        +abc1()
+    }
+    class Def{
+        +field1
+        +abc1()
+    }
+    class Ghi{
+        +field1
+        +abc1()
+    }
+    Initmodelnum --|> Abc
+    Initmodelnum --|> Def
+    Initmodelnum --|> Ghi
+```
+
+```{mermaid}
+%% R/wasmconverting.R
+%% Countinggraphs 
+%%| echo: false
+classDiagram
+    note for abc "a"
+    note for cde "b"
+    note for fgh "c"
+    class Countingprocess{
+        +field1
+        +abc1()
+    }
+    class Abc{
+        +field1
+        +abc1()
+    }
+    class Def{
+        +field1
+        +abc1()
+    }
+    class Ghi{
+        +field1
+        +abc1()
+    }
+    Initmodelnum --|> Abc
+    Initmodelnum --|> Def
+    Initmodelnum --|> Ghi
+    class Countinggraphs{
+        +field1
+        +abc1()
+    }
+```
+
+```{mermaid}
+%% R/wasmconverting.R
+%% Countinggraphs 
+%%| echo: false
+classDiagram
+    note for abc "a"
+    note for cde "b"
+    note for fgh "c"
+    class Estimation{
+        +field1
+        +abc1()
+    }
+    class Abc{
+        +field1
+        +abc1()
+    }
+    class Def{
+        +field1
+        +abc1()
+    }
+    class Ghi{
+        +field1
+        +abc1()
+    }
+    Initmodelnum --|> Abc
+    Initmodelnum --|> Def
+    Initmodelnum --|> Ghi
+```
+
+**Last time updated: `r as.Date(Sys.time())`**
+
+```{r, echo=F}
+knitr::knit_exit()
+```
+
+
 ### Install and load packages
 ```{webr-r}
 webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
@@ -114,11 +211,5 @@ app_1_out <- seloutput(app1_rp)
 ```{webr-r}
 app2_rp <- selreport(app2,md$app2)
 app_2_out <- seloutput(app2_rp)
-```
-
-**Last time updated: `r as.Date(Sys.time())`**
-
-```{r, echo=F}
-knitr::knit_exit()
 ```
 

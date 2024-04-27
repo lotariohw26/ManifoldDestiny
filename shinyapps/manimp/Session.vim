@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/research/ManifoldDestiny
+cd ~/research/ManifoldDestiny/shinyapps/manimp
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,8 +13,12 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +82 ~/research/ManifoldDestiny/_quarto.yml
-badd +0 ~/research/ManifoldDestiny/R/wasmconverting.R
+badd +84 ~/research/ManifoldDestiny/_quarto.yml
+badd +1 ~/research/ManifoldDestiny/R/wasmconverting.R
+badd +8 ~/research/ManifoldDestiny/Session.vim
+badd +18 ~/research/ManifoldDestiny/R/wasmnonverting.R
+badd +206 ~/research/ManifoldDestiny/shinyapps/manimp/app.R
+badd +17 ~/research/ManifoldDestiny/shinyapps/manimp/Session.vim
 argglobal
 %argdel
 edit ~/research/ManifoldDestiny/R/wasmconverting.R
@@ -23,7 +27,10 @@ let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 split
-1wincmd k
+wincmd _ | wincmd |
+split
+2wincmd k
+wincmd w
 wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
@@ -34,8 +41,9 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 46 + 47) / 94)
-exe '2resize ' . ((&lines * 45 + 47) / 94)
+exe '1resize ' . ((&lines * 30 + 47) / 94)
+exe '2resize ' . ((&lines * 30 + 47) / 94)
+exe '3resize ' . ((&lines * 30 + 47) / 94)
 argglobal
 balt ~/research/ManifoldDestiny/_quarto.yml
 setlocal fdm=manual
@@ -48,7 +56,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 23) / 46)
+let s:l = 1 - ((0 * winheight(0) + 15) / 30)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -56,9 +64,9 @@ keepjumps 1
 normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/research/ManifoldDestiny/_quarto.yml", ":p")) | buffer ~/research/ManifoldDestiny/_quarto.yml | else | edit ~/research/ManifoldDestiny/_quarto.yml | endif
+if bufexists(fnamemodify("~/research/ManifoldDestiny/R/wasmnonverting.R", ":p")) | buffer ~/research/ManifoldDestiny/R/wasmnonverting.R | else | edit ~/research/ManifoldDestiny/R/wasmnonverting.R | endif
 if &buftype ==# 'terminal'
-  silent file ~/research/ManifoldDestiny/_quarto.yml
+  silent file ~/research/ManifoldDestiny/R/wasmnonverting.R
 endif
 balt ~/research/ManifoldDestiny/_quarto.yml
 setlocal fdm=manual
@@ -71,16 +79,40 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 67 - ((32 * winheight(0) + 22) / 45)
+let s:l = 1 - ((0 * winheight(0) + 15) / 30)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 67
+keepjumps 1
 normal! 0
 wincmd w
-2wincmd w
-exe '1resize ' . ((&lines * 46 + 47) / 94)
-exe '2resize ' . ((&lines * 45 + 47) / 94)
+argglobal
+if bufexists(fnamemodify("~/research/ManifoldDestiny/shinyapps/manimp/app.R", ":p")) | buffer ~/research/ManifoldDestiny/shinyapps/manimp/app.R | else | edit ~/research/ManifoldDestiny/shinyapps/manimp/app.R | endif
+if &buftype ==# 'terminal'
+  silent file ~/research/ManifoldDestiny/shinyapps/manimp/app.R
+endif
+balt ~/research/ManifoldDestiny/shinyapps/manimp/Session.vim
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 206 - ((29 * winheight(0) + 15) / 30)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 206
+normal! 0
+wincmd w
+3wincmd w
+exe '1resize ' . ((&lines * 30 + 47) / 94)
+exe '2resize ' . ((&lines * 30 + 47) / 94)
+exe '3resize ' . ((&lines * 30 + 47) / 94)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

@@ -117,6 +117,7 @@ server <- function(input, output, session) {
     #			      stuv=c("S","T","U","V"),
     #			      me=c(plnr=ipln,rot=0),
     #			      lf=loss))
+    browser()
     #rotv<-list(list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),list(fr=c(1,14.378100),sr=c(4,49.762610),tr=c(2,11.5781)))[[1]]
     #app_exr_cou$mansys(sygen=list(frm=ifrm,
     #  pre=c("alpha","x","y"),
@@ -134,6 +135,16 @@ server <- function(input, output, session) {
     #list(app_n_cou,app_exm_cou)
     list(app_n_cou,app_n_cou)
   })  
+  output$plot3d_n <- renderPlotly({
+    browser()
+    gdf <- result()[[1]]$rdfc %>% dplyr::select(c('alpha','x','y'))
+    mrdfc <- as.matrix(gdf)
+    z <- mrdfc[,1]
+    x <- mrdfc[,2]
+    y <- mrdfc[,3]
+    p1 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers", marker=list(size=3))
+    plotly::layout(p1,title = "Fair election")
+  })
   output$table_dsc_n <- renderPrint({
     sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
     nel <- Estimation(result()[[1]]$rdfc,1)
@@ -174,15 +185,6 @@ server <- function(input, output, session) {
     gm2 <- dft[[2]]$pl_corrxy[[1]]
     gm4 <- dft[[2]]$pl_corrxy[[1]]
     cowplot::plot_grid(gm2, gm4, ncol = 2, labels = c("Column 1", "Column 2"))
-  })
-  output$plot3d_n <- renderPlotly({
-    gdf <- result()[[1]]$rdfc %>% dplyr::select(c('alpha','x','y'))
-    mrdfc <- as.matrix(gdf)
-    z <- mrdfc[,1]
-    x <- mrdfc[,2]
-    y <- mrdfc[,3]
-    p1 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers", marker=list(size=3))
-    plotly::layout(p1,title = "Fair election")
   })
   output$plot3d_r <- renderPlotly({
     gdf <- result()[[2]]$rdfc %>% dplyr::select(c('alpha','x','y'))
