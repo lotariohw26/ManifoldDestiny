@@ -25,11 +25,6 @@ classDiagram
         +field1
         +abc1()
     }
-```
-
-```{mermaid}
-%%| echo: false
-classDiagram
     class Countingprocess{
         +field1
         +abc1()
@@ -38,12 +33,7 @@ classDiagram
         +field1
         +abc1()
     }
-```
-
-```{mermaid}
-%%| echo: false
-classDiagram
-    class SimVoterdatabase{
+    class Estimation{
         +field1
         +abc1()
     }

@@ -3,7 +3,6 @@ project:
   output-dir: docs
   render:
     - "index.qmd"
-    - "shinyapps/manimp/app.R"
     - "presentation.qmd"
     - "paper.qmd"
     - "addendum/Addendum_az.qmd"
@@ -11,10 +10,24 @@ project:
     - "laws.qmd"
     - "man_bib.qmd"
     - "tabsets.qmd"
-    - "paper.qmd"
     - "jsonview.qmd"
     - "randpython.qmd"
     - "git_terminal.qmd"
+# R/wasmconverting.R
+# shinyapps/r2rsim/app.R
+# shinyapps/manimp/app.R
+# R/wasmnonverting.R
+# shinyapps/manimp/app.R
+# shinyapps/manimp/app.R
+# script/python/polysolver.py
+# script/python/pysympy.py
+# data-raw/labeling.R
+# script/R/simulations.R
+# script/R/applications.R
+# script/R/addendum_ne.R
+# script/R/addendum_az.R
+# script/R/testing.R
+# shinyapps/empapp/app.R
 website:
   title: "Manifold Destiny"
   navbar:
@@ -76,18 +89,24 @@ website:
          href: https://github.com/lotariohw26/ManifoldDestiny
 format:
   html:
-    theme: zephyr
     toc: true
-# R/wasmconverting.R
-# R/wasmnonverting.R
-# shinyapps/manimp/app.R
-# shinyapps/manimp/app.R
-# script/python/polysolver.py
-# script/python/pysympy.py
-# data-raw/labeling.R
-# script/R/simulations.R
-# script/R/applications.R
-# script/R/addendum_ne.R
-# script/R/addendum_az.R
-# script/R/testing.R
-# shinyapps/empapp/app.R
+    toc-depth: 3
+    Mainfont: "Arial"
+    Font size: 1.2
+    Line stretch: 1.5
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    Mainfont: "Times"
+    colorlinks: true
+    lof: true
+    lot: true
+  docx:
+    toc: true
+    toc-depth: 3
+  epub:
+    toc: true
+    toc-depth: 3
+    Mainfont: "Verdana"
+bibliography: man_bib.bib

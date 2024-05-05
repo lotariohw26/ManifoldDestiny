@@ -1,6 +1,12 @@
-#webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-#ManifoldDestinyWASMP::wasmconload()
-ManifoldDestiny::wasmconload()
+if (grepl("wasm", sessionInfo()[[2]])) {
+  webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+} else {
+
+}
+#
+library(shiny)
+library(dplyr)
+# Shiny
 ui <- fluidPage(
   titlePanel("R2 Simulator"),
   tabsetPanel(
@@ -45,9 +51,7 @@ ui <- fluidPage(
              )
     )
 )
-## Define server
 server <- function(input, output) {
-  
   # Run simulation
   dfgp <- eventReactive(input$run, {
     # Input DF1
@@ -101,3 +105,4 @@ server <- function(input, output) {
 }
 # Run app
 shinyApp(ui = ui, server = server)
+
