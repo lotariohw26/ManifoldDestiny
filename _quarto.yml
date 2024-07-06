@@ -111,4 +111,4 @@ format:
     Mainfont: "Verdana"
 bibliography: man_bib.bib
 
-git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/InitLOT.git
+git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/ManifoldDestiny.git
