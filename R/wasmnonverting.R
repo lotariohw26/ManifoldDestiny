@@ -35,6 +35,8 @@ bm <- function(){
    devtools::document()
    system(paste0('cd ',rprojroot::find_rstudio_root_file(),'; R CMD INSTALL --preclean --no-multiarch --with-keep.source .'))
 }
+
+
 #' @export k
 k <- function(){
     df <-  clipr::write_last_clip()
@@ -56,6 +58,7 @@ l <- function(){
 
 #' @export recoudatr
 recoudatr <- function(mda=NULL){
+	browser()
   gsh <- googlesheets4::read_sheet(mda$sht$url,sheet=mda$sht$pgn,range=mda$sht$rng) %>%
     data.table::setnames(new=mda$sht$cln) %>%
     dplyr::select(-starts_with('D')) %>%

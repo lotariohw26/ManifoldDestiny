@@ -18,9 +18,17 @@ format:
 **Based upon the ideas developed by Edward K. Solomon**
 ![](pngs/md.png)
 
+**Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
+
+```{r, echo=F}
+knitr::knit_exit()
+```
+
 ```{mermaid}
 %%| echo: false
 classDiagram
+    note "From Duck1 till Zebra"
+    note for SimVoterdatabase "can fly\ncan swim\ncan dive\ncan help in debugging"
     class SimVoterdatabase{
         +field1
         +abc1()
@@ -37,6 +45,7 @@ classDiagram
         +field1
         +abc1()
     }
+    Countingprocess --|> Countinggraphs
 ```
 
 

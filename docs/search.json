@@ -109,7 +109,7 @@
     "href": "index.html",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Manifold Destiny - or how to rig an election\nBased upon the ideas developed by Edward K. Solomon \n\n\n\n\n\nclassDiagram\n    class SimVoterdatabase{\n        +field1\n        +abc1()\n    }\n    class Countingprocess{\n        +field1\n        +abc1()\n    }\n    class Countinggraphs{\n        +field1\n        +abc1()\n    }\n    class Estimation{\n        +field1\n        +abc1()\n    }\n\n\n\n\n\n\nLast time updated: 2024-05-05"
+    "text": "Manifold Destiny - or how to rig an election\nBased upon the ideas developed by Edward K. Solomon \nLast time updated: 2024-07-04 21:11:17"
   },
   {
     "objectID": "presentation.html#setting-up-the-election-system",

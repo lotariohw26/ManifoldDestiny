@@ -8,8 +8,9 @@ library(usethis)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-#googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
-#gs4_auth()
+googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+gs4_auth()
+
 lapply(paste0("app",1:4), function(x){recoudatr(mda=md[[x]])})
 
 
