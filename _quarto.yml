@@ -81,5 +81,5 @@ website:
         #    Line stretch: 1.5
 bibliography: man_bib.bib
 
-#git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/ManifoldDestiny.git
+# git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/ManifoldDestiny.git
 # data-raw/labeling.R

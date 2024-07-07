@@ -5,5 +5,12 @@
     "title": "Abc",
     "section": "",
     "text": "ABC\n\nknitr::knit_exit()"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "",
+    "text": "Manifold Destiny - or how to rig an election\nBased upon the ideas developed by Edward K. Solomon \nLast time updated: r format(Sys.time(), \"%Y-%m-%d %H:%M:%S\")"
   }
 ]
