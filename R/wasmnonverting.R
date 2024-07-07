@@ -1,10 +1,11 @@
 #' @export recoudatr
 recoudatr <- function(mda=NULL){
+#browser() View(gsh)
   gsh <- googlesheets4::read_sheet(mda$url,sheet=mda$pgn,range=mda$rng) %>%
     data.table::setnames(new=mda$cln) %>%
-    dplyr::select(-starts_with('D')) %>%
+    #dplyr::select(-starts_with('D')) %>%
     dplyr::mutate(P=row_number(PN)) %>%
-    dplyr::mutate(R=row_number(RN)) %>%
+    #dplyr::mutate(R=row_number(RN)) 
     dplyr::mutate(S=!!rlang::parse_expr(mda$stuv[1])) %>%
     dplyr::mutate(T=!!rlang::parse_expr(mda$stuv[2])) %>%
     dplyr::mutate(U=!!rlang::parse_expr(mda$stuv[3])) %>%
