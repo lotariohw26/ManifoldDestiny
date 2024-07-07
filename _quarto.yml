@@ -14,7 +14,7 @@ project:
     #    - "randpython.qmd"
     #    - "git_terminal.qmd"
 website:
-  title: "Manifold Destiny"
+  title: "{{< var titls >}}"
   navbar:
     left:
       - text: "Index"
