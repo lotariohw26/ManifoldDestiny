@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Manifold Destiny - or how to rig an election\nBased upon the ideas developed by Edward K. Solomon \nLast time updated: r format(Sys.time(), \"%Y-%m-%d %H:%M:%S\")\nThis is a webR-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAbc"
+    "text": "# script/R/simulations.R\n\n\nManifold Destiny - or how to rig an election\nBased upon the ideas developed by Edward K. Solomon \nLast time updated: 2024-07-07 17:10:08\nThis is a webR-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
   },
   {
     "objectID": "paper.html",
@@ -65,9 +65,9 @@
   {
     "objectID": "randpython.html",
     "href": "randpython.html",
-    "title": "R and Python integration",
+    "title": "{{< var titls >}}",
     "section": "",
-    "text": "Coatless\n(thecoatlessprofessor7674?) 1 month ago Great question. The short gist is yes in the interactive context for now.\nWe’ll likely need to make another extension that wraps before {quarto-webr} and {quarto-pyodide} to enable cross talk in the non-interactive/output contexts.\n\nPython\n\n\n\n\n\nYou can execute any Python code. Just enter something in the box below and click the button.\n\n Run  \n\nOutput:\n\n\n\n\n\n\nR\n\nLoading webR, please wait...\n Run"
+    "text": "# script/R/simulations.R\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
   },
   {
     "objectID": "presentation.html#setting-up-the-election-system",

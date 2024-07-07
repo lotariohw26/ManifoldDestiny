@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -334,7 +368,7 @@ body.reveal.quarto-dark div.qwebr-console-area {
 // Document level settings ----
 
 // Determine if we need to install R packages
-globalThis.qwebrInstallRPackagesList = [''];
+globalThis.qwebrInstallRPackagesList = ['dplyr', 'data.table'];
 
 // Specify possible locations to search for the repository
 globalThis.qwebrPackageRepoURLS = ['https://repo.r-wasm.org/'];
@@ -344,7 +378,7 @@ globalThis.qwebrSetupRPackages = !(qwebrInstallRPackagesList.indexOf("") !== -1)
 globalThis.qwebrAutoloadRPackages = true;
 
 // Display a startup message?
-globalThis.qwebrShowStartupMessage = true;
+globalThis.qwebrShowStartupMessage = false;
 globalThis.qwebrShowHeaderMessage = false;
 
 // Describe the webR settings that should be used
@@ -356,7 +390,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"editor-word-wrap":"true","autorun":"false","editor-max-height":"","dpi":72,"label":"unnamed-chunk-1","editor-quick-suggestions":"false","output":"true","context":"interactive","results":"markup","fig-cap":"","classes":"","read-only":"false","message":"true","out-width":"700px","warning":"true","out-height":"","fig-height":5,"editor-font-scale":"1","comment":"","fig-width":7},"code":"fit = lm(mpg ~ am, data = mtcars)\nsummary(fit)","id":1}];
+globalThis.qwebrCellDetails = [{"code":"webr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\ndplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)","options":{"editor-max-height":"","message":"true","out-height":"","comment":"","editor-font-scale":"1","results":"markup","dpi":72,"out-width":"700px","autorun":"false","editor-quick-suggestions":"false","warning":"true","fig-width":7,"label":"unnamed-chunk-1","read-only":"false","editor-word-wrap":"true","fig-height":5,"classes":"","fig-cap":"","output":"true","context":"interactive"},"id":1}];
 
 </script>
 <script type="module">
@@ -1695,7 +1729,7 @@ window.Quarto = {
   </li>  
         <li>
     <a class="dropdown-item" href="./randpython.html">
- <span class="dropdown-text">R and Python together</span></a>
+ <span class="dropdown-text">Simulations</span></a>
   </li>  
     </ul>
   </li>
@@ -2009,14 +2043,16 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 
 
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># script/R/simulations.R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="manifold-destiny---or-how-to-rig-an-election" class="level1">
 <h1>Manifold Destiny - or how to rig an election</h1>
 <p><strong>Based upon the ideas developed by Edward K. Solomon</strong> <img src="pngs/md.png" class="img-fluid"></p>
-<p><strong>Last time updated: <code>r format(Sys.time(), "%Y-%m-%d %H:%M:%S")</code></strong></p>
+<p><strong>Last time updated: 2024-07-07 17:10:08</strong></p>
 <p>This is a webR-enabled code cell in a Quarto HTML document.</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Abc</p>
 
 
 </section>

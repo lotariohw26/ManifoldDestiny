@@ -1,13 +1,19 @@
 ---
 title: ""
 output: github_document
-always_allow_html: true
 execute: 
   cache: false
+webr:
+  show-startup-message: false      # Display status of webR initialization
+  show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
+  packages: ['dplyr','data.table']             # Pre-install dependencies
 filters:
   - webr
 ---
 
+```{r}
+# script/R/simulations.R
+```
 
 
 # Manifold Destiny - or how to rig an election
@@ -21,9 +27,9 @@ filters:
 This is a webR-enabled code cell in a Quarto HTML document.
 
 ```{webr-r}
-fit = lm(mpg ~ am, data = mtcars)
-summary(fit)
+webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
+webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
 ```
 
-Abc
 

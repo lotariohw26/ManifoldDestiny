@@ -57,7 +57,7 @@ website:
           href: https://lotariohw26.github.io/MD_WASMS/py/examples/
         - text: "REPL for R"
           href: https://webr.r-wasm.org/latest/
-        - text: "R and Python together"
+        - text: "Simulations"
           href: "randpython.qmd"
   repo-url: https://github.com/lotariohw26/ManifoldDestiny
   site-url: https://lotariohw26.github.io/ManifoldDestiny/

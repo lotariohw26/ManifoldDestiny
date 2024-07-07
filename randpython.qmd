@@ -1,6 +1,35 @@
 ---
-title: "R and Python integration"
+title: ""
+output: github_document
+always_allow_html: true
+execute: 
+  cache: false
+filters:
+  - webr
 ---
+
+
+```{r}
+# script/R/simulations.R
+```
+
+
+1.
+
+```{webr-r}
+fit = lm(mpg ~ am, data = mtcars)
+summary(fit)
+```
+
+
+```{r,echo=F}
+knitr::knit_exit()
+```
+
+
+
+
+
 
 
 
