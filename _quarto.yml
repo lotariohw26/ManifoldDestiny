@@ -11,8 +11,9 @@ project:
     - "addendum/Addendum_ne.qmd"
     - "tabsets.qmd"
     - "jsonview.qmd"
-    - "randpython.qmd"
-    #    - "git_terminal.qmd"
+    - "simulations.qmd"
+    - "restoration.qmd"
+    - "analyzer.qmd"
 website:
   title: "{{< var titls >}}"
   navbar:
@@ -34,13 +35,13 @@ website:
       - text: Shiny applications
         menu:
           - text: "R2 simulator"
-            href: "{{< var shn1 >}}"
+          #            href: "{{< var shn1 >}}"
           - text: "Rigging of a natural election"
-            href: "{{< var shn2 >}}"
+          #  href: "{{< var shn2 >}}"
           - text: "Election results analyzer"
-            href: "{{< var shn3 >}}"
+          #  href: "{{< var shn3 >}}"
           - text: "Restoration of a rigged election"
-            href: "{{< var shn4 >}}"
+          #  href: "{{< var shn4 >}}"
       - text: E-books
         menu:
           - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
@@ -54,7 +55,11 @@ website:
         - text: "REPL for R"
           href: https://webr.r-wasm.org/latest/
         - text: "Simulations"
-          href: "randpython.qmd"
+          href: "simulations.qmd"
+        - text: "Analyzer"
+          href: "analyzer.qmd"
+        - text: "Restoration"
+          href: "restoration.qmd"
   repo-url: https://github.com/lotariohw26/ManifoldDestiny
   site-url: https://lotariohw26.github.io/ManifoldDestiny/
   reader-mode: false
@@ -89,9 +94,8 @@ bibliography: man_bib.bib
 # script/R/simulations.R
 # script/R/applications.R
 # script/R/addendum_ne.R
-#d0 script/R/addendum_az.R
+# script/R/addendum_az.R
 # script/R/testing.R
 # shinyapps/empapp/app.R
-#          https://lotariohw26.github.io/MD_WASMS/r/examples/
-#          https://lotariohw26.github.io/MD_WASMS/py/examples/
-#
+# https://lotariohw26.github.io/MD_WASMS/r/examples/
+# https://lotariohw26.github.io/MD_WASMS/py/examples/

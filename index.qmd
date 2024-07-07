@@ -22,11 +22,22 @@ filters:
 ![](pngs/md.png)
 
 # Testing
+## ABC
+Write some text here
+```{web-r}
+```
+
+abc
+
+
+
+
 ## Installling packages
 ```{webr-r}
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
 webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
+# readr::read.csv("/tmp/RtmpHKcMHo/d5ace5deaed228c73ccaf4fb/0.csv")
 ```
 
 ## Loading  data
@@ -35,8 +46,8 @@ dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
 ```
 
 ```{webr-r}
-ad <- readr::read_csv("https://raw.githubusercontent.com/lotariohw26/ManifoldDestiny/main/data-raw/csv/full_apps_data.csv")
-ad
+# ad <- readr::read_csv("https://raw.githubusercontent.com/lotariohw26/ManifoldDestiny/main/data-raw/csv/full_apps_data.csv")
+# ad
 ```
 
 
@@ -56,4 +67,5 @@ webr::mount(
   source = "https://example.com/output.data"
 )
 ```
+
 

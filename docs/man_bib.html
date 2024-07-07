@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -129,17 +148,6 @@ window.Quarto = {
     <a class="dropdown-item" href="./presentation.html">
  <span class="dropdown-text">Manifold Destiny - or how to rig an election</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-appendix" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Appendix</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-appendix">    
-        <li>
-    <a class="dropdown-item" href="./laws.html">
- <span class="dropdown-text">20 laws and 40 isometries</span></a>
-  </li>  
         <li>
     <a class="dropdown-item" href="./addendum/Addendum_az.html">
  <span class="dropdown-text">Addendum 1: Arizona</span></a>
@@ -151,6 +159,33 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="./paper.html">
  <span class="dropdown-text">Paper</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./tabsets.html"> 
+<span class="menu-text">Tabsets</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shiny-applications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Shiny applications</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-shiny-applications">    
+        <li>
+    <a class="dropdown-item" href="?var:shn1">
+ <span class="dropdown-text">R2 simulator</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="?var:shn2">
+ <span class="dropdown-text">Rigging of a natural election</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="?var:shn3">
+ <span class="dropdown-text">Election results analyzer</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="?var:shn4">
+ <span class="dropdown-text">Restoration of a rigged election</span></a>
   </li>  
     </ul>
   </li>
@@ -169,14 +204,25 @@ window.Quarto = {
     <a class="nav-link active" href="./man_bib.html" aria-current="page"> 
 <span class="menu-text">Bibliography</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./jsonview.html"> 
-<span class="menu-text">Metadata</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-appendix" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Appendix</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-appendix">    
+        <li>
+    <a class="dropdown-item" href="./laws.html">
+ <span class="dropdown-text">20 laws and 40 isometries</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./tabsets.html"> 
-<span class="menu-text">Tabsets</span></a>
+        <li>
+    <a class="dropdown-item" href="https://webr.r-wasm.org/latest/">
+ <span class="dropdown-text">REPL for R</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./randpython.html">
+ <span class="dropdown-text">Simulations</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -213,12 +259,9 @@ window.Quarto = {
 </header>
 
 
-<p><a name="bib-sol2022_app1_2"></a><a href="#cite-sol2022_app1_2">Edward, S.</a> (2020). <em>Clark and Washoe Precinct Analysis</em>. <a href="https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit" class="uri">https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit</a>.</p>
-<p><a name="bib-sol2022_app4_1"></a><a href="#cite-sol2022_app4_1">Edward, S.</a> (2022b). <em>Anderson Ruling Rebuttal </em>. <a href="https://docs.google.com/document/d/1ywNTOUZuJNB_viiwNuj029HZSzJEJdr7-2AY6n5SKsk/edit#heading=h.lbxjlnrdr0eu" class="uri">https://docs.google.com/document/d/1ywNTOUZuJNB_viiwNuj029HZSzJEJdr7-2AY6n5SKsk/edit#heading=h.lbxjlnrdr0eu</a>.</p>
-<p><a name="bib-sol2022_app1_1"></a><a href="#cite-sol2022_app1_1">Edward, S.</a> (2022a). <em>Clark and Washoe Counties, 2020 and 2022 Elections</em>. <a href="https://docs.google.com/document/d/1SCgXpvHwfHJN0T-DdERC3NUQbMlMhOWmRfFjnJs0Ui8/edit#heading=h.lty23tl914ct" class="uri">https://docs.google.com/document/d/1SCgXpvHwfHJN0T-DdERC3NUQbMlMhOWmRfFjnJs0Ui8/edit#heading=h.lty23tl914ct</a>.</p>
-<p><a name="bib-sol2022_arr"></a><a href="#cite-sol2022_arr">Edward, S.</a> (2023a). <em>Anderson Ruling Rebuttal</em>. <a href="https://docs.google.com/document/d/1ywNTOUZuJNB_viiwNuj029HZSzJEJdr7-2AY6n5SKsk/edit?usp=drive_link" class="uri">https://docs.google.com/document/d/1ywNTOUZuJNB_viiwNuj029HZSzJEJdr7-2AY6n5SKsk/edit?usp=drive_link</a>.</p>
-<p><a name="bib-sol2023_b1"></a><a href="#cite-sol2023_b1">Edward, S.</a> (2023b). <em>Least squares regression for 3D data</em>. <a href="https://bard.google.com/share/ee16dfd2d48a" class="uri">https://bard.google.com/share/ee16dfd2d48a</a>.</p>
-<p><a name="bib-abc"></a><a href="#cite-abc">Edward, S.</a> <em>Nevada 2020, Clark and Washoe, Laymen’s only</em>. <a href="https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit#heading=h.lty23tl914ct" class="uri">https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit#heading=h.lty23tl914ct</a>.</p>
+<div id="refs" role="list">
+
+</div>
 
 
 

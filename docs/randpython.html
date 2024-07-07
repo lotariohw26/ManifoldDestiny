@@ -390,7 +390,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"a <- 1 ","options":{"message":"true","results":"markup","editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-1","context":"interactive","output":"true","fig-width":7,"read-only":"false","dpi":72,"warning":"true","classes":"","editor-quick-suggestions":"false","fig-height":5,"fig-cap":"","autorun":"false","out-height":"","comment":""},"id":1},{"code":"b <- 2","options":{"message":"true","results":"markup","editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-2","context":"interactive","output":"true","fig-width":7,"read-only":"false","dpi":72,"warning":"true","classes":"","editor-quick-suggestions":"false","fig-height":5,"fig-cap":"","autorun":"false","out-height":"","comment":""},"id":2},{"code":"c <- a*b\nc","options":{"message":"true","results":"markup","editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-3","context":"interactive","output":"true","fig-width":7,"read-only":"false","dpi":72,"warning":"true","classes":"","editor-quick-suggestions":"false","fig-height":5,"fig-cap":"","autorun":"false","out-height":"","comment":""},"id":3},{"code":"webr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\ndplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)","options":{"message":"true","results":"markup","editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-4","context":"interactive","output":"true","fig-width":7,"read-only":"false","dpi":72,"warning":"true","classes":"","editor-quick-suggestions":"false","fig-height":5,"fig-cap":"","autorun":"false","out-height":"","comment":""},"id":4},{"code":"fit = lm(mpg ~ am, data = mtcars)\nsummary(fit)","options":{"message":"true","results":"markup","editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","editor-max-height":"","label":"unnamed-chunk-5","context":"interactive","output":"true","fig-width":7,"read-only":"false","dpi":72,"warning":"true","classes":"","editor-quick-suggestions":"false","fig-height":5,"fig-cap":"","autorun":"false","out-height":"","comment":""},"id":5}];
+globalThis.qwebrCellDetails = [{"code":"a <- 1 ","id":1,"options":{"fig-cap":"","message":"true","comment":"","out-height":"","editor-max-height":"","editor-font-scale":"1","results":"markup","editor-word-wrap":"true","output":"true","label":"unnamed-chunk-1","warning":"true","editor-quick-suggestions":"false","fig-width":7,"autorun":"false","classes":"","context":"interactive","fig-height":5,"dpi":72,"read-only":"false","out-width":"700px"}},{"code":"b <- 2","id":2,"options":{"fig-cap":"","message":"true","comment":"","out-height":"","editor-max-height":"","editor-font-scale":"1","results":"markup","editor-word-wrap":"true","output":"true","label":"unnamed-chunk-2","warning":"true","editor-quick-suggestions":"false","fig-width":7,"autorun":"false","classes":"","context":"interactive","fig-height":5,"dpi":72,"read-only":"false","out-width":"700px"}},{"code":"c <- a*b\nc","id":3,"options":{"fig-cap":"","message":"true","comment":"","out-height":"","editor-max-height":"","editor-font-scale":"1","results":"markup","editor-word-wrap":"true","output":"true","label":"unnamed-chunk-3","warning":"true","editor-quick-suggestions":"false","fig-width":7,"autorun":"false","classes":"","context":"interactive","fig-height":5,"dpi":72,"read-only":"false","out-width":"700px"}},{"code":"webr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\ndplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)","id":4,"options":{"fig-cap":"","message":"true","comment":"","out-height":"","editor-max-height":"","editor-font-scale":"1","results":"markup","editor-word-wrap":"true","output":"true","label":"unnamed-chunk-4","warning":"true","editor-quick-suggestions":"false","fig-width":7,"autorun":"false","classes":"","context":"interactive","fig-height":5,"dpi":72,"read-only":"false","out-width":"700px"}},{"code":"fit = lm(mpg ~ am, data = mtcars)\nsummary(fit)","id":5,"options":{"fig-cap":"","message":"true","comment":"","out-height":"","editor-max-height":"","editor-font-scale":"1","results":"markup","editor-word-wrap":"true","output":"true","label":"unnamed-chunk-5","warning":"true","editor-quick-suggestions":"false","fig-width":7,"autorun":"false","classes":"","context":"interactive","fig-height":5,"dpi":72,"read-only":"false","out-width":"700px"}}];
 
 </script>
 <script type="module">
@@ -1673,22 +1673,10 @@ window.Quarto = {
  <span class="menu-text">Shiny applications</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-shiny-applications">    
-        <li>
-    <a class="dropdown-item" href="?var:shn1">
- <span class="dropdown-text">R2 simulator</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="?var:shn2">
- <span class="dropdown-text">Rigging of a natural election</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="?var:shn3">
- <span class="dropdown-text">Election results analyzer</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="?var:shn4">
- <span class="dropdown-text">Restoration of a rigged election</span></a>
-  </li>  
+        <li class="dropdown-header">R2 simulator</li>
+        <li class="dropdown-header">Rigging of a natural election</li>
+        <li class="dropdown-header">Election results analyzer</li>
+        <li class="dropdown-header">Restoration of a rigged election</li>
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -1716,14 +1704,6 @@ window.Quarto = {
  <span class="dropdown-text">20 laws and 40 isometries</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/r/examples/">
- <span class="dropdown-text">R</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_WASMS/py/examples/">
- <span class="dropdown-text">Python</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="https://webr.r-wasm.org/latest/">
  <span class="dropdown-text">REPL for R</span></a>
   </li>  
@@ -1731,6 +1711,8 @@ window.Quarto = {
     <a class="dropdown-item" href="./randpython.html">
  <span class="dropdown-text">Simulations</span></a>
   </li>  
+        <li class="dropdown-header">Analyizer</li>
+        <li class="dropdown-header">Restoration</li>
     </ul>
   </li>
 </ul>
@@ -2082,7 +2064,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 </div>
 </div>
-<p><strong>Last time updated: 2024-07-07 18:32:30</strong></p>
+<p><strong>Last time updated: 2024-07-07 21:35:27</strong></p>
 <p>This is a webR-enabled code cell in a Quarto HTML document.</p>
 <div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>

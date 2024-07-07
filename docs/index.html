@@ -356,7 +356,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"webr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\ndplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)","id":1,"options":{"context":"interactive","autorun":"true","dpi":72,"message":"true","output":"true","editor-word-wrap":"true","editor-font-scale":"1","comment":"","classes":"","editor-max-height":"","out-height":"","out-width":"700px","results":"markup","fig-width":7,"warning":"true","label":"unnamed-chunk-1","fig-height":5,"fig-cap":"","editor-quick-suggestions":"false","read-only":"false"}},{"code":"dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)","id":2,"options":{"context":"interactive","autorun":"true","dpi":72,"message":"true","output":"true","editor-word-wrap":"true","editor-font-scale":"1","comment":"","classes":"","editor-max-height":"","out-height":"","out-width":"700px","results":"markup","fig-width":7,"warning":"true","label":"unnamed-chunk-2","fig-height":5,"fig-cap":"","editor-quick-suggestions":"false","read-only":"false"}},{"code":"ad <- readr::read_csv(\"https://raw.githubusercontent.com/lotariohw26/ManifoldDestiny/main/data-raw/csv/full_apps_data.csv\")\nad","id":3,"options":{"context":"interactive","autorun":"true","dpi":72,"message":"true","output":"true","editor-word-wrap":"true","editor-font-scale":"1","comment":"","classes":"","editor-max-height":"","out-height":"","out-width":"700px","results":"markup","fig-width":7,"warning":"true","label":"unnamed-chunk-3","fig-height":5,"fig-cap":"","editor-quick-suggestions":"false","read-only":"false"}}];
+globalThis.qwebrCellDetails = [{"code":"webr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\ndplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)\n# readr::read.csv(\"/tmp/RtmpHKcMHo/d5ace5deaed228c73ccaf4fb/0.csv\")","id":1,"options":{"out-height":"","label":"unnamed-chunk-1","comment":"","editor-word-wrap":"true","context":"interactive","message":"true","read-only":"false","dpi":72,"out-width":"700px","autorun":"true","classes":"","fig-width":7,"fig-cap":"","warning":"true","editor-quick-suggestions":"false","editor-max-height":"","output":"true","fig-height":5,"editor-font-scale":"1","results":"markup"}},{"code":"dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)","id":2,"options":{"out-height":"","label":"unnamed-chunk-2","comment":"","editor-word-wrap":"true","context":"interactive","message":"true","read-only":"false","dpi":72,"out-width":"700px","autorun":"true","classes":"","fig-width":7,"fig-cap":"","warning":"true","editor-quick-suggestions":"false","editor-max-height":"","output":"true","fig-height":5,"editor-font-scale":"1","results":"markup"}},{"code":"# ad <- readr::read_csv(\"https://raw.githubusercontent.com/lotariohw26/ManifoldDestiny/main/data-raw/csv/full_apps_data.csv\")\n# ad","id":3,"options":{"out-height":"","label":"unnamed-chunk-3","comment":"","editor-word-wrap":"true","context":"interactive","message":"true","read-only":"false","dpi":72,"out-width":"700px","autorun":"true","classes":"","fig-width":7,"fig-cap":"","warning":"true","editor-quick-suggestions":"false","editor-max-height":"","output":"true","fig-height":5,"editor-font-scale":"1","results":"markup"}}];
 
 </script>
 <script type="module">
@@ -1639,22 +1639,10 @@ window.Quarto = {
  <span class="menu-text">Shiny applications</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-shiny-applications">    
-        <li>
-    <a class="dropdown-item" href="?var:shn1">
- <span class="dropdown-text">R2 simulator</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="?var:shn2">
- <span class="dropdown-text">Rigging of a natural election</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="?var:shn3">
- <span class="dropdown-text">Election results analyzer</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="?var:shn4">
- <span class="dropdown-text">Restoration of a rigged election</span></a>
-  </li>  
+        <li class="dropdown-header">R2 simulator</li>
+        <li class="dropdown-header">Rigging of a natural election</li>
+        <li class="dropdown-header">Election results analyzer</li>
+        <li class="dropdown-header">Restoration of a rigged election</li>
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -1689,6 +1677,8 @@ window.Quarto = {
     <a class="dropdown-item" href="./randpython.html">
  <span class="dropdown-text">Simulations</span></a>
   </li>  
+        <li class="dropdown-header">Analyizer</li>
+        <li class="dropdown-header">Restoration</li>
     </ul>
   </li>
 </ul>
@@ -1709,6 +1699,7 @@ window.Quarto = {
   <ul>
   <li><a href="#testing" id="toc-testing" class="nav-link active" data-scroll-target="#testing">Testing</a>
   <ul class="collapse">
+  <li><a href="#abc" id="toc-abc" class="nav-link" data-scroll-target="#abc">ABC</a></li>
   <li><a href="#installling-packages" id="toc-installling-packages" class="nav-link" data-scroll-target="#installling-packages">Installling packages</a></li>
   <li><a href="#loading-data" id="toc-loading-data" class="nav-link" data-scroll-target="#loading-data">Loading data</a></li>
   </ul></li>
@@ -2024,6 +2015,12 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p><strong>Based upon the ideas developed by Edward K. Solomon</strong> <img src="pngs/md.png" class="img-fluid"></p>
 <section id="testing" class="level1">
 <h1>Testing</h1>
+<section id="abc" class="level2">
+<h2 class="anchored" data-anchor-id="abc">ABC</h2>
+<p>Write some text here</p>
+<pre class="{web-r}"><code></code></pre>
+<p>abc</p>
+</section>
 <section id="installling-packages" class="level2">
 <h2 class="anchored" data-anchor-id="installling-packages">Installling packages</h2>
 <div id="qwebr-insertion-location-1"></div>
@@ -2035,7 +2032,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Last time updated: 2024-07-07 19:22:35</strong></p>
+<p><strong>Last time updated: 2024-07-07 19:50:57</strong></p>
 
 
 </section>
