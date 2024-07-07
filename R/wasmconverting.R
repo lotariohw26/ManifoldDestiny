@@ -93,11 +93,11 @@ gmp <- function(terms=c("x2","xy","y2","x3","x2y","y2x","y3")){
 selreport <- function(
 		      baldata=NULL
 		      ){
-	browser()
-  #frm <- md$mtd$sgs$fr
+  md <- baldata[[2]]
+  frm <- md$fr
   #rparv <- md$mtd$sgs$ro ; names(rparv) <- c("theta","phi","rho")
   co <- Countinggraphs(baldata[[1]])
-  if (md$mtd$prg$cnd==1) co$purging(md$mtd,1)
+  #if (md$mtd$prg$cnd==1) co$purging(md$mtd,1)
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
@@ -106,20 +106,20 @@ selreport <- function(
   co$resplot(frm)
   co$plotly3d(partition=frm)
   co$gridarrange()
-  co$rotation(rpar=rparv)
-  co$rotgraph()
+  #co$rotation(rpar=rparv)
+  #co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
-  ges$regression(md$mtd$sgs$eq)
+  ges$regression(md$eq)
   ges$diagnostics()
   #ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
   #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
-  ies$regression(md$mtd$sgs$eq)
+  ies$regression(md$eq)
   ies$diagnostics()
   ## Identify
   ### Bowplot
-  cob <- Countinggraphs(baldata,selvar=names(baldata))
+  cob <- Countinggraphs(baldata[[1]],selvar=names(baldata[[1]]))
   cob$sortpre(4,3)
   cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5))
   return(list(co=co,ges=ges,ies=ies,md=baldata[[2]],cb=cob,md=md))
@@ -388,9 +388,8 @@ erotation <-function(
 ballcount <- function(ballotsdf=NULL,se=se){
   # Assigning model equations
   sdfc <<- ballotsdf %>%
-    #dplyr::select(P,all_of(selvar))
     dplyr::mutate(Z=S+T+U+V) %>%
-    dplyr::mutate(O=R-Z) %>%
+    dplyr::mutate(O = if_else(!is.null(R), R - Z, NA_real_)) %>%
     dplyr::mutate(x=pareq(se[['x_s']][1],as.list(.[,]))) %>%
     dplyr::mutate(y=pareq(se[['y_s']][1],as.list(.[,]))) %>%
     dplyr::mutate(g=pareq(se[['g_h']][1],as.list(.[,]))) %>%

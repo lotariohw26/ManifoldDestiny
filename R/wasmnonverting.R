@@ -4,7 +4,7 @@ recoudatr <- function(mda=NULL,prn=1){
     data.table::setnames(new=mda$cln) %>%
     #dplyr::select(-starts_with('D')) %>%
     dplyr::mutate(P=row_number(PN)) %>%
-    #dplyr::mutate(R=row_number(RN)) 
+    dplyr::mutate(R=row_number(RN)) %>%
     dplyr::mutate(S=!!rlang::parse_expr(mda$stuv[1])) %>%
     dplyr::mutate(T=!!rlang::parse_expr(mda$stuv[2])) %>%
     dplyr::mutate(U=!!rlang::parse_expr(mda$stuv[3])) %>%
