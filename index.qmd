@@ -1,12 +1,12 @@
 ---
-title: ""
+title: "Manifold Destiny - or how to rig an election"
 output: github_document
 execute: 
   cache: false
 webr:
-  show-startup-message: false      # Display status of webR initialization
+  show-startup-message: true      # Display status of webR initialization
   show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
-  packages: ['dplyr','data.table']             # Pre-install dependencies
+  packages: ['dplyr','data.table','readr']             # Pre-install dependencies
   cell-options:
     autorun: true
 filters:
@@ -18,46 +18,42 @@ filters:
 # script/R/simulations.R
 ```
 
-
-# Manifold Destiny - or how to rig an election
 **Based upon the ideas developed by Edward K. Solomon**
 ![](pngs/md.png)
 
-
-:::{.to-webr}
-```{r}
-a <- 1 
-```
-:::
-
-:::{.to-webr}
-```{r}
-b <- 2
-```
-:::
-
-:::{.to-webr}
-```{r}
-c <- a*b
-c
-```
-:::
-
-**Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
-
-
-This is a webR-enabled code cell in a Quarto HTML document.
-
-
+# Testing
+## Installling packages
 ```{webr-r}
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
 webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
 ```
 
+## Loading  data
+```{webr-r}
+dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
+```
+
+```{webr-r}
+ad <- readr::read_csv("https://raw.githubusercontent.com/lotariohw26/ManifoldDestiny/main/data-raw/csv/full_apps_data.csv")
+ad
+```
+
+
+
+**Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
+
 ```{r, echo=F}
 knitr::knit_exit()
 ```
 
 {{< audio file="abc.mp3" caption="Sample Audio File">}}
+
+
+```{webr-r}
+webr::mount(
+  mountpoint = "/data",
+  source = "https://example.com/output.data"
+)
+```
 

@@ -51,10 +51,6 @@ website:
         menu:
         - text: "20 laws and 40 isometries "
           href: laws.qmd
-        - text: "R"
-          href: https://lotariohw26.github.io/MD_WASMS/r/examples/
-        - text: "Python"
-          href: https://lotariohw26.github.io/MD_WASMS/py/examples/
         - text: "REPL for R"
           href: https://webr.r-wasm.org/latest/
         - text: "Simulations"
@@ -96,4 +92,6 @@ bibliography: man_bib.bib
 #d0 script/R/addendum_az.R
 # script/R/testing.R
 # shinyapps/empapp/app.R
+#          https://lotariohw26.github.io/MD_WASMS/r/examples/
+#          https://lotariohw26.github.io/MD_WASMS/py/examples/
 #

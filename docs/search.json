@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Manifold Destiny - or how to rig an election\nBased upon the ideas developed by Edward K. Solomon \n\nResultInteractive\n\n\na &lt;- 1 \n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nResultInteractive\n\n\nb &lt;- 2\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nResultInteractive\n\n\nc &lt;- a*b\nc\n\n[1] 2\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nLast time updated: 2024-07-07 18:31:51\nThis is a webR-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Based upon the ideas developed by Edward K. Solomon"
   },
   {
     "objectID": "paper.html",
@@ -82,5 +82,19 @@
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
     "text": "https://lotariohw26.github.io/ManifoldDestiny/"
+  },
+  {
+    "objectID": "index.html#loading-data",
+    "href": "index.html#loading-data",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Loading data",
+    "text": "Loading data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLast time updated: 2024-07-07 19:22:35"
+  },
+  {
+    "objectID": "index.html#installling-packages",
+    "href": "index.html#installling-packages",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Installling packages",
+    "text": "Installling packages\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
   }
 ]
