@@ -14,11 +14,24 @@ filters:
 ```
 
 
-1.
+
+```{webr-r}
+webr::install(c("dplyr","purrr"))
+webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
+webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
+library(dplyr)
+library(ManifoldDestinyWASMP)
+ls("package:dplyr")
+ls("package:ManifoldDestinyWASMP")
+data(package="ManifoldDestinyWASMD")
+```
+
 
 ```{webr-r}
 fit = lm(mpg ~ am, data = mtcars)
 summary(fit)
+
 ```
 
 
