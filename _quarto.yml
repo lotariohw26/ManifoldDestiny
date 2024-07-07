@@ -79,22 +79,7 @@ website:
         #    Mainfont: "Arial"
         #    Font size: 1.2
         #    Line stretch: 1.5
-    #  pdf:
-    #    toc: true
-    #    toc-depth: 3
-    #    number-sections: true
-    #    Mainfont: "Times"
-    #    colorlinks: true
-    #    lof: true
-    #    lot: true
-    #  docx:
-    #    toc: true
-    #    toc-depth: 3
-    #  epub:
-    #    toc: true
-    #    toc-depth: 3
-    #    Mainfont: "Verdana"
 bibliography: man_bib.bib
 
 #git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/ManifoldDestiny.git
-
+# data-raw/labeling.R
