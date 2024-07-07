@@ -12,5 +12,12 @@
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
     "text": "Manifold Destiny - or how to rig an election\nBased upon the ideas developed by Edward K. Solomon \nLast time updated: r format(Sys.time(), \"%Y-%m-%d %H:%M:%S\")"
+  },
+  {
+    "objectID": "paper.html",
+    "href": "paper.html",
+    "title": "1 Introduction",
+    "section": "",
+    "text": "1 Introduction\n\n\n2 Overview of various methods of ballot counting\n\n\n3 Election simulations\n\n\n4 Checking for a rigged election\n\n\n5 Literature review\n\n\n6 Applications\n\n\n7 The restoration of an rigged election\n\n\n8 Conclusions\n\nknitr::knit_exit()"
   }
 ]

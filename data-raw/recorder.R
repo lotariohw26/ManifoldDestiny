@@ -1,3 +1,4 @@
+# libraries
 library(ManifoldDestiny)
 library(ggplot2)
 library(dplyr)
@@ -8,14 +9,14 @@ library(usethis)
 library(yaml)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
+qenvar <- yaml::yaml.load_file("../_variables.yml")
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
-gs4_auth()
-lapply(paste0("app",1:4), function(x){recoudatr(mda=md[[x]])})
-
+lapply(qenvar[paste0("app", 0:4)], recoudatr)
+################################################################################################################
+recoudatr(qenvar$app7)
 #md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 #md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 #md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/_variables.yml"))
-#yaml_data <- yaml::yaml.load_file("../_variables.yml")
 
 
 #recoudatr(list(recn=recnav[1], 

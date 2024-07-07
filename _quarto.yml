@@ -4,7 +4,7 @@ project:
   render:
     - "index.qmd"
     - "presentation.qmd"
-    #    - "paper.qmd"
+    - "paper.qmd"
     #    - "addendum/Addendum_az.qmd"
     #    - "addendum/Addendum_ne.qmd"
     #    - "laws.qmd"
@@ -81,5 +81,5 @@ website:
         #    Line stretch: 1.5
 bibliography: man_bib.bib
 # git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/ManifoldDestiny.git
-# data-raw/labeling.R
-# data-raw/recorder.R
+# data-raw/recorder.r
+# data-raw/labeling.r
