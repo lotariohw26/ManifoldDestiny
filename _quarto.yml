@@ -5,10 +5,10 @@ project:
     - "index.qmd"
     - "presentation.qmd"
     - "paper.qmd"
+    - "laws.qmd"
+    - "man_bib.qmd"
     #    - "addendum/Addendum_az.qmd"
     #    - "addendum/Addendum_ne.qmd"
-    #    - "laws.qmd"
-    #    - "man_bib.qmd"
     #    - "tabsets.qmd"
     #    - "jsonview.qmd"
     #    - "randpython.qmd"
@@ -23,6 +23,10 @@ website:
         menu:
         - text: "Manifold Destiny - or how to rig an election" 
           href: "presentation.qmd"
+      - text: Appendix
+        menu:
+        - text: "20 laws and 40 isometries "
+          href: laws.qmd
         #          - text: "Addendum 1: Arizona"
         #          #            href: "addendum/Addendum_az.qmd"
         #          - text: "Addendum 2: Nevada"
@@ -53,12 +57,8 @@ website:
             #        menu:
             #          - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
             #            href: "https://lotariohw26.github.io/MD_BOOK1"
-        #      - text: Bibliography
-        #        href: man_bib.qmd
-        #      - text: Appendix
-        #        menu:
-        #          - text: "20 laws and 40 isometries "
-        #            href: laws.qmd
+      - text: Bibliography
+        href: man_bib.qmd
         #          - text: "Metadata"
         #            href: jsonview.qmd
         #          - text: "Tabsets"
