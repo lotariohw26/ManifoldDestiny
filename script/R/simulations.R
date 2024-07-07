@@ -1,7 +1,8 @@
 set.seed(1)
-ManifoldDestiny::wasmconload()
+library(dplyr)
 library(ManifoldDestiny)
-#data(package="ManifoldDestiny")
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 #######################################################################################################################################################
 ##### Proto example 1 and 2
 P  <- c(1,2,3,4,5,6)
@@ -62,9 +63,9 @@ probw <- c(m=0.51,s=0.10)
 probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztech <- c(0,1)	
-app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
+app_bal <- list(ballcastsim(dfm,probw,probva,probvb,ztech),NULL)
 ########### Normal form
-app_n_rep <- selreport(app_bal,app0)
+app_n_rep <- selreport(app_bal)
 app_n_out <- seloutput(app_n_rep)
 app_n_sim <- SimVoterdatabase(app_bal)
 ########## Rigged example 1: standard form

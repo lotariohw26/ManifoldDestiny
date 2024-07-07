@@ -91,12 +91,12 @@ gmp <- function(terms=c("x2","xy","y2","x3","x2y","y2x","y3")){
 #########################################################################################################################################
 ##' @export selreport
 selreport <- function(
-		      baldata=NULL,
-		      md=NULL
+		      baldata=NULL
 		      ){
-  frm <- md$mtd$sgs$fr
-  rparv <- md$mtd$sgs$ro ; names(rparv) <- c("theta","phi","rho")
-  co <- Countinggraphs(baldata)
+	browser()
+  #frm <- md$mtd$sgs$fr
+  #rparv <- md$mtd$sgs$ro ; names(rparv) <- c("theta","phi","rho")
+  co <- Countinggraphs(baldata[[1]])
   if (md$mtd$prg$cnd==1) co$purging(md$mtd,1)
   co$sortpre(frm)
   co$descriptive(frm)
