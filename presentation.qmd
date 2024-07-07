@@ -13,10 +13,29 @@ format:
 #  packages: ['dplyr','purrr','magrittr','data.table','tidyr'] # Install R packages on document open
 ##filters:
 #- webr 
-#footer: <https://lotariohw26.github.io/ManifoldDestiny/>
+footer: <https://lotariohw26.github.io/ManifoldDestiny/>
 ---
 
+```{r, echo=F, message=F, warning=F, results='hide'}
+library(huxtable)
+library(kableExtra)
+#Sys.info()[['sysname']]=="Emscripten"
+#ManifoldDestiny::wasmconload()
+metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/20laws40isos.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
+modlat <- eqpar$meql
+```
+
+
 # {{< var sec1.nmn >}}
+Ed. Solomon
+
+> "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
+
+
 # {{< var sec2.nmn >}}
 # {{< var sec3.nmn >}}
 # {{< var sec4.nmn >}}
@@ -33,32 +52,6 @@ format:
 
 
 
-```{r}
-knitr::knit_exit()
-```
-
-
-
-
-
-```{r}
-knitr::knit_exit()
-```
-
-
-
-```{r, echo=F, message=F, warning=F, results='hide'}
-#Sys.info()[['sysname']]=="Emscripten"
-ManifoldDestiny::wasmconload()
-metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/20laws40isos.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
-modlat <- eqpar$meql
-library(huxtable)
-library(kableExtra)
-```
 
 
 
@@ -71,6 +64,11 @@ Ed. Solomon
 > "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
 
 
+```{r}
+knitr::knit_exit()
+```
+
+
 ## `r metad$toc$sec1$unm[1]`
 
 - Two candidates: A, B
@@ -79,7 +77,16 @@ Ed. Solomon
   - Number of ballots mode 1: S, T
   - Number of ballots mode 2: U, V
 
+
+
+
+
+
+
+
+
 ##
+
 
 **Our two stylized numerical cases**
 
@@ -151,6 +158,11 @@ stfo_sel <- dplyr::select(pro_elc_ex1$sdfc[1:3,],P,S,T,U,V,x,y,zeta,alpha,lamda)
 cou_tb <- c("Precinct","S","T","U","V","x","y",'$\\zeta$',"$\\alpha$","$\\lambda$")
 kableExtra::kbl(format(stfo_sel,digits=4),caption=ctone_sf) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
+
+```{r}
+knitr::knit_exit()
+```
+
 
 Numerical calculation of candidate one total percentage
 
