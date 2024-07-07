@@ -11,9 +11,9 @@ recoudatr <- function(mda=NULL,prn=1){
     dplyr::mutate(V=!!rlang::parse_expr(mda$stuv[4]))
   #browser()
   if(prn==1) print(dplyr::select(gsh,S,T,U,V))
-  assign(mda$nid,gsh)
+  assign(mda$nid,list(gsh,mda))
   do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
-  return(gsh)
+  return(mda$nid)
 }
 #' @export py_polysolver
 py_polysolver <- function(degree=1,abcde=NULL){

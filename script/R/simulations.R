@@ -1,6 +1,7 @@
 set.seed(1)
 ManifoldDestiny::wasmconload()
 library(ManifoldDestiny)
+#data(package="ManifoldDestiny")
 #######################################################################################################################################################
 ##### Proto example 1 and 2
 P  <- c(1,2,3,4,5,6)
@@ -63,7 +64,7 @@ probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztech <- c(0,1)	
 app_bal <- ballcastsim(dfm,probw,probva,probvb,ztech)
 ########### Normal form
-app_n_rep <- selreport(app_bal,md$app0)
+app_n_rep <- selreport(app_bal,app0)
 app_n_out <- seloutput(app_n_rep)
 app_n_sim <- SimVoterdatabase(app_bal)
 ########## Rigged example 1: standard form

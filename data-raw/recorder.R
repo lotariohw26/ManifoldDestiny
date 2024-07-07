@@ -9,18 +9,10 @@ library(usethis)
 library(yaml)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-qenvar <- yaml::yaml.load_file("../_variables.yml")
+qenvar <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_variables.yml"))
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 lapply(qenvar[paste0("app", 0:4)], recoudatr)
 ################################################################################################################
-mda <- qenvar$app7 
-googlesheets4::sheet_names(mda$url) 
-recoudatr(qenvar$app7)
-#md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-#md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-#md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/_variables.yml"))
-
-
 #recoudatr(list(recn=recnav[1], 
   #      	 race='Presidential', 
   #      	 candidates=c('Trump (R)','Biden (D)'), 
