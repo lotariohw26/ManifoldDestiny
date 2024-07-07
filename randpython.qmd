@@ -4,34 +4,60 @@ output: github_document
 always_allow_html: true
 execute: 
   cache: false
+webr:
+  show-startup-message: false      # Display status of webR initialization
+  show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
+  packages: ['dplyr','data.table']             # Pre-install dependencies
 filters:
+  - panelize
   - webr
+  - pyodide
 ---
 
 
 ```{r}
+# https://github.cm/coatless-quarto/panelize
 # script/R/simulations.R
+# {{< audio file="abc.mp3" caption="Sample Audio File">}}
 ```
 
+:::{.to-webr}
+```{r}
+a <- 1 
+```
+:::
+
+:::{.to-webr}
+```{r}
+b <- 2
+```
+:::
+
+:::{.to-webr}
+```{r}
+c <- a*b
+c
+```
+:::
+
+**Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
+
+
+This is a webR-enabled code cell in a Quarto HTML document.
 
 
 ```{webr-r}
-webr::install(c("dplyr","purrr"))
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
 webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
-library(dplyr)
-library(ManifoldDestinyWASMP)
-ls("package:dplyr")
-ls("package:ManifoldDestinyWASMP")
-data(package="ManifoldDestinyWASMD")
 ```
+
+
 
 
 ```{webr-r}
 fit = lm(mpg ~ am, data = mtcars)
 summary(fit)
-
 ```
 
 
@@ -54,7 +80,6 @@ knitr::knit_exit()
 Great question. The short gist is yes in the *interactive* context for now.
 
 We'll likely need to make another extension that wraps before {quarto-webr} and {quarto-pyodide} to enable cross talk in the *non-interactive**/**output* contexts.
-
 
 # Python
 
@@ -103,7 +128,6 @@ We'll likely need to make another extension that wraps before {quarto-webr} and 
   </script>
 </body>
 
-
 # R
 
 <div>
@@ -138,9 +162,23 @@ We'll likely need to make another extension that wraps before {quarto-webr} and 
 </script>
 
 
+:::{.to-webr}
+```{r}
+webr::install(c("dplyr","purrr"))
+webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
+webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
+library(dplyr)
+library(ManifoldDestinyWASMP)
+ls("package:dplyr")
+ls("package:ManifoldDestinyWASMP")
+data(package="ManifoldDestinyWASMD")
+```
+:::
 
-
-
-
-
+:::{.to-pyodide}
+```{python}
+4 + 5
+```
+:::
 

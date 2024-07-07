@@ -7,11 +7,14 @@ webr:
   show-startup-message: false      # Display status of webR initialization
   show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
   packages: ['dplyr','data.table']             # Pre-install dependencies
+  cell-options:
+    autorun: true
 filters:
+  - panelize
   - webr
 ---
 
-```{r}
+```{r, echo=F}
 # script/R/simulations.R
 ```
 
@@ -21,10 +24,30 @@ filters:
 ![](pngs/md.png)
 
 
+:::{.to-webr}
+```{r}
+a <- 1 
+```
+:::
+
+:::{.to-webr}
+```{r}
+b <- 2
+```
+:::
+
+:::{.to-webr}
+```{r}
+c <- a*b
+c
+```
+:::
+
 **Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
 
 
 This is a webR-enabled code cell in a Quarto HTML document.
+
 
 ```{webr-r}
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
@@ -32,4 +55,9 @@ webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_
 dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
 ```
 
+```{r, echo=F}
+knitr::knit_exit()
+```
+
+{{< audio file="abc.mp3" caption="Sample Audio File">}}
 
