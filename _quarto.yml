@@ -17,5 +17,5 @@ format:
     css: styles.css
     toc: true
 
-
+# git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/ManifoldDestiny.git
 
