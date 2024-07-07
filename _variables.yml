@@ -82,3 +82,150 @@ packages:
   - "gganimate"
   - "ggplot2"
   - "ggpmisc"
+app0:
+  id: app0
+  nid: app0
+  nmn: Simulation
+  rcn: Proto
+  cnd: ['T', 'B']
+  sta: null
+  cou: []
+  mod: ['EDV', 'MiV']
+  yea: 2023
+  url: https://docs.google.com/spreadsheets/d/107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0
+  pgn: 1
+  rng: A1:F23
+  cln: ['PN', 'RN', 'A1', 'B1', 'A2', 'B2']
+  stuv: ['A1', 'B1', 'A2', 'B2']
+  eq: alpha=k0+k1*x+k2*y
+  va: y
+  fr: 1
+  ro: [0, 0, 0]
+  bib: []
+
+app1:
+  id: app1
+  nid: app1
+  nmn: Presidential ...
+  rcn: Presidential
+  cnd: ['Trump (R)', 'Biden (D)']
+  sta: Nevada
+  cou: ['Clark', 'Washoe']
+  mod: ['EV', 'MiV']
+  yea: 2020
+  url: https://docs.google.com/spreadsheets/d/1gkf41sJRAQ6bwKmlAAcb7hAQ6v4zIXG2wDYl67LrJ4k/edit#gid=0
+  pgn: 1
+  rng: A2:F1288
+  cln: ['PN', 'RN', 'A1', 'B1', 'A2', 'B2']
+  stuv: ['A1', 'B1', 'A2', 'B2']
+  eq: alpha=k0+k1*g+k2*h
+  va: g
+  fr: 2
+  ro: [0, 0, 0]
+  bib: ['sol2022i']
+
+app2:
+  id: app2
+  nid: app2
+  nmn: General
+  rcn: General Election
+  cnd: ['Stavros (R)', 'Miller(D)']
+  sta: Nevada
+  cou: []
+  mod: ['ADV', 'MiV', 'EDV']
+  yea: 2020
+  url: https://docs.google.com/spreadsheets/d/1jvLhOzaaQUqmpt7XTz01DoLsLiXr3vNAw-79_PBCOsw/edit#gid=0
+  pgn: 2
+  rng: A1:H151
+  cln: ['PN', 'RN', 'A1', 'B1', 'A2', 'B2', 'A3', 'B3']
+  stuv: ['A1', 'B1', 'A2', 'B2']
+  eq: alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3
+  va: g
+  fr: 2
+  ro: [0, 0, 0]
+  bib: ['https://www.documentcloud.org/documents/22088788-gilbert-v-sisolak-et-al', 'abc']
+
+app3:
+  id: app3
+  nid: app3
+  nmn: abc
+  rcn: Governor
+  cnd: ['Lake (R)', 'Hobbs (D)']
+  sta: Arizona
+  cou: ['Maricopa']
+  mod: ['EDV', 'MiV']
+  yea: 2022
+  url: https://docs.google.com/spreadsheets/d/1FxJg9hjU-M1MIeKl0koiHDVIp2dPAmm3nJpRzd5Ejdg/edit#gid=301195549
+  pgn: 1
+  rng: G5:O940
+  cln: ['PC', 'PN', 'RN', 'A0', 'A1', 'A2', 'B0', 'B1', 'B2']
+  stuv: ['A1', 'B1', 'A2', 'B2']
+  eq: alpha=k0+k1*x+k2*y
+  va: y
+  fr: 1
+  ro: [0, 0, 0]
+  bib: []
+
+app4:
+  id: app4
+  nid: app4
+  nmn: abc
+  rcn: null
+  cnd: ['Fritz', 'Ferry']
+  sta: Nevada
+  cou: []
+  mod: ['ADV', 'MiV', 'EDV', 'Prov']
+  yea: 2020
+  url: https://docs.google.com/spreadsheets/d/1xN7lvxt1bHodRgHDk_wqJ9b1g3dZGSGKmSxIASPCGCI/edit#gid=301195549
+  pgn: 3
+  rng: A5:K315
+  cln: ['CO', 'PN', 'RN', 'D1', 'D2', 'A1', 'A2', 'A3', 'B1', 'B2', 'B3']
+  stuv: ['A1', 'B1', 'A2', 'B2']
+  eq: alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3
+  va: g
+  fr: 1
+  ro: [0, 0, 0]
+  bib: ['']
+
+app5:
+  id: app5
+  nid: app5
+  nmn: abc
+  rcn: Presidiential
+  cnd: ['Trump (R)', 'Biden (D)', 'Jorg (I)']
+  sta: Georgia
+  cou: ['Atlanta']
+  mod: ['ADV', 'MiV', 'EDV']
+  yea: 2020
+  url: https://docs.google.com/spreadsheets/d/1HoOpkuWDnfTG-mezrCBd7t04gb0YkhA5YDMzcgK-MVo/edit#gid=0
+  pgn: 2
+  rng: A1:H151
+  cln: ['PN', 'R', 'A1', 'B1', 'A2', 'B2', 'A3', 'B3']
+  stuv: ['A1', 'B1', 'A2', 'B2']
+  eq: alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3
+  va: g
+  fr: 1
+  ro: [0, 0, 0]
+  bib: ['https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit']
+
+app6:
+  id: app6
+  nid: app6
+  nmn: abc
+  rcn: General Election
+  cnd: ['Marchant (R)', 'Cisco (D)']
+  sta: Nevada
+  cou: []
+  mod: ['ADV', 'MiV', 'EDV']
+  yea: 2020
+  url: https://docs.google.com/spreadsheets/d/1v9-bAI9INnjgfInEJBHNBp4D7N3-Opf4nDKJbzxdBrk/edit#gid=1531166097
+  pgn: 2
+  rng: A1:H151
+  cln: ['PN', 'R', 'A1', 'B1', 'A2', 'B2', 'A3', 'B3']
+  stuv: ['A1', 'B1', 'A2', 'B2']
+  eq: alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3
+  va: g
+  fr: 1
+  ro: [0, 0, 0]
+  bib: ['']
+
