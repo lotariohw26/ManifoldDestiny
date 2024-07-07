@@ -6,12 +6,6 @@ execute:
   cache: false
 filters:
   - webr
-format: 
-  html:
-    css: "https://kineticgraphs.org/css/kg.0.2.7.css"
-    include-in-body:
-          - text: |
-              <script src="https://kineticgraphs.org/js/kg.0.2.7.js"></script>
 ---
 
 
@@ -23,4 +17,13 @@ format:
 
 **Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
 
+
+This is a webR-enabled code cell in a Quarto HTML document.
+
+```{webr-r}
+fit = lm(mpg ~ am, data = mtcars)
+summary(fit)
+```
+
+Abc
 

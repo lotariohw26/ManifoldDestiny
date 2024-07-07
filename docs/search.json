@@ -11,14 +11,14 @@
     "href": "index.html",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Manifold Destiny - or how to rig an election\nBased upon the ideas developed by Edward K. Solomon \nLast time updated: r format(Sys.time(), \"%Y-%m-%d %H:%M:%S\")"
+    "text": "Manifold Destiny - or how to rig an election\nBased upon the ideas developed by Edward K. Solomon \nLast time updated: r format(Sys.time(), \"%Y-%m-%d %H:%M:%S\")\nThis is a webR-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nAbc"
   },
   {
     "objectID": "paper.html",
     "href": "paper.html",
     "title": "1 Introduction",
     "section": "",
-    "text": "1 Introduction\n\n\n2 Overview of various methods of ballot counting\n\n\n3 Election simulations\n\n\n4 Checking for a rigged election\n\n\n5 Literature review\n\n\n6 Applications\n\n\n7 The restoration of an rigged election\n\n\n8 Conclusions\n\nknitr::knit_exit()"
+    "text": "1 Introduction\n\n\n2 Overview of various methods of ballot counting\n\n\n3 Election simulations\n\n\n4 Checking for a rigged election\n\n\n5 Literature review\n\n\n6 Applications\n\n\n7 The restoration of an rigged election\n\n\n8 Conclusions"
   },
   {
     "objectID": "laws.html",
@@ -33,5 +33,40 @@
     "title": "References",
     "section": "",
     "text": "Edward, S. (2020). Clark and Washoe Precinct Analysis. https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit.\nEdward, S. (2022b). Anderson Ruling Rebuttal . https://docs.google.com/document/d/1ywNTOUZuJNB_viiwNuj029HZSzJEJdr7-2AY6n5SKsk/edit#heading=h.lbxjlnrdr0eu.\nEdward, S. (2022a). Clark and Washoe Counties, 2020 and 2022 Elections. https://docs.google.com/document/d/1SCgXpvHwfHJN0T-DdERC3NUQbMlMhOWmRfFjnJs0Ui8/edit#heading=h.lty23tl914ct.\nEdward, S. (2023a). Anderson Ruling Rebuttal. https://docs.google.com/document/d/1ywNTOUZuJNB_viiwNuj029HZSzJEJdr7-2AY6n5SKsk/edit?usp=drive_link.\nEdward, S. (2023b). Least squares regression for 3D data. https://bard.google.com/share/ee16dfd2d48a.\nEdward, S. Nevada 2020, Clark and Washoe, Laymen’s only. https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit#heading=h.lty23tl914ct."
+  },
+  {
+    "objectID": "addendum/Addendum_ne.html",
+    "href": "addendum/Addendum_ne.html",
+    "title": "Addendum",
+    "section": "",
+    "text": "knitr::knit_exit()"
+  },
+  {
+    "objectID": "addendum/Addendum_az.html",
+    "href": "addendum/Addendum_az.html",
+    "title": "Addendum",
+    "section": "",
+    "text": "knitr::knit_exit()"
+  },
+  {
+    "objectID": "jsonview.html",
+    "href": "jsonview.html",
+    "title": "{{< var titls >}}",
+    "section": "",
+    "text": "Attaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\n\n\n$nid\n[1] \"app0\"\n\n$nmn\n[1] \"Simulation\"\n\n$race\n$race$rcn\n[1] \"Proto\"\n\n$race$cnd\n[1] \"T\" \"B\"\n\n$race$sta\n[1] \"\"\n\n$race$cou\nlist()\n\n$race$mod\n[1] \"EDV\" \"MiV\"\n\n$race$yea\n[1] 2023\n\n\n$sht\n$sht$url\n[1] \"https://docs.google.com/spreadsheets/d/107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0\"\n\n$sht$pgn\n[1] 1\n\n$sht$rng\n[1] \"A1:F23\"\n\n$sht$cln\n[1] \"PN\" \"RN\" \"A1\" \"B1\" \"A2\" \"B2\"\n\n$sht$stuv\n[1] \"A1\" \"B1\" \"A2\" \"B2\"\n\n\n$mtd\n$mtd$prg\n$mtd$prg$cnd\n[1] 0\n\n$mtd$prg$stuv\n[1] 0 0 0 0\n\n$mtd$prg$blup\n[1] 0 1\n\n\n$mtd$sgs\n$mtd$sgs$eq\n[1] \"alpha=k0+k1*x+k2*y\"\n\n$mtd$sgs$va\n[1] \"y\"\n\n$mtd$sgs$fr\n[1] 1\n\n$mtd$sgs$ro\n[1] 0 0 0\n\n\n\n\n$nid\n[1] \"app1\"\n\n$nmn\n[1] \"Presidential ...\"\n\n$race\n$race$rcn\n[1] \"Presidential\"\n\n$race$cnd\n[1] \"Trump (R)\" \"Biden (D)\"\n\n$race$sta\n[1] \"Nevada\"\n\n$race$cou\n[1] \"Clark\"  \"Washoe\"\n\n$race$mod\n[1] \"EV\"  \"MiV\"\n\n$race$yea\n[1] 2020\n\n\n$sht\n$sht$url\n[1] \"https://docs.google.com/spreadsheets/d/1gkf41sJRAQ6bwKmlAAcb7hAQ6v4zIXG2wDYl67LrJ4k/edit#gid=0\"\n\n$sht$pgn\n[1] 1\n\n$sht$rng\n[1] \"A2:F1288\"\n\n$sht$cln\n[1] \"PN\" \"RN\" \"A1\" \"B1\" \"A2\" \"B2\"\n\n$sht$stuv\n[1] \"A1\" \"B1\" \"A2\" \"B2\"\n\n\n$mtd\n$mtd$prg\n$mtd$prg$cnd\n[1] 0\n\n$mtd$prg$stuv\n[1] 0 0 0 0\n\n$mtd$prg$blup\n[1] 0 1\n\n\n$mtd$sgs\n$mtd$sgs$eq\n[1] \"alpha=k0+k1*g+k2*h\"\n\n$mtd$sgs$va\n[1] \"g\"\n\n$mtd$sgs$fr\n[1] 2\n\n$mtd$sgs$ro\n[1] 0 0 0\n\n\n\n$bib\n[1] \"sol2022i\"\n\n\n\n\n$nid\n[1] \"app2\"\n\n$nmn\n[1] \"General\"\n\n$race\n$race$rcn\n[1] \"General Election\"\n\n$race$cnd\n[1] \"Stavros (R)\" \"Miller(D)\"  \n\n$race$sta\n[1] \"Nevada\"\n\n$race$cou\nlist()\n\n$race$mod\n[1] \"ADV\" \"MiV\" \"EDV\"\n\n$race$yea\n[1] 2020\n\n\n$sht\n$sht$url\n[1] \"https://docs.google.com/spreadsheets/d/1jvLhOzaaQUqmpt7XTz01DoLsLiXr3vNAw-79_PBCOsw/edit#gid=0\"\n\n$sht$pgn\n[1] 2\n\n$sht$rng\n[1] \"A1:H151\"\n\n$sht$cln\n[1] \"PN\" \"RN\" \"A1\" \"B1\" \"A2\" \"B2\" \"A3\" \"B3\"\n\n$sht$stuv\n[1] \"A1\" \"B1\" \"A2\" \"B2\"\n\n\n$mtd\n$mtd$prg\n$mtd$prg$cnd\n[1] 0\n\n$mtd$prg$stuv\n[1] 0 0 0 0\n\n$mtd$prg$blup\n[1] 0 1\n\n\n$mtd$sgs\n$mtd$sgs$eq\n[1] \"alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3\"\n\n$mtd$sgs$va\n[1] \"g\"\n\n$mtd$sgs$fr\n[1] 2\n\n$mtd$sgs$ro\n[1] 0 0 0\n\n\n\n$bib\n[1] \"https://www.documentcloud.org/documents/22088788-gilbert-v-sisolak-et-al\"\n[2] \"abc\"                                                                     \n\n\n\n\n$nid\n[1] \"app3\"\n\n$nmn\n[1] \"abc\"\n\n$race\n$race$rcn\n[1] \"Governor\"\n\n$race$cnd\n[1] \"Lake (R)\"  \"Hobbs (D)\"\n\n$race$sta\n[1] \"Arizona\"\n\n$race$cou\n[1] \"Maricopa\"\n\n$race$mod\n[1] \"EDV\" \"MiV\"\n\n$race$yea\n[1] 2022\n\n\n$sht\n$sht$url\n[1] \"https://docs.google.com/spreadsheets/d/1FxJg9hjU-M1MIeKl0koiHDVIp2dPAmm3nJpRzd5Ejdg/edit#gid=301195549\"\n\n$sht$pgn\n[1] 1\n\n$sht$rng\n[1] \"G5:O940\"\n\n$sht$cln\n[1] \"PC\" \"PN\" \"RN\" \"A0\" \"A1\" \"A2\" \"B0\" \"B1\" \"B2\"\n\n$sht$stuv\n[1] \"A1\" \"B1\" \"A2\" \"B2\"\n\n\n$mtd\n$mtd$prg\n$mtd$prg$cnd\n[1] 0\n\n$mtd$prg$stuv\n[1] 0 0 0 0\n\n$mtd$prg$blup\n[1] 0 1\n\n\n$mtd$frm\n[1] 1\n\n$mtd$sgs\n$mtd$sgs$eq\n[1] \"alpha=k0+k1*x+k2*y\"\n\n$mtd$sgs$va\n[1] \"y\"\n\n$mtd$sgs$fr\n[1] 1\n\n$mtd$sgs$ro\n[1] 0 0 0\n\n\n\n$bib\nlist()\n\n\n\n\n$nid\n[1] \"app4\"\n\n$nmn\n[1] \"abc\"\n\n$race\n$race$rcn\n[1] \"\"\n\n$race$cnd\n[1] \"Fritz\" \"Ferry\"\n\n$race$sta\n[1] \"Nevada\"\n\n$race$cou\nlist()\n\n$race$mod\n[1] \"ADV\"  \"MiV\"  \"EDV\"  \"Prov\"\n\n$race$yea\n[1] 2020\n\n\n$sht\n$sht$url\n[1] \"https://docs.google.com/spreadsheets/d/1xN7lvxt1bHodRgHDk_wqJ9b1g3dZGSGKmSxIASPCGCI/edit#gid=301195549\"\n\n$sht$pgn\n[1] 3\n\n$sht$rng\n[1] \"A5:K315\"\n\n$sht$cln\n [1] \"CO\" \"PN\" \"RN\" \"D1\" \"D2\" \"A1\" \"A2\" \"A3\" \"B1\" \"B2\" \"B3\"\n\n$sht$stuv\n[1] \"A1\" \"B1\" \"A2\" \"B2\"\n\n\n$mtd\n$mtd$prg\n$mtd$prg$cnd\n[1] 0\n\n$mtd$prg$stuv\n[1] 0 0 0 0\n\n$mtd$prg$blup\n[1] 0 1\n\n\n$mtd$frm\n[1] 1\n\n$mtd$sgs\n$mtd$sgs$eq\n[1] \"alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3\"\n\n$mtd$sgs$va\n[1] \"g\"\n\n$mtd$sgs$fr\n[1] 1\n\n\n\n$bib\n[1] \"\"\n\n\n\n\n$nid\n[1] \"app5\"\n\n$nmn\n[1] \"abc\"\n\n$race\n$race$rcn\n[1] \"Presidiential\"\n\n$race$cnd\n[1] \"Trump (R)\" \"Biden (D)\" \"Jorg (I)\" \n\n$race$sta\n[1] \"Georgia\"\n\n$race$cou\n[1] \"Atlanta\"\n\n$race$mod\n[1] \"ADV\" \"MiV\" \"EDV\"\n\n$race$yea\n[1] 2020\n\n\n$sht\n$sht$url\n[1] \"https://docs.google.com/spreadsheets/d/1HoOpkuWDnfTG-mezrCBd7t04gb0YkhA5YDMzcgK-MVo/edit#gid=0\"\n\n$sht$pgn\n[1] 2\n\n$sht$rng\n[1] \"A1:H151\"\n\n$sht$cln\n[1] \"PN\" \"R\"  \"A1\" \"B1\" \"A2\" \"B2\" \"A3\" \"B3\"\n\n$sht$stuv\n[1] \"A1\" \"B1\" \"A2\" \"B2\"\n\n\n$mtd\n$mtd$prg\n[1] 1\n\n$mtd$frm\n[1] 1\n\n$mtd$sgs\n$mtd$sgs$eq\n[1] \"alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3\"\n\n$mtd$sgs$va\n[1] \"g\"\n\n$mtd$sgs$fr\n[1] 1\n\n\n\n$bib\n[1] \"https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit\"\n\n\n\n\n$nid\n[1] \"app6\"\n\n$nmn\n[1] \"abc\"\n\n$race\n$race$rcn\n[1] \"General Election\"\n\n$race$cnd\n[1] \"Marchant (R)\" \"Cisco (D)\"   \n\n$race$sta\n[1] \"Nevada\"\n\n$race$cou\nlist()\n\n$race$mod\n[1] \"ADV\" \"MiV\" \"EDV\"\n\n$race$yea\n[1] 2020\n\n\n$sht\n$sht$url\n[1] \"https://docs.google.com/spreadsheets/d/1v9-bAI9INnjgfInEJBHNBp4D7N3-Opf4nDKJbzxdBrk/edit#gid=1531166097'\"\n\n$sht$pgn\n[1] 2\n\n$sht$rng\n[1] \"A1:H151\"\n\n$sht$cln\n[1] \"PN\" \"R\"  \"A1\" \"B1\" \"A2\" \"B2\" \"A3\" \"B3\"\n\n$sht$stuv\n[1] \"A1\" \"B1\" \"A2\" \"B2\"\n\n\n$mtd\n$mtd$prg\n[1] 1\n\n$mtd$frm\n[1] 1\n\n$mtd$sgs\n$mtd$sgs$eq\n[1] \"alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3\"\n\n$mtd$sgs$va\n[1] \"g\"\n\n$mtd$sgs$fr\n[1] 1\n\n\n\n$bib\n[1] \"\""
+  },
+  {
+    "objectID": "tabsets.html",
+    "href": "tabsets.html",
+    "title": "Tabsets",
+    "section": "",
+    "text": "knitr::knit_exit()"
+  },
+  {
+    "objectID": "randpython.html",
+    "href": "randpython.html",
+    "title": "R and Python integration",
+    "section": "",
+    "text": "Coatless\n(thecoatlessprofessor7674?) 1 month ago Great question. The short gist is yes in the interactive context for now.\nWe’ll likely need to make another extension that wraps before {quarto-webr} and {quarto-pyodide} to enable cross talk in the non-interactive/output contexts.\n\nPython\n\n\n\n\n\nYou can execute any Python code. Just enter something in the box below and click the button.\n\n Run  \n\nOutput:\n\n\n\n\n\n\nR\n\nLoading webR, please wait...\n Run"
   }
 ]

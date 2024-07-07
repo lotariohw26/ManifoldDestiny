@@ -17,7 +17,7 @@ format:
 # {{< var sec7.nmn >}}
 # {{< var sec8.nmn >}}
 
-```{r}
+```{r,echo=F}
 knitr::knit_exit()
 ```
 

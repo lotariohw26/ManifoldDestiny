@@ -7,11 +7,11 @@ project:
     - "paper.qmd"
     - "laws.qmd"
     - "man_bib.qmd"
-    #    - "addendum/Addendum_az.qmd"
-    #    - "addendum/Addendum_ne.qmd"
-    #    - "tabsets.qmd"
-    #    - "jsonview.qmd"
-    #    - "randpython.qmd"
+    - "addendum/Addendum_az.qmd"
+    - "addendum/Addendum_ne.qmd"
+    - "tabsets.qmd"
+    - "jsonview.qmd"
+    - "randpython.qmd"
     #    - "git_terminal.qmd"
 website:
   title: "{{< var titls >}}"
@@ -23,62 +23,58 @@ website:
         menu:
         - text: "Manifold Destiny - or how to rig an election" 
           href: "presentation.qmd"
+        - text: "Addendum 1: Arizona"
+          href: "addendum/Addendum_az.qmd"
+        - text: "Addendum 2: Nevada"
+          href: "addendum/Addendum_ne.qmd"
+        - text: "Paper"
+          href: paper.qmd
+      - text: "Tabsets"
+        href: tabsets.qmd
+      - text: Shiny applications
+        menu:
+          - text: "R2 simulator"
+            href: "{{< var shn1 >}}"
+          - text: "Rigging of a natural election"
+            href: "{{< var shn2 >}}"
+          - text: "Election results analyzer"
+            href: "{{< var shn3 >}}"
+          - text: "Restoration of a rigged election"
+            href: "{{< var shn4 >}}"
+      - text: E-books
+        menu:
+          - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
+            href: "https://lotariohw26.github.io/MD_BOOK1"
+      - text: Bibliography
+        href: man_bib.qmd
       - text: Appendix
         menu:
         - text: "20 laws and 40 isometries "
           href: laws.qmd
-        #          - text: "Addendum 1: Arizona"
-        #          #            href: "addendum/Addendum_az.qmd"
-        #          - text: "Addendum 2: Nevada"
-        #          #            href: "addendum/Addendum_ne.qmd"
-        #      - text: "Paper"
-        #      #        href: paper.qmd
-        #      - text: Coding in the browser
-        #        menu:
-        #          - text: "R"
-        #            href: https://lotariohw26.github.io/MD_WASMS/r/examples/
-        #          - text: "Python"
-        #            href: https://lotariohw26.github.io/MD_WASMS/py/examples/
-        #          - text: "REPL for R"
-        #            href: https://webr.r-wasm.org/latest/
-        #          - text: "R and Python together"
-        #            href: "randpython.qmd"
-            #      - text: Shiny applications
-            #        menu:
-            #          - text: "R2 simulator"
-            #            href: "{{< var shn1 >}}"
-            #          - text: "Rigging of a natural election"
-            #            href: "{{< var shn2 >}}"
-            #          - text: "Election results analyzer"
-            #            href: "{{< var shn3 >}}"
-            #          - text: "Restoration of a rigged election"
-            #            href: "{{< var shn4 >}}"
-            #      - text: E-books
-            #        menu:
-            #          - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
-            #            href: "https://lotariohw26.github.io/MD_BOOK1"
-      - text: Bibliography
-        href: man_bib.qmd
-        #          - text: "Metadata"
-        #            href: jsonview.qmd
-        #          - text: "Tabsets"
-        #            href: tabsets.qmd
-        #  repo-url: https://github.com/lotariohw26/ManifoldDestiny
-        #  site-url: https://lotariohw26.github.io/ManifoldDestiny/
-        #  reader-mode: false
-        #  repo-actions: [edit]
-        #  page-footer: 
-        #     left: "" 
-        #     right: 
-        #       - icon: github
-        #         href: https://github.com/lotariohw26/ManifoldDestiny
-        #format:
-        #  html:
-        #    toc: true
-        #    toc-depth: 3
-        #    Mainfont: "Arial"
-        #    Font size: 1.2
-        #    Line stretch: 1.5
+        - text: "R"
+          href: https://lotariohw26.github.io/MD_WASMS/r/examples/
+        - text: "Python"
+          href: https://lotariohw26.github.io/MD_WASMS/py/examples/
+        - text: "REPL for R"
+          href: https://webr.r-wasm.org/latest/
+        - text: "R and Python together"
+          href: "randpython.qmd"
+  repo-url: https://github.com/lotariohw26/ManifoldDestiny
+  site-url: https://lotariohw26.github.io/ManifoldDestiny/
+  reader-mode: false
+  repo-actions: [edit]
+  page-footer: 
+     left: "" 
+     right: 
+       - icon: github
+         href: https://github.com/lotariohw26/ManifoldDestiny
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    Mainfont: "Arial"
+    Font size: 1.2
+    Line stretch: 1.5
 bibliography: man_bib.bib
 # git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/ManifoldDestiny.git
 # R/wasmnonverting.R
