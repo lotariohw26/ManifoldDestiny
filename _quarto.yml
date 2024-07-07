@@ -10,7 +10,7 @@ project:
     - "addendum/Addendum_az.qmd"
     - "addendum/Addendum_ne.qmd"
     - "tabsets.qmd"
-    - "jsonview.qmd"
+    - "metaview.qmd"
     - "simulations.qmd"
     - "restoration.qmd"
     - "analyzer.qmd"
@@ -35,7 +35,7 @@ website:
       - text: Shiny applications
         menu:
           - text: "R2 simulator"
-          #            href: "{{< var shn1 >}}"
+          # href: "{{< var shn1 >}}"
           - text: "Rigging of a natural election"
           #  href: "{{< var shn2 >}}"
           - text: "Election results analyzer"
@@ -53,7 +53,7 @@ website:
         - text: "20 laws and 40 isometries "
           href: laws.qmd
         - text: "REPL for R"
-          href: https://webr.r-wasm.org/latest/
+          href: "https://webr.r-wasm.org/latest/"
         - text: "Simulations"
           href: "simulations.qmd"
         - text: "Analyzer"

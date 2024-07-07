@@ -1,0 +1,37 @@
+---
+title: ""
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(yaml)
+library(knitr)
+## Load the YAML data from a file
+yaml_data <- yaml::read_yaml("_variables.yml")
+## Function to display each application's data
+pretty_print_list <- function(x) {
+  for (name in names(x)) {
+    cat(paste0(name, ": "))
+    value <- x[[name]]
+    if (is.null(value)) {
+      cat("NULL")
+    } else if (is.atomic(value)) {
+      cat(toString(value))
+    } else if (is.list(value)) {
+      cat("list()")
+    }
+    cat("\n")
+  }
+}
+
+```
+
+# App0
+
+```{r, echo=F}
+pretty_print_list(yaml_data$app0)
+```
+
+
+
+
