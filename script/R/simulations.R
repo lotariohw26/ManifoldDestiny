@@ -37,12 +37,12 @@ rigres <- lapply(exs, function(x) {
   		lf="(alpha-alpha_s)^2"))
   appn$setres(0.19,1)
   appn$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
-  dfme <- list(appn$loss_df,NULL)
-  #abc <- seloutput(selreport(dfme))
-  def <- SimVoterdatabase(dfme[[1]])
-  return(list(def,def))
+  list(fr=1,eq="alpha=k0+k1*x+k2*y")
+  dfme <- list(appn$loss_df,list(fr=1,eq="alpha=k0+k1*x+k2*y"))
+  seo <- seloutput(selreport(dfme))
+  siv <- SimVoterdatabase(dfme[[1]])
+  return(list(seo,siv))
 })
-rigres[[1]]
 ###################################################################################################################################################################
 ######## Concluding Tabl
 ctone <-'Applications'
@@ -62,3 +62,5 @@ concl_appps <- data.frame(case=casevec,
 			  propn=prope_vec, 
 			  propv=propv_vec)
 ################################################################################################################################################################
+# "id"   "nid"  "nmn"  "rcn"  "cnd"  "sta"  "cou"  "mod"  "yea"  "url"  "pgn"  "rng"  "cln"  "stuv" "eq"  "va"   "fr"   "ro"   "bib" 
+# "fr" "eq"
