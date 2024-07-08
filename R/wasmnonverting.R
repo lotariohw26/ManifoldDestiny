@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #' @export recoudatr
 recoudatr <- function(mda=NULL,prn=1){
   gsh <- googlesheets4::read_sheet(mda$url,sheet=mda$pgn,range=mda$rng) %>%
@@ -15,8 +14,6 @@ recoudatr <- function(mda=NULL,prn=1){
   do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
   return(mda$nid)
 }
-=======
->>>>>>> 4300d9a73e4e7698688b1554f7a4c38c38da0d08
 #' @export py_polysolver
 py_polysolver <- function(degree=1,abcde=NULL){
   path_fqs <- paste0(rprojroot::find_rstudio_root_file(),"/script/python")
