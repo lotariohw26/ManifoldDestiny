@@ -301,7 +301,6 @@ SimVoterdatabase$methods(gghist=function(){
     scale_fill_manual(values = c("#0072b2", "#e69f00"))  # set fill colors
 })
 #########################################################################################################################################
-#########################################################################################################################################
 ##' @export Rall
 Rall <- function(sel=c(1,2,3)){
   Rxy <- function(rad) {
@@ -408,7 +407,6 @@ ballcount <- function(ballotsdf=NULL,se=se){
 pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1)){
 	eval(parse(text=ste),lv)
 }
-############################################################################################################################################################
 ############################################################################################################################################################
 #' @export Countingprocess
 Countingprocess <- setRefClass("Countingprocess",
@@ -695,7 +693,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
   }
   rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m,LSV) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) %>% ballcount(se=se)
 })
-############################################################################################################################################################ #########################################################################################################################################################
+###########################################################################################################################################################
 #' @export Countinggraphs
 Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
 Countinggraphs$methods(plot2d=function(form=1,
@@ -830,7 +828,6 @@ Countinggraphs$methods(gridarrange=function(pl3d=list(selo=1,selm=list(1:5,6:10)
 
   all_pl_3d_mani <<- list(page=htmltools::browsable(ohtml),ohtml=ohtml,one3d=pl_3d_mani,plot2d=pl_2dsort,plotxy=pl_corrxy,plotres=pl_rescro,r2list=r2list,sr=sumreg,abc=rotplotly)
 })
-############################################################################################################################################################
 ############################################################################################################################################################
 #' @export strform
 strform <- function(selv=NULL){
@@ -1010,4 +1007,3 @@ Estimation$methods(hat_intcomp=function(){
     prc0123=100*sum(abs(compare[[comps]] - 0) <= 3)/length(compare[[comps]]))
   comdesc <<- data.frame(stats=names(vnd),values=vnd)
 })
-############################################################################################################################################################
