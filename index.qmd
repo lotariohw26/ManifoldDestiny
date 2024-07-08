@@ -46,20 +46,6 @@ z <- outer(x, y, function(x, y) cos(sqrt(x^2 + y^2)))
 plot_ly(x = x, y = y, z = z, type = "scatter3d", mode = "markers")                                       
 ```
 
-```{webr-r}
-library(ggplot2)                                                                                         
-                                                                                                         
-# Create a sample data frame                                                                             
-data <- data.frame(                                                                                      
-  x = c(1, 2, 3, 4, 5),                                                                                  
-  y = c(2, 3, 5, 7, 6)                                                                                   
-)                                                                                                        
-                                                                                                         
-# Create a scatter plot using ggplot2                                                                    
-ggplot(data, aes(x = x, y = y)) +                                                                        
-  geom_point()                                                                                           
-```
-
 
 
 **Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
@@ -73,6 +59,18 @@ knitr::knit_exit()
 # ad
 ```
 
+```{webr-r}
+library(ggplot2)                                                                                         
+                                                                                                         
+# Create a sample data frame                                                                             
+data <- data.frame(                                                                                      
+  x = c(1, 2, 3, 4, 5),                                                                                  
+  y = c(2, 3, 5, 7, 6)                                                                                   
+)                                                                                                        
+                                                                                                         
+# Create a scatter plot using ggplot2                                                                    
+ggplot(data, aes(x = x, y = y)) + geom_point()                                                                                           
+```
 
 
 
