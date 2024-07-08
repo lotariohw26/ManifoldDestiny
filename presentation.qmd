@@ -25,7 +25,7 @@ metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-ra
 md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/20laws40isos.R'))
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
 modlat <- eqpar$meql
 ```
 
@@ -35,19 +35,27 @@ Ed. Solomon
 
 > "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
 
-```{r}
-knitr::knit_exit()
-```
-
-## `r metad$toc$sec1$unm[1]`
-
 - Two candidates: A, B
 - County with three precincts: 1, 2, 3
 - Two modes of voting
   - Number of ballots mode 1: S, T
   - Number of ballots mode 2: U, V
 
-##
+# {{< var sec2.nmn >}}
+# {{< var sec3.nmn >}}
+# {{< var sec4.nmn >}}
+# {{< var sec5.nmn >}}
+# {{< var sec6.nmn >}}
+# {{< var sec7.nmn >}}
+# {{< var sec8.nmn >}}
+# {{< var sec9.nmn >}}
+
+
+```{r}
+knitr::knit_exit()
+```
+
+## `r metad$toc$sec1$unm[1]`
 
 
 **Our two stylized numerical cases**
@@ -86,15 +94,6 @@ lego_hux_imp_ii
 ```
 ::::
 
-
-# {{< var sec2.nmn >}}
-# {{< var sec3.nmn >}}
-# {{< var sec4.nmn >}}
-# {{< var sec5.nmn >}}
-# {{< var sec6.nmn >}}
-# {{< var sec7.nmn >}}
-# {{< var sec8.nmn >}}
-# {{< var sec9.nmn >}}
 
 
 
