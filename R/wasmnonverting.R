@@ -1,6 +1,5 @@
 #' @export recoudatr
 recoudatr <- function(mda=NULL,prn=1){
-	browser()
   gsh <- googlesheets4::read_sheet(mda$url,sheet=mda$pgn,range=mda$rng) %>%
     data.table::setnames(new=mda$cln) %>%
     dplyr::mutate(P=row_number(PN)) %>%
@@ -9,7 +8,6 @@ recoudatr <- function(mda=NULL,prn=1){
     dplyr::mutate(T=!!rlang::parse_expr(mda$stuv[2])) %>%
     dplyr::mutate(U=!!rlang::parse_expr(mda$stuv[3])) %>%
     dplyr::mutate(V=!!rlang::parse_expr(mda$stuv[4]))
-  browser()
   if(prn==1) print(dplyr::select(gsh,S,T,U,V))
   assign(mda$nid,list(gsh,mda))
   do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))

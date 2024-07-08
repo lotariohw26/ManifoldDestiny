@@ -1,14 +1,11 @@
 # R/wasmconverting.R
 # R/wasmnonverting.R
-# script/R/simulations.R
-# script/R/applications.R
-# script/R/applications.R
 # data-raw/labeling.R
 # data-raw/recorder.R
+# script/R/simulations.R
+# script/R/applications.R
+# script/R/testing.R
 # _variables.yml
-# data-raw/labeling.R
-# shinyapps/r2rsim/app.R
-# shinyapps/manimp/app.R
 project:
   type: website
   output-dir: docs
