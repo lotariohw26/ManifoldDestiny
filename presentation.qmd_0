@@ -1,11 +1,11 @@
 ---
-title: "{{< var titll >}}"
-subtitle: "Based upon the ideas developed by Edward K. Solomon"
-format:
-  revealjs: 
-    smaller: true
-    toc-depth: 1
-    toc: true 
+title: Manifold Destiny - or how to rig an election
+#subtitle: "Based upon the ideas developed by Edward K. Solomon"
+#format:
+#  revealjs: 
+#    smaller: true
+#    toc-depth: 1
+#    toc: true 
 #execute: 
 #  cache: false
 #webr: 
@@ -13,95 +13,11 @@ format:
 #  packages: ['dplyr','purrr','magrittr','data.table','tidyr'] # Install R packages on document open
 ##filters:
 #- webr 
-footer: <https://lotariohw26.github.io/ManifoldDestiny/>
----
-
-```{r, echo=F, message=F, warning=F, results='hide'}
-library(huxtable)
-library(kableExtra)
-#Sys.info()[['sysname']]=="Emscripten"
-#ManifoldDestiny::wasmconload()
-metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-laws_df1 <- ManifoldDestiny::eqdef$meql
-laws_df2 <- ManifoldDestiny::eqdef$meqs
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/script/r/simulations.r'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
-modlat <- eqpar$meql
-```
-
-
-# {{< var sec1.nmn >}}
-Ed. Solomon
-
-> "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
-
-# {{< var sec1.nmn >}}
-## {{< var sec1.un1 >}}
-## {{< var sec1.un2 >}}
-## {{< var sec1.un3 >}}
-## {{< var sec1.un4 >}}
-## {{< var sec1.un5 >}}
-## {{< var sec1.un6 >}}
-## {{< var sec1.un7 >}}
-
-# {{< var sec2.nmn >}}
-## {{< var sec2.un1 >}}
-## {{< var sec2.un2 >}}
-## {{< var sec2.un3 >}}
-## {{< var sec2.un4 >}}
-## {{< var sec2.un4 >}}
-
-# {{< var sec3.nmn >}}
-## {{< var sec3.un1 >}}
-## {{< var sec3.un2 >}}
-
-# {{< var sec5.nmn >}}
-
-![](images/ss.png){width=300}
-
----
-
-> abstract: on august 15th, **2004**, venezuelans had the opportunity to vote
-in a presidential recall referendum **to decide whether or not president hugo
-chávez should be removed from office.** **the process was largely computer-
-ized using a touch-screen system.** in general the ballots were not manually
-counted. the significance of the high linear correlation (0.99) between the
-number of requesting signatures for the recall petition and the number of op-
-position votes in computerized centers is analyzed. The same-day audit was
-found to be not only ineffective but a source of suspicion... 
-
-{{< video https://www.youtube.com/watch?v=YQg1Cr3vRic&t=76s >}}
-
----
-
-![](images/ss.png){width=300}
-
-
-[@delfino2011analysis]
-
-
+#footer: <https://lotariohw26.github.io/ManifoldDestiny/>
 ---
 
 
 
-# {{< var sec6.nmn >}}
-## {{< var sec6.un1 >}}
-## {{< var sec6.un2 >}}
-## {{< var sec6.un3 >}}
-## {{< var sec6.un4 >}}
-
-
-# {{< var sec7.nmn >}}
-## {{< var sec7.un1 >}}
-
-# {{< var sec8.nmn >}}
-
-# {{< var sec9.nmn >}}
-
-::: {#refs}
-:::
 
 
 
@@ -109,53 +25,20 @@ found to be not only ineffective but a source of suspicion...
 knitr::knit_exit()
 ```
 
-## `r metad$toc$sec1$unm[1]`
 
 
-**Our two stylized numerical cases**
-
-:::: {.columns}
-::: {.column width="50%"}
-Case 1
-:::
-```{r, echo=F}
-clr <- c("black","green","red","blue")
-lego_hux_imp_i <- as_hux(towi[,1:3]) %>%
-  set_text_color(5, 1:2, clr[1]) %>%
-  set_background_color(1, 1:3, clr[2]) %>% 
-  set_background_color(2, 1:3, clr[3]) %>%
-  set_background_color(3, 1:3, clr[4]) %>%
-  set_background_color(4, 2:3, clr[4]) %>%
-  set_background_color(5, 3:3, clr[4]) %>%
-  set_font_size(16)
-lego_hux_imp_i
+```{r, echo=F, message=F, warning=F, results='hide'}
+#Sys.info()[['sysname']]=="Emscripten"
+ManifoldDestiny::wasmconload()
+metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/20laws40isos.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
+modlat <- eqpar$meql
+library(huxtable)
+library(kableExtra)
 ```
-
-::: {.column width="50%"}
-Case 2
-:::
-```{r, echo=F}
-lego_hux_imp_ii <- as_hux(towii[,1:3]) %>%
-  set_text_color(5, 1:2, clr[1]) %>%
-  set_background_color(1, 1:3, clr[2]) %>% 
-  set_background_color(2, 1:3, clr[3]) %>%
-  set_background_color(3, 1:3, clr[4]) %>%
-  set_background_color(4, 2:3, clr[4]) %>%
-  set_background_color(5, 3:3, clr[4]) %>%
-  set_font_size(16)
-
-lego_hux_imp_ii
-```
-::::
-
-
-
-
-
-
-
-
-
 
 
 
@@ -168,11 +51,6 @@ Ed. Solomon
 > "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
 
 
-```{r}
-knitr::knit_exit()
-```
-
-
 ## `r metad$toc$sec1$unm[1]`
 
 - Two candidates: A, B
@@ -182,7 +60,6 @@ knitr::knit_exit()
   - Number of ballots mode 2: U, V
 
 ##
-
 
 **Our two stylized numerical cases**
 
@@ -254,11 +131,6 @@ stfo_sel <- dplyr::select(pro_elc_ex1$sdfc[1:3,],P,S,T,U,V,x,y,zeta,alpha,lamda)
 cou_tb <- c("Precinct","S","T","U","V","x","y",'$\\zeta$',"$\\alpha$","$\\lambda$")
 kableExtra::kbl(format(stfo_sel,digits=4),caption=ctone_sf) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
-
-```{r}
-knitr::knit_exit()
-```
-
 
 Numerical calculation of candidate one total percentage
 

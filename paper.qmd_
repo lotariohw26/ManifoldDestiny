@@ -1,0 +1,24 @@
+---
+title: ""
+abstract: "Abstract goes here"
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+---
+
+```{r}
+knitr::knit_exit()
+```
+
+
+```{r, echo=FALSE, results='asis',warning=F}
+#presm <- paste0(rprojroot::find_rstudio_root_file(), '/presentation.qmd')
+#textm <- readLines(presm)
+#cat(knitr::knit_child(text = paste(textm[25:length(textm)], collapse = "\n"), quiet = TRUE))
+```
+
+
+
+
