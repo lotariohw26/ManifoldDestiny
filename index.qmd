@@ -1,5 +1,5 @@
 ---
-title: "Manifold Destiny - or how to rig an election"
+title: "{{< var titll >}}"
 output: github_document
 execute: 
   cache: false

@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "{{< var titll >}}"
 abstract: "Abstract goes here"
 format: 
   html:
@@ -9,12 +9,37 @@ format:
 ---
 
 # {{< var sec1.nmn >}}
+## {{< var sec1.un1 >}}
+## {{< var sec1.un2 >}}
+## {{< var sec1.un3 >}}
+## {{< var sec1.un4 >}}
+## {{< var sec1.un5 >}}
+## {{< var sec1.un6 >}}
+## {{< var sec1.un7 >}}
+
 # {{< var sec2.nmn >}}
+## {{< var sec2.un1 >}}
+## {{< var sec2.un2 >}}
+## {{< var sec2.un3 >}}
+## {{< var sec2.un4 >}}
+## {{< var sec2.un4 >}}
+
 # {{< var sec3.nmn >}}
-# {{< var sec4.nmn >}}
+## {{< var sec3.un1 >}}
+## {{< var sec3.un2 >}}
+
 # {{< var sec5.nmn >}}
+
 # {{< var sec6.nmn >}}
+## {{< var sec6.un1 >}}
+## {{< var sec6.un2 >}}
+## {{< var sec6.un3 >}}
+## {{< var sec6.un4 >}}
+## {{< var sec6.un4 >}}
+
 # {{< var sec7.nmn >}}
+## {{< var sec7.un1 >}}
+
 # {{< var sec8.nmn >}}
 
 ```{r,echo=F}
@@ -27,6 +52,8 @@ knitr::knit_exit()
 #textm <- readLines(presm)
 #cat(knitr::knit_child(text = paste(textm[25:length(textm)], collapse = "\n"), quiet = TRUE))
 ```
+
+
 
 
 

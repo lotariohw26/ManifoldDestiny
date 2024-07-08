@@ -16,7 +16,7 @@
   {
     "objectID": "paper.html",
     "href": "paper.html",
-    "title": "1 Introduction",
+    "title": "Manifold Destiny - or how to rig an election",
     "section": "",
     "text": "1 Introduction\n\n\n2 Overview of various methods of ballot counting\n\n\n3 Election simulations\n\n\n4 Checking for a rigged election\n\n\n5 Literature review\n\n\n6 Applications\n\n\n7 The restoration of an rigged election\n\n\n8 Conclusions"
   },
@@ -88,7 +88,7 @@
     "href": "index.html#loading-data",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "Loading data",
-    "text": "Loading data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLast time updated: 2024-07-07 19:50:57"
+    "text": "Loading data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLast time updated: 2024-07-08 23:38:34"
   },
   {
     "objectID": "index.html#installling-packages",
@@ -117,5 +117,257 @@
     "title": "App0",
     "section": "",
     "text": "App0\n\n\nid: app0\nnid: app0\nnmn: Simulation\nrcn: Proto\ncnd: T, B\nsta: NULL\ncou: list()\nmod: EDV, MiV\nyea: 2023\nurl: https://docs.google.com/spreadsheets/d/107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0\npgn: 1\nrng: A1:F23\ncln: PN, RN, A1, B1, A2, B2\nstuv: A1, B1, A2, B2\neq: alpha=k0+k1*x+k2*y\nva: TRUE\nfr: 1\nro: 0, 0, 0\nbib: list()"
+  },
+  {
+    "objectID": "presentation.html#section-2",
+    "href": "presentation.html#section-2",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Setting up the election system",
+    "text": "Setting up the election system"
+  },
+  {
+    "objectID": "presentation.html#section-1",
+    "href": "presentation.html#section-1",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Setting up the election system",
+    "text": "Setting up the election system"
+  },
+  {
+    "objectID": "presentation.html#section-3",
+    "href": "presentation.html#section-3",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Tautologies using standard form (north vs. south)",
+    "text": "Tautologies using standard form (north vs. south)"
+  },
+  {
+    "objectID": "presentation.html#section-4",
+    "href": "presentation.html#section-4",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Tautologies using hybrid form (west vs. east)",
+    "text": "Tautologies using hybrid form (west vs. east)"
+  },
+  {
+    "objectID": "presentation.html#section-5",
+    "href": "presentation.html#section-5",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Tautologies using opposition form (upper diagonal vs. lower diagonal)",
+    "text": "Tautologies using opposition form (upper diagonal vs. lower diagonal)"
+  },
+  {
+    "objectID": "presentation.html#section-6",
+    "href": "presentation.html#section-6",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Modelling the election process",
+    "text": "Modelling the election process"
+  },
+  {
+    "objectID": "presentation.html#section-7",
+    "href": "presentation.html#section-7",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "How exogenous factors that influence the voting system will make changes to the election outcome through \\(\\zeta_i\\)",
+    "text": "How exogenous factors that influence the voting system will make changes to the election outcome through \\(\\zeta_i\\)"
+  },
+  {
+    "objectID": "paper.html#section-9",
+    "href": "paper.html#section-9",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "2.1 Generic approach to ballot counting",
+    "text": "2.1 Generic approach to ballot counting"
+  },
+  {
+    "objectID": "paper.html#section-10",
+    "href": "paper.html#section-10",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "2.2 Definitions (20 laws and 40 isometries)",
+    "text": "2.2 Definitions (20 laws and 40 isometries)"
+  },
+  {
+    "objectID": "paper.html#section-11",
+    "href": "paper.html#section-11",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "2.3 Counting in a fair election",
+    "text": "2.3 Counting in a fair election"
+  },
+  {
+    "objectID": "paper.html#section-12",
+    "href": "paper.html#section-12",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "2.4 Counting in a rigged election",
+    "text": "2.4 Counting in a rigged election"
+  },
+  {
+    "objectID": "paper.html#section-13",
+    "href": "paper.html#section-13",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "2.5 Counting in a rigged election",
+    "text": "2.5 Counting in a rigged election"
+  },
+  {
+    "objectID": "paper.html#section-15",
+    "href": "paper.html#section-15",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "3.1 Fair election",
+    "text": "3.1 Fair election"
+  },
+  {
+    "objectID": "paper.html#section-16",
+    "href": "paper.html#section-16",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "3.2 Rigged election",
+    "text": "3.2 Rigged election"
+  },
+  {
+    "objectID": "paper.html#section-19",
+    "href": "paper.html#section-19",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.1 Application 1:",
+    "text": "5.1 Application 1:"
+  },
+  {
+    "objectID": "paper.html#section-20",
+    "href": "paper.html#section-20",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.2 Application 2:",
+    "text": "5.2 Application 2:"
+  },
+  {
+    "objectID": "paper.html#section-21",
+    "href": "paper.html#section-21",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.3 Application 3:",
+    "text": "5.3 Application 3:"
+  },
+  {
+    "objectID": "paper.html#section-22",
+    "href": "paper.html#section-22",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.4 Application 4:",
+    "text": "5.4 Application 4:"
+  },
+  {
+    "objectID": "paper.html#section-23",
+    "href": "paper.html#section-23",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.5 Application 4:",
+    "text": "5.5 Application 4:"
+  },
+  {
+    "objectID": "paper.html#section-25",
+    "href": "paper.html#section-25",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "6.1 Procedure",
+    "text": "6.1 Procedure"
+  },
+  {
+    "objectID": "paper.html#section-26",
+    "href": "paper.html#section-26",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "6.2 ?var:sec7.un2",
+    "text": "6.2 ?var:sec7.un2"
+  },
+  {
+    "objectID": "presentation.html#section-8",
+    "href": "presentation.html#section-8",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "How exogenous factors that influence the voting system will make changes to the election outcome through \\(\\Gamma_i\\)",
+    "text": "How exogenous factors that influence the voting system will make changes to the election outcome through \\(\\Gamma_i\\)"
+  },
+  {
+    "objectID": "presentation.html#section-10",
+    "href": "presentation.html#section-10",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Generic approach to ballot counting",
+    "text": "Generic approach to ballot counting"
+  },
+  {
+    "objectID": "presentation.html#section-11",
+    "href": "presentation.html#section-11",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Definitions (20 laws and 40 isometries)",
+    "text": "Definitions (20 laws and 40 isometries)"
+  },
+  {
+    "objectID": "presentation.html#section-12",
+    "href": "presentation.html#section-12",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Counting in a fair election",
+    "text": "Counting in a fair election"
+  },
+  {
+    "objectID": "presentation.html#section-13",
+    "href": "presentation.html#section-13",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Counting in a rigged election",
+    "text": "Counting in a rigged election"
+  },
+  {
+    "objectID": "presentation.html#section-14",
+    "href": "presentation.html#section-14",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Counting in a rigged election",
+    "text": "Counting in a rigged election"
+  },
+  {
+    "objectID": "presentation.html#section-16",
+    "href": "presentation.html#section-16",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Fair election",
+    "text": "Fair election"
+  },
+  {
+    "objectID": "presentation.html#section-17",
+    "href": "presentation.html#section-17",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Rigged election",
+    "text": "Rigged election"
+  },
+  {
+    "objectID": "presentation.html#section-20",
+    "href": "presentation.html#section-20",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Application 1:",
+    "text": "Application 1:"
+  },
+  {
+    "objectID": "presentation.html#section-21",
+    "href": "presentation.html#section-21",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Application 2:",
+    "text": "Application 2:"
+  },
+  {
+    "objectID": "presentation.html#section-22",
+    "href": "presentation.html#section-22",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Application 3:",
+    "text": "Application 3:"
+  },
+  {
+    "objectID": "presentation.html#section-23",
+    "href": "presentation.html#section-23",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Application 4:",
+    "text": "Application 4:"
+  },
+  {
+    "objectID": "presentation.html#section-24",
+    "href": "presentation.html#section-24",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Application 4:",
+    "text": "Application 4:"
+  },
+  {
+    "objectID": "presentation.html#section-26",
+    "href": "presentation.html#section-26",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Procedure",
+    "text": "Procedure"
+  },
+  {
+    "objectID": "presentation.html#section-25",
+    "href": "presentation.html#section-25",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Procedure",
+    "text": "Procedure"
   }
 ]
