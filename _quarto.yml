@@ -1,3 +1,7 @@
+# R/wasmconverting.R
+# R/wasmnonverting.R
+# script/R/simulations.R
+# script/R/applications.R
 project:
   type: website
   output-dir: docs
@@ -78,10 +82,6 @@ format:
     Line stretch: 1.5
 bibliography: man_bib.bib
 # git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/ManifoldDestiny.git
-# script/R/simulations.R
-# script/R/applications.R
-# R/wasmnonverting.R
-# R/wasmconverting.R
 # data-raw/recorder.R
 # _variables.yml
 # data-raw/labeling.R
