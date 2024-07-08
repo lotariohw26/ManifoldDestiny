@@ -61,8 +61,6 @@ Ed. Solomon
 
 ![](images/ss.png){width=300}
 
----
-
 > abstract: on august 15th, **2004**, venezuelans had the opportunity to vote
 in a presidential recall referendum **to decide whether or not president hugo
 chávez should be removed from office.** **the process was largely computer-
@@ -76,15 +74,9 @@ found to be not only ineffective but a source of suspicion...
 
 ---
 
-![](images/ss.png){width=300}
-
-
-[@delfino2011analysis]
-
+![](images/manifold.png){width=300}
 
 ---
-
-
 
 # {{< var sec6.nmn >}}
 ## {{< var sec6.un1 >}}
@@ -99,6 +91,35 @@ found to be not only ineffective but a source of suspicion...
 # {{< var sec8.nmn >}}
 
 # {{< var sec9.nmn >}}
+
+- At the heart of the difference between a fair and rigged election is the issue of causation
+  - Fair election: Aggregate Percentage of a Candidate **cannot** precede the Election Day and the Mail-in Percentages of that Candidate
+  - Rigged election: Aggregate Percentage of a Candidate **could** precede the Election Day and the Mail-in Percentages of that Candidate
+
+- If the conditions related to the the existance of a *trivial* Manifold occuranse to either normal form, hybrid form nor opposition form are not satisfied, this would imply
+	- 1<sup>st</sup> The total election outcome will be determined by *three* parameters (no manifold in 3d space). 
+	- 2<sup>nd</sup> Changes in $\Gamma_i$ and $\zeta_i$ would have an impact on $\alpha_i$.
+
+##
+
+- Condition on that $R^2$ falls within the critical region.
+  - Normal form
+```{r, echo=F, out.width="40%", fig.cap=""}
+pr2n <- paste0(rprojroot::find_rstudio_root_file(),'/images/r2n.png')
+knitr::include_graphics(c(pr2n))
+```
+
+ - Hybrid form
+```{r, echo=F, out.width="40%", fig.cap=""}
+pr2h <- paste0(rprojroot::find_rstudio_root_file(),'/images/r2h.png')
+knitr::include_graphics(c(pr2h))
+```
+
+
+
+- Our four applications
+
+
 
 ::: {#refs}
 :::

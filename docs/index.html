@@ -334,7 +334,7 @@ body.reveal.quarto-dark div.qwebr-console-area {
 // Document level settings ----
 
 // Determine if we need to install R packages
-globalThis.qwebrInstallRPackagesList = ['dplyr', 'data.table', 'readr'];
+globalThis.qwebrInstallRPackagesList = ['dplyr', 'data.table', 'readr', 'ggplotly'];
 
 // Specify possible locations to search for the repository
 globalThis.qwebrPackageRepoURLS = ['https://repo.r-wasm.org/'];
@@ -356,7 +356,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"fig-width":7,"classes":"","out-height":"","results":"markup","output":"true","dpi":72,"fig-height":5,"message":"true","context":"interactive","autorun":"true","out-width":"700px","editor-font-scale":"1","label":"unnamed-chunk-1","fig-cap":"","editor-word-wrap":"true","comment":"","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false"},"code":"webr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\ndplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)\n# readr::read.csv(\"/tmp/RtmpHKcMHo/d5ace5deaed228c73ccaf4fb/0.csv\")"},{"id":2,"options":{"fig-width":7,"classes":"","out-height":"","results":"markup","output":"true","dpi":72,"fig-height":5,"message":"true","context":"interactive","autorun":"true","out-width":"700px","editor-font-scale":"1","label":"unnamed-chunk-2","fig-cap":"","editor-word-wrap":"true","comment":"","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false"},"code":"dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)"},{"id":3,"options":{"fig-width":7,"classes":"","out-height":"","results":"markup","output":"true","dpi":72,"fig-height":5,"message":"true","context":"interactive","autorun":"true","out-width":"700px","editor-font-scale":"1","label":"unnamed-chunk-3","fig-cap":"","editor-word-wrap":"true","comment":"","editor-max-height":"","warning":"true","read-only":"false","editor-quick-suggestions":"false"},"code":"# ad <- readr::read_csv(\"https://raw.githubusercontent.com/lotariohw26/ManifoldDestiny/main/data-raw/csv/full_apps_data.csv\")\n# ad"}];
+globalThis.qwebrCellDetails = [{"options":{"results":"markup","context":"interactive","classes":"","out-width":"700px","out-height":"","fig-height":5,"editor-font-scale":"1","editor-word-wrap":"true","editor-max-height":"","editor-quick-suggestions":"false","autorun":"true","warning":"true","comment":"","label":"unnamed-chunk-1","read-only":"false","message":"true","output":"true","dpi":72,"fig-cap":"","fig-width":7},"id":1,"code":"webr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\ndf <- ManifoldDestinyWASMD::yout\ndplyr::select(df[[1]],S,T,U,V)"},{"options":{"results":"markup","context":"interactive","classes":"","out-width":"700px","out-height":"","fig-height":5,"editor-font-scale":"1","editor-word-wrap":"true","editor-max-height":"","editor-quick-suggestions":"false","autorun":"true","warning":"true","comment":"","label":"unnamed-chunk-2","read-only":"false","message":"true","output":"true","dpi":72,"fig-cap":"","fig-width":7},"id":2,"code":"library(plotly)                                                                                          \n# Create sample data                                                                                     \nx <- seq(-5, 5, length.out = 100)                                                                        \ny <- x                                                                                                   \nz <- outer(x, y, function(x, y) cos(sqrt(x^2 + y^2)))                                                    \n                                                                                                         \n# Create 3D scatter plot                                                                                 \nplot_ly(x = x, y = y, z = z, type = \"scatter3d\", mode = \"markers\")                                       "},{"options":{"results":"markup","context":"interactive","classes":"","out-width":"700px","out-height":"","fig-height":5,"editor-font-scale":"1","editor-word-wrap":"true","editor-max-height":"","editor-quick-suggestions":"false","autorun":"true","warning":"true","comment":"","label":"unnamed-chunk-3","read-only":"false","message":"true","output":"true","dpi":72,"fig-cap":"","fig-width":7},"id":3,"code":"library(ggplot2)                                                                                         \n                                                                                                         \n# Create a sample data frame                                                                             \ndata <- data.frame(                                                                                      \n  x = c(1, 2, 3, 4, 5),                                                                                  \n  y = c(2, 3, 5, 7, 6)                                                                                   \n)                                                                                                        \n                                                                                                         \n# Create a scatter plot using ggplot2                                                                    \nggplot(data, aes(x = x, y = y)) +                                                                        \n  geom_point()                                                                                           "}];
 
 </script>
 <script type="module">
@@ -1703,11 +1703,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#testing" id="toc-testing" class="nav-link active" data-scroll-target="#testing">Testing</a>
+  <li><a href="#testing-latest-from-eds-youtube-stream" id="toc-testing-latest-from-eds-youtube-stream" class="nav-link active" data-scroll-target="#testing-latest-from-eds-youtube-stream">Testing (latest from Ed’s Youtube stream)</a>
   <ul class="collapse">
-  <li><a href="#abc" id="toc-abc" class="nav-link" data-scroll-target="#abc">ABC</a></li>
   <li><a href="#installling-packages" id="toc-installling-packages" class="nav-link" data-scroll-target="#installling-packages">Installling packages</a></li>
-  <li><a href="#loading-data" id="toc-loading-data" class="nav-link" data-scroll-target="#loading-data">Loading data</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
@@ -2019,26 +2017,18 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 
 <p><strong>Based upon the ideas developed by Edward K. Solomon</strong> <img src="pngs/md.png" class="img-fluid"></p>
-<section id="testing" class="level1">
-<h1>Testing</h1>
-<section id="abc" class="level2">
-<h2 class="anchored" data-anchor-id="abc">ABC</h2>
-<p>Write some text here</p>
-<pre class="{web-r}"><code></code></pre>
-<p>abc</p>
-</section>
+<section id="testing-latest-from-eds-youtube-stream" class="level1">
+<h1>Testing (latest from Ed’s Youtube stream)</h1>
 <section id="installling-packages" class="level2">
 <h2 class="anchored" data-anchor-id="installling-packages">Installling packages</h2>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="loading-data" class="level2">
-<h2 class="anchored" data-anchor-id="loading-data">Loading data</h2>
+<p><a href="https://docs.google.com/spreadsheets/d/1gCfmuK44sUeb0Hb0plAc8VllPSjtUiEHWlJjeHq3xXY/edit?gid=0#gid=0">Nevada</a></p>
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Last time updated: 2024-07-08 23:38:34</strong></p>
+<p><strong>Last time updated: 2024-07-09 01:58:03</strong></p>
 
 
 </section>

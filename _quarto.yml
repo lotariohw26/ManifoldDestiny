@@ -86,20 +86,5 @@ format:
     Line stretch: 1.5
 bibliography: man_bib.bib
 # git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/ManifoldDestiny.git
-# data-raw/recorder.R
-# _variables.yml
-# data-raw/labeling.R
-# shinyapps/r2rsim/app.R
-# shinyapps/manimp/app.R
-# R/wasmnonverting.R
-# shinyapps/manimp/app.R
-# shinyapps/manimp/app.R
-# script/python/polysolver.py
-# script/python/pysympy.py
-# script/R/applications.R
-# script/R/addendum_ne.R
-# script/R/addendum_az.R
-# script/R/testing.R
-# shinyapps/empapp/app.R
 # https://lotariohw26.github.io/MD_WASMS/r/examples/
 # https://lotariohw26.github.io/MD_WASMS/py/examples/

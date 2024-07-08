@@ -32,7 +32,7 @@
     "href": "man_bib.html",
     "title": "References",
     "section": "",
-    "text": "Edward, S. (2020). Clark and Washoe Precinct Analysis. https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit.\nEdward, S. (2022b). Anderson Ruling Rebuttal . https://docs.google.com/document/d/1ywNTOUZuJNB_viiwNuj029HZSzJEJdr7-2AY6n5SKsk/edit#heading=h.lbxjlnrdr0eu.\nEdward, S. (2022a). Clark and Washoe Counties, 2020 and 2022 Elections. https://docs.google.com/document/d/1SCgXpvHwfHJN0T-DdERC3NUQbMlMhOWmRfFjnJs0Ui8/edit#heading=h.lty23tl914ct.\nEdward, S. (2023a). Anderson Ruling Rebuttal. https://docs.google.com/document/d/1ywNTOUZuJNB_viiwNuj029HZSzJEJdr7-2AY6n5SKsk/edit?usp=drive_link.\nEdward, S. (2023b). Least squares regression for 3D data. https://bard.google.com/share/ee16dfd2d48a.\nEdward, S. Nevada 2020, Clark and Washoe, Laymen’s only. https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit#heading=h.lty23tl914ct."
+    "text": "(Delfino and Salas 2011)\n\n\nDelfino, Gustavo, and Guillermo Salas. 2011. “Analysis of the 2004 Venezuela Referendum: The Official Results Versus the Petition Signatures.” Statistical Science, 479–501."
   },
   {
     "objectID": "addendum/Addendum_ne.html",
@@ -88,14 +88,14 @@
     "href": "index.html#loading-data",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "Loading data",
-    "text": "Loading data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLast time updated: 2024-07-08 23:38:34"
+    "text": "Loading data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLast time updated: 2024-07-09 01:47:17"
   },
   {
     "objectID": "index.html#installling-packages",
     "href": "index.html#installling-packages",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "Installling packages",
-    "text": "Installling packages\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Installling packages\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNevada\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLast time updated: 2024-07-09 01:58:03"
   },
   {
     "objectID": "index.html#abc",
@@ -369,5 +369,12 @@
     "title": "Manifold Destiny - or how to rig an election",
     "section": "Procedure",
     "text": "Procedure"
+  },
+  {
+    "objectID": "presentation.html#section-28",
+    "href": "presentation.html#section-28",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "",
+    "text": "Condition on that \\(R^2\\) falls within the critical region.\n\nNormal form\n\n\n\n\n\n\n\n\n\n\n\n\nHybrid form\n\n\n\n\n\n\n\n\n\n\n\nOur four applications\n\n\n\n\n\n\n\nhttps://lotariohw26.github.io/ManifoldDestiny/"
   }
 ]

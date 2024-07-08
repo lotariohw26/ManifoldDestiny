@@ -1,9 +1,10 @@
 ---
 title: "References"
-output: html_document
-# man_bib.bib
 ---
 
+
+
+[@delfino2011analysis]
 
 ::: {#refs}
 :::

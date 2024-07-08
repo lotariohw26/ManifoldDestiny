@@ -6,7 +6,7 @@ execute:
 webr:
   show-startup-message: true      # Display status of webR initialization
   show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
-  packages: ['dplyr','data.table','readr']             # Pre-install dependencies
+  packages: ['dplyr','data.table','readr','ggplotly']             # Pre-install dependencies
   cell-options:
     autorun: true
 filters:
@@ -21,33 +21,43 @@ filters:
 **Based upon the ideas developed by Edward K. Solomon**
 ![](pngs/md.png)
 
-# Testing
-## ABC
-Write some text here
-```{web-r}
-```
-
-abc
-
-
-
+# Testing (latest from Ed's Youtube stream)
 
 ## Installling packages
+
 ```{webr-r}
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
 webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
-# readr::read.csv("/tmp/RtmpHKcMHo/d5ace5deaed228c73ccaf4fb/0.csv")
+df <- ManifoldDestinyWASMD::yout
+dplyr::select(df[[1]],S,T,U,V)
 ```
 
-## Loading  data
+
+[Nevada](https://docs.google.com/spreadsheets/d/1gCfmuK44sUeb0Hb0plAc8VllPSjtUiEHWlJjeHq3xXY/edit?gid=0#gid=0)
+
 ```{webr-r}
-dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
+library(plotly)                                                                                          
+# Create sample data                                                                                     
+x <- seq(-5, 5, length.out = 100)                                                                        
+y <- x                                                                                                   
+z <- outer(x, y, function(x, y) cos(sqrt(x^2 + y^2)))                                                    
+                                                                                                         
+# Create 3D scatter plot                                                                                 
+plot_ly(x = x, y = y, z = z, type = "scatter3d", mode = "markers")                                       
 ```
 
 ```{webr-r}
-# ad <- readr::read_csv("https://raw.githubusercontent.com/lotariohw26/ManifoldDestiny/main/data-raw/csv/full_apps_data.csv")
-# ad
+library(ggplot2)                                                                                         
+                                                                                                         
+# Create a sample data frame                                                                             
+data <- data.frame(                                                                                      
+  x = c(1, 2, 3, 4, 5),                                                                                  
+  y = c(2, 3, 5, 7, 6)                                                                                   
+)                                                                                                        
+                                                                                                         
+# Create a scatter plot using ggplot2                                                                    
+ggplot(data, aes(x = x, y = y)) +                                                                        
+  geom_point()                                                                                           
 ```
 
 
@@ -57,6 +67,14 @@ dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
 ```{r, echo=F}
 knitr::knit_exit()
 ```
+
+```{webr-r}
+# ad <- readr::read_csv("https://raw.githubusercontent.com/lotariohw26/ManifoldDestiny/main/data-raw/csv/full_apps_data.csv")
+# ad
+```
+
+
+
 
 {{< audio file="abc.mp3" caption="Sample Audio File">}}
 
