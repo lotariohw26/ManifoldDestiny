@@ -234,6 +234,7 @@ app7:
   bib: 
     - "https://docs.google.com/document/d/1yCc91KwvNFcTlNUkfHuHTN_kdeBbeaMcxZNjkdbHFxI/edit"
   pgn: "Trust D; No comment"
+  eq: alpha=k0+k1*x+k2*y
   rng: "A16:P50"
   cln: ['PN','A1','B1','C1','D1','E1','A2','B2','C2','D2','E2','A3','B3','C3','D3','E3']
   stuv: ['A1+B1+C1+A2+B2+A3+B3+C3', 'D1+D3', 'E1+C2+E3', 'D2+E2']

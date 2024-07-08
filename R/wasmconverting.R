@@ -46,7 +46,6 @@ wasmconload <- function(){
 #}
 #' @export manobj
 manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
-#	browser()
   polyc <- setNames(as.vector(lapply(enfl[[1]], as.character)),LETTERS[1:5])
   la_e <- unlist(polyc[c(LETTERS[1:5])])
   pnr <- sum(la_e!="0")
@@ -94,11 +93,13 @@ gmp <- function(terms=c("x2","xy","y2","x3","x2y","y2x","y3")){
 selreport <- function(
 		      baldata=NULL
 		      ){
+
   da <- baldata[[1]]
   md <- baldata[[2]]
-  frm <- md$fr
+  frm <- 1 # md$fr
   #rparv <- md$mtd$sgs$ro ; names(rparv) <- c("theta","phi","rho")
   co <- Countinggraphs(da)
+  #View(co$rdfci)
   #if (md$mtd$prg$cnd==1) co$purging(md$mtd,1)
   co$sortpre(frm)
   co$descriptive(frm)
@@ -389,9 +390,8 @@ erotation <-function(
 ballcount <- function(ballotsdf=NULL,se=se){
   # Assigning model equations
   sdfc <<- ballotsdf %>%
-    #dplyr::select(P,all_of(selvar))
     dplyr::mutate(Z=S+T+U+V) %>%
-    #dplyr::mutate(O=Z-Z) %>%
+    dplyr::mutate(O=Z-Z) %>%
     dplyr::mutate(x=pareq(se[['x_s']][1],as.list(.[,]))) %>%
     dplyr::mutate(y=pareq(se[['y_s']][1],as.list(.[,]))) %>%
     dplyr::mutate(g=pareq(se[['g_h']][1],as.list(.[,]))) %>%
@@ -447,7 +447,7 @@ Countingprocess <- setRefClass("Countingprocess",
 					   loss_ls='list'
 					   ))
 Countingprocess$methods(initialize=function(sdfinp=NULL,
-					   selvar=c('P','S','T','U','V'),
+					   selvar=c('P','R','S','T','U','V'),
 					   polyn=9,
 					   sortby=alpha
 					   ){
@@ -462,6 +462,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
     hybrid=c("alpha","g","h","Gamma","Omega","lamda"),
     opposition=c("alpha","m","n","xi","lamda","Omega")),
     forms=list('_s','o_h','h_o')) 
+  parameters <<- stickers[['parameters']]
+  #!
 
   se <<- eqpar$meqs
   lx <<- eqpar$meql
@@ -471,8 +473,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
     dplyr::arrange(alpha) %>%
     dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
     dplyr::relocate(pri,.before=P)
-    #dplyr::relocate(Z,.after=O)
     #dplyr::arrange(P)
+    #dplyr::relocate(Z,.after=O)
   ## Polynom
   pnset <- min(length(rdfci$pri)-1,polyn)
   ### Init values standard form

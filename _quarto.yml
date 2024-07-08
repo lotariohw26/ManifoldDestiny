@@ -2,9 +2,9 @@
 # R/wasmnonverting.R
 # data-raw/labeling.R
 # data-raw/recorder.R
-# script/R/simulations.R
-# script/R/applications.R
 # script/R/testing.R
+# script/R/applications.R
+# script/R/simulations.R
 # _variables.yml
 project:
   type: website

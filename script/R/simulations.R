@@ -15,7 +15,7 @@ probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztech <- c(0,1)	
 mdn <- list(frn=1,eq="alpha=k0+k1*x+k2*y")
-app_bal <- list(df=ballcastsim(dfm,probw,probva,probvb,ztech),app0=mdn)
+app_bal <- list(df=ballcastsim(dfm,probw,probva,probvb,ztech),list(fr=1,eq="alpha=k0+k1*x+k2*y"))
 ########### Normal form
 app_n_rep <- selreport(app_bal)
 app_n_out <- seloutput(app_n_rep)

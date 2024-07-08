@@ -14,7 +14,7 @@ googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 pma <- c(paste0("app", 0:4),"app7")[6]
 lapply(qenvar[pma], recoudatr)
 bm()
-ManifoldDestiny::yout
+View(ManifoldDestiny::yout[[1]])
 ################################################################################################################
 #recoudatr(list(recn=recnav[1], 
   #      	 race='Presidential', 

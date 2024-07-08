@@ -7,7 +7,6 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 #ManifoldDestiny::wasmconload()
 ###########################################################################################################
 abc <- Countinggraphs(yout[[1]])
-View(abc$rdfci)
 ###########################################################################################################
 
 
