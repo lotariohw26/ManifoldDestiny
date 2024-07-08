@@ -7,7 +7,6 @@
 # data-raw/labeling.R
 # shinyapps/r2rsim/app.R
 # shinyapps/manimp/app.R
-# R/wasmnonverting.R
 project:
   type: website
   output-dir: docs
