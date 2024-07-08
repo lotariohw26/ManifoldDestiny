@@ -388,10 +388,12 @@ erotation <-function(
 #' @export ballcount
 ballcount <- function(ballotsdf=NULL,se=se){
   # Assigning model equations
+  ballotsdf
+  browser()
   sdfc <<- ballotsdf %>%
     #dplyr::select(P,all_of(selvar))
-    dplyr::mutate(Z=S+T+U+V) %>%
-    dplyr::mutate(O=R-Z) %>%
+    dplyr::mutate(Z=S+T+U+V) 
+    #dplyr::mutate(O=R-Z) %>%
     dplyr::mutate(x=pareq(se[['x_s']][1],as.list(.[,]))) %>%
     dplyr::mutate(y=pareq(se[['y_s']][1],as.list(.[,]))) %>%
     dplyr::mutate(g=pareq(se[['g_h']][1],as.list(.[,]))) %>%
@@ -452,10 +454,9 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   sortby=alpha
 					   ){
 
-  parameters <<- stickers[['parameters']]
-  #fdm <- paste0(rprojroot::find_rstudio_root_file(),'/script/python/pysympy.py')
-  #reticulate::source_python(fdm)
-  #eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
+  library(ManifoldDestiny)
+  data(stickers)                                                                          
+  data(eqpar)                                                                          
   se <<- eqpar$meqs
   lx <<- eqpar$meql
   ils <- c('S','T','U','V')
@@ -883,7 +884,6 @@ Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   fnr <<- form
   param <<- stickers[['parameters']][[fnr]]
   syequ <<- eqpar$meqs
-  #browser()
   #radpar <<- c(theta=0,phi=0,rho=0)
   lpku <<- list(
     S = list(

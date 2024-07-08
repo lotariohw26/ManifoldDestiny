@@ -21,6 +21,8 @@ pro_rec_ex2 <- data.frame(P=c(1,2,3),S=S,T=T,U=Up,V=Vp,R=R)
 pro_elc_ex1 <- Countinggraphs(pro_rec_ex1,polyn=1)
 pro_elc_ex2 <- Countinggraphs(pro_rec_ex2,polyn=1)
 #########################################################################################################################################################
+app7_rp <- selreport(app7)
+app_7_out <- seloutput(app7_rp)
 app0_rp <- selreport(app0)
 app_0_out <- seloutput(app0_rp)
 app1_rp <- selreport(app1)
@@ -31,8 +33,6 @@ app3_rp <- selreport(app3)
 app_3_out <- seloutput(app3_rp)
 app4_rp <- selreport(app4)
 app_4_out <- seloutput(app4_rp)
-#app7_rp <- selreport(app7)
-#app_7_out <- seloutput(app7_rp)
 ###########################################################################################################################################################
 
 

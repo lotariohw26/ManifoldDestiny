@@ -1,14 +1,15 @@
 #' @export recoudatr
 recoudatr <- function(mda=NULL,prn=1){
+	browser()
   gsh <- googlesheets4::read_sheet(mda$url,sheet=mda$pgn,range=mda$rng) %>%
     data.table::setnames(new=mda$cln) %>%
     dplyr::mutate(P=row_number(PN)) %>%
-    dplyr::mutate(R=RN) %>%
+    #dplyr::mutate(R=RN) %>%
     dplyr::mutate(S=!!rlang::parse_expr(mda$stuv[1])) %>%
     dplyr::mutate(T=!!rlang::parse_expr(mda$stuv[2])) %>%
     dplyr::mutate(U=!!rlang::parse_expr(mda$stuv[3])) %>%
     dplyr::mutate(V=!!rlang::parse_expr(mda$stuv[4]))
-  #browser()
+  browser()
   if(prn==1) print(dplyr::select(gsh,S,T,U,V))
   assign(mda$nid,list(gsh,mda))
   do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
@@ -47,22 +48,6 @@ py_genpolycoeff <- function(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(1, 
 #py_genpolycoeff(expr=NULL,solvd='z',solvf='u0',eur=c(1, 1, 1))
 #py_polysolver() 
 
-#' @export recoudatr
-recoudatr <- function(mda=NULL,prn=1){
-  gsh <- googlesheets4::read_sheet(mda$url,sheet=mda$pgn,range=mda$rng) %>%
-    data.table::setnames(new=mda$cln) %>%
-    dplyr::mutate(P=row_number(PN)) %>%
-    dplyr::mutate(R=row_number(RN)) %>%
-    dplyr::mutate(S=!!rlang::parse_expr(mda$stuv[1])) %>%
-    dplyr::mutate(T=!!rlang::parse_expr(mda$stuv[2])) %>%
-    dplyr::mutate(U=!!rlang::parse_expr(mda$stuv[3])) %>%
-    dplyr::mutate(V=!!rlang::parse_expr(mda$stuv[4]))
-  #browser()
-  if(prn==1) print(dplyr::select(gsh,S,T,U,V))
-  assign(mda$nid,list(gsh,mda))
-  do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
-  return(mda$nid)
-}
 ##' @export bm
 bm <- function(){
    devtools::document()

@@ -1,5 +1,4 @@
 # Libraries
-library(ManifoldDestiny)
 library(ggplot2)
 library(purrr)
 library(fredr)
@@ -35,4 +34,7 @@ peqs <-c(
 'k0 + k1*u + k2*v + k3*u**2 + k4*v**2 + k5*u*v + k6*u**3 + k7*v**3 + k8*u**2*v + k9*u*v**2 + k10*u**4 + k11*v**4 + k12*u**3*v + k13*u**2*v**2 + k14*u*v**3 +k15*u**4*v + k16*u*v**2')
 usethis::use_data(peqs, overwrite = TRUE)
 ManifoldDestiny::bm()
+
+
+
 
