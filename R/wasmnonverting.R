@@ -18,6 +18,7 @@ recoudatr <- function(mda=NULL,prn=1){
 py_polysolver <- function(degree=1,abcde=NULL){
   path_fqs <- paste0(rprojroot::find_rstudio_root_file(),"/script/python")
   #path_fqs <- system.file("script/python",package = "ManifoldDestiny")
+  reticulate::import("numba")
   fqs <- reticulate::import_from_path("fqs", path =path_fqs)
   np <- reticulate::import("numpy")
   vec <- abcde[!is.na(abcde)] 

@@ -33,9 +33,9 @@ website:
     left:
       - text: "Index"
         href: index.qmd
-      - text: "Presentation"
+      - text: "Documentation"
         menu:
-        - text: "Manifold Destiny - or how to rig an election" 
+        - text: "Presentation" 
           href: "presentation.qmd"
         - text: "Addendum 1: Arizona"
           href: "addendum/Addendum_az.qmd"

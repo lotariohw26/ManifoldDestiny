@@ -1,3 +1,4 @@
+#########################################################################################################################################################
 #' @export wasmconload
 wasmconload <- function(){
   ifelse(Sys.info()[['sysname']]=="Emscripten",
@@ -93,6 +94,7 @@ gmp <- function(terms=c("x2","xy","y2","x3","x2y","y2x","y3")){
 selreport <- function(
 		      baldata=NULL
 		      ){
+	#browser()
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- md$fr
@@ -619,6 +621,7 @@ Countingprocess$methods(setres=function(czset=NULL,prnt=0){
 Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
 					man=FALSE,
 					lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1))){
+
   ## Variables
   lof <- function(kvec=NULL,prn=T){
     kvnr <- c(3,6,10,17)[mansysl$plnr]
