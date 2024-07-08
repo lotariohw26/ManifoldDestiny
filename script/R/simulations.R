@@ -25,7 +25,7 @@ frms <- 1
 plnrvec <- c(1,2,3)[1]
 rotv <- list(list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),list(fr=c(1,14.378100),sr=c(4,49.762610),tr=c(2,11.5781)))[[1]]
 exs <- c("ex1", "ex2", "ex3")
-result <- lapply(exs, function(x) { 
+rigres <- lapply(exs, function(x) { 
   appn <- Countinggraphs(app_bal[[1]])
   intn <- appn$polyc[[1]][[1]]
   appn$mansys(sygen=list(frm=frms, 
@@ -35,14 +35,14 @@ result <- lapply(exs, function(x) {
   		plnr=plnrvec,
   		rot=rotv,
   		lf="(alpha-alpha_s)^2"))
-  browser()
   appn$setres(0.19,1)
   appn$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
-  appr <- list(assign("apprs",appn$loss_df),1)
-  #View(appr[[1]])
-  #seloutput(selreport(appr))
-  #SimVoterdatabase(apprs[[1]])
+  dfme <- list(appn$loss_df,NULL)
+  #abc <- seloutput(selreport(dfme))
+  def <- SimVoterdatabase(dfme[[1]])
+  return(list(def,def))
 })
+rigres[[1]]
 ###################################################################################################################################################################
 ######## Concluding Tabl
 ctone <-'Applications'
