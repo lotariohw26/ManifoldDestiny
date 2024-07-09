@@ -26,6 +26,8 @@ ManifoldDestiny::wasmconload()
 #mda <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
 ```
 
+ABC
+
 ```{r}
 knitr::knit_exit()
 ```
