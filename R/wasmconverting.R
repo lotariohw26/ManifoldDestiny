@@ -245,70 +245,7 @@ seloutput <- function(selreport=NULL){
   tab11 <- selreport[[6]]
   list(rdfc=tab0,decs=tab1,corxy=tab2,qunt=tab3,ro3d=tab4,r2li=tab5,regr=tab6,resp=tab7,cmp=tab8,md=tab9,bb=tab10,md=tab11)
 }
-#########################################################################################################################################
-#' @export SimVoterdatabase
-SimVoterdatabase <- setRefClass("SimVoterdatabase",fields=
-				   list(
-					ballcous='data.frame',
-					r2dflook='list',
-					htmlr2='data.frame',
-					ggplr2='list'
-				   )
-)
 
-SimVoterdatabase$methods(initialize=function(initdf=NULL){
-  ballcous <<- Countingprocess(initdf)$sdfc
-})
-SimVoterdatabase$methods(r2sim=function(rept=10,form=1)
-{
-    #$standard
-    #[1] "x"     "y"     "zeta"  "alpha" "lamda"
-    #$hybrid
-    #[1] "g"     "h"     "Gamma" "alpha" "Omega"
-    #$opposition
-    #[1] "m"     "n"     "xi"    "lamda" "Omega"
-    # Fixed
-    srs <- list(st=c('Omega','x','y'),hy=c('lamda','h','g'),op=c('Omega','m','n'))[[form]]
-    v_nprec <- length(ballcous$P)
-    v_regs <- c(mean(ballcous$R)/1000,sd(ballcous$R)/1000) #c(3.15,0.25)
-    v_minmax <- range(ballcous$R)
-    v_turn <- c(mean(ballcous$R/ballcous$Z),sd(ballcous$R/ballcous$Z)) #c(0.5,0.01)
-    # Form dependent
-    v_Invper <- c(mean(ballcous[[srs[1]]]),sd(ballcous[[srs[1]]]))
-    v_u <- c(mean(ballcous[[srs[2]]]),sd(ballcous[[srs[2]]]))
-    v_dv <- c(mean(ballcous[[srs[[3]]]]-ballcous[[srs[[2]]]]),sd(ballcous[[srs[[3]]]]-ballcous[[srs[[2]]]]))
-    # R2 calculations
-    tf <- replicate(rept, r2simn(nprec=v_nprec,regs=v_regs,minmax=v_minmax,turn=v_turn,Invper=v_Invper,u=v_u,dv=v_dv))
-    dfgp <- data.frame(r2a=unlist(tf[seq(1,length(tf),3)]),r2b=unlist(tf[seq(2,length(tf),3)])) %>% mutate(perc = ntile(r2a, 100))
-    # Input DF2
-    percentiles <- c(90, 95, 99)
-    nstd <- c(1,2,5)
-    std <- mean(dfgp$r2a)+nstd*sd(dfgp$r2a)
-    perc1 <- quantile(dfgp$r2a,probs = percentiles / 100)
-    perc2 <- quantile(dfgp$r2b,probs = percentiles / 100)
-    percdf <- data.frame(perc1,perc2,nstd,std) %>% data.table::setnames(c("Perc r2a","Perc r2b","Nstd","Vstd"))
-    r2dflook <<- list(dfgp,percdf)
-})
-SimVoterdatabase$methods(htmltable=function(){
-  htmlr2 <<- r2dflook[[1]] #kableExtra::kbl() #%>% kableExtra::kable_paper(full_width = F)
-})
-SimVoterdatabase$methods(gghist=function(){
-  dfgp <- r2dflook[[1]] %>% tidyr::pivot_longer(cols=c("r2a","r2b")) %>% dplyr::arrange(name,perc)
-  percd <- r2dflook[[2]]
-    ggplot(dfgp,ggplot2::aes(x=value, fill=name)) +
-    geom_histogram(position = "identity", alpha = 0.5, bins = 30) +
-    labs(title = "histogram of values by category", x = "value", y = "count") +
-    #geom_vline(xintercept = as.numeric(percd[1,1]), linetype = "dashed", color = "blue") +
-    #geom_vline(xintercept = as.numeric(percd[2,1]), linetype = "dashed", color = "blue") +
-    #geom_vline(xintercept = as.numeric(percd[3,1]), linetype = "dashed", color = "blue") +
-    #geom_vline(xintercept = as.numeric(percd[3,4]), linetype = "solid", color = "red") +
-    #geom_label(y=0,x=as.numeric(percd[1,1]),label="*",geom="label") +
-    #geom_label(y=0,x=as.numeric(percd[2,1]),label="**",geom="label") +
-    #geom_label(y=0,x=as.numeric(percd[3,1]),label="***",geom="label") +
-    theme_minimal() +
-    scale_fill_manual(values = c("#0072b2", "#e69f00"))  # set fill colors
-})
-#########################################################################################################################################
 ##' @export Rall
 Rall <- function(sel=c(1,2,3)){
   Rxy <- function(rad) {
@@ -415,6 +352,70 @@ ballcount <- function(ballotsdf=NULL,se=se){
 pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1)){
 	eval(parse(text=ste),lv)
 }
+#########################################################################################################################################
+#' @export SimVoterdatabase
+SimVoterdatabase <- setRefClass("SimVoterdatabase",fields=
+				   list(
+					ballcous='data.frame',
+					r2dflook='list',
+					htmlr2='data.frame',
+					ggplr2='list'
+				   )
+)
+
+SimVoterdatabase$methods(initialize=function(initdf=NULL){
+  ballcous <<- Countingprocess(initdf)$sdfc
+})
+SimVoterdatabase$methods(r2sim=function(rept=10,form=1)
+{
+    #$standard
+    #[1] "x"     "y"     "zeta"  "alpha" "lamda"
+    #$hybrid
+    #[1] "g"     "h"     "Gamma" "alpha" "Omega"
+    #$opposition
+    #[1] "m"     "n"     "xi"    "lamda" "Omega"
+    # Fixed
+    srs <- list(st=c('Omega','x','y'),hy=c('lamda','h','g'),op=c('Omega','m','n'))[[form]]
+    v_nprec <- length(ballcous$P)
+    v_regs <- c(mean(ballcous$R)/1000,sd(ballcous$R)/1000) #c(3.15,0.25)
+    v_minmax <- range(ballcous$R)
+    v_turn <- c(mean(ballcous$R/ballcous$Z),sd(ballcous$R/ballcous$Z)) #c(0.5,0.01)
+    # Form dependent
+    v_Invper <- c(mean(ballcous[[srs[1]]]),sd(ballcous[[srs[1]]]))
+    v_u <- c(mean(ballcous[[srs[2]]]),sd(ballcous[[srs[2]]]))
+    v_dv <- c(mean(ballcous[[srs[[3]]]]-ballcous[[srs[[2]]]]),sd(ballcous[[srs[[3]]]]-ballcous[[srs[[2]]]]))
+    # R2 calculations
+    tf <- replicate(rept, r2simn(nprec=v_nprec,regs=v_regs,minmax=v_minmax,turn=v_turn,Invper=v_Invper,u=v_u,dv=v_dv))
+    dfgp <- data.frame(r2a=unlist(tf[seq(1,length(tf),3)]),r2b=unlist(tf[seq(2,length(tf),3)])) %>% mutate(perc = ntile(r2a, 100))
+    # Input DF2
+    percentiles <- c(90, 95, 99)
+    nstd <- c(1,2,5)
+    std <- mean(dfgp$r2a)+nstd*sd(dfgp$r2a)
+    perc1 <- quantile(dfgp$r2a,probs = percentiles / 100)
+    perc2 <- quantile(dfgp$r2b,probs = percentiles / 100)
+    percdf <- data.frame(perc1,perc2,nstd,std) %>% data.table::setnames(c("Perc r2a","Perc r2b","Nstd","Vstd"))
+    r2dflook <<- list(dfgp,percdf)
+})
+SimVoterdatabase$methods(htmltable=function(){
+  htmlr2 <<- r2dflook[[1]] #kableExtra::kbl() #%>% kableExtra::kable_paper(full_width = F)
+})
+SimVoterdatabase$methods(gghist=function(){
+  dfgp <- r2dflook[[1]] %>% tidyr::pivot_longer(cols=c("r2a","r2b")) %>% dplyr::arrange(name,perc)
+  percd <- r2dflook[[2]]
+    ggplot(dfgp,ggplot2::aes(x=value, fill=name)) +
+    geom_histogram(position = "identity", alpha = 0.5, bins = 30) +
+    labs(title = "histogram of values by category", x = "value", y = "count") +
+    #geom_vline(xintercept = as.numeric(percd[1,1]), linetype = "dashed", color = "blue") +
+    #geom_vline(xintercept = as.numeric(percd[2,1]), linetype = "dashed", color = "blue") +
+    #geom_vline(xintercept = as.numeric(percd[3,1]), linetype = "dashed", color = "blue") +
+    #geom_vline(xintercept = as.numeric(percd[3,4]), linetype = "solid", color = "red") +
+    #geom_label(y=0,x=as.numeric(percd[1,1]),label="*",geom="label") +
+    #geom_label(y=0,x=as.numeric(percd[2,1]),label="**",geom="label") +
+    #geom_label(y=0,x=as.numeric(percd[3,1]),label="***",geom="label") +
+    theme_minimal() +
+    scale_fill_manual(values = c("#0072b2", "#e69f00"))  # set fill colors
+})
+#########################################################################################################################################
 ############################################################################################################################################################
 #' @export Countingprocess
 Countingprocess <- setRefClass("Countingprocess",
