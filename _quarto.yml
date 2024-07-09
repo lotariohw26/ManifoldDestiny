@@ -6,6 +6,7 @@
 # script/R/stylized.R
 # script/R/simulations.R
 # script/R/applications.R
+# script/python/polysolver.py
 # _variables.yml
 # https://lotariohw26.github.io/MD_WASMS/r/examples/
 # https://lotariohw26.github.io/MD_WASMS/py/examples/
@@ -24,8 +25,9 @@ project:
     - "tabsets.qmd"
     - "metaview.qmd"
     - "simulations.qmd"
-    - "restoration.qmd"
+    - "rigging.qmd"
     - "analyzer.qmd"
+    - "restoration.qmd"
     - "app_par.qmd"
     - "randpython.qmd"
 

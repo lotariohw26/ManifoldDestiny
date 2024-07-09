@@ -41,6 +41,7 @@ app_bal[1]
 ```
 
 ```{webr-r}
+abc <- SimVoterdatabase()
 ```
 
 **Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
