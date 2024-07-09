@@ -1,14 +1,16 @@
 titll: "Manifold Destiny - or how to rig an election"
 titls: "Manifold Destiny"
+
 sec1:
   nmn: "Introduction"
-  un1:  "Setting up the election system"
-  un2:  "Tautologies using standard form (north vs. south)"
-  un3:  "Tautologies using hybrid form (west vs. east)"
-  un4:  "Tautologies using opposition form (upper diagonal vs. lower diagonal)"
-  un5:  "Modelling the election process"
-  un6:  "How exogenous factors that influence the voting system will make changes to the election outcome through $\\zeta_i$"
-  un7:  "How exogenous factors that influence the voting system will make changes to the election outcome through $\\Gamma_i$"
+  un1: "Setting up the election system"
+  un2: "Tautologies using standard form (north vs. south)"
+  un3: "Tautologies using hybrid form (west vs. east)"
+  un4: "Tautologies using opposition form (upper diagonal vs. lower diagonal)"
+  un5: "Modelling the election process"
+  un6: "How exogenous factors that influence the voting system will make changes to the election outcome through $\\zeta_i$"
+  un7: "How exogenous factors that influence the voting system will make changes to the election outcome through $\\Gamma_i$"
+
 sec2:
   nmn: "Overview of various methods of ballot counting"
   un1: "Generic approach to ballot counting"
@@ -16,28 +18,35 @@ sec2:
   un3: "Counting in a fair election"
   un4: "Counting in a rigged election"
   un5: "The use of a loss-function and the practical limitations of such an algorithm"
+
 sec3:
   nmn: "Election simulations"
   un1: "Fair election"
   un2: "Rigged election"
+
 sec4:
   nmn: "Checking for a rigged election"
   un1: "Procedure"
+
 sec5:
   nmn: "Literature review"
   un1: ""
+
 sec6:
   nmn: "Applications"
   un1:  "Application 1:"
   un2:  "Application 2:"
   un3:  "Application 3:"
   un4:  "Application 4:"
+
 sec7:
   nmn: "The restoration of an rigged election"
   un1: "Procedure"
+
 sec8:
   nmn: "Conclusions"
   un1: "Procedure"
+
 sec9:
   nmn: "References"
 
