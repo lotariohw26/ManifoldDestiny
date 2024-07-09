@@ -1,8 +1,7 @@
 titll: "Manifold Destiny - or how to rig an election"
 titls: "Manifold Destiny"
 sec1:
-  nmn:
-    - "Introduction"
+  nmn: "Introduction"
   un1:  "Setting up the election system"
   un2:  "Tautologies using standard form (north vs. south)"
   un3:  "Tautologies using hybrid form (west vs. east)"
@@ -41,20 +40,23 @@ sec8:
   un1: "Procedure"
 sec9:
   nmn: "References"
+
 tabh:
-  - "Fair election"
-  - "Rigged election normal form"
-  - "Rigged election hybrid form"
-  - "Rigged election opposition form"
-  - "Regression"
-  - "Residuals"
+  h1: "Fair election"
+  h2: "Rigged election normal form"
+  h3: "Rigged election hybrid form"
+  h4: "Rigged election opposition form"
+  h5: "Regression"
+  h6: "Residuals"
+
 tabs:
-  - "Descriptive"
-  - "2d"
-  - "Scatter"
-  - "3d"
-  - "Regression"
-  - "Residuals"
+  h1: "Descriptive"
+  h2: "2d"
+  h3: "Scatter"
+  h4: "3d"
+  h5: "Regression"
+  h6: "Residuals"
+
 app0:
   id: app0
   nid: app0

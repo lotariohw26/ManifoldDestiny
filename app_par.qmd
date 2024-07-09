@@ -1,0 +1,135 @@
+---
+title: "Applicaton"
+date: "`r Sys.Date()`"
+#format: 
+#  html:
+#    page-layout: article
+#format:
+#  revealjs: 
+#    smaller: true
+#    toc-depth: 1
+#    toc: true 
+params:
+  name: "0"
+format: html
+engine: knitr
+filters:
+  - webr
+---
+
+```{r, echo=F,message=FALSE,warning=FALSE}
+ManifoldDestiny::wasmconload()
+#library(ManifoldDestinyWASMP)
+#library(ManifoldDestinyWASMD)
+#library(ManifoldDestiny)
+#library(dplyr)
+#library(ggplot2)
+#library(dplyr)
+#library(combinat)
+#library(htmltools)
+#library(ggplot2)
+#library(broom)
+#library(combinat)
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
+mda <- app0[[2]]
+app0_rp <- selreport(app0)
+app_0_out <- seloutput(app0_rp)
+mda$rcn
+```
+
+## Application: `r mda$nmn`
+### Information
+- Election system:
+  - Type of race: `r mda$rcn` 
+  - Candidates: `r mda$cnd` 
+  - Modes of voting: `r mda$mod` 
+- $H_0:$ Normal election 
+- $H_1:$ Rigged election: 
+  - Manifold object $`r mda$eq[1]`$
+  - Solved for `r mda$va`
+
+[Link to raw data and independent calculcations](`r mda$url`)
+
+### Information
+
+### {{< var tabh.h1 >}}
+
+
+---
+
+::: {.panel-tabset}
+
+### {{< var tabs.h1 >}}
+
+```{r, echo=F}
+```
+### {{< var tabs.h2 >}}
+```{r, echo=F, out.width="60%"}
+```
+### {{< var tabs.h3 >}}
+```{r, echo=F, out.width="60%"}
+```
+### {{< var tabs.h4 >}}
+```{r, echo=F}
+```
+### {{< var tabs.h5 >}}
+```{r, echo=F, out.width="60%"}
+```
+### {{< var tabs.h6 >}}
+```{r, echo=F, out.width="60%"}
+```
+::: 
+
+---
+
+```{r}
+knitr::knit_exit()
+```
+
+
+
+
+
+
+---
+
+::: {.panel-tabset}
+
+### `r md$tabsets[[1]]`
+
+```{r, echo=F}
+kableExtra::kbl(app_a_out[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### `r md$tabsets[[2]]`
+```{r, echo=F, out.width="60%"}
+app_a_out[['corxy']]
+```
+### `r md$tabsets[[3]]`
+```{r, echo=F, out.width="60%"}
+app_a_out[['qunt']]
+```
+### `r md$tabsets[[4]]`
+```{r, echo=F}
+app_a_out[['ro3d']]
+```
+### `r md$tabsets[[5]]`
+```{r, echo=F, out.width="60%"}
+app_a_out[['regr']]
+```
+### `r md$tabsets[[6]]`
+```{r, echo=F, out.width="60%"}
+app_a_out[['resp']]
+```
+::: 
+
+---
+
+### Ballot predictions based on limit information implied by the estimated Manifold object(s)
+
+```{r, echo=F}
+#app_a_out$cmp[,1] <- c("Mean total votes", "Number of precincts", "Zero prediction error", "In percentage", "Mean", "Standard Deviation", "Max ballot error", "1+/- prediction error", "2+/- prediction error", "2+/- prediction error", "Percentage within +/-3")
+#kableExtra::kbl(app_a_out$cmp,row.names=F,col.names=c("Statistic","Value"),digits=2) %>% kableExtra::kable_paper(full_width = F) 
+```
+
+

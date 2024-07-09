@@ -60,7 +60,7 @@
     "href": "tabsets.html",
     "title": "Tabsets",
     "section": "",
-    "text": "knitr::knit_exit()"
+    "text": "[1] 0.4839449\n[1] 0.4839449\n[1] 0.4839449\n\n\n\nknitr::knit_exit()"
   },
   {
     "objectID": "randpython.html",
@@ -376,5 +376,19 @@
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
     "text": "Condition on that \\(R^2\\) falls within the critical region.\n\nNormal form\n\n\n\n\n\n\n\n\n\n\n\n\nHybrid form\n\n\n\n\n\n\n\n\n\n\n\nOur four applications\n\n\n\n\n\n\n\nhttps://lotariohw26.github.io/ManifoldDestiny/"
+  },
+  {
+    "objectID": "app_par.html",
+    "href": "app_par.html",
+    "title": "Applicaton",
+    "section": "",
+    "text": "[1] \"Proto\""
+  },
+  {
+    "objectID": "app_par.html#application-simulation",
+    "href": "app_par.html#application-simulation",
+    "title": "Applicaton",
+    "section": "Application: Simulation",
+    "text": "Application: Simulation\n\nInformation\n\nElection system:\n\nType of race: Proto\nCandidates: T, B\nModes of voting: EDV, MiV\n\n\\(H_0:\\) Normal election\n\\(H_1:\\) Rigged election:\n\nManifold object \\(alpha=k0+k1*x+k2*y\\)\nSolved for TRUE\n\n\nLink to raw data and independent calculcations\n\n\nInformation\n\n\nFair election\n\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nknitr::knit_exit()"
   }
 ]

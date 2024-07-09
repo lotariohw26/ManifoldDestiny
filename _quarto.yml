@@ -9,6 +9,7 @@
 project:
   type: website
   output-dir: docs
+  pre-render: prerendr.R
   render:
     - "index.qmd"
     - "presentation.qmd"
@@ -22,6 +23,7 @@ project:
     - "simulations.qmd"
     - "restoration.qmd"
     - "analyzer.qmd"
+    - "app_par.qmd"
 website:
   title: "{{< var titls >}}"
   navbar:

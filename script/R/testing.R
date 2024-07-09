@@ -1,9 +1,6 @@
-library(ManifoldDestiny)
-library(ggplot2)
-library(dplyr)
-library(htmltools)
-source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
-source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
+ManifoldDestiny::wasmconload()
+#source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
+#source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 #ManifoldDestiny::wasmconload()
 ###########################################################################################################
 abc <- Countinggraphs(yout[[1]])

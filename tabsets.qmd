@@ -13,20 +13,17 @@ format:
 #    footer: <https://lotariohw26.github.io/ManifoldDestiny/>
 #execute: 
 #  cache: false
+# app_par.qmd
 bibliography: man_bib.bib
 ---
 
 ```{r, echo=F, message=F, warning=F}
 ManifoldDestiny::wasmconload()
-#modlat <- eqpar$meql
-#md <- ManifoldDestinyWASMD::metad
-#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
-#metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-#mda <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+md <- ManifoldDestiny::metd
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
 ```
 
-ABC
 
 ```{r}
 knitr::knit_exit()
