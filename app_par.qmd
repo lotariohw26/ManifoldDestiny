@@ -1,6 +1,5 @@
 ---
-title: "Applicaton"
-date: "`r Sys.Date()`"
+#title: "Applicaton"
 #format: 
 #  html:
 #    page-layout: article
@@ -19,9 +18,9 @@ filters:
 
 ```{r, echo=F,message=FALSE,warning=FALSE}
 ManifoldDestiny::wasmconload()
+library(ManifoldDestiny)
 #library(ManifoldDestinyWASMP)
 #library(ManifoldDestinyWASMD)
-#library(ManifoldDestiny)
 #library(dplyr)
 #library(ggplot2)
 #library(dplyr)
@@ -33,9 +32,8 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 mda <- app0[[2]]
-app0_rp <- selreport(app0)
-app_0_out <- seloutput(app0_rp)
-mda$rcn
+asrp <- selreport(app0)
+asop <- seloutput(asrp)
 ```
 
 ## Application: `r mda$nmn`
@@ -55,7 +53,6 @@ mda$rcn
 
 ### {{< var tabh.h1 >}}
 
-
 ---
 
 ::: {.panel-tabset}
@@ -63,73 +60,49 @@ mda$rcn
 ### {{< var tabs.h1 >}}
 
 ```{r, echo=F}
+kableExtra::kbl(asop[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
 ```
 ### {{< var tabs.h2 >}}
 ```{r, echo=F, out.width="60%"}
+asop[['corxy']]
 ```
 ### {{< var tabs.h3 >}}
 ```{r, echo=F, out.width="60%"}
+asop[['qunt']]
 ```
 ### {{< var tabs.h4 >}}
 ```{r, echo=F}
+asop[['ro3d']]
 ```
 ### {{< var tabs.h5 >}}
 ```{r, echo=F, out.width="60%"}
+asop[['regr']]
 ```
 ### {{< var tabs.h6 >}}
 ```{r, echo=F, out.width="60%"}
+asop[['resp']]
 ```
 ::: 
 
----
-
-```{r}
+```{r, echo=F}
 knitr::knit_exit()
 ```
-
-
-
-
-
-
----
-
-::: {.panel-tabset}
-
-### `r md$tabsets[[1]]`
-
-```{r, echo=F}
-kableExtra::kbl(app_a_out[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
-```
-### `r md$tabsets[[2]]`
-```{r, echo=F, out.width="60%"}
-app_a_out[['corxy']]
-```
-### `r md$tabsets[[3]]`
-```{r, echo=F, out.width="60%"}
-app_a_out[['qunt']]
-```
-### `r md$tabsets[[4]]`
-```{r, echo=F}
-app_a_out[['ro3d']]
-```
-### `r md$tabsets[[5]]`
-```{r, echo=F, out.width="60%"}
-app_a_out[['regr']]
-```
-### `r md$tabsets[[6]]`
-```{r, echo=F, out.width="60%"}
-app_a_out[['resp']]
-```
-::: 
 
 ---
 
 ### Ballot predictions based on limit information implied by the estimated Manifold object(s)
 
 ```{r, echo=F}
-#app_a_out$cmp[,1] <- c("Mean total votes", "Number of precincts", "Zero prediction error", "In percentage", "Mean", "Standard Deviation", "Max ballot error", "1+/- prediction error", "2+/- prediction error", "2+/- prediction error", "Percentage within +/-3")
-#kableExtra::kbl(app_a_out$cmp,row.names=F,col.names=c("Statistic","Value"),digits=2) %>% kableExtra::kable_paper(full_width = F) 
+asop$cmp[,1] <- c("Mean total votes", "Number of precincts", "Zero prediction error", "In percentage", "Mean", "Standard Deviation", "Max ballot error", "1+/- prediction error", "2+/- prediction error", "2+/- prediction error", "Percentage within +/-3")
+kableExtra::kbl(asop$cmp,row.names=F,col.names=c("Statistic","Value"),digits=2) %>% kableExtra::kable_paper(full_width = F) 
 ```
+
+
+
+
+
+
+
+
 
 
