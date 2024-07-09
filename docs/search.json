@@ -67,7 +67,7 @@
     "href": "randpython.html",
     "title": "{{< var titls >}}",
     "section": "",
-    "text": "# https://github.cm/coatless-quarto/panelize\n# script/R/simulations.R\n# {{&lt; audio file=\"abc.mp3\" caption=\"Sample Audio File\"&gt;}}\n\n\nResultInteractive\n\n\na &lt;- 1 \n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nResultInteractive\n\n\nb &lt;- 2\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nResultInteractive\n\n\nc &lt;- a*b\nc\n\n[1] 2\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nLast time updated: 2024-07-07 21:35:27\nThis is a webR-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "ResultInteractive\n\n\n1 + 1\n\n[1] 2\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
   },
   {
     "objectID": "presentation.html#setting-up-the-election-system",
@@ -509,5 +509,19 @@
     "title": "{{< var titls >}}",
     "section": "Pyodide",
     "text": "Pyodide\n\nResultInteractive\n\n\nx = [1, 2]\nprint(x)\n\n[1, 2]\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "randpython.html#web-r",
+    "href": "randpython.html#web-r",
+    "title": "{{< var titls >}}",
+    "section": "",
+    "text": "ResultInteractive\n\n\n1 + 1\n\n[1] 2\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "randpython.html#pyodide",
+    "href": "randpython.html#pyodide",
+    "title": "{{< var titls >}}",
+    "section": "Pyodide",
+    "text": "Pyodide\n\nResultInteractive\n\n\nx = [1, 2]\nprint(x)\n\n[1, 2]\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n# https://github.cm/coatless-quarto/panelize\n# script/R/simulations.R\n# {{&lt; audio file=\"abc.mp3\" caption=\"Sample Audio File\"&gt;}}\n\n\nResultInteractive\n\n\na &lt;- 1 \n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nResultInteractive\n\n\nb &lt;- 2\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nResultInteractive\n\n\nc &lt;- a*b\nc\n\n[1] 2\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nLast time updated: 2024-07-09 19:03:54\nThis is a webR-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
   }
 ]

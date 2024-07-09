@@ -24,7 +24,7 @@ project:
     - "restoration.qmd"
     - "analyzer.qmd"
     - "app_par.qmd"
-    - "abc.qmd"
+    - "randpython.qmd"
 
 website:
   title: "{{< var titls >}}"
@@ -73,7 +73,7 @@ website:
         - text: "Restoration"
           href: "restoration.qmd"
         - text: "Functions"
-          href: "abc.qmd"
+          href: "randpython.qmd"
   repo-url: https://github.com/lotariohw26/ManifoldDestiny
   site-url: https://lotariohw26.github.io/ManifoldDestiny/
   reader-mode: false

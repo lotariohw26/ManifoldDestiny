@@ -14,6 +14,25 @@ filters:
   - pyodide
 ---
 
+## Web-R
+
+:::{.to-webr}
+```{r}
+1 + 1
+```
+:::
+
+## Pyodide
+
+
+
+:::{.to-pyodide}
+```{python}
+x = [1, 2]
+print(x)
+```
+:::
+
 
 ```{r}
 # https://github.cm/coatless-quarto/panelize
