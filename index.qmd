@@ -30,8 +30,13 @@ webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
 library(ManifoldDestinyWASMP)
 library(ManifoldDestinyWASMD)
-library(ManifoldDestinyWASMP)
-ls(package:ManifoldDestinyWASMP)data(package='ManifoldDestinyWASMD')
+ls(package:ManifoldDestinyWASMP)
+data(package='ManifoldDestinyWASMD')
+```
+
+```{webr-r}
+df <- ManifoldDestinyWASMD::yout
+dplyr::select(df[[1]],S,T,U,V)
 ```
 
 [Nevada](https://docs.google.com/spreadsheets/d/1gCfmuK44sUeb0Hb0plAc8VllPSjtUiEHWlJjeHq3xXY/edit?gid=0#gid=0)
