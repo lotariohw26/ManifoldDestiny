@@ -334,7 +334,7 @@ body.reveal.quarto-dark div.qwebr-console-area {
 // Document level settings ----
 
 // Determine if we need to install R packages
-globalThis.qwebrInstallRPackagesList = ['dplyr', 'data.table', 'readr', 'ggplotly'];
+globalThis.qwebrInstallRPackagesList = ['ggplot2', 'dplyr', 'data.table', 'readr', 'plotly', 'combinat', 'htmltools', 'broom'];
 
 // Specify possible locations to search for the repository
 globalThis.qwebrPackageRepoURLS = ['https://repo.r-wasm.org/'];
@@ -356,7 +356,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\nlibrary(ggplot2)\nlibrary(combinat)\nlibrary(plotly)\nlibrary(htmltools)\nlibrary(broom)","id":1,"options":{"out-width":"700px","out-height":"","fig-width":7,"warning":"true","fig-cap":"","editor-max-height":"","dpi":72,"comment":"","label":"unnamed-chunk-1","fig-height":5,"read-only":"false","editor-quick-suggestions":"false","editor-word-wrap":"true","results":"markup","context":"interactive","message":"true","autorun":"true","editor-font-scale":"1","classes":"","output":"true"}},{"code":"dfl <- ManifoldDestinyWASMD::yout\ndf <- dplyr::select(dfl[[1]],S,T,U,V)","id":2,"options":{"out-width":"700px","out-height":"","fig-width":7,"warning":"true","fig-cap":"","editor-max-height":"","dpi":72,"comment":"","label":"unnamed-chunk-2","fig-height":5,"read-only":"false","editor-quick-suggestions":"false","editor-word-wrap":"true","results":"markup","context":"interactive","message":"true","autorun":"true","editor-font-scale":"1","classes":"","output":"true"}},{"code":"df","id":3,"options":{"out-width":"700px","out-height":"","fig-width":7,"warning":"true","fig-cap":"","editor-max-height":"","dpi":72,"comment":"","label":"unnamed-chunk-3","fig-height":5,"read-only":"false","editor-quick-suggestions":"false","editor-word-wrap":"true","results":"markup","context":"interactive","message":"true","autorun":"true","editor-font-scale":"1","classes":"","output":"true"}},{"code":"ad <- readr::read_csv(\"https://raw.githubusercontent.com/lotariohw26/ManifoldDestiny/main/data-raw/csv/full_apps_data.csv\")\nad","id":4,"options":{"out-width":"700px","out-height":"","fig-width":7,"warning":"true","fig-cap":"","editor-max-height":"","dpi":72,"comment":"","label":"unnamed-chunk-4","fig-height":5,"read-only":"false","editor-quick-suggestions":"false","editor-word-wrap":"true","results":"markup","context":"interactive","message":"true","autorun":"true","editor-font-scale":"1","classes":"","output":"true"}}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"editor-max-height":"","fig-width":7,"eval":"true","out-height":"","echo":"fenced","classes":"","message":"true","fig-height":5,"warning":"true","autorun":"true","results":"markup","out-width":"700px","label":"unnamed-chunk-1","dpi":72,"context":"interactive","read-only":"false","comment":"","fig-cap":"","output":"true","editor-word-wrap":"true","editor-quick-suggestions":"false","editor-font-scale":"1"},"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\ndfl <- ManifoldDestinyWASMD::yout\ndf <- dplyr::select(dfl[[1]],S,T,U,V)"},{"id":2,"options":{"editor-max-height":"","fig-width":7,"out-height":"","classes":"","message":"true","fig-height":5,"warning":"true","autorun":"true","results":"markup","out-width":"700px","label":"unnamed-chunk-2","dpi":72,"context":"interactive","read-only":"false","comment":"","fig-cap":"","output":"true","editor-word-wrap":"true","editor-quick-suggestions":"false","editor-font-scale":"1"},"code":""}];
 
 </script>
 <script type="module">
@@ -1678,6 +1678,10 @@ window.Quarto = {
  <span class="dropdown-text">Simulations</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./rigging.qmd">
+ <span class="dropdown-text">Rigging</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./analyzer.html">
  <span class="dropdown-text">Analyzer</span></a>
   </li>  
@@ -2029,12 +2033,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-3"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-4"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p><a href="https://docs.google.com/spreadsheets/d/1gCfmuK44sUeb0Hb0plAc8VllPSjtUiEHWlJjeHq3xXY/edit?gid=0#gid=0">Nevada</a></p>
-<p><strong>Last time updated: 2024-07-09 18:33:59</strong></p>
+<p><strong>Last time updated: 2024-07-09 21:35:00</strong></p>
 
 
 </section>

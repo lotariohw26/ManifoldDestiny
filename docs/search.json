@@ -65,9 +65,9 @@
   {
     "objectID": "randpython.html",
     "href": "randpython.html",
-    "title": "{{< var titls >}}",
+    "title": "Python",
     "section": "",
-    "text": "ResultInteractive\n\n\n1 + 1\n\n[1] 2\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Coatless\n(thecoatlessprofessor7674?) 1 month ago Great question. The short gist is yes in the interactive context for now.\nWe’ll likely need to make another extension that wraps before {quarto-webr} and {quarto-pyodide} to enable cross talk in the non-interactive/output contexts.\n\nPython\n\n\n\n\n\nYou can execute any Python code. Just enter something in the box below and click the button.\n\n Run  \n\nOutput:\n\n\n\n\n\n\nR\n\nLoading webR, please wait...\n Run\n\n\nLast time updated: r format(Sys.time(), \"%Y-%m-%d %H:%M:%S\")"
   },
   {
     "objectID": "presentation.html#setting-up-the-election-system",
@@ -95,7 +95,7 @@
     "href": "index.html#installling-packages",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "Installling packages",
-    "text": "Installling packages\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNevada\nLast time updated: 2024-07-09 18:33:59"
+    "text": "Installling packages\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNevada\nLast time updated: 2024-07-09 21:35:00"
   },
   {
     "objectID": "index.html#abc",
@@ -109,7 +109,7 @@
     "href": "simulations.html",
     "title": "{{< var titls >}}",
     "section": "",
-    "text": "# https://github.cm/coatless-quarto/panelize\n# script/R/simulations.R\n# {{&lt; audio file=\"abc.mp3\" caption=\"Sample Audio File\"&gt;}}\n\n\nResultInteractive\n\n\na &lt;- 1 \n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nResultInteractive\n\n\nb &lt;- 2\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nResultInteractive\n\n\nc &lt;- a*b\nc\n\n[1] 2\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nLast time updated: 2024-07-07 22:25:18\nThis is a webR-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Please enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLast time updated: 2024-07-09 21:25:47"
   },
   {
     "objectID": "metaview.html",

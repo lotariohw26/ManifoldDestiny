@@ -3,8 +3,9 @@
 # data-raw/labeling.R
 # data-raw/recorder.R
 # script/R/testing.R
-# script/R/applications.R
+# script/R/stylized.R
 # script/R/simulations.R
+# script/R/applications.R
 # _variables.yml
 # https://lotariohw26.github.io/MD_WASMS/r/examples/
 # https://lotariohw26.github.io/MD_WASMS/py/examples/
@@ -70,6 +71,8 @@ website:
           href: "https://webr.r-wasm.org/latest/"
         - text: "Simulations"
           href: "simulations.qmd"
+        - text: "Rigging"
+          href: "rigging.qmd"
         - text: "Analyzer"
           href: "analyzer.qmd"
         - text: "Restoration"

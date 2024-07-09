@@ -1,10 +1,9 @@
 ManifoldDestiny::wasmconload()
-#source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
-#source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-#ManifoldDestiny::wasmconload()
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
+# Simulations
 abc <- Countinggraphs(yout[[1]])
-###########################################################################################################
 
 
 

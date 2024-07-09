@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -368,7 +334,7 @@ body.reveal.quarto-dark div.qwebr-console-area {
 // Document level settings ----
 
 // Determine if we need to install R packages
-globalThis.qwebrInstallRPackagesList = ['dplyr', 'data.table'];
+globalThis.qwebrInstallRPackagesList = ['dplyr', 'data.table', 'ggplot2', 'combinat', 'plotly', 'htmltools', 'broom'];
 
 // Specify possible locations to search for the repository
 globalThis.qwebrPackageRepoURLS = ['https://repo.r-wasm.org/'];
@@ -390,7 +356,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"message":"true","editor-word-wrap":"true","fig-cap":"","output":"true","out-width":"700px","context":"interactive","comment":"","read-only":"false","label":"unnamed-chunk-1","classes":"","autorun":"false","warning":"true","dpi":72,"editor-font-scale":"1","fig-width":7,"fig-height":5,"editor-max-height":"","editor-quick-suggestions":"false","results":"markup","out-height":""},"code":"a <- 1 "},{"id":2,"options":{"message":"true","editor-word-wrap":"true","fig-cap":"","output":"true","out-width":"700px","context":"interactive","comment":"","read-only":"false","label":"unnamed-chunk-2","classes":"","autorun":"false","warning":"true","dpi":72,"editor-font-scale":"1","fig-width":7,"fig-height":5,"editor-max-height":"","editor-quick-suggestions":"false","results":"markup","out-height":""},"code":"b <- 2"},{"id":3,"options":{"message":"true","editor-word-wrap":"true","fig-cap":"","output":"true","out-width":"700px","context":"interactive","comment":"","read-only":"false","label":"unnamed-chunk-3","classes":"","autorun":"false","warning":"true","dpi":72,"editor-font-scale":"1","fig-width":7,"fig-height":5,"editor-max-height":"","editor-quick-suggestions":"false","results":"markup","out-height":""},"code":"c <- a*b\nc"},{"id":4,"options":{"message":"true","editor-word-wrap":"true","fig-cap":"","output":"true","out-width":"700px","context":"interactive","comment":"","read-only":"false","label":"unnamed-chunk-4","classes":"","autorun":"false","warning":"true","dpi":72,"editor-font-scale":"1","fig-width":7,"fig-height":5,"editor-max-height":"","editor-quick-suggestions":"false","results":"markup","out-height":""},"code":"webr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\ndplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)"},{"id":5,"options":{"message":"true","editor-word-wrap":"true","fig-cap":"","output":"true","out-width":"700px","context":"interactive","comment":"","read-only":"false","label":"unnamed-chunk-5","classes":"","autorun":"false","warning":"true","dpi":72,"editor-font-scale":"1","fig-width":7,"fig-height":5,"editor-max-height":"","editor-quick-suggestions":"false","results":"markup","out-height":""},"code":"fit = lm(mpg ~ am, data = mtcars)\nsummary(fit)"}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\nlibrary(ggplot2)\nlibrary(combinat)\nlibrary(plotly)\nlibrary(htmltools)\nlibrary(broom)\nset.seed(1)\ndfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,100,30)))})(100)\nprobw <- c(m=0.51,s=0.10)\nprobva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)\nprobvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)\nztech <- c(0,1) \nmdn <- list(frn=1,eq=\"alpha=k0+k1*x+k2*y\")\napp_bal <- list(df=ballcastsim(dfm,probw,probva,probvb,ztech),list(fr=1,eq=\"alpha=k0+k1*x+k2*y\"))\napp_bal[1]","options":{"message":"true","fig-cap":"","context":"interactive","fig-width":7,"fig-height":5,"dpi":72,"warning":"true","label":"unnamed-chunk-1","output":"true","results":"markup","read-only":"false","editor-max-height":"","editor-font-scale":"1","out-height":"","out-width":"700px","editor-word-wrap":"true","classes":"","autorun":"true","editor-quick-suggestions":"false","comment":""}},{"id":2,"code":"","options":{"message":"true","fig-cap":"","context":"interactive","fig-width":7,"fig-height":5,"dpi":72,"warning":"true","label":"unnamed-chunk-2","output":"true","results":"markup","read-only":"false","editor-max-height":"","editor-font-scale":"1","out-height":"","out-width":"700px","editor-word-wrap":"true","classes":"","autorun":"true","editor-quick-suggestions":"false","comment":""}}];
 
 </script>
 <script type="module">
@@ -1712,12 +1678,20 @@ window.Quarto = {
  <span class="dropdown-text">Simulations</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./rigging.qmd">
+ <span class="dropdown-text">Rigging</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./analyzer.html">
  <span class="dropdown-text">Analyzer</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./restoration.html">
  <span class="dropdown-text">Restoration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./randpython.html">
+ <span class="dropdown-text">Functions</span></a>
   </li>  
     </ul>
   </li>
@@ -2025,57 +1999,11 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 
 
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://github.cm/coatless-quarto/panelize</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># script/R/simulations.R</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># {{&lt; audio file="abc.mp3" caption="Sample Audio File"&gt;}}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Result</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Interactive</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</div>
-</div>
-</div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Result</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Interactive</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</div>
-</div>
-</div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Result</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Interactive</a></li></ul>
-<div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> a<span class="sc">*</span>b</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div id="qwebr-insertion-location-3"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</div>
-</div>
-</div>
-<p><strong>Last time updated: 2024-07-07 22:25:18</strong></p>
-<p>This is a webR-enabled code cell in a Quarto HTML document.</p>
-<div id="qwebr-insertion-location-4"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-5"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>Last time updated: 2024-07-09 21:25:47</strong></p>
 
 
 

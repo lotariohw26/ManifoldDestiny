@@ -14,83 +14,6 @@ filters:
   - pyodide
 ---
 
-## Web-R
-
-:::{.to-webr}
-```{r}
-1 + 1
-```
-:::
-
-## Pyodide
-
-
-
-:::{.to-pyodide}
-```{python}
-x = [1, 2]
-print(x)
-```
-:::
-
-
-```{r}
-# https://github.cm/coatless-quarto/panelize
-# script/R/simulations.R
-# {{< audio file="abc.mp3" caption="Sample Audio File">}}
-```
-
-:::{.to-webr}
-```{r}
-a <- 1 
-```
-:::
-
-:::{.to-webr}
-```{r}
-b <- 2
-```
-:::
-
-:::{.to-webr}
-```{r}
-c <- a*b
-c
-```
-:::
-
-**Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
-
-
-This is a webR-enabled code cell in a Quarto HTML document.
-
-
-```{webr-r}
-webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
-webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
-```
-
-
-
-
-```{webr-r}
-fit = lm(mpg ~ am, data = mtcars)
-summary(fit)
-```
-
-
-```{r,echo=F}
-knitr::knit_exit()
-```
-
-
-
-
-
-
-
-
 [Coatless](https://www.youtube.com/watch?v=PZx9d21HnTo)
 
 
@@ -181,23 +104,9 @@ We'll likely need to make another extension that wraps before {quarto-webr} and 
 </script>
 
 
-:::{.to-webr}
-```{r}
-webr::install(c("dplyr","purrr"))
-webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
-webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-dplyr::select(ManifoldDestinyWASMD::abc,S,T,U,V)
-library(dplyr)
-library(ManifoldDestinyWASMP)
-ls("package:dplyr")
-ls("package:ManifoldDestinyWASMP")
-data(package="ManifoldDestinyWASMD")
-```
-:::
 
-:::{.to-pyodide}
-```{python}
-4 + 5
-```
-:::
+**Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
+
+
+
 
