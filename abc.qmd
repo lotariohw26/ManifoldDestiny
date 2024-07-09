@@ -1,0 +1,34 @@
+---
+title: ""
+webr:
+  show-startup-message: true      # Display status of webR initialization
+  show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
+  packages: ['dplyr','data.table','readr','ggplotly']             # Pre-install dependencies
+  cell-options:
+    autorun: true
+filters:
+  - panelize
+  - pyodide
+  - webr
+---
+
+
+
+## Web-R
+
+:::{.to-webr}
+```{r}
+1 + 1
+```
+:::
+
+## Pyodide
+
+
+
+:::{.to-pyodide}
+```{python}
+x = [1, 2]
+print(x)
+```
+:::

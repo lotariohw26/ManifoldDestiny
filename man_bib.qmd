@@ -1,13 +1,15 @@
 ---
 title: "References"
+nocite: |
+  @*
 ---
 
 
-
-[@delfino2011analysis]
-
 ::: {#refs}
 :::
+
+
+
 
 
 

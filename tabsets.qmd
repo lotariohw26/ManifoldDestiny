@@ -89,7 +89,4 @@ text <- readLines(app1_fil)
 ```
 :::
 
-```{r, echo=F}
-knitr::knit_exit()
-```
 
