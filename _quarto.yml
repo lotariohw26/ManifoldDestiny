@@ -6,6 +6,8 @@
 # script/R/applications.R
 # script/R/simulations.R
 # _variables.yml
+# https://lotariohw26.github.io/MD_WASMS/r/examples/
+# https://lotariohw26.github.io/MD_WASMS/py/examples/
 project:
   type: website
   output-dir: docs
@@ -92,5 +94,3 @@ format:
     Line stretch: 1.5
 bibliography: man_bib.bib
 # git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/ManifoldDestiny.git
-# https://lotariohw26.github.io/MD_WASMS/r/examples/
-# https://lotariohw26.github.io/MD_WASMS/py/examples/
