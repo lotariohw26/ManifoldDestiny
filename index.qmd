@@ -32,6 +32,11 @@ library(ManifoldDestinyWASMP)
 library(ManifoldDestinyWASMD)
 ls(package:ManifoldDestinyWASMP)
 data(package='ManifoldDestinyWASMD')
+library(ggplot2)
+library(combinat)
+library(plotly)
+library(htmltools)
+library(broom)
 ```
 
 ```{webr-r}

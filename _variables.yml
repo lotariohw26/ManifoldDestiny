@@ -8,16 +8,16 @@ sec1:
   un3: "Tautologies using hybrid form (west vs. east)"
   un4: "Tautologies using opposition form (upper diagonal vs. lower diagonal)"
   un5: "Modelling the election process"
-  un6: "How exogenous factors that influence the voting system will make changes to the election outcome through $\\zeta_i$"
-  un7: "How exogenous factors that influence the voting system will make changes to the election outcome through $\\Gamma_i$"
+  un6: "How outside factors to the voting system will impact $\\zeta_i$"
+  un7: "How outside factors to the voting system will impact $\\Gamma_i$"
 
 sec2:
-  nmn: "Overview of various methods of ballot counting"
+  nmn: "Ballot counting methods"
   un1: "Generic approach to ballot counting"
   un2: "Definitions (20 laws and 40 isometries)"
   un3: "Counting in a fair election"
   un4: "Counting in a rigged election"
-  un5: "The use of a loss-function and the practical limitations of such an algorithm"
+  un5: "The use of a loss-function in rigging an election"
 
 sec3:
   nmn: "Election simulations"
@@ -40,7 +40,7 @@ sec6:
   un4:  "Application 4:"
 
 sec7:
-  nmn: "The restoration of an rigged election"
+  nmn: "Restoration of the original election results"
   un1: "Procedure"
 
 sec8:

@@ -9,6 +9,12 @@ wasmconload <- function(){
       webr::install(c("AlgebraicHaploPackage","cowplot","broom","htmltools","combinat","DT","dplyr","purrr","magrittr","data.table","tidyr","plotly"))
       library(ManifoldDestinyWASMP)
       library(ManifoldDestinyWASMD)
+      #
+      library(ggplot2)
+      library(combinat)
+      library(plotly)
+      library(htmltools)
+      library(broom)
   },
   {
       # Commands to be executed if the condition is FALSE
