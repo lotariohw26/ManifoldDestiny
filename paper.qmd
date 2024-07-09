@@ -22,7 +22,7 @@ format:
 ## {{< var sec2.un2 >}}
 ## {{< var sec2.un3 >}}
 ## {{< var sec2.un4 >}}
-## {{< var sec2.un4 >}}
+## {{< var sec2.un5 >}}
 
 # {{< var sec3.nmn >}}
 ## {{< var sec3.un1 >}}
@@ -35,12 +35,13 @@ format:
 ## {{< var sec6.un2 >}}
 ## {{< var sec6.un3 >}}
 ## {{< var sec6.un4 >}}
-## {{< var sec6.un4 >}}
 
 # {{< var sec7.nmn >}}
 ## {{< var sec7.un1 >}}
 
 # {{< var sec8.nmn >}}
+
+
 
 ```{r,echo=F}
 knitr::knit_exit()

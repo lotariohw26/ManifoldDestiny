@@ -14,10 +14,10 @@ sec1:
 sec2:
   nmn: "Ballot counting methods"
   un1: "Generic approach to ballot counting"
-  un2: "Definitions (20 laws and 40 isometries)"
+  un2: "The 20 laws and 40 isometries governing an election"
   un3: "Counting in a fair election"
   un4: "Counting in a rigged election"
-  un5: "The use of a loss-function in rigging an election"
+  un5: "Implementing a loss-function in a rigged election"
 
 sec3:
   nmn: "Election simulations"

@@ -360,17 +360,17 @@
 <h2 id="toc-title">Table of contents</h2>
 <ul>
 <li><a href="#/section" id="/toc-section">Introduction</a></li>
-<li><a href="#/section-1" id="/toc-section-1">Introduction</a></li>
-<li><a href="#/section-16" id="/toc-section-16">Overview of various methods of ballot counting</a></li>
-<li><a href="#/section-21" id="/toc-section-21">Election simulations</a></li>
-<li><a href="#/section-24" id="/toc-section-24">Literature review</a></li>
-<li><a href="#/section-25" id="/toc-section-25">Applications</a></li>
-<li><a href="#/section-30" id="/toc-section-30">The restoration of an rigged election</a></li>
-<li><a href="#/section-32" id="/toc-section-32">Conclusions</a></li>
-<li><a href="#/section-33" id="/toc-section-33">References</a></li>
+<li><a href="#/section-15" id="/toc-section-15">Ballot counting methods</a></li>
+<li><a href="#/section-20" id="/toc-section-20">Election simulations</a></li>
+<li><a href="#/section-23" id="/toc-section-23">Literature review</a></li>
+<li><a href="#/section-24" id="/toc-section-24">Applications</a></li>
+<li><a href="#/section-29" id="/toc-section-29">Restoration of the original election results</a></li>
+<li><a href="#/section-31" id="/toc-section-31">Conclusions</a></li>
+<li><a href="#/section-32" id="/toc-section-32">References</a></li>
 </ul>
 </nav>
 </section>
+<section>
 <section id="section" class="title-slide slide level1 center">
 <h1>Introduction</h1>
 <p>Ed. Solomon</p>
@@ -378,13 +378,7 @@
 <p>“At the very core of this article lay the assumption of Causality, that the <strong>Effect cannot precede the Cause</strong>; likewise, the <strong>Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate</strong>.</p>
 </blockquote>
 </section>
-
-<section>
-<section id="section-1" class="title-slide slide level1 center">
-<h1>Introduction</h1>
-
-</section>
-<section id="section-2" class="slide level2">
+<section id="section-1" class="slide level2">
 <h2>Setting up the election system</h2>
 <ul>
 <li>Two candidates: A, B</li>
@@ -396,7 +390,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-2" class="slide level2">
 <h2></h2>
 <p><strong>Our two stylized numerical cases</strong></p>
 <div class="columns">
@@ -439,7 +433,7 @@
 </div>
 </div>
 </section>
-<section id="section-4" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2>Tautologies using standard form (north vs.&nbsp;south)</h2>
 <div class="cell">
 <div class="cell-output-display">
@@ -463,7 +457,7 @@ x=\frac{S}{S + T} \text{, }y=\frac{U}{U + V}
 \lambda=\frac{S + V}{S + T + U + V}=\frac{x + \zeta \left(1 - y\right)}{\zeta + 1}
 \end{equation*}\]</span></p>
 </section>
-<section id="section-5" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
 <div class="cell">
 <div class="cell-output-display">
@@ -542,7 +536,7 @@ x=\frac{S}{S + T} \text{, }y=\frac{U}{U + V}
 </ul></li>
 </ul>
 </section>
-<section id="section-6" class="slide level2">
+<section id="section-5" class="slide level2">
 <h2>Tautologies using hybrid form (west vs.&nbsp;east)</h2>
 <div class="cell">
 <div class="cell-output-display">
@@ -565,7 +559,7 @@ g=\frac{S}{S + V} \text{, } h=\frac{U}{T + U}
 \Omega=\frac{S + T}{S + T + U + V}=\frac{\Gamma \left(1 - g\right) + g}{\Gamma + 1}
 \end{equation*}\]</span></p>
 </section>
-<section id="section-7" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <div class="cell">
 <div class="cell-output-display">
@@ -708,7 +702,7 @@ g=\frac{S}{S + V} \text{, } h=\frac{U}{T + U}
 </div>
 </div>
 </section>
-<section id="section-8" class="slide level2">
+<section id="section-7" class="slide level2">
 <h2>Tautologies using opposition form (upper diagonal vs.&nbsp;lower diagonal)</h2>
 <div class="cell">
 <div class="cell-output-display">
@@ -731,7 +725,7 @@ n=\frac{S}{S + U} \text{ , } m=\frac{T}{T + V}
 \lambda=\frac{S + V}{S + T + U + V}=\frac{\Gamma}{\Gamma + 1}
 \end{equation*}\]</span></p>
 </section>
-<section id="section-9" class="slide level2">
+<section id="section-8" class="slide level2">
 <h2></h2>
 <div class="cell">
 <div class="cell-output-display">
@@ -795,7 +789,7 @@ n=\frac{S}{S + U} \text{ , } m=\frac{T}{T + V}
 </div>
 </div>
 </section>
-<section id="section-10" class="slide level2">
+<section id="section-9" class="slide level2">
 <h2>Modelling the election process</h2>
 <ul>
 <li><strong>Step 1:</strong> Each registered voter assign themself (independent of voting technology) to either candidate A or candidate B</li>
@@ -826,7 +820,7 @@ n=\frac{S}{S + U} \text{ , } m=\frac{T}{T + V}
 </div>
 </div>
 </section>
-<section id="section-11" class="slide level2">
+<section id="section-10" class="slide level2">
 <h2></h2>
 <ul>
 <li>Probability of assigning oneself to candidate A in precinct <span class="math inline">\(i\)</span>
@@ -869,8 +863,8 @@ n=\frac{S}{S + U} \text{ , } m=\frac{T}{T + V}
 </ul>
 <p>Note: As we will investigate later, this condition might be needed in order to restore a rigged election to its original form.</p>
 </section>
-<section id="section-12" class="slide level2">
-<h2>How exogenous factors that influence the voting system will make changes to the election outcome through <span class="math inline">\(\zeta_i\)</span></h2>
+<section id="section-11" class="slide level2">
+<h2>How outside factors to the voting system will impact <span class="math inline">\(\zeta_i\)</span></h2>
 <ol type="1">
 <li>Differences in the cost of voting (e.g., topology, voting rules, dropboxes etc.) across precincts <span class="math inline">\(\Rightarrow\)</span></li>
 <li>Changes to the likelihood of voting <span class="math inline">\(\Rightarrow\)</span></li>
@@ -879,7 +873,7 @@ n=\frac{S}{S + U} \text{ , } m=\frac{T}{T + V}
 <li>Which changes the total election outcome through <span class="math inline">\(\alpha_i=\frac{x_i+\zeta_i y_i}{\zeta_i+x_i}\)</span></li>
 </ol>
 </section>
-<section id="section-13" class="slide level2">
+<section id="section-12" class="slide level2">
 <h2></h2>
 <p>The impact on the election outcome, however, would be small or close to non-existens if the conditions of the existance of a <em>trivial</em> Manifold occuranse related to normal form are not satisfied:</p>
 <ul>
@@ -899,8 +893,8 @@ n=\frac{S}{S + U} \text{ , } m=\frac{T}{T + V}
 <p>If none of this three cases are satisfied, variation in <span class="math inline">\(\zeta_i\)</span> should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?</p>
 <p><a href="?var:shn1">Application 1: Election process simulator</a></p>
 </section>
-<section id="section-14" class="slide level2">
-<h2>How exogenous factors that influence the voting system will make changes to the election outcome through <span class="math inline">\(\Gamma_i\)</span></h2>
+<section id="section-13" class="slide level2">
+<h2>How outside factors to the voting system will impact <span class="math inline">\(\Gamma_i\)</span></h2>
 <ol type="1">
 <li>Differenc in the cost of voting (e.g., topology, voting rules, dropboxes, socio economics etc.) across precincts <span class="math inline">\(\Rightarrow\)</span></li>
 <li>Make changes to the likelihood of voting <span class="math inline">\(\Rightarrow\)</span></li>
@@ -910,7 +904,7 @@ n=\frac{S}{S + U} \text{ , } m=\frac{T}{T + V}
 <li>Which changes the total election outcome through <span class="math inline">\(\alpha_i=\frac{g_i+\zeta_i h_i}{\zeta_i+1}\)</span></li>
 </ol>
 </section>
-<section id="section-15" class="slide level2">
+<section id="section-14" class="slide level2">
 <h2></h2>
 <p>The impact on the election outcome, however, would be small or close to non-existens if the conditions of the existance of a <em>trivial</em> Manifold related to opposition form are not satisfied:</p>
 <ul>
@@ -931,11 +925,11 @@ n=\frac{S}{S + U} \text{ , } m=\frac{T}{T + V}
 <p><a href="?var:shn1">Application 1: Election process simulator</a></p>
 </section></section>
 <section>
-<section id="section-16" class="title-slide slide level1 center">
-<h1>Overview of various methods of ballot counting</h1>
+<section id="section-15" class="title-slide slide level1 center">
+<h1>Ballot counting methods</h1>
 
 </section>
-<section id="section-17" class="slide level2">
+<section id="section-16" class="slide level2">
 <h2>Generic approach to ballot counting</h2>
 <ul>
 <li>We have identified three ways of counting
@@ -950,8 +944,8 @@ n=\frac{S}{S + U} \text{ , } m=\frac{T}{T + V}
 <li>Selecting <strong>3</strong> parameters from a set of <strong>5</strong> implies <strong>10</strong> different combinations</li>
 </ul>
 </section>
-<section id="section-18" class="slide level2">
-<h2>Definitions (20 laws and 40 isometries)</h2>
+<section id="section-17" class="slide level2">
+<h2>The 20 laws and 40 isometries governing an election</h2>
 <div class="callout callout-caution callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1245,7 +1239,7 @@ n=\frac{S}{S + U} \text{ , } m=\frac{T}{T + V}
 </div>
 </div>
 </section>
-<section id="section-19" class="slide level2">
+<section id="section-18" class="slide level2">
 <h2>Counting in a fair election</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -1283,7 +1277,7 @@ n=\frac{S}{S + U} \text{ , } m=\frac{T}{T + V}
 </ul>
 <p><a href="?var:shn2">Application 2: Rigged election process simulator</a></p>
 </section>
-<section id="section-20" class="slide level2">
+<section id="section-19" class="slide level2">
 <h2>Counting in a rigged election</h2>
 <p><strong>Setting the prefered election outcome</strong></p>
 <div class="columns">
@@ -1416,18 +1410,18 @@ f(x)_{0}^{1}=$
 </ul>
 </section></section>
 <section>
-<section id="section-21" class="title-slide slide level1 center">
+<section id="section-20" class="title-slide slide level1 center">
 <h1>Election simulations</h1>
 
 </section>
-<section id="section-22" class="slide level2">
+<section id="section-21" class="slide level2">
 <h2>Fair election</h2>
 </section>
-<section id="section-23" class="slide level2">
+<section id="section-22" class="slide level2">
 <h2>Rigged election</h2>
 </section></section>
 <section>
-<section id="section-24" class="title-slide slide level1 center">
+<section id="section-23" class="title-slide slide level1 center">
 <h1>Literature review</h1>
 
 <img data-src="images/ss.png" width="300" class="r-stretch"><blockquote>
@@ -1446,7 +1440,7 @@ f(x)_{0}^{1}=$
 
 </section></section>
 <section>
-<section id="section-25" class="title-slide slide level1 center">
+<section id="section-24" class="title-slide slide level1 center">
 <h1>Applications</h1>
 <ol type="1">
 <li>Check whether <em>trivial</em> Manifold occuranse related to (1) normal form, (2) hybrid form, or (3) opposition formare satisfied.</li>
@@ -1456,33 +1450,33 @@ f(x)_{0}^{1}=$
 </ol>
 <p>If we can walk through all of the <strong>four</strong> steps here, property 1<sup>st</sup> and 2<sup>nd</sup> that we have stated for a normal election are violated and we can conclude that the estimated Manifold equation is inserted - Manifold Destiny - to distort the outcome of normal election.</p>
 </section>
-<section id="section-26" class="slide level2">
+<section id="section-25" class="slide level2">
 <h2>Application 1:</h2>
 </section>
-<section id="section-27" class="slide level2">
+<section id="section-26" class="slide level2">
 <h2>Application 2:</h2>
 </section>
-<section id="section-28" class="slide level2">
+<section id="section-27" class="slide level2">
 <h2>Application 3:</h2>
 </section>
-<section id="section-29" class="slide level2">
+<section id="section-28" class="slide level2">
 <h2>Application 4:</h2>
 </section></section>
 <section>
-<section id="section-30" class="title-slide slide level1 center">
-<h1>The restoration of an rigged election</h1>
+<section id="section-29" class="title-slide slide level1 center">
+<h1>Restoration of the original election results</h1>
 
 </section>
-<section id="section-31" class="slide level2">
+<section id="section-30" class="slide level2">
 <h2>Procedure</h2>
 </section></section>
-<section id="section-32" class="title-slide slide level1 center">
+<section id="section-31" class="title-slide slide level1 center">
 <h1>Conclusions</h1>
 
 </section>
 
 <section>
-<section id="section-33" class="title-slide slide level1 center">
+<section id="section-32" class="title-slide slide level1 center">
 <h1>References</h1>
 <ul>
 <li>At the heart of the difference between a fair and rigged election is the issue of causation
@@ -1497,7 +1491,7 @@ f(x)_{0}^{1}=$
 </ul></li>
 </ul>
 </section>
-<section id="section-34" class="slide level2 smaller scrollable">
+<section id="section-33" class="slide level2 smaller scrollable">
 <h2></h2>
 <ul>
 <li>Condition on that <span class="math inline">\(R^2\)</span> falls within the critical region.

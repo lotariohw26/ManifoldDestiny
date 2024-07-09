@@ -41,56 +41,30 @@ library(broom)
 ```
 
 ```{webr-r}
-df <- ManifoldDestinyWASMD::yout
-dplyr::select(df[[1]],S,T,U,V)
+dfl <- ManifoldDestinyWASMD::yout
+df <- dplyr::select(dfl[[1]],S,T,U,V)
+```
+
+```{webr-r}
+df
+```
+
+```{webr-r}
+ad <- readr::read_csv("https://raw.githubusercontent.com/lotariohw26/ManifoldDestiny/main/data-raw/csv/full_apps_data.csv")
+ad
 ```
 
 [Nevada](https://docs.google.com/spreadsheets/d/1gCfmuK44sUeb0Hb0plAc8VllPSjtUiEHWlJjeHq3xXY/edit?gid=0#gid=0)
 
 **Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
 
+
+
 ```{r, echo=F}
 knitr::knit_exit()
 ```
 
-```{webr-r}
-# ad <- readr::read_csv("https://raw.githubusercontent.com/lotariohw26/ManifoldDestiny/main/data-raw/csv/full_apps_data.csv")
-# ad
-```
-
-```{webr-r}
-library(ggplot2)                                                                                         
-                                                                                                         
-# Create a sample data frame                                                                             
-data <- data.frame(                                                                                      
-  x = c(1, 2, 3, 4, 5),                                                                                  
-  y = c(2, 3, 5, 7, 6)                                                                                   
-)                                                                                                        
-                                                                                                         
-# Create a scatter plot using ggplot2                                                                    
-ggplot(data, aes(x = x, y = y)) + geom_point()                                                                                           
-```
-
-```{webr-r}
-library(plotly)                                                                                          
-# Create sample data                                                                                     
-x <- seq(-5, 5, length.out = 100)                                                                        
-y <- x                                                                                                   
-z <- outer(x, y, function(x, y) cos(sqrt(x^2 + y^2)))                                                    
-                                                                                                         
-# Create 3D scatter plot                                                                                 
-plot_ly(x = x, y = y, z = z, type = "scatter3d", mode = "markers")                                       
-```
 
 
-{{< audio file="abc.mp3" caption="Sample Audio File">}}
-
-
-```{webr-r}
-webr::mount(
-  mountpoint = "/data",
-  source = "https://example.com/output.data"
-)
-```
 
 
