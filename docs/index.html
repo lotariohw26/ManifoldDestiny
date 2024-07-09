@@ -334,7 +334,7 @@ body.reveal.quarto-dark div.qwebr-console-area {
 // Document level settings ----
 
 // Determine if we need to install R packages
-globalThis.qwebrInstallRPackagesList = ['ggplot2', 'dplyr', 'data.table', 'readr', 'plotly', 'combinat', 'htmltools', 'broom'];
+globalThis.qwebrInstallRPackagesList = ['ggplot2', 'dplyr', 'data.table', 'readr', 'plotly', 'combinat', 'htmltools', 'broom', 'cowplot'];
 
 // Specify possible locations to search for the repository
 globalThis.qwebrPackageRepoURLS = ['https://repo.r-wasm.org/'];
@@ -356,7 +356,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"editor-max-height":"","fig-width":7,"eval":"true","out-height":"","echo":"fenced","classes":"","message":"true","fig-height":5,"warning":"true","autorun":"true","results":"markup","out-width":"700px","label":"unnamed-chunk-1","dpi":72,"context":"interactive","read-only":"false","comment":"","fig-cap":"","output":"true","editor-word-wrap":"true","editor-quick-suggestions":"false","editor-font-scale":"1"},"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\ndfl <- ManifoldDestinyWASMD::yout\ndf <- dplyr::select(dfl[[1]],S,T,U,V)"},{"id":2,"options":{"editor-max-height":"","fig-width":7,"out-height":"","classes":"","message":"true","fig-height":5,"warning":"true","autorun":"true","results":"markup","out-width":"700px","label":"unnamed-chunk-2","dpi":72,"context":"interactive","read-only":"false","comment":"","fig-cap":"","output":"true","editor-word-wrap":"true","editor-quick-suggestions":"false","editor-font-scale":"1"},"code":""}];
+globalThis.qwebrCellDetails = [{"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\ndfl <- ManifoldDestinyWASMD::yout","options":{"dpi":72,"fig-width":7,"autorun":"true","results":"markup","fig-height":5,"classes":"","message":"true","read-only":"false","comment":"","editor-quick-suggestions":"false","echo":"fenced","eval":"true","output":"true","fig-cap":"","label":"unnamed-chunk-1","warning":"true","context":"interactive","editor-word-wrap":"true","out-width":"700px","out-height":"","editor-font-scale":"1","editor-max-height":""},"id":1},{"code":"coi <- Countingprocess(dfl[[1]])\nges <- Estimation(coi$rdfc,2)\nges$regression(\"alpha=k0+k1*g+k2*h\")\nges$diagnostics()\nbroom::tidy(ges$regsum[[1]])\nbroom::glance(ges$regsum[[1]])","options":{"dpi":72,"fig-width":7,"autorun":"true","results":"markup","fig-height":5,"classes":"","message":"true","read-only":"false","comment":"","editor-quick-suggestions":"false","output":"true","fig-cap":"","label":"unnamed-chunk-2","warning":"true","context":"interactive","editor-word-wrap":"true","out-width":"700px","out-height":"","editor-font-scale":"1","editor-max-height":""},"id":2}];
 
 </script>
 <script type="module">
@@ -1678,7 +1678,7 @@ window.Quarto = {
  <span class="dropdown-text">Simulations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./rigging.qmd">
+    <a class="dropdown-item" href="./rigging.html">
  <span class="dropdown-text">Rigging</span></a>
   </li>  
         <li>
@@ -2034,7 +2034,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p><a href="https://docs.google.com/spreadsheets/d/1gCfmuK44sUeb0Hb0plAc8VllPSjtUiEHWlJjeHq3xXY/edit?gid=0#gid=0">Nevada</a></p>
-<p><strong>Last time updated: 2024-07-09 21:35:00</strong></p>
+<p><strong>Last time updated: 2024-07-09 22:34:49</strong></p>
 
 
 </section>

@@ -356,7 +356,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\nlibrary(ggplot2)\nlibrary(combinat)\nlibrary(plotly)\nlibrary(htmltools)\nlibrary(broom)\nset.seed(1)\ndfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,100,30)))})(100)\nprobw <- c(m=0.51,s=0.10)\nprobva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)\nprobvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)\nztech <- c(0,1) \nmdn <- list(frn=1,eq=\"alpha=k0+k1*x+k2*y\")\napp_bal <- list(df=ballcastsim(dfm,probw,probva,probvb,ztech),list(fr=1,eq=\"alpha=k0+k1*x+k2*y\"))\napp_bal[1]","options":{"results":"markup","classes":"","fig-height":5,"out-width":"700px","fig-cap":"","editor-font-scale":"1","fig-width":7,"warning":"true","label":"unnamed-chunk-1","output":"true","out-height":"","read-only":"false","comment":"","editor-quick-suggestions":"false","context":"interactive","dpi":72,"autorun":"true","editor-word-wrap":"true","editor-max-height":"","message":"true"}}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"autorun":"true","label":"unnamed-chunk-1","echo":"fenced","read-only":"false","fig-height":5,"context":"interactive","output":"true","message":"true","fig-width":7,"comment":"","eval":"true","warning":"true","out-width":"700px","out-height":"","results":"markup","editor-max-height":"","classes":"","dpi":72,"editor-font-scale":"1","fig-cap":"","editor-quick-suggestions":"false","editor-word-wrap":"true"},"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')"},{"id":2,"options":{"autorun":"true","label":"unnamed-chunk-2","read-only":"false","fig-height":5,"context":"interactive","output":"true","message":"true","fig-width":7,"comment":"","warning":"true","out-width":"700px","out-height":"","results":"markup","editor-max-height":"","classes":"","dpi":72,"editor-font-scale":"1","fig-cap":"","editor-quick-suggestions":"false","editor-word-wrap":"true"},"code":"dfl <- ManifoldDestinyWASMD::yout"},{"id":3,"options":{"autorun":"true","label":"unnamed-chunk-3","read-only":"false","fig-height":5,"context":"interactive","output":"true","message":"true","fig-width":7,"comment":"","warning":"true","out-width":"700px","out-height":"","results":"markup","editor-max-height":"","classes":"","dpi":72,"editor-font-scale":"1","fig-cap":"","editor-quick-suggestions":"false","editor-word-wrap":"true"},"code":"Countingprocess(dfl)"}];
 
 </script>
 <script type="module">
@@ -1707,7 +1707,16 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">Install</a></li>
+  <li><a href="#select-case" id="toc-select-case" class="nav-link" data-scroll-target="#select-case">Select case</a></li>
+  <li><a href="#counting" id="toc-counting" class="nav-link" data-scroll-target="#counting">Counting</a></li>
+  <li><a href="#estimation" id="toc-estimation" class="nav-link" data-scroll-target="#estimation">Estimation</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/analyzer.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1999,10 +2008,26 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 
 
+<section id="install" class="level2">
+<h2 class="anchored" data-anchor-id="install">Install</h2>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="select-case" class="level2">
+<h2 class="anchored" data-anchor-id="select-case">Select case</h2>
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="counting" class="level2">
+<h2 class="anchored" data-anchor-id="counting">Counting</h2>
+<div id="qwebr-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="estimation" class="level2">
+<h2 class="anchored" data-anchor-id="estimation">Estimation</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -2422,7 +2447,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/analyzer.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/analyzer.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

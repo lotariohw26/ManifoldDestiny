@@ -95,7 +95,7 @@
     "href": "index.html#installling-packages",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "Installling packages",
-    "text": "Installling packages\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNevada\nLast time updated: 2024-07-09 21:35:00"
+    "text": "Installling packages\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNevada\nLast time updated: 2024-07-09 22:34:49"
   },
   {
     "objectID": "index.html#abc",
@@ -544,5 +544,33 @@
     "title": "{{< var titls >}}",
     "section": "",
     "text": "Please enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "analyzer.html#install",
+    "href": "analyzer.html#install",
+    "title": "{{< var titls >}}",
+    "section": "",
+    "text": "Please enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "analyzer.html#select-case",
+    "href": "analyzer.html#select-case",
+    "title": "{{< var titls >}}",
+    "section": "Select case",
+    "text": "Select case\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "analyzer.html#counting",
+    "href": "analyzer.html#counting",
+    "title": "{{< var titls >}}",
+    "section": "Counting",
+    "text": "Counting\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "analyzer.html#estimation",
+    "href": "analyzer.html#estimation",
+    "title": "{{< var titls >}}",
+    "section": "Estimation",
+    "text": "Estimation"
   }
 ]

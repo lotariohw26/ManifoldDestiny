@@ -6,7 +6,7 @@ execute:
 webr:
   show-startup-message: true      # Display status of webR initialization
   show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
-  packages: ['ggplot2','dplyr','data.table','readr','plotly','combinat','htmltools','broom'] 
+  packages: ['ggplot2','dplyr','data.table','readr','plotly','combinat','htmltools','broom','cowplot'] 
   cell-options:
     autorun: true
 filters:
@@ -34,13 +34,19 @@ filters:
 webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
 library(ManifoldDestinyWASMP)
+library(ManifoldDestinyWASMD)
 ls(package:ManifoldDestinyWASMP)
 data(package='ManifoldDestinyWASMD')
 dfl <- ManifoldDestinyWASMD::yout
-df <- dplyr::select(dfl[[1]],S,T,U,V)
 ```
 
 ```{webr-r}
+coi <- Countingprocess(dfl[[1]])
+ges <- Estimation(coi$rdfc,2)
+ges$regression("alpha=k0+k1*g+k2*h")
+ges$diagnostics()
+broom::tidy(ges$regsum[[1]])
+broom::glance(ges$regsum[[1]])
 ```
 
 
