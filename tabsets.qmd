@@ -16,6 +16,16 @@ format:
 bibliography: man_bib.bib
 ---
 
+```{r, echo=F, message=F, warning=F}
+ManifoldDestiny::wasmconload()
+#modlat <- eqpar$meql
+#md <- ManifoldDestinyWASMD::metad
+#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
+#metad <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+#mda <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
+```
+
 ```{r}
 knitr::knit_exit()
 ```
