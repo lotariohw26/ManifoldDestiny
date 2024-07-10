@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Manifold Destiny -</title>
+<title>Manifold Destiny - ABC</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,6 +100,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -259,7 +270,23 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ABC</h1>
+</div>
 
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <div class="cell" data-warnings="false" data-messages="true">
@@ -319,29 +346,6 @@ Attaching package: 'gridExtra'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'
-`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4839449</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'
-`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4839449</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'
-`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4839449</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'
-`geom_smooth()` using formula = 'y ~ x'
-`geom_smooth()` using formula = 'y ~ x'
 `geom_smooth()` using formula = 'y ~ x'
 `geom_smooth()` using formula = 'y ~ x'
 `geom_smooth()` using formula = 'y ~ x'
@@ -355,16 +359,1957 @@ Attaching package: 'gridExtra'</code></pre>
 `geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 </div>
-<p>::: {.callout-caution collapse=“true”} ## Fair election</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fair election
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>adat <span class="ot">&lt;-</span> apps[[<span class="dv">1</span>]]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>amet <span class="ot">&lt;-</span> apps[[<span class="dv">2</span>]]</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>cogr <span class="ot">&lt;-</span> <span class="fu">Countinggraphs</span>(adat)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#selo &lt;- seloutput(selreport(apps))</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#copl &lt;- cogr$polyc[[1]][[1]]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>adat <span class="ot">&lt;-</span> apps[[<span class="dv">1</span>]]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>amet <span class="ot">&lt;-</span> apps[[<span class="dv">2</span>]]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>cogr <span class="ot">&lt;-</span> <span class="fu">Countinggraphs</span>(apps[[<span class="dv">1</span>]])</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>selo <span class="ot">&lt;-</span> <span class="fu">seloutput</span>(<span class="fu">selreport</span>(apps))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>copl <span class="ot">&lt;-</span> cogr<span class="sc">$</span>polyc[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="application" class="level2">
+<h2 class="anchored" data-anchor-id="application">Application:</h2>
+<section id="section-1" class="level3">
+<h3 class="anchored" data-anchor-id="section-1">Fair election</h3>
+</section>
+</section>
+<section id="application-1" class="level2">
+<h2 class="anchored" data-anchor-id="application-1">Application:</h2>
+<section id="information" class="level3">
+<h3 class="anchored" data-anchor-id="information">Information</h3>
+<ul>
+<li>Election system:
+<ul>
+<li>Type of race:<br>
+</li>
+<li>Candidates:<br>
+</li>
+<li>Modes of voting:<br>
+</li>
+</ul></li>
+<li><span class="math inline">\(H_0:\)</span> Normal election</li>
+<li><span class="math inline">\(H_1:\)</span> Rigged election:
+<ul>
+<li>Manifold object $$</li>
+<li>Solved for</li>
+</ul></li>
+</ul>
+<p><a href="">Link to raw data and independent calculcations</a></p>
+<hr>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Descriptive</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">2d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Scatter</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">3d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">Residuals</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">knit_exit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-paper table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">variable</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">S</td>
+<td style="text-align: right;">27.0800000</td>
+<td style="text-align: right;">12.7379811</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: right;">15.5400000</td>
+<td style="text-align: right;">9.8426202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U</td>
+<td style="text-align: right;">17.6400000</td>
+<td style="text-align: right;">9.3046312</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">21.3400000</td>
+<td style="text-align: right;">11.6724834</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">102.7100000</td>
+<td style="text-align: right;">26.9748461</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Z</td>
+<td style="text-align: right;">81.6000000</td>
+<td style="text-align: right;">29.9406821</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">alpha</td>
+<td style="text-align: right;">0.5564953</td>
+<td style="text-align: right;">0.1306240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x</td>
+<td style="text-align: right;">0.6395415</td>
+<td style="text-align: right;">0.1486032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">y</td>
+<td style="text-align: right;">0.4635017</td>
+<td style="text-align: right;">0.1656418</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">zeta</td>
+<td style="text-align: right;">0.9932542</td>
+<td style="text-align: right;">0.4152329</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lamda</td>
+<td style="text-align: right;">0.5935576</td>
+<td style="text-align: right;">0.1002247</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Omega</td>
+<td style="text-align: right;">0.5211311</td>
+<td style="text-align: right;">0.0978375</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">g</td>
+<td style="text-align: right;">0.5647534</td>
+<td style="text-align: right;">0.1501136</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h</td>
+<td style="text-align: right;">0.5405266</td>
+<td style="text-align: right;">0.1677680</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gamma</td>
+<td style="text-align: right;">0.7426304</td>
+<td style="text-align: right;">0.3779059</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">m</td>
+<td style="text-align: right;">0.4197552</td>
+<td style="text-align: right;">0.1397026</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">n</td>
+<td style="text-align: right;">0.6039021</td>
+<td style="text-align: right;">0.1303562</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xi</td>
+<td style="text-align: right;">0.9118948</td>
+<td style="text-align: right;">0.5174046</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-f843a680a1fcd62a0dd1" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-f843a680a1fcd62a0dd1">{"x":{"visdat":{"7ebc3d89bbaa":["function () ","plotlyVisDat"]},"cur_data":"7ebc3d89bbaa","attrs":{"7ebc3d89bbaa":{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"size":3},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"R2 = 0.9544","scene":{"xaxis":{"title":"alpha"},"text":"abc","yaxis":{"title":"x"},"zaxis":{"title":"y"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"color":"rgba(31,119,180,1)","size":3,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+
+Call:
+lm(formula = formo, data = edfc)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.067355 -0.013610 -0.000676  0.008779  0.126233 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.01255    0.01344  -0.934    0.353    
+x            0.53286    0.01973  27.002   &lt;2e-16 ***
+y            0.49246    0.01770  27.816   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.02817 on 97 degrees of freedom
+Multiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 
+F-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects" class="level3">
+<h3 class="anchored" data-anchor-id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects">Ballot predictions based on limit information implied by the estimated Manifold object(s)</h3>
+</section>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Rigged election normal form
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>adat <span class="ot">&lt;-</span> apps[[<span class="dv">1</span>]]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>amet <span class="ot">&lt;-</span> apps[[<span class="dv">2</span>]]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>cogr <span class="ot">&lt;-</span> <span class="fu">Countinggraphs</span>(apps[[<span class="dv">1</span>]])</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>selo <span class="ot">&lt;-</span> <span class="fu">seloutput</span>(<span class="fu">selreport</span>(apps))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>copl <span class="ot">&lt;-</span> cogr<span class="sc">$</span>polyc[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="application-2" class="level2">
+<h2 class="anchored" data-anchor-id="application-2">Application:</h2>
+<section id="section-9" class="level3">
+<h3 class="anchored" data-anchor-id="section-9">Fair election</h3>
+</section>
+</section>
+<section id="application-3" class="level2">
+<h2 class="anchored" data-anchor-id="application-3">Application:</h2>
+<section id="information-1" class="level3">
+<h3 class="anchored" data-anchor-id="information-1">Information</h3>
+<ul>
+<li>Election system:
+<ul>
+<li>Type of race:<br>
+</li>
+<li>Candidates:<br>
+</li>
+<li>Modes of voting:<br>
+</li>
+</ul></li>
+<li><span class="math inline">\(H_0:\)</span> Normal election</li>
+<li><span class="math inline">\(H_1:\)</span> Rigged election:
+<ul>
+<li>Manifold object $$</li>
+<li>Solved for</li>
+</ul></li>
+</ul>
+<p><a href="">Link to raw data and independent calculcations</a></p>
+<hr>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Descriptive</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">2d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Scatter</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">3d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false">Residuals</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="lightable-paper table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">variable</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">S</td>
+<td style="text-align: right;">27.0800000</td>
+<td style="text-align: right;">12.7379811</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: right;">15.5400000</td>
+<td style="text-align: right;">9.8426202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U</td>
+<td style="text-align: right;">17.6400000</td>
+<td style="text-align: right;">9.3046312</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">21.3400000</td>
+<td style="text-align: right;">11.6724834</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">102.7100000</td>
+<td style="text-align: right;">26.9748461</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Z</td>
+<td style="text-align: right;">81.6000000</td>
+<td style="text-align: right;">29.9406821</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">alpha</td>
+<td style="text-align: right;">0.5564953</td>
+<td style="text-align: right;">0.1306240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x</td>
+<td style="text-align: right;">0.6395415</td>
+<td style="text-align: right;">0.1486032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">y</td>
+<td style="text-align: right;">0.4635017</td>
+<td style="text-align: right;">0.1656418</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">zeta</td>
+<td style="text-align: right;">0.9932542</td>
+<td style="text-align: right;">0.4152329</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lamda</td>
+<td style="text-align: right;">0.5935576</td>
+<td style="text-align: right;">0.1002247</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Omega</td>
+<td style="text-align: right;">0.5211311</td>
+<td style="text-align: right;">0.0978375</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">g</td>
+<td style="text-align: right;">0.5647534</td>
+<td style="text-align: right;">0.1501136</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h</td>
+<td style="text-align: right;">0.5405266</td>
+<td style="text-align: right;">0.1677680</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gamma</td>
+<td style="text-align: right;">0.7426304</td>
+<td style="text-align: right;">0.3779059</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">m</td>
+<td style="text-align: right;">0.4197552</td>
+<td style="text-align: right;">0.1397026</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">n</td>
+<td style="text-align: right;">0.6039021</td>
+<td style="text-align: right;">0.1303562</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xi</td>
+<td style="text-align: right;">0.9118948</td>
+<td style="text-align: right;">0.5174046</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-ba32e0541469b5ed4906" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-ba32e0541469b5ed4906">{"x":{"visdat":{"7ebc32c2ca3b2":["function () ","plotlyVisDat"]},"cur_data":"7ebc32c2ca3b2","attrs":{"7ebc32c2ca3b2":{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"size":3},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"R2 = 0.9544","scene":{"xaxis":{"title":"alpha"},"text":"abc","yaxis":{"title":"x"},"zaxis":{"title":"y"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"color":"rgba(31,119,180,1)","size":3,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+
+Call:
+lm(formula = formo, data = edfc)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.067355 -0.013610 -0.000676  0.008779  0.126233 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.01255    0.01344  -0.934    0.353    
+x            0.53286    0.01973  27.002   &lt;2e-16 ***
+y            0.49246    0.01770  27.816   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.02817 on 97 degrees of freedom
+Multiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 
+F-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-6-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-1" class="level3">
+<h3 class="anchored" data-anchor-id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-1">Ballot predictions based on limit information implied by the estimated Manifold object(s)</h3>
+</section>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Rigged election hybrid form
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>adat <span class="ot">&lt;-</span> apps[[<span class="dv">1</span>]]</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>amet <span class="ot">&lt;-</span> apps[[<span class="dv">2</span>]]</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>cogr <span class="ot">&lt;-</span> <span class="fu">Countinggraphs</span>(apps[[<span class="dv">1</span>]])</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>selo <span class="ot">&lt;-</span> <span class="fu">seloutput</span>(<span class="fu">selreport</span>(apps))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>copl <span class="ot">&lt;-</span> cogr<span class="sc">$</span>polyc[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="application-4" class="level2">
+<h2 class="anchored" data-anchor-id="application-4">Application:</h2>
+<section id="section-17" class="level3">
+<h3 class="anchored" data-anchor-id="section-17">Fair election</h3>
+</section>
+</section>
+<section id="application-5" class="level2">
+<h2 class="anchored" data-anchor-id="application-5">Application:</h2>
+<section id="information-2" class="level3">
+<h3 class="anchored" data-anchor-id="information-2">Information</h3>
+<ul>
+<li>Election system:
+<ul>
+<li>Type of race:<br>
+</li>
+<li>Candidates:<br>
+</li>
+<li>Modes of voting:<br>
+</li>
+</ul></li>
+<li><span class="math inline">\(H_0:\)</span> Normal election</li>
+<li><span class="math inline">\(H_1:\)</span> Rigged election:
+<ul>
+<li>Manifold object $$</li>
+<li>Solved for</li>
+</ul></li>
+</ul>
+<p><a href="">Link to raw data and independent calculcations</a></p>
+<hr>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Descriptive</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">2d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Scatter</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">3d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false">Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-6" role="tab" aria-controls="tabset-3-6" aria-selected="false">Residuals</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="lightable-paper table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">variable</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">S</td>
+<td style="text-align: right;">27.0800000</td>
+<td style="text-align: right;">12.7379811</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: right;">15.5400000</td>
+<td style="text-align: right;">9.8426202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U</td>
+<td style="text-align: right;">17.6400000</td>
+<td style="text-align: right;">9.3046312</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">21.3400000</td>
+<td style="text-align: right;">11.6724834</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">102.7100000</td>
+<td style="text-align: right;">26.9748461</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Z</td>
+<td style="text-align: right;">81.6000000</td>
+<td style="text-align: right;">29.9406821</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">alpha</td>
+<td style="text-align: right;">0.5564953</td>
+<td style="text-align: right;">0.1306240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x</td>
+<td style="text-align: right;">0.6395415</td>
+<td style="text-align: right;">0.1486032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">y</td>
+<td style="text-align: right;">0.4635017</td>
+<td style="text-align: right;">0.1656418</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">zeta</td>
+<td style="text-align: right;">0.9932542</td>
+<td style="text-align: right;">0.4152329</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lamda</td>
+<td style="text-align: right;">0.5935576</td>
+<td style="text-align: right;">0.1002247</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Omega</td>
+<td style="text-align: right;">0.5211311</td>
+<td style="text-align: right;">0.0978375</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">g</td>
+<td style="text-align: right;">0.5647534</td>
+<td style="text-align: right;">0.1501136</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h</td>
+<td style="text-align: right;">0.5405266</td>
+<td style="text-align: right;">0.1677680</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gamma</td>
+<td style="text-align: right;">0.7426304</td>
+<td style="text-align: right;">0.3779059</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">m</td>
+<td style="text-align: right;">0.4197552</td>
+<td style="text-align: right;">0.1397026</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">n</td>
+<td style="text-align: right;">0.6039021</td>
+<td style="text-align: right;">0.1303562</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xi</td>
+<td style="text-align: right;">0.9118948</td>
+<td style="text-align: right;">0.5174046</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-484ed42468d86de4a421" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-484ed42468d86de4a421">{"x":{"visdat":{"7ebc3327342d0":["function () ","plotlyVisDat"]},"cur_data":"7ebc3327342d0","attrs":{"7ebc3327342d0":{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"size":3},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"R2 = 0.9544","scene":{"xaxis":{"title":"alpha"},"text":"abc","yaxis":{"title":"x"},"zaxis":{"title":"y"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"color":"rgba(31,119,180,1)","size":3,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-5-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+
+Call:
+lm(formula = formo, data = edfc)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.067355 -0.013610 -0.000676  0.008779  0.126233 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.01255    0.01344  -0.934    0.353    
+x            0.53286    0.01973  27.002   &lt;2e-16 ***
+y            0.49246    0.01770  27.816   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.02817 on 97 degrees of freedom
+Multiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 
+F-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-6-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-2" class="level3">
+<h3 class="anchored" data-anchor-id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-2">Ballot predictions based on limit information implied by the estimated Manifold object(s)</h3>
+</section>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Rigged election opposition form
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>adat <span class="ot">&lt;-</span> apps[[<span class="dv">1</span>]]</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>amet <span class="ot">&lt;-</span> apps[[<span class="dv">2</span>]]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>cogr <span class="ot">&lt;-</span> <span class="fu">Countinggraphs</span>(apps[[<span class="dv">1</span>]])</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>selo <span class="ot">&lt;-</span> <span class="fu">seloutput</span>(<span class="fu">selreport</span>(apps))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>copl <span class="ot">&lt;-</span> cogr<span class="sc">$</span>polyc[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="application-6" class="level2">
+<h2 class="anchored" data-anchor-id="application-6">Application:</h2>
+<section id="section-25" class="level3">
+<h3 class="anchored" data-anchor-id="section-25">Fair election</h3>
+</section>
+</section>
+<section id="application-7" class="level2">
+<h2 class="anchored" data-anchor-id="application-7">Application:</h2>
+<section id="information-3" class="level3">
+<h3 class="anchored" data-anchor-id="information-3">Information</h3>
+<ul>
+<li>Election system:
+<ul>
+<li>Type of race:<br>
+</li>
+<li>Candidates:<br>
+</li>
+<li>Modes of voting:<br>
+</li>
+</ul></li>
+<li><span class="math inline">\(H_0:\)</span> Normal election</li>
+<li><span class="math inline">\(H_1:\)</span> Rigged election:
+<ul>
+<li>Manifold object $$</li>
+<li>Solved for</li>
+</ul></li>
+</ul>
+<p><a href="">Link to raw data and independent calculcations</a></p>
+<hr>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Descriptive</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">2d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Scatter</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false">3d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-5" role="tab" aria-controls="tabset-4-5" aria-selected="false">Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-6" role="tab" aria-controls="tabset-4-6" aria-selected="false">Residuals</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="lightable-paper table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">variable</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">S</td>
+<td style="text-align: right;">27.0800000</td>
+<td style="text-align: right;">12.7379811</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: right;">15.5400000</td>
+<td style="text-align: right;">9.8426202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U</td>
+<td style="text-align: right;">17.6400000</td>
+<td style="text-align: right;">9.3046312</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">21.3400000</td>
+<td style="text-align: right;">11.6724834</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">102.7100000</td>
+<td style="text-align: right;">26.9748461</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Z</td>
+<td style="text-align: right;">81.6000000</td>
+<td style="text-align: right;">29.9406821</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">alpha</td>
+<td style="text-align: right;">0.5564953</td>
+<td style="text-align: right;">0.1306240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x</td>
+<td style="text-align: right;">0.6395415</td>
+<td style="text-align: right;">0.1486032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">y</td>
+<td style="text-align: right;">0.4635017</td>
+<td style="text-align: right;">0.1656418</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">zeta</td>
+<td style="text-align: right;">0.9932542</td>
+<td style="text-align: right;">0.4152329</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lamda</td>
+<td style="text-align: right;">0.5935576</td>
+<td style="text-align: right;">0.1002247</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Omega</td>
+<td style="text-align: right;">0.5211311</td>
+<td style="text-align: right;">0.0978375</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">g</td>
+<td style="text-align: right;">0.5647534</td>
+<td style="text-align: right;">0.1501136</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h</td>
+<td style="text-align: right;">0.5405266</td>
+<td style="text-align: right;">0.1677680</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gamma</td>
+<td style="text-align: right;">0.7426304</td>
+<td style="text-align: right;">0.3779059</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">m</td>
+<td style="text-align: right;">0.4197552</td>
+<td style="text-align: right;">0.1397026</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">n</td>
+<td style="text-align: right;">0.6039021</td>
+<td style="text-align: right;">0.1303562</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xi</td>
+<td style="text-align: right;">0.9118948</td>
+<td style="text-align: right;">0.5174046</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-59-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-697d58abce2053a24549" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-697d58abce2053a24549">{"x":{"visdat":{"7ebc37097b7f0":["function () ","plotlyVisDat"]},"cur_data":"7ebc37097b7f0","attrs":{"7ebc37097b7f0":{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"size":3},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"R2 = 0.9544","scene":{"xaxis":{"title":"alpha"},"text":"abc","yaxis":{"title":"x"},"zaxis":{"title":"y"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"color":"rgba(31,119,180,1)","size":3,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-4-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-5-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+
+Call:
+lm(formula = formo, data = edfc)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.067355 -0.013610 -0.000676  0.008779  0.126233 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.01255    0.01344  -0.934    0.353    
+x            0.53286    0.01973  27.002   &lt;2e-16 ***
+y            0.49246    0.01770  27.816   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.02817 on 97 degrees of freedom
+Multiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 
+F-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-6-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-63-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-3" class="level3">
+<h3 class="anchored" data-anchor-id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-3">Ballot predictions based on limit information implied by the estimated Manifold object(s)</h3>
+</section>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Application 1:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>adat <span class="ot">&lt;-</span> apps[[<span class="dv">1</span>]]</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>amet <span class="ot">&lt;-</span> apps[[<span class="dv">2</span>]]</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>cogr <span class="ot">&lt;-</span> <span class="fu">Countinggraphs</span>(apps[[<span class="dv">1</span>]])</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>selo <span class="ot">&lt;-</span> <span class="fu">seloutput</span>(<span class="fu">selreport</span>(apps))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>copl <span class="ot">&lt;-</span> cogr<span class="sc">$</span>polyc[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="application-8" class="level2">
+<h2 class="anchored" data-anchor-id="application-8">Application:</h2>
+<section id="section-33" class="level3">
+<h3 class="anchored" data-anchor-id="section-33">Fair election</h3>
+</section>
+</section>
+<section id="application-9" class="level2">
+<h2 class="anchored" data-anchor-id="application-9">Application:</h2>
+<section id="information-4" class="level3">
+<h3 class="anchored" data-anchor-id="information-4">Information</h3>
+<ul>
+<li>Election system:
+<ul>
+<li>Type of race:<br>
+</li>
+<li>Candidates:<br>
+</li>
+<li>Modes of voting:<br>
+</li>
+</ul></li>
+<li><span class="math inline">\(H_0:\)</span> Normal election</li>
+<li><span class="math inline">\(H_1:\)</span> Rigged election:
+<ul>
+<li>Manifold object $$</li>
+<li>Solved for</li>
+</ul></li>
+</ul>
+<p><a href="">Link to raw data and independent calculcations</a></p>
+<hr>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Descriptive</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">2d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false">Scatter</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-4" role="tab" aria-controls="tabset-5-4" aria-selected="false">3d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-5" role="tab" aria-controls="tabset-5-5" aria-selected="false">Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-6" role="tab" aria-controls="tabset-5-6" aria-selected="false">Residuals</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="lightable-paper table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">variable</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">S</td>
+<td style="text-align: right;">27.0800000</td>
+<td style="text-align: right;">12.7379811</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: right;">15.5400000</td>
+<td style="text-align: right;">9.8426202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U</td>
+<td style="text-align: right;">17.6400000</td>
+<td style="text-align: right;">9.3046312</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">21.3400000</td>
+<td style="text-align: right;">11.6724834</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">102.7100000</td>
+<td style="text-align: right;">26.9748461</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Z</td>
+<td style="text-align: right;">81.6000000</td>
+<td style="text-align: right;">29.9406821</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">alpha</td>
+<td style="text-align: right;">0.5564953</td>
+<td style="text-align: right;">0.1306240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x</td>
+<td style="text-align: right;">0.6395415</td>
+<td style="text-align: right;">0.1486032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">y</td>
+<td style="text-align: right;">0.4635017</td>
+<td style="text-align: right;">0.1656418</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">zeta</td>
+<td style="text-align: right;">0.9932542</td>
+<td style="text-align: right;">0.4152329</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lamda</td>
+<td style="text-align: right;">0.5935576</td>
+<td style="text-align: right;">0.1002247</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Omega</td>
+<td style="text-align: right;">0.5211311</td>
+<td style="text-align: right;">0.0978375</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">g</td>
+<td style="text-align: right;">0.5647534</td>
+<td style="text-align: right;">0.1501136</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h</td>
+<td style="text-align: right;">0.5405266</td>
+<td style="text-align: right;">0.1677680</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gamma</td>
+<td style="text-align: right;">0.7426304</td>
+<td style="text-align: right;">0.3779059</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">m</td>
+<td style="text-align: right;">0.4197552</td>
+<td style="text-align: right;">0.1397026</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">n</td>
+<td style="text-align: right;">0.6039021</td>
+<td style="text-align: right;">0.1303562</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xi</td>
+<td style="text-align: right;">0.9118948</td>
+<td style="text-align: right;">0.5174046</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-74-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-75-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-29a56e939b13f92b7856" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-29a56e939b13f92b7856">{"x":{"visdat":{"7ebc354385526":["function () ","plotlyVisDat"]},"cur_data":"7ebc354385526","attrs":{"7ebc354385526":{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"size":3},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"R2 = 0.9544","scene":{"xaxis":{"title":"alpha"},"text":"abc","yaxis":{"title":"x"},"zaxis":{"title":"y"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"color":"rgba(31,119,180,1)","size":3,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-5-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-5-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+
+Call:
+lm(formula = formo, data = edfc)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.067355 -0.013610 -0.000676  0.008779  0.126233 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.01255    0.01344  -0.934    0.353    
+x            0.53286    0.01973  27.002   &lt;2e-16 ***
+y            0.49246    0.01770  27.816   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.02817 on 97 degrees of freedom
+Multiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 
+F-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-6-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-78-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-4" class="level3">
+<h3 class="anchored" data-anchor-id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-4">Ballot predictions based on limit information implied by the estimated Manifold object(s)</h3>
+</section>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Application 2:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>adat <span class="ot">&lt;-</span> apps[[<span class="dv">1</span>]]</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>amet <span class="ot">&lt;-</span> apps[[<span class="dv">2</span>]]</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>cogr <span class="ot">&lt;-</span> <span class="fu">Countinggraphs</span>(apps[[<span class="dv">1</span>]])</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>selo <span class="ot">&lt;-</span> <span class="fu">seloutput</span>(<span class="fu">selreport</span>(apps))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>copl <span class="ot">&lt;-</span> cogr<span class="sc">$</span>polyc[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="application-10" class="level2">
+<h2 class="anchored" data-anchor-id="application-10">Application:</h2>
+<section id="section-41" class="level3">
+<h3 class="anchored" data-anchor-id="section-41">Fair election</h3>
+</section>
+</section>
+<section id="application-11" class="level2">
+<h2 class="anchored" data-anchor-id="application-11">Application:</h2>
+<section id="information-5" class="level3">
+<h3 class="anchored" data-anchor-id="information-5">Information</h3>
+<ul>
+<li>Election system:
+<ul>
+<li>Type of race:<br>
+</li>
+<li>Candidates:<br>
+</li>
+<li>Modes of voting:<br>
+</li>
+</ul></li>
+<li><span class="math inline">\(H_0:\)</span> Normal election</li>
+<li><span class="math inline">\(H_1:\)</span> Rigged election:
+<ul>
+<li>Manifold object $$</li>
+<li>Solved for</li>
+</ul></li>
+</ul>
+<p><a href="">Link to raw data and independent calculcations</a></p>
+<hr>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Descriptive</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">2d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false">Scatter</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-4" role="tab" aria-controls="tabset-6-4" aria-selected="false">3d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-5" role="tab" aria-controls="tabset-6-5" aria-selected="false">Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-6" role="tab" aria-controls="tabset-6-6" aria-selected="false">Residuals</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="lightable-paper table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">variable</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">S</td>
+<td style="text-align: right;">27.0800000</td>
+<td style="text-align: right;">12.7379811</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: right;">15.5400000</td>
+<td style="text-align: right;">9.8426202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U</td>
+<td style="text-align: right;">17.6400000</td>
+<td style="text-align: right;">9.3046312</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">21.3400000</td>
+<td style="text-align: right;">11.6724834</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">102.7100000</td>
+<td style="text-align: right;">26.9748461</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Z</td>
+<td style="text-align: right;">81.6000000</td>
+<td style="text-align: right;">29.9406821</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">alpha</td>
+<td style="text-align: right;">0.5564953</td>
+<td style="text-align: right;">0.1306240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x</td>
+<td style="text-align: right;">0.6395415</td>
+<td style="text-align: right;">0.1486032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">y</td>
+<td style="text-align: right;">0.4635017</td>
+<td style="text-align: right;">0.1656418</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">zeta</td>
+<td style="text-align: right;">0.9932542</td>
+<td style="text-align: right;">0.4152329</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lamda</td>
+<td style="text-align: right;">0.5935576</td>
+<td style="text-align: right;">0.1002247</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Omega</td>
+<td style="text-align: right;">0.5211311</td>
+<td style="text-align: right;">0.0978375</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">g</td>
+<td style="text-align: right;">0.5647534</td>
+<td style="text-align: right;">0.1501136</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h</td>
+<td style="text-align: right;">0.5405266</td>
+<td style="text-align: right;">0.1677680</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gamma</td>
+<td style="text-align: right;">0.7426304</td>
+<td style="text-align: right;">0.3779059</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">m</td>
+<td style="text-align: right;">0.4197552</td>
+<td style="text-align: right;">0.1397026</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">n</td>
+<td style="text-align: right;">0.6039021</td>
+<td style="text-align: right;">0.1303562</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xi</td>
+<td style="text-align: right;">0.9118948</td>
+<td style="text-align: right;">0.5174046</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-89-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-90-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-6-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-457827ab1876f7c57926" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-457827ab1876f7c57926">{"x":{"visdat":{"7ebc318e12da4":["function () ","plotlyVisDat"]},"cur_data":"7ebc318e12da4","attrs":{"7ebc318e12da4":{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"size":3},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"R2 = 0.9544","scene":{"xaxis":{"title":"alpha"},"text":"abc","yaxis":{"title":"x"},"zaxis":{"title":"y"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"color":"rgba(31,119,180,1)","size":3,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-6-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-5-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+
+Call:
+lm(formula = formo, data = edfc)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.067355 -0.013610 -0.000676  0.008779  0.126233 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.01255    0.01344  -0.934    0.353    
+x            0.53286    0.01973  27.002   &lt;2e-16 ***
+y            0.49246    0.01770  27.816   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.02817 on 97 degrees of freedom
+Multiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 
+F-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-6-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-6-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-93-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-5" class="level3">
+<h3 class="anchored" data-anchor-id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-5">Ballot predictions based on limit information implied by the estimated Manifold object(s)</h3>
+</section>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Application 3:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>adat <span class="ot">&lt;-</span> apps[[<span class="dv">1</span>]]</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>amet <span class="ot">&lt;-</span> apps[[<span class="dv">2</span>]]</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>cogr <span class="ot">&lt;-</span> <span class="fu">Countinggraphs</span>(apps[[<span class="dv">1</span>]])</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>selo <span class="ot">&lt;-</span> <span class="fu">seloutput</span>(<span class="fu">selreport</span>(apps))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>copl <span class="ot">&lt;-</span> cogr<span class="sc">$</span>polyc[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="application-12" class="level2">
+<h2 class="anchored" data-anchor-id="application-12">Application:</h2>
+<section id="section-49" class="level3">
+<h3 class="anchored" data-anchor-id="section-49">Fair election</h3>
+</section>
+</section>
+<section id="application-13" class="level2">
+<h2 class="anchored" data-anchor-id="application-13">Application:</h2>
+<section id="information-6" class="level3">
+<h3 class="anchored" data-anchor-id="information-6">Information</h3>
+<ul>
+<li>Election system:
+<ul>
+<li>Type of race:<br>
+</li>
+<li>Candidates:<br>
+</li>
+<li>Modes of voting:<br>
+</li>
+</ul></li>
+<li><span class="math inline">\(H_0:\)</span> Normal election</li>
+<li><span class="math inline">\(H_1:\)</span> Rigged election:
+<ul>
+<li>Manifold object $$</li>
+<li>Solved for</li>
+</ul></li>
+</ul>
+<p><a href="">Link to raw data and independent calculcations</a></p>
+<hr>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Descriptive</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">2d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false">Scatter</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-4" role="tab" aria-controls="tabset-7-4" aria-selected="false">3d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-5" role="tab" aria-controls="tabset-7-5" aria-selected="false">Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-6" role="tab" aria-controls="tabset-7-6" aria-selected="false">Residuals</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="lightable-paper table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">variable</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">S</td>
+<td style="text-align: right;">27.0800000</td>
+<td style="text-align: right;">12.7379811</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: right;">15.5400000</td>
+<td style="text-align: right;">9.8426202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U</td>
+<td style="text-align: right;">17.6400000</td>
+<td style="text-align: right;">9.3046312</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">21.3400000</td>
+<td style="text-align: right;">11.6724834</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">102.7100000</td>
+<td style="text-align: right;">26.9748461</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Z</td>
+<td style="text-align: right;">81.6000000</td>
+<td style="text-align: right;">29.9406821</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">alpha</td>
+<td style="text-align: right;">0.5564953</td>
+<td style="text-align: right;">0.1306240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x</td>
+<td style="text-align: right;">0.6395415</td>
+<td style="text-align: right;">0.1486032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">y</td>
+<td style="text-align: right;">0.4635017</td>
+<td style="text-align: right;">0.1656418</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">zeta</td>
+<td style="text-align: right;">0.9932542</td>
+<td style="text-align: right;">0.4152329</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lamda</td>
+<td style="text-align: right;">0.5935576</td>
+<td style="text-align: right;">0.1002247</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Omega</td>
+<td style="text-align: right;">0.5211311</td>
+<td style="text-align: right;">0.0978375</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">g</td>
+<td style="text-align: right;">0.5647534</td>
+<td style="text-align: right;">0.1501136</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h</td>
+<td style="text-align: right;">0.5405266</td>
+<td style="text-align: right;">0.1677680</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gamma</td>
+<td style="text-align: right;">0.7426304</td>
+<td style="text-align: right;">0.3779059</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">m</td>
+<td style="text-align: right;">0.4197552</td>
+<td style="text-align: right;">0.1397026</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">n</td>
+<td style="text-align: right;">0.6039021</td>
+<td style="text-align: right;">0.1303562</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xi</td>
+<td style="text-align: right;">0.9118948</td>
+<td style="text-align: right;">0.5174046</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-104-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-105-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-7-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-b22985179f0d812c9115" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-b22985179f0d812c9115">{"x":{"visdat":{"7ebc34597cf2f":["function () ","plotlyVisDat"]},"cur_data":"7ebc34597cf2f","attrs":{"7ebc34597cf2f":{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"size":3},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"R2 = 0.9544","scene":{"xaxis":{"title":"alpha"},"text":"abc","yaxis":{"title":"x"},"zaxis":{"title":"y"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"color":"rgba(31,119,180,1)","size":3,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-7-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-5-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+
+Call:
+lm(formula = formo, data = edfc)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.067355 -0.013610 -0.000676  0.008779  0.126233 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.01255    0.01344  -0.934    0.353    
+x            0.53286    0.01973  27.002   &lt;2e-16 ***
+y            0.49246    0.01770  27.816   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.02817 on 97 degrees of freedom
+Multiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 
+F-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-7-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-6-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-108-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-6" class="level3">
+<h3 class="anchored" data-anchor-id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-6">Ballot predictions based on limit information implied by the estimated Manifold object(s)</h3>
+</section>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Application 4:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>adat <span class="ot">&lt;-</span> apps[[<span class="dv">1</span>]]</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>amet <span class="ot">&lt;-</span> apps[[<span class="dv">2</span>]]</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>cogr <span class="ot">&lt;-</span> <span class="fu">Countinggraphs</span>(apps[[<span class="dv">1</span>]])</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>selo <span class="ot">&lt;-</span> <span class="fu">seloutput</span>(<span class="fu">selreport</span>(apps))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>copl <span class="ot">&lt;-</span> cogr<span class="sc">$</span>polyc[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="application-14" class="level2">
+<h2 class="anchored" data-anchor-id="application-14">Application:</h2>
+<section id="section-57" class="level3">
+<h3 class="anchored" data-anchor-id="section-57">Fair election</h3>
+</section>
+</section>
+<section id="application-15" class="level2">
+<h2 class="anchored" data-anchor-id="application-15">Application:</h2>
+<section id="information-7" class="level3">
+<h3 class="anchored" data-anchor-id="information-7">Information</h3>
+<ul>
+<li>Election system:
+<ul>
+<li>Type of race:<br>
+</li>
+<li>Candidates:<br>
+</li>
+<li>Modes of voting:<br>
+</li>
+</ul></li>
+<li><span class="math inline">\(H_0:\)</span> Normal election</li>
+<li><span class="math inline">\(H_1:\)</span> Rigged election:
+<ul>
+<li>Manifold object $$</li>
+<li>Solved for</li>
+</ul></li>
+</ul>
+<p><a href="">Link to raw data and independent calculcations</a></p>
+<hr>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">Descriptive</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">2d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-3" role="tab" aria-controls="tabset-8-3" aria-selected="false">Scatter</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-4" role="tab" aria-controls="tabset-8-4" aria-selected="false">3d</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-5" role="tab" aria-controls="tabset-8-5" aria-selected="false">Regression</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-6" role="tab" aria-controls="tabset-8-6" aria-selected="false">Residuals</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<table class="lightable-paper table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">variable</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">S</td>
+<td style="text-align: right;">27.0800000</td>
+<td style="text-align: right;">12.7379811</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: right;">15.5400000</td>
+<td style="text-align: right;">9.8426202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U</td>
+<td style="text-align: right;">17.6400000</td>
+<td style="text-align: right;">9.3046312</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">21.3400000</td>
+<td style="text-align: right;">11.6724834</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">102.7100000</td>
+<td style="text-align: right;">26.9748461</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Z</td>
+<td style="text-align: right;">81.6000000</td>
+<td style="text-align: right;">29.9406821</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">alpha</td>
+<td style="text-align: right;">0.5564953</td>
+<td style="text-align: right;">0.1306240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x</td>
+<td style="text-align: right;">0.6395415</td>
+<td style="text-align: right;">0.1486032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">y</td>
+<td style="text-align: right;">0.4635017</td>
+<td style="text-align: right;">0.1656418</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">zeta</td>
+<td style="text-align: right;">0.9932542</td>
+<td style="text-align: right;">0.4152329</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lamda</td>
+<td style="text-align: right;">0.5935576</td>
+<td style="text-align: right;">0.1002247</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Omega</td>
+<td style="text-align: right;">0.5211311</td>
+<td style="text-align: right;">0.0978375</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">g</td>
+<td style="text-align: right;">0.5647534</td>
+<td style="text-align: right;">0.1501136</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h</td>
+<td style="text-align: right;">0.5405266</td>
+<td style="text-align: right;">0.1677680</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gamma</td>
+<td style="text-align: right;">0.7426304</td>
+<td style="text-align: right;">0.3779059</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">m</td>
+<td style="text-align: right;">0.4197552</td>
+<td style="text-align: right;">0.1397026</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">n</td>
+<td style="text-align: right;">0.6039021</td>
+<td style="text-align: right;">0.1303562</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xi</td>
+<td style="text-align: right;">0.9118948</td>
+<td style="text-align: right;">0.5174046</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-119-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-120-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-cde5c072f26745d6feeb" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-cde5c072f26745d6feeb">{"x":{"visdat":{"7ebc341e9bd24":["function () ","plotlyVisDat"]},"cur_data":"7ebc341e9bd24","attrs":{"7ebc341e9bd24":{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"size":3},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"R2 = 0.9544","scene":{"xaxis":{"title":"alpha"},"text":"abc","yaxis":{"title":"x"},"zaxis":{"title":"y"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0.36363636363636365,0.38235294117647056,0.5,0.46511627906976744,0.40000000000000002,0.59999999999999998,0.47297297297297297,0.36363636363636365,0.61764705882352944,0.56000000000000005,0.36507936507936506,0.32098765432098764,0.42857142857142855,0.67391304347826086,0.43396226415094341,0.42307692307692307,0.46296296296296297,0.59999999999999998,0.45000000000000001,0.47826086956521741,0.62264150943396224,0.53846153846153844,0.52380952380952384,0.4375,0.79487179487179482,0.68181818181818177,0.39473684210526316,0.63636363636363635,0.66666666666666663,0.5901639344262295,0.75,0.53731343283582089,0.546875,0.61111111111111116,0.4838709677419355,0.68181818181818177,0.58823529411764708,0.69999999999999996,0.62790697674418605,0.53125,0.5641025641025641,0.59999999999999998,0.52631578947368418,0.63265306122448983,0.59999999999999998,0.5757575757575758,0.7021276595744681,0.58620689655172409,0.66666666666666663,0.56000000000000005,0.62857142857142856,0.70967741935483875,0.55263157894736847,0.65573770491803274,0.76923076923076927,0.59999999999999998,0.69565217391304346,0.27272727272727271,0.57777777777777772,0.88235294117647056,0.75862068965517238,0.77027027027027029,0.69047619047619047,0.59999999999999998,0.68000000000000005,0.6097560975609756,0.52631578947368418,0.5757575757575758,0.81395348837209303,0.68181818181818177,0.78947368421052633,0.71999999999999997,0.88571428571428568,0.74285714285714288,0.81081081081081086,0.64444444444444449,0.65853658536585369,0.83720930232558144,0.86842105263157898,0.79166666666666663,0.70909090909090911,0.63636363636363635,0.72222222222222221,0.77500000000000002,0.82666666666666666,0.85542168674698793,0.70731707317073167,0.75,0.660377358490566,0.74545454545454548,0.75510204081632648,0.80000000000000004,0.86046511627906974,0.86363636363636365,0.83333333333333337,0.88888888888888884,0.86111111111111116,0.77272727272727271,0.90000000000000002,0.90909090909090906],"y":[0.21052631578947367,0.17857142857142858,0.13333333333333333,0.2153846153846154,0.24242424242424243,0.1388888888888889,0.19230769230769232,0.36842105263157893,0.234375,0.20689655172413793,0.37735849056603776,0.46774193548387094,0.36842105263157893,0.14000000000000001,0.3728813559322034,0.40000000000000002,0.35483870967741937,0.32758620689655171,0.43661971830985913,0.4375,0.24444444444444444,0.38235294117647056,0.41666666666666669,0.5,0.18181818181818182,0.22807017543859648,0.55421686746987953,0.35714285714285715,0.33333333333333331,0.34090909090909088,0.34000000000000002,0.42857142857142855,0.42222222222222222,0.35714285714285715,0.51666666666666672,0.26470588235294118,0.44230769230769229,0.36585365853658536,0.34426229508196721,0.46153846153846156,0.46666666666666667,0.45652173913043476,0.5168539325842697,0.44117647058823528,0.36363636363636365,0.47272727272727272,0.37254901960784315,0.5,0.43076923076923079,0.53333333333333333,0.46969696969696972,0.37037037037037035,0.55555555555555558,0.4358974358974359,0.45000000000000001,0.53333333333333333,0.5,0.79411764705882348,0.60606060606060608,0.40740740740740738,0.34999999999999998,0.32653061224489793,0.29166666666666669,0.61764705882352944,0.51351351351351349,0.61764705882352944,0.7407407407407407,0.64406779661016944,0.30769230769230771,0.5625,0.5,0.52941176470588236,0.46808510638297873,0.55172413793103448,0.5,0.69999999999999996,0.67796610169491522,0.47222222222222221,0.41379310344827586,0.61904761904761907,0.67500000000000004,0.75,0.65000000000000002,0.59259259259259256,0.51063829787234039,0.27586206896551724,0.71052631578947367,0.69565217391304346,0.81081081081081086,0.69999999999999996,0.6785714285714286,0.62857142857142856,0.5714285714285714,0.65000000000000002,0.7142857142857143,0.69999999999999996,0.65384615384615385,0.83333333333333337,0.54545454545454541,0.63636363636363635],"z":[0.28169014084507044,0.29032258064516131,0.29113924050632911,0.31481481481481483,0.3235294117647059,0.34848484848484851,0.35714285714285715,0.36585365853658536,0.36734693877551022,0.37037037037037035,0.37068965517241381,0.38461538461538464,0.39393939393939392,0.39583333333333331,0.4017857142857143,0.41463414634146339,0.42352941176470588,0.43877551020408162,0.44144144144144143,0.44827586206896552,0.44897959183673469,0.45000000000000001,0.46666666666666667,0.46875,0.46987951807228917,0.47154471544715448,0.4779874213836478,0.47999999999999998,0.48333333333333334,0.48571428571428571,0.48717948717948717,0.49137931034482757,0.49541284403669728,0.5,0.5,0.5,0.5,0.50704225352112675,0.51020408163265307,0.51111111111111107,0.51190476190476186,0.51851851851851849,0.52121212121212124,0.5213675213675214,0.52777777777777779,0.52892561983471076,0.53061224489795922,0.54385964912280704,0.546875,0.55000000000000004,0.55147058823529416,0.55172413793103448,0.55405405405405406,0.56999999999999995,0.5757575757575758,0.57777777777777772,0.58181818181818179,0.5892857142857143,0.58974358974358976,0.59090909090909094,0.59183673469387754,0.5934959349593496,0.60185185185185186,0.6067415730337079,0.60919540229885061,0.61333333333333329,0.61538461538461542,0.61956521739130432,0.62318840579710144,0.63157894736842102,0.64102564102564108,0.6428571428571429,0.64634146341463417,0.65625,0.66666666666666663,0.66666666666666663,0.67000000000000004,0.67088607594936711,0.67164179104477617,0.68181818181818177,0.69473684210526321,0.69565217391304346,0.6964285714285714,0.70149253731343286,0.70491803278688525,0.7053571428571429,0.70886075949367089,0.7142857142857143,0.72222222222222221,0.72380952380952379,0.72727272727272729,0.73684210526315785,0.74647887323943662,0.76190476190476186,0.76923076923076927,0.77083333333333337,0.77419354838709675,0.80000000000000004,0.80487804878048785,0.80681818181818177],"mode":"markers","marker":{"color":"rgba(31,119,180,1)","size":3,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-8-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-5-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+
+Call:
+lm(formula = formo, data = edfc)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.067355 -0.013610 -0.000676  0.008779  0.126233 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.01255    0.01344  -0.934    0.353    
+x            0.53286    0.01973  27.002   &lt;2e-16 ***
+y            0.49246    0.01770  27.816   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.02817 on 97 degrees of freedom
+Multiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 
+F-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-8-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-6-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tabsets_files/figure-html/unnamed-chunk-123-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-7" class="level3">
+<h3 class="anchored" data-anchor-id="ballot-predictions-based-on-limit-information-implied-by-the-estimated-manifold-objects-7">Ballot predictions based on limit information implied by the estimated Manifold object(s)</h3>
+</section>
+</section>
+</div>
+</div>
 </div>
 
 

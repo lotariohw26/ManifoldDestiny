@@ -1,0 +1,118 @@
+---
+title: ""
+params:
+  name: "0"
+---
+
+```{r, echo=F,message=FALSE,warning=FALSE}
+ManifoldDestiny::wasmconload()
+library(ManifoldDestiny)
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
+apps <- ManifoldDestiny::app0
+adat <- apps[[1]]
+amet <- apps[[2]]
+cogr <- Countinggraphs(apps[[1]])
+selo <- seloutput(selreport(apps))
+copl <- cogr$polyc[[1]][[1]]
+```
+
+
+
+
+## Application: `r amet$nmn`
+
+### {{< var tabh.h1 >}}
+
+---
+
+::: {.panel-tabset}
+
+### {{< var tabs.h1 >}}
+
+```{r, echo=F}
+kableExtra::kbl(selo[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h2 >}}
+```{r, echo=F, out.width="60%"}
+selo[['corxy']]
+```
+### {{< var tabs.h3 >}}
+```{r, echo=F, out.width="60%"}
+selo[['qunt']]
+```
+### {{< var tabs.h4 >}}
+```{r, echo=F}
+selo[['ro3d']]
+```
+### {{< var tabs.h5 >}}
+```{r, echo=F, out.width="60%"}
+selo[['regr']]
+```
+### {{< var tabs.h6 >}}
+```{r, echo=F, out.width="60%"}
+selo[['resp']]
+```
+::: 
+
+
+```{r, echo=F}
+knitr::knit_exit()
+```
+
+### Ballot predictions based on limit information implied by the estimated Manifold object(s)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Application: `r #mda$nmn`
+### Information
+- Election system:
+  - Type of race: `r #mda$rcn` 
+  - Candidates: `r #mda$cnd` 
+  - Modes of voting: `r #mda$mod` 
+- $H_0:$ Normal election 
+- $H_1:$ Rigged election: 
+  - Manifold object $`r #mda$eq[1]`$
+  - Solved for `r #mda$va`
+
+[Link to raw data and independent calculcations](`r #mda$url`)
+
+
+```{r, echo=F}
+knitr::knit_exit()
+```
+
+---
+
+### Ballot predictions based on limit information implied by the estimated Manifold object(s)
+
+```{r, echo=F}
+asop$cmp[,1] <- c("Mean total votes", "Number of precincts", "Zero prediction error", "In percentage", "Mean", "Standard Deviation", "Max ballot error", "1+/- prediction error", "2+/- prediction error", "2+/- prediction error", "Percentage within +/-3")
+kableExtra::kbl(asop$cmp,row.names=F,col.names=c("Statistic","Value"),digits=2) %>% kableExtra::kable_paper(full_width = F) 
+```
+
+
+
+
+
+
+
+
+
+

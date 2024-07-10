@@ -16,27 +16,27 @@ prob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztec <- c(0,1)	
 basc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),list(fr=1,eq="alpha=k0+k1*x+k2*y"))
 # Normal form
-cogr <- Countinggraphs(basc[[1]])
-seln <- seloutput(selreport(basc))
-copl <- cogr$polyc[[1]][[1]]
 # Rigged election
-frms <- c(1,1,1)
-plnr <- c(1,2,3)
-exs <- c("ex1", "ex2", "ex3")
-pvec <- c(1,2,3)[1]
-rigv <- lapply(exs, function(x) { 
-  cogr$mansys(sygen=list(frm=1, 
-  		pre=c("alpha","x","y"),
-  		end=c("zeta","Omega","lamda"),
-  		stuv=c("S","T","U","V"),
-  		plnr=1,
-  		lf="(alpha-alpha_s)^2"))
-  cogr$setres(0.19,1)
-  #cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
-  rigc <- basc
-  sero <- seloutput(selreport(rigc))
-  return(list(sero,sero))
-})
+#cogr <- Countinggraphs(basc[[1]])
+#seln <- seloutput(selreport(basc))
+#copl <- cogr$polyc[[1]][[1]]
+#frms <- c(1,1,1)
+#plnr <- c(1,2,3)
+#exs <- c("ex1", "ex2", "ex3")
+#pvec <- c(1,2,3)[1]
+#rigv <- lapply(exs, function(x) { 
+#  cogr$mansys(sygen=list(frm=1, 
+#  		pre=c("alpha","x","y"),
+#  		end=c("zeta","Omega","lamda"),
+#  		stuv=c("S","T","U","V"),
+#  		plnr=1,
+#  		lf="(alpha-alpha_s)^2"))
+#  cogr$setres(0.19,1)
+#  #cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
+#  rigc <- basc
+#  sero <- seloutput(selreport(rigc))
+#  return(list(sero,sero))
+#})
 #ismv <- SimVoterdatabase(basc[[1]])
 #crpl <- SimVoterdatabase(rigc[[1]])
 ####################################################################################################################################################################

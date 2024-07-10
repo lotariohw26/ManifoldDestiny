@@ -22,7 +22,8 @@ project:
     - "man_bib.qmd"
     - "addendum/Addendum_az.qmd"
     - "addendum/Addendum_ne.qmd"
-    - "tabsets.qmd"
+    - "tabset.qmd"
+    - "tab.qmd"
     - "metaview.qmd"
     - "simulations.qmd"
     - "rigging.qmd"
@@ -48,7 +49,7 @@ website:
         - text: "Paper"
           href: paper.qmd
       - text: "Tabsets"
-        href: tabsets.qmd
+        href: tabset.qmd
       - text: Shiny applications
         menu:
           - text: "R2 simulator"
