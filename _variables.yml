@@ -6,7 +6,7 @@ sec1:
   un1: "Setting up the election system"
   un2: "Tautologies using standard form (north vs. south)"
   un3: "Tautologies using hybrid form (west vs. east)"
-  un4: "Tautologies using opposition form (upper diagonal vs. lower diagonal)"
+  un4: "Tautologies using opposition form (upper vs. lower)"
   un5: "Modelling the election process"
   un6: "How outside factors to the voting system will impact $\\zeta_i$"
   un7: "How outside factors to the voting system will impact $\\Gamma_i$"
