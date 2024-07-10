@@ -149,14 +149,15 @@ r2simn <- function(nprec=300,
 
     list(r2reg=unique(dfc$R2_1),receil=unique(dfc$R2_2),dfcopy=dfc)
 }
+
 #' @export ballcastsim
-ballcastsim <- function(
-  dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10),
+ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(10),
   probw=c(0.5,0.02),
   probva=c(0.7,0.2,0.03,0.00),
   probvb=c(0.7,0.2,0.03,0.00),
-  ztech=c(0,0)){
-  probvrnd <<- dfm |>
+  ztech=c(0,0))
+  {
+  probvrnd <- dfm |>
     dplyr::mutate(ZV=rnorm(dplyr::n(),probw[1],probw[2])) |>
     dplyr::mutate(N=runif(dplyr::n(),ztech[1],ztech[2])) |>
     dplyr::mutate(p3=(1-ztech)*(1-pmax(0, pmin(1,rnorm(dplyr::n(),probva[1],probva[3]))))) |>

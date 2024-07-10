@@ -2,29 +2,21 @@
 title: ""
 ---
 
-```{r, echo=F, message=F, warning=F}
-ManifoldDestiny::wasmconload()
-md <- ManifoldDestiny::metd
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
-```
-
-```{r, echo=F,message=FALSE,warning=FALSE}
+```{r, echo=F, warnings=F,messages=T}
 ManifoldDestiny::wasmconload()
 library(ManifoldDestiny)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-mda <- app0[[2]]
-asrp <- selreport(app0)
-asop <- seloutput(asrp)
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
 ```
 
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h1 >}}
 ```{r, echo=FALSE, results='asis',warning=F}
-#app_a_out <- app_0_out 
-app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
-text <- readLines(app1_fil)
+#apst <- app_n_out
+#app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+#text <- readLines(app1_fil)
 #cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
 ```
 :::
@@ -41,6 +33,16 @@ text <- readLines(app1_fil)
 
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h3 >}}
+```{r, echo=FALSE, results='asis',warning=F}
+#app_a_out <- app_2_out 
+#app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
+#text <- readLines(app1_fil)
+#cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
+```
+:::
+
+::: {.callout-caution collapse="true"}
+## {{< var tabh.h4 >}}
 ```{r, echo=FALSE, results='asis',warning=F}
 #app_a_out <- app_2_out 
 #app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/app_par.qmd')
@@ -88,5 +90,15 @@ text <- readLines(app1_fil)
 #cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
 ```
 :::
+
+
+
+
+```{r, echo=F}
+knitr::knit_exit()
+```
+
+
+
 
 

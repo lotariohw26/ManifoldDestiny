@@ -55,8 +55,6 @@ tabh:
   h2: "Rigged election normal form"
   h3: "Rigged election hybrid form"
   h4: "Rigged election opposition form"
-  h5: "Regression"
-  h6: "Residuals"
 
 tabs:
   h1: "Descriptive"

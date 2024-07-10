@@ -191,6 +191,10 @@ window.Quarto = {
  <span class="dropdown-text">Simulations</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./rigging.html">
+ <span class="dropdown-text">Rigging</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./analyzer.html">
  <span class="dropdown-text">Analyzer</span></a>
   </li>  
@@ -199,7 +203,7 @@ window.Quarto = {
  <span class="dropdown-text">Restoration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./abc.html">
+    <a class="dropdown-item" href="./randpython.html">
  <span class="dropdown-text">Functions</span></a>
   </li>  
     </ul>
@@ -224,11 +228,97 @@ window.Quarto = {
 
 
 
-<div class="cell">
+<div class="cell" data-warnings="false" data-messages="true">
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: ggplot2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'plotly'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:ggplot2':
+
+    last_plot</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    filter</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:graphics':
+
+    layout</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'combinat'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:utils':
+
+    combn</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'gridExtra'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    combine</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4839449
-[1] 0.4839449
-[1] 0.4839449</code></pre>
+<pre><code>[1] 0.4839449</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4839449</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4839449</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -285,7 +375,7 @@ Rigged election hybrid form
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Application 1:
+Rigged election opposition form
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -301,7 +391,7 @@ Application 1:
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Application 2:
+Application 1:
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -317,7 +407,7 @@ Application 2:
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Application 3:
+Application 2:
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -333,11 +423,27 @@ Application 3:
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Application 4:
+Application 3:
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Application 4:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 
 </div>
