@@ -35,6 +35,8 @@ rigv <- lapply(exs, function(x) {
   return(rasc)
 })
 
+#
+#cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
 
 #ismv <- SimVoterdatabase(basc[[1]])
 #crpl <- SimVoterdatabase(rigc[[1]])
