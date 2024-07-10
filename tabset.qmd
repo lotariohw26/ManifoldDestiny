@@ -1,8 +1,11 @@
 ---
-title: "ABC"
+title: ""
 ---
 
-```{r, echo=F, warnings=F,messages=T}
+```{r}
+#| echo: false
+#| output: false
+#| message: false
 ManifoldDestiny::wasmconload()
 library(ManifoldDestiny)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
