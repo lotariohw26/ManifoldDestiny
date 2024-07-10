@@ -17,7 +17,7 @@ ztec <- c(0,1)
 basc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),list(fr=1,eq="alpha=k0+k1*x+k2*y"))
 # Normal form
 cogr <- Countinggraphs(basc[[1]])
-selo <- seloutput(selreport(basc))
+seln <- seloutput(selreport(basc))
 copl <- cogr$polyc[[1]][[1]]
 # Rigged election
 frms <- c(1,1,1)
