@@ -30,7 +30,7 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h1 >}}
 ```{r, echo=FALSE, results='asis',warning=F}
-apps <- rasc[[1]]
+apps <- rigv[[1]]
 app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/tab.qmd')
 text <- readLines(app1_fil)
 cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
@@ -40,7 +40,7 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h2 >}}
 ```{r, echo=FALSE, results='asis',warning=F}
-apps <- rasc[[2]]
+apps <- rigv[[2]]
 app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/tab.qmd')
 text <- readLines(app1_fil)
 cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
@@ -50,7 +50,7 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h3 >}}
 ```{r, echo=FALSE, results='asis',warning=F}
-apps <- rasc[[3]]
+apps <- rigv[[3]]
 app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/tab.qmd')
 text <- readLines(app1_fil)
 cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))

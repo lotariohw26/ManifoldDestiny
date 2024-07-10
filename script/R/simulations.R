@@ -15,7 +15,6 @@ proa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 prob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztec <- c(0,1)	
 basc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),list(fr=1,eq="alpha=k0+k1*x+k2*y"))
-# Normal form
 # Rigged election
 cogr <- Countinggraphs(basc[[1]])
 copl <- cogr$polyc[[1]][[1]]
@@ -31,7 +30,7 @@ rigv <- lapply(exs, function(x) {
   		plnr=1,
   		lf="(alpha-alpha_s)^2"))
   cogr$setres(0.19,1)
-  cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
+  #cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
   rasc <- basc
   return(rasc)
 })

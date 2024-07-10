@@ -51,10 +51,10 @@ sec9:
   nmn: "References"
 
 tabh:
-  h1: "Fair election"
-  h2: "Rigged election normal form"
-  h3: "Rigged election hybrid form"
-  h4: "Rigged election opposition form"
+  h0: "Fair election"
+  h1: "Rigged election normal form"
+  h2: "Rigged election hybrid form"
+  h3: "Rigged election opposition form"
 
 tabs:
   h1: "Descriptive"

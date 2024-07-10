@@ -356,7 +356,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"read-only":"false","out-height":"","classes":"","output":"true","fig-width":7,"dpi":72,"editor-quick-suggestions":"false","results":"markup","echo":"fenced","editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","message":"true","fig-height":5,"editor-max-height":"","label":"unnamed-chunk-1","warning":"true","fig-cap":"","eval":"true","autorun":"true","comment":"","context":"interactive"},"id":1,"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\ndfl <- ManifoldDestinyWASMD::yout"},{"options":{"read-only":"false","out-height":"","classes":"","output":"true","fig-width":7,"dpi":72,"editor-quick-suggestions":"false","results":"markup","editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","message":"true","fig-height":5,"editor-max-height":"","label":"unnamed-chunk-2","warning":"true","fig-cap":"","autorun":"true","comment":"","context":"interactive"},"id":2,"code":"coi <- Countingprocess(dfl[[1]])\nges <- Estimation(coi$rdfc,2)\nges$regression(\"alpha=k0+k1*g+k2*h\")\nges$diagnostics()\nbroom::tidy(ges$regsum[[1]])\nbroom::glance(ges$regsum[[1]])"}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\ndfl <- ManifoldDestinyWASMD::yout","options":{"editor-font-scale":"1","output":"true","editor-max-height":"","label":"unnamed-chunk-1","warning":"true","message":"true","comment":"","results":"markup","editor-word-wrap":"true","dpi":72,"fig-height":5,"eval":"true","echo":"fenced","read-only":"false","classes":"","editor-quick-suggestions":"false","fig-width":7,"out-width":"700px","fig-cap":"","context":"interactive","out-height":"","autorun":"true"}},{"id":2,"code":"coi <- Countingprocess(dfl[[1]])\nges <- Estimation(coi$rdfc,2)\nges$regression(\"alpha=k0+k1*g+k2*h\")\nges$diagnostics()\nbroom::tidy(ges$regsum[[1]])\nbroom::glance(ges$regsum[[1]])","options":{"editor-font-scale":"1","output":"true","editor-max-height":"","label":"unnamed-chunk-2","warning":"true","message":"true","comment":"","results":"markup","editor-word-wrap":"true","dpi":72,"fig-height":5,"read-only":"false","classes":"","editor-quick-suggestions":"false","fig-width":7,"out-width":"700px","fig-cap":"","context":"interactive","out-height":"","autorun":"true"}}];
 
 </script>
 <script type="module">
@@ -1632,7 +1632,7 @@ window.Quarto = {
   </li>
   <li class="nav-item">
     <a class="nav-link" href="./tabset.html"> 
-<span class="menu-text">Tabsets</span></a>
+<span class="menu-text">Tabset</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shiny-applications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
