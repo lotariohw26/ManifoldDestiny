@@ -4,11 +4,14 @@ params:
   name: "0"
 ---
 
-```{r, echo=F}
+```{r, echo=T}
 params$name
 ```
 
 ```{r, echo=F,message=FALSE,warning=FALSE}
+#| echo: false
+#| output: false
+#| message: false
 sw <- as.numeric(params$name)
 if(sw == 0) {
 ManifoldDestiny::wasmconload()
@@ -45,10 +48,11 @@ apps <- ManifoldDestiny::app0
 
 
 
-
-
-
 ```{r}
+#| echo: false
+#| output: false
+#| message: false
+#| warning: false
 adat <- apps[[1]]
 amet <- apps[[2]]
 cogr <- Countinggraphs(apps[[1]])

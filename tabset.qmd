@@ -11,7 +11,6 @@ library(ManifoldDestiny)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
 ```
 
 ::: {.callout-caution collapse="true"}
@@ -58,7 +57,7 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 ::: {.callout-caution collapse="true"}
 ## {{< var sec6.un1 >}}
 ```{r, echo=FALSE, results='asis',warning=F}
-apps <- basc
+apps <- app1
 app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/tab.qmd')
 text <- readLines(app1_fil)
 cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
@@ -68,7 +67,7 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 ::: {.callout-caution collapse="true"}
 ## {{< var sec6.un2 >}}
 ```{r, echo=FALSE, results='asis',warning=F}
-apps <- basc
+apps <- app2
 app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/tab.qmd')
 text <- readLines(app1_fil)
 cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
@@ -78,7 +77,7 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 ::: {.callout-caution collapse="true"}
 ## {{< var sec6.un3 >}}
 ```{r, echo=FALSE, results='asis',warning=F}
-apps <- basc
+apps <- app3
 app_a_out <- basc
 app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/tab.qmd')
 text <- readLines(app1_fil)
@@ -89,7 +88,7 @@ cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quie
 ::: {.callout-caution collapse="true"}
 ## {{< var sec6.un4 >}}
 ```{r, echo=FALSE, results='asis',warning=F}
-apps <- basc
+apps <- app4
 app1_fil <- paste0(rprojroot::find_rstudio_root_file(), '/tab.qmd')
 text <- readLines(app1_fil)
 cat(knitr::knit_child(text = paste(text[50:length(text)], collapse = "\n"), quiet = TRUE))
