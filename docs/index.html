@@ -356,7 +356,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"fig-cap":"","message":"true","editor-word-wrap":"true","eval":"true","label":"unnamed-chunk-1","out-width":"700px","out-height":"","editor-font-scale":"1","output":"true","context":"interactive","dpi":72,"echo":"fenced","results":"markup","editor-max-height":"","autorun":"true","warning":"true","fig-height":5,"comment":"","fig-width":7,"classes":"","editor-quick-suggestions":"false","read-only":"false"},"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\ndfl <- ManifoldDestinyWASMD::yout","id":1},{"options":{"fig-cap":"","message":"true","editor-word-wrap":"true","label":"unnamed-chunk-2","out-width":"700px","out-height":"","editor-font-scale":"1","output":"true","context":"interactive","dpi":72,"results":"markup","editor-max-height":"","autorun":"true","warning":"true","fig-height":5,"comment":"","fig-width":7,"classes":"","editor-quick-suggestions":"false","read-only":"false"},"code":"coi <- Countingprocess(dfl[[1]])\nges <- Estimation(coi$rdfc,2)\nges$regression(\"alpha=k0+k1*g+k2*h\")\nges$diagnostics()\nbroom::tidy(ges$regsum[[1]])\nbroom::glance(ges$regsum[[1]])","id":2}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\ndfl <- ManifoldDestinyWASMD::yout","options":{"output":"true","out-height":"","eval":"true","results":"markup","editor-max-height":"","read-only":"false","autorun":"true","editor-word-wrap":"true","out-width":"700px","echo":"fenced","message":"true","classes":"","comment":"","dpi":72,"fig-cap":"","warning":"true","label":"unnamed-chunk-1","fig-height":5,"editor-quick-suggestions":"false","context":"interactive","fig-width":7,"editor-font-scale":"1"}},{"id":2,"code":"coi <- Countingprocess(dfl[[1]])\nges <- Estimation(coi$rdfc,2)\nges$regression(\"alpha=k0+k1*g+k2*h\")\nges$diagnostics()\nbroom::tidy(ges$regsum[[1]])\nbroom::glance(ges$regsum[[1]])","options":{"output":"true","out-height":"","results":"markup","editor-max-height":"","read-only":"false","autorun":"true","editor-word-wrap":"true","out-width":"700px","message":"true","classes":"","comment":"","dpi":72,"fig-cap":"","warning":"true","label":"unnamed-chunk-2","fig-height":5,"editor-quick-suggestions":"false","context":"interactive","fig-width":7,"editor-font-scale":"1"}}];
 
 </script>
 <script type="module">
@@ -1624,13 +1624,16 @@ window.Quarto = {
     <a class="dropdown-item" href="./addendum/Addendum_ne.html">
  <span class="dropdown-text">Addendum 2: Nevada</span></a>
   </li>  
-        <li class="dropdown-header">Paper</li>
         <li>
-    <a class="dropdown-item" href="./tabset.html">
- <span class="dropdown-text">Tabset</span></a>
+    <a class="dropdown-item" href="./paper.html">
+ <span class="dropdown-text">Paper</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./tabset.html"> 
+<span class="menu-text">Tabset</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shiny-applications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Shiny applications</span>

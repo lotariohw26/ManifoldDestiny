@@ -12,7 +12,7 @@ sec1:
   un7: "How outside factors to the voting system will impact $\\Gamma_i$"
 
 sec2:
-  nmn: "Ballot counting methods"
+  nmn: "Methods of Ballot Counting"
   un1: "Generic approach to ballot counting"
   un2: "The 20 laws and 40 isometries governing an election"
   un3: "Counting in a fair election"
@@ -20,7 +20,7 @@ sec2:
   un5: "Implementing a loss-function in a rigged election"
 
 sec3:
-  nmn: "Election simulations"
+  nmn: "Election Simulations"
   un1: "Fair election"
   un2: "Rigged election"
 
@@ -29,7 +29,7 @@ sec4:
   un1: "Procedure"
 
 sec5:
-  nmn: "Literature review"
+  nmn: "Literature Review"
   un1: ""
 
 sec6:
@@ -40,7 +40,7 @@ sec6:
   un4:  "Application 4:"
 
 sec7:
-  nmn: "Restoration of the original election results"
+  nmn: "Restoring Original Election Results"
   un1: "Procedure"
 
 sec8:
@@ -210,6 +210,7 @@ app6:
   fr: 1
   ro: [0, 0, 0]
   bib: ['']
+
 app7:
   lab: "The Equation of the School Board Trustee (District D) Race"
   nid: "yout"
@@ -229,4 +230,6 @@ app7:
     stuv: [0,0,0,0]
     blup: [0,1]
     eqp: "alpha=k0+k1*x+k2*y"
+
+
 
