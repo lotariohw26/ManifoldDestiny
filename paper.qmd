@@ -9,6 +9,7 @@ format:
 ---
 
 ```{r}
+ManifoldDestiny::wasmconload()
 library(ManifoldDestiny)
 library(huxtable)
 library(kableExtra)
@@ -43,9 +44,6 @@ apps <- basc
 ```
 {{< include tabpar.qmd >}}
 
-```{r,echo=F}
-knitr::knit_exit()
-```
 
 ## {{< var sec3.un2 >}}
 ### Normal form
@@ -54,7 +52,9 @@ knitr::knit_exit()
 #| output: false
 apps <- rigv[[1]]
 ```
-{{< include tabpar.qmd >}}
+{{< include tab.qmd >}}
+
+---
 
 ### Hybrid
 ```{r}
@@ -62,7 +62,9 @@ apps <- rigv[[1]]
 #| output: false
 apps <- rigv[[2]]
 ```
-{{< include tabpar.qmd >}}
+{{< include tab.qmd >}}
+
+---
 
 ### Opposition
 ```{r}
@@ -70,7 +72,8 @@ apps <- rigv[[2]]
 #| output: false
 apps <- rigv[[3]]
 ```
-{{< include tabpar.qmd >}}
+
+{{< include tab.qmd >}}
 
 # {{< var sec5.nmn >}}
 
@@ -92,6 +95,7 @@ apps <- app2
 ```
 {{< include tabpar.qmd >}}
 
+
 ## {{< var sec6.un3 >}}
 ```{r}
 #| echo: false
@@ -99,14 +103,14 @@ apps <- app2
 apps <- app2
 ```
 {{< include tabpar.qmd >}}
-
 ## {{< var sec6.un4 >}}
 ```{r}
 #| echo: false
 #| output: false
-apps <- :app4
+apps <- app4
 ```
 {{< include tabpar.qmd >}}
+
 
 # {{< var sec7.nmn >}}
 ## {{< var sec7.un1 >}}
@@ -115,9 +119,6 @@ apps <- :app4
 
 
 
-```{r,echo=F}
-knitr::knit_exit()
-```
 
 
 
