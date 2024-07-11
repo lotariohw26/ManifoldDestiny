@@ -54,6 +54,7 @@ apps <- rigv[[2]]
 apps <- rigv[[3]]
 ```
 {{< include tab.qmd >}}
+
 :::
 
 ::: {.callout-caution collapse="true"}
@@ -81,7 +82,7 @@ apps <- app2
 ```{r}
 #| echo: false
 #| output: false
-apps <- app2
+apps <- app3
 ```
 {{< include tab.qmd >}}
 :::

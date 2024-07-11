@@ -38,7 +38,13 @@ if(isTRUE(abc)) {
   usethis::use_data(peqs, overwrite = TRUE)
   
   ManifoldDestiny::bm()
+  source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+  usethis::use_data(basc, overwrite = TRUE)
+  usethis::use_data(rigv, overwrite = TRUE)
+  ManifoldDestiny::bm()
+  # source(paste0(rprojroot::find_rstudio_root_file(),'/data-raw/recorder.R'))
 }
+
 
 
 

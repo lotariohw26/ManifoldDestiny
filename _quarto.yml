@@ -17,20 +17,18 @@ project:
   render:
     - "index.qmd"
     - "presentation.qmd"
-    - "paper.qmd"
+    #    - "paper.qmd"
     - "laws.qmd"
     - "man_bib.qmd"
     - "addendum/Addendum_az.qmd"
     - "addendum/Addendum_ne.qmd"
-    #    - "tabset.qmd"
-    #- "tab.qmd"
     - "metaview.qmd"
     - "simulations.qmd"
     - "rigging.qmd"
     - "analyzer.qmd"
     - "restoration.qmd"
-    - "app_par.qmd"
     - "randpython.qmd"
+    - "tabset.qmd"
 
 website:
   title: "{{< var titls >}}"
@@ -47,9 +45,9 @@ website:
         - text: "Addendum 2: Nevada"
           href: "addendum/Addendum_ne.qmd"
         - text: "Paper"
-          href: paper.qmd
-      - text: "Tabset"
-      #        href: tabset.qmd
+        #          href: paper.qmd
+        - text: "Tabset"
+          href: tabset.qmd
       - text: Shiny applications
         menu:
           - text: "R2 simulator"
