@@ -211,6 +211,7 @@ app6:
   ro: [0, 0, 0]
   bib: ['']
 app7:
+  lab: "The Equation of the School Board Trustee (District D) Race"
   nid: "yout"
   url: "https://docs.google.com/spreadsheets/d/1gCfmuK44sUeb0Hb0plAc8VllPSjtUiEHWlJjeHq3xXY/edit?gid=1306366563#gid=1306366563"
   bib: 

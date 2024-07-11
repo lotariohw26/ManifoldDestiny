@@ -4,9 +4,8 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
 # Simulations
 abc <- Countinggraphs(yout[[1]])
-
-
-
+abc$purging(pri=1)
+abc$rdfc
 
 
 ### Residual

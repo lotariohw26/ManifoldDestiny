@@ -548,27 +548,27 @@ Countingprocess$methods(plext=function(){
     dplyr::mutate(xy=x*y)
 })
 
-Countingprocess$methods(purging=function(mdprg=NULL,pri=0){
+Countingprocess$methods(purging=function(mdprg=list(z=0,stuv=c(0,0,0,0),blup=c(0,1),eq=c("alpha=k0+k1*x+k2*y")),pri=0){
   rdfv <- rdfci %>%
     dplyr::arrange(P) %>%
     # Filter
     ## Number of ballots
-    dplyr::filter(S>=mdprg$prg$stuv[1]) %>%
-    dplyr::filter(T>=mdprg$prg$stuv[2]) %>%
-    dplyr::filter(U>=mdprg$prg$stuv[3]) %>%
-    dplyr::filter(V>=mdprg$prg$stuv[4]) %>%
+    dplyr::filter(S>=mdprg$stuv[1]) %>%
+    dplyr::filter(T>=mdprg$stuv[2]) %>%
+    dplyr::filter(U>=mdprg$stuv[3]) %>%
+    dplyr::filter(V>=mdprg$stuv[4]) %>%
+    dplyr::filter(Z>=mdprg$z[4]) %>%
     ## Percentages
-    dplyr::filter(if_all(c(alpha,x,y,g,h,m,n),~.>mdprg$prg$blup[1]&.<mdprg$prg$blup[2]))
+    dplyr::filter(if_all(c(alpha,x,y,g,h,m,n),~.>mdprg$blup[1]&.<mdprg$blup[2]))
     # Fit filter
     erdfv <- Estimation(rdfv)
-    erdfv$regression(mdprg$sgs$eq)
+    erdfv$regression(mdprg$eq)
     rdfc <<- erdfv$predict_df %>%
             dplyr::mutate(pre_rnk=dplyr::row_number(desc(deva))) %>%
             dplyr::arrange(pre_rnk) %>%
             #dplyr::filter(pre_rnk>regr[[2]]) %>% dplyr::filter(!P%in%pref) %>%
             dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
             dplyr::arrange(P)
-    #!Discarded
   if (pri==1) {print(dim(rdfci)); print(dim(rdfv)); print(dim(rdfc))}
 })
 #})
