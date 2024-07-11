@@ -3,8 +3,9 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
 # Simulations
+yout[[1]]
+yout[[2]]$prg$stuv <- c(0,0,0,0)
 abc <- seloutput(selreport(yout))
-
 abc[[1]]
 abc[[2]]
 abc[[3]]

@@ -10,6 +10,7 @@
 # _variables.yml
 # https://lotariohw26.github.io/MD_WASMS/r/examples/
 # https://lotariohw26.github.io/MD_WASMS/py/examples/
+# data-raw/metadata.json
 project:
   type: website
   output-dir: docs

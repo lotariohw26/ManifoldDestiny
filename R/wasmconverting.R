@@ -194,14 +194,12 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
-
   da <- baldata[[1]]
   md <- baldata[[2]]
-  frm <- 1 # md$fr
+  frm <- md$fr 
   #rparv <- md$mtd$sgs$ro ; names(rparv) <- c("theta","phi","rho")
   co <- Countinggraphs(da)
-  #View(co$rdfci)
-  #if (md$mtd$prg$cnd==1) co$purging(md$mtd,1)
+  if (md$prg$cnd==1) co$purging(md$prg,1)
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
@@ -548,10 +546,10 @@ Countingprocess$methods(plext=function(){
     dplyr::mutate(xy=x*y)
 })
 
-Countingprocess$methods(purging=function(mdprg=list(z=0,stuv=c(0,0,0,0),blup=c(0,1),eq=c("alpha=k0+k1*x+k2*y")),pri=0){
+Countingprocess$methods(purging=function(mdprg=list(stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y")),pri=0){
+
   rdfv <- rdfci %>%
     dplyr::arrange(P) %>%
-    dplyr::filter(Z>=mdprg$z) %>%
     dplyr::filter(S>=mdprg$stuv[1]) %>%
     dplyr::filter(T>=mdprg$stuv[2]) %>%
     dplyr::filter(U>=mdprg$stuv[3]) %>%
@@ -560,13 +558,14 @@ Countingprocess$methods(purging=function(mdprg=list(z=0,stuv=c(0,0,0,0),blup=c(0
     dplyr::filter(if_all(c(alpha,x,y,g,h,m,n),~.>mdprg$blup[1]&.<mdprg$blup[2]))
     # Fit filter
     erdfv <- Estimation(rdfv)
-    erdfv$regression(mdprg$eq)
+    erdfv$regression(mdprg$eqp)
     rdfc <<- erdfv$predict_df %>%
             dplyr::mutate(pre_rnk=dplyr::row_number(desc(deva))) %>%
             dplyr::arrange(pre_rnk) %>%
             #dplyr::filter(pre_rnk>regr[[2]]) %>% dplyr::filter(!P%in%pref) %>%
             dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
             dplyr::arrange(P)
+  #print(dim(rdfci)[1]); print(dim(rdfv)[1]); print(dim(rdfc)[1])
   if (pri==1) {print(dim(rdfci)[1]); print(dim(rdfv)[1]); print(dim(rdfc)[1])}
 })
 #})
