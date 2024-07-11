@@ -551,13 +551,11 @@ Countingprocess$methods(plext=function(){
 Countingprocess$methods(purging=function(mdprg=list(z=0,stuv=c(0,0,0,0),blup=c(0,1),eq=c("alpha=k0+k1*x+k2*y")),pri=0){
   rdfv <- rdfci %>%
     dplyr::arrange(P) %>%
-    # Filter
-    ## Number of ballots
+    dplyr::filter(Z>=mdprg$z) %>%
     dplyr::filter(S>=mdprg$stuv[1]) %>%
     dplyr::filter(T>=mdprg$stuv[2]) %>%
     dplyr::filter(U>=mdprg$stuv[3]) %>%
     dplyr::filter(V>=mdprg$stuv[4]) %>%
-    dplyr::filter(Z>=mdprg$z[4]) %>%
     ## Percentages
     dplyr::filter(if_all(c(alpha,x,y,g,h,m,n),~.>mdprg$blup[1]&.<mdprg$blup[2]))
     # Fit filter
@@ -569,7 +567,7 @@ Countingprocess$methods(purging=function(mdprg=list(z=0,stuv=c(0,0,0,0),blup=c(0
             #dplyr::filter(pre_rnk>regr[[2]]) %>% dplyr::filter(!P%in%pref) %>%
             dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
             dplyr::arrange(P)
-  if (pri==1) {print(dim(rdfci)); print(dim(rdfv)); print(dim(rdfc))}
+  if (pri==1) {print(dim(rdfci)[1]); print(dim(rdfv)[1]); print(dim(rdfc)[1])}
 })
 #})
 Countingprocess$methods(sortpre=function(form=1,
