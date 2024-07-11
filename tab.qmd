@@ -1,17 +1,8 @@
----
-title: ""
-params:
-  name: "0"
----
-
-```{r, echo=T}
-params$name
-```
-
 ```{r, echo=F,message=FALSE,warning=FALSE}
 #| echo: false
 #| output: false
 #| message: false
+params <- list(name="0")
 sw <- as.numeric(params$name)
 if(sw == 0) {
 ManifoldDestiny::wasmconload()
@@ -23,6 +14,15 @@ source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
 apps <- ManifoldDestiny::app0
 }
 ```
+
+
+
+
+
+
+
+
+
 
 
 

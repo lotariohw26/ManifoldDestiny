@@ -356,7 +356,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\ndfl <- ManifoldDestinyWASMD::yout","id":1,"options":{"label":"unnamed-chunk-1","results":"markup","autorun":"true","context":"interactive","message":"true","classes":"","eval":"true","comment":"","fig-width":7,"fig-height":5,"read-only":"false","out-width":"700px","dpi":72,"editor-font-scale":"1","editor-max-height":"","warning":"true","fig-cap":"","output":"true","out-height":"","editor-word-wrap":"true","editor-quick-suggestions":"false","echo":"fenced"}},{"code":"coi <- Countingprocess(dfl[[1]])\nges <- Estimation(coi$rdfc,2)\nges$regression(\"alpha=k0+k1*g+k2*h\")\nges$diagnostics()\nbroom::tidy(ges$regsum[[1]])\nbroom::glance(ges$regsum[[1]])","id":2,"options":{"label":"unnamed-chunk-2","results":"markup","autorun":"true","context":"interactive","message":"true","comment":"","fig-width":7,"fig-height":5,"read-only":"false","out-width":"700px","dpi":72,"editor-font-scale":"1","editor-max-height":"","warning":"true","fig-cap":"","output":"true","out-height":"","editor-word-wrap":"true","editor-quick-suggestions":"false","classes":""}}];
+globalThis.qwebrCellDetails = [{"options":{"out-width":"700px","out-height":"","editor-quick-suggestions":"false","read-only":"false","comment":"","eval":"true","results":"markup","echo":"fenced","dpi":72,"editor-max-height":"","autorun":"true","context":"interactive","editor-word-wrap":"true","classes":"","editor-font-scale":"1","label":"unnamed-chunk-1","message":"true","fig-width":7,"output":"true","fig-cap":"","fig-height":5,"warning":"true"},"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\ndfl <- ManifoldDestinyWASMD::yout","id":1},{"options":{"out-width":"700px","out-height":"","editor-quick-suggestions":"false","read-only":"false","comment":"","results":"markup","dpi":72,"editor-max-height":"","autorun":"true","context":"interactive","editor-word-wrap":"true","classes":"","editor-font-scale":"1","label":"unnamed-chunk-2","message":"true","fig-width":7,"output":"true","fig-cap":"","fig-height":5,"warning":"true"},"code":"coi <- Countingprocess(dfl[[1]])\nges <- Estimation(coi$rdfc,2)\nges$regression(\"alpha=k0+k1*g+k2*h\")\nges$diagnostics()\nbroom::tidy(ges$regsum[[1]])\nbroom::glance(ges$regsum[[1]])","id":2}];
 
 </script>
 <script type="module">
@@ -1630,10 +1630,8 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./tabset.html"> 
-<span class="menu-text">Tabset</span></a>
-  </li>  
+  <li class="dropdown-header">
+ <span class="menu-text">Tabset</span></li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shiny-applications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Shiny applications</span>

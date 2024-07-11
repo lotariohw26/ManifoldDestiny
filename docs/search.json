@@ -18,7 +18,7 @@
     "href": "paper.html",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "1 Introduction\n\n\n2 Overview of various methods of ballot counting\n\n\n3 Election simulations\n\n\n4 Checking for a rigged election\n\n\n5 Literature review\n\n\n6 Applications\n\n\n7 The restoration of an rigged election\n\n\n8 Conclusions"
+    "text": "library(ManifoldDestiny)\nlibrary(huxtable)\nlibrary(kableExtra)\n\n\nAttaching package: 'kableExtra'\n\n\nThe following object is masked from 'package:huxtable':\n\n    add_footnote\n\nsource(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))\n\n\nAttaching package: 'ggplot2'\n\n\nThe following object is masked from 'package:huxtable':\n\n    theme_grey\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following object is masked from 'package:kableExtra':\n\n    group_rows\n\n\nThe following object is masked from 'package:huxtable':\n\n    add_rownames\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\n[1] 0.4839449\n[1] 0.4839449\n[1] 0.4839449"
   },
   {
     "objectID": "laws.html",
@@ -164,8 +164,8 @@
     "objectID": "presentation.html#section-7",
     "href": "presentation.html#section-7",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "Tautologies using opposition form (upper diagonal vs. lower diagonal)",
-    "text": "Tautologies using opposition form (upper diagonal vs. lower diagonal)\n\n\n\n\nSU\n\nTV\n\n\n\n\nParameters: \\(m\\), \\(n\\), \\(\\xi\\), \\(\\lambda\\), \\(\\Omega\\) \\[\\begin{equation*}\nn=\\frac{S}{S + U} \\text{ , } m=\\frac{T}{T + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\xi=\\frac{T + V}{S + U}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Omega=\\frac{S + T}{S + T + U + V}=\\frac{m + n \\xi}{\\xi + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\lambda=\\frac{S + V}{S + T + U + V}=\\frac{\\Gamma}{\\Gamma + 1}\n\\end{equation*}\\]"
+    "section": "Tautologies using opposition form (upper vs. lower)",
+    "text": "Tautologies using opposition form (upper vs. lower)\n\n\n\n\nSU\n\nTV\n\n\n\n\nParameters: \\(m\\), \\(n\\), \\(\\xi\\), \\(\\lambda\\), \\(\\Omega\\) \\[\\begin{equation*}\nn=\\frac{S}{S + U} \\text{ , } m=\\frac{T}{T + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\xi=\\frac{T + V}{S + U}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Omega=\\frac{S + T}{S + T + U + V}=\\frac{m + n \\xi}{\\xi + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\lambda=\\frac{S + V}{S + T + U + V}=\\frac{\\Gamma}{\\Gamma + 1}\n\\end{equation*}\\]"
   },
   {
     "objectID": "paper.html#section-9",
@@ -207,7 +207,7 @@
     "href": "paper.html#section-15",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "3.1 Fair election",
-    "text": "3.1 Fair election"
+    "text": "3.1 Fair election\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n250.1818182\n149.6887680\n\n\nT\n156.4090909\n83.0568704\n\n\nU\n143.0909091\n73.6031243\n\n\nV\n311.8636364\n149.4887463\n\n\nR\n11.5000000\n6.4935866\n\n\nZ\n861.5454545\n425.4729276\n\n\nalpha\n0.4512405\n0.0732275\n\n\nx\n0.6062204\n0.0823793\n\n\ny\n0.3142964\n0.0626658\n\n\nzeta\n1.1696106\n0.2313946\n\n\nlamda\n0.6511253\n0.0239190\n\n\nOmega\n0.4656832\n0.0470639\n\n\ng\n0.4357092\n0.0823097\n\n\nh\n0.4788419\n0.0849967\n\n\nGamma\n0.5378494\n0.0585061\n\n\nm\n0.3308302\n0.0389096\n\n\nn\n0.6272453\n0.0554818\n\n\nxi\n1.2780878\n0.4091593\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.029360 -0.007123  0.003458  0.008282  0.017762 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.04256    0.02101  -2.026    0.057 .  \nx            0.56467    0.05250  10.757 1.61e-09 ***\ny            0.48197    0.06901   6.984 1.18e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.01287 on 19 degrees of freedom\nMultiple R-squared:  0.972, Adjusted R-squared:  0.9691 \nF-statistic: 330.2 on 2 and 19 DF,  p-value: 1.75e-15"
   },
   {
     "objectID": "paper.html#section-16",
@@ -221,19 +221,19 @@
     "href": "paper.html#section-19",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "5.1 Application 1:",
-    "text": "5.1 Application 1:"
+    "text": "5.1 Application 1:\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n225.8740280\n146.5961062\n\n\nT\n161.1524106\n95.4872010\n\n\nU\n139.4580093\n92.0420951\n\n\nV\n299.0699844\n155.5290299\n\n\nR\n643.5000000\n371.3805326\n\n\nZ\n825.5544323\n428.5027064\n\n\nalpha\n0.4344682\n0.1252375\n\n\nx\n0.5680787\n0.1487051\n\n\ny\n0.3160804\n0.1030051\n\n\nzeta\n1.2202827\n0.3913430\n\n\nlamda\n0.6352896\n0.0363361\n\n\nOmega\n0.4625320\n0.0719221\n\n\ng\n0.4164133\n0.1323980\n\n\nh\n0.4641927\n0.1516935\n\n\nGamma\n0.5794922\n0.0955561\n\n\nm\n0.3431554\n0.0685790\n\n\nn\n0.6073394\n0.0847431\n\n\nxi\n1.5935878\n1.3437712\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 6 rows containing missing values or values outside the scale range\n(`geom_smooth()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.033361 -0.001899 -0.000218  0.001197  0.081381 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.0028547  0.0007049   -4.05 5.44e-05 ***\ng            0.6312515  0.0017723  356.17  &lt; 2e-16 ***\nh            0.3758384  0.0015469  242.96  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.00693 on 1283 degrees of freedom\nMultiple R-squared:  0.9969,    Adjusted R-squared:  0.9969 \nF-statistic: 2.092e+05 on 2 and 1283 DF,  p-value: &lt; 2.2e-16"
   },
   {
     "objectID": "paper.html#section-20",
     "href": "paper.html#section-20",
-    "title": "Manifold Destiny - or how to rig an election",
+    "title": "1 Introduction",
     "section": "5.2 Application 2:",
-    "text": "5.2 Application 2:"
+    "text": "5.2 Application 2:\n\na\n\n[1] 20"
   },
   {
     "objectID": "paper.html#section-21",
     "href": "paper.html#section-21",
-    "title": "Manifold Destiny - or how to rig an election",
+    "title": "1 Introduction",
     "section": "5.3 Application 3:",
     "text": "5.3 Application 3:"
   },
@@ -241,8 +241,8 @@
     "objectID": "paper.html#section-22",
     "href": "paper.html#section-22",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "5.4 Application 4:",
-    "text": "5.4 Application 4:"
+    "section": "3.2 Rigged election",
+    "text": "3.2 Rigged election\n\n3.2.1 Normal form\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n250.1818182\n149.6887680\n\n\nT\n156.4090909\n83.0568704\n\n\nU\n143.0909091\n73.6031243\n\n\nV\n311.8636364\n149.4887463\n\n\nR\n11.5000000\n6.4935866\n\n\nZ\n861.5454545\n425.4729276\n\n\nalpha\n0.4512405\n0.0732275\n\n\nx\n0.6062204\n0.0823793\n\n\ny\n0.3142964\n0.0626658\n\n\nzeta\n1.1696106\n0.2313946\n\n\nlamda\n0.6511253\n0.0239190\n\n\nOmega\n0.4656832\n0.0470639\n\n\ng\n0.4357092\n0.0823097\n\n\nh\n0.4788419\n0.0849967\n\n\nGamma\n0.5378494\n0.0585061\n\n\nm\n0.3308302\n0.0389096\n\n\nn\n0.6272453\n0.0554818\n\n\nxi\n1.2780878\n0.4091593\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.029360 -0.007123  0.003458  0.008282  0.017762 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.04256    0.02101  -2.026    0.057 .  \nx            0.56467    0.05250  10.757 1.61e-09 ***\ny            0.48197    0.06901   6.984 1.18e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.01287 on 19 degrees of freedom\nMultiple R-squared:  0.972, Adjusted R-squared:  0.9691 \nF-statistic: 330.2 on 2 and 19 DF,  p-value: 1.75e-15\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3.2.2 Hybrid\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n250.1818182\n149.6887680\n\n\nT\n156.4090909\n83.0568704\n\n\nU\n143.0909091\n73.6031243\n\n\nV\n311.8636364\n149.4887463\n\n\nR\n11.5000000\n6.4935866\n\n\nZ\n861.5454545\n425.4729276\n\n\nalpha\n0.4512405\n0.0732275\n\n\nx\n0.6062204\n0.0823793\n\n\ny\n0.3142964\n0.0626658\n\n\nzeta\n1.1696106\n0.2313946\n\n\nlamda\n0.6511253\n0.0239190\n\n\nOmega\n0.4656832\n0.0470639\n\n\ng\n0.4357092\n0.0823097\n\n\nh\n0.4788419\n0.0849967\n\n\nGamma\n0.5378494\n0.0585061\n\n\nm\n0.3308302\n0.0389096\n\n\nn\n0.6272453\n0.0554818\n\n\nxi\n1.2780878\n0.4091593\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.029360 -0.007123  0.003458  0.008282  0.017762 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.04256    0.02101  -2.026    0.057 .  \nx            0.56467    0.05250  10.757 1.61e-09 ***\ny            0.48197    0.06901   6.984 1.18e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.01287 on 19 degrees of freedom\nMultiple R-squared:  0.972, Adjusted R-squared:  0.9691 \nF-statistic: 330.2 on 2 and 19 DF,  p-value: 1.75e-15\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3.2.3 Opposition\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n250.1818182\n149.6887680\n\n\nT\n156.4090909\n83.0568704\n\n\nU\n143.0909091\n73.6031243\n\n\nV\n311.8636364\n149.4887463\n\n\nR\n11.5000000\n6.4935866\n\n\nZ\n861.5454545\n425.4729276\n\n\nalpha\n0.4512405\n0.0732275\n\n\nx\n0.6062204\n0.0823793\n\n\ny\n0.3142964\n0.0626658\n\n\nzeta\n1.1696106\n0.2313946\n\n\nlamda\n0.6511253\n0.0239190\n\n\nOmega\n0.4656832\n0.0470639\n\n\ng\n0.4357092\n0.0823097\n\n\nh\n0.4788419\n0.0849967\n\n\nGamma\n0.5378494\n0.0585061\n\n\nm\n0.3308302\n0.0389096\n\n\nn\n0.6272453\n0.0554818\n\n\nxi\n1.2780878\n0.4091593\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.029360 -0.007123  0.003458  0.008282  0.017762 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.04256    0.02101  -2.026    0.057 .  \nx            0.56467    0.05250  10.757 1.61e-09 ***\ny            0.48197    0.06901   6.984 1.18e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.01287 on 19 degrees of freedom\nMultiple R-squared:  0.972, Adjusted R-squared:  0.9691 \nF-statistic: 330.2 on 2 and 19 DF,  p-value: 1.75e-15"
   },
   {
     "objectID": "paper.html#section-23",
@@ -255,15 +255,15 @@
     "objectID": "paper.html#section-25",
     "href": "paper.html#section-25",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "6.1 Procedure",
-    "text": "6.1 Procedure"
+    "section": "5.1 Application 1:",
+    "text": "5.1 Application 1:\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n225.8740280\n146.5961062\n\n\nT\n161.1524106\n95.4872010\n\n\nU\n139.4580093\n92.0420951\n\n\nV\n299.0699844\n155.5290299\n\n\nR\n643.5000000\n371.3805326\n\n\nZ\n825.5544323\n428.5027064\n\n\nalpha\n0.4344682\n0.1252375\n\n\nx\n0.5680787\n0.1487051\n\n\ny\n0.3160804\n0.1030051\n\n\nzeta\n1.2202827\n0.3913430\n\n\nlamda\n0.6352896\n0.0363361\n\n\nOmega\n0.4625320\n0.0719221\n\n\ng\n0.4164133\n0.1323980\n\n\nh\n0.4641927\n0.1516935\n\n\nGamma\n0.5794922\n0.0955561\n\n\nm\n0.3431554\n0.0685790\n\n\nn\n0.6073394\n0.0847431\n\n\nxi\n1.5935878\n1.3437712\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 6 rows containing missing values or values outside the scale range\n(`geom_smooth()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.033361 -0.001899 -0.000218  0.001197  0.081381 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.0028547  0.0007049   -4.05 5.44e-05 ***\ng            0.6312515  0.0017723  356.17  &lt; 2e-16 ***\nh            0.3758384  0.0015469  242.96  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.00693 on 1283 degrees of freedom\nMultiple R-squared:  0.9969,    Adjusted R-squared:  0.9969 \nF-statistic: 2.092e+05 on 2 and 1283 DF,  p-value: &lt; 2.2e-16"
   },
   {
     "objectID": "paper.html#section-26",
     "href": "paper.html#section-26",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "6.2 ?var:sec7.un2",
-    "text": "6.2 ?var:sec7.un2"
+    "section": "5.2 Application 2:",
+    "text": "5.2 Application 2:\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n278.1333333\n151.3702810\n\n\nT\n171.4800000\n87.5426431\n\n\nU\n166.8200000\n89.9683815\n\n\nV\n291.0000000\n131.2518968\n\n\nR\n75.5000000\n43.4453680\n\n\nZ\n907.4333333\n407.2672130\n\n\nalpha\n0.4890781\n0.1118642\n\n\nx\n0.6145406\n0.1170083\n\n\ny\n0.3661625\n0.1021651\n\n\nzeta\n1.0589973\n0.2665894\n\n\nlamda\n0.6284937\n0.0290818\n\n\nOmega\n0.4939580\n0.0656984\n\n\ng\n0.4849542\n0.1189747\n\n\nh\n0.4931159\n0.1307120\n\n\nGamma\n0.5944873\n0.0737793\n\n\nm\n0.3671076\n0.0659321\n\n\nn\n0.6237063\n0.0637175\n\n\nxi\n1.1633056\n0.5444871\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n       Min         1Q     Median         3Q        Max \n-0.0100272 -0.0013619  0.0003456  0.0014659  0.0101474 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  0.03670    0.01108   3.313 0.001170 ** \ng            0.76505    0.07037  10.872  &lt; 2e-16 ***\ng2          -0.82952    0.14924  -5.558 1.31e-07 ***\ngh           0.99386    0.16258   6.113 8.94e-09 ***\nh2           0.30747    0.08008   3.839 0.000185 ***\ng3           0.92813    0.11588   8.010 3.78e-13 ***\ng2h         -1.04634    0.14343  -7.295 1.93e-11 ***\nh3          -0.17986    0.04453  -4.039 8.73e-05 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.002966 on 142 degrees of freedom\nMultiple R-squared:  0.9993,    Adjusted R-squared:  0.9993 \nF-statistic: 3.026e+04 on 7 and 142 DF,  p-value: &lt; 2.2e-16"
   },
   {
     "objectID": "presentation.html#section-8",
@@ -485,7 +485,7 @@
   {
     "objectID": "paper.html#section-24",
     "href": "paper.html#section-24",
-    "title": "Manifold Destiny - or how to rig an election",
+    "title": "1 Introduction",
     "section": "6.1 Procedure",
     "text": "6.1 Procedure"
   },
@@ -704,7 +704,7 @@
     "href": "tab.html",
     "title": "{{< var titls >}}",
     "section": "",
-    "text": "params$name\n\n[1] \"0\"\n\n\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n250.1818182\n149.6887680\n\n\nT\n156.4090909\n83.0568704\n\n\nU\n143.0909091\n73.6031243\n\n\nV\n311.8636364\n149.4887463\n\n\nR\n11.5000000\n6.4935866\n\n\nZ\n861.5454545\n425.4729276\n\n\nalpha\n0.4512405\n0.0732275\n\n\nx\n0.6062204\n0.0823793\n\n\ny\n0.3142964\n0.0626658\n\n\nzeta\n1.1696106\n0.2313946\n\n\nlamda\n0.6511253\n0.0239190\n\n\nOmega\n0.4656832\n0.0470639\n\n\ng\n0.4357092\n0.0823097\n\n\nh\n0.4788419\n0.0849967\n\n\nGamma\n0.5378494\n0.0585061\n\n\nm\n0.3308302\n0.0389096\n\n\nn\n0.6272453\n0.0554818\n\n\nxi\n1.2780878\n0.4091593\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.029360 -0.007123  0.003458  0.008282  0.017762 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.04256    0.02101  -2.026    0.057 .  \nx            0.56467    0.05250  10.757 1.61e-09 ***\ny            0.48197    0.06901   6.984 1.18e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.01287 on 19 degrees of freedom\nMultiple R-squared:  0.972, Adjusted R-squared:  0.9691 \nF-statistic: 330.2 on 2 and 19 DF,  p-value: 1.75e-15"
+    "text": "Descriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n250.1818182\n149.6887680\n\n\nT\n156.4090909\n83.0568704\n\n\nU\n143.0909091\n73.6031243\n\n\nV\n311.8636364\n149.4887463\n\n\nR\n11.5000000\n6.4935866\n\n\nZ\n861.5454545\n425.4729276\n\n\nalpha\n0.4512405\n0.0732275\n\n\nx\n0.6062204\n0.0823793\n\n\ny\n0.3142964\n0.0626658\n\n\nzeta\n1.1696106\n0.2313946\n\n\nlamda\n0.6511253\n0.0239190\n\n\nOmega\n0.4656832\n0.0470639\n\n\ng\n0.4357092\n0.0823097\n\n\nh\n0.4788419\n0.0849967\n\n\nGamma\n0.5378494\n0.0585061\n\n\nm\n0.3308302\n0.0389096\n\n\nn\n0.6272453\n0.0554818\n\n\nxi\n1.2780878\n0.4091593\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.029360 -0.007123  0.003458  0.008282  0.017762 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.04256    0.02101  -2.026    0.057 .  \nx            0.56467    0.05250  10.757 1.61e-09 ***\ny            0.48197    0.06901   6.984 1.18e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.01287 on 19 degrees of freedom\nMultiple R-squared:  0.972, Adjusted R-squared:  0.9691 \nF-statistic: 330.2 on 2 and 19 DF,  p-value: 1.75e-15"
   },
   {
     "objectID": "tabset.html",
@@ -712,5 +712,187 @@
     "title": "{{< var titls >}}",
     "section": "",
     "text": "Fair election\n\n\n\n\n\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n27.0800000\n12.7379811\n\n\nT\n15.5400000\n9.8426202\n\n\nU\n17.6400000\n9.3046312\n\n\nV\n21.3400000\n11.6724834\n\n\nR\n102.7100000\n26.9748461\n\n\nZ\n81.6000000\n29.9406821\n\n\nalpha\n0.5564953\n0.1306240\n\n\nx\n0.6395415\n0.1486032\n\n\ny\n0.4635017\n0.1656418\n\n\nzeta\n0.9932542\n0.4152329\n\n\nlamda\n0.5935576\n0.1002247\n\n\nOmega\n0.5211311\n0.0978375\n\n\ng\n0.5647534\n0.1501136\n\n\nh\n0.5405266\n0.1677680\n\n\nGamma\n0.7426304\n0.3779059\n\n\nm\n0.4197552\n0.1397026\n\n\nn\n0.6039021\n0.1303562\n\n\nxi\n0.9118948\n0.5174046\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.067355 -0.013610 -0.000676  0.008779  0.126233 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.01255    0.01344  -0.934    0.353    \nx            0.53286    0.01973  27.002   &lt;2e-16 ***\ny            0.49246    0.01770  27.816   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.02817 on 97 degrees of freedom\nMultiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 \nF-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRigged election normal form\n\n\n\n\n\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n27.0800000\n12.7379811\n\n\nT\n15.5400000\n9.8426202\n\n\nU\n17.6400000\n9.3046312\n\n\nV\n21.3400000\n11.6724834\n\n\nR\n102.7100000\n26.9748461\n\n\nZ\n81.6000000\n29.9406821\n\n\nalpha\n0.5564953\n0.1306240\n\n\nx\n0.6395415\n0.1486032\n\n\ny\n0.4635017\n0.1656418\n\n\nzeta\n0.9932542\n0.4152329\n\n\nlamda\n0.5935576\n0.1002247\n\n\nOmega\n0.5211311\n0.0978375\n\n\ng\n0.5647534\n0.1501136\n\n\nh\n0.5405266\n0.1677680\n\n\nGamma\n0.7426304\n0.3779059\n\n\nm\n0.4197552\n0.1397026\n\n\nn\n0.6039021\n0.1303562\n\n\nxi\n0.9118948\n0.5174046\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.067355 -0.013610 -0.000676  0.008779  0.126233 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.01255    0.01344  -0.934    0.353    \nx            0.53286    0.01973  27.002   &lt;2e-16 ***\ny            0.49246    0.01770  27.816   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.02817 on 97 degrees of freedom\nMultiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 \nF-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRigged election hybrid form\n\n\n\n\n\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n27.0800000\n12.7379811\n\n\nT\n15.5400000\n9.8426202\n\n\nU\n17.6400000\n9.3046312\n\n\nV\n21.3400000\n11.6724834\n\n\nR\n102.7100000\n26.9748461\n\n\nZ\n81.6000000\n29.9406821\n\n\nalpha\n0.5564953\n0.1306240\n\n\nx\n0.6395415\n0.1486032\n\n\ny\n0.4635017\n0.1656418\n\n\nzeta\n0.9932542\n0.4152329\n\n\nlamda\n0.5935576\n0.1002247\n\n\nOmega\n0.5211311\n0.0978375\n\n\ng\n0.5647534\n0.1501136\n\n\nh\n0.5405266\n0.1677680\n\n\nGamma\n0.7426304\n0.3779059\n\n\nm\n0.4197552\n0.1397026\n\n\nn\n0.6039021\n0.1303562\n\n\nxi\n0.9118948\n0.5174046\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.067355 -0.013610 -0.000676  0.008779  0.126233 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.01255    0.01344  -0.934    0.353    \nx            0.53286    0.01973  27.002   &lt;2e-16 ***\ny            0.49246    0.01770  27.816   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.02817 on 97 degrees of freedom\nMultiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 \nF-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRigged election opposition form\n\n\n\n\n\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n27.0800000\n12.7379811\n\n\nT\n15.5400000\n9.8426202\n\n\nU\n17.6400000\n9.3046312\n\n\nV\n21.3400000\n11.6724834\n\n\nR\n102.7100000\n26.9748461\n\n\nZ\n81.6000000\n29.9406821\n\n\nalpha\n0.5564953\n0.1306240\n\n\nx\n0.6395415\n0.1486032\n\n\ny\n0.4635017\n0.1656418\n\n\nzeta\n0.9932542\n0.4152329\n\n\nlamda\n0.5935576\n0.1002247\n\n\nOmega\n0.5211311\n0.0978375\n\n\ng\n0.5647534\n0.1501136\n\n\nh\n0.5405266\n0.1677680\n\n\nGamma\n0.7426304\n0.3779059\n\n\nm\n0.4197552\n0.1397026\n\n\nn\n0.6039021\n0.1303562\n\n\nxi\n0.9118948\n0.5174046\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.067355 -0.013610 -0.000676  0.008779  0.126233 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.01255    0.01344  -0.934    0.353    \nx            0.53286    0.01973  27.002   &lt;2e-16 ***\ny            0.49246    0.01770  27.816   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.02817 on 97 degrees of freedom\nMultiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 \nF-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nApplication 1:\n\n\n\n\n\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n225.8740280\n146.5961062\n\n\nT\n161.1524106\n95.4872010\n\n\nU\n139.4580093\n92.0420951\n\n\nV\n299.0699844\n155.5290299\n\n\nR\n643.5000000\n371.3805326\n\n\nZ\n825.5544323\n428.5027064\n\n\nalpha\n0.4344682\n0.1252375\n\n\nx\n0.5680787\n0.1487051\n\n\ny\n0.3160804\n0.1030051\n\n\nzeta\n1.2202827\n0.3913430\n\n\nlamda\n0.6352896\n0.0363361\n\n\nOmega\n0.4625320\n0.0719221\n\n\ng\n0.4164133\n0.1323980\n\n\nh\n0.4641927\n0.1516935\n\n\nGamma\n0.5794922\n0.0955561\n\n\nm\n0.3431554\n0.0685790\n\n\nn\n0.6073394\n0.0847431\n\n\nxi\n1.5935878\n1.3437712\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 6 rows containing missing values or values outside the scale range\n(`geom_smooth()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.033361 -0.001899 -0.000218  0.001197  0.081381 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.0028547  0.0007049   -4.05 5.44e-05 ***\ng            0.6312515  0.0017723  356.17  &lt; 2e-16 ***\nh            0.3758384  0.0015469  242.96  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.00693 on 1283 degrees of freedom\nMultiple R-squared:  0.9969,    Adjusted R-squared:  0.9969 \nF-statistic: 2.092e+05 on 2 and 1283 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nApplication 2:\n\n\n\n\n\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n27.0800000\n12.7379811\n\n\nT\n15.5400000\n9.8426202\n\n\nU\n17.6400000\n9.3046312\n\n\nV\n21.3400000\n11.6724834\n\n\nR\n102.7100000\n26.9748461\n\n\nZ\n81.6000000\n29.9406821\n\n\nalpha\n0.5564953\n0.1306240\n\n\nx\n0.6395415\n0.1486032\n\n\ny\n0.4635017\n0.1656418\n\n\nzeta\n0.9932542\n0.4152329\n\n\nlamda\n0.5935576\n0.1002247\n\n\nOmega\n0.5211311\n0.0978375\n\n\ng\n0.5647534\n0.1501136\n\n\nh\n0.5405266\n0.1677680\n\n\nGamma\n0.7426304\n0.3779059\n\n\nm\n0.4197552\n0.1397026\n\n\nn\n0.6039021\n0.1303562\n\n\nxi\n0.9118948\n0.5174046\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.067355 -0.013610 -0.000676  0.008779  0.126233 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.01255    0.01344  -0.934    0.353    \nx            0.53286    0.01973  27.002   &lt;2e-16 ***\ny            0.49246    0.01770  27.816   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.02817 on 97 degrees of freedom\nMultiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 \nF-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nApplication 3:\n\n\n\n\n\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n27.0800000\n12.7379811\n\n\nT\n15.5400000\n9.8426202\n\n\nU\n17.6400000\n9.3046312\n\n\nV\n21.3400000\n11.6724834\n\n\nR\n102.7100000\n26.9748461\n\n\nZ\n81.6000000\n29.9406821\n\n\nalpha\n0.5564953\n0.1306240\n\n\nx\n0.6395415\n0.1486032\n\n\ny\n0.4635017\n0.1656418\n\n\nzeta\n0.9932542\n0.4152329\n\n\nlamda\n0.5935576\n0.1002247\n\n\nOmega\n0.5211311\n0.0978375\n\n\ng\n0.5647534\n0.1501136\n\n\nh\n0.5405266\n0.1677680\n\n\nGamma\n0.7426304\n0.3779059\n\n\nm\n0.4197552\n0.1397026\n\n\nn\n0.6039021\n0.1303562\n\n\nxi\n0.9118948\n0.5174046\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.067355 -0.013610 -0.000676  0.008779  0.126233 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.01255    0.01344  -0.934    0.353    \nx            0.53286    0.01973  27.002   &lt;2e-16 ***\ny            0.49246    0.01770  27.816   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.02817 on 97 degrees of freedom\nMultiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 \nF-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nApplication 4:\n\n\n\n\n\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n27.0800000\n12.7379811\n\n\nT\n15.5400000\n9.8426202\n\n\nU\n17.6400000\n9.3046312\n\n\nV\n21.3400000\n11.6724834\n\n\nR\n102.7100000\n26.9748461\n\n\nZ\n81.6000000\n29.9406821\n\n\nalpha\n0.5564953\n0.1306240\n\n\nx\n0.6395415\n0.1486032\n\n\ny\n0.4635017\n0.1656418\n\n\nzeta\n0.9932542\n0.4152329\n\n\nlamda\n0.5935576\n0.1002247\n\n\nOmega\n0.5211311\n0.0978375\n\n\ng\n0.5647534\n0.1501136\n\n\nh\n0.5405266\n0.1677680\n\n\nGamma\n0.7426304\n0.3779059\n\n\nm\n0.4197552\n0.1397026\n\n\nn\n0.6039021\n0.1303562\n\n\nxi\n0.9118948\n0.5174046\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.067355 -0.013610 -0.000676  0.008779  0.126233 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.01255    0.01344  -0.934    0.353    \nx            0.53286    0.01973  27.002   &lt;2e-16 ***\ny            0.49246    0.01770  27.816   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.02817 on 97 degrees of freedom\nMultiple R-squared:  0.9544,    Adjusted R-squared:  0.9535 \nF-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "paper.html#web-r",
+    "href": "paper.html#web-r",
+    "title": "1 Introduction",
+    "section": "7.1 Web-R",
+    "text": "7.1 Web-R\n\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "paper.html#pyodide",
+    "href": "paper.html#pyodide",
+    "title": "1 Introduction",
+    "section": "7.2 Pyodide",
+    "text": "7.2 Pyodide\n\n\nx = [1, 2]\nprint(x)\n\n[1, 2]"
+  },
+  {
+    "objectID": "paper.html#section-27",
+    "href": "paper.html#section-27",
+    "title": "1 Introduction",
+    "section": "5.3 Application 3:",
+    "text": "5.3 Application 3:"
+  },
+  {
+    "objectID": "paper.html#section-28",
+    "href": "paper.html#section-28",
+    "title": "1 Introduction",
+    "section": "5.4 Application 4:",
+    "text": "5.4 Application 4:\n\na\n\nfunction (..., .noWS = NULL, .renderHook = NULL) \n{\n    validateNoWS(.noWS)\n    contents &lt;- dots_list(...)\n    tag(\"a\", contents, .noWS = .noWS, .renderHook = .renderHook)\n}\n&lt;bytecode: 0x55c71c6d4048&gt;\n&lt;environment: namespace:htmltools&gt;"
+  },
+  {
+    "objectID": "paper.html#section-30",
+    "href": "paper.html#section-30",
+    "title": "1 Introduction",
+    "section": "6.1 Procedure",
+    "text": "6.1 Procedure"
+  },
+  {
+    "objectID": "paper.html#section-33",
+    "href": "paper.html#section-33",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.3 Application 3:",
+    "text": "5.3 Application 3:\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n278.1333333\n151.3702810\n\n\nT\n171.4800000\n87.5426431\n\n\nU\n166.8200000\n89.9683815\n\n\nV\n291.0000000\n131.2518968\n\n\nR\n75.5000000\n43.4453680\n\n\nZ\n907.4333333\n407.2672130\n\n\nalpha\n0.4890781\n0.1118642\n\n\nx\n0.6145406\n0.1170083\n\n\ny\n0.3661625\n0.1021651\n\n\nzeta\n1.0589973\n0.2665894\n\n\nlamda\n0.6284937\n0.0290818\n\n\nOmega\n0.4939580\n0.0656984\n\n\ng\n0.4849542\n0.1189747\n\n\nh\n0.4931159\n0.1307120\n\n\nGamma\n0.5944873\n0.0737793\n\n\nm\n0.3671076\n0.0659321\n\n\nn\n0.6237063\n0.0637175\n\n\nxi\n1.1633056\n0.5444871\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n       Min         1Q     Median         3Q        Max \n-0.0100272 -0.0013619  0.0003456  0.0014659  0.0101474 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  0.03670    0.01108   3.313 0.001170 ** \ng            0.76505    0.07037  10.872  &lt; 2e-16 ***\ng2          -0.82952    0.14924  -5.558 1.31e-07 ***\ngh           0.99386    0.16258   6.113 8.94e-09 ***\nh2           0.30747    0.08008   3.839 0.000185 ***\ng3           0.92813    0.11588   8.010 3.78e-13 ***\ng2h         -1.04634    0.14343  -7.295 1.93e-11 ***\nh3          -0.17986    0.04453  -4.039 8.73e-05 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.002966 on 142 degrees of freedom\nMultiple R-squared:  0.9993,    Adjusted R-squared:  0.9993 \nF-statistic: 3.026e+04 on 7 and 142 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "paper.html#section-34",
+    "href": "paper.html#section-34",
+    "title": "1 Introduction",
+    "section": "5.4 Application 4:",
+    "text": "5.4 Application 4:\n\na\n\nfunction (..., .noWS = NULL, .renderHook = NULL) \n{\n    validateNoWS(.noWS)\n    contents &lt;- dots_list(...)\n    tag(\"a\", contents, .noWS = .noWS, .renderHook = .renderHook)\n}\n&lt;bytecode: 0x55f19397f338&gt;\n&lt;environment: namespace:htmltools&gt;"
+  },
+  {
+    "objectID": "paper.html#section-36",
+    "href": "paper.html#section-36",
+    "title": "1 Introduction",
+    "section": "6.1 Procedure",
+    "text": "6.1 Procedure"
+  },
+  {
+    "objectID": "paper.html#section-40",
+    "href": "paper.html#section-40",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.4 Application 4:",
+    "text": "5.4 Application 4:\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n26.3548387\n17.1514261\n\n\nT\n75.8612903\n32.8275397\n\n\nU\n59.1645161\n36.2229973\n\n\nV\n80.3419355\n37.9407541\n\n\nR\n155.5000000\n89.6335131\n\n\nZ\n241.7225806\n99.3145463\n\n\nalpha\n0.3385814\n0.1199969\n\n\nx\n0.2449055\n0.0958736\n\n\ny\n0.4092189\n0.1515815\n\n\nzeta\n1.4337137\n0.5286366\n\n\nlamda\n0.4454701\n0.0762936\n\n\nOmega\n0.4301681\n0.0944248\n\n\ng\n0.2558479\n0.1400019\n\n\nh\n0.4096907\n0.1391294\n\n\nGamma\n1.3079858\n0.3825898\n\n\nm\n0.4952807\n0.1050410\n\n\nn\n0.3182451\n0.1204117\n\n\nxi\n2.9368533\n4.4387531\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.060783 -0.005196 -0.001419  0.004808  0.053562 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.004193   0.006637  -0.632   0.5281    \nh            0.421735   0.064625   6.526 2.88e-10 ***\ng            0.614830   0.068997   8.911  &lt; 2e-16 ***\nh2          -0.118121   0.203906  -0.579   0.5628    \ngh           0.935772   0.227832   4.107 5.17e-05 ***\ng2          -0.859122   0.144782  -5.934 8.15e-09 ***\nh3           0.301299   0.197845   1.523   0.1288    \nh2g         -0.625059   0.261147  -2.394   0.0173 *  \nhg2         -0.276459   0.245844  -1.125   0.2617    \ng3           0.583709   0.123429   4.729 3.48e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.01195 on 300 degrees of freedom\nMultiple R-squared:  0.9904,    Adjusted R-squared:  0.9901 \nF-statistic:  3428 on 9 and 300 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "paper.html#section-48",
+    "href": "paper.html#section-48",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "6.1 Procedure",
+    "text": "6.1 Procedure"
+  },
+  {
+    "objectID": "paper.html#section-32",
+    "href": "paper.html#section-32",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.2 Application 2:",
+    "text": "5.2 Application 2:\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n278.1333333\n151.3702810\n\n\nT\n171.4800000\n87.5426431\n\n\nU\n166.8200000\n89.9683815\n\n\nV\n291.0000000\n131.2518968\n\n\nR\n75.5000000\n43.4453680\n\n\nZ\n907.4333333\n407.2672130\n\n\nalpha\n0.4890781\n0.1118642\n\n\nx\n0.6145406\n0.1170083\n\n\ny\n0.3661625\n0.1021651\n\n\nzeta\n1.0589973\n0.2665894\n\n\nlamda\n0.6284937\n0.0290818\n\n\nOmega\n0.4939580\n0.0656984\n\n\ng\n0.4849542\n0.1189747\n\n\nh\n0.4931159\n0.1307120\n\n\nGamma\n0.5944873\n0.0737793\n\n\nm\n0.3671076\n0.0659321\n\n\nn\n0.6237063\n0.0637175\n\n\nxi\n1.1633056\n0.5444871\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n       Min         1Q     Median         3Q        Max \n-0.0100272 -0.0013619  0.0003456  0.0014659  0.0101474 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  0.03670    0.01108   3.313 0.001170 ** \ng            0.76505    0.07037  10.872  &lt; 2e-16 ***\ng2          -0.82952    0.14924  -5.558 1.31e-07 ***\ngh           0.99386    0.16258   6.113 8.94e-09 ***\nh2           0.30747    0.08008   3.839 0.000185 ***\ng3           0.92813    0.11588   8.010 3.78e-13 ***\ng2h         -1.04634    0.14343  -7.295 1.93e-11 ***\nh3          -0.17986    0.04453  -4.039 8.73e-05 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.002966 on 142 degrees of freedom\nMultiple R-squared:  0.9993,    Adjusted R-squared:  0.9993 \nF-statistic: 3.026e+04 on 7 and 142 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "paper.html#section-39",
+    "href": "paper.html#section-39",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.3 Application 3:",
+    "text": "5.3 Application 3:\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n278.1333333\n151.3702810\n\n\nT\n171.4800000\n87.5426431\n\n\nU\n166.8200000\n89.9683815\n\n\nV\n291.0000000\n131.2518968\n\n\nR\n75.5000000\n43.4453680\n\n\nZ\n907.4333333\n407.2672130\n\n\nalpha\n0.4890781\n0.1118642\n\n\nx\n0.6145406\n0.1170083\n\n\ny\n0.3661625\n0.1021651\n\n\nzeta\n1.0589973\n0.2665894\n\n\nlamda\n0.6284937\n0.0290818\n\n\nOmega\n0.4939580\n0.0656984\n\n\ng\n0.4849542\n0.1189747\n\n\nh\n0.4931159\n0.1307120\n\n\nGamma\n0.5944873\n0.0737793\n\n\nm\n0.3671076\n0.0659321\n\n\nn\n0.6237063\n0.0637175\n\n\nxi\n1.1633056\n0.5444871\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n       Min         1Q     Median         3Q        Max \n-0.0100272 -0.0013619  0.0003456  0.0014659  0.0101474 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  0.03670    0.01108   3.313 0.001170 ** \ng            0.76505    0.07037  10.872  &lt; 2e-16 ***\ng2          -0.82952    0.14924  -5.558 1.31e-07 ***\ngh           0.99386    0.16258   6.113 8.94e-09 ***\nh2           0.30747    0.08008   3.839 0.000185 ***\ng3           0.92813    0.11588   8.010 3.78e-13 ***\ng2h         -1.04634    0.14343  -7.295 1.93e-11 ***\nh3          -0.17986    0.04453  -4.039 8.73e-05 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.002966 on 142 degrees of freedom\nMultiple R-squared:  0.9993,    Adjusted R-squared:  0.9993 \nF-statistic: 3.026e+04 on 7 and 142 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "paper.html#section-46",
+    "href": "paper.html#section-46",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.4 Application 4:",
+    "text": "5.4 Application 4:\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n26.3548387\n17.1514261\n\n\nT\n75.8612903\n32.8275397\n\n\nU\n59.1645161\n36.2229973\n\n\nV\n80.3419355\n37.9407541\n\n\nR\n155.5000000\n89.6335131\n\n\nZ\n241.7225806\n99.3145463\n\n\nalpha\n0.3385814\n0.1199969\n\n\nx\n0.2449055\n0.0958736\n\n\ny\n0.4092189\n0.1515815\n\n\nzeta\n1.4337137\n0.5286366\n\n\nlamda\n0.4454701\n0.0762936\n\n\nOmega\n0.4301681\n0.0944248\n\n\ng\n0.2558479\n0.1400019\n\n\nh\n0.4096907\n0.1391294\n\n\nGamma\n1.3079858\n0.3825898\n\n\nm\n0.4952807\n0.1050410\n\n\nn\n0.3182451\n0.1204117\n\n\nxi\n2.9368533\n4.4387531\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.060783 -0.005196 -0.001419  0.004808  0.053562 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.004193   0.006637  -0.632   0.5281    \nh            0.421735   0.064625   6.526 2.88e-10 ***\ng            0.614830   0.068997   8.911  &lt; 2e-16 ***\nh2          -0.118121   0.203906  -0.579   0.5628    \ngh           0.935772   0.227832   4.107 5.17e-05 ***\ng2          -0.859122   0.144782  -5.934 8.15e-09 ***\nh3           0.301299   0.197845   1.523   0.1288    \nh2g         -0.625059   0.261147  -2.394   0.0173 *  \nhg2         -0.276459   0.245844  -1.125   0.2617    \ng3           0.583709   0.123429   4.729 3.48e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.01195 on 300 degrees of freedom\nMultiple R-squared:  0.9904,    Adjusted R-squared:  0.9901 \nF-statistic:  3428 on 9 and 300 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "paper.html#section-54",
+    "href": "paper.html#section-54",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "6.1 Procedure",
+    "text": "6.1 Procedure"
+  },
+  {
+    "objectID": "paper.html#section-43",
+    "href": "paper.html#section-43",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.1 Application 1:",
+    "text": "5.1 Application 1:\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n250.1818182\n149.6887680\n\n\nT\n156.4090909\n83.0568704\n\n\nU\n143.0909091\n73.6031243\n\n\nV\n311.8636364\n149.4887463\n\n\nR\n11.5000000\n6.4935866\n\n\nZ\n861.5454545\n425.4729276\n\n\nalpha\n0.4512405\n0.0732275\n\n\nx\n0.6062204\n0.0823793\n\n\ny\n0.3142964\n0.0626658\n\n\nzeta\n1.1696106\n0.2313946\n\n\nlamda\n0.6511253\n0.0239190\n\n\nOmega\n0.4656832\n0.0470639\n\n\ng\n0.4357092\n0.0823097\n\n\nh\n0.4788419\n0.0849967\n\n\nGamma\n0.5378494\n0.0585061\n\n\nm\n0.3308302\n0.0389096\n\n\nn\n0.6272453\n0.0554818\n\n\nxi\n1.2780878\n0.4091593\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.029360 -0.007123  0.003458  0.008282  0.017762 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.04256    0.02101  -2.026    0.057 .  \nx            0.56467    0.05250  10.757 1.61e-09 ***\ny            0.48197    0.06901   6.984 1.18e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.01287 on 19 degrees of freedom\nMultiple R-squared:  0.972, Adjusted R-squared:  0.9691 \nF-statistic: 330.2 on 2 and 19 DF,  p-value: 1.75e-15"
+  },
+  {
+    "objectID": "paper.html#section-50",
+    "href": "paper.html#section-50",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.2 Application 2:",
+    "text": "5.2 Application 2:\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n250.1818182\n149.6887680\n\n\nT\n156.4090909\n83.0568704\n\n\nU\n143.0909091\n73.6031243\n\n\nV\n311.8636364\n149.4887463\n\n\nR\n11.5000000\n6.4935866\n\n\nZ\n861.5454545\n425.4729276\n\n\nalpha\n0.4512405\n0.0732275\n\n\nx\n0.6062204\n0.0823793\n\n\ny\n0.3142964\n0.0626658\n\n\nzeta\n1.1696106\n0.2313946\n\n\nlamda\n0.6511253\n0.0239190\n\n\nOmega\n0.4656832\n0.0470639\n\n\ng\n0.4357092\n0.0823097\n\n\nh\n0.4788419\n0.0849967\n\n\nGamma\n0.5378494\n0.0585061\n\n\nm\n0.3308302\n0.0389096\n\n\nn\n0.6272453\n0.0554818\n\n\nxi\n1.2780878\n0.4091593\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.029360 -0.007123  0.003458  0.008282  0.017762 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.04256    0.02101  -2.026    0.057 .  \nx            0.56467    0.05250  10.757 1.61e-09 ***\ny            0.48197    0.06901   6.984 1.18e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.01287 on 19 degrees of freedom\nMultiple R-squared:  0.972, Adjusted R-squared:  0.9691 \nF-statistic: 330.2 on 2 and 19 DF,  p-value: 1.75e-15"
+  },
+  {
+    "objectID": "paper.html#section-57",
+    "href": "paper.html#section-57",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.3 Application 3:",
+    "text": "5.3 Application 3:\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n250.1818182\n149.6887680\n\n\nT\n156.4090909\n83.0568704\n\n\nU\n143.0909091\n73.6031243\n\n\nV\n311.8636364\n149.4887463\n\n\nR\n11.5000000\n6.4935866\n\n\nZ\n861.5454545\n425.4729276\n\n\nalpha\n0.4512405\n0.0732275\n\n\nx\n0.6062204\n0.0823793\n\n\ny\n0.3142964\n0.0626658\n\n\nzeta\n1.1696106\n0.2313946\n\n\nlamda\n0.6511253\n0.0239190\n\n\nOmega\n0.4656832\n0.0470639\n\n\ng\n0.4357092\n0.0823097\n\n\nh\n0.4788419\n0.0849967\n\n\nGamma\n0.5378494\n0.0585061\n\n\nm\n0.3308302\n0.0389096\n\n\nn\n0.6272453\n0.0554818\n\n\nxi\n1.2780878\n0.4091593\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.029360 -0.007123  0.003458  0.008282  0.017762 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.04256    0.02101  -2.026    0.057 .  \nx            0.56467    0.05250  10.757 1.61e-09 ***\ny            0.48197    0.06901   6.984 1.18e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.01287 on 19 degrees of freedom\nMultiple R-squared:  0.972, Adjusted R-squared:  0.9691 \nF-statistic: 330.2 on 2 and 19 DF,  p-value: 1.75e-15"
+  },
+  {
+    "objectID": "paper.html#section-64",
+    "href": "paper.html#section-64",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "5.4 Application 4:",
+    "text": "5.4 Application 4:\n\nDescriptive2dScatter3dRegressionResiduals\n\n\n\n\n\n\n\nvariable\nmean\nstd\n\n\n\n\nS\n250.1818182\n149.6887680\n\n\nT\n156.4090909\n83.0568704\n\n\nU\n143.0909091\n73.6031243\n\n\nV\n311.8636364\n149.4887463\n\n\nR\n11.5000000\n6.4935866\n\n\nZ\n861.5454545\n425.4729276\n\n\nalpha\n0.4512405\n0.0732275\n\n\nx\n0.6062204\n0.0823793\n\n\ny\n0.3142964\n0.0626658\n\n\nzeta\n1.1696106\n0.2313946\n\n\nlamda\n0.6511253\n0.0239190\n\n\nOmega\n0.4656832\n0.0470639\n\n\ng\n0.4357092\n0.0823097\n\n\nh\n0.4788419\n0.0849967\n\n\nGamma\n0.5378494\n0.0585061\n\n\nm\n0.3308302\n0.0389096\n\n\nn\n0.6272453\n0.0554818\n\n\nxi\n1.2780878\n0.4091593\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[[1]]\n\nCall:\nlm(formula = formo, data = edfc)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.029360 -0.007123  0.003458  0.008282  0.017762 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.04256    0.02101  -2.026    0.057 .  \nx            0.56467    0.05250  10.757 1.61e-09 ***\ny            0.48197    0.06901   6.984 1.18e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.01287 on 19 degrees of freedom\nMultiple R-squared:  0.972, Adjusted R-squared:  0.9691 \nF-statistic: 330.2 on 2 and 19 DF,  p-value: 1.75e-15"
+  },
+  {
+    "objectID": "paper.html#section-72",
+    "href": "paper.html#section-72",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "6.1 Procedure",
+    "text": "6.1 Procedure"
+  },
+  {
+    "objectID": "paper.html#section-1",
+    "href": "paper.html#section-1",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "1.1 Setting up the election system",
+    "text": "1.1 Setting up the election system"
+  },
+  {
+    "objectID": "paper.html#section-2",
+    "href": "paper.html#section-2",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "1.2 Tautologies using standard form (north vs. south)",
+    "text": "1.2 Tautologies using standard form (north vs. south)"
+  },
+  {
+    "objectID": "paper.html#section-3",
+    "href": "paper.html#section-3",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "1.3 Tautologies using hybrid form (west vs. east)",
+    "text": "1.3 Tautologies using hybrid form (west vs. east)"
+  },
+  {
+    "objectID": "paper.html#section-4",
+    "href": "paper.html#section-4",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "1.4 Tautologies using opposition form (upper vs. lower)",
+    "text": "1.4 Tautologies using opposition form (upper vs. lower)"
+  },
+  {
+    "objectID": "paper.html#section-5",
+    "href": "paper.html#section-5",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "1.5 Modelling the election process",
+    "text": "1.5 Modelling the election process"
+  },
+  {
+    "objectID": "paper.html#section-6",
+    "href": "paper.html#section-6",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "1.6 How outside factors to the voting system will impact \\(\\zeta_i\\)",
+    "text": "1.6 How outside factors to the voting system will impact \\(\\zeta_i\\)"
+  },
+  {
+    "objectID": "paper.html#section-7",
+    "href": "paper.html#section-7",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "1.7 How outside factors to the voting system will impact \\(\\Gamma_i\\)",
+    "text": "1.7 How outside factors to the voting system will impact \\(\\Gamma_i\\)"
   }
 ]

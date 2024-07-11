@@ -32,7 +32,8 @@ rigv <- lapply(exs, function(x) {
   		lf="(alpha-alpha_s)^2"))
   cogr$setres(0.19,1)
   cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
-  rasc <-cogr$rdfc
+  rasc <- basc
+  #rasc <-cogr$rdfc
   return(rasc)
 })
 ####################################################################################################################################################################
