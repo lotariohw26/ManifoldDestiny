@@ -52,7 +52,7 @@ py_polysolverW <- function(degree=1,kvec=NULL){
 }
 #' @export manobj
 manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
-	browser()
+#	browser()
   polyc <- setNames(as.vector(lapply(enfl[[1]], as.character)),LETTERS[1:5])
   la_e <- unlist(polyc[c(LETTERS[1:5])])
   pnr <- sum(la_e!="0")
@@ -602,6 +602,7 @@ Countingprocess$methods(sortpre=function(form=1,
   #sumreg <<- list(poleq=paste0(plso),polint=pintv,R2=paste0(plr2))
 })
 Countingprocess$methods(mansys=function(sygen=NULL){
+				browser()
   mansysl <<- sygen
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   allvar <<- list(pre=mansysl$pre,end=mansysl$end)
@@ -627,8 +628,8 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
 					lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1))){
 
   ## Variables
-  lof <- function(kvec=NULL,prn=T){
 #	  browser()
+  lof <- function(kvec=NULL,prn=T){
     kvnr <- c(3,6,10,17)[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
@@ -688,6 +689,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
     #print(clvl)
   }
   # Init
+  browser()
   allvec <- c(unlist(allvar$pre),unlist(allvar$end))
   stuv <- paste0(c(unlist(allstuv)))
   sho <- c("_s","_h","_o")[[mansysl$frm]]
