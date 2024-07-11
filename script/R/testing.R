@@ -3,11 +3,30 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
 # Simulations
-abc <- Countinggraphs(yout[[1]])
-abc$purging(mdprg=list(z=0,stuv=c(0,0,0,0),blup=c(0,1),eq=c("alpha=k0+k1*x+k2*y")),pri=1)
-#View(abc$rdfc)
+abc <- seloutput(selreport(yout))
+
+abc[[1]]
+abc[[2]]
+abc[[3]]
+abc[[4]]
+abc[[5]]
+abc[[6]]
+abc[[7]]
+abc[[8]]
+abc[[9]]
+abc[[10]]
+abc[[11]]
+abc[[12]]
 
 
+
+
+
+
+
+
+
+###########################################################################################################
 ### Residual
 dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,100,30)))})(100)
 probw <- c(m=0.51,s=0.10)
