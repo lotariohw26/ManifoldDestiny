@@ -602,7 +602,6 @@ Countingprocess$methods(sortpre=function(form=1,
   #sumreg <<- list(poleq=paste0(plso),polint=pintv,R2=paste0(plr2))
 })
 Countingprocess$methods(mansys=function(sygen=NULL){
-				browser()
   mansysl <<- sygen
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   allvar <<- list(pre=mansysl$pre,end=mansysl$end)
@@ -628,37 +627,36 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
 					lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1))){
 
   ## Variables
-#	  browser()
   lof <- function(kvec=NULL,prn=T){
     kvnr <- c(3,6,10,17)[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
-    #rad <- unname(unlist(mansysl$rot)[c(2,4,6)])*(pi/180)
-    #abcv <- setNames(as.vector(lapply(enf[[3]][[3]], as.character)),c(paste0(rep(letters[1:3], each=3), rep(1:3, times=3))))
-    #mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
-    #nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
+    rad <- unname(unlist(mansysl$rot)[c(2,4,6)])*(pi/180)
+    abcv <- setNames(as.vector(lapply(enf[[3]][[3]], as.character)),c(paste0(rep(letters[1:3], each=3), rep(1:3, times=3))))
+    mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
+    nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
       ### Parameters
       dplyr::mutate(!!!kvea) %>%
       ### MN
-      #dplyr::mutate(!!!mv,!!!nv) %>%
-      #dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%
-      #dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%
-      #dplyr::mutate(a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
-      #dplyr::mutate(b1=pareq(abcv[4],c(as.list(.[,])))) %>%
-      #dplyr::mutate(b2=pareq(abcv[5],c(as.list(.[,])))) %>%
-      #dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%
-      #dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%
-      #dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%
-      #dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!!mv,!!!nv) %>%
+      dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%
+      dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%
+      dplyr::mutate(a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
+      dplyr::mutate(b1=pareq(abcv[4],c(as.list(.[,])))) %>%
+      dplyr::mutate(b2=pareq(abcv[5],c(as.list(.[,])))) %>%
+      dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%
+      dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%
+      dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%
+      dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%
       ### Presetting the first variables
       dplyr::mutate(!!allvec[1]:=enf[[1]]) %>%
       ### Presetting second variable
       dplyr::mutate(!!allvec[2]:=pareq(enf[[2]],c(as.list(.[,])))) %>%
       ### Presetting the Manifold object
-      dplyr::mutate(!!allvec[3]:=manobj(enfl=enf[[3]],.[,],allvec[3])) 
+      dplyr::mutate(!!allvec[3]:=manobj(enfl=enf[[3]],.[,],allvec[3])) %>%
       #!RWASM
       ### Adding some noise
       dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) %>%
@@ -689,7 +687,6 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
     #print(clvl)
   }
   # Init
-  browser()
   allvec <- c(unlist(allvar$pre),unlist(allvar$end))
   stuv <- paste0(c(unlist(allstuv)))
   sho <- c("_s","_h","_o")[[mansysl$frm]]
@@ -712,7 +709,6 @@ Countinggraphs$methods(plot2d=function(form=1,
     				       labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,
 				       alpha=1,size=1)
 				       ){
-  #browser() #1
   longdf <- tidyr::pivot_longer(quintile,all_of(c(psel,paste0(psel,'_pred'))))
   go <- ggplot2::ggplot(data=longdf) +
     ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel[c(1,2,3)],'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +
@@ -1018,4 +1014,6 @@ Estimation$methods(hat_intcomp=function(){
     prc0123=100*sum(abs(compare[[comps]] - 0) <= 3)/length(compare[[comps]]))
   comdesc <<- data.frame(stats=names(vnd),values=vnd)
 })
+
+
 

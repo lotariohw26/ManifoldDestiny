@@ -27,10 +27,12 @@ cogr$mansys(sygen=list(frm=1,
 		pre=c("alpha","x","y"),
 		end=c("zeta","Omega","lamda"),
 		stuv=c("S","T","U","V"),
-		plnr=c(plnr=1),
+	        plnr=1,
+		rot=list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),
 		lf="(alpha-alpha_s)^2"))
 cogr$setres(0.19,1)
 cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
+
 #rasc <- basc
 #return(rasc)
 #})
@@ -59,3 +61,16 @@ cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
 # "id"   "nid"  "nmn"  "rcn"  "cnd"  "sta"  "cou"  "mod"  "yea"  "url"  "pgn"  "rng"  "cln"  "stuv" "eq"  "va"   "fr"   "ro"   "bib" 
 # "fr" "eq"
 #rotv <- list(list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),list(fr=c(1,14.378100),sr=c(4,49.762610),tr=c(2,11.5781)))[[1]]
+#frms <- 1
+#plnrvec <- c(1,2,3)[1]
+#rotv <- list(list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),list(fr=c(1,14.378100),sr=c(4,49.762610),tr=c(2,11.5781)))[[1]]
+#app_ex1_cou <- Countinggraphs(app_bal)
+#pri_int_ex1 <- app_ex1_cou$polyc[[1]][[1]]
+#app_ex1_cou$mansys(sygen=list(frm=frms,
+#			      pre=c("alpha","x","y"),
+#			      end=c("zeta","Omega","lamda"),
+#			      stuv=c("S","T","U","V"),
+#			      plnr=plnrvec,
+#			      rot=rotv,
+#			      lf="(alpha-alpha_s)^2"))
+
