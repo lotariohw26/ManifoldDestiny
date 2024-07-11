@@ -22,23 +22,19 @@ frms <- c(1,1,1)
 plnr <- c(1,2,3)
 exs <- c("ex1", "ex2", "ex3")
 pnvec <- c(1,2,3)[1]
-#rigv <- lapply(exs, function(x) { 
-cogr$mansys(sygen=list(frm=1, 
-		pre=c("alpha","x","y"),
-		end=c("zeta","Omega","lamda"),
-		stuv=c("S","T","U","V"),
-	        plnr=1,
-		rot=list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),
-		lf="(alpha-alpha_s)^2"))
-cogr$setres(0.19,1)
-cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
-
-#rasc <- basc
-#return(rasc)
-#})
-#cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
-#ismv <- SimVoterdatabase(basc[[1]])
-#crpl <- SimVoterdatabase(rigc[[1]])
+rigv <- lapply(exs, function(x) { 
+  cogr$mansys(sygen=list(frm=1, 
+  		pre=c("alpha","x","y"),
+  		end=c("zeta","Omega","lamda"),
+  		stuv=c("S","T","U","V"),
+  	        plnr=1,
+  		rot=list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),
+  		lf="(alpha-alpha_s)^2"))
+  cogr$setres(0.19,1)
+  cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
+  rasc <-cogr$rdfc
+  return(rasc)
+})
 ####################################################################################################################################################################
 ######### Concluding Tabl
 #ctone <-'Applications'
