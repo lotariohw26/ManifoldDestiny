@@ -40,7 +40,7 @@ Ed. Solomon
 - County with three precincts: 1, 2, 3
 - Two modes of voting
   - Number of ballots mode 1: S, T
-  - Number of ballots mode 2: U, V
+  - Number of ballots mode 2: V, U
 
 
 ---
@@ -52,7 +52,7 @@ Ed. Solomon
 :::
 ```{r, echo=F}
 #| label: fig-1.1
-#| fig-cap: "Case 1:"
+#| fig-cap: "Case 1:.."
 clr <- c("black","green","red","blue")
 lego_hux_imp_i <- as_hux(towi[,1:3]) %>%
   set_text_color(5, 1:2, clr[1]) %>%
@@ -71,7 +71,7 @@ lego_hux_imp_i
 :::
 ```{r, echo=F}
 #| label: fig-1.2
-#| fig-cap: "Case 2:"
+#| fig-cap: "Case 2:..."
 lego_hux_imp_ii <- as_hux(towii[,1:3]) %>%
   set_text_color(5, 1:2, clr[1]) %>%
   set_background_color(1, 1:3, clr[2]) %>% 

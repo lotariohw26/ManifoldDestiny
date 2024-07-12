@@ -22,7 +22,7 @@ towi <- as.data.frame(ex1m) %>%
   dplyr::select(5:8) %>%
   t() %>%
   data.frame() %>%
-  data.table::setnames(paste0("County_",1:6))
+  data.table::setnames(paste0("Precinct ",1:6))
 towi[3:4,1] <- ""
 towi[4,2] <- ""
 ## Tower 2
@@ -35,7 +35,7 @@ towii <- as.data.frame(ex2m) %>%
   dplyr::select(5:8) %>%
   t() %>%
   data.frame() %>%
-  data.table::setnames(paste0("County_",1:6))
+  data.table::setnames(paste0("Precinct ",1:6))
 towii[3:4,1] <- ""
 towii[4,2] <- ""
 #########################################################################################################################################################

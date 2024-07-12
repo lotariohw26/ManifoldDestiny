@@ -33,6 +33,8 @@ wasmconload <- function(){
   library(tidyr)
   library(combinat)
   library(AlgebraicHaploPackage)
+  library(huxtable)
+  library(kableExtra)
 }
 #########################################################################################################################################################
 # ' @export py_polysolverW
@@ -199,7 +201,7 @@ selreport <- function(
   frm <- md$fr 
   #rparv <- md$mtd$sgs$ro ; names(rparv) <- c("theta","phi","rho")
   co <- Countinggraphs(da)
-  if (md$prg$cnd==1) co$purging(md$prg,1)
+  if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp)
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
@@ -228,23 +230,23 @@ selreport <- function(
 }
 ##' @export seloutput
 seloutput <- function(selreport=NULL){
-  tab0 <- selreport[[1]]$rdfc
-  tab1 <- selreport[[1]]$desms
-  tab2 <- selreport[[1]]$pl_corrxy[[1]]
-  tab3 <- selreport[[1]]$pl_2dsort[[1]]
-  tab4 <- selreport[[1]]$pl_3d_mani[[1]]
-  tab5 <- selreport[[1]]$r2list
-  tab6 <- list(summary(selreport[[2]]$regsum[[1]]))
+  tab1 <- selreport[[1]]$rdfc
+  tab2 <- selreport[[1]]$desms
+  tab3 <- selreport[[1]]$pl_corrxy[[1]]
+  tab4 <- selreport[[1]]$pl_2dsort[[1]]
+  tab5 <- selreport[[1]]$pl_3d_mani[[1]]
+  tab6 <- selreport[[1]]$r2list
+  tab7 <- list(summary(selreport[[2]]$regsum[[1]]))
   l1 <- selreport[[2]]$resplots[[1]][[1]]
   l2 <- selreport[[2]]$resplots[[1]][[2]]
   l3 <- selreport[[2]]$resplots[[1]][[3]]
   l4 <- selreport[[2]]$resplots[[1]][[4]]
-  tab7 <- cowplot::plot_grid(plotlist=list(l1,l2,l3,l4))
+  tab8 <- cowplot::plot_grid(plotlist=list(l1,l2,l3,l4))
   tab8 <- selreport[[2]]$comdesc
-  tab9 <- selreport[[4]]
-  tab10 <- selreport[[5]]$pl_2dsort
-  tab11 <- selreport[[6]]
-  list(rdfc=tab0,decs=tab1,corxy=tab2,qunt=tab3,ro3d=tab4,r2li=tab5,regr=tab6,resp=tab7,cmp=tab8,md=tab9,bb=tab10,md=tab11)
+  tab10 <- selreport[[4]]
+  tab11 <- selreport[[5]]$pl_2dsort
+  tab12 <- selreport[[6]]
+  list(rdfc=tab1,decs=tab2,corxy=tab3,qunt=tab4,ro3d=tab5,r2li=tab6,regr=tab7,resp=tab8,cmp=tab9,md=tab10,bb=tab11,md=tab12)
 }
 
 ##' @export Rall
@@ -546,19 +548,19 @@ Countingprocess$methods(plext=function(){
     dplyr::mutate(xy=x*y)
 })
 
-Countingprocess$methods(purging=function(mdprg=list(stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y")),pri=0){
-
+Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y"),pri=0){
   rdfv <- rdfci %>%
     dplyr::arrange(P) %>%
-    dplyr::filter(S>=mdprg$stuv[1]) %>%
-    dplyr::filter(T>=mdprg$stuv[2]) %>%
-    dplyr::filter(U>=mdprg$stuv[3]) %>%
-    dplyr::filter(V>=mdprg$stuv[4]) %>%
+    dplyr::filter(Z>=stuv[1]) %>%
+    dplyr::filter(S>=stuv[1]) %>%
+    dplyr::filter(T>=stuv[2]) %>%
+    dplyr::filter(U>=stuv[3]) %>%
+    dplyr::filter(V>=stuv[4]) %>%
     ## Percentages
-    dplyr::filter(if_all(c(alpha,x,y,g,h,m,n),~.>mdprg$blup[1]&.<mdprg$blup[2]))
+    dplyr::filter(if_all(c(alpha,x,y,g,h,m,n),~.>blup[1]&.<blup[2]))
     # Fit filter
     erdfv <- Estimation(rdfv)
-    erdfv$regression(mdprg$eqp)
+    erdfv$regression(eqp)
     rdfc <<- erdfv$predict_df %>%
             dplyr::mutate(pre_rnk=dplyr::row_number(desc(deva))) %>%
             dplyr::arrange(pre_rnk) %>%
