@@ -98,6 +98,7 @@ gmp <- function(terms=c("x2","xy","y2","x3","x2y","y2x","y3")){
   }
   expre
 }
+gmp()
 ## Simulate prob
 #' @export r2simn
 r2simn <- function(nprec=300,
@@ -953,7 +954,9 @@ Estimation$methods(hat_predict=function(svf='y',rnr=1){
     sd <- regform[1]
     eurv <- c(0,0,0)
     svfi <- c(svf,svf)
-    lpy <<- py_genpolycoeff(expr=ex,solvd=sd)
+    browser()
+    ex
+    lpy <<- py_genpolycoeff(1,expr=ex,solvd=sd)
     #lpy <<- py_genpolycoeff(expr=ex,solvd=sd,solvf=svfi[2],eur=eurv)
     browser()
     setNames(as.vector(lapply(lpy[[1]], as.character)),LETTERS[1:5])
