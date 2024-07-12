@@ -1,3 +1,81 @@
+---
+title: "{{< var titll >}}"
+subtitle: "Based upon the ideas developed by Edward K. Solomon"
+format:
+  revealjs: 
+    smaller: true
+    toc-depth: 1
+    toc: true 
+#execute: 
+#  cache: false
+#webr: 
+#  show-startup-message: true    # Disable displaying status of webR initialization
+#  packages: ['dplyr','purrr','magrittr','data.table','tidyr'] # Install R packages on document open
+##filters:
+#- webr 
+footer: <https://lotariohw26.github.io/ManifoldDestiny/>
+---
+
+```{r, echo=F, message=F, warning=F, results='hide'}
+ManifoldDestiny::wasmconload()
+library(huxtable)
+library(kableExtra)
+library(ManifoldDestiny)
+laws_df1 <- ManifoldDestiny::eqdef$meql
+laws_df2 <- ManifoldDestiny::eqdef$meqs
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
+modlat <- eqpar$meql
+```
+
+
+# {{< var sec1.nmn >}}
+Ed. Solomon
+
+> "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
+
+## {{< var sec1.un1 >}}
+- Two candidates: A, B
+- County with three precincts: 1, 2, 3
+- Two modes of voting
+  - Number of ballots mode 1: S, T
+  - Number of ballots mode 2: V, U
+
+
+---
+
+**Our two stylized numerical cases**
+
+```{r, echo=F}
+#| label: fig-1.1
+#| fig-cap: "Case 1:.."
+clr <- c("black","green","red","blue")
+lego_hux_imp_i <- as_hux(towi[,1:3]) %>%
+  set_text_color(5, 1:2, clr[1]) %>%
+  set_background_color(1, 1:3, clr[2]) %>% 
+  set_background_color(2, 1:3, clr[3]) %>%
+  set_background_color(3, 1:3, clr[4]) %>%
+  set_background_color(4, 2:3, clr[4]) %>%
+  set_background_color(5, 3:3, clr[4]) %>%
+  set_font_size(16)
+lego_hux_imp_i
+```
+
+```{r, echo=F}
+#| label: fig-1.2
+#| fig-cap: "Case 2:..."
+lego_hux_imp_ii <- as_hux(towii[,1:3]) %>%
+  set_text_color(5, 1:2, clr[1]) %>%
+  set_background_color(1, 1:3, clr[2]) %>% 
+  set_background_color(2, 1:3, clr[3]) %>%
+  set_background_color(3, 1:3, clr[4]) %>%
+  set_background_color(4, 2:3, clr[4]) %>%
+  set_background_color(5, 3:3, clr[4]) %>%
+  set_font_size(16)
+lego_hux_imp_ii
+```
+
 ## {{< var sec1.un2 >}}
 ```{r, echo=F}
 lego_hux_nor <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
@@ -660,7 +738,6 @@ knitr::include_graphics(c(pr2h))
 
 ::: {#refs}
 :::
-
 
 
 
