@@ -15,11 +15,11 @@ R  <- c(200,2*200,3*200,3*200,3*200,3*200)
 ## Tower 1
 ex1m <- as.matrix(cbind(P,R,S,T,U,V)) %>% as.data.frame()
 towi <- as.data.frame(ex1m) %>%
-	dplyr::mutate(EDVst=paste0(.[,3],"/",.[,2])) %>%
-        dplyr::mutate(MIVst_1=paste0(.[1,3],"/",.[1,4])) %>%
-        dplyr::mutate(MIVst_2=paste0(.[2,3],"/",.[2,4])) %>%
-        dplyr::mutate(MIVst_3=paste0(.[3,3],"/",.[3,4])) %>%
-        dplyr::select(5:8) %>%
+	dplyr::mutate(EDVst=paste0(.[,3],"/",.[,4])) %>%
+        dplyr::mutate(MIVst_1=paste0(.[1,5],"/",.[1,6])) %>%
+        dplyr::mutate(MIVst_2=paste0(.[2,5],"/",.[2,6])) %>%
+        dplyr::mutate(MIVst_3=paste0(.[3,6],"/",.[3,6])) %>%
+        dplyr::select(7:10) %>%
         t() %>%
         data.frame() %>%
         data.table::setnames(paste0("Precinct ",1:6))
@@ -30,14 +30,14 @@ towi
 towi
 ex2m <- as.matrix(cbind(P,R,S,T,Up,Vp)) %>% as.data.frame()
 towii <- as.data.frame(ex2m) %>%
-  dplyr::mutate(EDVst=paste0(.[,1],"/",.[,2])) %>%
-  dplyr::mutate(MIVst_1=paste0(.[1,3],"/",.[1,4])) %>%
-  dplyr::mutate(MIVst_2=paste0(.[2,3],"/",.[2,4])) %>%
-  dplyr::mutate(MIVst_3=paste0(.[3,3],"/",.[3,4])) %>%
-  dplyr::select(5:8) %>%
-  t() %>%
-  data.frame() %>%
-  data.table::setnames(paste0("Precinct ",1:6))
+	dplyr::mutate(EDVst=paste0(.[,3],"/",.[,4])) %>%
+        dplyr::mutate(MIVst_1=paste0(.[1,5],"/",.[1,6])) %>%
+        dplyr::mutate(MIVst_2=paste0(.[2,5],"/",.[2,6])) %>%
+        dplyr::mutate(MIVst_3=paste0(.[3,6],"/",.[3,6])) %>%
+        dplyr::select(7:10) %>%
+        t() %>%
+        data.frame() %>%
+        data.table::setnames(paste0("Precinct ",1:6))
 towii[3:4,1] <- ""
 towii[4,2] <- ""
 towii

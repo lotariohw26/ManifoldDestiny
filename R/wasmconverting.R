@@ -98,7 +98,6 @@ gmp <- function(terms=c("x2","xy","y2","x3","x2y","y2x","y3")){
   }
   expre
 }
-gmp()
 ## Simulate prob
 #' @export r2simn
 r2simn <- function(nprec=300,
@@ -216,8 +215,8 @@ selreport <- function(
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$eq)
   ges$diagnostics()
-  ges$hat_predict(md$va,md$fr)
   browser()
+  ges$hat_predict(md$va,md$fr)
   #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
@@ -958,7 +957,7 @@ Estimation$methods(hat_predict=function(svf='y',rnr=1){
     ex
     lpy <<- py_genpolycoeff(1,expr=ex,solvd=sd)
     #lpy <<- py_genpolycoeff(expr=ex,solvd=sd,solvf=svfi[2],eur=eurv)
-    browser()
+    #py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(0, 0, 0))
     setNames(as.vector(lapply(lpy[[1]], as.character)),LETTERS[1:5])
     pnr <- sum(lpy[[1]]!="0")
   }
@@ -967,6 +966,7 @@ Estimation$methods(hat_predict=function(svf='y',rnr=1){
     sd <- regform[1]
     eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
     lpy <<- py_genpolycoeff(expr=NULL,solvd=sd,solvf='Z',eur=eurv)
+    #py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(1, 4, 2))[[3]]
     lpy[[1]] <<- setNames(as.vector(lapply(lpy[[1]],as.character)),LETTERS[1:5])
     lpy[[2]] <<- setNames(as.vector(lapply(lpy[[2]],as.character)),c("x","y","z"))
     lpy[[3]] <<- setNames(as.vector(lapply(lpy[[3]],as.character)),paste0(rep(letters[1:3],each=3),seq(1,3)))
