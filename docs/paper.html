@@ -182,13 +182,16 @@ window.Quarto = {
     <a class="dropdown-item" href="./addendum/Addendum_ne.html">
  <span class="dropdown-text">Addendum 2: Nevada</span></a>
   </li>  
-        <li class="dropdown-header">Paper</li>
         <li>
-    <a class="dropdown-item" href="./tabset.html">
- <span class="dropdown-text">Tabset</span></a>
+    <a class="dropdown-item" href="./paper.html">
+ <span class="dropdown-text">Paper</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./tabset.html"> 
+<span class="menu-text">Tabset</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shiny-applications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Shiny applications</span>
@@ -276,7 +279,7 @@ window.Quarto = {
   <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"><span class="header-section-number">1.6</span> How outside factors to the voting system will impact <span class="math inline">\(\zeta_i\)</span></a></li>
   <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7"><span class="header-section-number">1.7</span> How outside factors to the voting system will impact <span class="math inline">\(\Gamma_i\)</span></a></li>
   </ul></li>
-  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"><span class="header-section-number">2</span> Ballot counting methods</a>
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"><span class="header-section-number">2</span> Methods of Ballot Counting</a>
   <ul class="collapse">
   <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9"><span class="header-section-number">2.1</span> Generic approach to ballot counting</a></li>
   <li><a href="#section-10" id="toc-section-10" class="nav-link" data-scroll-target="#section-10"><span class="header-section-number">2.2</span> The 20 laws and 40 isometries governing an election</a></li>
@@ -284,7 +287,7 @@ window.Quarto = {
   <li><a href="#section-12" id="toc-section-12" class="nav-link" data-scroll-target="#section-12"><span class="header-section-number">2.4</span> Counting in a rigged election</a></li>
   <li><a href="#section-13" id="toc-section-13" class="nav-link" data-scroll-target="#section-13"><span class="header-section-number">2.5</span> Implementing a loss-function in a rigged election</a></li>
   </ul></li>
-  <li><a href="#section-14" id="toc-section-14" class="nav-link" data-scroll-target="#section-14"><span class="header-section-number">3</span> Election simulations</a>
+  <li><a href="#section-14" id="toc-section-14" class="nav-link" data-scroll-target="#section-14"><span class="header-section-number">3</span> Election Simulations</a>
   <ul class="collapse">
   <li><a href="#section-15" id="toc-section-15" class="nav-link" data-scroll-target="#section-15"><span class="header-section-number">3.1</span> Fair election</a>
   <ul class="collapse">
@@ -297,7 +300,7 @@ window.Quarto = {
   <li><a href="#opposition" id="toc-opposition" class="nav-link" data-scroll-target="#opposition"><span class="header-section-number">3.2.3</span> Opposition</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#section-41" id="toc-section-41" class="nav-link" data-scroll-target="#section-41"><span class="header-section-number">4</span> Literature review</a></li>
+  <li><a href="#section-41" id="toc-section-41" class="nav-link" data-scroll-target="#section-41"><span class="header-section-number">4</span> Literature Review</a></li>
   <li><a href="#section-42" id="toc-section-42" class="nav-link" data-scroll-target="#section-42"><span class="header-section-number">5</span> Applications</a>
   <ul class="collapse">
   <li><a href="#section-43" id="toc-section-43" class="nav-link" data-scroll-target="#section-43"><span class="header-section-number">5.1</span> Application 1:</a>
@@ -317,7 +320,7 @@ window.Quarto = {
   <li><a href="#abc-4" id="toc-abc-4" class="nav-link" data-scroll-target="#abc-4"><span class="header-section-number">5.4.1</span> Abc</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#section-71" id="toc-section-71" class="nav-link" data-scroll-target="#section-71"><span class="header-section-number">6</span> Restoration of the original election results</a>
+  <li><a href="#section-71" id="toc-section-71" class="nav-link" data-scroll-target="#section-71"><span class="header-section-number">6</span> Restoring Original Election Results</a>
   <ul class="collapse">
   <li><a href="#section-72" id="toc-section-72" class="nav-link" data-scroll-target="#section-72"><span class="header-section-number">6.1</span> Procedure</a></li>
   </ul></li>
@@ -472,7 +475,7 @@ Attaching package: 'kableExtra'</code></pre>
 </section>
 </section>
 <section id="section-8" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Ballot counting methods</h1>
+<h1 data-number="2"><span class="header-section-number">2</span> Methods of Ballot Counting</h1>
 <section id="section-9" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="section-9"><span class="header-section-number">2.1</span> Generic approach to ballot counting</h2>
 </section>
@@ -490,7 +493,7 @@ Attaching package: 'kableExtra'</code></pre>
 </section>
 </section>
 <section id="section-14" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Election simulations</h1>
+<h1 data-number="3"><span class="header-section-number">3</span> Election Simulations</h1>
 <section id="section-15" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="section-15"><span class="header-section-number">3.1</span> Fair election</h2>
 <section id="abc" class="level3" data-number="3.1.1">
@@ -1249,7 +1252,7 @@ F-statistic:  1015 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 </section>
 <section id="section-41" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Literature review</h1>
+<h1 data-number="4"><span class="header-section-number">4</span> Literature Review</h1>
 </section>
 <section id="section-42" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Applications</h1>
@@ -2036,7 +2039,7 @@ F-statistic:  3428 on 9 and 300 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 </section>
 <section id="section-71" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Restoration of the original election results</h1>
+<h1 data-number="6"><span class="header-section-number">6</span> Restoring Original Election Results</h1>
 <section id="section-72" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="section-72"><span class="header-section-number">6.1</span> Procedure</h2>
 </section>

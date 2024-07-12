@@ -40,5 +40,20 @@ towii[3:4,1] <- ""
 towii[4,2] <- ""
 #towi
 #towii
-#######################################################################################################################################################
+#########################################################################################################################################################
+pro_rec_ex1_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=U,V=V,R=R)
+pro_rec_ex2_e <- data.frame(P=c(1,2,3,4,5,6),S=S,T=T,U=Up,V=Vp,R=R) 
+pro_rec_ex1 <- pro_rec_ex1_e[1:3,]
+pro_rec_ex2 <- pro_rec_ex2_e[1:3,]
+pro_elc_ex1 <- Countinggraphs(pro_rec_ex1)
+pro_elc_ex2 <- Countinggraphs(pro_rec_ex2)
+cx <- round(pro_elc_ex1$sdfc$x,2)
+cy <- round(pro_elc_ex1$sdfc$y,2)
+czeta <- round(pro_elc_ex1$sdfc$zeta,2)
+calpha <- round(pro_elc_ex1$sdfc$alpha,2)
+clambda <- round(pro_elc_ex1$sdfc$lamda,2)
+cg <- round(pro_elc_ex1$sdfc$g,2)
+ch <- round(pro_elc_ex1$sdfc$y,2)
+cGamma <- round(pro_elc_ex1$sdfc$Gamma,2)
+##########################################################################################################################################################
 

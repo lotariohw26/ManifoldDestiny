@@ -94,6 +94,7 @@ lego_hux_nor <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
 lego_hux_nor %>% set_caption("")
 ```
 
+
 Parameters:**$x$, $y$, $\zeta$, $\alpha$, $\lambda$**
 
 \begin{equation*}
@@ -108,6 +109,8 @@ x=`r modlat$x_s[1]` \text{, }y=`r modlat$y_s[1]`
 \begin{equation*}
 \lambda=`r modlat$lamda_s[1]`=`r modlat$lamda_s[2]`
 \end{equation*}
+
+---
 
 ```{r, echo=F}
 #| label: tbl-sfc1
@@ -150,7 +153,9 @@ g=`r modlat$g_h[1]` \text{, } h=`r modlat$h_h[1]`
 \Omega=`r modlat$Omega_h[1] `=`r modlat$Omega_h[2]`
 \end{equation*}
 
-##
+---
+
+
 
 ```{r, echo=F}
 #| label: tbl-sfc2

@@ -81,7 +81,7 @@
     "href": "presentation.html#section-9",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Probability of assigning oneself to candidate A in precinct \\(i\\)\n\n\\(p_{w,i} \\sim N(\\alpha_i,\\sigma^2_{w,i})\\)\n\nVoting technology\n\n\\(z_i \\sim U(0,1)\\)\n\nProbability of not voting in precinct \\(i\\)\n\nCandidate A, \\(p_{nz,a,i}=(1-z_i)p_{n,a,i}\\sim N(\\alpha_{a,n},\\sigma^2_{a,n})\\) \nCandidate B, \\(p_{nz,b,i}=(1-z_i)p_{n,b,i}\\sim N(\\alpha_{b,n},\\sigma^2_{b,n})\\)\n\nProbability of voting by mode 2 in precinct \\(i\\)\n\nCandidate A, \\(p_{m2,a,i}=(1-p_{nv,a,i})p_{a,mv}\\sim N(\\alpha_{a,mv},\\sigma^2_{a,mv})\\)\nCandidate B, \\(p_{m2,b,i}=(1-p_{nv,b,i})p_{b,mv}\\sim N(\\alpha_{a,mv},\\sigma^2_{a,mv})\\)\n\nProbability of voting by mode 1 in precinct \\(i\\)\n\nCandidate A, \\(p_{m1,a,i}=1-p_{m2,a,i}-p_{nz,a,i}\\)\nCandidate B, \\(p_{m1,b,i}=1-p_{m2,b,i}-p_{nz,b,i}\\)"
+    "text": "The impact on the election outcome, however, would be small or close to non-existens if the conditions of the existance of a trivial Manifold occuranse related to normal form are not satisfied:\n\nProportion of mail-in-votes to election day vote is already high (Aggregate convergence lemma)\n\nNote: \\(\\lim_{\\zeta_i \\rightarrow \\infty} \\alpha_i=\\frac{x_i+\\zeta_i y_i}{\\zeta_i+x_i}=y_i\\)\n\nCorrelation between \\(x\\) and \\(y\\) is very high (Twixt lemma)\n\nNote: If correlation is 1, we can set \\(x_i=\\rho_s y_i\\) so that \\(\\alpha_i(y_i,\\zeta_i)=\\frac{\\rho_s y_i+\\zeta_i y_i}{\\zeta_i+x_i}\\)\n\nLow variance to \\(\\zeta\\)\n\nNote: Invariance across precincts would imply that \\(\\zeta_i=\\zeta\\), so that election outcome only determined by variations in two parameters: \\(\\alpha_i(y_i,x_i)=\\frac{x_i+\\zeta y_i}{\\zeta+x_i}\\)\n\n\nIf none of this three cases are satisfied, variation in \\(\\zeta_i\\) should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?\nApplication 1: Election process simulator"
   },
   {
     "objectID": "index.html#loading-data",
@@ -136,36 +136,36 @@
     "objectID": "presentation.html#section-3",
     "href": "presentation.html#section-3",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "",
-    "text": "Table 1: Election results applying standard form on case I\n\n\n\n\n\n\nP\nS\nT\nU\nV\nx\ny\nzeta\nalpha\nlamda\n\n\n\n\n1\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6\n\n\n2\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6\n\n\n3\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6\n\n\n\n\n\n\n\n\n\n\nNumerical calculation of candidate one total percentage\n\nPrecinct 1\n\n\\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\)\n\nPrecinct 2\n\n\\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\)\n\nPrecinct 3\n\n\\(\\alpha=\\frac{0.6+0.4\\cdot 1}{1+1}=0.5\\)"
+    "section": "Tautologies using hybrid form (west vs. east)",
+    "text": "Tautologies using hybrid form (west vs. east)\n\n\n\n\nST\n\nVU\n\n\n\n\nParameters: \\(g\\), \\(h\\), \\(\\Gamma\\), \\(\\alpha\\), \\(\\Omega\\) \\[\\begin{equation*}\ng=\\frac{S}{S + V} \\text{, } h=\\frac{U}{T + U}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Gamma=\\frac{T + U}{S + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\alpha=\\frac{S + U}{S + T + U + V}=\\frac{\\Gamma h + g}{\\Gamma + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Omega=\\frac{S + T}{S + T + U + V}=\\frac{\\Gamma \\left(1 - g\\right) + g}{\\Gamma + 1}\n\\end{equation*}\\]"
   },
   {
     "objectID": "presentation.html#section-4",
     "href": "presentation.html#section-4",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "Tautologies using hybrid form (west vs. east)",
-    "text": "Tautologies using hybrid form (west vs. east)\n\n\n\n\nST\n\nVU\n\n\n\n\nParameters: \\(g\\), \\(h\\), \\(\\Gamma\\), \\(\\alpha\\), \\(\\Omega\\) \\[\\begin{equation*}\ng=\\frac{S}{S + V} \\text{, } h=\\frac{U}{T + U}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Gamma=\\frac{T + U}{S + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\alpha=\\frac{S + U}{S + T + U + V}=\\frac{\\Gamma h + g}{\\Gamma + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Omega=\\frac{S + T}{S + T + U + V}=\\frac{\\Gamma \\left(1 - g\\right) + g}{\\Gamma + 1}\n\\end{equation*}\\]"
+    "section": "Tautologies using opposition form (upper vs. lower)",
+    "text": "Tautologies using opposition form (upper vs. lower)\n\n\n\n\nSU\n\nTV\n\n\n\n\nParameters: \\(m\\), \\(n\\), \\(\\xi\\), \\(\\lambda\\), \\(\\Omega\\) \\[\\begin{equation*}\nn=\\frac{S}{S + U} \\text{ , } m=\\frac{T}{T + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\xi=\\frac{T + V}{S + U}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Omega=\\frac{S + T}{S + T + U + V}=\\frac{m + n \\xi}{\\xi + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\lambda=\\frac{S + V}{S + T + U + V}=\\frac{\\Gamma}{\\Gamma + 1}\n\\end{equation*}\\]"
   },
   {
     "objectID": "presentation.html#section-5",
     "href": "presentation.html#section-5",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Table 2: Election results applying hybrid form case I\n\n\n\n\n\n\nP\nS\nT\nU\nV\ng\nh\nGamma\nalpha\nOmega\n\n\n\n\n1\n60\n40\n40\n60\n0.5\n0.5\n0.6667\n0.5\n0.5\n\n\n2\n60\n40\n40\n60\n0.5\n0.5\n0.6667\n0.5\n0.5\n\n\n3\n60\n40\n40\n60\n0.5\n0.5\n0.6667\n0.5\n0.5\n\n\n\n\n\n\n\n\n\n\nNumerical calculation of candidate one total percentage\n\nPrecinct 1\n\n\\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\)\n\nPrecinct 2\n\n\\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\)\n\nPrecinct 3\n\n\\(\\alpha=\\frac{0.5+0.4\\cdot 0.67}{1+0.67}=0.5\\)"
+    "text": "Table 4: Election results applying hybrid form case II\n\n\n\n\n\n\nP\nS\nT\nU\nV\nn\nm\nxi\nOmega\nlamda\n\n\n\n\n1\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6\n\n\n2\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6\n\n\n3\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6"
   },
   {
     "objectID": "presentation.html#section-6",
     "href": "presentation.html#section-6",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "Tautologies using opposition form (upper vs. lower)",
-    "text": "Tautologies using opposition form (upper vs. lower)\n\n\n\n\nSU\n\nTV\n\n\n\n\nParameters: \\(m\\), \\(n\\), \\(\\xi\\), \\(\\lambda\\), \\(\\Omega\\) \\[\\begin{equation*}\nn=\\frac{S}{S + U} \\text{ , } m=\\frac{T}{T + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\xi=\\frac{T + V}{S + U}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Omega=\\frac{S + T}{S + T + U + V}=\\frac{m + n \\xi}{\\xi + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\lambda=\\frac{S + V}{S + T + U + V}=\\frac{\\Gamma}{\\Gamma + 1}\n\\end{equation*}\\]"
+    "section": "Modelling the election process",
+    "text": "Modelling the election process\n\nStep 1: Each registered voter assign themself (independent of voting technology) to either candidate A or candidate B\nStep 2: Voting technology realized\nStep 3: Registered voters determine whether to vote or not to vote\nStep 4: If voting, do this by either mode 1 or by mode 2.\n\n\n\n\n\n\n  flowchart LR\n  A[Candidate A or B] --&gt; R[A]\n  R --&gt; RV[Vote]\n  RV --&gt; RVE[Non-Mail]\n  RV --&gt; RVM[Mail]\n  R --&gt; RN[Not Vote]\n  DV --&gt; DVE[Non-Mail]\n  DV --&gt; DVM[Mail]\n  A --&gt; D[B]\n  D --&gt; DV[Vote]\n  D --&gt; Dn[Not Vote]"
   },
   {
     "objectID": "presentation.html#section-7",
     "href": "presentation.html#section-7",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Table 4: Election results applying hybrid form case II\n\n\n\n\n\n\nP\nS\nT\nU\nV\nn\nm\nxi\nOmega\nlamda\n\n\n\n\n1\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6\n\n\n2\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6\n\n\n3\n60\n40\n40\n60\n0.6\n0.4\n1\n0.5\n0.6"
+    "text": "Probability of assigning oneself to candidate A in precinct \\(i\\)\n\n\\(p_{w,i} \\sim N(\\alpha_i,\\sigma^2_{w,i})\\)\n\nVoting technology\n\n\\(z_i \\sim U(0,1)\\)\n\nProbability of not voting in precinct \\(i\\)\n\nCandidate A, \\(p_{nz,a,i}=(1-z_i)p_{n,a,i}\\sim N(\\alpha_{a,n},\\sigma^2_{a,n})\\) \nCandidate B, \\(p_{nz,b,i}=(1-z_i)p_{n,b,i}\\sim N(\\alpha_{b,n},\\sigma^2_{b,n})\\)\n\nProbability of voting by mode 2 in precinct \\(i\\)\n\nCandidate A, \\(p_{m2,a,i}=(1-p_{nv,a,i})p_{a,mv}\\sim N(\\alpha_{a,mv},\\sigma^2_{a,mv})\\)\nCandidate B, \\(p_{m2,b,i}=(1-p_{nv,b,i})p_{b,mv}\\sim N(\\alpha_{a,mv},\\sigma^2_{a,mv})\\)\n\nProbability of voting by mode 1 in precinct \\(i\\)\n\nCandidate A, \\(p_{m1,a,i}=1-p_{m2,a,i}-p_{nz,a,i}\\)\nCandidate B, \\(p_{m1,b,i}=1-p_{m2,b,i}-p_{nz,b,i}\\)"
   },
   {
     "objectID": "paper.html#section-9",
@@ -269,22 +269,22 @@
     "objectID": "presentation.html#section-8",
     "href": "presentation.html#section-8",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "Modelling the election process",
-    "text": "Modelling the election process\n\nStep 1: Each registered voter assign themself (independent of voting technology) to either candidate A or candidate B\nStep 2: Voting technology realized\nStep 3: Registered voters determine whether to vote or not to vote\nStep 4: If voting, do this by either mode 1 or by mode 2.\n\n\n\n\n\n\n  flowchart LR\n  A[Candidate A or B] --&gt; R[A]\n  R --&gt; RV[Vote]\n  RV --&gt; RVE[Non-Mail]\n  RV --&gt; RVM[Mail]\n  R --&gt; RN[Not Vote]\n  DV --&gt; DVE[Non-Mail]\n  DV --&gt; DVM[Mail]\n  A --&gt; D[B]\n  D --&gt; DV[Vote]\n  D --&gt; Dn[Not Vote]"
+    "section": "How outside factors to the voting system will impact \\(\\zeta_i\\)",
+    "text": "How outside factors to the voting system will impact \\(\\zeta_i\\)\n\nDifferences in the cost of voting (e.g., topology, voting rules, dropboxes etc.) across precincts \\(\\Rightarrow\\)\nChanges to the likelihood of voting \\(\\Rightarrow\\)\nSimplify so that changes in the likelihood of voting only impact Mode 2 \\(\\Rightarrow\\)\nHigher \\(\\zeta_i\\) \\(\\Rightarrow\\)\nWhich changes the total election outcome through \\(\\alpha_i=\\frac{x_i+\\zeta_i y_i}{\\zeta_i+x_i}\\)"
   },
   {
     "objectID": "presentation.html#section-10",
     "href": "presentation.html#section-10",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "How outside factors to the voting system will impact \\(\\zeta_i\\)",
-    "text": "How outside factors to the voting system will impact \\(\\zeta_i\\)\n\nDifferences in the cost of voting (e.g., topology, voting rules, dropboxes etc.) across precincts \\(\\Rightarrow\\)\nChanges to the likelihood of voting \\(\\Rightarrow\\)\nSimplify so that changes in the likelihood of voting only impact Mode 2 \\(\\Rightarrow\\)\nHigher \\(\\zeta_i\\) \\(\\Rightarrow\\)\nWhich changes the total election outcome through \\(\\alpha_i=\\frac{x_i+\\zeta_i y_i}{\\zeta_i+x_i}\\)"
+    "section": "How outside factors to the voting system will impact \\(\\Gamma_i\\)",
+    "text": "How outside factors to the voting system will impact \\(\\Gamma_i\\)\n\nDifferenc in the cost of voting (e.g., topology, voting rules, dropboxes, socio economics etc.) across precincts \\(\\Rightarrow\\)\nMake changes to the likelihood of voting \\(\\Rightarrow\\)\nSimplify so that changes in the likelihood of voting only impact mode 2 \\(\\Rightarrow\\)\nHigher \\(\\zeta_i\\) \\(\\Rightarrow\\)\nIf new and earlier sample not representative of each other, higher \\(\\Gamma_i\\) \\(\\Rightarrow\\)\nWhich changes the total election outcome through \\(\\alpha_i=\\frac{g_i+\\zeta_i h_i}{\\zeta_i+1}\\)"
   },
   {
     "objectID": "presentation.html#section-11",
     "href": "presentation.html#section-11",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "The impact on the election outcome, however, would be small or close to non-existens if the conditions of the existance of a trivial Manifold occuranse related to normal form are not satisfied:\n\nProportion of mail-in-votes to election day vote is already high (Aggregate convergence lemma)\n\nNote: \\(\\lim_{\\zeta_i \\rightarrow \\infty} \\alpha_i=\\frac{x_i+\\zeta_i y_i}{\\zeta_i+x_i}=y_i\\)\n\nCorrelation between \\(x\\) and \\(y\\) is very high (Twixt lemma)\n\nNote: If correlation is 1, we can set \\(x_i=\\rho_s y_i\\) so that \\(\\alpha_i(y_i,\\zeta_i)=\\frac{\\rho_s y_i+\\zeta_i y_i}{\\zeta_i+x_i}\\)\n\nLow variance to \\(\\zeta\\)\n\nNote: Invariance across precincts would imply that \\(\\zeta_i=\\zeta\\), so that election outcome only determined by variations in two parameters: \\(\\alpha_i(y_i,x_i)=\\frac{x_i+\\zeta y_i}{\\zeta+x_i}\\)\n\n\nIf none of this three cases are satisfied, variation in \\(\\zeta_i\\) should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?\nApplication 1: Election process simulator"
+    "text": "The impact on the election outcome, however, would be small or close to non-existens if the conditions of the existance of a trivial Manifold related to opposition form are not satisfied:\n\nProportion of the hybrid ballot boxes is already high (Aggregate convergence lemma)\n\nNote: \\(\\lim_{\\Gamma_i \\rightarrow \\infty} \\alpha_i=\\frac{g_i+\\zeta_i h_i}{\\zeta_i+g_i}=y_i\\)\n\nCorrelation between \\(g\\) and \\(h\\) is very high (Twixt lemma)\n\nNote: If correlation is 1, we can set \\(g_i=\\rho_h h_i\\) so that \\(\\alpha_i(h_i,\\Gamma_i)=\\frac{\\rho_h h_i+\\Gamma_i h_i}{\\Gamma_i+x_i}\\)\n\nLow variance to \\(\\Gamma_i\\)\n\nNote: Invariance across precincts would imply that \\(\\Gamma_i=\\Gamma\\), so that election outcome only determined by variations in two parameters: \\(\\alpha_i=\\frac{g_i+\\Gamma h_i}{h_i}\\)\n\n\nIf none of this three cases are satisfied, variation in \\(\\Gamma_i\\) should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?\nApplication 1: Election process simulator\n\n\n\nhttps://lotariohw26.github.io/ManifoldDestiny/"
   },
   {
     "objectID": "presentation.html#section-12",
