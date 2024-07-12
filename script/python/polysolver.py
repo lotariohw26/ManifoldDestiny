@@ -47,7 +47,7 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
         uvw = []
         ABCDE = [0, 0, 0, 0, 0]
         ABCDE[:len(polys)] = polys
-        return ABCDE 
+        return ABCDE, 0, 0
     # With rotation
     else:
         dxyz = {'x': 1, 'y': 2, 'z': 3}

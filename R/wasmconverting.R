@@ -212,12 +212,12 @@ selreport <- function(
   co$gridarrange()
   #co$rotation(rpar=rparv)
   #co$rotgraph()
+  #browser()
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$eq)
   ges$diagnostics()
-  browser()
   ges$hat_predict(md$va,md$fr)
-  #ges$hat_intcomp()
+  ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$eq)
@@ -949,15 +949,12 @@ Estimation$methods(hat_predict=function(svf='y',rnr=1){
   kvec <<- broom::tidy(regsum[[1]])$estimate
   names(kvec) <<- paste0("k", 0:(length(kvec) - 1))
   if (roto==0){
-    ex <- gsub("\\^","**",regform[2])
-    sd <- regform[1]
     eurv <- c(0,0,0)
-    svfi <- c(svf,svf)
-    browser()
-    ex
-    lpy <<- py_genpolycoeff(1,expr=ex,solvd=sd)
-    #lpy <<- py_genpolycoeff(expr=ex,solvd=sd,solvf=svfi[2],eur=eurv)
-    #py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(0, 0, 0))
+    #ex <- gsub("\\^","**",regform[2])
+    #sd <- regform[1]
+    #svfi <- c(svf,svf)
+    #lpy <<- py_genpolycoeff(1,expr=ex,solvd=sd)
+    lpy <<- py_genpolycoeff(plr=1,parm=c("alpha", "g", "h"), solvd='g',eur=eurv)
     setNames(as.vector(lapply(lpy[[1]], as.character)),LETTERS[1:5])
     pnr <- sum(lpy[[1]]!="0")
   }
@@ -981,7 +978,6 @@ Estimation$methods(hat_predict=function(svf='y',rnr=1){
     dplyr::mutate(E=pareq(as.character(lpy[[1]][[5]]),.[,])) %>%
     dplyr::group_by(P) %>%
     dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
-    #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
     dplyr::mutate(!!paste0(svf[1],'_hat'):=Re(polsolv[1])) %>%
     dplyr::ungroup()
   regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=pred_df_pol)
