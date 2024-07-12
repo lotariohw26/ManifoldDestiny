@@ -291,14 +291,14 @@
     "href": "presentation.html#section-12",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "Counting in a fair election",
-    "text": "Counting in a fair election\n\n\n\nhttps://lotariohw26.github.io/ManifoldDestiny/"
+    "text": "Counting in a fair election\n\n\nStandard form\nSetting the first three parameters:\n\n\\(x_i=\\frac{s_i}{s_i+t_i}\\)\n\\(y_i=\\frac{u_i}{u_i+v_i}\\)\n\\(\\zeta_i=\\frac{u_i+v_i}{s_i+t_i}\\)\n\nBacksolve for\n\n\\(\\alpha_i(x_,y_i,\\zeta_i)=\\frac{x_i+\\zeta_i\\cdot y_i}{\\zeta_i+1}\\)\n\\(\\lambda_i(x_i,y_i,\\zeta_i)=\\frac{x_i\\zeta_i\\cdot(1-y_i)}{\\zeta_i+1}\\)\n\n\nOpposition form\nSetting the first three parameters:\n\n\\(g_i=\\frac{s_i}{s_i+t_i}\\)\n\\(h_i=\\frac{u_i}{u_i+v_i}\\)\n\\(\\Gamma_i=\\frac{u_i+d_i}{u_i+v_i}\\)\n\nBacksolve for\n\n\\(\\alpha_i(g_i,h_i,\\Gamma_i)=\\frac{x_i+\\zeta_i\\cdot y_i}{\\zeta_i+1}\\)\n\\(\\Omega_i(g_i,h_i,\\Gamma_i)=\\frac{x_i\\zeta_i\\cdot(1-y_i)}{\\zeta_i+1}\\)\n\n\n\nProperties:\n\n1st The total election outcome will be determined by three parameters: ( \\(x_i, y_i,\\zeta_i\\) ) under standard form and ( \\(g_i, h_i, \\Gamma_i\\) ) using hybrid form.\n2nd Changes in \\(\\Gamma_i\\) and \\(\\zeta_i\\) would in general have an impact on \\(\\alpha_i\\).\n\nApplication 2: Rigged election process simulator"
   },
   {
     "objectID": "presentation.html#section-13",
     "href": "presentation.html#section-13",
     "title": "Manifold Destiny - or how to rig an election",
-    "section": "",
-    "text": "The impact on the election outcome, however, would be small or close to non-existens if the conditions of the existance of a trivial Manifold related to opposition form are not satisfied:\n\nProportion of the hybrid ballot boxes is already high (Aggregate convergence lemma)\n\nNote: \\(\\lim_{\\Gamma_i \\rightarrow \\infty} \\alpha_i=\\frac{g_i+\\zeta_i h_i}{\\zeta_i+g_i}=y_i\\)\n\nCorrelation between \\(g\\) and \\(h\\) is very high (Twixt lemma)\n\nNote: If correlation is 1, we can set \\(g_i=\\rho_h h_i\\) so that \\(\\alpha_i(h_i,\\Gamma_i)=\\frac{\\rho_h h_i+\\Gamma_i h_i}{\\Gamma_i+x_i}\\)\n\nLow variance to \\(\\Gamma_i\\)\n\nNote: Invariance across precincts would imply that \\(\\Gamma_i=\\Gamma\\), so that election outcome only determined by variations in two parameters: \\(\\alpha_i=\\frac{g_i+\\Gamma h_i}{h_i}\\)\n\n\nIf none of this three cases are satisfied, variation in \\(\\Gamma_i\\) should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?\nApplication 1: Election process simulator\n\n\n\nhttps://lotariohw26.github.io/ManifoldDestiny/"
+    "section": "Counting in a rigged election",
+    "text": "Counting in a rigged election\nSetting the prefered election outcome\n\n\nNon-rigged election using standard form\n\nRigged election using standard form"
   },
   {
     "objectID": "presentation.html#section-14",

@@ -406,10 +406,180 @@ kable(combined, format = "markdown", escape = FALSE) %>% kableExtra::kable_paper
 ```
 
 :::
+
 ## {{< var sec2.un3 >}}
 
+:::: {.columns}
+
+::: {.column width="50%"}
+
+*Standard form*
+
+Setting the first three parameters:
+
+- $x_i=\frac{s_i}{s_i+t_i}$
+- $y_i=\frac{u_i}{u_i+v_i}$
+- $\zeta_i=\frac{u_i+v_i}{s_i+t_i}$
+
+Backsolve for
+
+- $\alpha_i(x_,y_i,\zeta_i)=\frac{x_i+\zeta_i\cdot y_i}{\zeta_i+1}$
+- $\lambda_i(x_i,y_i,\zeta_i)=\frac{x_i\zeta_i\cdot(1-y_i)}{\zeta_i+1}$
+
+:::
+
+::: {.column width="50%"}
+
+*Opposition form*
+
+Setting the first three parameters:
+
+- $g_i=\frac{s_i}{s_i+t_i}$
+- $h_i=\frac{u_i}{u_i+v_i}$
+- $\Gamma_i=\frac{u_i+d_i}{u_i+v_i}$
+
+Backsolve for
+
+- $\alpha_i(g_i,h_i,\Gamma_i)=\frac{x_i+\zeta_i\cdot y_i}{\zeta_i+1}$
+- $\Omega_i(g_i,h_i,\Gamma_i)=\frac{x_i\zeta_i\cdot(1-y_i)}{\zeta_i+1}$
+
+:::
+
+::::
 
 
+**Properties**: 
+
+- 1<sup>st</sup> The total election outcome will be determined by *three* parameters: ( $x_i, y_i,\zeta_i$ ) under standard form and ( $g_i, h_i, \Gamma_i$ ) using hybrid form. 
+- 2<sup>nd</sup> Changes in $\Gamma_i$ and $\zeta_i$ would in general have an impact on $\alpha_i$.
+
+
+[Application 2: Rigged election process simulator]({{< var shn2 >}})
+
+## {{< var sec2.un4 >}}
+
+**Setting the prefered election outcome**
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Non-rigged election using standard form
+```{r}
+#app_n_out[[4]] 
+```
+
+:::
+
+
+::: {.column width="50%"}
+
+Rigged election using standard form
+```{r}
+#app_ex1_out[[4]] 
+```
+
+:::
+
+::::
+
+---
+
+
+**Normal**
+<br>
+\begin{equation*}
+f(x)_{0}^{1}=`r #paste0(round(polynom::polynomial(unname(pri_int_ex1)),3))`$
+\end{equation*}
+
+
+Election outome 
+```{r, echo=F}
+#pri_int_ex1
+#polynom::integral(round(polynom::polynomial(unname(pri_int_ex1))),c(0,1))
+#mean(app_ex1_cou$rdfc$alpha)
+```
+
+
+<br>
+**Rigged**
+<br>
+
+$f(x)_{0}^{1}=`r #paste0(round(polynom::polynomial(unname(pos_int_ex1)),3))`$
+
+Election outome
+```{r, echo=F}
+#polynom::integral(round(polynom::polynomial(unname(pos_int_ex1))),c(0,1))
+#pos_int_ex1
+```
+
+---
+
+### Rigged election example 1: applying normal form
+
+- Setting for eaching precinct the first three parameters
+ - $\alpha_i=<...>$ (i.e., equal to the prefered election outcome)
+ - $x_i=\frac{a_i}{a_i+b_i}$ (true observations)
+ - $y_i=\overset{\text{Manifold equation}}{\overbrace{\overset{}{M(x_i,\alpha_i,\underset{\text{outside information}}{...})}}}+\epsilon_t \text{ where } \epsilon_t \sim N(0,\sigma^2)$
+- Backsolve for
+ - $\zeta_i(x_i,\alpha_i,y_i)=\frac{x_i-\alpha_i}{\alpha_i-y_i}$
+ - $\lambda_i(x_i,\zeta_i,y_i)=\frac{x_i-\zeta_i (1-y_i)}{\zeta_i+1}$
+
+---
+
+**Properties**: 
+
+- 3<sup>rd</sup> $y_i$ can now be determined by *two* equations
+  - a. Tautology (must hold)
+  - b. Manifold equation + error term (white noise)
+- 4<sup>th</sup>. Changes in $\zeta_i$ - and as a corrollary $\Omega_i$ - is now 
+  - a. Solely caused by the error term $\epsilon_i$ and, if used, the non-linear part of the Manifold equation.
+  - b. Has no longer any causal impact on $\alpha_i$
+
+---
+
+### Rigged election example 2: applying hybrid form
+
+- Setting for eaching precinct the first three parameters
+ - $\alpha_i=<...>$ (i.e., equal to the prefered election outcome)
+ - $h_i=\frac{s_i}{s_i+v_i}$ (true observations)
+ - $g_i=\overset{\text{Manifold equation}}{\overbrace{\overset{}{M(h_i,\alpha_i,\underset{\text{outside information}}{...})}}}+\epsilon_t \text{ where } \epsilon_t \sim N(0,\sigma^2)$
+- Backsolve form
+ - $\Gamma_i(g_i,\alpha_i,h_i)=\frac{g_i-\alpha_i}{\alpha_i-h_i}$
+ - $\Omega_i(g_i,\Gamma,h_i)=-\alpha_i+\frac{\Gamma_i+2g_i}{\Gamma_i+1}$
+
+---
+
+**Properties**: 
+
+- 5<sup>th</sup> $y_i$ can now be determined by *two* equations
+  - a. Tautology (must hold)
+  - b. Manifold equation + error term (white noise)
+- 6<sup>th</sup> Changes in $\Gamma_i$ - and as a corrollary $\lambda_i$ - is now 
+  - a. Solely caused by the error term $\epsilon_i$ and, if used, the non-linear part of the Manifold equation.
+  - b. Has no longer any causal impact on $\alpha_i$
+
+---
+
+### Rigged election example 3: applying opposition form
+
+- Setting for eaching precinct the first three parameters
+ - $\lambda_i=<...>$ (i.e., equal or less than the prefered election outcome)
+ - $n_i=\frac{a_i}{a_i+c_i}$ (true observations)
+ - $m_i=\overset{\text{Manifold equation}}{\overbrace{\overset{}{M(n_i,\lambda_i,\underset{\text{outside information}}{...})}}}+\epsilon_t \text{ where } \epsilon_{t_i} \sim N(0,\sigma^2)$
+- Backsolve for
+ - $\Omega_i(n_i,m_i,\lambda_i) = \frac{\lambda_i(n_i-m_i)-m_i(2n_i-1)}{1-(n_i+m_i)}$
+ - $\xi_i(n_i,m_i,\Omega_i)=\frac{m_i-\Omega_i}{\Omega_i-n_i}$
+
+---
+
+**Properties**: 
+
+- 7<sup>th</sup> $m_i$ can now be determined by *two* equations
+  - a. Tautology (must hold)
+  - b. Manifold equation + error term (white noise)
+- 8<sup>th</sup> Changes in $\xi_i$ is now 
+  - a. Solely caused by the error term $\epsilon_i$ and, if used, the non-linear part of the Manifold equation.
+  - b. Has no longer any causal impact on $\lambda_i$
 
 
 

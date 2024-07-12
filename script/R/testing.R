@@ -3,7 +3,9 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
 # Simulations
-appt <- app1
+appt <- app2
+appt[[1]]
+appt[[2]]
 abc <- seloutput(selreport(appt))
 abc[[1]]
 abc[[2]]

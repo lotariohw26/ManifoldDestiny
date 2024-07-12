@@ -1305,6 +1305,173 @@ Table&nbsp;6: Election results applying hybrid form case II
 </section>
 <section id="section-12" class="slide level2">
 <h2>Counting in a fair election</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><em>Standard form</em></p>
+<p>Setting the first three parameters:</p>
+<ul>
+<li><span class="math inline">\(x_i=\frac{s_i}{s_i+t_i}\)</span></li>
+<li><span class="math inline">\(y_i=\frac{u_i}{u_i+v_i}\)</span></li>
+<li><span class="math inline">\(\zeta_i=\frac{u_i+v_i}{s_i+t_i}\)</span></li>
+</ul>
+<p>Backsolve for</p>
+<ul>
+<li><span class="math inline">\(\alpha_i(x_,y_i,\zeta_i)=\frac{x_i+\zeta_i\cdot y_i}{\zeta_i+1}\)</span></li>
+<li><span class="math inline">\(\lambda_i(x_i,y_i,\zeta_i)=\frac{x_i\zeta_i\cdot(1-y_i)}{\zeta_i+1}\)</span></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><em>Opposition form</em></p>
+<p>Setting the first three parameters:</p>
+<ul>
+<li><span class="math inline">\(g_i=\frac{s_i}{s_i+t_i}\)</span></li>
+<li><span class="math inline">\(h_i=\frac{u_i}{u_i+v_i}\)</span></li>
+<li><span class="math inline">\(\Gamma_i=\frac{u_i+d_i}{u_i+v_i}\)</span></li>
+</ul>
+<p>Backsolve for</p>
+<ul>
+<li><span class="math inline">\(\alpha_i(g_i,h_i,\Gamma_i)=\frac{x_i+\zeta_i\cdot y_i}{\zeta_i+1}\)</span></li>
+<li><span class="math inline">\(\Omega_i(g_i,h_i,\Gamma_i)=\frac{x_i\zeta_i\cdot(1-y_i)}{\zeta_i+1}\)</span></li>
+</ul>
+</div>
+</div>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>1<sup>st</sup> The total election outcome will be determined by <em>three</em> parameters: ( <span class="math inline">\(x_i, y_i,\zeta_i\)</span> ) under standard form and ( <span class="math inline">\(g_i, h_i, \Gamma_i\)</span> ) using hybrid form.</li>
+<li>2<sup>nd</sup> Changes in <span class="math inline">\(\Gamma_i\)</span> and <span class="math inline">\(\zeta_i\)</span> would in general have an impact on <span class="math inline">\(\alpha_i\)</span>.</li>
+</ul>
+<p><a href="?var:shn2">Application 2: Rigged election process simulator</a></p>
+</section>
+<section id="section-13" class="slide level2">
+<h2>Counting in a rigged election</h2>
+<p><strong>Setting the prefered election outcome</strong></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Non-rigged election using standard form</p>
+</div><div class="column" style="width:50%;">
+<p>Rigged election using standard form</p>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p><strong>Normal</strong> <br> <span class="math display">\[\begin{equation*}
+f(x)_{0}^{1}=$
+\end{equation*}\]</span></p>
+<p>Election outome</p>
+<p><br> <strong>Rigged</strong> <br></p>
+<p><span class="math inline">\(f(x)_{0}^{1}=\)</span></p>
+<p>Election outome</p>
+</section>
+<section class="slide level2">
+
+<h3 id="rigged-election-example-1-applying-normal-form">Rigged election example 1: applying normal form</h3>
+<ul>
+<li>Setting for eaching precinct the first three parameters</li>
+<li><span class="math inline">\(\alpha_i=&lt;...&gt;\)</span> (i.e., equal to the prefered election outcome)</li>
+<li><span class="math inline">\(x_i=\frac{a_i}{a_i+b_i}\)</span> (true observations)</li>
+<li><span class="math inline">\(y_i=\overset{\text{Manifold equation}}{\overbrace{\overset{}{M(x_i,\alpha_i,\underset{\text{outside information}}{...})}}}+\epsilon_t \text{ where } \epsilon_t \sim N(0,\sigma^2)\)</span></li>
+<li>Backsolve for</li>
+<li><span class="math inline">\(\zeta_i(x_i,\alpha_i,y_i)=\frac{x_i-\alpha_i}{\alpha_i-y_i}\)</span></li>
+<li><span class="math inline">\(\lambda_i(x_i,\zeta_i,y_i)=\frac{x_i-\zeta_i (1-y_i)}{\zeta_i+1}\)</span></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>3<sup>rd</sup> <span class="math inline">\(y_i\)</span> can now be determined by <em>two</em> equations
+<ul>
+<li><ol type="a">
+<li>Tautology (must hold)</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Manifold equation + error term (white noise)</li>
+</ol></li>
+</ul></li>
+<li>4<sup>th</sup>. Changes in <span class="math inline">\(\zeta_i\)</span> - and as a corrollary <span class="math inline">\(\Omega_i\)</span> - is now
+<ul>
+<li><ol type="a">
+<li>Solely caused by the error term <span class="math inline">\(\epsilon_i\)</span> and, if used, the non-linear part of the Manifold equation.</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Has no longer any causal impact on <span class="math inline">\(\alpha_i\)</span></li>
+</ol></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="rigged-election-example-2-applying-hybrid-form">Rigged election example 2: applying hybrid form</h3>
+<ul>
+<li>Setting for eaching precinct the first three parameters</li>
+<li><span class="math inline">\(\alpha_i=&lt;...&gt;\)</span> (i.e., equal to the prefered election outcome)</li>
+<li><span class="math inline">\(h_i=\frac{s_i}{s_i+v_i}\)</span> (true observations)</li>
+<li><span class="math inline">\(g_i=\overset{\text{Manifold equation}}{\overbrace{\overset{}{M(h_i,\alpha_i,\underset{\text{outside information}}{...})}}}+\epsilon_t \text{ where } \epsilon_t \sim N(0,\sigma^2)\)</span></li>
+<li>Backsolve form</li>
+<li><span class="math inline">\(\Gamma_i(g_i,\alpha_i,h_i)=\frac{g_i-\alpha_i}{\alpha_i-h_i}\)</span></li>
+<li><span class="math inline">\(\Omega_i(g_i,\Gamma,h_i)=-\alpha_i+\frac{\Gamma_i+2g_i}{\Gamma_i+1}\)</span></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>5<sup>th</sup> <span class="math inline">\(y_i\)</span> can now be determined by <em>two</em> equations
+<ul>
+<li><ol type="a">
+<li>Tautology (must hold)</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Manifold equation + error term (white noise)</li>
+</ol></li>
+</ul></li>
+<li>6<sup>th</sup> Changes in <span class="math inline">\(\Gamma_i\)</span> - and as a corrollary <span class="math inline">\(\lambda_i\)</span> - is now
+<ul>
+<li><ol type="a">
+<li>Solely caused by the error term <span class="math inline">\(\epsilon_i\)</span> and, if used, the non-linear part of the Manifold equation.</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Has no longer any causal impact on <span class="math inline">\(\alpha_i\)</span></li>
+</ol></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="rigged-election-example-3-applying-opposition-form">Rigged election example 3: applying opposition form</h3>
+<ul>
+<li>Setting for eaching precinct the first three parameters</li>
+<li><span class="math inline">\(\lambda_i=&lt;...&gt;\)</span> (i.e., equal or less than the prefered election outcome)</li>
+<li><span class="math inline">\(n_i=\frac{a_i}{a_i+c_i}\)</span> (true observations)</li>
+<li><span class="math inline">\(m_i=\overset{\text{Manifold equation}}{\overbrace{\overset{}{M(n_i,\lambda_i,\underset{\text{outside information}}{...})}}}+\epsilon_t \text{ where } \epsilon_{t_i} \sim N(0,\sigma^2)\)</span></li>
+<li>Backsolve for</li>
+<li><span class="math inline">\(\Omega_i(n_i,m_i,\lambda_i) = \frac{\lambda_i(n_i-m_i)-m_i(2n_i-1)}{1-(n_i+m_i)}\)</span></li>
+<li><span class="math inline">\(\xi_i(n_i,m_i,\Omega_i)=\frac{m_i-\Omega_i}{\Omega_i-n_i}\)</span></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>7<sup>th</sup> <span class="math inline">\(m_i\)</span> can now be determined by <em>two</em> equations
+<ul>
+<li><ol type="a">
+<li>Tautology (must hold)</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Manifold equation + error term (white noise)</li>
+</ol></li>
+</ul></li>
+<li>8<sup>th</sup> Changes in <span class="math inline">\(\xi_i\)</span> is now
+<ul>
+<li><ol type="a">
+<li>Solely caused by the error term <span class="math inline">\(\epsilon_i\)</span> and, if used, the non-linear part of the Manifold equation.</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Has no longer any causal impact on <span class="math inline">\(\lambda_i\)</span></li>
+</ol></li>
+</ul></li>
+</ul>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

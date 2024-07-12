@@ -118,22 +118,28 @@ app2:
   id: app2
   nid: app2
   nmn: General
-  rcn: General Election
+  rcn: "General Election"
   cnd: ['Stavros (R)', 'Miller(D)']
-  sta: Nevada
+  sta: "Nevada"
   cou: []
   mod: ['ADV', 'MiV', 'EDV']
   yea: 2020
-  url: https://docs.google.com/spreadsheets/d/1jvLhOzaaQUqmpt7XTz01DoLsLiXr3vNAw-79_PBCOsw/edit#gid=0
+  url: "https://docs.google.com/spreadsheets/d/1jvLhOzaaQUqmpt7XTz01DoLsLiXr3vNAw-79_PBCOsw/edit#gid=0"
   pgn: 2
   rng: A1:H151
   cln: ['PN', 'RN', 'A1', 'B1', 'A2', 'B2', 'A3', 'B3']
   stuv: ['A1', 'B1', 'A2', 'B2']
-  eq: alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3
-  va: g
+  eq: "alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3"
+  va: "g"
   fr: 2
   ro: [0, 0, 0]
   bib: ['https://www.documentcloud.org/documents/22088788-gilbert-v-sisolak-et-al', 'abc']
+  prg:
+    cnd: 0
+    z: 0 
+    stuv: [0,0,0,0]
+    blup: [0,1]
+    eqp: "alpha=k0+k1*g+k2*h"
 
 app3:
   id: app3
