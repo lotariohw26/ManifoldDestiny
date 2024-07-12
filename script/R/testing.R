@@ -20,7 +20,9 @@ abc[[11]]
 abc[[12]]
 
 
-
+mean(rdfv$g)
+sum(rdfv$g)
+sum(rdfv$h)
 
 
 
