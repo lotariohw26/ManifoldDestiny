@@ -1,3 +1,4 @@
+# data-raw/metadata.json
 titll: "Manifold Destiny - or how to rig an election"
 titls: "Manifold Destiny"
 
@@ -105,6 +106,13 @@ app1:
   fr: 2
   ro: [0, 0, 0]
   bib: ['sol2022i']
+  prg:
+    cnd: 0
+    z: 0 
+    stuv: [0,0,0,0]
+    blup: [0,1]
+    eqp: "alpha=k0+k1*g+k2*h"
+
 
 app2:
   id: app2

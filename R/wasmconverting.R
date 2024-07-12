@@ -215,7 +215,8 @@ selreport <- function(
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$eq)
   ges$diagnostics()
-  #ges$hat_predict(md$mtd$sgs$va,as.numeric(md$mtd$sgs$fr))
+  ges$hat_predict(md$va,md$fr)
+  browser()
   #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
@@ -952,7 +953,9 @@ Estimation$methods(hat_predict=function(svf='y',rnr=1){
     sd <- regform[1]
     eurv <- c(0,0,0)
     svfi <- c(svf,svf)
-    lpy <<- py_genpolycoeff(expr=ex,solvd=sd,solvf=svfi[2],eur=eurv)
+    lpy <<- py_genpolycoeff(expr=ex,solvd=sd)
+    #lpy <<- py_genpolycoeff(expr=ex,solvd=sd,solvf=svfi[2],eur=eurv)
+    browser()
     setNames(as.vector(lapply(lpy[[1]], as.character)),LETTERS[1:5])
     pnr <- sum(lpy[[1]]!="0")
   }

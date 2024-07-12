@@ -3,9 +3,8 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
 # Simulations
-yout[[1]]
-yout[[2]]
-abc <- seloutput(selreport(yout))
+appt <- app1
+abc <- seloutput(selreport(appt))
 abc[[1]]
 abc[[2]]
 abc[[3]]
@@ -18,11 +17,6 @@ abc[[9]]
 abc[[10]]
 abc[[11]]
 abc[[12]]
-
-
-mean(rdfv$g)
-sum(rdfv$g)
-sum(rdfv$h)
 
 
 
