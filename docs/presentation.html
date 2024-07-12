@@ -319,6 +319,11 @@
       margin-right: 0; 
     }
   </style>
+  <script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -336,6 +341,7 @@
 <h2 id="toc-title">Table of contents</h2>
 <ul>
 <li><a href="#/section" id="/toc-section">Introduction</a></li>
+<li><a href="#/section-9" id="/toc-section-9">Methods of Ballot Counting</a></li>
 </ul>
 </nav>
 </section>
@@ -410,6 +416,895 @@ Figure&nbsp;2: Case 2:…
 </figure>
 </div>
 </div>
+</section>
+<section id="section-2" class="slide level2">
+<h2>Tautologies using standard form (north vs.&nbsp;south)</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
+<caption style="caption-side: top; text-align: center;"></caption><colgroup><col><col></colgroup><tbody><tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 2pt 2pt 2pt; border-top-color: rgb(0, 0, 0);  border-right-color: rgb(0, 0, 0);  border-bottom-color: rgb(0, 0, 0);  border-left-color: rgb(0, 0, 0); padding: 6pt 6pt 6pt 6pt; background-color: rgb(0, 0, 0); font-weight: normal;"><span style="color: rgb(255, 0, 0);">S</span></td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 2pt 2pt 2pt; border-top-color: rgb(0, 0, 0);  border-right-color: rgb(0, 0, 0);  border-bottom-color: rgb(0, 0, 0);  border-left-color: rgb(0, 0, 0); padding: 6pt 6pt 6pt 6pt; background-color: rgb(0, 0, 0); font-weight: normal;"><span style="color: rgb(255, 0, 0);">T</span></td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 2pt 2pt 2pt; border-top-color: rgb(0, 0, 0);  border-right-color: rgb(0, 0, 0);  border-bottom-color: rgb(0, 0, 0);  border-left-color: rgb(0, 0, 0); padding: 6pt 6pt 6pt 6pt; background-color: rgb(190, 190, 190); font-weight: normal;"><span style="color: rgb(255, 0, 0);">V</span></td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 2pt 2pt 2pt; border-top-color: rgb(0, 0, 0);  border-right-color: rgb(0, 0, 0);  border-bottom-color: rgb(0, 0, 0);  border-left-color: rgb(0, 0, 0); padding: 6pt 6pt 6pt 6pt; background-color: rgb(190, 190, 190); font-weight: normal;"><span style="color: rgb(255, 0, 0);">U</span></td></tr>
+</tbody></table>
+
+</div>
+</div>
+<p>Parameters:<strong><span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, <span class="math inline">\(\zeta\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\lambda\)</span></strong></p>
+<p><span class="math display">\[\begin{equation*}
+x=\frac{S}{S + T} \text{, }y=\frac{U}{U + V}
+\end{equation*}\]</span> <span class="math display">\[\begin{equation*}
+\zeta=\frac{U + V}{S + T}
+\end{equation*}\]</span> <span class="math display">\[\begin{equation*}
+\alpha=\frac{S + U}{S + T + U + V}=\frac{x + y \zeta}{\zeta + 1}
+\end{equation*}\]</span> <span class="math display">\[\begin{equation*}
+\lambda=\frac{S + V}{S + T + U + V}=\frac{x + \zeta \left(1 - y\right)}{\zeta + 1}
+\end{equation*}\]</span></p>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div id="tbl-sfc1" class="cell quarto-float">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sfc1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Election results applying standard form on case I
+</figcaption>
+<div aria-describedby="tbl-sfc1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">alpha</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">x</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">y</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">zeta</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">lamda</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Omega</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.5000</td>
+<td style="text-align: left;">0.6</td>
+<td style="text-align: left;">0.4</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0.6</td>
+<td style="text-align: left;">0.5000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.4667</td>
+<td style="text-align: left;">0.6</td>
+<td style="text-align: left;">0.4</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">0.6</td>
+<td style="text-align: left;">0.3333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.4500</td>
+<td style="text-align: left;">0.6</td>
+<td style="text-align: left;">0.4</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">0.6</td>
+<td style="text-align: left;">0.2500</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Numerical calculation of candidate one total percentage</p>
+<ul>
+<li>Precinct 1
+<ul>
+<li><span class="math inline">\(\alpha=\frac{0.6+0.4\cdot 1}{1+1}=0.5\)</span></li>
+</ul></li>
+<li>Precinct 2
+<ul>
+<li><span class="math inline">\(\alpha=\frac{0.6+0.4\cdot 2}{1+2}=0.47\)</span></li>
+</ul></li>
+<li>Precinct 3
+<ul>
+<li><span class="math inline">\(\alpha=\frac{0.6+0.4\cdot 3}{1+3}=0.45\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div id="tbl-sfc2" class="cell quarto-float">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sfc2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Election results applying hybrid form on case II
+</figcaption>
+<div aria-describedby="tbl-sfc2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">alpha</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">x</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">y</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">zeta</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">lamda</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Omega</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.5000</td>
+<td style="text-align: left;">0.6</td>
+<td style="text-align: left;">0.40</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0.6000</td>
+<td style="text-align: left;">0.5000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.4333</td>
+<td style="text-align: left;">0.6</td>
+<td style="text-align: left;">0.35</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">0.6333</td>
+<td style="text-align: left;">0.3333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.3750</td>
+<td style="text-align: left;">0.6</td>
+<td style="text-align: left;">0.30</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">0.6750</td>
+<td style="text-align: left;">0.2500</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="section-3" class="slide level2">
+<h2>Tautologies using hybrid form (west vs.&nbsp;east)</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
+<caption style="caption-side: top; text-align: center;"></caption><colgroup><col><col></colgroup><tbody><tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 2pt 2pt 2pt; border-top-color: rgb(0, 0, 0);  border-right-color: rgb(0, 0, 0);  border-bottom-color: rgb(0, 0, 0);  border-left-color: rgb(0, 0, 0); padding: 6pt 6pt 6pt 6pt; background-color: rgb(0, 0, 0); font-weight: normal;"><span style="color: rgb(255, 0, 0);">S</span></td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 2pt 2pt 2pt; border-top-color: rgb(0, 0, 0);  border-right-color: rgb(0, 0, 0);  border-bottom-color: rgb(0, 0, 0);  border-left-color: rgb(0, 0, 0); padding: 6pt 6pt 6pt 6pt; background-color: rgb(190, 190, 190); font-weight: normal;"><span style="color: rgb(255, 0, 0);">T</span></td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 2pt 2pt 2pt; border-top-color: rgb(0, 0, 0);  border-right-color: rgb(0, 0, 0);  border-bottom-color: rgb(0, 0, 0);  border-left-color: rgb(0, 0, 0); padding: 6pt 6pt 6pt 6pt; background-color: rgb(0, 0, 0); font-weight: normal;"><span style="color: rgb(255, 0, 0);">V</span></td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 2pt 2pt 2pt; border-top-color: rgb(0, 0, 0);  border-right-color: rgb(0, 0, 0);  border-bottom-color: rgb(0, 0, 0);  border-left-color: rgb(0, 0, 0); padding: 6pt 6pt 6pt 6pt; background-color: rgb(190, 190, 190); font-weight: normal;"><span style="color: rgb(255, 0, 0);">U</span></td></tr>
+</tbody></table>
+
+</div>
+</div>
+<p>Parameters: <span class="math inline">\(g\)</span>, <span class="math inline">\(h\)</span>, <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\Omega\)</span> <span class="math display">\[\begin{equation*}
+g=\frac{S}{S + V} \text{, } h=\frac{U}{T + U}
+\end{equation*}\]</span> <span class="math display">\[\begin{equation*}
+\Gamma=\frac{T + U}{S + V}
+\end{equation*}\]</span> <span class="math display">\[\begin{equation*}
+\alpha=\frac{S + U}{S + T + U + V}=\frac{\Gamma h + g}{\Gamma + 1}
+\end{equation*}\]</span> <span class="math display">\[\begin{equation*}
+\Omega=\frac{S + T}{S + T + U + V}=\frac{\Gamma \left(1 - g\right) + g}{\Gamma + 1}
+\end{equation*}\]</span></p>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div id="tbl-hfc1" class="cell quarto-float">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hfc1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Election results applying hybrid form case I
+</figcaption>
+<div aria-describedby="tbl-hfc1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">alpha</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">g</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">h</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Gamma</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Omega</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">lamda</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.5000</td>
+<td style="text-align: left;">0.5000</td>
+<td style="text-align: left;">0.5000</td>
+<td style="text-align: left;">0.6667</td>
+<td style="text-align: left;">0.5000</td>
+<td style="text-align: left;">0.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.4667</td>
+<td style="text-align: left;">0.3333</td>
+<td style="text-align: left;">0.6667</td>
+<td style="text-align: left;">0.6667</td>
+<td style="text-align: left;">0.3333</td>
+<td style="text-align: left;">0.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.4500</td>
+<td style="text-align: left;">0.2500</td>
+<td style="text-align: left;">0.7500</td>
+<td style="text-align: left;">0.6667</td>
+<td style="text-align: left;">0.2500</td>
+<td style="text-align: left;">0.6</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Numerical calculation of candidate one total percentage</p>
+<ul>
+<li>Precinct 1
+<ul>
+<li><span class="math inline">\(\alpha=\frac{0.5+0.4\cdot 0.67}{1+0.67}=0.5\)</span></li>
+</ul></li>
+<li>Precinct 2
+<ul>
+<li><span class="math inline">\(\alpha=\frac{0.33+0.4\cdot 0.67}{1+0.67}=0.47\)</span></li>
+</ul></li>
+<li>Precinct 3
+<ul>
+<li><span class="math inline">\(\alpha=\frac{0.25+0.4\cdot 0.67}{1+0.67}=0.45\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div id="tbl-hfc2" class="cell quarto-float">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hfc2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Election results applying hybrid form case II
+</figcaption>
+<div aria-describedby="tbl-hfc2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="lightable-classic-2 do-not-create-environment cell caption-top" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">alpha</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">g</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">h</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Gamma</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Omega</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">lamda</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.5000</td>
+<td style="text-align: left;">0.5000</td>
+<td style="text-align: left;">0.5000</td>
+<td style="text-align: left;">0.6667</td>
+<td style="text-align: left;">0.5000</td>
+<td style="text-align: left;">0.6000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.4333</td>
+<td style="text-align: left;">0.3158</td>
+<td style="text-align: left;">0.6364</td>
+<td style="text-align: left;">0.5789</td>
+<td style="text-align: left;">0.3333</td>
+<td style="text-align: left;">0.6333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.3750</td>
+<td style="text-align: left;">0.2222</td>
+<td style="text-align: left;">0.6923</td>
+<td style="text-align: left;">0.4815</td>
+<td style="text-align: left;">0.2500</td>
+<td style="text-align: left;">0.6750</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="section-4" class="slide level2">
+<h2>Tautologies using opposition form (upper vs.&nbsp;lower)</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  ">
+<caption style="caption-side: top; text-align: center;"></caption><colgroup><col><col></colgroup><tbody><tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 2pt 2pt 2pt; border-top-color: rgb(0, 0, 0);  border-right-color: rgb(0, 0, 0);  border-bottom-color: rgb(0, 0, 0);  border-left-color: rgb(0, 0, 0); padding: 6pt 6pt 6pt 6pt; background-color: rgb(0, 0, 0); font-weight: normal;"><span style="color: rgb(255, 0, 0);">S</span></td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 2pt 2pt 2pt; border-top-color: rgb(0, 0, 0);  border-right-color: rgb(0, 0, 0);  border-bottom-color: rgb(0, 0, 0);  border-left-color: rgb(0, 0, 0); padding: 6pt 6pt 6pt 6pt; background-color: rgb(190, 190, 190); font-weight: normal;"><span style="color: rgb(255, 0, 0);">U</span></td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 2pt 2pt 2pt; border-top-color: rgb(0, 0, 0);  border-right-color: rgb(0, 0, 0);  border-bottom-color: rgb(0, 0, 0);  border-left-color: rgb(0, 0, 0); padding: 6pt 6pt 6pt 6pt; background-color: rgb(190, 190, 190); font-weight: normal;"><span style="color: rgb(255, 0, 0);">T</span></td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 2pt 2pt 2pt 2pt; border-top-color: rgb(0, 0, 0);  border-right-color: rgb(0, 0, 0);  border-bottom-color: rgb(0, 0, 0);  border-left-color: rgb(0, 0, 0); padding: 6pt 6pt 6pt 6pt; background-color: rgb(0, 0, 0); font-weight: normal;"><span style="color: rgb(255, 0, 0);">V</span></td></tr>
+</tbody></table>
+
+</div>
+</div>
+<p>Parameters: <span class="math inline">\(m\)</span>, <span class="math inline">\(n\)</span>, <span class="math inline">\(\xi\)</span>, <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\Omega\)</span> <span class="math display">\[\begin{equation*}
+n=\frac{S}{S + U} \text{ , } m=\frac{T}{T + V}
+\end{equation*}\]</span> <span class="math display">\[\begin{equation*}
+\xi=\frac{T + V}{S + U}
+\end{equation*}\]</span> <span class="math display">\[\begin{equation*}
+\Omega=\frac{S + T}{S + T + U + V}=\frac{m + n \xi}{\xi + 1}
+\end{equation*}\]</span> <span class="math display">\[\begin{equation*}
+\lambda=\frac{S + V}{S + T + U + V}=\frac{\Gamma}{\Gamma + 1}
+\end{equation*}\]</span></p>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div id="tbl-ofc1" class="cell quarto-float">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ofc1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5: Election results applying hybrid form case II
+</figcaption>
+<div aria-describedby="tbl-ofc1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="lightable-paper do-not-create-environment cell caption-top" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">alpha</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">m</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">xi</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">lamda</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Omega</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.5000</td>
+<td style="text-align: left;">0.4000</td>
+<td style="text-align: left;">0.6000</td>
+<td style="text-align: left;">1.000</td>
+<td style="text-align: left;">0.6</td>
+<td style="text-align: left;">0.5000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.4667</td>
+<td style="text-align: left;">0.2500</td>
+<td style="text-align: left;">0.4286</td>
+<td style="text-align: left;">1.143</td>
+<td style="text-align: left;">0.6</td>
+<td style="text-align: left;">0.3333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.4500</td>
+<td style="text-align: left;">0.1818</td>
+<td style="text-align: left;">0.3333</td>
+<td style="text-align: left;">1.222</td>
+<td style="text-align: left;">0.6</td>
+<td style="text-align: left;">0.2500</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div id="tbl-ofc2" class="cell quarto-float">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ofc2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6: Election results applying hybrid form case II
+</figcaption>
+<div aria-describedby="tbl-ofc2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="lightable-paper do-not-create-environment cell caption-top" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">alpha</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">m</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">xi</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">lamda</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Omega</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.5000</td>
+<td style="text-align: left;">0.4000</td>
+<td style="text-align: left;">0.6000</td>
+<td style="text-align: left;">1.000</td>
+<td style="text-align: left;">0.6000</td>
+<td style="text-align: left;">0.5000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.4333</td>
+<td style="text-align: left;">0.2353</td>
+<td style="text-align: left;">0.4615</td>
+<td style="text-align: left;">1.308</td>
+<td style="text-align: left;">0.6333</td>
+<td style="text-align: left;">0.3333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.3750</td>
+<td style="text-align: left;">0.1600</td>
+<td style="text-align: left;">0.4000</td>
+<td style="text-align: left;">1.667</td>
+<td style="text-align: left;">0.6750</td>
+<td style="text-align: left;">0.2500</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="section-5" class="slide level2">
+<h2>Modelling the election process</h2>
+<ul>
+<li><strong>Step 1:</strong> Each registered voter assign themself (independent of voting technology) to either candidate A or candidate B</li>
+<li><strong>Step 2:</strong> Voting technology realized</li>
+<li><strong>Step 3:</strong> Registered voters determine whether to vote or not to vote</li>
+<li><strong>Step 4:</strong> If voting, do this by either mode 1 or by mode 2.</li>
+</ul>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR
+  A[Candidate A or B] --&gt; R[A]
+  R --&gt; RV[Vote]
+  RV --&gt; RVE[Non-Mail]
+  RV --&gt; RVM[Mail]
+  R --&gt; RN[Not Vote]
+  DV --&gt; DVE[Non-Mail]
+  DV --&gt; DVM[Mail]
+  A --&gt; D[B]
+  D --&gt; DV[Vote]
+  D --&gt; Dn[Not Vote]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<ul>
+<li>Probability of assigning oneself to candidate A in precinct <span class="math inline">\(i\)</span>
+<ul>
+<li><span class="math inline">\(p_{w,i} \sim N(\alpha_i,\sigma^2_{w,i})\)</span></li>
+</ul></li>
+<li>Voting technology
+<ul>
+<li><span class="math inline">\(z_i \sim U(0,1)\)</span></li>
+</ul></li>
+<li>Probability of not voting in precinct <span class="math inline">\(i\)</span>
+<ul>
+<li>Candidate A, <span class="math inline">\(p_{nz,a,i}=(1-z_i)p_{n,a,i}\sim N(\alpha_{a,n},\sigma^2_{a,n})\)</span> <br></li>
+<li>Candidate B, <span class="math inline">\(p_{nz,b,i}=(1-z_i)p_{n,b,i}\sim N(\alpha_{b,n},\sigma^2_{b,n})\)</span></li>
+</ul></li>
+<li>Probability of voting by mode 2 in precinct <span class="math inline">\(i\)</span>
+<ul>
+<li>Candidate A, <span class="math inline">\(p_{m2,a,i}=(1-p_{nv,a,i})p_{a,mv}\sim N(\alpha_{a,mv},\sigma^2_{a,mv})\)</span></li>
+<li>Candidate B, <span class="math inline">\(p_{m2,b,i}=(1-p_{nv,b,i})p_{b,mv}\sim N(\alpha_{a,mv},\sigma^2_{a,mv})\)</span></li>
+</ul></li>
+<li>Probability of voting by mode 1 in precinct <span class="math inline">\(i\)</span>
+<ul>
+<li>Candidate A, <span class="math inline">\(p_{m1,a,i}=1-p_{m2,a,i}-p_{nz,a,i}\)</span></li>
+<li>Candidate B, <span class="math inline">\(p_{m1,b,i}=1-p_{m2,b,i}-p_{nz,b,i}\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p>Neutral-voting assumption:</p>
+<ul>
+<li>Decission to vote or not to vote is independent of voting preferences:
+<ul>
+<li><span class="math inline">\(p_{nz,a,i}=p_{nz,a,i}\)</span></li>
+</ul></li>
+<li>If voting, decission to vote by mode 1 or by mode 2 independent of voting preferences:
+<ul>
+<li><span class="math inline">\(p_{m2,a,i}=p_{m2,a,i}\)</span></li>
+</ul></li>
+</ul>
+<p>Note: As we will investigate later, this condition might be needed in order to restore a rigged election to its original form.</p>
+</section>
+<section id="section-7" class="slide level2">
+<h2>How outside factors to the voting system will impact <span class="math inline">\(\zeta_i\)</span></h2>
+<ol type="1">
+<li>Differences in the cost of voting (e.g., topology, voting rules, dropboxes etc.) across precincts <span class="math inline">\(\Rightarrow\)</span></li>
+<li>Changes to the likelihood of voting <span class="math inline">\(\Rightarrow\)</span></li>
+<li>Simplify so that changes in the likelihood of voting only impact Mode 2 <span class="math inline">\(\Rightarrow\)</span></li>
+<li>Higher <span class="math inline">\(\zeta_i\)</span> <span class="math inline">\(\Rightarrow\)</span></li>
+<li>Which changes the total election outcome through <span class="math inline">\(\alpha_i=\frac{x_i+\zeta_i y_i}{\zeta_i+x_i}\)</span></li>
+</ol>
+</section>
+<section class="slide level2">
+
+<p>The impact on the election outcome, however, would be small or close to non-existens if the conditions of the existance of a <em>trivial</em> Manifold occuranse related to normal form are not satisfied:</p>
+<ul>
+<li>Proportion of mail-in-votes to election day vote is already high (Aggregate convergence lemma)
+<ul>
+<li>Note: <span class="math inline">\(\lim_{\zeta_i \rightarrow \infty} \alpha_i=\frac{x_i+\zeta_i y_i}{\zeta_i+x_i}=y_i\)</span></li>
+</ul></li>
+<li>Correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> is very high (Twixt lemma)
+<ul>
+<li>Note: If correlation is 1, we can set <span class="math inline">\(x_i=\rho_s y_i\)</span> so that <span class="math inline">\(\alpha_i(y_i,\zeta_i)=\frac{\rho_s y_i+\zeta_i y_i}{\zeta_i+x_i}\)</span></li>
+</ul></li>
+<li>Low variance to <span class="math inline">\(\zeta\)</span>
+<ul>
+<li>Note: Invariance across precincts would imply that <span class="math inline">\(\zeta_i=\zeta\)</span>, so that election outcome only determined by variations in two parameters: <span class="math inline">\(\alpha_i(y_i,x_i)=\frac{x_i+\zeta y_i}{\zeta+x_i}\)</span></li>
+</ul></li>
+</ul>
+<p>If none of this three cases are satisfied, variation in <span class="math inline">\(\zeta_i\)</span> should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?</p>
+<p><a href="?var:shn1">Application 1: Election process simulator</a></p>
+</section>
+<section id="section-8" class="slide level2">
+<h2>How outside factors to the voting system will impact <span class="math inline">\(\Gamma_i\)</span></h2>
+<ol type="1">
+<li>Differenc in the cost of voting (e.g., topology, voting rules, dropboxes, socio economics etc.) across precincts <span class="math inline">\(\Rightarrow\)</span></li>
+<li>Make changes to the likelihood of voting <span class="math inline">\(\Rightarrow\)</span></li>
+<li>Simplify so that changes in the likelihood of voting only impact mode 2 <span class="math inline">\(\Rightarrow\)</span></li>
+<li>Higher <span class="math inline">\(\zeta_i\)</span> <span class="math inline">\(\Rightarrow\)</span></li>
+<li>If new and earlier sample not representative of each other, higher <span class="math inline">\(\Gamma_i\)</span> <span class="math inline">\(\Rightarrow\)</span></li>
+<li>Which changes the total election outcome through <span class="math inline">\(\alpha_i=\frac{g_i+\zeta_i h_i}{\zeta_i+1}\)</span></li>
+</ol>
+</section>
+<section class="slide level2">
+
+<p>The impact on the election outcome, however, would be small or close to non-existens if the conditions of the existance of a <em>trivial</em> Manifold related to opposition form are not satisfied:</p>
+<ul>
+<li>Proportion of the hybrid ballot boxes is already high (Aggregate convergence lemma)
+<ul>
+<li>Note: <span class="math inline">\(\lim_{\Gamma_i \rightarrow \infty} \alpha_i=\frac{g_i+\zeta_i h_i}{\zeta_i+g_i}=y_i\)</span></li>
+</ul></li>
+<li>Correlation between <span class="math inline">\(g\)</span> and <span class="math inline">\(h\)</span> is very high (Twixt lemma)
+<ul>
+<li>Note: If correlation is 1, we can set <span class="math inline">\(g_i=\rho_h h_i\)</span> so that <span class="math inline">\(\alpha_i(h_i,\Gamma_i)=\frac{\rho_h h_i+\Gamma_i h_i}{\Gamma_i+x_i}\)</span></li>
+</ul></li>
+<li>Low variance to <span class="math inline">\(\Gamma_i\)</span>
+<ul>
+<li>Note: Invariance across precincts would imply that <span class="math inline">\(\Gamma_i=\Gamma\)</span>, so that election outcome only determined by variations in two parameters: <span class="math inline">\(\alpha_i=\frac{g_i+\Gamma h_i}{h_i}\)</span></li>
+</ul></li>
+</ul>
+<p>If none of this three cases are satisfied, variation in <span class="math inline">\(\Gamma_i\)</span> should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?</p>
+<p><a href="?var:shn1">Application 1: Election process simulator</a></p>
+</section></section>
+<section>
+<section id="section-9" class="title-slide slide level1 center">
+<h1>Methods of Ballot Counting</h1>
+
+</section>
+<section id="section-10" class="slide level2">
+<h2>Generic approach to ballot counting</h2>
+<ul>
+<li>We have identified three ways of counting
+<ul>
+<li><em>Standard form</em> ( <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, <span class="math inline">\(\zeta\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\lambda\)</span> )</li>
+<li><em>Hybrid form</em> ( <span class="math inline">\(g\)</span>, <span class="math inline">\(h\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(\Omega\)</span> )</li>
+<li><em>Opposition form</em> ( <span class="math inline">\(n\)</span>, <span class="math inline">\(m\)</span>, <span class="math inline">\(\xi\)</span>, <span class="math inline">\(\Omega\)</span>, <span class="math inline">\(\lambda\)</span> )</li>
+</ul></li>
+<li>Each form can (throught its parametric tautologies) determine the 5 parameters that have been listed.</li>
+<li>We are free to <em>predetermine</em> <strong>3</strong> of them</li>
+<li>The remaining <strong>2</strong> must be <em>backsolved</em>, this based on information from the first three parameters.</li>
+<li>Selecting <strong>3</strong> parameters from a set of <strong>5</strong> implies <strong>10</strong> different combinations</li>
+</ul>
+</section>
+<section id="section-11" class="slide level2">
+<h2>The 20 laws and 40 isometries governing an election</h2>
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Caution</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>20 laws and 40 isometris</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="lightable-paper table caption-top" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 8px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Law_Number</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">North_vs_South</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">West_vs_East</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Diagonal_vs_Diagonal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">First Law</td>
+<td style="text-align: left;">$x_{1}=\alpha_{1}+\zeta(\alpha_{1}-y_{1})$</td>
+<td style="text-align: left;">$g_{1}=\alpha_{1}+\gamma(\alpha_{1}-h_{1})$</td>
+<td style="text-align: left;">$m_{1}=\Omega_{1}+\xi(\Omega_{1}-n_{1})$</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Second Law</td>
+<td style="text-align: left;">$x_{1}=\lambda_{1}+\zeta(\lambda_{1}-y_{2})$</td>
+<td style="text-align: left;">$g_{1}=\Omega_{1}+\gamma(\Omega_{1}-h_{2})$</td>
+<td style="text-align: left;">$m_{1}=\lambda_{1}+\xi(\lambda_{1}-n_{2})$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Third Law</td>
+<td style="text-align: left;">$x_{1}=\frac{\alpha_{1}y_{2}-\lambda_{1}y_{1}}{(\alpha_{1}-\lambda_{1})-(y_{1}-y_{2})}$</td>
+<td style="text-align: left;">$g_{1}=\frac{\alpha_{1}h_{2}-\Omega_{1}h_{1}}{(\alpha_{1}-\Omega_{1})-(h_{1}-h_{2})}$</td>
+<td style="text-align: left;">$m_{1}=\frac{\Omega_{1}n_{2}-\lambda_{1}n_{1}}{(\Omega_{1}-\lambda_{1})-(n_{1}-n_{2})}$</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fourth Law</td>
+<td style="text-align: left;">$x_{1}=\frac{\lambda_{1}+\alpha_{1}-\Omega_{2}}{2\Omega_{1}}$</td>
+<td style="text-align: left;">$g_{1}=\frac{\Omega_{1}+\alpha_{1}-\lambda_{2}}{2\lambda_{1}}$</td>
+<td style="text-align: left;">$m_{1}=\frac{\lambda_{1}+\Omega_{1}-\alpha_{2}}{2\alpha_{1}}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fifth Law</td>
+<td style="text-align: left;">$y_{1}=\alpha_{1}-\zeta^{-1}(\alpha_{1}-x_{1})$</td>
+<td style="text-align: left;">$h_{1}=\alpha_{1}-\gamma^{-1}(\alpha_{1}-g_{1})$</td>
+<td style="text-align: left;">$n_{1}=\Omega_{1}-\xi^{-1}(\Omega_{1}-m_{1})$</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sixth Law</td>
+<td style="text-align: left;">$y_{1}=\lambda_{2}-\zeta^{-1}(\lambda_{1}-x_{1})$</td>
+<td style="text-align: left;">$h_{1}=\Omega_{2}-\gamma^{-1}(\Omega_{1}-g_{1})$</td>
+<td style="text-align: left;">$n_{1}=\lambda_{2}-\xi^{-1}(\lambda_{1}-m_{1})$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Seventh Law</td>
+<td style="text-align: left;">$y_{1}=\frac{x_{1}\lambda_{2}-x_{2}\alpha_{1}}{(\lambda_{2}-\alpha_{1})-(x_{2}-x_{1})}$</td>
+<td style="text-align: left;">$h_{1}=\frac{g_{1}\Omega_{2}-g_{2}\alpha_{1}}{(\Omega_{2}-\alpha_{1})-(g_{2}-g_{1})}$</td>
+<td style="text-align: left;">$n_{1}=\frac{m_{1}\lambda_{2}-m_{2}\Omega_{1}}{(\lambda_{2}-\Omega_{1})-(m_{2}-m_{1})}$</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eighth Law</td>
+<td style="text-align: left;">$y_{1}=\frac{\lambda_{2}+\alpha_{1}-\Omega_{1}}{2\Omega_{2}}$</td>
+<td style="text-align: left;">$h_{1}=\frac{\Omega_{2}+\alpha_{1}-\lambda_{1}}{2\lambda_{2}}$</td>
+<td style="text-align: left;">$n_{1}=\frac{\lambda_{2}+\Omega_{1}-\alpha_{1}}{2\alpha_{2}}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ninth Law</td>
+<td style="text-align: left;">$\alpha_{1}=x_{1}\Omega_{1}+\Omega_{2}y_{1}$</td>
+<td style="text-align: left;">$\alpha_{1}=g_{1}\lambda_{1}+\lambda_{2}h_{1}$</td>
+<td style="text-align: left;">$\Omega_{1}=m_{1}\alpha_{1}+\alpha_{2}n_{1}$</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tenth Law</td>
+<td style="text-align: left;">$\alpha_{1}=\Omega_{1}(x_{1}-x_{2})+\lambda_{2}$</td>
+<td style="text-align: left;">$\alpha_{1}=\lambda_{1}(g_{1}-g_{2})+\Omega_{2}$</td>
+<td style="text-align: left;">$\Omega_{1}=\alpha_{1}(m_{1}-m_{2})+\lambda_{2}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eleventh Law</td>
+<td style="text-align: left;">$\alpha_{1}=\Omega_{2}(y_{1}-y_{2})+\lambda_{1}$</td>
+<td style="text-align: left;">$\alpha_{1}=\lambda_{2}(h_{1}-h_{2})+\Omega_{1}$</td>
+<td style="text-align: left;">$\Omega_{1}=\alpha_{2}(n_{1}-n_{2})+\lambda_{1}$</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Twelfth Law</td>
+<td style="text-align: left;">$\alpha_{1}=\frac{x_{1}(y_{2}-y_{1})-\lambda_{1}(x_{1}-y_{1})}{y_{2}-x_{1}}$</td>
+<td style="text-align: left;">$\alpha_{1}=\frac{g_{1}(h_{2}-h_{1})-\Omega_{1}(g_{1}-h_{1})}{h_{2}-g_{1}}$</td>
+<td style="text-align: left;">$\Omega_{1}=\frac{m_{1}(n_{2}-n_{1})-\lambda_{1}(m_{1}-n_{1})}{n_{2}-m_{1}}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Thirteenth Law</td>
+<td style="text-align: left;">$\lambda_{1}=x_{1}\Omega_{1}+\Omega_{2}y_{2}$</td>
+<td style="text-align: left;">$\Omega_{1}=g_{1}\lambda_{1}+\lambda_{2}h_{2}$</td>
+<td style="text-align: left;">$\lambda_{1}=m_{1}\alpha_{1}+\alpha_{2}n_{2}$</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fourteenth Law</td>
+<td style="text-align: left;">$\lambda_{1}=\Omega_{1}(x_{1}-x_{2})+\alpha_{2}$</td>
+<td style="text-align: left;">$\Omega_{1}=\lambda_{1}(g_{1}-g_{2})+\alpha_{2}$</td>
+<td style="text-align: left;">$\lambda_{1}=\alpha_{1}(m_{1}-m_{2})+\Omega_{2}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fifteenth Law</td>
+<td style="text-align: left;">$\lambda_{1}=\frac{\alpha_{1}(x_{1}-y_{2})-x_{1}(y_{1}-y_{2})}{x_{1}-y_{1}}$</td>
+<td style="text-align: left;">$\Omega_{1}=\frac{\alpha_{1}(g_{1}-h_{2})-g_{1}(h_{1}-h_{2})}{g_{1}-h_{1}}$</td>
+<td style="text-align: left;">$\lambda_{1}=\frac{\Omega_{1}(m_{1}-n_{2})-m_{1}(n_{1}-n_{2})}{m_{1}-n_{1}}$</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sixteenth Law</td>
+<td style="text-align: left;">$\lambda_{1}=\Omega_{2}(y_{2}-y_{1})+\alpha_{1}$</td>
+<td style="text-align: left;">$\Omega_{1}=\lambda_{2}(h_{2}-h_{1})+\alpha_{1}$</td>
+<td style="text-align: left;">$\lambda_{1}=\alpha_{2}(n_{2}-n_{1})+\Omega_{1}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Seventeenth Law</td>
+<td style="text-align: left;">$\zeta=\frac{x_{1}-\alpha_{1}}{\alpha_{1}-y_{1}};\Omega_{1}=\frac{y_{1}-\alpha_{1}}{y_{1}-x_{1}}$</td>
+<td style="text-align: left;">$\gamma=\frac{g_{1}-\alpha_{1}}{\alpha_{1}-h_{1}};\lambda_{1}=\frac{h_{1}-\alpha_{1}}{h_{1}-g_{1}}$</td>
+<td style="text-align: left;">$\xi=\frac{m_{1}-\Omega_{1}}{\Omega_{1}-n_{1}};\alpha_{1}=\frac{n_{1}-\Omega_{1}}{n_{1}-m_{1}}$</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eighteenth Law</td>
+<td style="text-align: left;">$\Omega_{1}=\frac{\lambda_{2}-\alpha_{1}}{x_{2}-x_{1}}=\frac{\alpha_{2}-\lambda_{1}}{x_{2}-x_{1}}$</td>
+<td style="text-align: left;">$\gamma_{1}=\frac{\Omega_{2}-\alpha_{1}}{g_{2}-g_{1}}=\frac{\alpha_{2}-\Omega_{1}}{g_{2}-g_{1}}$</td>
+<td style="text-align: left;">$\alpha_{1}=\frac{\lambda_{2}-\Omega_{1}}{m_{2}-m_{1}}=\frac{\Omega_{2}-\lambda_{1}}{m_{2}-m_{1}}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nineteenth Law</td>
+<td style="text-align: left;">$\zeta=\frac{x_{1}-\lambda_{1}}{\lambda_{1}-y_{2}}; \Omega_{1}=\frac{y_{2}-\lambda_{1}}{y_{2}-x_{1}}$</td>
+<td style="text-align: left;">$\gamma=\frac{g_{1}-\Omega_{1}}{\Omega_{1}-h_{2}}; \lambda_{1}=\frac{h_{2}-\Omega_{1}}{h_{2}-g_{1}}$</td>
+<td style="text-align: left;">$\xi=\frac{m_{1}-\lambda_{1}}{\lambda_{1}-n_{2}}; \alpha_{1}=\frac{n_{2}-\lambda_{1}}{n_{2}-m_{1}}$</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Twentieth Law</td>
+<td style="text-align: left;">$\zeta=\frac{\lambda_{1}-\alpha_{1}}{(y_{2}-y_{1})+(\alpha_{1}-\lambda_{1})}$</td>
+<td style="text-align: left;">$\gamma=\frac{\Omega_{1}-\alpha_{1}}{(h_{2}-h_{1})+(\alpha_{1}-\Omega_{1})}$</td>
+<td style="text-align: left;">$\xi=\frac{\lambda_{1}-\Omega_{1}}{(n_{2}-n_{1})+(\Omega_{1}-\lambda_{1})}$</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Proportions</strong></p>
+</div>
+<div class="callout-content">
+<div class="cell">
+<div class="cell-output-display">
+<table class="lightable-paper table caption-top" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 8px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">V1</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">V2</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">V3</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">V4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">North Ratio</td>
+<td style="text-align: left;">South Ratio</td>
+<td style="text-align: left;">North Complement</td>
+<td style="text-align: left;">South Complement</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">$x_{1} = \frac{s}{s+t}$</td>
+<td style="text-align: left;">$y_{1} = \frac{u}{u+v}$</td>
+<td style="text-align: left;">$x_{2} = (1-x_{1}) = \frac{t}{s+t}$</td>
+<td style="text-align: left;">$y_{2} = (1-y_{1}) = \frac{v}{u+v}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">West Ratio</td>
+<td style="text-align: left;">East Ratio</td>
+<td style="text-align: left;">West Complement</td>
+<td style="text-align: left;">East Complement</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">$g_{1} = \frac{s}{s+v}$</td>
+<td style="text-align: left;">$h_{1} = \frac{u}{u+t}$</td>
+<td style="text-align: left;">$g_{2} = (1-g_{1}) = \frac{v}{s+v}$</td>
+<td style="text-align: left;">$h_{2} = (1-h_{1}) = \frac{t}{u+t}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Northwest Ratio</td>
+<td style="text-align: left;">Northeast Ratio</td>
+<td style="text-align: left;">Southeast Ratio</td>
+<td style="text-align: left;">Southwest Ratio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">$m_{1} = \frac{s}{s+u}$</td>
+<td style="text-align: left;">$n_{1} = \frac{t}{t+v}$</td>
+<td style="text-align: left;">$m_{2} = (1-m_{1}) = \frac{u}{s+u}$</td>
+<td style="text-align: left;">$n_{2} = (1-n_{1}) = \frac{v}{t+v}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Diagonal Aggregate</td>
+<td style="text-align: left;">Diagonal Proportion</td>
+<td style="text-align: left;">1st Alpha Identity</td>
+<td style="text-align: left;">Xi Identity</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">$\alpha_{1} = \frac{s+u}{(s+u)+(t+v)}$</td>
+<td style="text-align: left;">$\xi = \frac{t+v}{s+u}$</td>
+<td style="text-align: left;">$\alpha_{1} = (\xi+1)^{-1}$</td>
+<td style="text-align: left;">$\xi = \frac{1-\alpha_{1}}{\alpha_{1}} = \frac{\alpha_{2}}{\alpha_{1}}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Diagonal Complement</td>
+<td style="text-align: left;">Diagonal Inverse</td>
+<td style="text-align: left;">2nd Alpha Identity</td>
+<td style="text-align: left;">Inverse Xi Identity</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">$\alpha_{2} = \frac{t+v}{(s+u)+(t+v)}$</td>
+<td style="text-align: left;">$\xi^{-1} = \frac{s+u}{t+v}$</td>
+<td style="text-align: left;">$\alpha_{2} = (\xi^{-1}+1)^{-1}$</td>
+<td style="text-align: left;">$\xi^{-1} = \frac{1-\alpha_{2}}{\alpha_{2}} = \frac{\alpha_{1}}{\alpha_{2}}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">West Aggregate</td>
+<td style="text-align: left;">East to West Proportion</td>
+<td style="text-align: left;">1st Lambda Identity</td>
+<td style="text-align: left;">Gamma Identity</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">$\lambda_{1} = \frac{s+v}{(s+v)+(u+t)}$</td>
+<td style="text-align: left;">$\gamma = \frac{u+t}{s+v}$</td>
+<td style="text-align: left;">$\lambda_{1} = (\gamma+1)^{-1}$</td>
+<td style="text-align: left;">$\gamma = \frac{1-\lambda_{1}}{\lambda_{1}} = \frac{\lambda_{2}}{\lambda_{1}}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">East Aggregate</td>
+<td style="text-align: left;">West to East Proportion</td>
+<td style="text-align: left;">2nd Lambda Identity</td>
+<td style="text-align: left;">Inverse Gamma Identity</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">$\lambda_{2} = \frac{u+t}{(s+v)+(u+t)}$</td>
+<td style="text-align: left;">$\gamma^{-1} = \frac{s+v}{u+t}$</td>
+<td style="text-align: left;">$\lambda_{2} = (\gamma^{-1}+1)^{-1}$</td>
+<td style="text-align: left;">$\gamma^{-1} = \frac{1-\lambda_{2}}{\lambda_{2}} = \frac{\lambda_{1}}{\lambda_{2}}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">North Aggregate</td>
+<td style="text-align: left;">South to North Proportion</td>
+<td style="text-align: left;">1st Omega Identity</td>
+<td style="text-align: left;">Zeta Identity</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">$\Omega_{1} = \frac{s+t}{(s+t)+(u+v)}$</td>
+<td style="text-align: left;">$\zeta = \frac{u+v}{s+t}$</td>
+<td style="text-align: left;">$\Omega_{1} = (\zeta+1)^{-1}$</td>
+<td style="text-align: left;">$\zeta = \frac{1-\Omega_{1}}{\Omega_{1}} = \frac{\Omega_{2}}{\Omega_{1}}$</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">South Aggregate</td>
+<td style="text-align: left;">North to South Proportion</td>
+<td style="text-align: left;">2nd Omega Identity</td>
+<td style="text-align: left;">Inverse Zeta Identity</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">$\Omega_{2} = \frac{u+v}{(s+t)+(u+v)}$</td>
+<td style="text-align: left;">$\zeta^{-1} = \frac{s+t}{u+v}$</td>
+<td style="text-align: left;">$\Omega_{2} = (\zeta^{-1}+1)^{-1}$</td>
+<td style="text-align: left;">$\zeta^{-1} = \frac{1-\Omega_{2}}{\Omega_{2}} = \frac{\Omega_{1}}{\Omega_{2}}$</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="section-12" class="slide level2">
+<h2>Counting in a fair election</h2>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

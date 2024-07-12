@@ -51,11 +51,14 @@ hyfc1 <- dplyr::select(c1df$sdfc,all_of(c(stickers[[1]][[2]])))[1:3,]
 hyfc2 <- dplyr::select(c2df$sdfc,all_of(c(stickers[[1]][[2]])))[1:3,]
 opfc1 <- dplyr::select(c1df$sdfc,all_of(c(stickers[[1]][[3]])))[1:3,]
 opfc2 <- dplyr::select(c2df$sdfc,all_of(c(stickers[[1]][[3]])))[1:3,]
-
-
-
-
-
+cx <- round(c1df$sdfc$x,2)
+cy <- round(c1df$sdfc$y,2)
+czeta <- round(c1df$sdfc$zeta,2)
+calpha <- round(c1df$sdfc$alpha,2)
+clambda <- round(c1df$sdfc$lamda,2)
+cg <- round(c1df$sdfc$g,2)
+ch <- round(c1df$sdfc$y,2)
+cGamma <- round(c1df$sdfc$Gamma,2)
 
 
 
