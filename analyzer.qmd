@@ -16,30 +16,25 @@ filters:
   - pyodide
 ---
 
-## Install
-
 ```{webr-r}
 #| echo: fenced
 #| eval: true
 webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
 library(ManifoldDestinyWASMP)
+library(ManifoldDestinyWASMD)
 ls(package:ManifoldDestinyWASMP)
 data(package='ManifoldDestinyWASMD')
-```
-
-
-## Select case
-
-```{webr-r}
 dfl <- ManifoldDestinyWASMD::yout
 ```
 
-## Counting
-
 ```{webr-r}
-Countingprocess(dfl)
+apps <- basc
+adat <- apps[[1]]
+amet <- apps[[2]]
+cogr <- Countinggraphs(apps[[1]])
+#selo <- seloutput(selreport(apps))
+#copl <- cogr$polyc[[1]][[1]]
+cogr$sdfc
 ```
-
-## Estimation
 

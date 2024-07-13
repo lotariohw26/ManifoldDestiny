@@ -16,32 +16,31 @@ filters:
   - pyodide
 ---
 
-
 ```{webr-r}
+#| echo: fenced
+#| eval: true
 webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
 library(ManifoldDestinyWASMP)
 library(ManifoldDestinyWASMD)
 ls(package:ManifoldDestinyWASMP)
 data(package='ManifoldDestinyWASMD')
-library(ggplot2)
-library(combinat)
-library(plotly)
-library(htmltools)
-library(broom)
-set.seed(1)
-dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,100,30)))})(100)
-probw <- c(m=0.51,s=0.10)
-probva <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
-probvb <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
-ztech <- c(0,1)	
-mdn <- list(frn=1,eq="alpha=k0+k1*x+k2*y")
-app_bal <- list(df=ballcastsim(dfm,probw,probva,probvb,ztech),list(fr=1,eq="alpha=k0+k1*x+k2*y"))
-app_bal[1]
+dfl <- ManifoldDestinyWASMD::yout
+```
+
+
+```{webr-r}
+perv <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,100,30)))})(100)
+prow <- c(m=0.51,s=0.10)
+proa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
+prob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
+ztec <- c(0,1)	
+basc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),list(fr=1,eq="alpha=k0+k1*x+k2*y",va='y',prg=list(cnd=1)))
+cogr <- Countinggraphs(basc[[1]])
 ```
 
 ```{webr-r}
-abc <- SimVoterdatabase()
+cogr$rdfci
 ```
 
 **Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**

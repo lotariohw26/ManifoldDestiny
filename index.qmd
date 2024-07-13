@@ -18,6 +18,18 @@ filters:
 # script/R/simulations.R
 ```
 
+```{webr-r}
+#| echo: fenced
+#| eval: true
+webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
+library(ManifoldDestinyWASMP)
+library(ManifoldDestinyWASMD)
+ls(package:ManifoldDestinyWASMP)
+data(package='ManifoldDestinyWASMD')
+dfl <- ManifoldDestinyWASMD::yout
+```
+
 **Based upon the ideas developed by Edward K. Solomon**
 ![](pngs/md.png)
 
@@ -35,17 +47,6 @@ knitr::knit_exit()
 
 
 
-```{webr-r}
-#| echo: fenced
-#| eval: true
-webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
-library(ManifoldDestinyWASMP)
-library(ManifoldDestinyWASMD)
-ls(package:ManifoldDestinyWASMP)
-data(package='ManifoldDestinyWASMD')
-dfl <- ManifoldDestinyWASMD::yout
-```
 
 ```{webr-r}
 coi <- Countingprocess(dfl[[1]])
