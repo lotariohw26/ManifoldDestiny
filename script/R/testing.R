@@ -3,10 +3,22 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
 # Simulations
-appt <- app2
+appt <- yout
 appt[[1]]
 appt[[2]]
+sum(dplyr::select(appt[[1]],S,T,U,V))
+abc <- Countingprocess(appt[[1]])
+
+def <- Estimation(abc$rdfci)
+def$regression("alpha=k0+k1*g+k2*h")
+mean(as.vector(predict(def$regsum[[1]]))-abc$rdfci$alpha)
+
 abc <- seloutput(selreport(appt))
+
+
+View(abc$sdfc)
+abc$descriptive(2)
+abc$desms
 abc[[1]]
 abc[[2]]
 abc[[3]]

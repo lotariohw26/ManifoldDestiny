@@ -9,6 +9,11 @@ format:
 execute: 
   cache: false
 footer: <https://lotariohw26.github.io/ManifoldDestiny/>
+output: 
+  html_document:
+    mathjax: "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+nocite: |
+  @*
 ---
 
 ```{r, echo=F, message=F, warning=F, results='hide'}
@@ -20,6 +25,10 @@ laws_df1 <- ManifoldDestiny::eqdef$meql
 laws_df2 <- ManifoldDestiny::eqdef$meqs
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
 #source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+appnf <- seloutput(selreport(basc))
+appr1 <- seloutput(selreport(rigv[[1]]))
+appr2 <- seloutput(selreport(rigv[[2]]))
+appr3 <- seloutput(selreport(rigv[[3]]))
 #source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
 modlat <- eqpar$meql
 cx
@@ -326,133 +335,29 @@ If none of this three cases are satisfied, variation in $\Gamma_i$ should explai
   -  The remaining **2** must be *backsolved*, this based on information from the first three parameters.
   -  Selecting **3** parameters from a set of **5** implies **10** different combinations
 
-## {{< var sec2.un2 >}}
-::: {.callout-caution collapse="true"}
-**20 laws and 40 isometris**
+---
 
-```{r, echo=F}
-# Load necessary library
-library(tibble)
 
-# Create the data.frame
-laws_df <- tribble(
-  ~Law_Number, ~North_vs_South, ~West_vs_East, ~Diagonal_vs_Diagonal,
-  "First Law", "$x_{1}=\\alpha_{1}+\\zeta(\\alpha_{1}-y_{1})$", "$g_{1}=\\alpha_{1}+\\gamma(\\alpha_{1}-h_{1})$", "$m_{1}=\\Omega_{1}+\\xi(\\Omega_{1}-n_{1})$",
-  "Second Law", "$x_{1}=\\lambda_{1}+\\zeta(\\lambda_{1}-y_{2})$", "$g_{1}=\\Omega_{1}+\\gamma(\\Omega_{1}-h_{2})$", "$m_{1}=\\lambda_{1}+\\xi(\\lambda_{1}-n_{2})$",
-  "Third Law", "$x_{1}=\\frac{\\alpha_{1}y_{2}-\\lambda_{1}y_{1}}{(\\alpha_{1}-\\lambda_{1})-(y_{1}-y_{2})}$", "$g_{1}=\\frac{\\alpha_{1}h_{2}-\\Omega_{1}h_{1}}{(\\alpha_{1}-\\Omega_{1})-(h_{1}-h_{2})}$", "$m_{1}=\\frac{\\Omega_{1}n_{2}-\\lambda_{1}n_{1}}{(\\Omega_{1}-\\lambda_{1})-(n_{1}-n_{2})}$",
-  "Fourth Law", "$x_{1}=\\frac{\\lambda_{1}+\\alpha_{1}-\\Omega_{2}}{2\\Omega_{1}}$", "$g_{1}=\\frac{\\Omega_{1}+\\alpha_{1}-\\lambda_{2}}{2\\lambda_{1}}$", "$m_{1}=\\frac{\\lambda_{1}+\\Omega_{1}-\\alpha_{2}}{2\\alpha_{1}}$",
-  "Fifth Law", "$y_{1}=\\alpha_{1}-\\zeta^{-1}(\\alpha_{1}-x_{1})$", "$h_{1}=\\alpha_{1}-\\gamma^{-1}(\\alpha_{1}-g_{1})$", "$n_{1}=\\Omega_{1}-\\xi^{-1}(\\Omega_{1}-m_{1})$",
-  "Sixth Law", "$y_{1}=\\lambda_{2}-\\zeta^{-1}(\\lambda_{1}-x_{1})$", "$h_{1}=\\Omega_{2}-\\gamma^{-1}(\\Omega_{1}-g_{1})$", "$n_{1}=\\lambda_{2}-\\xi^{-1}(\\lambda_{1}-m_{1})$",
-  "Seventh Law", "$y_{1}=\\frac{x_{1}\\lambda_{2}-x_{2}\\alpha_{1}}{(\\lambda_{2}-\\alpha_{1})-(x_{2}-x_{1})}$", "$h_{1}=\\frac{g_{1}\\Omega_{2}-g_{2}\\alpha_{1}}{(\\Omega_{2}-\\alpha_{1})-(g_{2}-g_{1})}$", "$n_{1}=\\frac{m_{1}\\lambda_{2}-m_{2}\\Omega_{1}}{(\\lambda_{2}-\\Omega_{1})-(m_{2}-m_{1})}$",
-  "Eighth Law", "$y_{1}=\\frac{\\lambda_{2}+\\alpha_{1}-\\Omega_{1}}{2\\Omega_{2}}$", "$h_{1}=\\frac{\\Omega_{2}+\\alpha_{1}-\\lambda_{1}}{2\\lambda_{2}}$", "$n_{1}=\\frac{\\lambda_{2}+\\Omega_{1}-\\alpha_{1}}{2\\alpha_{2}}$",
-  "Ninth Law", "$\\alpha_{1}=x_{1}\\Omega_{1}+\\Omega_{2}y_{1}$", "$\\alpha_{1}=g_{1}\\lambda_{1}+\\lambda_{2}h_{1}$", "$\\Omega_{1}=m_{1}\\alpha_{1}+\\alpha_{2}n_{1}$",
-  "Tenth Law", "$\\alpha_{1}=\\Omega_{1}(x_{1}-x_{2})+\\lambda_{2}$", "$\\alpha_{1}=\\lambda_{1}(g_{1}-g_{2})+\\Omega_{2}$", "$\\Omega_{1}=\\alpha_{1}(m_{1}-m_{2})+\\lambda_{2}$",
-  "Eleventh Law", "$\\alpha_{1}=\\Omega_{2}(y_{1}-y_{2})+\\lambda_{1}$", "$\\alpha_{1}=\\lambda_{2}(h_{1}-h_{2})+\\Omega_{1}$", "$\\Omega_{1}=\\alpha_{2}(n_{1}-n_{2})+\\lambda_{1}$",
-  "Twelfth Law", "$\\alpha_{1}=\\frac{x_{1}(y_{2}-y_{1})-\\lambda_{1}(x_{1}-y_{1})}{y_{2}-x_{1}}$", "$\\alpha_{1}=\\frac{g_{1}(h_{2}-h_{1})-\\Omega_{1}(g_{1}-h_{1})}{h_{2}-g_{1}}$", "$\\Omega_{1}=\\frac{m_{1}(n_{2}-n_{1})-\\lambda_{1}(m_{1}-n_{1})}{n_{2}-m_{1}}$",
-  "Thirteenth Law", "$\\lambda_{1}=x_{1}\\Omega_{1}+\\Omega_{2}y_{2}$", "$\\Omega_{1}=g_{1}\\lambda_{1}+\\lambda_{2}h_{2}$", "$\\lambda_{1}=m_{1}\\alpha_{1}+\\alpha_{2}n_{2}$",
-  "Fourteenth Law", "$\\lambda_{1}=\\Omega_{1}(x_{1}-x_{2})+\\alpha_{2}$", "$\\Omega_{1}=\\lambda_{1}(g_{1}-g_{2})+\\alpha_{2}$", "$\\lambda_{1}=\\alpha_{1}(m_{1}-m_{2})+\\Omega_{2}$",
-  "Fifteenth Law", "$\\lambda_{1}=\\frac{\\alpha_{1}(x_{1}-y_{2})-x_{1}(y_{1}-y_{2})}{x_{1}-y_{1}}$", "$\\Omega_{1}=\\frac{\\alpha_{1}(g_{1}-h_{2})-g_{1}(h_{1}-h_{2})}{g_{1}-h_{1}}$", "$\\lambda_{1}=\\frac{\\Omega_{1}(m_{1}-n_{2})-m_{1}(n_{1}-n_{2})}{m_{1}-n_{1}}$",
-  "Sixteenth Law", "$\\lambda_{1}=\\Omega_{2}(y_{2}-y_{1})+\\alpha_{1}$", "$\\Omega_{1}=\\lambda_{2}(h_{2}-h_{1})+\\alpha_{1}$", "$\\lambda_{1}=\\alpha_{2}(n_{2}-n_{1})+\\Omega_{1}$",
-  "Seventeenth Law", "$\\zeta=\\frac{x_{1}-\\alpha_{1}}{\\alpha_{1}-y_{1}};\\Omega_{1}=\\frac{y_{1}-\\alpha_{1}}{y_{1}-x_{1}}$", "$\\gamma=\\frac{g_{1}-\\alpha_{1}}{\\alpha_{1}-h_{1}};\\lambda_{1}=\\frac{h_{1}-\\alpha_{1}}{h_{1}-g_{1}}$", "$\\xi=\\frac{m_{1}-\\Omega_{1}}{\\Omega_{1}-n_{1}};\\alpha_{1}=\\frac{n_{1}-\\Omega_{1}}{n_{1}-m_{1}}$",
-  "Eighteenth Law", "$\\Omega_{1}=\\frac{\\lambda_{2}-\\alpha_{1}}{x_{2}-x_{1}}=\\frac{\\alpha_{2}-\\lambda_{1}}{x_{2}-x_{1}}$", "$\\gamma_{1}=\\frac{\\Omega_{2}-\\alpha_{1}}{g_{2}-g_{1}}=\\frac{\\alpha_{2}-\\Omega_{1}}{g_{2}-g_{1}}$", "$\\alpha_{1}=\\frac{\\lambda_{2}-\\Omega_{1}}{m_{2}-m_{1}}=\\frac{\\Omega_{2}-\\lambda_{1}}{m_{2}-m_{1}}$",
-  "Nineteenth Law", "$\\zeta=\\frac{x_{1}-\\lambda_{1}}{\\lambda_{1}-y_{2}}; \\Omega_{1}=\\frac{y_{2}-\\lambda_{1}}{y_{2}-x_{1}}$", "$\\gamma=\\frac{g_{1}-\\Omega_{1}}{\\Omega_{1}-h_{2}}; \\lambda_{1}=\\frac{h_{2}-\\Omega_{1}}{h_{2}-g_{1}}$", "$\\xi=\\frac{m_{1}-\\lambda_{1}}{\\lambda_{1}-n_{2}}; \\alpha_{1}=\\frac{n_{2}-\\lambda_{1}}{n_{2}-m_{1}}$",
-  "Twentieth Law", "$\\zeta=\\frac{\\lambda_{1}-\\alpha_{1}}{(y_{2}-y_{1})+(\\alpha_{1}-\\lambda_{1})}$", "$\\gamma=\\frac{\\Omega_{1}-\\alpha_{1}}{(h_{2}-h_{1})+(\\alpha_{1}-\\Omega_{1})}$", "$\\xi=\\frac{\\lambda_{1}-\\Omega_{1}}{(n_{2}-n_{1})+(\\Omega_{1}-\\lambda_{1})}$"
-)
-# Display the data.frame
-kable(laws_df, format = "markdown", escape = FALSE) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+### 40 isometris
+
+::: {.callout-note collapse="true"}
+```{r}
+kable(laws1[,c(5,6,7,8)], format = "markdown", escape = FALSE) # %>% kableExtra::kable_styling(font_size=8)
+
+
 ```
-
 :::
 
 ---
 
+### 20 laws 
 
-::: {.callout-caution collapse="true"}
-## Proportions
+::: {.callout-note collapse="true"}
+```{r} 
+kable(laws2, format = "markdown", escape = FALSE) 
 
-```{r, echo=F}
-library(kableExtra)
-library(tibble)
-new_tbl <- data.frame(
-  V1 = c("North Ratio", "West Ratio", "Northwest Ratio", "Diagonal Aggregate", "Diagonal Complement", "West Aggregate", "East Aggregate", "North Aggregate", "South Aggregate"),
-  V2 = c("South Ratio", "East Ratio", "Northeast Ratio", "Diagonal Proportion", "Diagonal Inverse", "East to West Proportion", "West to East Proportion", "South to North Proportion", "North to South Proportion"),
-  V3 = c("North Complement", "West Complement", "Southeast Ratio", "1st Alpha Identity", "2nd Alpha Identity", "1st Lambda Identity", "2nd Lambda Identity", "1st Omega Identity", "2nd Omega Identity"),
-  V4 = c("South Complement", "East Complement", "Southwest Ratio", "Xi Identity", "Inverse Xi Identity", "Gamma Identity", "Inverse Gamma Identity", "Zeta Identity", "Inverse Zeta Identity"),
-  Equation1 = c("$x_{1} = \\frac{s}{s+t}$", "$g_{1} = \\frac{s}{s+v}$", "$m_{1} = \\frac{s}{s+u}$", "$\\alpha_{1} = \\frac{s+u}{(s+u)+(t+v)}$", "$\\alpha_{2} = \\frac{t+v}{(s+u)+(t+v)}$", "$\\lambda_{1} = \\frac{s+v}{(s+v)+(u+t)}$", "$\\lambda_{2} = \\frac{u+t}{(s+v)+(u+t)}$", "$\\Omega_{1} = \\frac{s+t}{(s+t)+(u+v)}$", "$\\Omega_{2} = \\frac{u+v}{(s+t)+(u+v)}$"),
-  Equation2 = c("$y_{1} = \\frac{u}{u+v}$", "$h_{1} = \\frac{u}{u+t}$", "$n_{1} = \\frac{t}{t+v}$", "$\\xi = \\frac{t+v}{s+u}$", "$\\xi^{-1} = \\frac{s+u}{t+v}$", "$\\gamma = \\frac{u+t}{s+v}$", "$\\gamma^{-1} = \\frac{s+v}{u+t}$", "$\\zeta = \\frac{u+v}{s+t}$", "$\\zeta^{-1} = \\frac{s+t}{u+v}$"),
-  Equation3 = c("$x_{2} = (1-x_{1}) = \\frac{t}{s+t}$", "$g_{2} = (1-g_{1}) = \\frac{v}{s+v}$", "$m_{2} = (1-m_{1}) = \\frac{u}{s+u}$", "$\\alpha_{1} = (\\xi+1)^{-1}$", "$\\alpha_{2} = (\\xi^{-1}+1)^{-1}$", "$\\lambda_{1} = (\\gamma+1)^{-1}$", "$\\lambda_{2} = (\\gamma^{-1}+1)^{-1}$", "$\\Omega_{1} = (\\zeta+1)^{-1}$", "$\\Omega_{2} = (\\zeta^{-1}+1)^{-1}$"),
-  Equation4 = c("$y_{2} = (1-y_{1}) = \\frac{v}{u+v}$", "$h_{2} = (1-h_{1}) = \\frac{t}{u+t}$", "$n_{2} = (1-n_{1}) = \\frac{v}{t+v}$", "$\\xi = \\frac{1-\\alpha_{1}}{\\alpha_{1}} = \\frac{\\alpha_{2}}{\\alpha_{1}}$", "$\\xi^{-1} = \\frac{1-\\alpha_{2}}{\\alpha_{2}} = \\frac{\\alpha_{1}}{\\alpha_{2}}$", "$\\gamma = \\frac{1-\\lambda_{1}}{\\lambda_{1}} = \\frac{\\lambda_{2}}{\\lambda_{1}}$", "$\\gamma^{-1} = \\frac{1-\\lambda_{2}}{\\lambda_{2}} = \\frac{\\lambda_{1}}{\\lambda_{2}}$", "$\\zeta = \\frac{1-\\Omega_{1}}{\\Omega_{1}} = \\frac{\\Omega_{2}}{\\Omega_{1}}$", "$\\zeta^{-1} = \\frac{1-\\Omega_{2}}{\\Omega_{2}} = \\frac{\\Omega_{1}}{\\Omega_{2}}$")
-)
-
-
-# Extract the columns
-V1 <- new_tbl$V1
-V2 <- new_tbl$V2
-V3 <- new_tbl$V3
-V4 <- new_tbl$V4
-Equation1 <- new_tbl$Equation1
-Equation2 <- new_tbl$Equation2
-Equation3 <- new_tbl$Equation3
-Equation4 <- new_tbl$Equation4
-
-# Combine the columns
-combined <- data.frame(
-  V1 = matrix(c(rbind(V1, Equation1)), ncol = 1),
-  V2 = matrix(c(rbind(V2, Equation2)), ncol = 1),
-  V3 = matrix(c(rbind(V3, Equation3)), ncol = 1),
-  V4 = matrix(c(rbind(V4, Equation4)), ncol = 1)
-)
-kable(combined, format = "markdown", escape = FALSE) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
 ```
-
 :::
-
-## {{< var sec2.un3 >}}
-
-:::: {.columns}
-
-::: {.column width="50%"}
-
-*Standard form*
-
-Setting the first three parameters:
-
-- $x_i=\frac{s_i}{s_i+t_i}$
-- $y_i=\frac{u_i}{u_i+v_i}$
-- $\zeta_i=\frac{u_i+v_i}{s_i+t_i}$
-
-Backsolve for
-
-- $\alpha_i(x_,y_i,\zeta_i)=\frac{x_i+\zeta_i\cdot y_i}{\zeta_i+1}$
-- $\lambda_i(x_i,y_i,\zeta_i)=\frac{x_i\zeta_i\cdot(1-y_i)}{\zeta_i+1}$
-
-:::
-
-::: {.column width="50%"}
-
-*Opposition form*
-
-Setting the first three parameters:
-
-- $g_i=\frac{s_i}{s_i+t_i}$
-- $h_i=\frac{u_i}{u_i+v_i}$
-- $\Gamma_i=\frac{u_i+d_i}{u_i+v_i}$
-
-Backsolve for
-
-- $\alpha_i(g_i,h_i,\Gamma_i)=\frac{x_i+\zeta_i\cdot y_i}{\zeta_i+1}$
-- $\Omega_i(g_i,h_i,\Gamma_i)=\frac{x_i\zeta_i\cdot(1-y_i)}{\zeta_i+1}$
-
-:::
-
-::::
-
-
-**Properties**: 
-
-- 1<sup>st</sup> The total election outcome will be determined by *three* parameters: ( $x_i, y_i,\zeta_i$ ) under standard form and ( $g_i, h_i, \Gamma_i$ ) using hybrid form. 
-- 2<sup>nd</sup> Changes in $\Gamma_i$ and $\zeta_i$ would in general have an impact on $\alpha_i$.
-
 
 [Application 2: Rigged election process simulator]({{< var shn2 >}})
 
@@ -463,9 +368,9 @@ Backsolve for
 :::: {.columns}
 
 ::: {.column width="50%"}
-Non-rigged election using standard form
+Non-rigged election
 ```{r}
-#app_n_out[[4]] 
+appnf[[4]]
 ```
 
 :::
@@ -475,7 +380,7 @@ Non-rigged election using standard form
 
 Rigged election using standard form
 ```{r}
-#app_ex1_out[[4]] 
+appr1[[4]]
 ```
 
 :::
@@ -581,7 +486,138 @@ Election outome
   - a. Solely caused by the error term $\epsilon_i$ and, if used, the non-linear part of the Manifold equation.
   - b. Has no longer any causal impact on $\lambda_i$
 
+# {{< var sec3.nmn >}}
 
+## {{< var sec3.un1 >}}
+```{r}
+#| echo: false
+#| output: false
+apps <- basc
+```
+{{< include tabpar.qmd >}}
+
+## {{< var sec3.un2 >}}
+
+### Normal form
+```{r}
+#| echo: false
+#| output: false
+apps <- rigv[[1]]
+```
+{{< include tab.qmd >}}
+
+---
+
+### Hybrid
+```{r}
+#| echo: false
+#| output: false
+apps <- rigv[[2]]
+```
+{{< include tab.qmd >}}
+
+---
+
+### Opposition
+```{r}
+#| echo: false
+#| output: false
+apps <- rigv[[3]]
+```
+{{< include tab.qmd >}}
+
+# {{< var sec5.nmn >}}
+
+![](images/ss.png){width=300}
+
+> Abstract: On August 15th, 2004, Venezuelans had the opportunity to vote in a Presidential Recall Referendum to decide whether or not President Hugo Chávez should be removed from office. The process was largely computerized using a touch-screen system. In general the ballots were not manually counted. The significance of the high linear correlation (0.99) between the number of requesting signatures for the recall petition and the number of opposition votes in computerized centers is analyzed. The same-day audit was found to be not only ineffective but a source of suspicion. Official results were compared with the 1998 presidential election and other electoral events and distortions were found.
+
+[Paper](https://projecteuclid.org/journals/statistical-science/volume-26/issue-4/Analysis-of-the-2004-Venezuela-Referendum--The-Official-Results/10.1214/08-STS263.full)
+
+---
+
+![](images/manifold.png){width=300}
+
+---
+
+{{< video https://www.youtube.com/watch?v=YQg1Cr3vRic&t=76s >}}
+
+# {{< var sec6.nmn >}}
+
+1. Check whether *trivial* Manifold occuranse related to (1) normal form, (2) hybrid form, or (3) opposition formare satisfied.
+1. If not, perform 3d Manifold analysis on all 10 different parameter combinations for all three forms of voting.
+1. For at least one of the suspicion cases, estimate the Manifold equation using (ordinary, complex or quaternionic) least squares estimation
+1. Check for normality of the estimated residual for the Manifold model.
+
+If we can walk through all of the **four** steps here, property 1<sup>st</sup> and 2<sup>nd</sup> that we have stated for a normal election are violated and we can conclude that the estimated Manifold equation is inserted - Manifold Destiny - to distort the outcome of normal election.
+
+## {{< var sec6.un1 >}}
+```{r}
+#| echo: false
+#| output: false
+apps <- app1
+```
+{{< include tabpar.qmd >}}
+
+## {{< var sec6.un2 >}}
+```{r}
+#| echo: false
+#| output: false
+apps <- app2
+```
+{{< include tabpar.qmd >}}
+
+
+## {{< var sec6.un3 >}}
+```{r}
+#| echo: false
+#| output: false
+apps <- app2
+```
+{{< include tabpar.qmd >}}
+## {{< var sec6.un4 >}}
+```{r}
+#| echo: false
+#| output: false
+apps <- app4
+```
+{{< include tabpar.qmd >}}
+
+# {{< var sec7.nmn >}}
+
+## {{< var sec7.un1 >}}
+
+# {{< var sec8.nmn >}}
+
+- At the heart of the difference between a fair and rigged election is the issue of causation
+  - Fair election: Aggregate Percentage of a Candidate **cannot** precede the Election Day and the Mail-in Percentages of that Candidate
+  - Rigged election: Aggregate Percentage of a Candidate **could** precede the Election Day and the Mail-in Percentages of that Candidate
+
+- If the conditions related to the the existance of a *trivial* Manifold occuranse to either normal form, hybrid form nor opposition form are not satisfied, this would imply
+	- 1<sup>st</sup> The total election outcome will be determined by *three* parameters (no manifold in 3d space). 
+	- 2<sup>nd</sup> Changes in $\Gamma_i$ and $\zeta_i$ would have an impact on $\alpha_i$.
+
+---
+
+- Condition on that $R^2$ falls within the critical region.
+	- Normal form
+	![](images/r2n.png){width=300}
+
+	- Hybrid form
+	![](images/r2h.png){width=300}
+
+---
+
+- Our four applications
+
+```{r, echo=F, warning=F, message=F}
+kableExtra::kbl(concl_appps) #%>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+```
+
+# {{< var sec9.nmn >}}
+
+::: {#refs}
+:::
 
 
 

@@ -14,7 +14,7 @@ prow <- c(m=0.51,s=0.10)
 proa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 prob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztec <- c(0,1)	
-basc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),list(fr=1,eq="alpha=k0+k1*x+k2*y"))
+basc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),list(fr=1,eq="alpha=k0+k1*x+k2*y",prg=list(cnd=1)))
 # Rigged election
 cogr <- Countinggraphs(basc[[1]])
 copl <- cogr$polyc[[1]][[1]]
@@ -32,10 +32,16 @@ rigv <- lapply(exs, function(x) {
   		lf="(alpha-alpha_s)^2"))
   cogr$setres(0.19,1)
   cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
-  rasc <- basc
-  #rasc <-cogr$rdfc
+  rasc <- list(cogr$rdfc,list(fr=1,eq="alpha=k0+k1*x+k2*y"),prg=list(cnd=1))
   return(rasc)
 })
+####################################################################################################################################################################
+appnf <- seloutput(selreport(basc))
+appr1 <- seloutput(selreport(rigv[[1]]))
+appr2 <- seloutput(selreport(rigv[[2]]))
+appr3 <- seloutput(selreport(rigv[[3]]))
+appr4 <- seloutput(selreport(rigv[[4]]))
+
 ####################################################################################################################################################################
 ######### Concluding Tabl
 #ctone <-'Applications'

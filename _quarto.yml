@@ -68,7 +68,7 @@ website:
       - text: Appendix
         menu:
         - text: "20 laws and 40 isometries "
-          href: laws.qmd
+          href: "laws.qmd"
         - text: "REPL for R"
           href: "https://webr.r-wasm.org/latest/"
         - text: "Simulations"

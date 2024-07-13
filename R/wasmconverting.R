@@ -201,7 +201,7 @@ selreport <- function(
   frm <- md$fr 
   #rparv <- md$mtd$sgs$ro ; names(rparv) <- c("theta","phi","rho")
   co <- Countinggraphs(da)
-  if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp)
+  #0if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp)
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
@@ -216,8 +216,8 @@ selreport <- function(
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$eq)
   ges$diagnostics()
-  ges$hat_predict(md$va,md$fr)
-  ges$hat_intcomp()
+  #ges$hat_predict(md$va,md$fr)
+  #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$eq)
