@@ -19,17 +19,17 @@ project:
     - "index.qmd"
     - "presentation.qmd"
     - "paper.qmd"
-    - "laws.qmd"
-    - "man_bib.qmd"
     - "addendum/Addendum_az.qmd"
     - "addendum/Addendum_ne.qmd"
+    - "tabset.qmd"
     - "metaview.qmd"
+    - "laws.qmd"
+    - "man_bib.qmd"
     - "simulations.qmd"
     - "rigging.qmd"
     - "analyzer.qmd"
     - "restoration.qmd"
     - "randpython.qmd"
-    - "tabset.qmd"
 
 website:
   title: "{{< var titls >}}"
@@ -81,8 +81,8 @@ website:
           href: "restoration.qmd"
         - text: "Functions"
           href: "randpython.qmd"
-  repo-url: https://github.com/lotariohw26/ManifoldDestiny
-  site-url: https://lotariohw26.github.io/ManifoldDestiny/
+  repo-url: "https://github.com/lotariohw26/ManifoldDestiny"
+  site-url: "https://lotariohw26.github.io/ManifoldDestiny/"
   reader-mode: false
   repo-actions: [edit]
   page-footer: 
@@ -101,3 +101,4 @@ format:
 
 bibliography: man_bib.bib
 # git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/ManifoldDestiny.git
+
