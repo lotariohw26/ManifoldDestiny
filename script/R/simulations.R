@@ -18,24 +18,27 @@ basc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),list(fr=1,eq="alpha=k0+k1*
 # Rigged election
 cogr <- Countinggraphs(basc[[1]])
 copl <- cogr$polyc[[1]][[1]]
-frms <- c(1,1,1)
-plnr <- c(1,2,3)
-exs <- c("ex1", "ex2", "ex3")
-pnvec <- c(1,2,3)[1]
-rigv <- lapply(exs, function(x) { 
-  cogr$mansys(sygen=list(frm=1, 
-  		pre=c("alpha","x","y"),
-  		end=c("zeta","Omega","lamda"),
-  		stuv=c("S","T","U","V"),
-  	        plnr=1,
-  		rot=list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),
-  		lf="(alpha-alpha_s)^2"))
-  cogr$setres(0.19,1)
-  cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
-  rasc <- list(cogr$rdfc,list(fr=1,eq="alpha=k0+k1*x+k2*y"),prg=list(cnd=1))
-  return(rasc)
+frms <- c(1,2,2)
+plnr <- c(1,1,1)
+exns <- c("ex1", "ex2", "ex3")
+lsfc <- c("(alpha-alpha_s)^2","(alpha-alpha_s)^2","(alpha-alpha_s)^2")
+rigv <- lapply(exns, function(x) { 
+  #cogr$mansys(sygen=
+  #            list(frm=1,pre=c("alpha","x","y"),end=c("zeta","Omega","lamda"),
+  #		stuv=c("S","T","U","V"),
+  #		rot=list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),
+  #		lf=lsfc[1]))
+  #cogr$polyc[[1]]
+  #cogr$setres(NULL,1)
+  #cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
+  #rasc <- list(cogr$rdfc,list(fr=1,eq="alpha=k0+k1*x+k2*y"),prg=list(cnd=1))
+  #return(rasc)
 })
-####################################################################################################################################################################
+
+
+
+
+###################################################################################################################################################################
 #appnf <- seloutput(abc <- selreport(basc))
 ###appr1 <- seloutput(selreport(rigv[[1]]))
 ###appr2 <- seloutput(selreport(rigv[[2]]))
