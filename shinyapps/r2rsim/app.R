@@ -1,11 +1,4 @@
-if (grepl("wasm", sessionInfo()[[2]])) {
-  webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-} else {
-
-}
-#
-library(shiny)
-library(dplyr)
+ManifoldDestiny::wasmconload()
 # Shiny
 ui <- fluidPage(
   titlePanel("R2 Simulator"),

@@ -1,13 +1,4 @@
-if (grepl("wasm", sessionInfo()[[2]])) {
-  webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-} else {
-
-}
-#
-library(shiny)
-library(dplyr)
-library(ggplot2)
-library(plotly)
+ManifoldDestiny::wasmconload()
 # Shiny
 ui <- fluidPage(
   titlePanel("Election simulator for the rigging of a natural election"),

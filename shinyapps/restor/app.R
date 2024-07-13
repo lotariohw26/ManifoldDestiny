@@ -1,9 +1,4 @@
-######################################################################################
-options(scipen=999)
-set.seed(1)
-webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-ManifoldDestinyWASMP::wasmconload()
-######################################################################################
+ManifoldDestiny::wasmconload()
 compute_residuals <- function(angle, data) {
   # Compute the rotated coordinates
   data$angle <- angle * pi / 180

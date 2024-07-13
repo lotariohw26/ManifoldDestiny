@@ -101,4 +101,9 @@ format:
 
 bibliography: man_bib.bib
 # git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/ManifoldDestiny.git
-
+# MD_WASMP/index.qmd
+# MD_WASMD/ManifoldDestinyWASMD.Rproj
+# shinyapps/r2rsim/app.R
+# shinyapps/manimp/app.R
+# shinyapps/empapp/app.R
+# shinyapps/restor/app.R

@@ -1,15 +1,4 @@
-options(scipen=999)
-######################################################################################
 ManifoldDestiny::wasmconload()
-######################################################################################
-#webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-#ManifoldDestiny::wasmconload()
-###############################################################################################################################################################
-md <- jsonlite::fromJSON(paste0(rprojroot::find_rstudio_root_file(),"/data-raw/metadata.json"))
-apps <- c("app0","app0nr","app0hr","app0or","app1","app2","app3","app4")
-file_names <- paste0(paste0(rprojroot::find_rstudio_root_file(),"/data/"),paste0(apps,".rda"))
-lapply(file_names, function(file_name) { load(file_name) })
-#View(app0nr)
 ###############################################################################################################################################################
 ui <- fluidPage(
   titlePanel("Rigged election results analyzer"),
