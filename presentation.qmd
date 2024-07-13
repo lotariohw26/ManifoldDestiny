@@ -18,24 +18,20 @@ nocite: |
 
 ```{r, echo=F, message=F, warning=F, results='hide'}
 ManifoldDestiny::wasmconload()
+modlat <- eqpar$meql
 library(ManifoldDestiny)
 laws_df1 <- ManifoldDestiny::eqdef$meql
 laws_df2 <- ManifoldDestiny::eqdef$meqs
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
 appnf <- seloutput(rppnf <- selreport(basc))
 appr1 <- seloutput(rppr1 <- selreport(rigv[[1]]))
 appr2 <- seloutput(rppr2 <- selreport(rigv[[2]]))
 appr3 <- seloutput(rppr3 <- selreport(rigv[[3]]))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/applications.R'))
-modlat <- eqpar$meql
 penf <- polynom::polynomial(unname(rppnf[[1]]$polyc[[1]][[1]],3))
-
-round(polynom::integral(penf,c(0,1)),3)
-
 per1 <- polynom::polynomial(unname(rppr1[[1]]$polyc[[1]][[1]],3))
 per2 <- polynom::polynomial(unname(rppr2[[1]]$polyc[[1]][[1]],3))
 per3 <- polynom::polynomial(unname(rppr3[[1]]$polyc[[1]][[1]],3))
+#round(polynom::integral(penf,c(0,1)),3)
 ```
 
 # {{< var sec1.nmn >}}
@@ -159,7 +155,6 @@ g=`r modlat$g_h[1]` \text{, } h=`r modlat$h_h[1]`
 \begin{equation*}
 \Omega=`r modlat$Omega_h[1] `=`r modlat$Omega_h[2]`
 \end{equation*}
-
 ---
 
 

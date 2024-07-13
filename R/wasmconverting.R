@@ -632,6 +632,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
 
   ## Variables
   lof <- function(kvec=NULL,prn=T){
+#	  browser()
     kvnr <- c(3,6,10,17)[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
@@ -639,6 +640,8 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
     abcv <- setNames(as.vector(lapply(enf[[3]][[3]], as.character)),c(paste0(rep(letters[1:3], each=3), rep(1:3, times=3))))
     mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
     nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
+    #head(loss_df)
+    #browser()
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -668,7 +671,8 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
       dplyr::mutate(!!allvec[4]:=pareq(se[[endp[1]]][2],c(as.list(.[,])))) %>%
       dplyr::mutate(!!allvec[5]:=pareq(se[[endp[2]]][2],c(as.list(.[,])))) %>%
       dplyr::mutate(!!allvec[6]:=pareq(se[[endp[3]]][2],c(as.list(.[,])))) %>%
-      dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) %>%
+      dplyr::mutate(LSV=0) %>%
+      #dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) 
       ##### Backsolving for ballots
       ## Observatinal values
       dplyr::mutate(!!paste0(stuv[1],'_m'):=pareq(se[[paste0(stuv[1],sho)]][2],as.list(.[])))  %>%
@@ -691,13 +695,13 @@ Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
     #print(clvl)
   }
   # Init
+  #browser()
   allvec <- c(unlist(allvar$pre),unlist(allvar$end))
   stuv <- paste0(c(unlist(allstuv)))
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   altvec <- paste0(as.vector(unlist(allvar)),sho)
   endp <- paste0(allvec,sho)[c(4,5,6)]
   if (identical(man,TRUE)){
-    #print('non-algo')
     loss_ls <<- list(value=lv(params=init_par))
   } else {
     lome <- c("Nelder-Mead", "BFGS", "CG", "L-BFGS-B", "SANN","Brent")[1] #[lfpar$mtd]
