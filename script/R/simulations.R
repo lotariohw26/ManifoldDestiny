@@ -14,7 +14,7 @@ prow <- c(m=0.51,s=0.10)
 proa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 prob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztec <- c(0,1)	
-basc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),list(fr=1,eq="alpha=k0+k1*x+k2*y",prg=list(cnd=1)))
+basc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),list(fr=1,eq="alpha=k0+k1*x+k2*y",va='y',prg=list(cnd=1)))
 # Rigged election
 cogr <- Countinggraphs(basc[[1]])
 copl <- cogr$polyc[[1]][[1]]
@@ -34,27 +34,17 @@ rigv <- lapply(1:3, function(x) {
   #cogr$setres(NULL,1)
   cogr$setres(plfc[1],1)
   cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
-  rasc <- list(cogr$rdfc,list(fr=1,eq="alpha=k0+k1*x+k2*y"),prg=list(cnd=1))
+  rasc <- list(cogr$rdfc,list(fr=1,eq="alpha=k0+k1*x+k2*y",va='y',prg=list(cnd=1)))
 })
 ###################################################################################################################################################################
-#appnf <- seloutput(abc <- selreport(basc))
-###appr1 <- seloutput(selreport(rigv[[1]]))
-###appr2 <- seloutput(selreport(rigv[[2]]))
-###appr3 <- seloutput(selreport(rigv[[3]]))
-###appr4 <- seloutput(selreport(rigv[[4]]))
-#polynom::polynomial(abc[[1]]$polyc)
-#
-#
-#unname(abc[[1]]$polyc)
-#2+2
-##f(x)_{0}^{1}=`r #paste0(round(polynom::polynomial(unname(pri_int_ex1)),3))`$
-#fc <- abc[[1]]
-#fc$polyc[[1]]
-##rppnf[[1]]
-#pri_int_ex1
-#polynom::integral(round(polynom::polynomial(unname(pri_int_ex1))),c(0,1))
-#mean(app_ex1_cou$rdfc$alpha)
-
+appnf <- seloutput(rppnf <- selreport(basc))
+appr1 <- seloutput(rppr1 <- selreport(rigv[[1]]))
+appr2 <- seloutput(rppr2 <- selreport(rigv[[2]]))
+appr3 <- seloutput(rppr3 <- selreport(rigv[[3]]))
+penf <- polynom::polynomial(unname(rppnf[[1]]$polyc[[1]][[1]],3))
+per1 <- polynom::polynomial(unname(rppr1[[1]]$polyc[[1]][[1]],3))
+per2 <- polynom::polynomial(unname(rppr2[[1]]$polyc[[1]][[1]],3))
+per3 <- polynom::polynomial(unname(rppr3[[1]]$polyc[[1]][[1]],3))
 ####################################################################################################################################################################
 ######### Concluding Tabl
 #ctone <-'Applications'
