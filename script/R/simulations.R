@@ -36,11 +36,23 @@ rigv <- lapply(exs, function(x) {
   return(rasc)
 })
 ####################################################################################################################################################################
-appnf <- seloutput(selreport(basc))
-appr1 <- seloutput(selreport(rigv[[1]]))
-appr2 <- seloutput(selreport(rigv[[2]]))
-appr3 <- seloutput(selreport(rigv[[3]]))
-appr4 <- seloutput(selreport(rigv[[4]]))
+#appnf <- seloutput(abc <- selreport(basc))
+###appr1 <- seloutput(selreport(rigv[[1]]))
+###appr2 <- seloutput(selreport(rigv[[2]]))
+###appr3 <- seloutput(selreport(rigv[[3]]))
+###appr4 <- seloutput(selreport(rigv[[4]]))
+#polynom::polynomial(abc[[1]]$polyc)
+#
+#
+#unname(abc[[1]]$polyc)
+#2+2
+##f(x)_{0}^{1}=`r #paste0(round(polynom::polynomial(unname(pri_int_ex1)),3))`$
+#fc <- abc[[1]]
+#fc$polyc[[1]]
+##rppnf[[1]]
+#pri_int_ex1
+#polynom::integral(round(polynom::polynomial(unname(pri_int_ex1))),c(0,1))
+#mean(app_ex1_cou$rdfc$alpha)
 
 ####################################################################################################################################################################
 ######### Concluding Tabl
