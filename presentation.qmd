@@ -486,7 +486,29 @@ round(polynom::integral(per1,c(0,1)),3)
   - a. Solely caused by the error term $\epsilon_i$ and, if used, the non-linear part of the Manifold equation.
   - b. Has no longer any causal impact on $\lambda_i$
 
+---
+
+## {{< var sec2.un1 >}}
+
+- Specify a loss function
+  - $\sum_{p=1}^{P}(\alpha_p-\overline{\alpha})^2$
+- $M(,)=$x+y$
+  - Use: Linear, quadratic, cubic or quartic (all have analytical solutions)
+  - Also: Euler rotation
+- System approach Demands mulitvariate Manifold Equations
+  - Univariate manifold Equation
+  - Multivariate Manifold Equations
+- Constrain on implementation
+  - Flipping votes on one mode
+  - Vote registration until upper limit
+
+---
+
+
+![](images/loss_5_conditions.png){width=300}
+
 # {{< var sec3.nmn >}}
+
 
 ## {{< var sec3.un1 >}}
 ```{r}

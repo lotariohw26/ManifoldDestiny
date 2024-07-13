@@ -90,6 +90,7 @@ website:
      right: 
        - icon: github
          href: https://github.com/lotariohw26/ManifoldDestiny
+
 format:
   html:
     toc: true
@@ -97,5 +98,6 @@ format:
     Mainfont: "Arial"
     Font size: 1.2
     Line stretch: 1.5
+
 bibliography: man_bib.bib
 # git remote set-url origin https://$GIT_PAT@github.com/lotariohw26/ManifoldDestiny.git

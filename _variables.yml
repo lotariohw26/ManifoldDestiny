@@ -1,6 +1,6 @@
 # data-raw/metadata.json
-titll: "Manifold Destiny - or how to rig an election"
 titls: "Manifold Destiny"
+titll: "Manifold Destiny - or how to rig an election"
 
 sec1:
   nmn: "Introduction"
@@ -112,7 +112,6 @@ app1:
     stuv: [0,0,0,0]
     blup: [0,1]
     eqp: "alpha=k0+k1*g+k2*h"
-
 
 app2:
   id: app2
@@ -246,10 +245,6 @@ app7:
     blup: [0,1]
     eqp: "alpha=k0+k1*g+k2*h"
 
-
-
 shn1: "1"
 shn2: "2"
-
-
 
