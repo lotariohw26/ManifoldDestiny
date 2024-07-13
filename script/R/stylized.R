@@ -18,7 +18,7 @@ towi <- as.data.frame(ex1m) %>%
 	dplyr::mutate(EDVst=paste0(.[,3],"/",.[,4])) %>%
         dplyr::mutate(MIVst_1=paste0(.[1,5],"/",.[1,6])) %>%
         dplyr::mutate(MIVst_2=paste0(.[2,5]/2,"/",.[2,6]/2)) %>%
-        dplyr::mutate(MIVst_3=paste0(.[3,6]/3,"/",.[3,6]/3)) %>%
+        dplyr::mutate(MIVst_3=paste0(.[2,6]/3,"/",.[3,6]/3)) %>%
         dplyr::select(7:10) %>%
         t() %>%
         data.frame() %>%
@@ -32,7 +32,7 @@ towii <- as.data.frame(ex2m) %>%
 	dplyr::mutate(EDVst=paste0(.[,3],"/",.[,4])) %>%
         dplyr::mutate(MIVst_1=paste0(.[1,5],"/",.[1,6])) %>%
         dplyr::mutate(MIVst_2=paste0(.[2,5]/2,"/",.[2,6]/2)) %>%
-        dplyr::mutate(MIVst_3=paste0(.[3,6]/3,"/",.[3,6]/3)) %>%
+        dplyr::mutate(MIVst_3=paste0(.[2,6]/3,"/",.[3,6]/3)) %>%
         dplyr::select(7:10) %>%
         t() %>%
         data.frame() %>%
