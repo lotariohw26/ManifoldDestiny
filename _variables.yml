@@ -179,7 +179,7 @@ app4:
   pgn: 3
   rng: A5:K315
   cln: ['CO', 'PN', 'RN', 'D1', 'D2', 'A1', 'A2', 'A3', 'B1', 'B2', 'B3']
-  stuv: ['A1', 'B1', 'A2', 'B2']
+  stuv: ['A3', 'B3', 'A1+A2', 'B1+B2']
   eq: alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3
   va: g
   fr: 1

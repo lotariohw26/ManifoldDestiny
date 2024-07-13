@@ -1,5 +1,6 @@
 #' @export recoudatr
 recoudatr <- function(mda=NULL,prn=1){
+  #sum(dplyr::select(gsh,S,T,U,V))
   gsh <- googlesheets4::read_sheet(mda$url,sheet=mda$pgn,range=mda$rng) %>%
     data.table::setnames(new=mda$cln) %>%
     dplyr::mutate(P=row_number(PN)) %>%
