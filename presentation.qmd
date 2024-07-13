@@ -536,11 +536,12 @@ apps <- rigv[[3]]
 
 ---
 
-![](images/manifold.png){width=300}
 
----
+The video "Conexiones Peligrosas"
 
 {{< video https://www.youtube.com/watch?v=YQg1Cr3vRic&t=76s >}}
+
+---
 
 # {{< var sec6.nmn >}}
 
