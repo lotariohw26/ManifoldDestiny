@@ -1,6 +1,10 @@
 # data-raw/metadata.json
 titls: "Manifold Destiny"
 titll: "Manifold Destiny - or how to rig an election"
+addas: "Addendum"
+addal: "Arizona General Election 2022"
+addns: "Addendum"
+addnl: "Nevada General Election 2022"
 
 sec1:
   nmn: "Introduction"

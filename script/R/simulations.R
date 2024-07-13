@@ -45,6 +45,8 @@ rigv <- lapply(1:3, function(x) {
   rasc <- list(cogr$rdfc,list(fr=1,eq="alpha=k0+k1*x+k2*y",va='y',prg=list(cnd=1)))
 })
 ###################################################################################################################################################################
+usethis::use_data(basc, overwrite = TRUE)
+usethis::use_data(rigv, overwrite = TRUE)
 appnf <- seloutput(rppnf <- selreport(basc))
 appr1 <- seloutput(rppr1 <- selreport(rigv[[1]]))
 appr2 <- seloutput(rppr2 <- selreport(rigv[[2]]))
