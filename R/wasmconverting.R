@@ -200,6 +200,7 @@ selreport <- function(
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- md$fr 
+  browser()
   #rparv <- md$mtd$sgs$ro ; names(rparv) <- c("theta","phi","rho")
   co <- Countinggraphs(da)
   #0if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp)
@@ -216,8 +217,8 @@ selreport <- function(
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$eq)
   ges$diagnostics()
-  ges$hat_predict(md$va,md$fr)
-  ges$hat_intcomp()
+  #ges$hat_predict(md$va,md$fr)
+  #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$eq)
@@ -1025,6 +1026,4 @@ Estimation$methods(hat_intcomp=function(){
     prc0123=100*sum(abs(compare[[comps]] - 0) <= 3)/length(compare[[comps]]))
   comdesc <<- data.frame(stats=names(vnd),values=vnd)
 })
-
-
 
