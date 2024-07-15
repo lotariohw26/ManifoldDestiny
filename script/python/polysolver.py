@@ -183,3 +183,25 @@ def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
 #pareq(ste='(x + y*zeta)/(zeta + 1)', x=0.75, y=0.25, zeta=1)
 #pareq(ste='(x + y*zeta)/(zeta + 1)', y=0.25, zeta=1,x=2.75)
 
+# plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]
+# plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]
+# plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[1, 4, 2]
+#def conditional_function(arg1=None):                                                                              
+#    if arg1 is not None:                                                                                          
+#        # Execute commands if arg1 is included                                                                    
+#        print("Commands executed when arg1 is included")                                                          
+#    else:                                                                                                         
+#        # Execute commands if arg1 is not included                                                                
+#        print("Commands executed when arg1 is not included")                                                      
+#                                                                                                                  
+## Example usage                                                                                                   
+## When arg1 is included                                                                                           
+#conditional_function("argument1")                                                                                 
+#                                                                                                                  
+## When arg1 is not included                                                                                       
+#conditional_function()                                                                                            
+
+
+
+
+
