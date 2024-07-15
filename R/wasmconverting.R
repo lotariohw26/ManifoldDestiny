@@ -197,10 +197,10 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
+  browser()
   da <- baldata[[1]]
   md <- baldata[[2]]
-  frm <- as.numeric(md$sol$fr)
-  browser()
+  frm <- as.numeric(md$sol)
   co <- Countinggraphs(da)
   if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp)
   co$sortpre(frm)
@@ -218,7 +218,7 @@ selreport <- function(
   ges$regression(md$sol$eq)
   ges$diagnostics()
   ges$hat_predict(md$sol$va)
-  #ges$hat_intcomp()
+  ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$eq)
