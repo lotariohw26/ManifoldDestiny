@@ -50,7 +50,9 @@ openxlsx::write.xlsx(lst_race_snap_all_az_ma,paste0(abs_p,'/data-raw/Arizona_202
 ###############################################################################################################
 # Reading file
 fn <- system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/csv/ariz2022/cohise/csv"),intern=T)
+fn
 # [1] 0
+
 
 az_gen_co_2022 <- data.table::fread
 lapply(races,function(r){
@@ -62,18 +64,14 @@ usethis::use_data(lst_race_snap_all_az_co, overwrite = TRUE)
 openxlsx::write.xlsx(lst_race_snap_all_az_co,file=paste0(abs_p,'/data-raw/Arizona_2022/cohise/xlsx/election_gen_2022.xlsx'))
 ###############################################################################################################
 ###############################################################################################################
-
-
-
-fn <- paste0(rprojroot::find_rstudio_root_file(),'data-raw/ariz2022/cohise/csv/10. 2022 General November 8_Canvass.csv"')
-fn
-az_gen_co_2022 <- data.table::fread("~/research/ManifoldDestiny/data-raw/Arizona_2022/cohise/csv/10. 2022 General November 8_Canvass.csv", header=FALSE) %>% dplyr::slice(-n())
-races <- unique(as.character(az_gen_co_2022[1,-c(1:6)]))[c(1,4,9,11)]
+library(dplyr)
+az_co_gen_2022 <-data.table::fread(paste0(rprojroot::find_rstudio_root_file(),'/data-raw/csv/ariz2022/cohise/csv/abc.csv'),header=FALSE) %>% dplyr::slice(-n())
+races <- unique(as.character(az_co_gen_2022[1,-c(1:6)]))[c(1,4,9,11)]
 lapply(races,function(r){
-  vnr <- c(2:6,which(az_gen_co_2022[1,]==r))
-  labrow <- az_gen_co_2022[1:3,] 
+  vnr <- c(2:6,which(az_co_gen_2022[1,]==r))
+  labrow <- az_co_gen_2022[1:3,] 
   ncdf <- c(as.character(labrow[1])[2:5],as.character(labrow[3])[vnr[vnr>5]])
-  dfl <- dplyr::select(az_gen_co_2022,all_of(vnr))[-c(1:3),] %>% data.table::setnames(new=ncdf) %>%
+  dfl <- dplyr::select(az_co_gen_2022,all_of(vnr))[-c(1:3),] %>% data.table::setnames(new=ncdf) 
   dplyr::select(1:8) %>%
   dplyr::group_by_at('PRECINCT CODE')  %>%
   dplyr::mutate(MODE=dplyr::row_number()) %>% 
