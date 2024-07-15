@@ -203,24 +203,15 @@ def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
 #import pdb
 import sympy, pdb, pandas, numpy
 from sympy import solve, Eq, symbols, latex, simplify, diff, poly, sympify, Matrix, pprint, collect, expand, Poly, Symbol, Pow
-def genpolycoeff2(plr=1, equ=None,solvd='alpha'):
+def genpolycoeff2(flr=1, equ="alpha=k0+k1*g+k2*h", solvd='alpha'):
     k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
     alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
-    pdb.set_trace()  # Set a breakpoint here
-    x, y, z = sympy.symbols('x y z')
-    expr = Eq(z, k0 + k1 * x + k2 * y)
-    parm=["alpha", "x", "y"]
-    exprc = expr.subs([(z,parm[0]),(x,parm[1]),(y,parm[2])])
-    polys = poly(exprc, sympify(solvd)).all_coeffs()
-    abc = []
-    uvw = []
+    ls, rs = equ.split('=')
+    eqs = Eq(sympify(ls), sympify(rs))
+    polys = poly(eqs.rhs - eqs.lhs, sympify(solvd)).all_coeffs()
     ABCDE = [0, 0, 0, 0, 0]
     ABCDE[:len(polys)] = polys
-    ABCDE = [0, 0, 0, 0, 0]
-    ABCDE[:len(polys)] = polys
-    return ABCDE
-genpolycoeff2()
-
+    return ABCDE, 0, 0
 
 
 

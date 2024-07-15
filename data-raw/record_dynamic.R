@@ -2,8 +2,14 @@
 # General script for Maricopa
 ###############################################################################################################
 # setNames
-paste0(rprojroot::find_rstudio_root_file(),c('Arizona_2022/maricopa/txt_final/','Arizona_2022/maricopa/txt_proto/')[1])
+
+system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/csv/ariz2022/maricopa/txt_proto"))
+
+
 lp <- system(paste0('ls ',dirtxt),intern=T)[c(2:12,1)]
+
+
+
 #fn <- paste0(abs_p,'/data-raw/Arizona_2022/MaricopaAZ/txt/',lp)[c(2:14,1)]
 lr <- data.table::fread(paste0(abs_p,'/data-raw/Arizona_2022/maricopa/maricopadfload.csv'))[1:5,] %>% mutate(across(everything(), gsub, pattern = "'", replacement = '"'))
 nr <- dim(lr)[1]
@@ -44,6 +50,14 @@ openxlsx::write.xlsx(lst_race_snap_all_az_ma,paste0(abs_p,'/data-raw/Arizona_202
 # General script for Cohise
 ###############################################################################################################
 # Reading file
+system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/csv/ariz2022/cohise/csv"))
+
+
+
+
+
+
+
 fn <- paste0(rprojroot::find_rstudio_root_file(),'data-raw/ariz2022/cohise/csv/10. 2022 General November 8_Canvass.csv"')
 fn
 az_gen_co_2022 <- data.table::fread("~/research/ManifoldDestiny/data-raw/Arizona_2022/cohise/csv/10. 2022 General November 8_Canvass.csv", header=FALSE) %>% dplyr::slice(-n())
