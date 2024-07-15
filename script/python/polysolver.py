@@ -201,22 +201,28 @@ def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
 ## When arg1 is not included                                                                                       
 #conditional_function()                                                                                            
 #import pdb
-#import sympy
-#from sympy import symbols, Eq
-#def genpolycoeff2(plr=1, equ=None):
-#    pdb.set_trace()  # Set a breakpoint here
-#    parm=["alpha", "x", "y"]    
-#    x, y, z = sympy.symbols('x y z')
-#    k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
-#    alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
-#    expr = Eq(z, k0 + k1 * x + k2 * y)
-#    exprc = expr.subs([(z,parm[0]),(x,parm[1]),(y,parm[2])])
-#    polys = poly(exprc, sympify(solvd)).all_coeffs()
-#    abc = []
-#    uvw = []
-#    ABCDE = [0, 0, 0, 0, 0]
-#    ABCDE[:len(polys)] = polys
-#    return expr
-#genpolycoeff2()
+import sympy, pdb, pandas, numpy
+from sympy import solve, Eq, symbols, latex, simplify, diff, poly, sympify, Matrix, pprint, collect, expand, Poly, Symbol, Pow
+def genpolycoeff2(plr=1, equ=None,solvd='alpha'):
+    k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
+    alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
+    pdb.set_trace()  # Set a breakpoint here
+    x, y, z = sympy.symbols('x y z')
+    expr = Eq(z, k0 + k1 * x + k2 * y)
+    parm=["alpha", "x", "y"]
+    exprc = expr.subs([(z,parm[0]),(x,parm[1]),(y,parm[2])])
+    polys = poly(exprc, sympify(solvd)).all_coeffs()
+    abc = []
+    uvw = []
+    ABCDE = [0, 0, 0, 0, 0]
+    ABCDE[:len(polys)] = polys
+    ABCDE = [0, 0, 0, 0, 0]
+    ABCDE[:len(polys)] = polys
+    return ABCDE
+genpolycoeff2()
+
+
+
+
 
 
