@@ -2,7 +2,6 @@
 # General script for Maricopa
 ###############################################################################################################
 # setNames
-
 system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/csv/ariz2022/maricopa/txt_proto"))
 
 
@@ -50,11 +49,19 @@ openxlsx::write.xlsx(lst_race_snap_all_az_ma,paste0(abs_p,'/data-raw/Arizona_202
 # General script for Cohise
 ###############################################################################################################
 # Reading file
-system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/csv/ariz2022/cohise/csv"))
+fn <- system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/csv/ariz2022/cohise/csv"),intern=T)
+# [1] 0
+
+az_gen_co_2022 <- data.table::fread
+lapply(races,function(r){
+	2+2
+}
 
 
-
-
+usethis::use_data(lst_race_snap_all_az_co, overwrite = TRUE)
+openxlsx::write.xlsx(lst_race_snap_all_az_co,file=paste0(abs_p,'/data-raw/Arizona_2022/cohise/xlsx/election_gen_2022.xlsx'))
+###############################################################################################################
+###############################################################################################################
 
 
 

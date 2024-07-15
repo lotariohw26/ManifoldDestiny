@@ -197,10 +197,11 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
+  browser()
   da <- baldata[[1]]
   md <- baldata[[2]]
-  frm <- md$fr 
-  browser()
+  frm <- as.numeric(md$sol$fr)
+
   #rparv <- md$mtd$sgs$ro ; names(rparv) <- c("theta","phi","rho")
   co <- Countinggraphs(da)
   #0if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp)
@@ -215,9 +216,10 @@ selreport <- function(
   #co$rotation(rpar=rparv)
   #co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
-  ges$regression(md$eq)
+  ges$regression(md$sol$eq)
   ges$diagnostics()
-  #ges$hat_predict(md$va,md$fr)
+  browser()
+  ges$hat_predict(md$sol$va)
   #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
@@ -881,6 +883,7 @@ Estimation <- setRefClass("Estimation", fields=list(
 						regequ='character',
 						regsum='list',
 						regform='vector',
+						regass='character',
 						resplots='list',
 						rotplotly='list',
 						kvec='vector',
@@ -914,7 +917,8 @@ Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   )
 })
 Estimation$methods(regression=function(regequ=c("alpha=k0+k1*x+k2*y")){
-  regform <<- strsplit(regequ, "=")[[1]]
+  regass <<- regequ
+  regform <<- strsplit(regass, "=")[[1]]
   # Formula
   forms <- gsub("\\*","",paste0(regform[1],"~",gsub("\\*\\*","",gsub("k\\d+","",regform[2]))))
   formo <- as.formula(forms)
@@ -950,16 +954,13 @@ Estimation$methods(diagnostics=function(){
     list(lh=lh,lr=lr,la=la,lq=lq,sht=sht)
   })
 })
-Estimation$methods(hat_predict=function(svf='y',rnr=1){
+Estimation$methods(hat_predict=function(svf='y'){
   kvec <<- broom::tidy(regsum[[1]])$estimate
   names(kvec) <<- paste0("k", 0:(length(kvec) - 1))
   if (roto==0){
     eurv <- c(0,0,0)
-    #ex <- gsub("\\^","**",regform[2])
-    #sd <- regform[1]
-    #svfi <- c(svf,svf)
-    #lpy <<- py_genpolycoeff(1,expr=ex,solvd=sd)
-    lpy <<- py_genpolycoeff(plr=1,parm=c("alpha", "g", "h"), solvd='g',eur=eurv)
+    lpy <<- py_genpolycoeff2(fnr,regass,svf)
+    #lpy <<- py_genpolycoeff(plr=1,parm=c("alpha", "g", "h"), solvd='g',eur=eurv)
     setNames(as.vector(lapply(lpy[[1]], as.character)),LETTERS[1:5])
     pnr <- sum(lpy[[1]]!="0")
   }
