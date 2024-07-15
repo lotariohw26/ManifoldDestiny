@@ -1,19 +1,19 @@
 #' @export recoudatr
 recoudatr <- function(mda=NULL,prn=1){
-  #sum(dplyr::select(gsh,S,T,U,V))
-  gsh <- googlesheets4::read_sheet(mda$url,sheet=mda$pgn,range=mda$rng) %>%
-    data.table::setnames(new=mda$cln) %>%
+  gsh <- googlesheets4::read_sheet(mda$spr$url,sheet=mda$spr$pgn,range=mda$spr$rng) %>%
+    data.table::setnames(new=mda$spr$cln) %>%
     dplyr::mutate(P=row_number(PN)) %>%
     dplyr::mutate(
-        S = !!rlang::parse_expr(mda$stuv[1]),
-        T = !!rlang::parse_expr(mda$stuv[2]),
-        U = !!rlang::parse_expr(mda$stuv[3]),
-        V = !!rlang::parse_expr(mda$stuv[4])
+        S = !!rlang::parse_expr(mda$spr$stuv[1]),
+        T = !!rlang::parse_expr(mda$spr$stuv[2]),
+        U = !!rlang::parse_expr(mda$spr$stuv[3]),
+        V = !!rlang::parse_expr(mda$spr$stuv[4])
       ) %>%
       dplyr::mutate(R = ifelse(exists("Rn"), Rn, S + T + U + V))
-  assign(mda$nid,list(gsh,mda))
-  do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
-  return(mda$nid)
+  assign(mda$spr$nid,list(gsh,mda))
+  do.call("use_data", list(as.name(mda$spr$nid), overwrite = TRUE))
+  return(mda$spr$nid)
+  #sum(dplyr::select(gsh,S,T,U,V))
 }
 #' @export py_polysolver
 py_polysolver <- function(degree=1,abcde=NULL){

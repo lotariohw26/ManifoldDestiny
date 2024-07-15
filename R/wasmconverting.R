@@ -197,14 +197,12 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
-  browser()
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
-
-  #rparv <- md$mtd$sgs$ro ; names(rparv) <- c("theta","phi","rho")
+  browser()
   co <- Countinggraphs(da)
-  #0if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp)
+  if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp)
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
@@ -213,12 +211,12 @@ selreport <- function(
   co$resplot(frm)
   co$plotly3d(partition=frm)
   co$gridarrange()
+  #rparv <- md$mtd$sgs$ro ; names(rparv) <- c("theta","phi","rho")
   #co$rotation(rpar=rparv)
   #co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$sol$eq)
   ges$diagnostics()
-  browser()
   ges$hat_predict(md$sol$va)
   #ges$hat_intcomp()
   ### Identify

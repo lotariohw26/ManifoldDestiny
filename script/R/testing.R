@@ -3,7 +3,7 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
 # Simulations
-ghi <- seloutput(selreport(app4))
+ghi <- seloutput(selreport(app1))
 
 
 

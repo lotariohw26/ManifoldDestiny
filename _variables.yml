@@ -112,12 +112,12 @@ app1:
     mod: ['EV', 'MiV']
     yea: 2020
   spr:
-    url: https://docs.google.com/spreadsheets/d/1gkf41sJRAQ6bwKmlAAcb7hAQ6v4zIXG2wDYl67LrJ4k/edit#gid=0
+    nid: app1
+    url: "https://docs.google.com/spreadsheets/d/1gkf41sJRAQ6bwKmlAAcb7hAQ6v4zIXG2wDYl67LrJ4k/edit#gid=0"
     pgn: 1
     rng: A2:F1288
     cln: ['PN', 'RN', 'A1', 'B1', 'A2', 'B2']
     stuv: ['A1', 'B1', 'A2', 'B2']
-    nid: app1
   sol:
     fr: "2"
     eq: "alpha=k0+k1*g+k2*h"
