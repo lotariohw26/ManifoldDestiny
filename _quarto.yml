@@ -1,7 +1,8 @@
 # R/wasmconverting.R
 # R/wasmnonverting.R
 # data-raw/labeling.R
-# data-raw/recorder.R
+# data-raw/record_static.R
+# data-raw/record_dynamic.R
 # script/R/testing.R
 # script/R/stylized.R
 # script/R/simulations.R
