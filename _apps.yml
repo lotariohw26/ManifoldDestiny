@@ -3,9 +3,23 @@ app0:
     nmn: Test
     nid: app1
   spr:
+    nid: app0
+    url: "https://docs.google.com/spreadsheets/d/107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0"
+    pgn: 1
+    rng: A1:F23
+    cln: ['PN', 'R', 'S', 'T', 'U', 'V']
+    stuv: ['S', 'T', 'U', 'V']
   sol:
+    fr: "1"
+    eq: "alpha=k0+k1*x+k2*y"
+    va: "y"
   prg:
-  bib: 
+    cnd: 0
+    z: 0 
+    stuv: [0,0,0,0]
+    blup: [0,1]
+    eqp: "alpha=k0+k1*g+k2*h"
+  bib: []
 
 app1:
   mtd:

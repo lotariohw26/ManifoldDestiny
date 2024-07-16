@@ -13,7 +13,6 @@ recoudatr <- function(mda=NULL,prn=1){
   assign(mda$spr$nid,list(gsh,mda))
   do.call("use_data", list(as.name(mda$spr$nid), overwrite = TRUE))
   return(mda$spr$nid)
-  #sum(dplyr::select(gsh,S,T,U,V))
 }
 #' @export py_polysolver
 py_polysolver <- function(degree=1,abcde=NULL){

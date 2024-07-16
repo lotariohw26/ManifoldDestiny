@@ -2,50 +2,33 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
+appt <- app0
 # Report
-repot <- seloutput(selreport(app0))
-
-
+repot <- seloutput(selreport(appt))
 # Componenta
-
-appt <- app4
-appt[[1]]
-appt[[2]]
-
-
-##
+## Counting
 sum(dplyr::select(appt[[1]],S,T,U,V))
 abc <- Countingprocess(appt[[1]])
 abc$rdfci
-
-##
+## Estimation
 def <- Estimation(abc$rdfci)
-def$regression("alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3")
+def$regression("alpha=k0+k1*h+k2*g")
 summary(def$regsum[[1]])
-
-
 ###########################################################################################################
-
-mean(as.vector(predict(def$regsum[[1]]))-abc$rdfci$alpha)
-
-abc <- seloutput(selreport(appt))
-
-
-View(abc$sdfc)
-abc$descriptive(2)
-abc$desms
-abc[[1]]
-abc[[2]]
-abc[[3]]
-abc[[4]]
-abc[[5]]
-abc[[6]]
-abc[[7]]
-abc[[8]]
-abc[[9]]
-abc[[10]]
-abc[[11]]
-abc[[12]]
+#abc$descriptive(2)
+#abc$desms
+#abc[[1]]
+#abc[[2]]
+#abc[[3]]
+#abc[[4]]
+#abc[[5]]
+#abc[[6]]
+#abc[[7]]
+#abc[[8]]
+#abc[[9]]
+#abc[[10]]
+#abc[[11]]
+#abc[[12]]
 ###########################################################################################################
 ### Residual
 dfm <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,100,30)))})(100)
