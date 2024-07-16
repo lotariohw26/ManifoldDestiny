@@ -1,13 +1,12 @@
-# R/wasmconverting.R
-# R/wasmnonverting.R
-# data-raw/record_static.R
-# data-raw/record_dynamic.R
 # script/R/testing.R
+# R/wasmconverting.R
+# data-raw/record_static.R
+# R/wasmnonverting.R
+# data-raw/record_dynamic.R
 # script/R/stylized.R
 # script/R/simulations.R
 # script/R/applications.R
 # script/python/polysolver.py
-# _variables.yml
 # https://lotariohw26.github.io/MD_WASMS/r/examples/
 # https://lotariohw26.github.io/MD_WASMS/py/examples/
 # data-raw/metadata.json

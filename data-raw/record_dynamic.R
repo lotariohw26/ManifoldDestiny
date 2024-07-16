@@ -48,24 +48,8 @@ openxlsx::write.xlsx(lst_race_snap_all_az_ma,paste0(abs_p,'/data-raw/Arizona_202
 #################################################################################################################
 # General script for Cohise
 ###############################################################################################################
-# Reading file
-fn <- system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/csv/ariz2022/cohise/csv"),intern=T)
-fn
-# [1] 0
-
-
-az_gen_co_2022 <- data.table::fread
-lapply(races,function(r){
-	2+2
-}
-
-
-usethis::use_data(lst_race_snap_all_az_co, overwrite = TRUE)
-openxlsx::write.xlsx(lst_race_snap_all_az_co,file=paste0(abs_p,'/data-raw/Arizona_2022/cohise/xlsx/election_gen_2022.xlsx'))
-###############################################################################################################
-###############################################################################################################
 library(dplyr)
-az_co_gen_2022 <-data.table::fread(paste0(rprojroot::find_rstudio_root_file(),'/data-raw/csv/ariz2022/cohise/csv/abc.csv'),header=FALSE) %>% dplyr::slice(-n())
+az_co_gen_2022 <- data.table::fread(paste0(rprojroot::find_rstudio_root_file(),'/data-raw/csv/ariz2022/cohise/csv/abc.csv'),header=FALSE) %>% dplyr::slice(-n())
 races <- unique(as.character(az_co_gen_2022[1,-c(1:6)]))[c(1,4,9,11)]
 lapply(races,function(r){
   vnr <- c(2:6,which(az_co_gen_2022[1,]==r))

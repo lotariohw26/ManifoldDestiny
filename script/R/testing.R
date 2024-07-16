@@ -2,10 +2,11 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
-# Simulations
-ghi <- seloutput(selreport(app1))
+# Report
+repot <- seloutput(selreport(app0))
 
 
+# Componenta
 
 appt <- app4
 appt[[1]]
