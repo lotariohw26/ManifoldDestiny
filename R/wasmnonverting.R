@@ -10,9 +10,9 @@ recoudatr <- function(mda=NULL,prn=1){
         V = !!rlang::parse_expr(mda$spr$stuv[4])
       ) %>%
       dplyr::mutate(R = ifelse(exists("Rn"), Rn, S + T + U + V))
-  assign(mda$spr$nid,list(gsh,mda))
-  do.call("use_data", list(as.name(mda$spr$nid), overwrite = TRUE))
-  return(mda$spr$nid)
+  assign(mda$nid,list(gsh,mda))
+  do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
+  return(mda$nid)
 }
 #' @export py_polysolver
 py_polysolver <- function(degree=1,abcde=NULL){
