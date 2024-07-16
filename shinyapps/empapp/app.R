@@ -1,9 +1,10 @@
 options(digits=2)
+
 ManifoldDestiny::wasmconload()
 abc <- data(package = "ManifoldDestiny")[[3]][,3]
-abr <- abc[grepl("app", abc)]
+abr <- abc[grepl("app", abc)][3]
 # [1] "app0"        "app0nr"      "app1"        "app2"        "app3"        "app4"        "concl_appps"
-apps <- abr[3]
+apps <- get(abr)
 ###############################################################################################################################################################
 ui <- fluidPage(
   titlePanel("Election results analyzer"),
@@ -80,7 +81,7 @@ server <- function(input, output, session) {
     #mds$mtd$sgs$ro[2] <- input$phi*pi/180
     #mds$mtd$sgs$ro[3] <- input$rho*pi/180
     #### Selreport
-    #selr <- selreport(seld)
+    selr <- selreport(seld)
     #selr[[2]]$comdesc
     #selr[[1]]$pl_3d_mani[[1]]
     #selr[[1]]$all_pl_3d_mani[[1]]

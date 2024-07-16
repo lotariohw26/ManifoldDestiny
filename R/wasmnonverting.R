@@ -14,6 +14,25 @@ recoudatr <- function(mda=NULL,prn=1){
   do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
   return(mda$nid)
 }
+##' @export recoudatr
+#recoudatr <- function(mda=NULL,prn=1){
+#  gsh <- googlesheets4::read_sheet(mda$spr$url,sheet=mda$spr$pgn,range=mda$spr$rng) %>%
+#    data.table::setnames(new=mda$spr$cln) %>%
+#    dplyr::mutate(P=row_number(PN)) %>%
+#    dplyr::mutate(
+#        S = !!rlang::parse_expr(mda$spr$stuv[1]),
+#        T = !!rlang::parse_expr(mda$spr$stuv[2]),
+#        U = !!rlang::parse_expr(mda$spr$stuv[3]),
+#        V = !!rlang::parse_expr(mda$spr$stuv[4])
+#      ) %>%
+#      dplyr::mutate(R = ifelse(exists("Rn"), Rn, S + T + U + V))
+#  assign(mda$spr$nid,list(gsh,mda))
+#  do.call("use_data", list(as.name(mda$spr$nid), overwrite = TRUE))
+#  return(mda$spr$nid)
+#}
+#
+
+
 #' @export py_polysolver
 py_polysolver <- function(degree=1,abcde=NULL){
   path_fqs <- paste0(rprojroot::find_rstudio_root_file(),"/script/python")
