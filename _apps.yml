@@ -13,8 +13,12 @@ apprn:
   spr:
   sol:
     fr: "1"
+    pr: ["alpha","x","y"]
+    de: ["zeta","Omega","lamda"]
     eq: "alpha=k0+k1*x+k2*y"
+    ro: [0, 0, 0]
     va: "y"
+    ls: "(alpha-alpha_s)^2"
   prg:
     cnd: 0
     z: 0 
@@ -29,8 +33,12 @@ apprh:
   spr:
   sol:
     fr: "1"
+    pr: ["alpha","x","y"]
+    de: ["zeta","Omega","lamda"]
     eq: "alpha=k0+k1*x+k2*y"
+    ro: [0, 0, 0]
     va: "y"
+    ls: "(alpha-alpha_s)^2"
   prg:
     cnd: 0
     z: 0 
@@ -43,10 +51,13 @@ appro:
   mtd:
     nmn: Defeault
   spr:
-  sol:
     fr: "1"
+    pr: ["alpha","x","y"]
+    de: ["zeta","Omega","lamda"]
     eq: "alpha=k0+k1*x+k2*y"
+    ro: [0, 0, 0]
     va: "y"
+    ls: "(alpha-alpha_s)^2"
   prg:
     cnd: 0
     z: 0 

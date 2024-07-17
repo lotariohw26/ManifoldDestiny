@@ -610,15 +610,16 @@ Countingprocess$methods(sortpre=function(form=1,
   #plr2 <- round(cor(quintile[[paste0(sortby,'_pred')]],quintile[[sortby]])^2,4)
   #sumreg <<- list(poleq=paste0(plso),polint=pintv,R2=paste0(plr2))
 })
-Countingprocess$methods(mansys=function(sygen=NULL){
+Countingprocess$methods(mansys=function(sygen=NULL,stuv=c("S","T","U","V")){
   mansysl <<- sygen
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   allvar <<- list(pre=mansysl$pre,end=mansysl$end)
-  allstuv <<- list(mansysl$stuv)
   exnrs <<- gsub('v',mansysl$pre[2], gsub('u',mansysl$pre[3],peqs[mansysl$me[['plnr']]]))
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
-  enf[[3]] <<- py_genpolycoeff(plr=mansysl$plnr,parm=mansysl$pre,solvd=mansysl$pre[3],eur=unlist(mansysl$rot)[c(1,3,5)])
+  enf[[3]] <<- py_genpolycoeff2(flr=mansysl$frm, equ=mansysl$eq,solvd=mansysl$va)
+  #enf[[3]] <<- py_genpolycoeff(plr=mansysl$plnr,parm=mansysl$pre,solvd=mansysl$pre[3],eur=unlist(mansysl$rot)[c(1,3,5)])
+  allstuv <<- list(stuv)
 })
 Countingprocess$methods(setres=function(czset=NULL,prnt=0){
   frp <- mansysl$frm
@@ -633,11 +634,13 @@ Countingprocess$methods(setres=function(czset=NULL,prnt=0){
 })
 Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
 					man=FALSE,
-					lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1))){
+					lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1)),
+					lf="(alpha-alpha_s)^2"
+					){
 
   ## Variables
   lof <- function(kvec=NULL,prn=T){
-#	  browser()
+	browser()
     kvnr <- c(3,6,10,17)[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
