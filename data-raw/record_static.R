@@ -1,3 +1,4 @@
+
 # libraries
 ManifoldDestiny::wasmconload()
 library(usethis)
@@ -42,9 +43,12 @@ exn <- c("apprn","apprh","appro")
 mda <- qenvar[['apprn']]
 #mda$sol$eq
 #mda$sol$ro
-exs <- list(frm=as.numeric(mda$sol$fr),pre=mda$sol$pr,end=mda$sol$de,eq=mda$sol$eq,va=mda$sol$va)
+exs <- list(frm=as.numeric(mda$sol$fr),
+	    pre=mda$sol$pr,
+	    end=mda$sol$de,eq=mda$sol$eq,
+	    va=mda$sol$va)
+            #plnr=1,rot=list(fr=c(1,10),sr=c(4,0),tr=c(2,0)))
 cogr$mansys(sygen=exs)
-#browser()
 cogr$polyc[[1]]
 cogr$setres(NULL,1)
 cogr$setres(0.20,1)

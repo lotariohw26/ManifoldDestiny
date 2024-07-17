@@ -99,6 +99,11 @@ gmp <- function(terms=c("x2","xy","y2","x3","x2y","y2x","y3")){
   }
   expre
 }
+
+    equation <- 'alpha=k0+k1*x+k2*y'                                                                                  
+    cleaned_equation <- gsub("\\bk\\d+\\b", "", equation)                                                             
+    cleaned_equation                                                                                                  
+
 ## Simulate prob
 #' @export r2simn
 r2simn <- function(nprec=300,
@@ -632,24 +637,24 @@ Countingprocess$methods(setres=function(czset=NULL,prnt=0){
     print(polynom::integral(polynom::polynomial(vec),c(0,1)))
   }
 })
-Countingprocess$methods(manimp=function(init_par=NULL,wn=c(0,0),
+Countingprocess$methods(manimp=function(init_par=NULL,
+					wn=c(0,0),
 					man=FALSE,
 					lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1)),
+					lf="(alpha-alpha_s)^2",
 					lf="(alpha-alpha_s)^2"
 					){
 
   ## Variables
   lof <- function(kvec=NULL,prn=T){
-	browser()
-    kvnr <- c(3,6,10,17)[mansysl$plnr]
+	  browser()
+    kvnr <- c(3,6,10,17)[1] #[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
     rad <- unname(unlist(mansysl$rot)[c(2,4,6)])*(pi/180)
     abcv <- setNames(as.vector(lapply(enf[[3]][[3]], as.character)),c(paste0(rep(letters[1:3], each=3), rep(1:3, times=3))))
     mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
     nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
-    #head(loss_df)
-    #browser()
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
