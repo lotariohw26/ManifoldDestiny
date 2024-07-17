@@ -10,9 +10,13 @@ title: ""
 #| message: false
 ManifoldDestiny::wasmconload()
 library(ManifoldDestiny)
-#source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
-#source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-#source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+```
+
+```{r}
+knitr::knit_exit()
 ```
 
 
@@ -25,6 +29,8 @@ apps <- basc
 ```
 {{< include tab.qmd >}}
 :::
+
+
 
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h1 >}}
@@ -95,6 +101,8 @@ apps <- app4
 ```
 {{< include tab.qmd >}}
 :::
+
+
 
 
 

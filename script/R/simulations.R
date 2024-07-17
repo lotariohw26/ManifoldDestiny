@@ -14,7 +14,8 @@ prow <- c(m=0.51,s=0.10)
 proa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 prob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztec <- c(0,1)	
-basc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),list(fr=1,eq="alpha=k0+k1*x+k2*y",va='y',prg=list(cnd=1)))
+basc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),NULL)
+
 # Rigged election
 cogr <- Countinggraphs(basc[[1]])
 copl <- cogr$polyc[[1]][[1]]
@@ -45,15 +46,15 @@ rigv <- lapply(1:3, function(x) {
   rasc <- list(cogr$rdfc,list(fr=1,eq="alpha=k0+k1*x+k2*y",va='y',prg=list(cnd=1)))
 })
 ###################################################################################################################################################################
-usethis::use_data(basc, overwrite = TRUE)
-usethis::use_data(rigv, overwrite = TRUE)
+#usethis::use_data(basc, overwrite = TRUE)
+#usethis::use_data(rigv, overwrite = TRUE)
 appnf <- seloutput(rppnf <- selreport(basc))
 appr1 <- seloutput(rppr1 <- selreport(rigv[[1]]))
 appr2 <- seloutput(rppr2 <- selreport(rigv[[2]]))
 appr3 <- seloutput(rppr3 <- selreport(rigv[[3]]))
-penf <- polynom::polynomial(unname(rppnf[[1]]$polyc[[1]][[1]],3))
-per1 <- polynom::polynomial(unname(rppr1[[1]]$polyc[[1]][[1]],3))
-per2 <- polynom::polynomial(unname(rppr2[[1]]$polyc[[1]][[1]],3))
-per3 <- polynom::polynomial(unname(rppr3[[1]]$polyc[[1]][[1]],3))
+#penf <- polynom::polynomial(unname(rppnf[[1]]$polyc[[1]][[1]],3))
+#per1 <- polynom::polynomial(unname(rppr1[[1]]$polyc[[1]][[1]],3))
+#per2 <- polynom::polynomial(unname(rppr2[[1]]$polyc[[1]][[1]],3))
+#per3 <- polynom::polynomial(unname(rppr3[[1]]$polyc[[1]][[1]],3))
 ####################################################################################################################################################################
 

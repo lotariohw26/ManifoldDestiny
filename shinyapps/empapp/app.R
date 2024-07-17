@@ -1,10 +1,9 @@
-options(digits=2)
-
 ManifoldDestiny::wasmconload()
 abc <- data(package = "ManifoldDestiny")[[3]][,3]
 abr <- abc[grepl("app", abc)][3]
 # [1] "app0"        "app0nr"      "app1"        "app2"        "app3"        "app4"        "concl_appps"
 apps <- get(abr)
+options(digits=2)
 ###############################################################################################################################################################
 ui <- fluidPage(
   titlePanel("Election results analyzer"),
@@ -62,29 +61,25 @@ server <- function(input, output, session) {
   })  
   cformo <- reactive({
     # Manual
-    #isla <- input$app_select
     seld <- apps
     seld[[1]]
     seld[[2]]
     #mds <- md[[sna]]
     ##### Purge
-    #mds$mtd$prg$cnd <- c(0)
-    #mds$mtd$prg$stuv <- c(0,0,0,0)
-    #mds$mtd$prg$blup[1] <- 0
-    #mds$mtd$prg$blup[2] <- 1
+    #seld[[2]]$prg$cnd <- c(0)
+    #seld[[2]]$prg$cnd <- c(0)
+    #seld[[2]]$prg$stuv <- c(0,0,0,0)
+    #seld[[2]]$prg$blup[1] <- 0
+    #seld[[2]]$prg$blup[2] <- 1
     ##### Solution
-    #mds$sgs$fr <- as.numeric(input$form)
-    #mds$sgs$eq <- as.numeric(input$meqf)
-    #mds$sgs$va <- as.numeric(input$solvf)
+    #seld[[2]]$sgs$fr <- as.numeric(input$form)
+    #seld[[2]]$sgs$eq <- as.numeric(input$meqf)
+    #seld[[2]]$sgs$va <- as.numeric(input$solvf)
     ##### Rotation
     #mds$mtd$sgs$ro[1] <- input$theta*pi/180
     #mds$mtd$sgs$ro[2] <- input$phi*pi/180
     #mds$mtd$sgs$ro[3] <- input$rho*pi/180
     #### Selreport
-    selr <- selreport(seld)
-    #selr[[2]]$comdesc
-    #selr[[1]]$pl_3d_mani[[1]]
-    #selr[[1]]$all_pl_3d_mani[[1]]
     return(selreport(seld))
   })
   observe(print(cformo()[[1]]$desms))
@@ -124,9 +119,5 @@ server <- function(input, output, session) {
   })
 }
 shinyApp(ui = ui, server = server)
-
-
-
-
 
 

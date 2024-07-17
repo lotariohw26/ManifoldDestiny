@@ -197,8 +197,12 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
+
+  browser()
   da <- baldata[[1]]
   md <- baldata[[2]]
+  if (is.null(md)) md <- list( mtd = list( nmn = "Default"), spr = list(), sol = list( fr = "1", eq = "alpha=k0+k1*x+k2*y", va = "y"), prg = list( cnd = 0, z = 0, stuv = c(0,0,0,0), blup = c(0,1), eqp = "alpha=k0+k1*g+k2*h"), bib = list()) 
+
   frm <- as.numeric(md$sol$fr)
   co <- Countinggraphs(da)
   if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp)
@@ -886,6 +890,7 @@ Estimation <- setRefClass("Estimation", fields=list(
 						kvec='vector',
 						param='vector',
 						syequ='list',
+						metad='list',
 						roto='vector',
 						comdesc='data.frame',
 						radpar='vector',
@@ -898,6 +903,7 @@ Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   param <<- stickers[['parameters']][[fnr]]
   syequ <<- eqpar$meqs
   #radpar <<- c(theta=0,phi=0,rho=0)
+  metad <<- list( mtd = list( nmn = "Default"), spr = list(), sol = list( fr = "1", eq = "alpha=k0+k1*x+k2*y", va = "y"), prg = list( cnd = 0, z = 0, stuv = c(0,0,0,0), blup = c(0,1), eqp = "alpha=k0+k1*g+k2*h"), bib = list())
   lpku <<- list(
     S = list(
       x = c(Sd = 'x*(Z-U-V)', Td = '(1-x)*(Z-U-V)', Ud = 'U', Vd = 'V'),'S~S_hat',

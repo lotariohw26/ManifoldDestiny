@@ -136,5 +136,19 @@ suppressMessages(ManifoldDestiny::wasmconload())
 #per3 <- polynom::polynomial(unname(rppr3[[1]]$polyc[[1]][[1]],3))
 #
 
-ManifoldDestiny::wasmconload()
-
+#ManifoldDestiny::wasmconload()
+#  lpku <<- list(
+#    S = list(
+#      x = c(Sd = 'x*(Z-U-V)', Td = '(1-x)*(Z-U-V)', Ud = 'U', Vd = 'V'),'S~S_hat',
+#      y = c(Sd = 'S', Td = 'T', Ud = 'y*(Z-S-T)', Vd = '(1-y)*(Z-S-T)','U~U_hat')
+#    ),
+#    H = list(
+#      g = c(Sd = 'g*(Z-T-U)', Td = 'T', Ud = 'U', Vd = '(1-g)*(Z-T-U)','S~S_hat'),
+#      h = c(Sd = 'S', Td = 'h*(Z-T-U)', Ud = 'h*(Z-T-U)', Vd = 'V','S~S_hat')
+#    ),
+#    O = list(
+#      n = c(Sd = 'm*(Z-T-V)', Td = 'T', Ud = '(1-m)*(Z-T-V)', Vd = 'V','S-S_hat'),
+#      m = c(Sd = 'S', Td = 'm*(Z-T-V)', Ud = 'U', Vd = '(1-m)*(Z-T-V)','T-T_hat')
+#    )
+#  )
+#

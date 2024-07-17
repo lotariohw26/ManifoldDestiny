@@ -14,6 +14,12 @@ recoudatr <- function(mda=NULL,prn=1){
   do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
   return(mda$nid)
 }
+recousiml <- function(mda=NULL,prn=1){
+
+}
+recousiml()
+
+
 ##' @export recoudatr
 #recoudatr <- function(mda=NULL,prn=1){
 #  gsh <- googlesheets4::read_sheet(mda$spr$url,sheet=mda$spr$pgn,range=mda$spr$rng) %>%
