@@ -100,10 +100,6 @@ gmp <- function(terms=c("x2","xy","y2","x3","x2y","y2x","y3")){
   expre
 }
 
-    equation <- 'alpha=k0+k1*x+k2*y'                                                                                  
-    cleaned_equation <- gsub("\\bk\\d+\\b", "", equation)                                                             
-    cleaned_equation                                                                                                  
-
 ## Simulate prob
 #' @export r2simn
 r2simn <- function(nprec=300,
@@ -203,10 +199,8 @@ selreport <- function(
 		      baldata=NULL
 		      ){
 
-  browser()
   da <- baldata[[1]]
   md <- baldata[[2]]
-  if (is.null(md)) md <- list( mtd = list( nmn = "Default"), spr = list(), sol = list( fr = "1", eq = "alpha=k0+k1*x+k2*y", va = "y"), prg = list( cnd = 0, z = 0, stuv = c(0,0,0,0), blup = c(0,1), eqp = "alpha=k0+k1*g+k2*h"), bib = list()) 
 
   frm <- as.numeric(md$sol$fr)
   co <- Countinggraphs(da)
@@ -341,6 +335,7 @@ erotation <-function(
     dplyr::mutate(w3=Ralv[[3]](rpar[3])[3,1]*u2+Ralv[[3]](rpar[3])[3,2]*v2+Ralv[[3]](rpar[3])[3,3]*w2)
     #dplyr::mutate(slide=floor(z*50))
 }
+
 #' @export ballcount
 ballcount <- function(ballotsdf=NULL,se=se){
   # Assigning model equations
@@ -361,6 +356,7 @@ ballcount <- function(ballotsdf=NULL,se=se){
     dplyr::mutate(xi=pareq(se[['xi_o']][1],as.list(.[,])))
     #!%>% na.omit()
 }
+
 #' @export pareq
 pareq <- function(ste='(x + y*zeta)/(zeta + 1)',lv=list(x=0.75,y=0.25,zeta=1)){
 	eval(parse(text=ste),lv)
@@ -524,7 +520,6 @@ Countingprocess$methods(rotation=function(selvar=c('P','Z','R','S','T','U','V','
   #if (all(rpar)!=0){
     rdfc <<- erotation(dfe=rdfc,selvar=selvar,rpar=rpar,rs=rs,mvec=mmeanv,slice=20)
   #} else {
-
   #u0 <- rdfc$ui
   #v0 <- rdfc$vi
   #w0 <- rdfc$wi
@@ -641,36 +636,35 @@ Countingprocess$methods(manimp=function(init_par=NULL,
 					wn=c(0,0),
 					man=FALSE,
 					lfpar=list(mtd=1,lwr= c(0.0,0.0,0.0),upr = c(0,1,1)),
-					lf="(alpha-alpha_s)^2",
 					lf="(alpha-alpha_s)^2"
 					){
 
   ## Variables
   lof <- function(kvec=NULL,prn=T){
-	  browser()
     kvnr <- c(3,6,10,17)[1] #[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
-    rad <- unname(unlist(mansysl$rot)[c(2,4,6)])*(pi/180)
-    abcv <- setNames(as.vector(lapply(enf[[3]][[3]], as.character)),c(paste0(rep(letters[1:3], each=3), rep(1:3, times=3))))
-    mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
-    nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
+    #rad <- unname(unlist(mansysl$rot)[c(2,4,6)])*(pi/180)
+    #lapply(enf[[3]][[3]])
+    #abcv <- setNames(as.vector(lapply(enf[[3]][[3]], as.character)),c(paste0(rep(letters[1:3], each=3), rep(1:3, times=3))))
+    #mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
+    #nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
       ### Parameters
       dplyr::mutate(!!!kvea) %>%
       ### MN
-      dplyr::mutate(!!!mv,!!!nv) %>%
-      dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%
-      dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%
-      dplyr::mutate(a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
-      dplyr::mutate(b1=pareq(abcv[4],c(as.list(.[,])))) %>%
-      dplyr::mutate(b2=pareq(abcv[5],c(as.list(.[,])))) %>%
-      dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%
-      dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%
-      dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%
-      dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%
+      #dplyr::mutate(!!!mv,!!!nv) %>%
+      #dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%
+      #dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%
+      #dplyr::mutate(a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
+      #dplyr::mutate(b1=pareq(abcv[4],c(as.list(.[,])))) %>%
+      #dplyr::mutate(b2=pareq(abcv[5],c(as.list(.[,])))) %>%
+      #dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%
+      #dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%
+      #dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%
+      #dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%
       ### Presetting the first variables
       dplyr::mutate(!!allvec[1]:=enf[[1]]) %>%
       ### Presetting second variable

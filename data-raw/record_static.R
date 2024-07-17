@@ -1,4 +1,3 @@
-
 # libraries
 ManifoldDestiny::wasmconload()
 library(usethis)
@@ -6,6 +5,12 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 qenvar <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_apps.yml"))
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+#######################################################################################################################################################
+# Applications
+recoudatr(qenvar$app1)
+recoudatr(qenvar$app2)
+recoudatr(qenvar$app3)
+recoudatr(qenvar$app4)
 #######################################################################################################################################################
 # Simulation
 ## Normal 
@@ -18,51 +23,25 @@ gsh <- ballcastsim(perv,prow,proa,prob,ztec)
 mda <- qenvar$appsd
 assign(mda$nid,list(gsh,mda))
 do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
-
 ## Rigged election
 cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
 plfc <- c(0.20,0.20,0.20)
-#ex1s <- list(frm=1, 
-#	     pre=c("alpha","x","y"), 
-#	     end=c("zeta","Omega","lamda"),
-#	     plnr=1,rot=list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),
-#	     ls="(alpha-alpha_s)^2"
-#)
-#ex2s <- list(frm=1, pre=c("alpha","x","y"), end=c("zeta","Omega","lamda"),
-#	     plnr=1,rot=list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),
-#	     ls="(alpha-alpha_s)^2"
-#)
-#ex3s <- list(frm=1, pre=c("alpha","x","y"), end=c("zeta","Omega","lamda"),
-#	     plnr=1,rot=list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),
-#	     ls="(alpha-alpha_s)^2"
-#)
-#exs <- list(ex1s,ex2s,ex3s)
 exn <- c("apprn","apprh","appro")
-#rigv <- lapply(1:3, function(x) { 
-mda <- qenvar[['apprn']]
-#mda$sol$eq
-#mda$sol$ro
-exs <- list(frm=as.numeric(mda$sol$fr),
-	    pre=mda$sol$pr,
-	    end=mda$sol$de,eq=mda$sol$eq,
-	    va=mda$sol$va)
-            #plnr=1,rot=list(fr=c(1,10),sr=c(4,0),tr=c(2,0)))
-cogr$mansys(sygen=exs)
-cogr$polyc[[1]]
-cogr$setres(NULL,1)
-cogr$setres(0.20,1)
-cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
-#assign(mda$nid,list(gsh,mda))
-#do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
-#})
+rigv <- lapply(1:3, function(x) { 
+  mda <- qenvar[[exn[x]]]
+  exs <- list(frm=as.numeric(mda$sol$fr),
+  	    pre=mda$sol$pr,
+  	    end=mda$sol$de,
+  	    eq=mda$sol$eq,
+  	    va=mda$sol$va,
+            rot=list(fr=c(1,0),sr=c(4,0),tr=c(2,0)))
+  cogr$mansys(sygen=exs)
+  cogr$polyc[[1]]
+  cogr$setres(NULL,1)
+  cogr$setres(0.20,1)
+  cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
+  assign(mda$nid,list(gsh,mda))
+  do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
+})
 #######################################################################################################################################################
-# Rigv
-## Abc
-recoudatr(qenvar$app1)
-recoudatr(qenvar$app2)
-recoudatr(qenvar$app3)
-recoudatr(qenvar$app4)
-bm()
-
-

@@ -47,10 +47,11 @@ apprh:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: []
 appro:
-  nid: apprh
+  nid: appro
   mtd:
     nmn: Defeault
   spr:
+  sol:
     fr: "1"
     pr: ["alpha","x","y"]
     de: ["zeta","Omega","lamda"]

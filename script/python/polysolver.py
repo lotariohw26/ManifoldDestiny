@@ -178,31 +178,7 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
         return ABCDE, matarch, abc
 #genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y') 
 #genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y',eur=[1, 4, 2])[0]
-def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
-    return eval(ste, kwargs)
-#pareq(ste='(x + y*zeta)/(zeta + 1)', x=0.75, y=0.25, zeta=1)
-#pareq(ste='(x + y*zeta)/(zeta + 1)', y=0.25, zeta=1,x=2.75)
 
-# plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]
-# plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]
-# plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[1, 4, 2]
-#def conditional_function(arg1=None):                                                                              
-#    if arg1 is not None:                                                                                          
-#        # Execute commands if arg1 is included                                                                    
-#        print("Commands executed when arg1 is included")                                                          
-#    else:                                                                                                         
-#        # Execute commands if arg1 is not included                                                                
-#        print("Commands executed when arg1 is not included")                                                      
-#                                                                                                                  
-## Example usage                                                                                                   
-## When arg1 is included                                                                                           
-#conditional_function("argument1")                                                                                 
-#                                                                                                                  
-## When arg1 is not included                                                                                       
-#conditional_function()                                                                                            
-#import pdb
-import sympy, pdb, pandas, numpy
-from sympy import solve, Eq, symbols, latex, simplify, diff, poly, sympify, Matrix, pprint, collect, expand, Poly, Symbol, Pow
 def genpolycoeff2(flr=1, equ="alpha=k0+k1*g+k2*h", solvd='alpha'):
     k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
     alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
@@ -212,8 +188,8 @@ def genpolycoeff2(flr=1, equ="alpha=k0+k1*g+k2*h", solvd='alpha'):
     ABCDE = [0, 0, 0, 0, 0]
     ABCDE[:len(polys)] = polys
     return ABCDE, 0, 0
+# genpolycoeff2(flr=1, equ="alpha=k0+k1*g+k2*h", solvd='alpha')
 
-
-
-
+def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
+    return eval(ste, kwargs)
 
