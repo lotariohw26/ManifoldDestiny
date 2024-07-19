@@ -15,6 +15,51 @@ def <- Estimation(abc$rdfci)
 def$regression("alpha=k0+k1*h+k2*g")
 summary(def$regsum[[1]])
 ###########################################################################################################
+
+
+
+
+
+
+
+
+
+
+ManifoldDestiny::wasmconload()
+modlat <- eqpar$meql
+laws_df1 <- ManifoldDestiny::eqdef$meql
+laws_df2 <- ManifoldDestiny::eqdef$meqs
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
+ssr <- selreport(ManifoldDestiny::appsn)
+rsr  <- selreport(ManifoldDestiny::apprn)
+
+
+polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))
+
+
+polynomial(ssr[[1]]$polyc[[2]])
+
+
+
+polynom::polynomial(unname(ssr[[1]]$polyc[[1]]))
+ssr[[1]]$desms[7,2]
+
+
+polynom::integral(unname(ssr[[1]]$polyc[1]),c(0,1),3)
+
+
+		  polynom::integral(ssr[[1]]$polyc,c(0,1),3)
+unname(ssr[[1]]$polyc[1])
+
+
+
+
+
+
+
+
+
+
 #abc$descriptive(2)
 #abc$desms
 #abc[[1]]

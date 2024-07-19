@@ -16,7 +16,7 @@ project:
   render:
     - "index.qmd"
     - "presentation.qmd"
-    - "paper.qmd"
+    #    - "paper.qmd"
     - "addendum/Addendum_az.qmd"
     - "addendum/Addendum_ne.qmd"
     - "tabset.qmd"
