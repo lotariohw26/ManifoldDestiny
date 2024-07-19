@@ -36,6 +36,7 @@ wasmconload <- function(){
   library(AlgebraicHaploPackage)
   library(huxtable)
   library(kableExtra)
+  library(polynom)
 }
 #########################################################################################################################################################
 # ' @export py_polysolverW

@@ -100,10 +100,11 @@ server <- function(input, output, session) {
 	 summary(cformo()[[2]]$regsum[[1]]))
   })
   output$plot_res <- renderPlot({
-    pla <- cformo()[[2]]$resplots[[1]][[c(1)]]
-    #plb <- cformo()[[2]]$resplots[[2]][[c(1)]]
-    #plc <- cformo()[[2]]$resplots[[3]][[c(1)]]
-    cowplot::plot_grid(plotlist=list(pla,pla,pla),ncol=1)
+    l1 <- cformo()[[2]]$resplots[[1]][[1]]
+    l2 <- cformo()[[2]]$resplots[[1]][[2]]
+    l3 <- cformo()[[2]]$resplots[[1]][[3]]
+    l4 <- cformo()[[2]]$resplots[[1]][[4]]
+    cowplot::plot_grid(plotlist=list(l1,l2,l3,l4))
   })
   output$print_com <- renderPrint({
     cformo()[[2]]$comdesc
