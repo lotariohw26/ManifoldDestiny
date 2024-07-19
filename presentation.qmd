@@ -25,6 +25,7 @@ laws_df2 <- ManifoldDestiny::eqdef$meqs
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
 ssr <- selreport(ManifoldDestiny::appsn)
 rsr  <- selreport(ManifoldDestiny::apprn)
+round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))
 ```
 
 
@@ -384,20 +385,15 @@ rsr[[1]]$pl_2dsort
 **Normal**
 <br>
 \begin{equation*}
-f(x)_{0}^{1}=`r round(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients)))`
+f(x)_{0}^{1}=`r round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))`
 \end{equation*}
 
 
 
-Election outome 
-  - Integral `r round(polynom::integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients)),c(0,1),3),3)`
-  - Counting `r round(ssr[[1]]$desms[7,2],3)`
+Election outome:
 
-```{r}
-knitr::knit_exit()
-```
-
-
+- Integral `r round(polynom::integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients)),c(0,1),3),3)`
+- Counting `r round(ssr[[1]]$desms[7,2],3)`
 
 
 <br>
@@ -407,7 +403,7 @@ knitr::knit_exit()
 
 
 \begin{equation*}
-$f(x)_{0}^{1}=`r round(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients)))`$
+f(x)_{0}^{1}=`r round(integral(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients))))`
 \end{equation*}
 
 Election outome
