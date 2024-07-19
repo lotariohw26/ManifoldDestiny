@@ -1,10 +1,22 @@
-appsd:
-  nid: appsd
+appsn:
+  nid: appsn
   mtd:
-    nmn: Simulation
+    nmn: Defeault
   spr:
+  sol:
+    fr: "1"
+    pr: ["alpha","x","y"]
+    de: ["zeta","Omega","lamda"]
+    eq: "alpha=k0+k1*x+k2*y"
+    ro: [0, 0, 0]
+    va: "y"
+    ls: "(alpha-alpha_s)^2"
   prg:
     cnd: 0
+    z: 0 
+    stuv: [0,0,0,0]
+    blup: [0,1]
+    eqp: "alpha=k0+k1*g+k2*h"
   bib: []
 apprn:
   nid: apprn
@@ -89,8 +101,8 @@ appp0:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: []
 
-appp1:
-  nid: "appp1"
+appn1:
+  nid: "appn1"
   mtd:
     nmn: Presidential 
     sta: Nevada
@@ -116,8 +128,8 @@ appp1:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['sol2022i']
 
-appp2:
-  nid: "appp2"
+appn2:
+  nid: "appn2"
   mtd:
     nmn: General
     rcn: "General Election"
@@ -144,8 +156,8 @@ appp2:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['https://www.documentcloud.org/documents/22088788-gilbert-v-sisolak-et-al', 'abc']
 
-appp3:
-  nid: "appp3"
+appn3:
+  nid: "appn3"
   mtd:
     nmn: abc
     rcn: "Governor"
@@ -174,8 +186,8 @@ appp3:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: []
 
-appp4:
-  nid: "appp4"
+appn4:
+  nid: "appn4"
   mtd:
     nmn: abc
     rcn: null
@@ -202,9 +214,9 @@ appp4:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['']
 
-appp5:
+appn5:
   mtd:
-    id: appp5
+    id: appn5
     nmn: abc
   spr:
     rcn: Presidiential
@@ -235,10 +247,10 @@ appp5:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit']
 
-appp6:
-  nid: appp6
+appn6:
+  nid: appn6
   mtd:
-    id: appp6
+    id: appn6
     nmn: abc
     rcn: General Election
     cnd: ['Marchant (R)', 'Cisco (D)']
@@ -270,7 +282,7 @@ appp6:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit']
 
-appp7:
+appn7:
   mtd:
     lab: "The Equation of the School Board Trustee (District D) Race"
     nid: "yout"

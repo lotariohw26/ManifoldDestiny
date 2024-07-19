@@ -1,17 +1,14 @@
-# script/python/polysolver.py
-# data-raw/record_static.R
-# script/R/simulations.R
-# script/R/stylized.R
 # shinyapps/empapp/app.R
+# script/python/polysolver.py
+# script/R/stylized.R
+# data-raw/record_static.R
 # script/R/testing.R
 # R/wasmconverting.R
 # R/wasmnonverting.R
 # data-raw/record_dynamic.R
-# script/R/applications.R
 # https://lotariohw26.github.io/MD_WASMS/r/examples/
 # https://lotariohw26.github.io/MD_WASMS/py/examples/
 # data-raw/metadata.json
-
 project:
   type: website
   output-dir: docs
@@ -26,6 +23,7 @@ project:
     - "metaview.qmd"
     - "laws.qmd"
     - "man_bib.qmd"
+#
     - "simulations.qmd"
     - "rigging.qmd"
     - "analyzer.qmd"

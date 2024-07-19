@@ -18,6 +18,11 @@ filters:
 # script/R/simulations.R
 ```
 
+
+**Based upon the ideas developed by Edward K. Solomon**
+![](pngs/md.png)
+
+
 ```{webr-r}
 #| echo: fenced
 #| eval: true
@@ -29,10 +34,6 @@ ls(package:ManifoldDestinyWASMP)
 data(package='ManifoldDestinyWASMD')
 dfl <- ManifoldDestinyWASMD::yout
 ```
-
-**Based upon the ideas developed by Edward K. Solomon**
-![](pngs/md.png)
-
 
 
 

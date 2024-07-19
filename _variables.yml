@@ -64,7 +64,7 @@ tabh:
 tabs:
   h1: "Descriptive"
   h2: "2d"
-  h3: "Scatter"
+  h3: "Sorted"
   h4: "3d"
   h5: "Regression"
   h6: "Residuals"

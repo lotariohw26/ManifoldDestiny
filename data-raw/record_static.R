@@ -7,10 +7,10 @@ qenvar <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_app
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #######################################################################################################################################################
 # Applications
-recoudatr(qenvar$app1)
-recoudatr(qenvar$app2)
-recoudatr(qenvar$app3)
-recoudatr(qenvar$app4)
+recoudatr(qenvar$appn1)
+recoudatr(qenvar$appn2)
+recoudatr(qenvar$appn3)
+recoudatr(qenvar$appn4)
 #######################################################################################################################################################
 # Simulation
 ## Normal 
@@ -20,7 +20,7 @@ proa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 prob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztec <- c(0,1)	
 gsh <- ballcastsim(perv,prow,proa,prob,ztec)
-mda <- qenvar$appsd
+mda <- qenvar$appsn
 assign(mda$nid,list(gsh,mda))
 do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
 ## Rigged election
@@ -45,3 +45,9 @@ rigv <- lapply(1:3, function(x) {
   do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
 })
 #######################################################################################################################################################
+#apps <- ManifoldDestiny::appsn
+#adat <- apps[[1]]
+#amet <- apps[[2]]
+#cogr <- Countinggraphs(apps[[1]])
+#selo <- seloutput(selreport(apps))
+

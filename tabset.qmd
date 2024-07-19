@@ -3,7 +3,6 @@ title: ""
 ---
 
 
-
 ```{r}
 #| echo: false
 #| output: false
@@ -12,12 +11,8 @@ ManifoldDestiny::wasmconload()
 library(ManifoldDestiny)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
 ```
 
-```{r}
-knitr::knit_exit()
-```
 
 
 ::: {.callout-caution collapse="true"}
@@ -25,29 +20,28 @@ knitr::knit_exit()
 ```{r}
 #| echo: false
 #| output: false
-apps <- basc
+apps <- appsn
 ```
 {{< include tab.qmd >}}
 :::
-
-
 
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h1 >}}
 ```{r}
 #| echo: false
 #| output: false
-apps <- rigv[[1]]
+apps <- apprn
 ```
 {{< include tab.qmd >}}
 :::
+
 
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h2 >}}
 ```{r}
 #| echo: false
 #| output: false
-apps <- rigv[[2]]
+apps <- apprh
 ```
 {{< include tab.qmd >}}
 :::
@@ -57,7 +51,7 @@ apps <- rigv[[2]]
 ```{r}
 #| echo: false
 #| output: false
-apps <- rigv[[3]]
+apps <- appro
 ```
 {{< include tab.qmd >}}
 :::
