@@ -18,7 +18,6 @@ filters:
 # script/R/simulations.R
 ```
 
-
 **Based upon the ideas developed by Edward K. Solomon**
 ![](pngs/md.png)
 
@@ -35,16 +34,9 @@ data(package='ManifoldDestinyWASMD')
 dfl <- ManifoldDestinyWASMD::yout
 ```
 
-
-
 ```{r, echo=F}
 knitr::knit_exit()
 ```
-
-# Testing (latest from Ed's Youtube stream)
-
-
-## Installling packages
 
 
 
