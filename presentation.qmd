@@ -22,6 +22,8 @@ modlat <- eqpar$meql
 laws_df1 <- ManifoldDestiny::eqdef$meql
 laws_df2 <- ManifoldDestiny::eqdef$meqs
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
+# abc <- seloutput(selreport(appsn))
+# abc <- seloutput(selreport(apprn))
 ```
 
 # {{< var sec1.nmn >}}
@@ -146,8 +148,6 @@ g=`r modlat$g_h[1]` \text{, } h=`r modlat$h_h[1]`
 \Omega=`r modlat$Omega_h[1] `=`r modlat$Omega_h[2]`
 \end{equation*}
 ---
-
-
 
 ```{r, echo=F}
 #| label: tbl-hfc1
@@ -378,36 +378,33 @@ Rigged election using standard form
 
 ---
 
-```{r}
-knitr::knit_exit()
-```
-
 
 **Normal**
 <br>
 \begin{equation*}
-f(x)_{0}^{1}=`r paste0(round(penf,3))`$
+f(x)_{0}^{1}=`r #paste0(round(penf,3))`$
 \end{equation*}
 
 
 Election outome 
-  - Integral `r round(polynom::integral(penf,c(0,1)),3)`
-  - Counting `r round(rppnf[[1]]$desms[7,2],3)`
+  - Integral `r #round(polynom::integral(penf,c(0,1)),3)`
+  - Counting `r #round(rppnf[[1]]$desms[7,2],3)`
 
 <br>
 **Rigged**
 <br>
 
 
+
 \begin{equation*}
-f(x)_{0}^{1}=`r paste0(round(per1,3))`$
+f(x)_{0}^{1}=`r #paste0(round(per1,3))`$
 \end{equation*}
 
 
 
 Election outome
 ```{r, echo=F}
-round(polynom::integral(per1,c(0,1)),3)
+#round(polynom::integral(per1,c(0,1)),3)
 ```
 
 ---
@@ -423,6 +420,7 @@ round(polynom::integral(per1,c(0,1)),3)
  - $\lambda_i(x_i,\zeta_i,y_i)=\frac{x_i-\zeta_i (1-y_i)}{\zeta_i+1}$
 
 ---
+
 
 **Properties**: 
 
@@ -503,15 +501,11 @@ round(polynom::integral(per1,c(0,1)),3)
 # {{< var sec3.nmn >}}
 
 
-```{r}
-knitr::knit_exit()
-```
-
 ## {{< var sec3.un1 >}}
 ```{r}
 #| echo: false
 #| output: false
-apps <- basc
+apps <- appsn
 ```
 {{< include tabpar.qmd >}}
 
@@ -521,7 +515,7 @@ apps <- basc
 ```{r}
 #| echo: false
 #| output: false
-apps <- rigv[[1]]
+apps <- apprn
 ```
 {{< include tab.qmd >}}
 
@@ -531,7 +525,7 @@ apps <- rigv[[1]]
 ```{r}
 #| echo: false
 #| output: false
-apps <- rigv[[2]]
+apps <- apprh
 ```
 {{< include tab.qmd >}}
 
@@ -541,9 +535,10 @@ apps <- rigv[[2]]
 ```{r}
 #| echo: false
 #| output: false
-apps <- rigv[[3]]
+apps <- appro
 ```
 {{< include tab.qmd >}}
+
 
 # {{< var sec5.nmn >}}
 
@@ -552,6 +547,7 @@ apps <- rigv[[3]]
 > Abstract: On August 15th, 2004, Venezuelans had the opportunity to vote in a Presidential Recall Referendum to decide whether or not President Hugo Chávez should be removed from office. The process was largely computerized using a touch-screen system. In general the ballots were not manually counted. The significance of the high linear correlation (0.99) between the number of requesting signatures for the recall petition and the number of opposition votes in computerized centers is analyzed. The same-day audit was found to be not only ineffective but a source of suspicion. Official results were compared with the 1998 presidential election and other electoral events and distortions were found.
 
 [Paper](https://projecteuclid.org/journals/statistical-science/volume-26/issue-4/Analysis-of-the-2004-Venezuela-Referendum--The-Official-Results/10.1214/08-STS263.full)
+
 
 ---
 
@@ -647,6 +643,8 @@ kableExtra::kbl(concl_appps) #%>% kableExtra::kable_classic_2(full_width = F) %>
 
 ::: {#refs}
 :::
+
+
 
 
 
