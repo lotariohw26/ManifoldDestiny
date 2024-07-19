@@ -3,12 +3,7 @@
 ###############################################################################################################
 # setNames
 system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/csv/ariz2022/maricopa/txt_proto"))
-
-
-lp <- system(paste0('ls ',dirtxt),intern=T)[c(2:12,1)]
-
-
-
+#lp <- system(paste0('ls ',dirtxt),intern=T)[c(2:12,1)]
 #fn <- paste0(abs_p,'/data-raw/Arizona_2022/MaricopaAZ/txt/',lp)[c(2:14,1)]
 lr <- data.table::fread(paste0(abs_p,'/data-raw/Arizona_2022/maricopa/maricopadfload.csv'))[1:5,] %>% mutate(across(everything(), gsub, pattern = "'", replacement = '"'))
 nr <- dim(lr)[1]
