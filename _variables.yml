@@ -67,4 +67,6 @@ tabs:
   h3: "Sorted"
   h4: "3d"
   h5: "Regression"
-  h6: "Residuals"
+  h6: "Compare"
+  h7: "Residuals"
+

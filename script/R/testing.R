@@ -2,9 +2,11 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
-appt <- app0
+# Applications
+appt <- app1
 # Report
-repot <- seloutput(selreport(appt))
+rept <- seloutput(selreport(appt))
+rept[[10]]
 # Componenta
 ## Counting
 sum(dplyr::select(appt[[1]],S,T,U,V))

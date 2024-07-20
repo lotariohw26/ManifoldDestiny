@@ -8,12 +8,21 @@ format:
     number-sections: true
 ---
 
-```{r}
+```{r, echo=F}
 ManifoldDestiny::wasmconload()
-library(ManifoldDestiny)
-library(huxtable)
-library(kableExtra)
 #source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))
+```
+
+```{r}
+#| echo: false
+#| output: false
+apps <- appn1
+```
+{{< include tabpar.qmd >}}
+
+
+```{r}
+knitr::knit_exit()
 ```
 
 # {{< var sec1.nmn >}}
@@ -36,21 +45,26 @@ library(kableExtra)
 
 
 
+
 ## {{< var sec3.un1 >}}
 ```{r}
 #| echo: false
 #| output: false
-apps <- basc
+apps <- appsn
 ```
 {{< include tabpar.qmd >}}
 
+
+```{r}
+knitr::knit_exit()
+```
 
 ## {{< var sec3.un2 >}}
 ### Normal form
 ```{r}
 #| echo: false
 #| output: false
-apps <- rigv[[1]]
+apps <- apprn
 ```
 {{< include tab.qmd >}}
 
@@ -60,7 +74,7 @@ apps <- rigv[[1]]
 ```{r}
 #| echo: false
 #| output: false
-apps <- rigv[[2]]
+apps <- apprh
 ```
 {{< include tab.qmd >}}
 
@@ -70,7 +84,7 @@ apps <- rigv[[2]]
 ```{r}
 #| echo: false
 #| output: false
-apps <- rigv[[3]]
+apps <- appro
 ```
 
 {{< include tab.qmd >}}
@@ -116,16 +130,6 @@ apps <- app4
 ## {{< var sec7.un1 >}}
 
 # {{< var sec8.nmn >}}
-
-
-
-
-
-
-
-
-
-
 
 
 

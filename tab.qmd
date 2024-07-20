@@ -35,6 +35,10 @@ selo[['regr']]
 ```
 ### {{< var tabs.h6 >}}
 ```{r, echo=F, out.width="60%"}
+selo[['cmp']]
+```
+### {{< var tabs.h7 >}}
+```{r, echo=F, out.width="60%"}
 selo[['resp']]
 ```
 ::: 

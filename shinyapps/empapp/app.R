@@ -1,27 +1,26 @@
 ManifoldDestiny::wasmconload()
 abc <- data(package = "ManifoldDestiny")[[3]][,3]
-abr <- abc[grepl("app", abc)][3]
-# [1] "app0"        "app0nr"      "app1"        "app2"        "app3"        "app4"        "concl_appps"
-apps <- get(abr)
+abr <- abc[grepl("app", abc)]
+apps <- get(abr[1])
 options(digits=2)
 ###############################################################################################################################################################
 ui <- fluidPage(
   titlePanel("Election results analyzer"),
   sidebarLayout(
     sidebarPanel(
-      #selectInput(inputId = "app_select", label = "Select election data from the set of applications",
-      #        choices = apps,
-      #        selected = "app0"),
+      selectInput(inputId = "app_select", label = "Select election data from the set of applications",
+              choices = abr,
+              selected = "app0"),
       #textInput("purge", "Purge criteria:",value="0;0;0"),
       #selectInput("form", "Type of rigg:",
       #            choices = c("Normal Form" = "1",
       #                        "Hybrid Form" = "2",
       #                        "Opposition Form" = "3"), selected = "2"),
-      #textInput("meqf", "Manifold equation:",
-      #          value = "alpha=k0+k1*g+k2*h"),
-      #textInput("solvf", "Solve for:",
-      #          value = "g"),
-      #br(),
+      textInput("meqf", "Manifold equation:",
+                value = "alpha=k0+k1*g+k2*h"),
+      textInput("solvf", "Solve for:",
+                value = "g"),
+      br(),
       ##h4("Rotation Settings (Euler)"),
       ##selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
       ##sliderInput("theta", "Theta:", min = 0, max = 360, value = 0),
@@ -61,7 +60,9 @@ server <- function(input, output, session) {
   })  
   cformo <- reactive({
     # Manual
-    seld <- apps
+    #browser()
+    #seld <- get(apps)
+    seld <- get(input$app_select)
     seld[[1]]
     seld[[2]]
     #mds <- md[[sna]]
@@ -120,5 +121,4 @@ server <- function(input, output, session) {
   })
 }
 shinyApp(ui = ui, server = server)
-
 

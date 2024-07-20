@@ -247,7 +247,7 @@ seloutput <- function(selreport=NULL){
   l3 <- selreport[[2]]$resplots[[1]][[3]]
   l4 <- selreport[[2]]$resplots[[1]][[4]]
   tab8 <- cowplot::plot_grid(plotlist=list(l1,l2,l3,l4))
-  tab9 <- selreport[[2]]$comdesc
+  tab9 <- dplyr::select(selreport[[2]]$comdesc,1,3)
   tab10 <- selreport[[4]]
   tab11 <- selreport[[5]]$pl_2dsort
   tab12 <- selreport[[6]]
@@ -996,6 +996,17 @@ Estimation$methods(hat_predict=function(svf='y'){
   regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=pred_df_pol)
 })
 Estimation$methods(hat_intcomp=function(){
+  txvnc <- c("Mean votes",
+	     "Number of precincts",
+	     "Full match",
+	     "Percentage",
+	     "Mean",
+	     "Standard deviation",
+	     "Max",
+	     "Miss +/-1" ,
+	     "Miss +/-2" ,
+	     "Miss +/-3",
+             "Full match or +/-1,2,3")
   svf <- as.character(summary(regsum[[2]])[[2]][[2]])
   lpkus <- lpku[[fnr]][[svf]]
   BLM <- c('S','T','U','V','Z')
@@ -1031,6 +1042,6 @@ Estimation$methods(hat_intcomp=function(){
     match_2=sum(compare[[comps]]==2|compare[[comps]]==-2),
     match_3=sum(compare[[comps]]==3|compare[[comps]]==-3),
     prc0123=100*sum(abs(compare[[comps]] - 0) <= 3)/length(compare[[comps]]))
-  comdesc <<- data.frame(stats=names(vnd),values=vnd)
+  comdesc <<- data.frame(fname=txvnc,stats=names(vnd),values=vnd)
 })
 
