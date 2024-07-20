@@ -202,7 +202,6 @@ selreport <- function(
 
   da <- baldata[[1]]
   md <- baldata[[2]]
-
   frm <- as.numeric(md$sol$fr)
   co <- Countinggraphs(da)
   if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp)
@@ -557,7 +556,7 @@ Countingprocess$methods(plext=function(){
 Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y"),rnk=0,pres=NULL,pri=0){
   rdfv <- rdfci %>%
     dplyr::arrange(P) %>%
-    dplyr::filter(Z>=stuv[1]) %>%
+    dplyr::filter(Z>=z) %>%
     dplyr::filter(S>=stuv[1]) %>%
     dplyr::filter(T>=stuv[2]) %>%
     dplyr::filter(U>=stuv[3]) %>%
@@ -1032,7 +1031,7 @@ Estimation$methods(hat_intcomp=function(){
   regsum[[3]] <<- lm(as.formula(lpkus[[5]]),data=compare)
   vnd <- c(
     meantotvote=mean(compare$Z),
-    nmbpre=length(compare[[comps]] == 0),
+    nmbpre=as.integer(length(compare[[comps]] == 0)),
     match_0=sum(compare[[comps]] == 0),
     prc=100*sum(compare[[comps]] == 0)/length(compare[[comps]] == 0),
     mean=mean(compare[[comps]]),
