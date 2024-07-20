@@ -7,17 +7,21 @@ format:
     number-sections: false
 ---
 
-
+```{r}
+#| echo: false
+#| output: false
+#| message: false
+#| warning: false
+ManifoldDestiny::wasmconload()
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
+```
 
 ```{r}
 #| echo: false
 #| output: false
 #| message: false
 #| warning: false
-options(scipen = 999)
-ManifoldDestiny::wasmconload()
-source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
-source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 apps <- appn1
 adat <- apps[[1]]
 amet <- apps[[2]]
@@ -38,10 +42,6 @@ copl <- cogr$polyc[[1]][[1]]
 #| output: false
 #| message: false
 #| warning: false
-options(digits=2)
-ManifoldDestiny::wasmconload()
-source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
-source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 appn1[[2]]$prg$cnd  <- 1
 appn1[[2]]$prg$z  <- 200
 apps <- appn1
@@ -56,6 +56,8 @@ copl <- cogr$polyc[[1]][[1]]
 {{< include ../tab.qmd >}}
 
 [Independent spreadsheet calculations (Solomon)](https://docs.google.com/spreadsheets/d/1gkf41sJRAQ6bwKmlAAcb7hAQ6v4zIXG2wDYl67LrJ4k/edit?gid=59123130#gid=59123130)
+
+
 
 
 

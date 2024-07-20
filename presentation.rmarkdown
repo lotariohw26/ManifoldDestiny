@@ -31,6 +31,7 @@ round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))
 
 
 
+
 # {{< var sec1.nmn >}}
 Ed. Solomon
 
@@ -47,6 +48,7 @@ Ed. Solomon
 ---
 
 **Our two stylized numerical cases**
+
 
 ```{r, echo=F}
 #| label: fig-1.1
@@ -77,7 +79,9 @@ lego_hux_imp_ii <- as_hux(towii[,1:3]) %>%
 lego_hux_imp_ii
 ```
 
+
 ## {{< var sec1.un2 >}}
+
 ```{r, echo=F}
 lego_hux_nor <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
   set_background_color(1, 1:2, "black") %>% 
@@ -86,6 +90,7 @@ lego_hux_nor <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
   set_all_borders(brdr(2, "solid", "black"))
 lego_hux_nor %>% set_caption("")
 ```
+
 
 
 
@@ -106,11 +111,13 @@ x=`r modlat$x_s[1]` \text{, }y=`r modlat$y_s[1]`
 
 ---
 
+
 ```{r, echo=F}
 #| label: tbl-sfc1
 #| tbl-cap: 'Election results applying standard form on case I'
 kableExtra::kbl(format(stfc1,digits=4)) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
+
 
 Numerical calculation of candidate one total percentage
 
@@ -123,13 +130,16 @@ Numerical calculation of candidate one total percentage
 
 ---
 
+
 ```{r, echo=F}
 #| label: tbl-sfc2
 #| tbl-cap: 'Election results applying hybrid form on case II'
 kableExtra::kbl(format(stfc2,digits=4)) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
 
+
 ## {{< var sec1.un3 >}}
+
 ```{r, echo=F}
 lego_hux_imp <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
   set_background_color(1:2, 1, "black") %>% 
@@ -138,6 +148,7 @@ lego_hux_imp <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
   set_all_borders(brdr(2, "solid", "black"))
 lego_hux_imp %>% set_caption("")
 ```
+
 
 Parameters: $g$, $h$, $\Gamma$, $\alpha$, $\Omega$
 \begin{equation*}
@@ -152,6 +163,7 @@ g=`r modlat$g_h[1]` \text{, } h=`r modlat$h_h[1]`
 \begin{equation*}
 \Omega=`r modlat$Omega_h[1] `=`r modlat$Omega_h[2]`
 \end{equation*}
+
 ---
 
 ```{r, echo=F}
@@ -177,7 +189,9 @@ Numerical calculation of candidate one total percentage
 kableExtra::kbl(format(hyfc2,digits=4)) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
 
+
 ## {{< var sec1.un4 >}}
+
 ```{r, echo=F}
 lego_hux_opo <- as_hux(matrix(c("S","T","U","V"), 2, 2)) %>%
   set_background_color(c(1),c(1), "black") %>% 
@@ -188,6 +202,7 @@ lego_hux_opo <- as_hux(matrix(c("S","T","U","V"), 2, 2)) %>%
   set_all_borders(brdr(2, "solid", "black"))
 lego_hux_opo %>% set_caption("")
 ```
+
 
 Parameters: $m$, $n$, $\xi$, $\lambda$, $\Omega$
 \begin{equation*}
@@ -205,13 +220,16 @@ n=`r modlat$n_o[1]` \text{ , } m=`r modlat$m_o[1]`
 
 ---
 
+
 ```{r, echo=F}
 #| label: tbl-ofc1
 #| tbl-cap: 'Election results applying hybrid form case II'
 kableExtra::kbl(format(opfc1,digits=4)) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
 
+
 ---
+
 
 ```{r, echo=F}
 #| label: tbl-ofc2
@@ -219,12 +237,14 @@ kableExtra::kbl(format(opfc1,digits=4)) %>% kableExtra::kable_paper(full_width =
 kableExtra::kbl(format(opfc2,digits=4)) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
 
+
 ## {{< var sec1.un5 >}}
 
 - **Step 1:** Each registered voter assign themself (independent of voting technology) to either candidate A or candidate B
 - **Step 2:** Voting technology realized
 - **Step 3:** Registered voters determine whether to vote or not to vote 
 - **Step 4:** If voting, do this by either mode 1 or by mode 2.
+
 
 ```{mermaid}
   flowchart LR
@@ -239,6 +259,7 @@ kableExtra::kbl(format(opfc2,digits=4)) %>% kableExtra::kable_paper(full_width =
   D --> DV[Vote]
   D --> Dn[Not Vote]
 ```
+
 
 ##
 
@@ -334,11 +355,13 @@ If none of this three cases are satisfied, variation in $\Gamma_i$ should explai
 ### 40 isometris
 
 ::: {.callout-note collapse="true"}
+
 ```{r}
 kable(laws1[,c(5,6,7,8)], format = "markdown", escape = FALSE) # %>% kableExtra::kable_styling(font_size=8)
 
 
 ```
+
 :::
 
 ---
@@ -346,10 +369,12 @@ kable(laws1[,c(5,6,7,8)], format = "markdown", escape = FALSE) # %>% kableExtra:
 ### 20 laws 
 
 ::: {.callout-note collapse="true"}
+
 ```{r} 
 kable(laws2, format = "markdown", escape = FALSE) 
 
 ```
+
 :::
 
 [Application 2: Rigged election process simulator]({{< var shn2 >}})
@@ -363,9 +388,11 @@ kable(laws2, format = "markdown", escape = FALSE)
 
 ::: {.column width="50%"}
 Non-rigged election
+
 ```{r}
 ssr[[1]]$pl_2dsort
 ```
+
 
 :::
 
@@ -373,9 +400,11 @@ ssr[[1]]$pl_2dsort
 ::: {.column width="50%"}
 
 Rigged election using standard form
+
 ```{r}
 rsr[[1]]$pl_2dsort
 ```
+
 
 :::
 
@@ -409,9 +438,11 @@ f(x)_{0}^{1}=`r round(integral(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficient
 \end{equation*}
 
 Election outome
+
 ```{r, echo=F}
 round(polynom::integral(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients)),c(0,1),3),3)
 ```
+
 
 ---
 
@@ -508,42 +539,262 @@ round(polynom::integral(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients)),c(0
 
 
 ## {{< var sec3.un1 >}}
+
 ```{r}
 #| echo: false
 #| output: false
 apps <- appsn
 ```
-{{< include tabpar.qmd >}}
+<!-- ### Abc -->
+
+```{r}
+#| echo: false
+#| output: false
+#| message: false
+#| warning: false
+adat <- apps[[1]]
+amet <- apps[[2]]
+cogr <- Countinggraphs(apps[[1]])
+selo <- seloutput(selreport(apps))
+copl <- cogr$polyc[[1]][[1]]
+options(digits = 2)                                                                                               
+```
+
+
+
+
+::: {.panel-tabset}
+### {{< var tabs.h0 >}} 
+```{r, echo=F}
+paste0(amet$mtd$nmn,amet$mtd$yea,amet$mtd$std,amet$mtd$cou)
+```
+### {{< var tabs.h1 >}} 
+```{r, echo=F}
+kableExtra::kbl(selo[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h2 >}}
+```{r, echo=F, out.width="60%"}
+selo[['corxy']]
+```
+### {{< var tabs.h3 >}}
+```{r, echo=F, out.width="60%"}
+selo[['qunt']]
+```
+### {{< var tabs.h4 >}}
+```{r, echo=F}
+selo[['ro3d']]
+```
+### {{< var tabs.h5 >}}
+```{r, echo=F, out.width="60%"}
+selo[['regr']]
+```
+### {{< var tabs.h6 >}}
+```{r, echo=F, out.width="60%"}
+kableExtra::kbl(selo[['cmp']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h7 >}}
+```{r, echo=F, out.width="60%"}
+selo[['resp']]
+```
+::: 
+
+
+
+
+
+
+
+
+
 
 ## {{< var sec3.un2 >}}
 
 ### Normal form
+
 ```{r}
 #| echo: false
 #| output: false
 apps <- apprn
 ```
-{{< include tab.qmd >}}
+```{r}
+#| echo: false
+#| output: false
+#| message: false
+#| warning: false
+adat <- apps[[1]]
+amet <- apps[[2]]
+cogr <- Countinggraphs(apps[[1]])
+selo <- seloutput(selreport(apps))
+copl <- cogr$polyc[[1]][[1]]
+options(digits = 2)                                                                                               
+```
+
+
+
+
+::: {.panel-tabset}
+### {{< var tabs.h0 >}} 
+```{r, echo=F}
+paste0(amet$mtd$nmn,amet$mtd$yea,amet$mtd$std,amet$mtd$cou)
+```
+### {{< var tabs.h1 >}} 
+```{r, echo=F}
+kableExtra::kbl(selo[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h2 >}}
+```{r, echo=F, out.width="60%"}
+selo[['corxy']]
+```
+### {{< var tabs.h3 >}}
+```{r, echo=F, out.width="60%"}
+selo[['qunt']]
+```
+### {{< var tabs.h4 >}}
+```{r, echo=F}
+selo[['ro3d']]
+```
+### {{< var tabs.h5 >}}
+```{r, echo=F, out.width="60%"}
+selo[['regr']]
+```
+### {{< var tabs.h6 >}}
+```{r, echo=F, out.width="60%"}
+kableExtra::kbl(selo[['cmp']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h7 >}}
+```{r, echo=F, out.width="60%"}
+selo[['resp']]
+```
+::: 
+
+
+
 
 ---
 
 ### Hybrid
+
 ```{r}
 #| echo: false
 #| output: false
 apps <- apprh
 ```
-{{< include tab.qmd >}}
+```{r}
+#| echo: false
+#| output: false
+#| message: false
+#| warning: false
+adat <- apps[[1]]
+amet <- apps[[2]]
+cogr <- Countinggraphs(apps[[1]])
+selo <- seloutput(selreport(apps))
+copl <- cogr$polyc[[1]][[1]]
+options(digits = 2)                                                                                               
+```
+
+
+
+
+::: {.panel-tabset}
+### {{< var tabs.h0 >}} 
+```{r, echo=F}
+paste0(amet$mtd$nmn,amet$mtd$yea,amet$mtd$std,amet$mtd$cou)
+```
+### {{< var tabs.h1 >}} 
+```{r, echo=F}
+kableExtra::kbl(selo[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h2 >}}
+```{r, echo=F, out.width="60%"}
+selo[['corxy']]
+```
+### {{< var tabs.h3 >}}
+```{r, echo=F, out.width="60%"}
+selo[['qunt']]
+```
+### {{< var tabs.h4 >}}
+```{r, echo=F}
+selo[['ro3d']]
+```
+### {{< var tabs.h5 >}}
+```{r, echo=F, out.width="60%"}
+selo[['regr']]
+```
+### {{< var tabs.h6 >}}
+```{r, echo=F, out.width="60%"}
+kableExtra::kbl(selo[['cmp']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h7 >}}
+```{r, echo=F, out.width="60%"}
+selo[['resp']]
+```
+::: 
+
+
+
 
 ---
 
 ### Opposition
+
 ```{r}
 #| echo: false
 #| output: false
 apps <- appro
 ```
-{{< include tab.qmd >}}
+```{r}
+#| echo: false
+#| output: false
+#| message: false
+#| warning: false
+adat <- apps[[1]]
+amet <- apps[[2]]
+cogr <- Countinggraphs(apps[[1]])
+selo <- seloutput(selreport(apps))
+copl <- cogr$polyc[[1]][[1]]
+options(digits = 2)                                                                                               
+```
+
+
+
+
+::: {.panel-tabset}
+### {{< var tabs.h0 >}} 
+```{r, echo=F}
+paste0(amet$mtd$nmn,amet$mtd$yea,amet$mtd$std,amet$mtd$cou)
+```
+### {{< var tabs.h1 >}} 
+```{r, echo=F}
+kableExtra::kbl(selo[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h2 >}}
+```{r, echo=F, out.width="60%"}
+selo[['corxy']]
+```
+### {{< var tabs.h3 >}}
+```{r, echo=F, out.width="60%"}
+selo[['qunt']]
+```
+### {{< var tabs.h4 >}}
+```{r, echo=F}
+selo[['ro3d']]
+```
+### {{< var tabs.h5 >}}
+```{r, echo=F, out.width="60%"}
+selo[['regr']]
+```
+### {{< var tabs.h6 >}}
+```{r, echo=F, out.width="60%"}
+kableExtra::kbl(selo[['cmp']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h7 >}}
+```{r, echo=F, out.width="60%"}
+selo[['resp']]
+```
+::: 
+
+
+
 
 
 # {{< var sec5.nmn >}}
@@ -569,7 +820,10 @@ apps <- appro
 
 The video "Conexiones Peligrosas"
 
+
 {{< video https://www.youtube.com/watch?v=YQg1Cr3vRic&t=76s >}}
+
+
 
 # {{< var sec6.nmn >}}
 
@@ -581,36 +835,280 @@ The video "Conexiones Peligrosas"
 If we can walk through all of the **four** steps here, property 1<sup>st</sup> and 2<sup>nd</sup> that we have stated for a normal election are violated and we can conclude that the estimated Manifold equation is inserted - Manifold Destiny - to distort the outcome of normal election.
 
 ## {{< var sec6.un1 >}}
+
 ```{r}
 #| echo: false
 #| output: false
 apps <- app1
 ```
-{{< include tabpar.qmd >}}
+<!-- ### Abc -->
+
+```{r}
+#| echo: false
+#| output: false
+#| message: false
+#| warning: false
+adat <- apps[[1]]
+amet <- apps[[2]]
+cogr <- Countinggraphs(apps[[1]])
+selo <- seloutput(selreport(apps))
+copl <- cogr$polyc[[1]][[1]]
+options(digits = 2)                                                                                               
+```
+
+
+
+
+::: {.panel-tabset}
+### {{< var tabs.h0 >}} 
+```{r, echo=F}
+paste0(amet$mtd$nmn,amet$mtd$yea,amet$mtd$std,amet$mtd$cou)
+```
+### {{< var tabs.h1 >}} 
+```{r, echo=F}
+kableExtra::kbl(selo[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h2 >}}
+```{r, echo=F, out.width="60%"}
+selo[['corxy']]
+```
+### {{< var tabs.h3 >}}
+```{r, echo=F, out.width="60%"}
+selo[['qunt']]
+```
+### {{< var tabs.h4 >}}
+```{r, echo=F}
+selo[['ro3d']]
+```
+### {{< var tabs.h5 >}}
+```{r, echo=F, out.width="60%"}
+selo[['regr']]
+```
+### {{< var tabs.h6 >}}
+```{r, echo=F, out.width="60%"}
+kableExtra::kbl(selo[['cmp']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h7 >}}
+```{r, echo=F, out.width="60%"}
+selo[['resp']]
+```
+::: 
+
+
+
+
+
+
+
+
+
 
 ## {{< var sec6.un2 >}}
+
 ```{r}
 #| echo: false
 #| output: false
 apps <- app2
 ```
-{{< include tabpar.qmd >}}
+<!-- ### Abc -->
+
+```{r}
+#| echo: false
+#| output: false
+#| message: false
+#| warning: false
+adat <- apps[[1]]
+amet <- apps[[2]]
+cogr <- Countinggraphs(apps[[1]])
+selo <- seloutput(selreport(apps))
+copl <- cogr$polyc[[1]][[1]]
+options(digits = 2)                                                                                               
+```
+
+
+
+
+::: {.panel-tabset}
+### {{< var tabs.h0 >}} 
+```{r, echo=F}
+paste0(amet$mtd$nmn,amet$mtd$yea,amet$mtd$std,amet$mtd$cou)
+```
+### {{< var tabs.h1 >}} 
+```{r, echo=F}
+kableExtra::kbl(selo[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h2 >}}
+```{r, echo=F, out.width="60%"}
+selo[['corxy']]
+```
+### {{< var tabs.h3 >}}
+```{r, echo=F, out.width="60%"}
+selo[['qunt']]
+```
+### {{< var tabs.h4 >}}
+```{r, echo=F}
+selo[['ro3d']]
+```
+### {{< var tabs.h5 >}}
+```{r, echo=F, out.width="60%"}
+selo[['regr']]
+```
+### {{< var tabs.h6 >}}
+```{r, echo=F, out.width="60%"}
+kableExtra::kbl(selo[['cmp']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h7 >}}
+```{r, echo=F, out.width="60%"}
+selo[['resp']]
+```
+::: 
+
+
+
+
+
+
+
+
+
 
 
 ## {{< var sec6.un3 >}}
+
 ```{r}
 #| echo: false
 #| output: false
 apps <- app2
 ```
-{{< include tabpar.qmd >}}
+<!-- ### Abc -->
+
+```{r}
+#| echo: false
+#| output: false
+#| message: false
+#| warning: false
+adat <- apps[[1]]
+amet <- apps[[2]]
+cogr <- Countinggraphs(apps[[1]])
+selo <- seloutput(selreport(apps))
+copl <- cogr$polyc[[1]][[1]]
+options(digits = 2)                                                                                               
+```
+
+
+
+
+::: {.panel-tabset}
+### {{< var tabs.h0 >}} 
+```{r, echo=F}
+paste0(amet$mtd$nmn,amet$mtd$yea,amet$mtd$std,amet$mtd$cou)
+```
+### {{< var tabs.h1 >}} 
+```{r, echo=F}
+kableExtra::kbl(selo[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h2 >}}
+```{r, echo=F, out.width="60%"}
+selo[['corxy']]
+```
+### {{< var tabs.h3 >}}
+```{r, echo=F, out.width="60%"}
+selo[['qunt']]
+```
+### {{< var tabs.h4 >}}
+```{r, echo=F}
+selo[['ro3d']]
+```
+### {{< var tabs.h5 >}}
+```{r, echo=F, out.width="60%"}
+selo[['regr']]
+```
+### {{< var tabs.h6 >}}
+```{r, echo=F, out.width="60%"}
+kableExtra::kbl(selo[['cmp']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h7 >}}
+```{r, echo=F, out.width="60%"}
+selo[['resp']]
+```
+::: 
+
+
+
+
+
+
+
+
+
 ## {{< var sec6.un4 >}}
+
 ```{r}
 #| echo: false
 #| output: false
 apps <- app4
 ```
-{{< include tabpar.qmd >}}
+<!-- ### Abc -->
+
+```{r}
+#| echo: false
+#| output: false
+#| message: false
+#| warning: false
+adat <- apps[[1]]
+amet <- apps[[2]]
+cogr <- Countinggraphs(apps[[1]])
+selo <- seloutput(selreport(apps))
+copl <- cogr$polyc[[1]][[1]]
+options(digits = 2)                                                                                               
+```
+
+
+
+
+::: {.panel-tabset}
+### {{< var tabs.h0 >}} 
+```{r, echo=F}
+paste0(amet$mtd$nmn,amet$mtd$yea,amet$mtd$std,amet$mtd$cou)
+```
+### {{< var tabs.h1 >}} 
+```{r, echo=F}
+kableExtra::kbl(selo[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h2 >}}
+```{r, echo=F, out.width="60%"}
+selo[['corxy']]
+```
+### {{< var tabs.h3 >}}
+```{r, echo=F, out.width="60%"}
+selo[['qunt']]
+```
+### {{< var tabs.h4 >}}
+```{r, echo=F}
+selo[['ro3d']]
+```
+### {{< var tabs.h5 >}}
+```{r, echo=F, out.width="60%"}
+selo[['regr']]
+```
+### {{< var tabs.h6 >}}
+```{r, echo=F, out.width="60%"}
+kableExtra::kbl(selo[['cmp']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
+```
+### {{< var tabs.h7 >}}
+```{r, echo=F, out.width="60%"}
+selo[['resp']]
+```
+::: 
+
+
+
+
+
+
+
+
+
 
 # {{< var sec7.nmn >}}
 
@@ -639,14 +1137,17 @@ apps <- app4
 
 - Our four applications
 
+
 ```{r, echo=F, warning=F, message=F}
 kableExtra::kbl(concl_appps) #%>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
+
 
 # {{< var sec9.nmn >}}
 
 ::: {#refs}
 :::
+
 
 
 

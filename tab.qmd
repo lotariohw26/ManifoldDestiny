@@ -8,7 +8,9 @@ amet <- apps[[2]]
 cogr <- Countinggraphs(apps[[1]])
 selo <- seloutput(selreport(apps))
 copl <- cogr$polyc[[1]][[1]]
+options(digits = 2)                                                                                               
 ```
+
 
 
 
@@ -39,7 +41,7 @@ selo[['regr']]
 ```
 ### {{< var tabs.h6 >}}
 ```{r, echo=F, out.width="60%"}
-selo[['cmp']]
+kableExtra::kbl(selo[['cmp']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
 ```
 ### {{< var tabs.h7 >}}
 ```{r, echo=F, out.width="60%"}
