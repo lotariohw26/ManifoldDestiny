@@ -8,10 +8,10 @@ title: ""
 #| output: false
 #| message: false
 ManifoldDestiny::wasmconload()
-library(ManifoldDestiny)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ```
+
 
 
 

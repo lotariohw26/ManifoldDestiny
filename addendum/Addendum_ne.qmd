@@ -14,7 +14,7 @@ format:
 #| output: false
 #| message: false
 #| warning: false
-options(digits=2)
+options(scipen = 999)
 ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
@@ -28,47 +28,8 @@ copl <- cogr$polyc[[1]][[1]]
 
 ### Without purge
 
-::: {.panel-tabset}
 
-### {{< var tabs.h1 >}}
-
-```{r, echo=F}
-kableExtra::kbl(selo[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
-```
-### {{< var tabs.h2 >}}
-```{r, echo=F, out.width="60%"}
-selo[['corxy']]
-```
-### {{< var tabs.h3 >}}
-```{r, echo=F, out.width="60%"}
-selo[['qunt']]
-```
-### {{< var tabs.h4 >}}
-```{r, echo=F}
-selo[['ro3d']]
-```
-### {{< var tabs.h5 >}}
-```{r, echo=F, out.width="60%"}
-selo[['regr']]
-```
-### {{< var tabs.h6 >}}
-```{r, echo=F, out.width="60%"}
-selo[['cmp']]
-```
-### {{< var tabs.h7 >}}
-```{r, echo=F, out.width="60%"}
-selo[['resp']]
-```
-::: 
-
-
-
-
-
-
-
-
-
+{{< include ../tab.qmd >}}
 
 ### With purge
 
@@ -92,47 +53,9 @@ selo[[2]]
 copl <- cogr$polyc[[1]][[1]]
 ```
 
-
-
-::: {.panel-tabset}
-
-### {{< var tabs.h1 >}}
-
-```{r, echo=F}
-kableExtra::kbl(selo[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
-```
-### {{< var tabs.h2 >}}
-```{r, echo=F, out.width="60%"}
-selo[['corxy']]
-```
-### {{< var tabs.h3 >}}
-```{r, echo=F, out.width="60%"}
-selo[['qunt']]
-```
-### {{< var tabs.h4 >}}
-```{r, echo=F}
-selo[['ro3d']]
-```
-### {{< var tabs.h5 >}}
-```{r, echo=F, out.width="60%"}
-selo[['regr']]
-```
-### {{< var tabs.h6 >}}
-```{r, echo=F, out.width="60%"}
-selo[['cmp']]
-```
-### {{< var tabs.h7 >}}
-```{r, echo=F, out.width="60%"}
-selo[['resp']]
-```
-::: 
-
+{{< include ../tab.qmd >}}
 
 [Independent spreadsheet calculations (Solomon)](https://docs.google.com/spreadsheets/d/1gkf41sJRAQ6bwKmlAAcb7hAQ6v4zIXG2wDYl67LrJ4k/edit?gid=59123130#gid=59123130)
 
-
-```{r, echo=F}
-knitr::knit_exit()
-```
 
 

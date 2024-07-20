@@ -10,6 +10,7 @@
 # https://lotariohw26.github.io/MD_WASMS/r/examples/
 # https://lotariohw26.github.io/MD_WASMS/py/examples/
 # data-raw/metadata.json
+# https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit
 project:
   type: website
   output-dir: docs

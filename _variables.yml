@@ -62,6 +62,7 @@ tabh:
   h3: "Rigged election opposition form"
 
 tabs:
+  h0: "Metadata"
   h1: "Descriptive"
   h2: "2d"
   h3: "Sorted"

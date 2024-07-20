@@ -2,11 +2,29 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
-appn1[[2]]$prg$cnd  <- 1
-appn1[[2]]$prg$z  <- 200
-apps <- appn1
+apps <- appn2
 adat <- apps[[1]]
 amet <- apps[[2]]
+rept <- seloutput(selreport(apps))
+###########################################################################################################
+apps <- appn4
+adat <- apps[[1]]
+amet <- apps[[2]]
+rept <- seloutput(selreport(apps))
+###########################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
 #cogr <- Countinggraphs(apps[[1]])
 selo <- seloutput(selreport(apps))
 # selo[[9]]

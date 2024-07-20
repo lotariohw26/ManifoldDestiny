@@ -10,10 +10,14 @@ selo <- seloutput(selreport(apps))
 copl <- cogr$polyc[[1]][[1]]
 ```
 
+
+
 ::: {.panel-tabset}
-
-### {{< var tabs.h1 >}}
-
+### {{< var tabs.h0 >}} 
+```{r, echo=F}
+paste0(amet$mtd$nmn,amet$mtd$yea,amet$mtd$std,amet$mtd$cou)
+```
+### {{< var tabs.h1 >}} 
 ```{r, echo=F}
 kableExtra::kbl(selo[['decs']]) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::kable_styling(font_size=8)
 ```
