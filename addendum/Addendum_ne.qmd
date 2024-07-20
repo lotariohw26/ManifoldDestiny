@@ -128,7 +128,7 @@ selo[['resp']]
 ::: 
 
 
-[Spreadsheet calculation (Solomon)](https://docs.google.com/spreadsheets/d/1gkf41sJRAQ6bwKmlAAcb7hAQ6v4zIXG2wDYl67LrJ4k/edit?gid=59123130#gid=59123130)
+[Independent spreadsheet calculations (Solomon)](https://docs.google.com/spreadsheets/d/1gkf41sJRAQ6bwKmlAAcb7hAQ6v4zIXG2wDYl67LrJ4k/edit?gid=59123130#gid=59123130)
 
 
 ```{r, echo=F}
