@@ -76,7 +76,7 @@ appn3:
     eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y"]
     va: "y"
   prg:
-    cnd: 0
+    cnd: 1
     z: 0 
     stuv: [0,0,0,0]
     blup: [0,1]
@@ -403,7 +403,7 @@ appsn:
     fr: "1"
     pr: ["alpha","x","y"]
     de: ["zeta","Omega","lamda"]
-    eq: "alpha=k0+k1*x+k2*y"
+    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
     ro: [0, 0, 0]
     va: "y"
     ls: "(alpha-alpha_s)^2"
@@ -423,8 +423,7 @@ apprn:
     fr: "1"
     pr: ["alpha","x","y"]
     de: ["zeta","Omega","lamda"]
-    eq: "alpha=k0+k1*x+k2*y"
-    ro: [0, 0, 0]
+    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
     va: "y"
     ls: "(alpha-alpha_s)^2"
   prg:
@@ -432,7 +431,7 @@ apprn:
     z: 0 
     stuv: [0,0,0,0]
     blup: [0,1]
-    eqp: "alpha=k0+k1*g+k2*h"
+    eqp: "alpha=k0+k1*x+k2*y+k3*zeta"
   bib: []
 apprh:
   nid: apprh
@@ -443,8 +442,7 @@ apprh:
     fr: "1"
     pr: ["alpha","x","y"]
     de: ["zeta","Omega","lamda"]
-    eq: "alpha=k0+k1*x+k2*y"
-    ro: [0, 0, 0]
+    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
     va: "y"
     ls: "(alpha-alpha_s)^2"
   prg:
@@ -452,7 +450,7 @@ apprh:
     z: 0 
     stuv: [0,0,0,0]
     blup: [0,1]
-    eqp: "alpha=k0+k1*g+k2*h"
+    eqp: "alpha=k0+k1*x+k2*y+k3*zeta"
   bib: []
 appro:
   nid: appro
@@ -463,8 +461,7 @@ appro:
     fr: "1"
     pr: ["alpha","x","y"]
     de: ["zeta","Omega","lamda"]
-    eq: "alpha=k0+k1*x+k2*y"
-    ro: [0, 0, 0]
+    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
     va: "y"
     ls: "(alpha-alpha_s)^2"
   prg:
@@ -472,7 +469,7 @@ appro:
     z: 0 
     stuv: [0,0,0,0]
     blup: [0,1]
-    eqp: "alpha=k0+k1*g+k2*h"
+    eqp: "alpha=k0+k1*x+k2*y+k3*zeta"
   bib: []
 appp0:
   mtd:

@@ -16,15 +16,8 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 
 
 
-::: {.callout-caution collapse="true"}
-## {{< var tabh.h0 >}}
-```{r}
-#| echo: false
-#| output: false
-apps <- appsn
-```
-{{< include tab.qmd >}}
-:::
+
+
 
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h1 >}}
@@ -47,6 +40,8 @@ apps <- apprh
 {{< include tab.qmd >}}
 :::
 
+
+
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h3 >}}
 ```{r}
@@ -62,7 +57,7 @@ apps <- appro
 ```{r}
 #| echo: false
 #| output: false
-apps <- app1
+apps <- appn1
 ```
 {{< include tab.qmd >}}
 :::
@@ -72,7 +67,7 @@ apps <- app1
 ```{r}
 #| echo: false
 #| output: false
-apps <- app2
+apps <- appn2
 ```
 {{< include tab.qmd >}}
 :::
@@ -82,7 +77,7 @@ apps <- app2
 ```{r}
 #| echo: false
 #| output: false
-apps <- app2
+apps <- appn3
 ```
 {{< include tab.qmd >}}
 :::
@@ -92,7 +87,7 @@ apps <- app2
 ```{r}
 #| echo: false
 #| output: false
-apps <- app4
+apps <- appn4
 ```
 {{< include tab.qmd >}}
 :::

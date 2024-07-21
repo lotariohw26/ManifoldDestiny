@@ -30,7 +30,6 @@ project:
     - "analyzer.qmd"
     - "restoration.qmd"
     - "randpython.qmd"
-
 website:
   title: "{{< var titls >}}"
   navbar:

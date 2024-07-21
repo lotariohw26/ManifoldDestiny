@@ -587,7 +587,7 @@ If we can walk through all of the **four** steps here, property 1<sup>st</sup> a
 ```{r}
 #| echo: false
 #| output: false
-apps <- app1
+apps <- appn1
 ```
 {{< include tabpar.qmd >}}
 
@@ -595,7 +595,7 @@ apps <- app1
 ```{r}
 #| echo: false
 #| output: false
-apps <- app2
+apps <- appn2
 ```
 {{< include tabpar.qmd >}}
 
@@ -604,14 +604,14 @@ apps <- app2
 ```{r}
 #| echo: false
 #| output: false
-apps <- app2
+apps <- appn2
 ```
 {{< include tabpar.qmd >}}
 ## {{< var sec6.un4 >}}
 ```{r}
 #| echo: false
 #| output: false
-apps <- app4
+apps <- appn4
 ```
 {{< include tabpar.qmd >}}
 

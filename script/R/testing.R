@@ -3,12 +3,11 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
 ###########################################################################################################
-apps <- appn1
+apps <- appn3
 adat <- apps[[1]]
 amet <- apps[[2]]
 rept <- seloutput(selreport(apps))
-rept[[1]]
-
+rept[[7]]
 
 ###########################################################################################################
 apps <- appn3
@@ -19,15 +18,10 @@ cob$sortpre(4,3)
 cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5))
 summary(selreport(apps)[[3]]$regsum[[1]])
 rept <- seloutput(selreport(apps))
-rept[[10]]
+ggplot2::geom_point(data=filter(longdf,name%in%psel),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
+ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel,'_pred')),ggplot2::aes(x=pri,y=value, color=name)) 
 
-bm()
-
-
-    ggplot2::geom_point(data=filter(longdf,name%in%psel),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
-    ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel,'_pred')),ggplot2::aes(x=pri,y=value, color=name)) 
-
-  pselv <- list(psel,psel[c(1,2,3)])[[1]]
+pselv <- list(psel,psel[c(1,2,3)])[[1]]
 
 
 

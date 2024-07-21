@@ -9,8 +9,8 @@ googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 # Applications
 recoudatr(qenvar$appn1)
 recoudatr(qenvar$appn2)
-#recoudatr(qenvar$appn3)
-#recoudatr(qenvar$appn4)
+recoudatr(qenvar$appn3)
+recoudatr(qenvar$appn4)
 #######################################################################################################################################################
 # Simulation
 ## Normal 
@@ -33,7 +33,7 @@ rigv <- lapply(1:3, function(x) {
   exs <- list(frm=as.numeric(mda$sol$fr),
   	    pre=mda$sol$pr,
   	    end=mda$sol$de,
-  	    eq=mda$sol$eq,
+  	    eq=mda$sol$eq[1],
   	    va=mda$sol$va,
             rot=list(fr=c(1,0),sr=c(4,0),tr=c(2,0)))
   cogr$mansys(sygen=exs)
@@ -41,14 +41,13 @@ rigv <- lapply(1:3, function(x) {
   cogr$setres(NULL,1)
   cogr$setres(0.20,1)
   cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
-  browser()
   assign(mda$nid,list(gsh,mda))
-  do.call("use_data", list(as.name(mda$nid), overwrite = true))
+  do.call("use_data", list(as.name(mda$nid), overwrite = T))
 })
 #######################################################################################################################################################
+#bm()
 #apps <- ManifoldDestiny::appsn
 #adat <- apps[[1]]
 #amet <- apps[[2]]
 #cogr <- Countinggraphs(apps[[1]])
 #selo <- seloutput(selreport(apps))
-bm()

@@ -3,6 +3,10 @@
 #| output: false
 #| message: false
 #| warning: false
+#ManifoldDestiny::wasmconload()
+#source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
+#source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
+#apps <- appsn
 adat <- apps[[1]]
 amet <- apps[[2]]
 cogr <- Countinggraphs(apps[[1]])
@@ -10,8 +14,6 @@ selo <- seloutput(selreport(apps))
 copl <- cogr$polyc[[1]][[1]]
 options(digits = 2)                                                                                               
 ```
-
-
 
 
 ::: {.panel-tabset}
@@ -38,6 +40,7 @@ selo[['ro3d']]
 ### {{< var tabs.h5 >}}
 ```{r, echo=F, out.width="60%"}
 selo[['regr']]
+selo[['regi']]
 ```
 ### {{< var tabs.h6 >}}
 ```{r, echo=F, out.width="60%"}
