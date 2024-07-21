@@ -230,7 +230,7 @@ selreport <- function(
   cob <- Countinggraphs(da,selvar=names(da))
   cob$sortpre(4,3)
   cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5))
-  return(list(co=co,ges=ges,ies=ies,md=baldata[[2]],cb=cob,md=md))
+  return(list(co=co,ges=ges,ies=ies,cb=cob,md=baldata[[2]]))
 }
 ##' @export seloutput
 seloutput <- function(selreport=NULL){
@@ -906,20 +906,7 @@ Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   syequ <<- eqpar$meqs
   #radpar <<- c(theta=0,phi=0,rho=0)
   metad <<- list( mtd = list( nmn = "Default"), spr = list(), sol = list( fr = "1", eq = "alpha=k0+k1*x+k2*y", va = "y"), prg = list( cnd = 0, z = 0, stuv = c(0,0,0,0), blup = c(0,1), eqp = "alpha=k0+k1*g+k2*h"), bib = list())
-  lpku <<- list(
-    S = list(
-      x = c(Sd = 'x*(Z-U-V)', Td = '(1-x)*(Z-U-V)', Ud = 'U', Vd = 'V'),'S~S_hat',
-      y = c(Sd = 'S', Td = 'T', Ud = 'y*(Z-S-T)', Vd = '(1-y)*(Z-S-T)','U~U_hat')
-    ),
-    H = list(
-      g = c(Sd = 'g*(Z-T-U)', Td = 'T', Ud = 'U', Vd = '(1-g)*(Z-T-U)','S~S_hat'),
-      h = c(Sd = 'S', Td = 'h*(Z-T-U)', Ud = 'h*(Z-T-U)', Vd = 'V','S~S_hat')
-    ),
-    O = list(
-      n = c(Sd = 'm*(Z-T-V)', Td = 'T', Ud = '(1-m)*(Z-T-V)', Vd = 'V','S-S_hat'),
-      m = c(Sd = 'S', Td = 'm*(Z-T-V)', Ud = 'U', Vd = '(1-m)*(Z-T-V)','T-T_hat')
-    )
-  )
+  lpkul <<- lpkul
 })
 Estimation$methods(regression=function(regequ=c("alpha=k0+k1*x+k2*y")){
   regass <<- regequ

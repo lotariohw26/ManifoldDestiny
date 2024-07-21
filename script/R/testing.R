@@ -6,6 +6,8 @@ apps <- appn2
 adat <- apps[[1]]
 amet <- apps[[2]]
 rept <- seloutput(selreport(apps))
+rept[[11]]
+
 ###########################################################################################################
 apps <- appn4
 adat <- apps[[1]]
