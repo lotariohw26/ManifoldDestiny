@@ -216,13 +216,13 @@ selreport <- function(
   #co$rotation(rpar=rparv)
   #co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
-  ges$regression(md$sol$eq)
+  ges$regression(md$sol$eq[1])
   ges$diagnostics()
   ges$hat_predict(md$sol$va)
   ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
-  ies$regression(md$sol$eq)
+  ies$regression(md$sol$eq[2])
   ies$diagnostics()
   ## Identify
   ### Bowplot

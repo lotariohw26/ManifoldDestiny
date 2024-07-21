@@ -7,9 +7,9 @@ qenvar <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_app
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #######################################################################################################################################################
 # Applications
-#recoudatr(qenvar$appn1)
-#recoudatr(qenvar$appn2)
-recoudatr(qenvar$appn3)
+recoudatr(qenvar$appn1)
+recoudatr(qenvar$appn2)
+#recoudatr(qenvar$appn3)
 #recoudatr(qenvar$appn4)
 #######################################################################################################################################################
 # Simulation
@@ -51,4 +51,4 @@ rigv <- lapply(1:3, function(x) {
 #amet <- apps[[2]]
 #cogr <- Countinggraphs(apps[[1]])
 #selo <- seloutput(selreport(apps))
-
+bm()

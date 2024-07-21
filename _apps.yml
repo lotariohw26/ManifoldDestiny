@@ -15,7 +15,7 @@ appn1:
     stuv: ['A1', 'B1', 'A2', 'B2']
   sol:
     fr: "2"
-    eq: "alpha=k0+k1*g+k2*h"
+    eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
     va: "g"
   prg:
     cnd: 0
@@ -43,7 +43,7 @@ appn2:
     stuv: ['A1', 'B1', 'A2', 'B2']
   sol:
     fr: "2"
-    eq: "alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3"
+    eq: ["alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3","alpha=k0+k1*g+k2*h+k3*Gamma"]
     va: "g"
   prg:
     cnd: 0
@@ -73,7 +73,7 @@ appn3:
     va: y
   sol:
     fr: "1"
-    eq: "alpha=k0+k1*x+k2*y"
+    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y"]
     va: "y"
   prg:
     cnd: 0
@@ -101,7 +101,7 @@ appn4:
     stuv: ['A3', 'B3', 'A1+A2', 'B1+B2']
   sol:
     fr: "2"
-    eq: "alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3"
+    eq: ["alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3","alpha=k0+k1*g+k2*h"]
     va: "g"
   prg:
     cnd: 0
@@ -133,7 +133,7 @@ appn5:
     ro: [0, 0, 0]
   sol:
     fr: "2"
-    eq: "alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3"
+    eq: ["alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3","alpha=k0+k1*g+k2*h"]
     va: "g"
     ex: ["alpha","g","h"]
   prg:
@@ -168,7 +168,7 @@ appn6:
     bib: ['']
   sol:
     fr: "2"
-    eq: "alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3"
+    eq: ["alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3","alpha=k0+k1*h+k2*g"]
     va: "g"
     ex: ["alpha","g","h"]
   prg:
@@ -196,7 +196,7 @@ appn7:
     ro: [0, 0, 0]
   sol:
     fr: "2"
-    eq: "alpha=k0+k1*g+k2*h"
+    eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h"]
     va: "g"
     ex: ["alpha","g","h"]
   prg:
