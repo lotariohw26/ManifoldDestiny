@@ -1,11 +1,11 @@
 appn1:
   nid: "appn1"
   mtd:
-    nmn: Presidential 
-    sta: Nevada
-    cou: ['Clark', 'Washoe']
+    nmn: "Presidential"
     yea: 2020
     cnd: ['Trump (R)', 'Biden (D)']
+    sta: "Nevada"
+    cou: ['Clark', 'Washoe']
     mod: ['EV', 'MiV']
   spr:
     url: "https://docs.google.com/spreadsheets/d/1gkf41sJRAQ6bwKmlAAcb7hAQ6v4zIXG2wDYl67LrJ4k/edit#gid=0"
@@ -28,10 +28,10 @@ appn1:
 appn2:
   nid: "appn2"
   mtd:
-    nmn: General
+    nmn: "General"
+    sta: "Nevada"
     rcn: "General Election"
     cnd: ['Stavros (R)', 'Miller(D)']
-    sta: "Nevada"
     cou: []
     mod: ['ADV', 'MiV', 'EDV']
     yea: 2020
@@ -72,9 +72,9 @@ appn3:
     eq: "alpha=k0+k1*x+k2*y"
     va: y
   sol:
-    fr: "2"
-    eq: "alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3"
-    va: "g"
+    fr: "1"
+    eq: "alpha=k0+k1*x+k2*y"
+    va: "y"
   prg:
     cnd: 0
     z: 0 
