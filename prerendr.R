@@ -137,22 +137,41 @@ suppressMessages(ManifoldDestiny::wasmconload())
 #
 
 #ManifoldDestiny::wasmconload()
-lpku <<- list(
-  S = list(
-    x = c(Sd = 'x*(Z-U-V)', Td = '(1-x)*(Z-U-V)', Ud = 'U', Vd = 'V'),'S~S_hat',
-    y = c(Sd = 'S', Td = 'T', Ud = 'y*(Z-S-T)', Vd = '(1-y)*(Z-S-T)','U~U_hat')
-  ),
-  H = list(
-    g = c(Sd = 'g*(Z-T-U)', Td = 'T', Ud = 'U', Vd = '(1-g)*(Z-T-U)','S~S_hat'),
-    h = c(Sd = 'S', Td = 'h*(Z-T-U)', Ud = 'h*(Z-T-U)', Vd = 'V','S~S_hat')
-  ),
-  O = list(
-    n = c(Sd = 'm*(Z-T-V)', Td = 'T', Ud = '(1-m)*(Z-T-V)', Vd = 'V','S-S_hat'),
-    m = c(Sd = 'S', Td = 'm*(Z-T-V)', Ud = 'U', Vd = '(1-m)*(Z-T-V)','T-T_hat')
-  )
-)
-usethis::use_data(lpkul, overwrite = TRUE)
-
+#lpku <<- list(
+#  S = list(
+#    x = c(Sd = 'x*(Z-U-V)', Td = '(1-x)*(Z-U-V)', Ud = 'U', Vd = 'V'),'S~S_hat',
+#    y = c(Sd = 'S', Td = 'T', Ud = 'y*(Z-S-T)', Vd = '(1-y)*(Z-S-T)','U~U_hat')
+#  ),
+#  H = list(
+#    g = c(Sd = 'g*(Z-T-U)', Td = 'T', Ud = 'U', Vd = '(1-g)*(Z-T-U)','S~S_hat'),
+#    h = c(Sd = 'S', Td = 'h*(Z-T-U)', Ud = 'h*(Z-T-U)', Vd = 'V','S~S_hat')
+#  ),
+#  O = list(
+#    n = c(Sd = 'm*(Z-T-V)', Td = 'T', Ud = '(1-m)*(Z-T-V)', Vd = 'V','S-S_hat'),
+#    m = c(Sd = 'S', Td = 'm*(Z-T-V)', Ud = 'U', Vd = '(1-m)*(Z-T-V)','T-T_hat')
+#  )
+#)
+#usethis::use_data(lpku, overwrite = TRUE)
+#
+#
+#
+#stickers <-
+#  list(parameters=list(
+#  standard=c("alpha","x","y","zeta","lamda","Omega"),
+#  hybrid=c("alpha","g","h","Gamma","Omega","lamda"),
+#  opposition=c("alpha","m","n","xi","lamda","Omega"),
+#  bowshock=c("alpha","x","y","Omega","m","n")
+#  ),
+#  forms=list('_s','o_h','h_o')) 
+#
+#
+#
+#parameters
+#unname(unlist(stickers$parameters))
+#usethis::use_data(stickers, overwrite = TRUE)
+##
+##ManifoldDestiny::bm()
+#
 
 
 

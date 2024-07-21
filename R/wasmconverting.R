@@ -56,7 +56,6 @@ py_polysolverW <- function(degree=1,kvec=NULL){
 }
 #' @export manobj
 manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
-#	browser()
   polyc <- setNames(as.vector(lapply(enfl[[1]], as.character)),LETTERS[1:5])
   la_e <- unlist(polyc[c(LETTERS[1:5])])
   pnr <- sum(la_e!="0")
@@ -231,6 +230,7 @@ selreport <- function(
   cob$sortpre(4,3)
   cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5))
   return(list(co=co,ges=ges,ies=ies,cb=cob,md=baldata[[2]]))
+  browser()
 }
 ##' @export seloutput
 seloutput <- function(selreport=NULL){
@@ -247,10 +247,9 @@ seloutput <- function(selreport=NULL){
   l4 <- selreport[[2]]$resplots[[1]][[4]]
   tab8 <- cowplot::plot_grid(plotlist=list(l1,l2,l3,l4))
   tab9 <- dplyr::select(selreport[[2]]$comdesc,1,3)
-  tab10 <- selreport[[4]]
-  tab11 <- selreport[[5]]$pl_2dsort
-  tab12 <- selreport[[6]]
-  list(rdfc=tab1,decs=tab2,corxy=tab3,qunt=tab4,ro3d=tab5,r2li=tab6,regr=tab7,resp=tab8,cmp=tab9,md=tab10,bb=tab11,md=tab12)
+  tab10 <- selreport[[4]]$pl_2dsort
+  tab11 <- selreport[[5]]
+  list(rdfc=tab1,decs=tab2,corxy=tab3,qunt=tab4,ro3d=tab5,r2li=tab6,regr=tab7,resp=tab8,cmp=tab9,bs=tab10,md=tab11)
 }
 
 ##' @export Rall
@@ -585,7 +584,7 @@ Countingprocess$methods(sortpre=function(form=1,
 					 polyn=6,
 					 sortby='alpha'
 					 ){
-  frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11),c(12,13,14,14,13),c(1,2,4,11,12,15))[[form]]
+  frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11,12),c(13,14,15,16,17,18),c(19,20,21,22,23,24))[[form]]
   #  [1] "alpha" "x"     "y"     "Omega" "zeta"  "lamda" "alpha" "g"     "h"     "lamda" "Gamma" "Omega" "alpha"
   # [14] "m"     "n"     "Omega" "xi"    "lamda"
   selvar <- unname(unlist(parameters))[frmsel]
@@ -724,10 +723,12 @@ Countinggraphs$methods(plot2d=function(form=1,
     				       labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,
 				       alpha=1,size=1)
 				       ){
+
+  pselv <- list(psel,psel[c(1,2,3)])[[1]]
   longdf <- tidyr::pivot_longer(quintile,all_of(c(psel,paste0(psel,'_pred'))))
   go <- ggplot2::ggplot(data=longdf) +
-    ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel[c(1,2,3)],'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +
-    ggplot2::geom_point(data=filter(longdf,name%in%psel[c(1,2,3)]),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
+    ggplot2::geom_line(data=filter(longdf,name%in%paste0(pselv,'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +
+    ggplot2::geom_point(data=filter(longdf,name%in%pselv),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
     ggplot2::labs(title=labs$title,x=labs$x,y=labs$y,caption=labs$caption) +
     ggplot2::ylim(0,1) +
     ggplot2::theme_bw()
@@ -906,7 +907,7 @@ Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   syequ <<- eqpar$meqs
   #radpar <<- c(theta=0,phi=0,rho=0)
   metad <<- list( mtd = list( nmn = "Default"), spr = list(), sol = list( fr = "1", eq = "alpha=k0+k1*x+k2*y", va = "y"), prg = list( cnd = 0, z = 0, stuv = c(0,0,0,0), blup = c(0,1), eqp = "alpha=k0+k1*g+k2*h"), bib = list())
-  lpkul <<- lpkul
+  lpku <<- lpkul
 })
 Estimation$methods(regression=function(regequ=c("alpha=k0+k1*x+k2*y")){
   regass <<- regequ
