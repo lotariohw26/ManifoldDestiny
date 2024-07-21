@@ -2,7 +2,16 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
-apps <- appn2
+###########################################################################################################
+apps <- appn3
+adat <- apps[[1]]
+amet <- apps[[2]]
+rept <- seloutput(selreport(apps))
+rept 
+
+
+###########################################################################################################
+apps <- appn3
 adat <- apps[[1]]
 amet <- apps[[2]]
 cob <- Countinggraphs(adat,selvar=names(adat))
@@ -10,12 +19,6 @@ cob$sortpre(4,3)
 cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5))
 rept <- seloutput(selreport(apps))
 rept[[10]]
-###########################################################################################################
-apps <- appn4
-adat <- apps[[1]]
-amet <- apps[[2]]
-rept <- seloutput(selreport(apps))
-###########################################################################################################
 
 bm()
 

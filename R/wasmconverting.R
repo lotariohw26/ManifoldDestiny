@@ -585,7 +585,6 @@ Countingprocess$methods(sortpre=function(form=1,
 					 sortby='alpha'
 					 ){
 
-	browser()
   frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11,12),c(13,14,15,16,17,18),c(19,20,21,22,23,24))[[form]]
   # [1] "alpha" "x"     "y"     "zeta"  "lamda" "Omega" "alpha" "g"     "h"     "Gamma" "Omega" "lamda" "alpha"
   #[14] "m"     "n"     "xi"    "lamda" "Omega" "alpha" "x"     "y"     "Omega" "m"     "n"    
