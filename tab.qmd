@@ -47,5 +47,9 @@ kableExtra::kbl(selo[['cmp']]) %>% kableExtra::kable_paper(full_width = F) %>% k
 ```{r, echo=F, out.width="60%"}
 selo[['resp']]
 ```
+### {{< var tabs.h8 >}}
+```{r, echo=F, out.width="60%"}
+selo[['bs']]
+```
 ::: 
 

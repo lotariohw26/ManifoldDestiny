@@ -228,9 +228,9 @@ selreport <- function(
   ### Bowplot
   cob <- Countinggraphs(da,selvar=names(da))
   cob$sortpre(4,3)
-  cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5))
+  cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
+  selv=2)
   return(list(co=co,ges=ges,ies=ies,cb=cob,md=baldata[[2]]))
-  browser()
 }
 ##' @export seloutput
 seloutput <- function(selreport=NULL){
@@ -584,9 +584,11 @@ Countingprocess$methods(sortpre=function(form=1,
 					 polyn=6,
 					 sortby='alpha'
 					 ){
+
+	browser()
   frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11,12),c(13,14,15,16,17,18),c(19,20,21,22,23,24))[[form]]
-  #  [1] "alpha" "x"     "y"     "Omega" "zeta"  "lamda" "alpha" "g"     "h"     "lamda" "Gamma" "Omega" "alpha"
-  # [14] "m"     "n"     "Omega" "xi"    "lamda"
+  # [1] "alpha" "x"     "y"     "zeta"  "lamda" "Omega" "alpha" "g"     "h"     "Gamma" "Omega" "lamda" "alpha"
+  #[14] "m"     "n"     "xi"    "lamda" "Omega" "alpha" "x"     "y"     "Omega" "m"     "n"    
   selvar <- unname(unlist(parameters))[frmsel]
   psel <<- selvar[1:ifelse(form %in% 1:3,5,6)]
   proppar <- rev(selvar)[1]
@@ -721,10 +723,11 @@ Countingprocess$methods(manimp=function(init_par=NULL,
 Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
 Countinggraphs$methods(plot2d=function(form=1,
     				       labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,
-				       alpha=1,size=1)
+				       alpha=1,size=1),
+				       selv=1
 				       ){
 
-  pselv <- list(psel,psel[c(1,2,3)])[[1]]
+  pselv <- list(psel[c(1,2,3)],psel)[[selv]]
   longdf <- tidyr::pivot_longer(quintile,all_of(c(psel,paste0(psel,'_pred'))))
   go <- ggplot2::ggplot(data=longdf) +
     ggplot2::geom_line(data=filter(longdf,name%in%paste0(pselv,'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +
