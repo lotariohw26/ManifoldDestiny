@@ -39,7 +39,7 @@ rigv <- lapply(1:3, function(x) {
   cogr$mansys(sygen=exs)
   cogr$polyc[[1]]
   cogr$setres(NULL,1)
-  cogr$setres(0.20,1)
+  cogr$setres(0.14,1)
   cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
   assign(mda$nid,list(gsh,mda))
   do.call("use_data", list(as.name(mda$nid), overwrite = T))

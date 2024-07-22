@@ -704,7 +704,6 @@ Countingprocess$methods(manimp=function(init_par=NULL,
     #print(clvl)
   }
   # Init
-  #browser()
   allvec <- c(unlist(allvar$pre),unlist(allvar$end))
   stuv <- paste0(c(unlist(allstuv)))
   sho <- c("_s","_h","_o")[[mansysl$frm]]

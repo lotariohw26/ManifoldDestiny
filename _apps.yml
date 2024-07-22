@@ -1,3 +1,104 @@
+appsn:
+  nid: appsn
+  mtd:
+    nmn: Defeault
+  spr:
+  sol:
+    fr: "1"
+    pr: ["alpha","x","y"]
+    de: ["zeta","Omega","lamda"]
+    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
+    ro: [0, 0, 0]
+    va: "y"
+    ls: "(alpha-alpha_s)^2"
+  prg:
+    cnd: 0
+    z: 0 
+    stuv: [0,0,0,0]
+    blup: [0,1]
+    eqp: "alpha=k0+k1*g+k2*h"
+  bib: []
+apprn:
+  nid: apprn
+  mtd:
+    nmn: Defeault
+  spr:
+  sol:
+    fr: "1"
+    pr: ["alpha","x","y"]
+    de: ["zeta","Omega","lamda"]
+    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
+    va: "y"
+    ls: "(alpha-alpha_s)^2"
+  prg:
+    cnd: 0
+    z: 0 
+    stuv: [0,0,0,0]
+    blup: [0,1]
+    eqp: "alpha=k0+k1*x+k2*y+k3*zeta"
+  bib: []
+  #hybrid=c("alpha","g","h","Gamma","Omega","lamda"),
+apprh:
+  nid: apprn
+  mtd:
+    nmn: Defeault
+  spr:
+  sol:
+    fr: "2"
+    pr: ["alpha","h","g"]
+    de: ["Gamma","Omega","lamda"]
+    eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
+    va: "g"
+    ls: "(alpha-alpha_s)^2"
+  prg:
+    cnd: 0
+    z: 0 
+    stuv: [0,0,0,0]
+    blup: [0,1]
+    eqp: "alpha=k0+k1*x+k2*y+k3*zeta"
+  bib: []
+appro:
+  nid: apprn
+  mtd:
+    nmn: Defeault
+  spr:
+  sol:
+    fr: "2"
+    pr: ["alpha","h","g"]
+    de: ["Gamma","Omega","lamda"]
+    eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
+    va: "g"
+    ls: "(alpha-alpha_s)^2"
+  prg:
+    cnd: 0
+    z: 0 
+    stuv: [0,0,0,0]
+    blup: [0,1]
+    eqp: "alpha=k0+k1*x+k2*y+k3*zeta"
+  bib: []
+appp0:
+  mtd:
+    nmn: Test
+    nid: appp1
+  spr:
+    nid: appp0
+    url: "https://docs.google.com/spreadsheets/d/107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0"
+    pgn: 1
+    rng: A1:F23
+    cln: ['PN', 'R', 'S', 'T', 'U', 'V']
+    stuv: ['S', 'T', 'U', 'V']
+  sol:
+    fr: "1"
+    eq: "alpha=k0+k1*x+k2*y"
+    va: "y"
+  prg:
+    cnd: 0
+    z: 0 
+    stuv: [0,0,0,0]
+    blup: [0,1]
+    eqp: "alpha=k0+k1*g+k2*h"
+  bib: []
+
 appn1:
   nid: "appn1"
   mtd:
@@ -393,104 +494,4 @@ shn2: "2"
 ##'https://docs.google.com/spreadsheets/d/1xk8IW9v03i0omZfUo9c75_7wuw9RvE1w8UqUyo1WzAw/edit#gid=1217173103')
 ###################################################################################################################
 # lpy <<- py_genpolycoeff(plr=1,parm=c("alpha", "g", "h"), solvd='g',eur=eurv)
-
-appsn:
-  nid: appsn
-  mtd:
-    nmn: Defeault
-  spr:
-  sol:
-    fr: "1"
-    pr: ["alpha","x","y"]
-    de: ["zeta","Omega","lamda"]
-    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
-    ro: [0, 0, 0]
-    va: "y"
-    ls: "(alpha-alpha_s)^2"
-  prg:
-    cnd: 0
-    z: 0 
-    stuv: [0,0,0,0]
-    blup: [0,1]
-    eqp: "alpha=k0+k1*g+k2*h"
-  bib: []
-apprn:
-  nid: apprn
-  mtd:
-    nmn: Defeault
-  spr:
-  sol:
-    fr: "1"
-    pr: ["alpha","x","y"]
-    de: ["zeta","Omega","lamda"]
-    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
-    va: "y"
-    ls: "(alpha-alpha_s)^2"
-  prg:
-    cnd: 0
-    z: 0 
-    stuv: [0,0,0,0]
-    blup: [0,1]
-    eqp: "alpha=k0+k1*x+k2*y+k3*zeta"
-  bib: []
-apprh:
-  nid: apprh
-  mtd:
-    nmn: Defeault
-  spr:
-  sol:
-    fr: "1"
-    pr: ["alpha","x","y"]
-    de: ["zeta","Omega","lamda"]
-    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
-    va: "y"
-    ls: "(alpha-alpha_s)^2"
-  prg:
-    cnd: 0
-    z: 0 
-    stuv: [0,0,0,0]
-    blup: [0,1]
-    eqp: "alpha=k0+k1*x+k2*y+k3*zeta"
-  bib: []
-appro:
-  nid: appro
-  mtd:
-    nmn: Defeault
-  spr:
-  sol:
-    fr: "1"
-    pr: ["alpha","x","y"]
-    de: ["zeta","Omega","lamda"]
-    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
-    va: "y"
-    ls: "(alpha-alpha_s)^2"
-  prg:
-    cnd: 0
-    z: 0 
-    stuv: [0,0,0,0]
-    blup: [0,1]
-    eqp: "alpha=k0+k1*x+k2*y+k3*zeta"
-  bib: []
-appp0:
-  mtd:
-    nmn: Test
-    nid: appp1
-  spr:
-    nid: appp0
-    url: "https://docs.google.com/spreadsheets/d/107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0"
-    pgn: 1
-    rng: A1:F23
-    cln: ['PN', 'R', 'S', 'T', 'U', 'V']
-    stuv: ['S', 'T', 'U', 'V']
-  sol:
-    fr: "1"
-    eq: "alpha=k0+k1*x+k2*y"
-    va: "y"
-  prg:
-    cnd: 0
-    z: 0 
-    stuv: [0,0,0,0]
-    blup: [0,1]
-    eqp: "alpha=k0+k1*g+k2*h"
-  bib: []
 

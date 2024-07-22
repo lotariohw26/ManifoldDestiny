@@ -3,16 +3,18 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
 ###########################################################################################################
-apps <- appn3
+apps <- appsn
 adat <- apps[[1]]
 amet <- apps[[2]]
 rept <- seloutput(selreport(apps))
 rept[[7]]
 
 ###########################################################################################################
-apps <- appn3
+apps <- appsn
 adat <- apps[[1]]
 amet <- apps[[2]]
+
+
 cob <- Countinggraphs(adat,selvar=names(adat))
 cob$sortpre(4,3)
 cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5))
