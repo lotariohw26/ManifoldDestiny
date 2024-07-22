@@ -3,7 +3,7 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
 ###########################################################################################################
-apps <- appsn
+apps <- apprn
 adat <- apps[[1]]
 amet <- apps[[2]]
 rept <- seloutput(selreport(apps))

@@ -1,6 +1,7 @@
 # _apps.yml
 # data-raw/record_static.R
 # script/R/testing.R
+# shinyapps/manimp/app.R
 # shinyapps/empapp/app.R
 # script/python/polysolver.py
 # script/R/stylized.R
@@ -108,5 +109,5 @@ bibliography: man_bib.bib
 # shinyapps/restor/app.R
 # url: https://docs.google.com/spreadsheets/d/107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0
 #frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11),c(12,13,14,14,13),c(1,2,4,11,12,15))[[form]]
-  #  [1] "alpha" "x"     "y"     "Omega" "zeta"  "lamda" "alpha" "g"     "h"     "lamda" "Gamma" "Omega" "alpha"
-  # [14] "m"     "n"     "Omega" "xi"    "lamda"
+#  [1] "alpha" "x"     "y"     "Omega" "zeta"  "lamda" "alpha" "g"     "h"     "lamda" "Gamma" "Omega" "alpha"
+# [14] "m"     "n"     "Omega" "xi"    "lamda"

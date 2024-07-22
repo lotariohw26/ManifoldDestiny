@@ -7,10 +7,10 @@ qenvar <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_app
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #######################################################################################################################################################
 # Applications
-recoudatr(qenvar$appn1)
-recoudatr(qenvar$appn2)
-recoudatr(qenvar$appn3)
-recoudatr(qenvar$appn4)
+#recoudatr(qenvar$appn1)
+#recoudatr(qenvar$appn2)
+#recoudatr(qenvar$appn3)
+#recoudatr(qenvar$appn4)
 #######################################################################################################################################################
 # Simulation
 ## Normal 
@@ -24,9 +24,10 @@ mda <- qenvar$appsn
 assign(mda$nid,list(gsh,mda))
 do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
 ## Rigged election
+set.seed(1)
 cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
-plfc <- c(0.20,0.20,0.20)
+plfc <- c(0.12,0.12,0.12)
 exn <- c("apprn","apprh","appro")
 rigv <- lapply(1:3, function(x) { 
   mda <- qenvar[[exn[x]]]
@@ -39,9 +40,9 @@ rigv <- lapply(1:3, function(x) {
   cogr$mansys(sygen=exs)
   cogr$polyc[[1]]
   cogr$setres(NULL,1)
-  cogr$setres(0.14,1)
+  cogr$setres(plfc[1],1)
   cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
-  assign(mda$nid,list(gsh,mda))
+  assign(mda$nid,list(cogr$rdfc,mda))
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
 })
 #######################################################################################################################################################

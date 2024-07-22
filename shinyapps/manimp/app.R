@@ -109,13 +109,13 @@ server <- function(input, output, session) {
     app_n_cou$plot2d()
     #### Rigged election counting
     app_exr_cou <- Countinggraphs(app_bal)
-    #app_exr_cou$mansys(sygen=list(frm=ifrm,
-    #			      pre=c("alpha","x","y"),
-    #			      end=c("zeta","lamda","Omega"),
-    #			      stuv=c("S","T","U","V"),
-    #			      me=c(plnr=ipln,rot=0),
-    #			      lf=loss))
-    browser()
+    app_exr_cou$mansys(sygen=list(frm=ifrm,
+    			      pre=c("alpha","x","y"),
+    			      end=c("zeta","lamda","Omega"),
+    			      stuv=c("S","T","U","V"),
+    			      me=c(plnr=ipln,rot=0),
+    			      lf=loss))
+    #browser()
     #rotv<-list(list(fr=c(1,10),sr=c(4,0),tr=c(2,0)),list(fr=c(1,14.378100),sr=c(4,49.762610),tr=c(2,11.5781)))[[1]]
     #app_exr_cou$mansys(sygen=list(frm=ifrm,
     #  pre=c("alpha","x","y"),
