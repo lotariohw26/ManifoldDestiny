@@ -45,7 +45,10 @@ rigv <- lapply(1:3, function(x) {
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
 })
 #######################################################################################################################################################
+#devtools::document()i
 #bm()
+#ManifoldDestiny::apprh[[2]]
+#ManifoldDestiny::appro[[2]]
 #apps <- ManifoldDestiny::appsn
 #adat <- apps[[1]]
 #amet <- apps[[2]]

@@ -16,9 +16,6 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 
 
 
-
-
-
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h1 >}}
 ```{r}
@@ -91,9 +88,5 @@ apps <- appn4
 ```
 {{< include tab.qmd >}}
 :::
-
-
-
-
 
 
