@@ -97,8 +97,8 @@ server <- function(input, output, session) {
     cformo()[[1]]$all_pl_3d_mani[[1]]
   })
   output$print_sum <- renderPrint({
-    list(summary(cformo()[[3]]$regsum[[1]]),
-	 summary(cformo()[[2]]$regsum[[1]]))
+    list(summary(cformo()[[2]]$regsum[[1]]),
+	 summary(cformo()[[3]]$regsum[[1]]))
   })
   output$plot_res <- renderPlot({
     l1 <- cformo()[[2]]$resplots[[1]][[1]]

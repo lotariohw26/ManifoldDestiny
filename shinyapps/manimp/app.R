@@ -129,32 +129,32 @@ server <- function(input, output, session) {
     rec$plot2d()
     list(fec,rig,rec)
   })  
-  output$plotq_r <- renderPlot({
-    dft <- reativ()
-    gmr <- dft[[3]]$pl_2dsort[[1]]
-    cowplot::plot_grid(gmr, labels = "Rigged election")
-  })
   # Plot 
   output$plotq_n <- renderPlot({
     dft <- reativ()
     gmn <- dft[[1]]$pl_2dsort[[1]]
     cowplot::plot_grid(gmn, labels = "Fair election")
   })
+  output$plotq_r <- renderPlot({
+    dft <- reativ()
+    gmr <- dft[[3]]$pl_2dsort[[1]]
+    cowplot::plot_grid(gmr, labels = "Rigged election")
+  })
   output$table_dsc_n <- renderPrint({
-    sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
+    sugs <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
     nel <- Estimation(reativ()[[1]]$rdfc,1)
-    nel$regression(sugsol[1])
+    nel$regression(sugs[1])
     n1 <- summary(nel$regsum[[1]])
-    nel$regression(sugsol[2])
+    nel$regression(sugs[2])
     n2 <- summary(nel$regsum[[1]])
-    list(n1,n1)
+    list(n1,n2)
   })
   output$table_dsc_r <- renderPrint({
-    sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
+    sugs <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
     ner <- Estimation(reativ()[[2]]$rdfc,1)
-    ner$regression(sugsol[1])
+    ner$regression(sugs[1])
     r1 <- summary(ner$regsum[[1]])
-    ner$regression(sugsol[2])
+    ner$regression(sugs[2])
     r2 <- summary(ner$regsum[[1]])
     list(r1,r2)
   })
