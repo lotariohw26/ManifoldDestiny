@@ -125,7 +125,7 @@ server <- function(input, output, session) {
     rig$mansys(sygen=rss)
     rig$polyc[[1]]
     rig$setres(NULL,1)
-    rig$setres(plfc[1],1)
+    rig$setres(0.20,1)
     rig$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
     rec <- Countinggraphs(def$rdfc)
     rec$sortpre()

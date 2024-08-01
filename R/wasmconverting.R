@@ -461,7 +461,7 @@ Countingprocess <- setRefClass("Countingprocess",
 					   allstuv='list',
 					   loss_df='data.frame',
 					   loss_ls='list',
-					   W='character'
+					   wasm='logical'
 					   ))
 Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   selvar=c('P','R','S','T','U','V'),
@@ -469,7 +469,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   sortby=alpha
 					   ){
 
-  W <<- F # Sys.info()[['sysname']]=="Emscripten"
+	#browser()
+  wasm <<- F # Sys.info()[['sysname']]=="Emscripten"
   parameters <<- stickers[['parameters']]
   se <<- eqpar$meqs
   lx <<- eqpar$meql
@@ -519,6 +520,9 @@ Countingprocess$methods(rotation=function(selvar=c('P','Z','R','S','T','U','V','
 				     mmeanv=NULL,
 			             sli=NULL)
 				     {
+
+
+	browser()
 
   #if (all(rpar)!=0){
     rdfc <<- erotation(dfe=rdfc,selvar=selvar,rpar=rpar,rs=rs,mvec=mmeanv,slice=20)
@@ -615,6 +619,7 @@ Countingprocess$methods(sortpre=function(form=1,
   #sumreg <<- list(poleq=paste0(plso),polint=pintv,R2=paste0(plr2))
 })
 Countingprocess$methods(mansys=function(sygen=NULL,stuv=c("S","T","U","V")){
+				browser()
   mansysl <<- sygen
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   allvar <<- list(pre=mansysl$pre,end=mansysl$end)

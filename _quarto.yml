@@ -1,4 +1,6 @@
-# _apps.yml
+# _apps_sim.yml
+# _apps_rel.yml
+# _apps_his.yml
 # data-raw/record_static.R
 # script/R/testing.R
 # shinyapps/manimp/app.R

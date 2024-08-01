@@ -3,14 +3,17 @@ ManifoldDestiny::wasmconload()
 library(usethis)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-qenvar <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_apps.yml"))
+qenvae <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_apps_rel.yml"))
+qenvas <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_apps_sim.yml"))
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #######################################################################################################################################################
 # Applications
-#recoudatr(qenvar$appn1)
-#recoudatr(qenvar$appn2)
-#recoudatr(qenvar$appn3)
-#recoudatr(qenvar$appn4)
+recoudatr(qenvae$appn7)
+#recoudatr(qenvae$appn1)
+#recoudatr(qenvae$appn2)
+#recoudatr(qenvae$appn3)
+#recoudatr(qenvae$appn4)
+#recoudatr(qenvae$appn4)
 #######################################################################################################################################################
 # Simulation
 ## Normal 
@@ -20,7 +23,7 @@ proa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 prob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztec <- c(0,1)	
 gsh <- ballcastsim(perv,prow,proa,prob,ztec)
-mda <- qenvar$appsn
+mda <- qenvas$appsn
 assign(mda$nid,list(gsh,mda))
 do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
 ## Rigged election
@@ -29,6 +32,8 @@ cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
 plfc <- c(0.12,0.12,0.12)
 exn <- c("apprn","apprh","appro")
+
+
 rigv <- lapply(1:3, function(x) { 
   mda <- qenvar[[exn[x]]]
   exs <- list(frm=as.numeric(mda$sol$fr),

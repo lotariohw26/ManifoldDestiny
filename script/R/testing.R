@@ -3,6 +3,19 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
 ###########################################################################################################
+apps <- appn7
+adat <- apps[[1]]
+amet <- apps[[2]]
+cob <- Countinggraphs(adat,selvar=names(adat))
+cob$purging() 
+cob$rotation() 
+
+
+
+def <- Estimation(cob$rdfc)
+def$regression("alpha=k0+k1*h+k2*g")
+
+###########################################################################################################
 apps <- apprn
 adat <- apps[[1]]
 amet <- apps[[2]]
