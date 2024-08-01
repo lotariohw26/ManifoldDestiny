@@ -6,30 +6,30 @@ ui <- fluidPage(
   titlePanel("Election simulator for the rigging of a natural election"),
   sidebarLayout(
     sidebarPanel(
-      #h4("Simulation settings:"),
-      #textInput("prec",  "Numer of precinct", value='30, 50, 3'),
-      #textInput("probw",  "Prob of assigning to R:", value='0.51, 0.01'),
-      #textInput("prob_rv", "Prob of R voting:", value='0.7, 0.01'),
-      #textInput("prob_rm", "Prob of voting by mail if voting by R:", value='0.4, 0.01'),
-      #textInput("prob_dv", "Prob of D voting:", value='0.5, 0.01'),
-      #textInput("prob_dm", "Prob of voting by mail if voting by D:", value='0.6, 0.01'),
-      #selectInput("form", "Rigged:",
-      #            choices = c("Normal Form" = "1",
-      #                        "Hybrid Form" = "2",
-      #                        "Opposition Form" = "3"), selected = "1"),
-      #selectizeInput("prevar","Predermined variables",choices=c("alpha","x","y","zeta","omega"),multiple =TRUE,options=list(maxItems=3),
-      #selected = c("alpha", "x", "y")),
-      #selectizeInput("endvar","Endogenous variables",choices=c("alpha","x","y","zeta","lamda"),multiple =TRUE,options=list(maxItems=2), selected=c("zeta","lamda")),
-      #textInput("pn", "Polynomial", value='0.23'),
-      #selectInput("linear", "Polynomial:",
-      #            choices = c("Linear" = "1",
-      #                        "Quadratic" = "2",
-      #                        "Cubic" = "3",
-      #                        "Quartic" = "4"), selected = "1"),
-      #textInput("wn", "White noise", value='0.0, 0.0'),
-      #textInput("kvec", "parameters", value='0,0.5,0.5'),
-      #selectInput("loss", "Loss function:",
-      #choices = c("(alpha-alpha_s)^2" = "1","Def" = "2"), selected = "1"),
+      h4("Simulation settings:"),
+      textInput("npr",  "Numer of precinct", value='30, 50, 3'),
+      textInput("par",  "Prob of assigning to R:", value='0.51, 0.01'),
+      textInput("prv", "Prob of R voting:", value='0.7, 0.01'),
+      textInput("prm", "Prob of voting by mail if voting by R:", value='0.4, 0.01'),
+      textInput("pdv", "Prob of D voting:", value='0.5, 0.01'),
+      textInput("pdm", "Prob of voting by mail if voting by D:", value='0.6, 0.01'),
+      selectInput("form", "Rigged:",
+                  choices = c("Normal Form" = "1",
+                              "Hybrid Form" = "2",
+                              "Opposition Form" = "3"), selected = "1"),
+      selectizeInput("prevar","Predermined variables",choices=c("alpha","x","y","zeta","omega"),multiple =TRUE,options=list(maxItems=3),
+      selected = c("alpha", "x", "y")),
+      selectizeInput("endvar","Endogenous variables",choices=c("alpha","x","y","zeta","lamda"),multiple =TRUE,options=list(maxItems=2), selected=c("zeta","lamda")),
+      textInput("pn", "Polynomial", value='0.23'),
+      selectInput("linear", "Polynomial:",
+                  choices = c("Linear" = "1",
+                              "Quadratic" = "2",
+                              "Cubic" = "3",
+                              "Quartic" = "4"), selected = "1"),
+      textInput("wn", "White noise", value='0.0, 0.0'),
+      textInput("kvec", "parameters", value='0,0.5,0.5'),
+      selectInput("loss", "Loss function:",
+      choices = c("(alpha-alpha_s)^2" = "1","Def" = "2"), selected = "1"),
     #sidebarPanel(
     #  selectInput("cidr", "Complex rotator", choices = c("No", "Yes")),
     #  conditionalPanel(
@@ -42,14 +42,14 @@ ui <- fluidPage(
     #    sliderInput("rho", "Rho:", min = 0, max = 360, value = 0),
     #  ),
     #),
-    #sidebarPanel(
-    #  selectInput("auto", "Manual", choices = c("Yes", "No")),
-    #  conditionalPanel(
-    #    condition = "input.auto == 'No'",
-    #    textInput("ABC","T", value='0.0, 0.0'),
-    #    selectizeInput("lossalog","Loss algorithm",choices=c("alpha","x","y","zeta","lamda"),multiple =FALSE,options=list(maxItems=1))
-    #  )
-    #),
+    sidebarPanel(
+      selectInput("auto", "Manual", choices = c("Yes", "No")),
+      conditionalPanel(
+        condition = "input.auto == 'No'",
+        textInput("ABC","T", value='0.0, 0.0'),
+        selectizeInput("lossalog","Loss algorithm",choices=c("alpha","x","y","zeta","lamda"),multiple =FALSE,options=list(maxItems=1))
+      )
+    ),
     ),
     mainPanel(
       tabsetPanel(
@@ -74,47 +74,45 @@ ui <- fluidPage(
   )
 )
 server <- function(input, output, session) {
-  #observeEvent(input$form, {
-  #    # Update the default value of the "Polynomial Equation(s)" text input
-  #    if (input$form == "1") {
-  #        updateTextInput(session, "wn", value ="0,0")
-  #    } else if (input$form == "2") {
-  #        updateTextInput(session, "wn", value ="0,0001")
-  #    } else if (input$form == "3") {
-  #        updateTextInput(session, "wnf", value ="0,0002")
-  #    }
-  #})    # Create a reactive expression for the result
+  observeEvent(input$form, {
+      # Update the default value of the "Polynomial Equation(s)" text input
+      if (input$form == "1") {
+          updateTextInput(session, "wn", value ="0,0")
+      } else if (input$form == "2") {
+          updateTextInput(session, "wn", value ="0,0001")
+      } else if (input$form == "3") {
+          updateTextInput(session, "wnf", value ="0,0002")
+      }
+  })    # Create a reactive expression for the result
   reativ <- reactive({
     # Input values
+    #inpr <- c(30,50,3)
+    # <- c(m=0.51,s=0.10)
+    # <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
+    # <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
     ## Normal election parameter values
-    #prn <- as.numeric(strsplit(input$prec, ',')[[1]])
-    #pwn <- as.numeric(strsplit(input$probw, ',')[[1]])
-    #prcr <-  c(as.numeric(trimws(strsplit(input$prob_rv, ",")[[1]])),as.numeric(trimws(strsplit(input$prob_rm, ",")[[1]])))[c(1,3,2,4)]
-    #prcd <-  c(as.numeric(trimws(strsplit(input$prob_rv, ",")[[1]])),as.numeric(trimws(strsplit(input$prob_dm, ",")[[1]])))[c(1,3,2,4)]
-    ### Rigged election parameter values
-    #ifrm <- as.numeric(input$form)
-    #ipre <- unlist(strsplit(trimws(input$prevar), '\\s+'))
-    #iend <- unlist(strsplit(trimws(input$endvar), '\\s+'))
-    #ipln <- as.numeric(input$linear)
-    #inpn <- as.numeric(input$pn)
-    #kvec <- as.numeric(strsplit(input$kvec, ',')[[1]])
-    #iwtn <- as.numeric(strsplit(input$wn, ',')[[1]])
-    #loss <- input$loss
-    #inpm <- input$auto=="Yes"
-    ##### Simulation of ballot voting
-    #dfm <- (function(x){data.frame(P = seq(1, x), RV = as.integer(pmax(rnorm(x, prn[2], prn[3]), 0)))})(prn[1])
-    perv <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,100,30)))})(100)
-    prow <- c(m=0.51,s=0.10)
-    proa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
-    prob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
+    inpr <- as.numeric(strsplit(input$npr, ',')[[1]]) 
+    ipar <- as.numeric(strsplit(input$par, ',')[[1]])
+    iprv <-  c(as.numeric(trimws(strsplit(input$prv, ",")[[1]])),as.numeric(trimws(strsplit(input$prm, ",")[[1]])))[c(1,3,2,4)]
+    ipdv <-  c(as.numeric(trimws(strsplit(input$pdv, ",")[[1]])),as.numeric(trimws(strsplit(input$pdm, ",")[[1]])))[c(1,3,2,4)]
+    perv <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,inpr[2],inpr[3])))})(inpr[1])
     ztec <- c(0,1)	
-    gsh  <- ballcastsim(perv,prow,proa,prob,ztec)
+    gsh  <- ballcastsim(perv,ipar,iprv,ipdv,ztec)
     #### Fair election counting
     fec <- Countinggraphs(gsh)
     fec$sortpre()
     fec$plotxy()
     fec$plot2d()
-    #### Rigged election counting
+    #### Rigged election parameter values
+    ifrm <- as.numeric(input$form)
+    ipre <- unlist(strsplit(trimws(input$prevar), '\\s+'))
+    iend <- unlist(strsplit(trimws(input$endvar), '\\s+'))
+    ipln <- as.numeric(input$linear)
+    inpn <- as.numeric(input$pn)
+    ikvc <- as.numeric(strsplit(input$kvec, ',')[[1]])
+    iwtn <- as.numeric(strsplit(input$wn, ',')[[1]])
+    loss <- input$loss
+    #browser()
     rig <- Countinggraphs(fec$rdfc)
     rss <- list(frm=1,
            pre=c('alpha','x','y'),
@@ -123,10 +121,8 @@ server <- function(input, output, session) {
            va='y',
 	   rot=list(fr=c(1,0),sr=c(4,0),tr=c(2,0)))
     rig$mansys(sygen=rss)
-    rig$polyc[[1]]
-    rig$setres(NULL,1)
-    rig$setres(0.20,1)
-    rig$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
+    rig$setres(inpn,1) #rig$setres(inpn,1)
+    rig$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=iwtn,man=T)
     rec <- Countinggraphs(rig$rdfc)
     rec$sortpre()
     rec$plotxy()
