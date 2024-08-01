@@ -522,7 +522,7 @@ Countingprocess$methods(rotation=function(selvar=c('P','Z','R','S','T','U','V','
 				     {
 
 
-	browser()
+#	browser()
 
   #if (all(rpar)!=0){
     rdfc <<- erotation(dfe=rdfc,selvar=selvar,rpar=rpar,rs=rs,mvec=mmeanv,slice=20)
@@ -619,7 +619,6 @@ Countingprocess$methods(sortpre=function(form=1,
   #sumreg <<- list(poleq=paste0(plso),polint=pintv,R2=paste0(plr2))
 })
 Countingprocess$methods(mansys=function(sygen=NULL,stuv=c("S","T","U","V")){
-				browser()
   mansysl <<- sygen
   sho <- c("_s","_h","_o")[[mansysl$frm]]
   allvar <<- list(pre=mansysl$pre,end=mansysl$end)

@@ -53,7 +53,7 @@ ui <- fluidPage(
     ),
     mainPanel(
       tabsetPanel(
-        tabPanel("Quantile",
+        tabPanel("Sorted",
 		 plotOutput("plotq_n"),
 		 plotOutput("plotq_r")
 		 ),
@@ -118,80 +118,79 @@ server <- function(input, output, session) {
     rig <- Countinggraphs(fec$rdfc)
     rss <- list(frm=1,
            pre=c('alpha','x','y'),
-           end=c('zeta','x','y'),
-           eq="alpha=k0+k1*x+k2*y",
-           va="y",
-           rot=list(fr=c(1,0),sr=c(4,0),tr=c(2,0)))
+           end=c('zeta','Omega','lamda'),
+           eq='alpha=k0+k1*x+k2*y',
+           va='y',
+	   rot=list(fr=c(1,0),sr=c(4,0),tr=c(2,0)))
     rig$mansys(sygen=rss)
     rig$polyc[[1]]
     rig$setres(NULL,1)
     rig$setres(0.20,1)
     rig$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
-    rec <- Countinggraphs(def$rdfc)
+    rec <- Countinggraphs(rig$rdfc)
     rec$sortpre()
     rec$plotxy()
     rec$plot2d()
-    #list(app_n_cou,app_exm_cou)
-    list(abc,def,ghi)
+    list(fec,rig,rec)
   })  
-  output$table_dsc_n <- renderPrint({
-    #sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
-    #nel <- Estimation(result()[[1]]$rdfc,1)
-    #nel$regression(sugsol[1])
-    #n1 <- summary(nel$regsum[[1]])
-    #nel$regression(sugsol[2])
-    #n2 <- summary(nel$regsum[[1]])
-    #list(n1,n1)
-  })
-  output$table_dsc_r <- renderPrint({
-    #sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
-    #ner <- Estimation(result()[[2]]$rdfc,1)
-    #ner$regression(sugsol[1])
-    #r1 <- summary(ner$regsum[[1]])
-    #ner$regression(sugsol[2])
-    #r2 <- summary(ner$regsum[[1]])
-    #list(r1,r2)
-  })
-  output$plot3d_n <- renderPlotly({
-    #gdf <- result()[[1]]$rdfc %>% dplyr::select(c('alpha','x','y'))
-    #mrdfc <- as.matrix(gdf)
-    #z <- mrdfc[,1]
-    #x <- mrdfc[,2]
-    #y <- mrdfc[,3]
-    #p1 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers", marker=list(size=3))
-    #plotly::layout(p1,title = "Fair election")
-  })
-  output$plot3d_r <- renderPlotly({
-    #gdf <- result()[[2]]$rdfc %>% dplyr::select(c('alpha','x','y'))
-    #mrdfc <- as.matrix(gdf)
-    #z <- mrdfc[,1]
-    #x <- mrdfc[,2]
-    #y <- mrdfc[,3]
-    #p2 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers",marker = list(size = 3))
-    #plotly::layout(p2,title = "Rigged election")
+  output$plotq_r <- renderPlot({
+    dft <- reativ()
+    gmr <- dft[[3]]$pl_2dsort[[1]]
+    cowplot::plot_grid(gmr, labels = "Rigged election")
   })
   # Plot 
   output$plotq_n <- renderPlot({
-    #dft <- result()
-    #gm1 <- dft[[1]]$pl_2dsort[[1]]
-    #cowplot::plot_grid(gm1, labels = "Fair election")
+    dft <- reativ()
+    gmn <- dft[[1]]$pl_2dsort[[1]]
+    cowplot::plot_grid(gmn, labels = "Fair election")
   })
-  output$plotq_r <- renderPlot({
-    #dft <- result()
-    #gm2 <- dft[[2]]$pl_2dsort[[1]]
-    #cowplot::plot_grid(gm2, labels = "Rigged election")
+  output$table_dsc_n <- renderPrint({
+    sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
+    nel <- Estimation(reativ()[[1]]$rdfc,1)
+    nel$regression(sugsol[1])
+    n1 <- summary(nel$regsum[[1]])
+    nel$regression(sugsol[2])
+    n2 <- summary(nel$regsum[[1]])
+    list(n1,n1)
+  })
+  output$table_dsc_r <- renderPrint({
+    sugsol <- c("alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta")
+    ner <- Estimation(reativ()[[2]]$rdfc,1)
+    ner$regression(sugsol[1])
+    r1 <- summary(ner$regsum[[1]])
+    ner$regression(sugsol[2])
+    r2 <- summary(ner$regsum[[1]])
+    list(r1,r2)
+  })
+  output$plot3d_n <- renderPlotly({
+    gdf <- reativ()[[1]]$rdfc %>% dplyr::select(c('alpha','x','y'))
+    mrdfc <- as.matrix(gdf)
+    z <- mrdfc[,1]
+    x <- mrdfc[,2]
+    y <- mrdfc[,3]
+    p1 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers", marker=list(size=3))
+    plotly::layout(p1,title = "Fair election")
+  })
+  output$plot3d_r <- renderPlotly({
+    gdf <- reativ()[[3]]$rdfc %>% dplyr::select(c('alpha','x','y'))
+    mrdfc <- as.matrix(gdf)
+    z <- mrdfc[,1]
+    x <- mrdfc[,2]
+    y <- mrdfc[,3]
+    p2 <- plotly::plot_ly(x=x,y=y,z=z,type="scatter3d", mode="markers",marker = list(size = 3))
+    plotly::layout(p2,title = "Rigged election")
   })
   output$plotxy_n <- renderPlot({
-    #dft <- result()
-    #gm1 <- dft[[1]]$pl_corrxy[[1]]
-    #gm3 <- dft[[1]]$pl_corrxy[[1]]
-    #cowplot::plot_grid(gm1, gm3, ncol = 2, labels = c("Column 1", "Column 2"))
+    dft <- reativ()
+    gm1 <- dft[[1]]$pl_corrxy[[1]]
+    gm3 <- dft[[1]]$pl_corrxy[[2]]
+    cowplot::plot_grid(gm1, gm3, ncol = 2, labels = c("Column 1", "Column 2"))
   })
   output$plotxy_r <- renderPlot({
-    #dft <- result()
-    #gm2 <- dft[[2]]$pl_corrxy[[1]]
-    #gm4 <- dft[[2]]$pl_corrxy[[1]]
-    #cowplot::plot_grid(gm2, gm4, ncol = 2, labels = c("Column 1", "Column 2"))
+    dft <- reativ()
+    gm2 <- dft[[3]]$pl_corrxy[[1]]
+    gm4 <- dft[[3]]$pl_corrxy[[2]]
+    cowplot::plot_grid(gm2, gm4, ncol = 2, labels = c("Column 1", "Column 2"))
   })
   #output$downloadData <- downloadHandler(
   #  filename = function() {
@@ -202,4 +201,8 @@ server <- function(input, output, session) {
   #})
 }
 shinyApp(ui = ui, server = server)
+
+
+
+
 
