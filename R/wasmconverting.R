@@ -1,4 +1,4 @@
-##################################################################################################################################################
+##################################################################################################################################################ji 
 #' @export wasmconload
 wasmconload <- function(){
   ifelse(Sys.info()[['sysname']]=="Emscripten",
@@ -460,7 +460,8 @@ Countingprocess <- setRefClass("Countingprocess",
 					   allvar='list',
 					   allstuv='list',
 					   loss_df='data.frame',
-					   loss_ls='list'
+					   loss_ls='list',
+					   W='character'
 					   ))
 Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   selvar=c('P','R','S','T','U','V'),
@@ -468,6 +469,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   sortby=alpha
 					   ){
 
+  W <<- F # Sys.info()[['sysname']]=="Emscripten"
   parameters <<- stickers[['parameters']]
   se <<- eqpar$meqs
   lx <<- eqpar$meql
@@ -1034,4 +1036,8 @@ Estimation$methods(hat_intcomp=function(){
     prc0123=100*sum(abs(compare[[comps]] - 0) <= 3)/length(compare[[comps]]))
   comdesc <<- data.frame(fname=txvnc,stats=names(vnd),values=vnd)
 })
+
+
+
+
 

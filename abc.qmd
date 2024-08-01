@@ -1,34 +1,28 @@
 ---
-title: ""
-webr:
-  show-startup-message: true      # Display status of webR initialization
-  show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
-  packages: ['dplyr','data.table','readr','ggplotly']             # Pre-install dependencies
-  cell-options:
-    autorun: true
-filters:
-  - panelize
-  - pyodide
-  - webr
+title: "{{< var titll >}}"
+subtitle: "Based upon the ideas developed by Edward K. Solomon"
+format:
+  revealjs:
+    drop:
+      engine: webr
+      webr:
+        packages:
+          - ggplot2
+          - dplyr
+execute: 
+  cache: false
+footer: <https://lotariohw26.github.io/ManifoldDestiny/>
+output: 
+  html_document:
+    mathjax: "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+nocite: |
+  @*
 ---
 
 
 
-## Web-R
 
-:::{.to-webr}
-```{r}
-1 + 1
-```
-:::
+# Abc
 
-## Pyodide
+2+2
 
-
-
-:::{.to-pyodide}
-```{python}
-x = [1, 2]
-print(x)
-```
-:::
