@@ -48,7 +48,6 @@ rigv <- lapply(1:3, function(x) {
   assign(mda$nid,list(cogr$rdfc,mda))
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
 })
-bm()
 #######################################################################################################################################################
 #devtools::document()i
 #bm()

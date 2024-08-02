@@ -2,12 +2,15 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
-apps <- apprn
+apps <- appsn
 adat <- apps[[1]]
 amet <- apps[[2]]
 rept <- seloutput(selreport(apps))
-rept[[7]]
 
+
+
+rept[[7]]
+amet$sol$ro[[1]]
 ###########################################################################################################
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 url <- "https://docs.google.com/spreadsheets/d/1IYZEi4WnbyZ5PhOZPFV1h6wO3w2e59qL5l7JJZ3Illw/edit?gid=0#gid=0"
