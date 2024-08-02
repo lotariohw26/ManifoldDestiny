@@ -33,7 +33,7 @@ def rall(sel=[0, 0, 0]):
     allrot = [ps[i] for i in sel]
     return allrot
 
-def genpolycoeff(equ="alpha=k0+k1*g+k2*h",parm=["alpha", "x", "y"],solvd='y',plr=1,grd=0,eur=[1, 4, 2]):
+def genpolycoeff(equn="alpha=k0+k1*g+k2*h",solv='y',grd=0,parm=["alpha", "x", "y"],plr=1,eur=[1, 4, 2]):
     x, y, z = sympy.symbols('x y z')
     k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
     alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
@@ -42,9 +42,9 @@ def genpolycoeff(equ="alpha=k0+k1*g+k2*h",parm=["alpha", "x", "y"],solvd='y',plr
     # Without rotation
     if grd == 0:
         #exprc = expr.subs([(z,parm[0]),(x,parm[1]),(y,parm[2])])
-        ls, rs = equ.split('=')
+        ls, rs = equn.split('=')
         eqs = Eq(sympify(ls), sympify(rs))
-        polys = poly(eqs.rhs - eqs.lhs, sympify(solvd)).all_coeffs()
+        polys = poly(eqs.rhs - eqs.lhs, sympify(solv)).all_coeffs()
         #polys = poly(exprc, sympify(solvd)).all_coeffs()
         abc = []
         uvw = []

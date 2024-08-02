@@ -604,9 +604,9 @@ Countingprocess$methods(mansys=function(sygen=NULL,stuv=c("S","T","U","V")){
   exnrs <<- gsub('v',mansysl$pre[2], gsub('u',mansysl$pre[3],peqs[mansysl$me[['plnr']]]))
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
-  browser()
-  enf[[3]] <<- py_genpolycoeff()
-  #enf[[3]] <<- py_genpolycoeff2(flr=mansysl$frm, equ=mansysl$eq,solvd=mansysl$va)
+  enf[[3]] <<- py_genpolycoeff(equn=mansysl$eq,solv=mansysl$va,grd=sum(mansysl$rot[[2]]))
+  mansysl$pre
+  mansysl
   allstuv <<- list(stuv)
 })
 Countingprocess$methods(setres=function(czset=NULL,prnt=0){
@@ -784,6 +784,7 @@ Countinggraphs$methods(plotly3d=function(
     paste(names(gdf), collapse = "")
   })
 })
+
 Countinggraphs$methods(rotgraph=function(){
   u0 <- rofc$ui
   v0 <- rofc$vi
@@ -834,10 +835,12 @@ Countinggraphs$methods(rotgraph=function(){
     %>% layout(scene = list(aspectmode = "cube"))
   )
 })
-Countinggraphs$methods(rotslides=function(){
-	abc <- rofc %<% dplyr::mutate(slides=12)
-}
 
+Countinggraphs$methods(rotslides=function(){
+	abc <- rofc# %<% dplyr::mutate(slides=12)
+})
+
+#
 Countinggraphs$methods(gridarrange=function(pl3d=list(selo=1,selm=list(1:5,6:10))){
 
   ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
