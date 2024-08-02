@@ -33,6 +33,8 @@ def rall(sel=[0, 0, 0]):
     allrot = [ps[i] for i in sel]
     return allrot
 
+#def genpolycoeff():
+#def genpolycoeff2(equ="alpha=k0+k1*g+k2*h", solvd='alpha'):
 def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
     x, y, z = sympy.symbols('x y z')
     k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')

@@ -39,7 +39,7 @@ rigv <- lapply(1:3, function(x) {
   	    end=mda$sol$de,
   	    eq=mda$sol$eq[1],
   	    va=mda$sol$va,
-            rot=list(fr=c(1,0),sr=c(4,0),tr=c(2,0)))
+            rot=mda$sol$ro)
   cogr$mansys(sygen=exs)
   cogr$polyc[[1]]
   cogr$setres(NULL,1)
@@ -49,7 +49,7 @@ rigv <- lapply(1:3, function(x) {
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
 })
 #######################################################################################################################################################
-#devtools::document()i
+#devtools::document()
 #bm()
 #ManifoldDestiny::apprh[[2]]
 #ManifoldDestiny::appro[[2]]

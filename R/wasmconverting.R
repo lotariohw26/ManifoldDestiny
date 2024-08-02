@@ -203,7 +203,6 @@ selreport <- function(
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
   co <- Countinggraphs(da)
-  #browser()
   if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp)}
   co$sortpre(frm)
   co$descriptive(frm)
@@ -213,8 +212,8 @@ selreport <- function(
   co$resplot(frm)
   co$plotly3d(partition=frm)
   co$gridarrange()
-  #co$rotation(md$sol$pr,md$sol$ro[[1]],md$sol$ro[[2]])
-  #co$rotgraph()
+  co$rotation(md$sol$pr,md$sol$ro[[1]],md$sol$ro[[2]])
+  co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
@@ -519,19 +518,8 @@ Countingprocess$methods(rotation=function(
 				     mead=T,
 			             slid=F)
 				     {
-  rdfc <<- erotation(rdfc,selv,smat,grad,mead)
-  u0 <- rdfc$ui
-  v0 <- rdfc$vi
-  w0 <- rdfc$wi
-  u1 <- rdfc$u1
-  v1 <- rdfc$v1
-  w1 <- rdfc$w1
-  u2 <- rdfc$u2
-  v2 <- rdfc$v2
-  w2 <- rdfc$w2
-  u3 <- rdfc$u3
-  v3 <- rdfc$v3
-  w3 <- rdfc$w3
+
+  rofc <<- erotation(rdfc,selv,smat,grad,mead)
 })
 
 Countingprocess$methods(plext=function(){
@@ -616,8 +604,10 @@ Countingprocess$methods(mansys=function(sygen=NULL,stuv=c("S","T","U","V")){
   exnrs <<- gsub('v',mansysl$pre[2], gsub('u',mansysl$pre[3],peqs[mansysl$me[['plnr']]]))
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
-  enf[[3]] <<- py_genpolycoeff2(flr=mansysl$frm, equ=mansysl$eq,solvd=mansysl$va)
+  #browser()
   #enf[[3]] <<- py_genpolycoeff(plr=mansysl$plnr,parm=mansysl$pre,solvd=mansysl$pre[3],eur=unlist(mansysl$rot)[c(1,3,5)])
+  #ifelse(sum(mansysl$rot[[2]]),1,2)
+  #enf[[3]] <<- py_genpolycoeff2(flr=mansysl$frm, equ=mansysl$eq,solvd=mansysl$va)
   allstuv <<- list(stuv)
 })
 Countingprocess$methods(setres=function(czset=NULL,prnt=0){
@@ -643,6 +633,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,
     kvnr <- c(3,6,10,17)[1] #[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
+    browser()
     #rad <- unname(unlist(mansysl$rot)[c(2,4,6)])*(pi/180)
     #lapply(enf[[3]][[3]])
     #abcv <- setNames(as.vector(lapply(enf[[3]][[3]], as.character)),c(paste0(rep(letters[1:3], each=3), rep(1:3, times=3))))
@@ -795,18 +786,18 @@ Countinggraphs$methods(plotly3d=function(
   })
 })
 Countinggraphs$methods(rotgraph=function(){
-  u0 <- rdfc$ui
-  v0 <- rdfc$vi
-  w0 <- rdfc$wi
-  u1 <- rdfc$u1
-  v1 <- rdfc$v1
-  w1 <- rdfc$w1
-  u2 <- rdfc$u2
-  v2 <- rdfc$v2
-  w2 <- rdfc$w2
-  u3 <- rdfc$u3
-  v3 <- rdfc$v3
-  w3 <- rdfc$w3
+  u0 <- rofc$ui
+  v0 <- rofc$vi
+  w0 <- rofc$wi
+  u1 <- rofc$u1
+  v1 <- rofc$v1
+  w1 <- rofc$w1
+  u2 <- rofc$u2
+  v2 <- rofc$v2
+  w2 <- rofc$w2
+  u3 <- rofc$u3
+  v3 <- rofc$v3
+  w3 <- rofc$w3
   # Creating the 3D scatter plot
   rotplotly <<- list(plot_ly(type = "scatter3d", mode = "markers", marker = list(size = 3)) %>%
     add_trace(
@@ -844,6 +835,10 @@ Countinggraphs$methods(rotgraph=function(){
     %>% layout(scene = list(aspectmode = "cube"))
   )
 })
+Countinggraphs$methods(rotslides=function(){
+	abc <- rofc %<% dplyr::mutate(slides=12)
+}
+
 Countinggraphs$methods(gridarrange=function(pl3d=list(selo=1,selm=list(1:5,6:10))){
 
   ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
