@@ -2,6 +2,29 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
+apps <- apprn
+adat <- apps[[1]]
+amet <- apps[[2]]
+rept <- seloutput(selreport(apps))
+rept[[7]]
+
+###########################################################################################################
+googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+url <- "https://docs.google.com/spreadsheets/d/1IYZEi4WnbyZ5PhOZPFV1h6wO3w2e59qL5l7JJZ3Illw/edit?gid=0#gid=0"
+gsh <- googlesheets4::read_sheet(url,sheet=1,range="B1:D609") %>% dplyr::mutate(P=row_number())
+abc <- erotation(dfe=gsh,c("A","H","G"),amean=T)
+
+
+View(abc)
+
+
+
+
+
+
+
+
+
 ###########################################################################################################
 apps <- appn7
 adat <- apps[[1]]
@@ -15,14 +38,6 @@ cob$rotation()
 def <- Estimation(cob$rdfc)
 def$regression("alpha=k0+k1*h+k2*g")
 
-###########################################################################################################
-apps <- apprn
-adat <- apps[[1]]
-amet <- apps[[2]]
-rept <- seloutput(selreport(apps))
-rept[[7]]
-
-###########################################################################################################
 apps <- appsn
 adat <- apps[[1]]
 amet <- apps[[2]]

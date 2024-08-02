@@ -32,12 +32,8 @@ cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
 plfc <- c(0.12,0.12,0.12)
 exn <- c("apprn","apprh","appro")
-
-
 rigv <- lapply(1:3, function(x) { 
-		       browser()
-  x <- 1
-  mda <- qenvar[[exn[x]]]
+  mda <- qenvas[[exn[x]]]
   exs <- list(frm=as.numeric(mda$sol$fr),
   	    pre=mda$sol$pr,
   	    end=mda$sol$de,
@@ -52,6 +48,7 @@ rigv <- lapply(1:3, function(x) {
   assign(mda$nid,list(cogr$rdfc,mda))
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
 })
+bm()
 #######################################################################################################################################################
 #devtools::document()i
 #bm()

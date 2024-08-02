@@ -198,6 +198,8 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
+
+	browser()
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
@@ -293,16 +295,18 @@ Rzy <- function(rad) {
 erotation <-function(
 		     dfe=NULL,
 		     selvar=NULL,
-                     rpar=c(theta=0,phi=0,rho=0),
-		     rs=c(1,4,2),
+                     dpar=c(theta=0,phi=0,rho=0),
+		     rs=c(1,2,3),
                      mvec=NULL,
-		     slice=20
+		     amean=FALSE,
+		     slice=c(T,20)
 		     ){
 
-  if (is.null(mvec)) 'ho' else 'abc'
+	
+  rpar <- dpar*(pi/180)
+  mc <- c(1,0)[ifelse(isTRUE(amean), 1, 2)]
   Ralv <- Rall(sel=rs)
-  rofc <- dfe %>%
-    dplyr::select(P,all_of(selvar)) %>%
+  rofc <- dfe %>% dplyr::select(P,all_of(selvar)) %>%
     dplyr::arrange(P) %>%
     # Standardize variable names
     dplyr::mutate(ui=.[[2]]) %>%
@@ -311,7 +315,7 @@ erotation <-function(
     # Settings
     dplyr::mutate(m1=cos(rpar[1]),m2=cos(rpar[2]),m3=cos(rpar[3])) %>%
     dplyr::mutate(n1=sin(rpar[1]),n2=sin(rpar[2]),n3=sin(rpar[3])) %>%
-    # Abc
+    ## Abc
     dplyr::mutate(st1=rs[1]) %>%
     dplyr::mutate(st2=rs[2]) %>%
     dplyr::mutate(st3=rs[3]) %>%
@@ -319,9 +323,9 @@ erotation <-function(
     dplyr::mutate(mu=if (is.null(mvec)) mean(ui) else mvec[1]) %>%
     dplyr::mutate(mv=if (is.null(mvec)) mean(vi) else mvec[2]) %>%
     dplyr::mutate(mw=if (is.null(mvec)) mean(wi) else mvec[3]) %>%
-    dplyr::mutate(u0=ui-0*mu) %>%
-    dplyr::mutate(v0=vi-0*mv) %>%
-    dplyr::mutate(w0=wi-0*mw) %>%
+    dplyr::mutate(u0=ui-mc*mu) %>%
+    dplyr::mutate(v0=vi-mc*mv) %>%
+    dplyr::mutate(w0=wi-mc*mw) %>%
     ##
     dplyr::mutate(u1=Ralv[[1]](rpar[1])[1,1]*u0+Ralv[[1]](rpar[1])[1,2]*v0+Ralv[[1]](rpar[2])[1,3]*w0) %>%
     dplyr::mutate(v1=Ralv[[1]](rpar[1])[2,1]*u0+Ralv[[1]](rpar[1])[2,2]*v0+Ralv[[1]](rpar[2])[2,3]*w0) %>%
@@ -333,8 +337,8 @@ erotation <-function(
     ##
     dplyr::mutate(u3=Ralv[[3]](rpar[3])[1,1]*u2+Ralv[[3]](rpar[3])[1,2]*v2+Ralv[[3]](rpar[3])[1,3]*w2) %>%
     dplyr::mutate(v3=Ralv[[3]](rpar[3])[2,1]*u2+Ralv[[3]](rpar[3])[2,2]*v2+Ralv[[3]](rpar[3])[2,3]*w2) %>%
-    dplyr::mutate(w3=Ralv[[3]](rpar[3])[3,1]*u2+Ralv[[3]](rpar[3])[3,2]*v2+Ralv[[3]](rpar[3])[3,3]*w2)
-    #dplyr::mutate(slide=floor(z*50))
+    dplyr::mutate(w3=Ralv[[3]](rpar[3])[3,1]*u2+Ralv[[3]](rpar[3])[3,2]*v2+Ralv[[3]](rpar[3])[3,3]*w2) 
+    #dplyr::mutate(slide=floor(u1*50))
 }
 
 #' @export ballcount
@@ -525,7 +529,8 @@ Countingprocess$methods(rotation=function(selvar=c('P','Z','R','S','T','U','V','
 #	browser()
 
   #if (all(rpar)!=0){
-    rdfc <<- erotation(dfe=rdfc,selvar=selvar,rpar=rpar,rs=rs,mvec=mmeanv,slice=20)
+					     browser()
+  rdfc <<- erotation(dfe=rdfc,selvar=selvar,rpar=rpar,rs=rs,mvec=mmeanv,slice=20)
   #} else {
   #u0 <- rdfc$ui
   #v0 <- rdfc$vi
