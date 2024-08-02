@@ -33,7 +33,7 @@ def rall(sel=[0, 0, 0]):
     allrot = [ps[i] for i in sel]
     return allrot
 
-def genpolycoeff(equ="alpha=k0+k1*g+k2*h",parm=["alpha", "x", "y"],plr=1,solvd='alpha',grd=1,eur=[0, 0, 0]):
+def genpolycoeff(equ="alpha=k0+k1*g+k2*h",parm=["alpha", "x", "y"],solvd='y',plr=1,grd=0,eur=[1, 4, 2]):
     x, y, z = sympy.symbols('x y z')
     k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
     alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
@@ -179,18 +179,20 @@ def genpolycoeff(equ="alpha=k0+k1*g+k2*h",parm=["alpha", "x", "y"],plr=1,solvd='
         msl = ['u0','v0','w0','expr','expr2']
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, matarch, abc
-genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y',grd=0) 
-genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y',grd=1,eur=[1, 4, 2])[0]
 
-def genpolycoeff2(flr=1, equ="alpha=k0+k1*g+k2*h", solvd='alpha'):
-    k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
-    alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
-    ls, rs = equ.split('=')
-    eqs = Eq(sympify(ls), sympify(rs))
-    polys = poly(eqs.rhs - eqs.lhs, sympify(solvd)).all_coeffs()
-    ABCDE = [0, 0, 0, 0, 0]
-    ABCDE[:len(polys)] = polys
-    return ABCDE, 0, 0
+genpolycoeff(grd=0)[0]
+#genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y',grd=0) 
+#genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y',grd=1,eur=[1, 4, 2])[0]
+
+#def genpolycoeff2(flr=1, equ="alpha=k0+k1*g+k2*h", solvd='alpha'):
+#    k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
+#    alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
+#    ls, rs = equ.split('=')
+#    eqs = Eq(sympify(ls), sympify(rs))
+#    polys = poly(eqs.rhs - eqs.lhs, sympify(solvd)).all_coeffs()
+#    ABCDE = [0, 0, 0, 0, 0]
+#    ABCDE[:len(polys)] = polys
+#    return ABCDE, 0, 0
 # genpolycoeff2(flr=1, equ="alpha=k0+k1*g+k2*h", solvd='alpha')
 
 def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):

@@ -44,10 +44,12 @@ py_polysolver <- function(degree=1,abcde=NULL){
   retv
 }
 #' @export py_genpolycoeff 
-py_genpolycoeff <- function(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(1, 4, 2)){
+py_genpolycoeff <- function(grd=0){
   reticulate::source_python(paste0(rprojroot::find_rstudio_root_file(),"/script/python/polysolver.py"))
-  reticulate::py$genpolycoeff(plr=as.integer(plr),parm=parm, solvd=solvd,eur=as.integer(eur))
+  reticulate::py$genpolycoeff(grd=grd)
 }
+#py_genpolycoeff(1)
+# py_genpolycoeff <- function(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(1, 4, 2)){
 # py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(0, 0, 0))
 # py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(1, 4, 2))[[3]]
 
