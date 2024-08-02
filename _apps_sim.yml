@@ -100,4 +100,23 @@ appp0:
     blup: [0,1]
     eqp: "alpha=k0+k1*g+k2*h"
   bib: []
-
+apprnr:
+  nid: apprn
+  mtd:
+    nmn: Defeault
+  spr:
+  sol:
+    fr: "1"
+    pr: ["alpha","x","y"]
+    de: ["zeta","Omega","lamda"]
+    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
+    va: "y"
+    ls: "(alpha-alpha_s)^2"
+    ro: [[1, 4, 6],[10,20,30]]
+  prg:
+    cnd: 0
+    z: 0 
+    stuv: [0,0,0,0]
+    blup: [0,1]
+    eqp: "alpha=k0+k1*x+k2*y+k3*zeta"
+  bib: []

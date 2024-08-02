@@ -605,8 +605,9 @@ Countingprocess$methods(mansys=function(sygen=NULL,stuv=c("S","T","U","V")){
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
   enf[[3]] <<- py_genpolycoeff(equn=mansysl$eq,solv=mansysl$va,grd=sum(mansysl$rot[[2]]))
-  mansysl$pre
-  mansysl
+  #enf[[3]] <<- py_genpolycoeff(grd=sum(mansysl$rot[[2]]))
+  #mansysl$pre
+  #mansysl$rot[[1]]
   allstuv <<- list(stuv)
 })
 Countingprocess$methods(setres=function(czset=NULL,prnt=0){
@@ -632,28 +633,28 @@ Countingprocess$methods(manimp=function(init_par=NULL,
     kvnr <- c(3,6,10,17)[1] #[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
-    browser()
-    #rad <- unname(unlist(mansysl$rot)[c(2,4,6)])*(pi/180)
-    #lapply(enf[[3]][[3]])
-    #abcv <- setNames(as.vector(lapply(enf[[3]][[3]], as.character)),c(paste0(rep(letters[1:3], each=3), rep(1:3, times=3))))
-    #mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
-    #nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
+    #browser()
+    rad <- unname(unlist(mansysl$rot)[c(2,4,6)])*(pi/180)
+    abcv <- setNames(as.vector(lapply(enf[[3]][[3]], as.character)),c(paste0(rep(letters[1:3], each=3), rep(1:3, times=3))))
+    mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
+    nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
+    #View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
       ### Parameters
       dplyr::mutate(!!!kvea) %>%
       ### MN
-      #dplyr::mutate(!!!mv,!!!nv) %>%
-      #dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%
-      #dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%
-      #dplyr::mutate(a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
-      #dplyr::mutate(b1=pareq(abcv[4],c(as.list(.[,])))) %>%
-      #dplyr::mutate(b2=pareq(abcv[5],c(as.list(.[,])))) %>%
-      #dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%
-      #dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%
-      #dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%
-      #dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!!mv,!!!nv) %>%
+      dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%
+      dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%
+      dplyr::mutate(a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
+      dplyr::mutate(b1=pareq(abcv[4],c(as.list(.[,])))) %>%
+      dplyr::mutate(b2=pareq(abcv[5],c(as.list(.[,])))) %>%
+      dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%
+      dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%
+      dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%
+      dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%
       ### Presetting the first variables
       dplyr::mutate(!!allvec[1]:=enf[[1]]) %>%
       ### Presetting second variable
@@ -1028,8 +1029,4 @@ Estimation$methods(hat_intcomp=function(){
     prc0123=100*sum(abs(compare[[comps]] - 0) <= 3)/length(compare[[comps]]))
   comdesc <<- data.frame(fname=txvnc,stats=names(vnd),values=vnd)
 })
-
-
-
-
 

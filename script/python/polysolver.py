@@ -132,7 +132,7 @@ def genpolycoeff(equn="alpha=k0+k1*g+k2*h",solv='y',grd=0,parm=["alpha", "x", "y
                 dic1 = matarch.set_index('d')['expr'].to_dict()
                 dic2 = matarch.set_index('d')['expr2'].to_dict()
                 dic = [dic1,dic2][0]
-                nrs = dxyz[solvd]-1
+                nrs = dxyz[solv]-1
         ABCDE = [0, 0, 0, 0, 0]
         A=Matrix([0,0,0])
         B=Matrix([0,0,0])

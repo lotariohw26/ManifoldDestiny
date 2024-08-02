@@ -31,7 +31,7 @@ set.seed(1)
 cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
 plfc <- c(0.12,0.12,0.12)
-exn <- c("apprn","apprh","appro")
+exn <- c("apprn","apprh","appro","apprnr")[4]
 rigv <- lapply(1:3, function(x) { 
   mda <- qenvas[[exn[x]]]
   exs <- list(frm=as.numeric(mda$sol$fr),
@@ -48,7 +48,7 @@ rigv <- lapply(1:3, function(x) {
   assign(mda$nid,list(cogr$rdfc,mda))
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
 })
-#######################################################################################################################################################
+######################################################################################################################################################
 #devtools::document()
 #bm()
 #ManifoldDestiny::apprh[[2]]
