@@ -199,6 +199,7 @@ selreport <- function(
 		      baldata=NULL
 		      ){
 
+browser()
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
@@ -295,7 +296,6 @@ erotation <-function(dfe=NULL,
                      gra=c(0,0,0),
 		     med=FALSE
 		     ){
-
   Ralv <- Rall(sel=rs)
   rpar <- gra*(pi/180)
   mvec <- c(1,0)[ifelse(isTRUE(med), 1, 2)]
@@ -313,9 +313,9 @@ erotation <-function(dfe=NULL,
     dplyr::mutate(st2=rs[2]) %>%
     dplyr::mutate(st3=rs[3]) %>%
     # Euler-rotation
-    dplyr::mutate(mu=if (is.null(mvec)) mean(ui) else mvec[1]) %>%
-    dplyr::mutate(mv=if (is.null(mvec)) mean(vi) else mvec[2]) %>%
-    dplyr::mutate(mw=if (is.null(mvec)) mean(wi) else mvec[3]) %>%
+    dplyr::mutate(mu=mean(ui)) %>%
+    dplyr::mutate(mv=mean(vi)) %>%
+    dplyr::mutate(mw=mean(wi)) %>%
     dplyr::mutate(u0=ui-mvec*mu) %>%
     dplyr::mutate(v0=vi-mvec*mv) %>%
     dplyr::mutate(w0=wi-mvec*mw) %>%
@@ -633,12 +633,10 @@ Countingprocess$methods(manimp=function(init_par=NULL,
     kvnr <- c(3,6,10,17)[1] #[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
-    #browser()
     rad <- unname(unlist(mansysl$rot)[c(2,4,6)])*(pi/180)
     abcv <- setNames(as.vector(lapply(enf[[3]][[3]], as.character)),c(paste0(rep(letters[1:3], each=3), rep(1:3, times=3))))
     mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
     nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
-    #View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -950,8 +948,7 @@ Estimation$methods(hat_predict=function(svf='y'){
   names(kvec) <<- paste0("k", 0:(length(kvec) - 1))
   if (roto==0){
     eurv <- c(0,0,0)
-    lpy <<- py_genpolycoeff2(fnr,regass,svf)
-    #lpy <<- py_genpolycoeff(plr=1,parm=c("alpha", "g", "h"), solvd='g',eur=eurv)
+    lpy <<- py_genpolycoeff(fnr,regass,svf)
     setNames(as.vector(lapply(lpy[[1]], as.character)),LETTERS[1:5])
     pnr <- sum(lpy[[1]]!="0")
   }

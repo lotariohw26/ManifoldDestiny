@@ -8,12 +8,12 @@ qenvas <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_app
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #######################################################################################################################################################
 # Applications
-#recoudatr(qenvae$appn1)
-#recoudatr(qenvae$appn2)
-#recoudatr(qenvae$appn3)
-#recoudatr(qenvae$appn4)
-#recoudatr(qenvae$appn4)
-#recoudatr(qenvae$appn7)
+recoudatr(qenvae$appn1)
+recoudatr(qenvae$appn2)
+recoudatr(qenvae$appn3)
+recoudatr(qenvae$appn4)
+recoudatr(qenvae$appn4)
+recoudatr(qenvae$appn7)
 #######################################################################################################################################################
 # Simulation
 ## Normal 
@@ -49,12 +49,3 @@ rigv <- lapply(1:3, function(x) {
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
 })
 ######################################################################################################################################################
-#devtools::document()
-#bm()
-#ManifoldDestiny::apprh[[2]]
-#ManifoldDestiny::appro[[2]]
-#apps <- ManifoldDestiny::appsn
-#adat <- apps[[1]]
-#amet <- apps[[2]]
-#cogr <- Countinggraphs(apps[[1]])
-#selo <- seloutput(selreport(apps))
