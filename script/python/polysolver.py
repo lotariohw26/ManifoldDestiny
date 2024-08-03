@@ -180,20 +180,9 @@ def genpolycoeff(equn="alpha=k0+k1*g+k2*h",solv='y',grd=0,parm=["alpha", "x", "y
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, matarch, abc
 
-genpolycoeff(grd=0)[0]
+#genpolycoeff(grd=1)[0]
 #genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y',grd=0) 
 #genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y',grd=1,eur=[1, 4, 2])[0]
-
-#def genpolycoeff2(flr=1, equ="alpha=k0+k1*g+k2*h", solvd='alpha'):
-#    k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
-#    alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
-#    ls, rs = equ.split('=')
-#    eqs = Eq(sympify(ls), sympify(rs))
-#    polys = poly(eqs.rhs - eqs.lhs, sympify(solvd)).all_coeffs()
-#    ABCDE = [0, 0, 0, 0, 0]
-#    ABCDE[:len(polys)] = polys
-#    return ABCDE, 0, 0
-# genpolycoeff2(flr=1, equ="alpha=k0+k1*g+k2*h", solvd='alpha')
 
 def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
     return eval(ste, kwargs)
