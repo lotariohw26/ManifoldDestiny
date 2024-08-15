@@ -199,7 +199,6 @@ selreport <- function(
 		      baldata=NULL
 		      ){
 
-browser()
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
@@ -213,13 +212,13 @@ browser()
   co$resplot(frm)
   co$plotly3d(partition=frm)
   co$gridarrange()
-  co$rotation(md$sol$pr,md$sol$ro[[1]],md$sol$ro[[2]])
-  co$rotgraph()
+  #co$rotation(md$sol$pr,md$sol$ro[[1]],md$sol$ro[[2]])
+  #co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
-  ges$hat_predict(md$sol$va)
-  ges$hat_intcomp()
+  #ges$hat_predict(md$sol$va)
+  #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$sol$eq[2])
@@ -235,6 +234,7 @@ browser()
 }
 ##' @export seloutput
 seloutput <- function(selreport=NULL){
+browser()  
   tab1 <- selreport[[1]]$rdfc
   tab2 <- selreport[[1]]$desms
   tab3 <- selreport[[1]]$pl_corrxy[[1]]
@@ -247,11 +247,11 @@ seloutput <- function(selreport=NULL){
   l3 <- selreport[[2]]$resplots[[1]][[3]]
   l4 <- selreport[[2]]$resplots[[1]][[4]]
   tab8 <- cowplot::plot_grid(plotlist=list(l1,l2,l3,l4))
-  tab9 <- dplyr::select(selreport[[2]]$comdesc,1,3)
+  #tab9 <- dplyr::select(selreport[[2]]$comdesc,1,3)
   tab10 <- selreport[[4]]$pl_2dsort
   tab11 <- list(summary(selreport[[3]]$regsum[[1]]))
   tab12 <- selreport[[5]]
-  list(rdfc=tab1,decs=tab2,corxy=tab3,qunt=tab4,ro3d=tab5,r2li=tab6,regr=tab7,resp=tab8,cmp=tab9,bs=tab10,regi=tab11,md=tab12)
+  list(rdfc=tab1,decs=tab2,corxy=tab3,qunt=tab4,ro3d=tab5,r2li=tab6,regr=tab7,resp=tab8,cmp=NULL,bs=tab10,regi=tab11,md=tab12)
 }
 
 ##' @export Rall
@@ -542,11 +542,11 @@ Countingprocess$methods(plext=function(){
 Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y"),rnk=0,pres=NULL,pri=0){
   rdfv <- rdfci %>%
     dplyr::arrange(P) %>%
-    dplyr::filter(Z>=z) %>%
-    dplyr::filter(S>=stuv[1]) %>%
-    dplyr::filter(T>=stuv[2]) %>%
-    dplyr::filter(U>=stuv[3]) %>%
-    dplyr::filter(V>=stuv[4]) %>%
+    dplyr::filter(Z>z) %>%
+    dplyr::filter(S>stuv[1]) %>%
+    dplyr::filter(T>stuv[2]) %>%
+    dplyr::filter(U>stuv[3]) %>%
+    dplyr::filter(V>stuv[4]) %>%
     ## Percentages
     #sum(dplyr::select(rdfv,S,T,U,V))
     dplyr::filter(if_all(c(alpha,x,y,g,h,m,n),~.>blup[1]&.<blup[2]))

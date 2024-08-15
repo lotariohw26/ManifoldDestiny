@@ -1,9 +1,71 @@
 ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
+#
+apps <- appn0
+adat <- apps[[1]]
+amet <- apps[[2]]
+cob <- Countinggraphs(adat,selvar=names(adat))
+cob$purging() 
+cob$
+def <- Estimation(cob$rdfc)
+def$regression("alpha=k0+k1*h+k2*g")
+summary(def$regsum[[1]])
+
+apps <- appn0
+adat <- apps[[1]]
+amet <- apps[[2]]
+selo <- seloutput(selreport(apps))
+View(selo[[1]])
+
+fopl <- cogr$polyc[[1]][[1]]
+options(digits = 2)                                                                                               
+
+
+View(co$rdfc)
+#ifelse(Sys.info()[['sysname']]==
+#
+#
+#if(Sys.info()[['sysname']]=="Emscripten")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ManifoldDestiny::wasmconload()
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
 ###########################################################################################################
-apps <- appsn
+apps <- app1
 adat <- apps[[1]]
 amet <- apps[[2]]
 rept <- seloutput(selreport(apps))

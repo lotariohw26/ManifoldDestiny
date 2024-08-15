@@ -11,7 +11,6 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ```
-
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h1 >}}
 ```{r}
@@ -19,8 +18,16 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 #| output: false
 apps <- appsn
 ```
-{{< include tab.qmd >}}
 :::
+{{< include tab.qmd >}}
+```{r}
+knitr::knit_exit()
+```
+
+
+
+
+
 
 
 ::: {.callout-caution collapse="true"}
@@ -30,7 +37,6 @@ apps <- appsn
 #| output: false
 apps <- apprn
 ```
-{{< include tab.qmd >}}
 :::
 
 
@@ -41,7 +47,6 @@ apps <- apprn
 #| output: false
 apps <- apprh
 ```
-{{< include tab.qmd >}}
 :::
 
 
@@ -53,7 +58,6 @@ apps <- apprh
 #| output: false
 apps <- appro
 ```
-{{< include tab.qmd >}}
 :::
 
 ::: {.callout-caution collapse="true"}
@@ -63,7 +67,6 @@ apps <- appro
 #| output: false
 apps <- appn1
 ```
-{{< include tab.qmd >}}
 :::
 
 ::: {.callout-caution collapse="true"}
@@ -73,7 +76,6 @@ apps <- appn1
 #| output: false
 apps <- appn2
 ```
-{{< include tab.qmd >}}
 :::
 
 ::: {.callout-caution collapse="true"}
@@ -83,7 +85,6 @@ apps <- appn2
 #| output: false
 apps <- appn3
 ```
-{{< include tab.qmd >}}
 :::
 
 ::: {.callout-caution collapse="true"}
@@ -95,6 +96,8 @@ apps <- appn4
 ```
 {{< include tab.qmd >}}
 :::
+
+
 
 
 
