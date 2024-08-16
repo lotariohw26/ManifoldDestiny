@@ -2,7 +2,6 @@
 title: ""
 ---
 
-
 ```{r}
 #| echo: false
 #| output: false
@@ -20,15 +19,6 @@ apps <- appsn
 ```
 :::
 {{< include tab.qmd >}}
-```{r}
-knitr::knit_exit()
-```
-
-
-
-
-
-
 
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h1 >}}
@@ -38,6 +28,7 @@ knitr::knit_exit()
 apps <- apprn
 ```
 :::
+{{< include tab.qmd >}}
 
 
 ::: {.callout-caution collapse="true"}
@@ -48,6 +39,7 @@ apps <- apprn
 apps <- apprh
 ```
 :::
+{{< include tab.qmd >}}
 
 
 
@@ -59,6 +51,7 @@ apps <- apprh
 apps <- appro
 ```
 :::
+{{< include tab.qmd >}}
 
 ::: {.callout-caution collapse="true"}
 ## {{< var sec6.un1 >}}
@@ -68,6 +61,7 @@ apps <- appro
 apps <- appn1
 ```
 :::
+{{< include tab.qmd >}}
 
 ::: {.callout-caution collapse="true"}
 ## {{< var sec6.un2 >}}
@@ -77,6 +71,7 @@ apps <- appn1
 apps <- appn2
 ```
 :::
+{{< include tab.qmd >}}
 
 ::: {.callout-caution collapse="true"}
 ## {{< var sec6.un3 >}}
@@ -86,6 +81,7 @@ apps <- appn2
 apps <- appn3
 ```
 :::
+{{< include tab.qmd >}}
 
 ::: {.callout-caution collapse="true"}
 ## {{< var sec6.un4 >}}
@@ -94,8 +90,12 @@ apps <- appn3
 #| output: false
 apps <- appn4
 ```
-{{< include tab.qmd >}}
 :::
+{{< include tab.qmd >}}
+
+
+
+
 
 
 

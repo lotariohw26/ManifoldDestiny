@@ -207,6 +207,7 @@ selreport <- function(
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
+  co$plext(frm)
   co$plot2d(frm)
   co$plotxy(frm)
   co$resplot(frm)
@@ -217,8 +218,8 @@ selreport <- function(
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
-  #ges$hat_predict(md$sol$va)
-  #ges$hat_intcomp()
+  ges$hat_predict(md$sol$va)
+  ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$sol$eq[2])
@@ -591,6 +592,7 @@ Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("
             dplyr::arrange(P)
   #print(dim(rdfci)[1]); print(dim(rdfv)[1]); print(dim(rdfc)[1])
   if (pri==1) {print(dim(rdfci)[1]); print(dim(rdfv)[1]); print(dim(rdfc)[1])}
+
 })
 #})
 Countingprocess$methods(sortpre=function(form=1,
@@ -974,7 +976,7 @@ Estimation$methods(hat_predict=function(svf='y'){
   names(kvec) <<- paste0("k", 0:(length(kvec) - 1))
   if (roto==0){
     eurv <- c(0,0,0)
-    lpy <<- py_genpolycoeff(fnr,regass,svf)
+    lpy <<- py_genpolycoeff(regass,svf)
     setNames(as.vector(lapply(lpy[[1]], as.character)),LETTERS[1:5])
     pnr <- sum(lpy[[1]]!="0")
   }

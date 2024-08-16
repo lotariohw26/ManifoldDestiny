@@ -7,15 +7,96 @@ amet <- apps[[2]]
 ###########################################################################################################
 ###########################################################################################################
 cob <- Countinggraphs(adat,selvar=names(adat))
-View(cob$sdfc)
-cob$purging() 
+sum(dplyr::select(cob$rdfci,S,T,U,V))
+cob$purging(z=amet$prg$z,pri=1) 
 cob$plext(2)
-View(cob$rdfce)
-
+sum(dplyr::select(cob$rdfce,S,T,U,V))
 def <- Estimation(cob$rdfce)
 def$regression("alpha=k0 + k1*g + k2*h")
+summary(def$regsum[[1]])
+# Call:
+# lm(formula = formo, data = edfc)
+# 
+# Residuals:
+#       Min        1Q    Median        3Q       Max 
+# -0.052682 -0.002621  0.001438  0.004241  0.118985 
+# 
+# Coefficients:
+#              Estimate Std. Error t value Pr(>|t|)    
+# (Intercept) -0.005174   0.002330  -2.221   0.0274 *  
+# g            0.682950   0.007539  90.586   <2e-16 ***
+# h            0.320726   0.006140  52.237   <2e-16 ***
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+# Residual standard error: 0.01433 on 221 degrees of freedom
+# Multiple R-squared:  0.9927,	Adjusted R-squared:  0.9926 
+# F-statistic: 1.505e+04 on 2 and 221 DF,  p-value: < 2.2e-16
 def$regression("alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2")
 summary(def$regsum[[1]])
+# Call:
+# lm(formula = formo, data = edfc)
+# 
+# Residuals:
+#       Min        1Q    Median        3Q       Max 
+# -0.020968 -0.002704 -0.000306  0.002068  0.038004 
+# 
+# Coefficients:
+#              Estimate Std. Error t value Pr(>|t|)    
+# (Intercept) -0.005287   0.002405  -2.198  0.02902 *  
+# g            0.458546   0.046417   9.879  < 2e-16 ***
+# h            0.530002   0.031855  16.638  < 2e-16 ***
+# g2          -0.312511   0.094160  -3.319  0.00106 ** 
+# h2          -1.115004   0.086393 -12.906  < 2e-16 ***
+# gh           1.564990   0.152580  10.257  < 2e-16 ***
+# h3           1.038567   0.059782  17.373  < 2e-16 ***
+# g2h          0.184697   0.145090   1.273  0.20440    
+# gh2         -1.402066   0.151996  -9.224  < 2e-16 ***
+# ---
+googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+library(googlesheets4)
+abc <- gs4_create("abc",sheets =cob$rdfce)
+gs4_browse(abc)
+#want to open it in a browser
+
+cob$rdfce
+
+
+
+# libraries
+ManifoldDestiny::wasmconload()
+library(usethis)
+qenvae <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_apps_rel.yml"))
+qenvas <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_apps_sim.yml"))
+googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+#######################################################################################################################################################
+# Applications
+recoudatr(qenvae$appn0)
+
+cob$rdfci
+
+head(iris)
+lm()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 apps <- appn0
