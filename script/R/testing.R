@@ -4,16 +4,17 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 apps <- appn0
 adat <- apps[[1]]
 amet <- apps[[2]]
-summary(adat)
 ###########################################################################################################
 ###########################################################################################################
 cob <- Countinggraphs(adat,selvar=names(adat))
+View(cob$sdfc)
 cob$purging() 
 cob$plext(2)
 View(cob$rdfce)
 
 def <- Estimation(cob$rdfce)
-def$regression("alpha=k0+k1*h+k2*g")
+def$regression("alpha=k0 + k1*g + k2*h")
+def$regression("alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2")
 summary(def$regsum[[1]])
 
 
