@@ -1,4 +1,4 @@
-##################################################################################################################################################ji 
+##############################################################################e###################################################################ji 
 #' @export wasmconload
 wasmconload <- function(){
   ifelse(Sys.info()[['sysname']]=="Emscripten",
@@ -234,7 +234,6 @@ selreport <- function(
 }
 ##' @export seloutput
 seloutput <- function(selreport=NULL){
-browser()  
   tab1 <- selreport[[1]]$rdfc
   tab2 <- selreport[[1]]$desms
   tab3 <- selreport[[1]]$pl_corrxy[[1]]
@@ -522,21 +521,48 @@ Countingprocess$methods(rotation=function(
   rofc <<- erotation(rdfc,selv,smat,grad,mead)
 })
 
-Countingprocess$methods(plext=function(){
-  #! automized
+Countingprocess$methods(plext=function(frm=2){
+   # Select the variable pair from the list
+   varu <- list(c("x", "y"), c("g", "h"), c("m", "n"))[[frm]]
+   
+   # Extract the variables
+   var1 <- varu[1]
+   var2 <- varu[2]
+   
+   # Dynamically generate the lhs based on varu
+   lhs <- c(paste0(var1, "1"), paste0(var2, "1"), paste0(var2, var1), 
+            paste0(var1, "2"), paste0(var2, "2"), paste0(var2, "2", var1), paste0(var2, var1, "2"), 
+            paste0(var1, "3"), paste0(var2, "3"), paste0(var2, "3", var1), paste0(var2, "2", var1, "2"), paste0(var2, var1, "3"), 
+            paste0(var1, "4"), paste0(var2, "4"), paste0(var2, "3", var1, "2"), paste0(var2, "2", var1, "3"), paste0(var2, var1, "4"), paste0(var2, "4", var1))
+   
+   # Dynamically generate the rhs based on varu
+   rhs <- c(paste0(var1, "^1"), paste0(var2, "^1"), paste0(var2, " * ", var1), 
+            paste0(var1, "^2"), paste0(var2, "^2"), paste0(var2, "^2 * ", var1), paste0(var2, " * ", var1, "^2"), 
+            paste0(var1, "^3"), paste0(var2, "^3"), paste0(var2, "^3 * ", var1), paste0(var2, "^2 * ", var1, "^2"), paste0(var2, " * ", var1, "^3"), 
+            paste0(var1, "^4"), paste0(var2, "^4"), paste0(var2, "^3 * ", var1, "^2"), paste0(var2, "^2 * ", var1, "^3"), paste0(var2, " * ", var1, "^4"), paste0(var2, "^4 * ", var1))
+     
+  # Create the matrix
+  meq <- matrix(c(lhs, rhs), ncol = 2, byrow = FALSE)
+  # Apply the mutates based on the order value
   rdfce <<- rdfc %>%
-    dplyr::mutate(alpha2=alpha*alpha,alpha3=alpha*alpha*alpha) %>%
-    dplyr::mutate(alphah=alpha*h,alphah2=alpha*h*h,alpha2h=alpha*alpha*h) %>%
-    dplyr::mutate(h2=h*h,gh=g*h,g2h=g*g*h,g2=g*g,g3=g*g*g,h3=h*h*h,h2g=h*h*g,hg2=h*g*g) %>%
-    dplyr::mutate(gh2=g*h*h) %>%
-    dplyr::mutate(g4=g*g*g*g) %>%
-    dplyr::mutate(g3h=g*g*g*h) %>%
-    dplyr::mutate(g2h2=g*g*h*h) %>%
-    dplyr::mutate(g2h2=g*g*h*h) %>%
-    dplyr::mutate(gh3=g*h*h*h) %>%
-    dplyr::mutate(g4h=g*g*g*g*h) %>%
-    dplyr::mutate(h4=h*h*h*h) %>%
-    dplyr::mutate(xy=x*y)
+      dplyr::mutate(!!sym(meq[1, 1]) := !!rlang::parse_expr(meq[1, 2])) %>%
+      dplyr::mutate(!!sym(meq[2, 1]) := !!rlang::parse_expr(meq[2, 2])) %>%
+      dplyr::mutate(!!sym(meq[3, 1]) := !!rlang::parse_expr(meq[3, 2])) %>%
+      dplyr::mutate(!!sym(meq[4, 1]) := !!rlang::parse_expr(meq[4, 2])) %>%
+      dplyr::mutate(!!sym(meq[5, 1]) := !!rlang::parse_expr(meq[5, 2])) %>%
+      dplyr::mutate(!!sym(meq[6, 1]) := !!rlang::parse_expr(meq[6, 2])) %>%
+      dplyr::mutate(!!sym(meq[7, 1]) := !!rlang::parse_expr(meq[7, 2])) %>%
+      dplyr::mutate(!!sym(meq[8, 1]) := !!rlang::parse_expr(meq[8, 2])) %>%
+      dplyr::mutate(!!sym(meq[9, 1]) := !!rlang::parse_expr(meq[9, 2])) %>%
+      dplyr::mutate(!!sym(meq[10, 1]) := !!rlang::parse_expr(meq[10, 2])) %>%
+      dplyr::mutate(!!sym(meq[11, 1]) := !!rlang::parse_expr(meq[11, 2])) %>%
+      dplyr::mutate(!!sym(meq[12, 1]) := !!rlang::parse_expr(meq[12, 2])) %>%
+      dplyr::mutate(!!sym(meq[13, 1]) := !!rlang::parse_expr(meq[13, 2])) %>%
+      dplyr::mutate(!!sym(meq[14, 1]) := !!rlang::parse_expr(meq[14, 2])) %>%
+      dplyr::mutate(!!sym(meq[15, 1]) := !!rlang::parse_expr(meq[15, 2])) %>%
+      dplyr::mutate(!!sym(meq[16, 1]) := !!rlang::parse_expr(meq[16, 2])) %>%
+      dplyr::mutate(!!sym(meq[17, 1]) := !!rlang::parse_expr(meq[17, 2])) %>%
+      dplyr::mutate(!!sym(meq[18, 1]) := !!rlang::parse_expr(meq[18, 2]))
 })
 
 Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y"),rnk=0,pres=NULL,pri=0){

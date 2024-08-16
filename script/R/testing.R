@@ -1,16 +1,21 @@
 ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-#
 apps <- appn0
 adat <- apps[[1]]
 amet <- apps[[2]]
+summary(adat)
+###########################################################################################################
+###########################################################################################################
 cob <- Countinggraphs(adat,selvar=names(adat))
 cob$purging() 
-cob$
-def <- Estimation(cob$rdfc)
+cob$plext(2)
+View(cob$rdfce)
+
+def <- Estimation(cob$rdfce)
 def$regression("alpha=k0+k1*h+k2*g")
 summary(def$regsum[[1]])
+
 
 apps <- appn0
 adat <- apps[[1]]

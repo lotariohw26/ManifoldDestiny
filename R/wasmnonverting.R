@@ -1,6 +1,7 @@
 #' @export recoudatr
 recoudatr <- function(mda=NULL,prn=1){
-  gsh <- googlesheets4::read_sheet(mda$spr$url,sheet=mda$spr$pgn,range=mda$spr$rng) %>%
+	browser()
+  gsh <- googlesheets4::read_sheet(mda$spr$url,sheet=mda$spr$pgn,range=mda$spr$rng) 
     dplyr::mutate(across(where(is.list), ~ as.character(.x))) %>%
     data.table::setnames(new=mda$spr$cln) %>%
     dplyr::mutate(P=row_number(PN)) %>%

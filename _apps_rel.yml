@@ -9,9 +9,9 @@ appn0:
     mod: ['EV', 'MiV']
   spr:
     url: "https://docs.google.com/spreadsheets/d/1ePxTwcx6LFL8pW8SZfx5iZgqZeCUzXY3bUQiFUYncgg/edit?gid=486042717#gid=486042717"
-    pgn: 2
-    rng: A1:L194
-    cln: ['PN', 'R','A1', 'B1', 'A2', 'B2','A3','B3','A4','B4','A5','B5']
+    pgn: "All Baltimore Precincts"
+    rng: B14:N250
+    cln: ['P','PN','R','A1', 'B1', 'A2', 'B2','A3','B3','A4','B4','A5','B5']
     stuv: ['A1+A2', 'B1+B2', 'A3+A4+A5', 'B3+B4+B5']
   sol:
     fr: "2"
