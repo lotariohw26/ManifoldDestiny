@@ -6,15 +6,60 @@ abr <- abc[grepl("app", abc)]
 apps <- get(abr[1])
 options(digits=2)
 ###############################################################################################################################################################
+#ui <- fluidPage(
+#  titlePanel("Election results analyzer"),
+#  sidebarLayout(
+#    sidebarPanel(
+#      selectInput(inputId = "app_select", label = "Select election data from the set of applications",
+#              choices = abr,
+#              selected = "app0"),
+#      textInput("purge", "Purge criteria (Z, STUV, P):",value="0;0 0 0 0;0"),
+#      selectInput("form", "Type of rig:",
+#                  choices = c("Normal Form" = "1",
+#                              "Hybrid Form" = "2",
+#                              "Opposition Form" = "3"), selected = "2"),
+#      textInput("meqf", "Manifold equation:",
+#                value = "alpha=k0+k1*g+k2*h"),
+#      textInput("solvf", "Solve for:",
+#                value = "g"),
+#      br(),
+#      selectInput("auto", "Euler-rotation", choices = c("No", "Yes"),
+#      ),
+#      #h4("Rotation Settings (Euler)"),
+#      #selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
+#      #sliderInput("theta", "Theta:", min = 0, max = 360, value = 0),
+#      #sliderInput("phi", "Phi:", min = 0, max = 360, value = 0),
+#      #sliderInput("rho", "Rho:", min = 0, max = 360, value = 0),
+#      textOutput("sidebarText"),  # Output element for dynamic text
+#      h4("Suggested solution:")
+#    ),
+#    mainPanel(
+#      tabsetPanel(
+#        tabPanel("Descriptive", verbatimTextOutput(outputId = "table_dsc")),
+#        tabPanel("Purged", verbatimTextOutput(outputId = "table_pur")),
+#        tabPanel("2D Plots", plotOutput(outputId = "plot_xy")),
+#        tabPanel("Quantile Plot", plotOutput(outputId = "plot_q")),
+#        tabPanel("3D plots", htmlOutput(outputId = "plot_3ds")),
+#        tabPanel("Regressions", verbatimTextOutput(outputId = "print_sum")),
+#        tabPanel("Residuals", plotOutput(outputId = "plot_res")),
+#        tabPanel("Comparison", verbatimTextOutput(outputId = "print_com")),
+#        tabPanel("3D rotation", plotlyOutput(outputId = "plot_3d_rot")),
+#        tabPanel("Bowshock", plotOutput(outputId = "plot_bp")),
+#        tabPanel("Metadata", verbatimTextOutput(outputId = "meta_dsc"))
+#      )
+#    )
+#  )
+#)
+#
 ui <- fluidPage(
   titlePanel("Election results analyzer"),
   sidebarLayout(
     sidebarPanel(
       selectInput(inputId = "app_select", label = "Select election data from the set of applications",
-              choices = abr,
-              selected = "app0"),
-      textInput("purge", "Purge criteria (Z, STUV, P):",value="0;0 0 0 0;0"),
-      selectInput("form", "Type of rigg:",
+                  choices = abr,
+                  selected = "app0"),
+      textInput("purge", "Purge criteria (Z, STUV, P):", value = "0;0 0 0 0;0"),
+      selectInput("form", "Type of rig:",
                   choices = c("Normal Form" = "1",
                               "Hybrid Form" = "2",
                               "Opposition Form" = "3"), selected = "2"),
@@ -23,13 +68,23 @@ ui <- fluidPage(
       textInput("solvf", "Solve for:",
                 value = "g"),
       br(),
-      h4("Rotation Settings (Euler)"),
-      selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
-      sliderInput("theta", "Theta:", min = 0, max = 360, value = 0),
-      sliderInput("phi", "Phi:", min = 0, max = 360, value = 0),
-      sliderInput("rho", "Rho:", min = 0, max = 360, value = 0),
-      h4("Suggested solution:"),
-      textOutput("sidebarText")  # Output element for dynamic text
+      selectInput("auto", "Euler-rotation", choices = c("No", "Yes")),
+      
+      # Conditional panel for Euler-rotation settings
+      conditionalPanel(
+        condition = "input.auto === 'Yes'",
+        h4("Rotation Settings (Euler)"),
+        selectizeInput("rotation", "Euler-rotation order (optional)", 
+                       choices = c(1, 2, 3, 4, 5, 6), 
+                       multiple = TRUE, 
+                       options = list(maxItems = 3)),
+        sliderInput("theta", "Theta:", min = 0, max = 360, value = 0),
+        sliderInput("phi", "Phi:", min = 0, max = 360, value = 0),
+        sliderInput("rho", "Rho:", min = 0, max = 360, value = 0)
+      ),
+      
+      textOutput("sidebarText"),  # Output element for dynamic text
+      h4("Suggested solution:")
     ),
     mainPanel(
       tabsetPanel(
@@ -42,11 +97,13 @@ ui <- fluidPage(
         tabPanel("Residuals", plotOutput(outputId = "plot_res")),
         tabPanel("Comparison", verbatimTextOutput(outputId = "print_com")),
         tabPanel("3D rotation", plotlyOutput(outputId = "plot_3d_rot")),
+        tabPanel("Bowshock", plotOutput(outputId = "plot_bp")),
         tabPanel("Metadata", verbatimTextOutput(outputId = "meta_dsc"))
       )
     )
   )
 )
+
 server <- function(input, output, session) {
   observeEvent(input$form, {
      #Update the default value of the "Polynomial Equation(s)" text input
@@ -121,6 +178,9 @@ server <- function(input, output, session) {
   })
   output$plot_3d_rot <- renderPlotly({
     cformo()[[1]]$all_pl_3d_mani[[1]]
+  })
+  output$plot_bp <- renderPlot({
+    cformo()[[4]]$pl_2dsort
   })
   output$meta_dsc <- renderPrint({
     cformo()[['md']]
