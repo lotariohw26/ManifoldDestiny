@@ -199,11 +199,12 @@ selreport <- function(
 		      baldata=NULL
 		      ){
 
+  WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
   co <- Countinggraphs(da)
-  if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp)}
+  if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
@@ -227,11 +228,15 @@ selreport <- function(
   ## Identify
   ### Bowplot
   cob <- Countinggraphs(da,selvar=names(da))
-  if (md$prg$cnd==1) {cob$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp)}
+  if (md$prg$cnd==1) {cob$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
   cob$sortpre(4,3)
   cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
   selv=2)
-  return(list(co=co,ges=ges,ies=ies,cb=cob,md=baldata[[2]]))
+  return(list(co=co,
+	      ges=ges,
+	      ies=ies,
+	      cb=cob,
+	      md=md))
 }
 ##' @export seloutput
 seloutput <- function(selreport=NULL){

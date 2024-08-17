@@ -1,4 +1,6 @@
 ManifoldDestiny::wasmconload()
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 abc <- data(package = "ManifoldDestiny")[[3]][,3]
 abr <- abc[grepl("app", abc)]
 apps <- get(abr[1])
@@ -117,7 +119,7 @@ server <- function(input, output, session) {
     cformo()[[1]]$rotplotly[[1]]
   })
   output$meta_dsc <- renderPrint({
-    cformo()[[4]]
+    #cformo()[[4]]
   })
 }
 shinyApp(ui = ui, server = server)
