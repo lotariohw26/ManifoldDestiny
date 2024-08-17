@@ -356,7 +356,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"editor-quick-suggestions":"false","output":"true","out-height":"","classes":"","dpi":72,"editor-font-scale":"1","echo":"fenced","warning":"true","fig-width":7,"message":"true","comment":"","editor-word-wrap":"true","context":"interactive","results":"markup","editor-max-height":"","eval":"true","read-only":"false","fig-cap":"","label":"unnamed-chunk-1","out-width":"700px","fig-height":5,"autorun":"true"},"id":1,"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\ndfl <- ManifoldDestinyWASMD::yout"},{"options":{"editor-quick-suggestions":"false","output":"true","out-height":"","classes":"","dpi":72,"editor-font-scale":"1","warning":"true","fig-width":7,"message":"true","comment":"","editor-word-wrap":"true","context":"interactive","results":"markup","editor-max-height":"","read-only":"false","fig-cap":"","label":"unnamed-chunk-2","out-width":"700px","fig-height":5,"autorun":"true"},"id":2,"code":"perv <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,100,30)))})(100)\nprow <- c(m=0.51,s=0.10)\nproa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)\nprob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)\nztec <- c(0,1)  \nbasc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),list(fr=1,eq=\"alpha=k0+k1*x+k2*y\",va='y',prg=list(cnd=1)))\ncogr <- Countinggraphs(basc[[1]])"},{"options":{"editor-quick-suggestions":"false","output":"true","out-height":"","classes":"","dpi":72,"editor-font-scale":"1","warning":"true","fig-width":7,"message":"true","comment":"","editor-word-wrap":"true","context":"interactive","results":"markup","editor-max-height":"","read-only":"false","fig-cap":"","label":"unnamed-chunk-3","out-width":"700px","fig-height":5,"autorun":"true"},"id":3,"code":"cogr$rdfci"}];
+globalThis.qwebrCellDetails = [{"options":{"warning":"true","label":"unnamed-chunk-1","read-only":"false","message":"true","fig-height":5,"context":"interactive","fig-cap":"","eval":"true","results":"markup","echo":"fenced","dpi":72,"editor-max-height":"","editor-quick-suggestions":"false","out-width":"700px","autorun":"true","editor-word-wrap":"true","classes":"","comment":"","editor-font-scale":"1","out-height":"","fig-width":7,"output":"true"},"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\ndfl <- ManifoldDestinyWASMD::yout","id":1},{"options":{"warning":"true","label":"unnamed-chunk-2","read-only":"false","message":"true","fig-height":5,"context":"interactive","fig-cap":"","results":"markup","dpi":72,"editor-max-height":"","editor-quick-suggestions":"false","out-width":"700px","autorun":"true","editor-word-wrap":"true","classes":"","comment":"","editor-font-scale":"1","out-height":"","fig-width":7,"output":"true"},"code":"perv <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,100,30)))})(100)\nprow <- c(m=0.51,s=0.10)\nproa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)\nprob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)\nztec <- c(0,1)  \nbasc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),list(fr=1,eq=\"alpha=k0+k1*x+k2*y\",va='y',prg=list(cnd=1)))\ncogr <- Countinggraphs(basc[[1]])","id":2},{"options":{"warning":"true","label":"unnamed-chunk-3","read-only":"false","message":"true","fig-height":5,"context":"interactive","fig-cap":"","results":"markup","dpi":72,"editor-max-height":"","editor-quick-suggestions":"false","out-width":"700px","autorun":"true","editor-word-wrap":"true","classes":"","comment":"","editor-font-scale":"1","out-height":"","fig-width":7,"output":"true"},"code":"cogr$rdfci","id":3}];
 
 </script>
 <script type="module">
@@ -1625,7 +1625,7 @@ window.Quarto = {
  <span class="dropdown-text">Addendum 2: Nevada</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./paper.qmd">
+    <a class="dropdown-item" href="./paper.html">
  <span class="dropdown-text">Paper</span></a>
   </li>  
     </ul>
@@ -1669,10 +1669,13 @@ window.Quarto = {
     <a class="dropdown-item" href="./laws.html">
  <span class="dropdown-text">20 laws and 40 isometries</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="https://webr.r-wasm.org/latest/">
- <span class="dropdown-text">REPL for R</span></a>
-  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-webassembly" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">WebAssembly</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-webassembly">    
         <li>
     <a class="dropdown-item" href="./simulations.html">
  <span class="dropdown-text">Simulations</span></a>
