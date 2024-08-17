@@ -4,7 +4,7 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 apps <- appn0
 adat <- apps[[1]]
 amet <- apps[[2]]
-###########################################################################################################
+##########################################################################################################
 ###########################################################################################################
 selr <- selreport(apps)
 selo <- seloutput(selr)
@@ -19,130 +19,9 @@ sum(dplyr::select(cob$rdfce,S,T,U,V))
 def <- Estimation(cob$rdfce)
 def$regression("alpha=k0 + k1*g + k2*h")
 summary(def$regsum[[1]])
-# Call:
-# lm(formula = formo, data = edfc)
-# 
-# Residuals:
-#       Min        1Q    Median        3Q       Max 
-# -0.051962 -0.002965  0.001530  0.004318  0.117321 
-# 
-# Coefficients:
-#              Estimate Std. Error t value Pr(>|t|)    
-# (Intercept) -0.005351   0.002288  -2.338   0.0203 *  
-# g            0.680345   0.007584  89.709   <2e-16 ***
-# h            0.322876   0.006142  52.571   <2e-16 ***
-# ---
-# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-# 
-# Residual standard error: 0.014 on 215 degrees of freedom
-# Multiple R-squared:  0.9931,	Adjusted R-squared:  0.9931 
-# F-statistic: 1.554e+04 on 2 and 215 DF,  p-value: < 2.2e-16
-# Call:
-# lm(formula = formo, data = edfc)
-# 
-# Residuals:
-#       Min        1Q    Median        3Q       Max 
-# -0.051962 -0.002965  0.001530  0.004318  0.117321 
-# 
-# Coefficients:
-#              Estimate Std. Error t value Pr(>|t|)    
-# (Intercept) -0.005351   0.002288  -2.338   0.0203 *  
-# g            0.680345   0.007584  89.709   <2e-16 ***
-# h            0.322876   0.006142  52.571   <2e-16 ***
-# ---
-# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-# 
-# Residual standard error: 0.014 on 215 degrees of freedom
-# Multiple R-squared:  0.9931,	Adjusted R-squared:  0.9931 
-# F-statistic: 1.554e+04 on 2 and 215 DF,  p-value: < 2.2e-16
-
-url <- "https://docs.google.com/spreadsheets/d/1ePxTwcx6LFL8pW8SZfx5iZgqZeCUzXY3bUQiFUYncgg/edit?gid=486042717#gid=486042717"
-eddf <- googlesheets4::read_sheet(url,range="B14:AQ232") 
-lodf <- dplyr::bind_cols(cob$rdfce)
-names(eddf)
-names(lodf)
-pn1 <- as.numeric(eddf[['P#']])
-pn2 <- as.numeric(lodf[['P']])
-setdiff(pn2,pn1)
-
-
-
-setdiff(as.numeric(eddf[['P#']]),as.numeric(lodf[['P']]))
-# Call:
-# lm(formula = formo, data = edfc)
-# 
-# Residuals:
-#       Min        1Q    Median        3Q       Max 
-# -0.052682 -0.002621  0.001438  0.004241  0.118985 
-# 
-# Coefficients:
-#              Estimate Std. Error t value Pr(>|t|)    
-# (Intercept) -0.005174   0.002330  -2.221   0.0274 *  
-# g            0.682950   0.007539  90.586   <2e-16 ***
-# h            0.320726   0.006140  52.237   <2e-16 ***
-# ---
-# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-# 
-# Residual standard error: 0.01433 on 221 degrees of freedom
-# Multiple R-squared:  0.9927,	Adjusted R-squared:  0.9926 
-# F-statistic: 1.505e+04 on 2 and 221 DF,  p-value: < 2.2e-16
-def$regression("alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2")
+def$regression("alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g**3 + k8*g**2*h + k9*g*h**2")
 summary(def$regsum[[1]])
-# Call:
-# lm(formula = formo, data = edfc)
-# 
-# Residuals:
-#        Min         1Q     Median         3Q        Max 
-# -0.0221020 -0.0024807 -0.0004238  0.0016570  0.0187834 
-# 
-# Coefficients:
-#              Estimate Std. Error t value Pr(>|t|)    
-# (Intercept) -0.004671   0.001913  -2.442  0.01542 *  
-# g            0.519016   0.039236  13.228  < 2e-16 ***
-# h            0.490453   0.027226  18.014  < 2e-16 ***
-# g2          -0.461339   0.079582  -5.797 2.46e-08 ***
-# h2          -1.064771   0.073186 -14.549  < 2e-16 ***
-# gh           1.582198   0.124267  12.732  < 2e-16 ***
-# h3           1.033464   0.050182  20.594  < 2e-16 ***
-# g2h          0.381111   0.120575   3.161  0.00181 ** 
-# gh2         -1.521376   0.122816 -12.387  < 2e-16 ***
-# ---
-# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-# 
-# Residual standard error: 0.005073 on 209 degrees of freedom
-# Multiple R-squared:  0.9991,	Adjusted R-squared:  0.9991 
-# F-statistic: 2.976e+04 on 8 and 209 DF,  p-value: < 2.2e-16
-# Call:
-# lm(formula = formo, data = edfc)
-# 
-# Residuals:
-#       Min        1Q    Median        3Q       Max 
-# -0.020968 -0.002704 -0.000306  0.002068  0.038004 
-# 
-# Coefficients:
-#              Estimate Std. Error t value Pr(>|t|)    
-# (Intercept) -0.005287   0.002405  -2.198  0.02902 *  
-# g            0.458546   0.046417   9.879  < 2e-16 ***
-# h            0.530002   0.031855  16.638  < 2e-16 ***
-# g2          -0.312511   0.094160  -3.319  0.00106 ** 
-# h2          -1.115004   0.086393 -12.906  < 2e-16 ***
-# gh           1.564990   0.152580  10.257  < 2e-16 ***
-# h3           1.038567   0.059782  17.373  < 2e-16 ***
-# g2h          0.184697   0.145090   1.273  0.20440    
-# gh2         -1.402066   0.151996  -9.224  < 2e-16 ***
-
-
-# ---
-googlesheets4::gs4_auth(email="jorn.halvorsen@gmail.com")
-library(googlesheets4)
-abc <- gs4_create("abc",sheets =cob$rdfce)
-gs4_browse(abc)
-#want to open it in a browser
-
-cob$rdfce
-
-
-
+#######################################################################################################################################################
 # libraries
 ManifoldDestiny::wasmconload()
 library(usethis)

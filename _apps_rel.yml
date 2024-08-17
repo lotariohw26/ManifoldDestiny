@@ -15,7 +15,7 @@ appn0:
     stuv: ['A1', 'B1', 'A3+A4+A5', 'B2+B3+B4+B5']
   sol:
     fr: "2"
-    eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
+    eq: ["alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g**3 + k8*g**2*h + k9*g*h**2","alpha=k0+k1*g+k2*h+k3*Gamma"]
     va: "g"
     ro: [[1, 2, 3],[0,0,0]]
   prg:

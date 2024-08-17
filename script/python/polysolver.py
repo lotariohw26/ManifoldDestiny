@@ -38,14 +38,12 @@ def genpolycoeff(equn="alpha=k0+k1*g+k2*h",solv='y',grd=0,parm=["alpha", "x", "y
     k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
     alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
     expr = [Eq(z,k0+k1*x+k2*y),Eq(z,k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2),Eq(z,k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3)][plr-1]
-    sum_eur = sum(eur)
     # Without rotation
     if grd == 0:
         #exprc = expr.subs([(z,parm[0]),(x,parm[1]),(y,parm[2])])
         ls, rs = equn.split('=')
         eqs = Eq(sympify(ls), sympify(rs))
         polys = poly(eqs.rhs - eqs.lhs, sympify(solv)).all_coeffs()
-        #polys = poly(exprc, sympify(solvd)).all_coeffs()
         abc = []
         uvw = []
         ABCDE = [0, 0, 0, 0, 0]
@@ -180,9 +178,9 @@ def genpolycoeff(equn="alpha=k0+k1*g+k2*h",solv='y',grd=0,parm=["alpha", "x", "y
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, matarch, abc
 
-#genpolycoeff(grd=1)[0]
 #genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y',grd=0) 
 #genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y',grd=1,eur=[1, 4, 2])[0]
+#genpolycoeff(equn="alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2",solv="y")
 
 def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
     return eval(ste, kwargs)
