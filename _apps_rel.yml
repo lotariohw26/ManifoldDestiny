@@ -17,6 +17,7 @@ appn0:
     fr: "2"
     eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
     va: "g"
+    ro: [[1, 2, 3],[0,0,0]]
   prg:
     cnd: 1
     z: 300
@@ -44,6 +45,7 @@ appn1:
     fr: "2"
     eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
     va: "g"
+    ro: [[1, 2, 3],[0,0,0]]
   prg:
     cnd: 0
     z: 0 

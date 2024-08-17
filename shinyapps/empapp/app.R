@@ -14,10 +14,10 @@ ui <- fluidPage(
               choices = abr,
               selected = "app0"),
       textInput("purge", "Purge criteria (Z, STUV, P):",value="0;0 0 0 0;0"),
-      #selectInput("form", "Type of rigg:",
-      #            choices = c("Normal Form" = "1",
-      #                        "Hybrid Form" = "2",
-      #                        "Opposition Form" = "3"), selected = "2"),
+      selectInput("form", "Type of rigg:",
+                  choices = c("Normal Form" = "1",
+                              "Hybrid Form" = "2",
+                              "Opposition Form" = "3"), selected = "2"),
       textInput("meqf", "Manifold equation:",
                 value = "alpha=k0+k1*g+k2*h"),
       textInput("solvf", "Solve for:",
@@ -73,24 +73,23 @@ server <- function(input, output, session) {
     seld[[2]]$prg$z <- vecl[[1]]
     seld[[2]]$prg$stuv <- vecl[[2]]
     seld[[2]]$prg$prma <- vecl[[3]]
-    #browser()
-    #seld[[2]]$prg$cnd <- c(0)
-    #seld[[2]]$prg$cnd <- c(0)
-    #seld[[2]]$prg$stuv <- c(0,0,0,0)
-    #seld[[2]]$prg$blup[1] <- 0
-    #seld[[2]]$prg$blup[2] <- 1
     ##### Solution
-    #seld[[2]]$sgs$fr <- as.numeric(input$form)
-    #seld[[2]]$sgs$eq <- as.numeric(input$meqf)
-    #seld[[2]]$sgs$va <- as.numeric(input$solvf)
-    ##### Rotation
-    #mds$mtd$sgs$ro[1] <- input$theta*pi/180
-    #mds$mtd$sgs$ro[2] <- input$phi*pi/180
-    #mds$mtd$sgs$ro[3] <- input$rho*pi/180
-    #### Selreport
+    #browser()
+    seld[[2]]$sol$fr <- input$form
+    seld[[2]]$sol$eq[[1]] <- input$meqf
+    seld[[2]]$sol$va <- input$solvf
+    #seld[[2]]$sol$ro[[1]]
+    #seld[[2]]$sol$ro[[2]][1] <- input$theta*pi/180
+    #seld[[2]]$sol$ro[[2]][2] <- input$phi*pi/180
+    #seld[[2]]$sol$ro[[2]][3] <- input$rho*pi/180
+    #seld[[2]]$sol$ro[[2]]
+    ##### Selreport
     return(selreport(seld))
   })
   observe(print(cformo()[[1]]$desms))
+  output$sidebarText <- renderPrint({
+    paste0(cformo()[['md']]$sol$eq," \n ",cformo()[['md']]$sol$eq)
+  })
   output$table_dsc <- renderPrint({
     print(cformo()[[1]]$desms)
   })
@@ -120,9 +119,6 @@ server <- function(input, output, session) {
   output$print_com <- renderPrint({
     cformo()[[2]]$comdesc
   })
-  output$sidebarText <- renderPrint({
-    paste0("abc")
-  })
   output$plot_3d_rot <- renderPlotly({
     cformo()[[1]]$all_pl_3d_mani[[1]]
   })
@@ -131,6 +127,6 @@ server <- function(input, output, session) {
   })
 }
 shinyApp(ui = ui, server = server)
-
-
-
+#alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2
+#alpha=k0+k1*g+k2*h+k3*g**2+ k4*h**2+k5*gh + k6*h**3 + k8*g**2*h + k9*g*h**2
+#24 50 58 62 112 121 146

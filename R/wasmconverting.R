@@ -198,7 +198,6 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
-
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
@@ -472,7 +471,6 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   sortby=alpha
 					   ){
 
-	#browser()
   wasm <<- F # Sys.info()[['sysname']]=="Emscripten"
   parameters <<- stickers[['parameters']]
   se <<- eqpar$meqs
@@ -575,11 +573,11 @@ Countingprocess$methods(plext=function(frm=2){
 Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y"),rnk=0,pres=NULL,pri=0,prma=NULL){
   rdfv <- rdfci %>%
     dplyr::arrange(P) %>%
-    dplyr::filter(Z>=z) %>%
-    dplyr::filter(S>=stuv[1]) %>%
-    dplyr::filter(T>=stuv[2]) %>%
-    dplyr::filter(U>=stuv[3]) %>%
-    dplyr::filter(V>=stuv[4]) %>%
+    dplyr::filter(Z>z) %>%
+    dplyr::filter(S>stuv[1]) %>%
+    dplyr::filter(T>stuv[2]) %>%
+    dplyr::filter(U>stuv[3]) %>%
+    dplyr::filter(V>stuv[4]) %>%
     dplyr::filter(!P%in%prma) %>%
     dplyr::filter(if_all(c(alpha,x,y,g,h,m,n),~.>blup[1]&.<blup[2]))
     erdfv <- Estimation(rdfv)
