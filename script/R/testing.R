@@ -29,92 +29,9 @@ qenvae <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_app
 qenvas <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_apps_sim.yml"))
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #######################################################################################################################################################
-# Applications
-recoudatr(qenvae$appn0)
-
-cob$rdfci
-
-head(iris)
-lm()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-apps <- appn0
-adat <- apps[[1]]
-amet <- apps[[2]]
-selo <- seloutput(selreport(apps))
-View(selo[[1]])
-
-fopl <- cogr$polyc[[1]][[1]]
-options(digits = 2)                                                                                               
-
-
-View(co$rdfc)
-#ifelse(Sys.info()[['sysname']]==
-#
-#
-#if(Sys.info()[['sysname']]=="Emscripten")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ManifoldDestiny::wasmconload()
-source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
-source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ###########################################################################################################
 ###########################################################################################################
-apps <- app1
-adat <- apps[[1]]
-amet <- apps[[2]]
-rept <- seloutput(selreport(apps))
+###########################################################################################################
 
 
 

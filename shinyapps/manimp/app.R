@@ -16,7 +16,7 @@ ui <- fluidPage(
       selectInput("form", "Rigged:",
                   choices = c("Normal Form" = "1",
                               "Hybrid Form" = "2",
-                              "Opposition Form" = "3"), selected = "1"),
+                              "Opposition Form" = "3"), selected = "2"),
       selectizeInput("prevar","Predermined variables",choices=c("alpha","x","y","zeta","omega"),multiple =TRUE,options=list(maxItems=3),
       selected = c("alpha", "x", "y")),
       selectizeInput("endvar","Endogenous variables",choices=c("alpha","x","y","zeta","lamda"),multiple =TRUE,options=list(maxItems=2), selected=c("zeta","lamda")),
