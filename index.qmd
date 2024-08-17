@@ -3,15 +3,15 @@ title: "{{< var titll >}}"
 output: github_document
 execute: 
   cache: false
-webr:
-  show-startup-message: true      # Display status of webR initialization
-  show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
-  packages: ['ggplot2','dplyr','data.table','readr','plotly','combinat','htmltools','broom','cowplot'] 
-  cell-options:
-    autorun: true
-filters:
-  - panelize
-  - webr
+#webr:
+#  show-startup-message: true      # Display status of webR initialization
+#  show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
+#  packages: ['ggplot2','dplyr','data.table','readr','plotly','combinat','htmltools','broom','cowplot'] 
+#  cell-options:
+#    autorun: true
+#filters:
+#  - panelize
+#  - webr
 ---
 
 ```{r, echo=F}
@@ -20,6 +20,40 @@ filters:
 
 **Based upon the ideas developed by Edward K. Solomon**
 ![](pngs/md.png)
+
+
+```{r, echo=F}
+suppressMessages(ManifoldDestiny::wasmconload()) 
+apps <- appn0
+adat <- apps[[1]]
+amet <- apps[[2]]
+cob <- Countinggraphs(adat,selvar=names(adat))
+sum(dplyr::select(cob$rdfci,S,T,U,V))
+cob$purging(z=amet$prg$z,pri=1) 
+cob$plext(2)
+sum(dplyr::select(cob$rdfce,S,T,U,V))
+def <- Estimation(cob$rdfce)
+def$regression("alpha=k0 + k1*g + k2*h")
+summary(def$regsum[[1]])
+```
+
+```{r}
+def$regression("alpha=k0 + k1*g + k2*h")
+summary(def$regsum[[1]])
+```
+
+
+```{r}
+def$regression("alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2")
+summary(def$regsum[[1]])
+```
+
+
+
+```{r, echo=F}
+knitr::knit_exit()
+```
+
 
 
 ```{webr-r}
@@ -57,10 +91,6 @@ broom::glance(ges$regsum[[1]])
 **Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
 
 
-
-```{r, echo=F}
-knitr::knit_exit()
-```
 
 
 
