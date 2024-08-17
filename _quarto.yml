@@ -92,7 +92,6 @@ website:
      right: 
        - icon: github
          href: https://github.com/lotariohw26/ManifoldDestiny
-
 format:
   html:
     toc: true

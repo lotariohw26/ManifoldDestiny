@@ -127,6 +127,4 @@ server <- function(input, output, session) {
   })
 }
 shinyApp(ui = ui, server = server)
-#alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2
-#alpha=k0+k1*g+k2*h+k3*g**2+ k4*h**2+k5*gh + k6*h**3 + k8*g**2*h + k9*g*h**2
-#24 50 58 62 112 121 146
+
