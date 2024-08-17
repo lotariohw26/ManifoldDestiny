@@ -21,9 +21,6 @@ apps <- appn1
 {{< include tabpar.qmd >}}
 
 
-```{r}
-knitr::knit_exit()
-```
 
 # {{< var sec1.nmn >}}
 ## {{< var sec1.un1 >}}
@@ -134,3 +131,6 @@ apps <- app4
 
 
 
+```{r}
+knitr::knit_exit()
+```

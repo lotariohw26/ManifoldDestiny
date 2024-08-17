@@ -16,6 +16,8 @@ nocite: |
   @*
 ---
 
+
+
 ```{r, echo=F, message=F, warning=F, results='hide'}
 ManifoldDestiny::wasmconload()
 library(polynom)

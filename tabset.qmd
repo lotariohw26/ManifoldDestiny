@@ -2,6 +2,8 @@
 title: ""
 ---
 
+
+
 ```{r}
 #| echo: false
 #| output: false
@@ -11,11 +13,20 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ```
 ::: {.callout-caution collapse="true"}
-## {{< var tabh.h1 >}}
+## {{< var tabh.h0 >}}
 ```{r}
 #| echo: false
 #| output: false
 apps <- appsn
+```
+{{< include tab.qmd >}}
+:::
+::: {.callout-caution collapse="true"}
+## {{< var tabh.h1 >}}
+```{r}
+#| echo: false
+#| output: false
+apps <- apprn
 ```
 {{< include tab.qmd >}}
 :::
