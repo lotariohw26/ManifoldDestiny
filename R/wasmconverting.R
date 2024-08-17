@@ -252,11 +252,11 @@ seloutput <- function(selreport=NULL){
   l3 <- selreport[[2]]$resplots[[1]][[3]]
   l4 <- selreport[[2]]$resplots[[1]][[4]]
   tab8 <- cowplot::plot_grid(plotlist=list(l1,l2,l3,l4))
-  #tab9 <- dplyr::select(selreport[[2]]$comdesc,1,3)
+  tab9 <- dplyr::select(selreport[[2]]$comdesc,1,3)
   tab10 <- selreport[[4]]$pl_2dsort
   tab11 <- list(summary(selreport[[3]]$regsum[[1]]))
   tab12 <- selreport[[5]]
-  list(rdfc=tab1,decs=tab2,corxy=tab3,qunt=tab4,ro3d=tab5,r2li=tab6,regr=tab7,resp=tab8,cmp=NULL,bs=tab10,regi=tab11,md=tab12)
+  list(rdfc=tab1,decs=tab2,corxy=tab3,qunt=tab4,ro3d=tab5,r2li=tab6,regr=tab7,resp=tab8,cmp=tab9,bs=tab10,regi=tab11,md=tab12)
 }
 
 ##' @export Rall

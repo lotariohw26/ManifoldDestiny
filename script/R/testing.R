@@ -8,6 +8,8 @@ amet <- apps[[2]]
 ###########################################################################################################
 selr <- selreport(apps)
 selo <- seloutput(selr)
+options(scipen = 999)
+print(selo$cmp,digits=4)
 ##########################################################################################################
 cob <- Countinggraphs(adat,selvar=names(adat))
 sum(dplyr::select(cob$rdfci,S,T,U,V))
