@@ -8,12 +8,12 @@ qenvas <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_app
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #######################################################################################################################################################
 # Applications
-recoudatr(qenvae$appn0)
-recoudatr(qenvae$appn1)
-recoudatr(qenvae$appn2)
-recoudatr(qenvae$appn3)
-recoudatr(qenvae$appn4)
-recoudatr(qenvae$appn7)
+#recoudatr(qenvae$appn0)
+#recoudatr(qenvae$appn1)
+#recoudatr(qenvae$appn2)
+#recoudatr(qenvae$appn3)
+#recoudatr(qenvae$appn4)
+#recoudatr(qenvae$appn7)
 #######################################################################################################################################################
 # Simulation
 ## Normal 
@@ -30,21 +30,22 @@ do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
 set.seed(1)
 cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
-plfc <- c(0.12,0.12,0.12)
+plfc <- c(0.19,0.19,0.19)
 exn <- c("apprn","apprh","appro","apprnr")
 rigv <- lapply(1:1, function(x) { 
-		       browser()
   mda <- qenvas[[exn[x]]]
-  exs <- list(frm=as.numeric(mda$sol$fr),
+  exs <- list(
+	    frm=as.numeric(mda$sol$fr),
   	    pre=mda$sol$pr,
   	    end=mda$sol$de,
   	    eq=mda$sol$eq[1],
   	    va=mda$sol$va,
-            rot=mda$sol$ro)
+            rot=mda$sol$ro
+  	  )
   cogr$mansys(sygen=exs)
   cogr$polyc[[1]]
   cogr$setres(NULL,1)
-  cogr$setres(plfc[1],1)
+  cogr$setres(plfc[x],1)
   cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
   assign(mda$nid,list(cogr$rdfc,mda))
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
