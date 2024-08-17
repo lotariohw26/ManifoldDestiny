@@ -13,7 +13,7 @@ ui <- fluidPage(
       selectInput(inputId = "app_select", label = "Select election data from the set of applications",
               choices = abr,
               selected = "app0"),
-      #textInput("purge", "Purge criteria:",value="0;0;0"),
+      textInput("purge", "Purge criteria (Z, STUV, P):",value="0;0 0 0 0;0"),
       #selectInput("form", "Type of rigg:",
       #            choices = c("Normal Form" = "1",
       #                        "Hybrid Form" = "2",
@@ -23,24 +23,25 @@ ui <- fluidPage(
       textInput("solvf", "Solve for:",
                 value = "g"),
       br(),
-      ##h4("Rotation Settings (Euler)"),
-      ##selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
-      ##sliderInput("theta", "Theta:", min = 0, max = 360, value = 0),
-      ##sliderInput("phi", "Phi:", min = 0, max = 360, value = 0),
-      ##sliderInput("rho", "Rho:", min = 0, max = 360, value = 0),
+      h4("Rotation Settings (Euler)"),
+      selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
+      sliderInput("theta", "Theta:", min = 0, max = 360, value = 0),
+      sliderInput("phi", "Phi:", min = 0, max = 360, value = 0),
+      sliderInput("rho", "Rho:", min = 0, max = 360, value = 0),
       h4("Suggested solution:"),
       textOutput("sidebarText")  # Output element for dynamic text
     ),
     mainPanel(
       tabsetPanel(
         tabPanel("Descriptive", verbatimTextOutput(outputId = "table_dsc")),
+        tabPanel("Purged", verbatimTextOutput(outputId = "table_pur")),
         tabPanel("2D Plots", plotOutput(outputId = "plot_xy")),
         tabPanel("Quantile Plot", plotOutput(outputId = "plot_q")),
         tabPanel("3D plots", htmlOutput(outputId = "plot_3ds")),
         tabPanel("Regressions", verbatimTextOutput(outputId = "print_sum")),
         tabPanel("Residuals", plotOutput(outputId = "plot_res")),
         tabPanel("Comparison", verbatimTextOutput(outputId = "print_com")),
-        #tabPanel("3D rotation", plotlyOutput(outputId = "plot_3d_rot")),
+        tabPanel("3D rotation", plotlyOutput(outputId = "plot_3d_rot")),
         tabPanel("Metadata", verbatimTextOutput(outputId = "meta_dsc"))
       )
     )
@@ -62,13 +63,17 @@ server <- function(input, output, session) {
   })  
   cformo <- reactive({
     # Manual
-    #browser()
     #seld <- get(apps)
     seld <- get(input$app_select)
     seld[[1]]
     seld[[2]]
     #mds <- md[[sna]]
     ##### Purge
+    vecl <- lapply(strsplit(input$purge, ";")[[1]], function(part) as.numeric(strsplit(part, " ")[[1]]))
+    seld[[2]]$prg$z <- vecl[[1]]
+    seld[[2]]$prg$stuv <- vecl[[2]]
+    seld[[2]]$prg$prma <- vecl[[3]]
+    #browser()
     #seld[[2]]$prg$cnd <- c(0)
     #seld[[2]]$prg$cnd <- c(0)
     #seld[[2]]$prg$stuv <- c(0,0,0,0)
@@ -88,6 +93,9 @@ server <- function(input, output, session) {
   observe(print(cformo()[[1]]$desms))
   output$table_dsc <- renderPrint({
     print(cformo()[[1]]$desms)
+  })
+  output$table_pur <- renderPrint({
+    print(cformo()[[1]]$purdf)
   })
   output$plot_q <- renderPlot({
     cformo()[[1]]$pl_2dsort[[1]]
@@ -113,14 +121,16 @@ server <- function(input, output, session) {
     cformo()[[2]]$comdesc
   })
   output$sidebarText <- renderPrint({
-    #paste0(cformo()[[6]]$mtd$sgs$eq)
+    paste0("abc")
   })
   output$plot_3d_rot <- renderPlotly({
-    cformo()[[1]]$rotplotly[[1]]
+    cformo()[[1]]$all_pl_3d_mani[[1]]
   })
   output$meta_dsc <- renderPrint({
-    #cformo()[[4]]
+    cformo()[['md']]
   })
 }
 shinyApp(ui = ui, server = server)
+
+
 
