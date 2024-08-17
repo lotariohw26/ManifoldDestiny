@@ -108,9 +108,6 @@ bibliography: man_bib.bib
 # shinyapps/manimp/app.R
 # shinyapps/empapp/app.R
 # shinyapps/restor/app.R
-#
-#
-#
 #::: {.callout-caution collapse="true"}
 ### {{< var tabh.h1 >}}
 #```{r}

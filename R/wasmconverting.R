@@ -566,7 +566,7 @@ Countingprocess$methods(plext=function(frm=2){
       dplyr::mutate(!!sym(meq[18, 1]) := !!rlang::parse_expr(meq[18, 2]))
 })
 
-Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y"),rnk=0,pres=NULL,pri=0){
+Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y"),rnk=0,pres=NULL,pri=0,prma=NULL){
   rdfv <- rdfci %>%
     dplyr::arrange(P) %>%
     dplyr::filter(Z>z) %>%
@@ -574,12 +574,8 @@ Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("
     dplyr::filter(T>stuv[2]) %>%
     dplyr::filter(U>stuv[3]) %>%
     dplyr::filter(V>stuv[4]) %>%
-    ## Percentages
-    #sum(dplyr::select(rdfv,S,T,U,V))
+    dplyr::filter(!P%in%prma) %>%
     dplyr::filter(if_all(c(alpha,x,y,g,h,m,n),~.>blup[1]&.<blup[2]))
-    # Fit filter
-    #browser()
-    #eqp <- "V=k0+k1*Z+k2*S"
     erdfv <- Estimation(rdfv)
     erdfv$regression(eqp)
     erdfv$regsum[[1]]

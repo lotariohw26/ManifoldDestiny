@@ -8,12 +8,44 @@ amet <- apps[[2]]
 ###########################################################################################################
 cob <- Countinggraphs(adat,selvar=names(adat))
 sum(dplyr::select(cob$rdfci,S,T,U,V))
-cob$purging(z=amet$prg$z,pri=1) 
+prma <- c(24,50,58,62,112,121,146)
+cob$purging(z=amet$prg$z,pri=1,prma=prma) 
 cob$plext(2)
 sum(dplyr::select(cob$rdfce,S,T,U,V))
 def <- Estimation(cob$rdfce)
 def$regression("alpha=k0 + k1*g + k2*h")
 summary(def$regsum[[1]])
+# Call:
+# lm(formula = formo, data = edfc)
+# 
+# Residuals:
+#       Min        1Q    Median        3Q       Max 
+# -0.051962 -0.002965  0.001530  0.004318  0.117321 
+# 
+# Coefficients:
+#              Estimate Std. Error t value Pr(>|t|)    
+# (Intercept) -0.005351   0.002288  -2.338   0.0203 *  
+# g            0.680345   0.007584  89.709   <2e-16 ***
+# h            0.322876   0.006142  52.571   <2e-16 ***
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+# Residual standard error: 0.014 on 215 degrees of freedom
+# Multiple R-squared:  0.9931,	Adjusted R-squared:  0.9931 
+# F-statistic: 1.554e+04 on 2 and 215 DF,  p-value: < 2.2e-16
+
+url <- "https://docs.google.com/spreadsheets/d/1ePxTwcx6LFL8pW8SZfx5iZgqZeCUzXY3bUQiFUYncgg/edit?gid=486042717#gid=486042717"
+eddf <- googlesheets4::read_sheet(url,range="B14:AQ232") 
+lodf <- dplyr::bind_cols(cob$rdfce)
+names(eddf)
+names(lodf)
+pn1 <- as.numeric(eddf[['P#']])
+pn2 <- as.numeric(lodf[['P']])
+setdiff(pn2,pn1)
+
+
+
+setdiff(as.numeric(eddf[['P#']]),as.numeric(lodf[['P']]))
 # Call:
 # lm(formula = formo, data = edfc)
 # 
@@ -52,8 +84,10 @@ summary(def$regsum[[1]])
 # h3           1.038567   0.059782  17.373  < 2e-16 ***
 # g2h          0.184697   0.145090   1.273  0.20440    
 # gh2         -1.402066   0.151996  -9.224  < 2e-16 ***
+
+
 # ---
-googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+googlesheets4::gs4_auth(email="jorn.halvorsen@gmail.com")
 library(googlesheets4)
 abc <- gs4_create("abc",sheets =cob$rdfce)
 gs4_browse(abc)

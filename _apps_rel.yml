@@ -22,8 +22,9 @@ appn0:
     z: 300
     stuv: [0,0,0,0]
     blup: [0,1]
+    prma: [24,50,58,62,112,121,146]
     eqp: "alpha=k0+k1*g+k2*h"
-  bib: []
+  bib: ['https://www.youtube.com/watch?v=_37ghf0DRLw']
 appn1:
   nid: "appn1"
   mtd:

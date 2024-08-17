@@ -76,3 +76,17 @@ l <- function(){
                      ignore.stdout = TRUE, ignore.stderr = TRUE))
 }
 
+#' @export gop
+gop <- function(ma="lotariohw26@gmail.com",df=iris){
+	googlesheets4::gs4_auth(email=ma)
+	abc <- googlesheets4::gs4_create("abc",sheets =df)
+	googlesheets4::gs4_browser(abc)
+}
+
+#' @export gre
+gre <- function(ma="lotariohw26@gmail.com",url=url,sheet=sheet,range=range){
+	googlesheets4::gs4_auth(email=ma)
+	gsh <- googlesheets4::read_sheet(url,sheet=sheet,range=range) 
+}
+
+
