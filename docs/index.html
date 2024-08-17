@@ -356,7 +356,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"dpi":72,"context":"interactive","classes":"","fig-cap":"","output":"true","eval":"true","fig-height":5,"autorun":"true","comment":"","fig-width":7,"echo":"fenced","editor-word-wrap":"true","editor-font-scale":"1","out-width":"700px","read-only":"false","results":"markup","editor-max-height":"","warning":"true","out-height":"","message":"true","editor-quick-suggestions":"false","label":"unnamed-chunk-1"},"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')"}];
+globalThis.qwebrCellDetails = [{"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\n#ls(package:ManifoldDestinyWASMP)\n#data(package='ManifoldDestinyWASMD')\napps <- appn0","id":1,"options":{"results":"markup","warning":"true","editor-max-height":"","context":"interactive","read-only":"false","classes":"","message":"true","eval":"true","fig-width":7,"out-height":"","autorun":"true","editor-word-wrap":"true","label":"unnamed-chunk-1","comment":"","output":"true","fig-cap":"","out-width":"700px","echo":"fenced","dpi":72,"fig-height":5,"editor-quick-suggestions":"false","editor-font-scale":"1"}},{"code":"adat <- apps[[1]]\namet <- apps[[2]]\ncob <- Countinggraphs(adat)\ncob$purging(z=0) \ndef <- Estimation(cob$rdfce)","id":2,"options":{"results":"markup","warning":"true","editor-max-height":"","context":"interactive","read-only":"false","classes":"","message":"true","fig-width":7,"out-height":"","autorun":"true","editor-word-wrap":"true","label":"unnamed-chunk-2","comment":"","output":"true","fig-cap":"","out-width":"700px","dpi":72,"fig-height":5,"editor-quick-suggestions":"false","editor-font-scale":"1"}},{"code":"def$regression(\"alpha=k0 + k1*g + k2*h\")\nsummary(def$regsum[[1]])","id":3,"options":{"results":"markup","warning":"true","editor-max-height":"","context":"interactive","read-only":"false","classes":"","message":"true","fig-width":7,"out-height":"","autorun":"true","editor-word-wrap":"true","label":"unnamed-chunk-3","comment":"","output":"true","fig-cap":"","out-width":"700px","dpi":72,"fig-height":5,"editor-quick-suggestions":"false","editor-font-scale":"1"}},{"code":"def$regression(\"alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2\")\nsummary(def$regsum[[1]])","id":4,"options":{"results":"markup","warning":"true","editor-max-height":"","context":"interactive","read-only":"false","classes":"","message":"true","fig-width":7,"out-height":"","autorun":"true","editor-word-wrap":"true","label":"unnamed-chunk-4","comment":"","output":"true","fig-cap":"","out-width":"700px","dpi":72,"fig-height":5,"editor-quick-suggestions":"false","editor-font-scale":"1"}}];
 
 </script>
 <script type="module">
@@ -2020,6 +2020,12 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <p><strong>Based upon the ideas developed by Edward K. Solomon</strong> <img src="pngs/md.png" class="img-fluid"></p>
 <div id="qwebr-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 
 

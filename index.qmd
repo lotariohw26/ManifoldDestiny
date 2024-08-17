@@ -28,8 +28,27 @@ webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_
 webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
 library(ManifoldDestinyWASMP)
 library(ManifoldDestinyWASMD)
-ls(package:ManifoldDestinyWASMP)
-data(package='ManifoldDestinyWASMD')
+#ls(package:ManifoldDestinyWASMP)
+#data(package='ManifoldDestinyWASMD')
+apps <- appn0
+```
+
+```{webr-r}
+adat <- apps[[1]]
+amet <- apps[[2]]
+cob <- Countinggraphs(adat)
+cob$purging(z=0) 
+def <- Estimation(cob$rdfce)
+```
+
+```{webr-r}
+def$regression("alpha=k0 + k1*g + k2*h")
+summary(def$regsum[[1]])
+```
+
+```{webr-r}
+def$regression("alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2")
+summary(def$regsum[[1]])
 ```
 
 
