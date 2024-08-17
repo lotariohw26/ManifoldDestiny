@@ -7,60 +7,47 @@ apps <- get(abr[1])
 options(digits=2)
 ###############################################################################################################################################################
 ui <- fluidPage(
-  titlePanel("Rigged Election Results Analyzer"),
+  titlePanel("Election results analyzer"),
   sidebarLayout(
     sidebarPanel(
-      selectInput(inputId = "app_select", 
-                  label = "Select an election from the library",
-                  choices = dlname,
-                  selected = "biden_trump_nevada_2020"),
-      selectInput("form", "Rigged:",
+      selectInput(inputId = "app_select", label = "Select election data from the set of applications",
+              choices = abr,
+              selected = "app0"),
+      textInput("purge", "Purge criteria (Z, STUV, P):",value="0;0 0 0 0;0"),
+      selectInput("form", "Type of rigg:",
                   choices = c("Normal Form" = "1",
                               "Hybrid Form" = "2",
-                              "Opposition Form" = "3"), 
-                  selected = "2"),
-      textInput("purge", "Purge criteria:", value = "0;0;0"),
-      textInput("meqf", "Manifold object(s):",
+                              "Opposition Form" = "3"), selected = "2"),
+      textInput("meqf", "Manifold equation:",
                 value = "alpha=k0+k1*g+k2*h"),
       textInput("solvf", "Solve for:",
                 value = "g"),
       br(),
       h4("Rotation Settings (Euler)"),
-      selectizeInput("rotation", "Euler-rotation order (optional)", 
-                     choices = c(1, 2, 3, 4, 5, 6), 
-                     multiple = TRUE,
-                     options = list(maxItems = 3)),
+      selectizeInput("rotation", "Euler-rotation order (optional)", choices = c(1, 2, 3, 4, 5, 6), multiple = TRUE,options = list(maxItems = 3)),
       sliderInput("theta", "Theta:", min = 0, max = 360, value = 0),
       sliderInput("phi", "Phi:", min = 0, max = 360, value = 0),
       sliderInput("rho", "Rho:", min = 0, max = 360, value = 0),
       h4("Suggested solution:"),
-      textOutput("sidebarText"),  # Output element for dynamic text
-      selectInput("auto", "Manual", choices = c("Yes", "No")),
-      conditionalPanel(
-        condition = "input.auto == 'No'",
-        textInput("ABC", "T", value = '0.0, 0.0'),
-        selectizeInput("lossalog", "Loss algorithm", 
-                       choices = c("alpha", "x", "y", "zeta", "lambda"), 
-                       multiple = FALSE, 
-                       options = list(maxItems = 1))
-      )
-    ),  # Added comma here
+      textOutput("sidebarText")  # Output element for dynamic text
+    ),
     mainPanel(
       tabsetPanel(
         tabPanel("Descriptive", verbatimTextOutput(outputId = "table_dsc")),
-        tabPanel("2D Scatter Plots", plotOutput(outputId = "plot_xy")),
+        tabPanel("Purged", verbatimTextOutput(outputId = "table_pur")),
+        tabPanel("2D Plots", plotOutput(outputId = "plot_xy")),
         tabPanel("Quantile Plot", plotOutput(outputId = "plot_q")),
-        tabPanel("Bow Plot", plotOutput(outputId = "plot_bow")),
-        tabPanel("3D Rotation", plotlyOutput(outputId = "plot_3d")),
-        tabPanel("3D Scatter Plots", htmlOutput(outputId = "plot_3ds")),
+        tabPanel("3D plots", htmlOutput(outputId = "plot_3ds")),
         tabPanel("Regressions", verbatimTextOutput(outputId = "print_sum")),
         tabPanel("Residuals", plotOutput(outputId = "plot_res")),
         tabPanel("Comparison", verbatimTextOutput(outputId = "print_com")),
+        tabPanel("3D rotation", plotlyOutput(outputId = "plot_3d_rot")),
         tabPanel("Metadata", verbatimTextOutput(outputId = "meta_dsc"))
       )
     )
   )
-)server <- function(input, output, session) {
+)
+server <- function(input, output, session) {
   observeEvent(input$form, {
      #Update the default value of the "Polynomial Equation(s)" text input
     if (input$form == "1") {
