@@ -38,7 +38,7 @@ appn1:
     url: "https://docs.google.com/spreadsheets/d/1gkf41sJRAQ6bwKmlAAcb7hAQ6v4zIXG2wDYl67LrJ4k/edit#gid=0"
     pgn: 1
     rng: A2:F1288
-    cln: ['PN', 'RN', 'A1', 'B1', 'A2', 'B2']
+    cln: ['PN', 'R', 'A1', 'B1', 'A2', 'B2']
     stuv: ['A1', 'B1', 'A2', 'B2']
   sol:
     fr: "2"
@@ -66,7 +66,7 @@ appn2:
     url: "https://docs.google.com/spreadsheets/d/1jvLhOzaaQUqmpt7XTz01DoLsLiXr3vNAw-79_PBCOsw/edit#gid=0"
     pgn: 2
     rng: "A1:H151"
-    cln: ['PN', 'RN', 'A1', 'B1', 'A2', 'B2', 'A3', 'B3']
+    cln: ['PN', 'R', 'A1', 'B1', 'A2', 'B2', 'A3', 'B3']
     stuv: ['A1', 'B1', 'A2', 'B2']
   sol:
     fr: "2"
@@ -94,7 +94,7 @@ appn3:
     pgn: 1
     mod: ['EDV', 'MiV']
     rng: G5:O940
-    cln: ['PC', 'PN', 'RN', 'A0', 'A1', 'A2', 'B0', 'B1', 'B2']
+    cln: ['PC', 'PN', 'R', 'A0', 'A1', 'A2', 'B0', 'B1', 'B2']
     stuv: ['A1', 'B1', 'A2', 'B2']
     eq: "alpha=k0+k1*x+k2*y"
     va: y
@@ -124,7 +124,7 @@ appn4:
     pgn: 3
     mod: ['ADV', 'MiV', 'EDV', 'Prov']
     rng: A5:K315
-    cln: ['CO', 'PN', 'RN', 'D1', 'D2', 'A1', 'A2', 'A3', 'B1', 'B2', 'B3']
+    cln: ['CO', 'PN', 'R', 'D1', 'D2', 'A1', 'A2', 'A3', 'B1', 'B2', 'B3']
     stuv: ['A3', 'B3', 'A1+A2', 'B1+B2']
   sol:
     fr: "2"

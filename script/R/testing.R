@@ -70,6 +70,30 @@ summary(def$regsum[[1]])
 # lm(formula = formo, data = edfc)
 # 
 # Residuals:
+#        Min         1Q     Median         3Q        Max 
+# -0.0221020 -0.0024807 -0.0004238  0.0016570  0.0187834 
+# 
+# Coefficients:
+#              Estimate Std. Error t value Pr(>|t|)    
+# (Intercept) -0.004671   0.001913  -2.442  0.01542 *  
+# g            0.519016   0.039236  13.228  < 2e-16 ***
+# h            0.490453   0.027226  18.014  < 2e-16 ***
+# g2          -0.461339   0.079582  -5.797 2.46e-08 ***
+# h2          -1.064771   0.073186 -14.549  < 2e-16 ***
+# gh           1.582198   0.124267  12.732  < 2e-16 ***
+# h3           1.033464   0.050182  20.594  < 2e-16 ***
+# g2h          0.381111   0.120575   3.161  0.00181 ** 
+# gh2         -1.521376   0.122816 -12.387  < 2e-16 ***
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+# Residual standard error: 0.005073 on 209 degrees of freedom
+# Multiple R-squared:  0.9991,	Adjusted R-squared:  0.9991 
+# F-statistic: 2.976e+04 on 8 and 209 DF,  p-value: < 2.2e-16
+# Call:
+# lm(formula = formo, data = edfc)
+# 
+# Residuals:
 #       Min        1Q    Median        3Q       Max 
 # -0.020968 -0.002704 -0.000306  0.002068  0.038004 
 # 
