@@ -178,8 +178,8 @@ def genpolycoeff(equn="alpha=k0+k1*g+k2*h",solv='y',grd=0,parm=["alpha", "x", "y
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, matarch, abc
 
-#genpolycoeff(equn="alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2",solv="y")
-#genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y',grd=1,eur=[1, 4, 2])[0]
+genpolycoeff(equn="alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2",solv="y")[0]
+genpolycoeff(plr=1,parm=["alpha", "x", "y"], solv='y',grd=1,eur=[1, 4, 2])[0]
 
 def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
     return eval(ste, kwargs)
