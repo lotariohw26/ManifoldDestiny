@@ -49,21 +49,22 @@ def rall(sel=[0, 0, 0]):
     allrot = [ps[i] for i in sel]
     return allrot
 
-def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
+def genpolycoeff(equn="alpha=k0+k1*g+k2*h",solv='y',grd=0,parm=["alpha", "x", "y"],plr=1,eur=[1, 4, 2]):
     x, y, z = sympy.symbols('x y z')
     k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
-    sympy.var('alpha x y g h n m zeta Gamma lamda ui')
+    alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
     expr = [Eq(z,k0+k1*x+k2*y),Eq(z,k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2),Eq(z,k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3)][plr-1]
-    sum_eur = sum(eur)
     # Without rotation
-    if sum_eur == 0:
-        exprc = expr.subs([(z,parm[0]),(x,parm[1]),(y,parm[2])])
-        polys = poly(exprc, sympify(solvd)).all_coeffs()
+    if grd == 0:
+        #exprc = expr.subs([(z,parm[0]),(x,parm[1]),(y,parm[2])])
+        ls, rs = equn.split('=')
+        eqs = Eq(sympify(ls), sympify(rs))
+        polys = poly(eqs.rhs - eqs.lhs, sympify(solv)).all_coeffs()
         abc = []
         uvw = []
         ABCDE = [0, 0, 0, 0, 0]
         ABCDE[:len(polys)] = polys
-        return ABCDE 
+        return ABCDE, 0, 0
     # With rotation
     else:
         dxyz = {'x': 1, 'y': 2, 'z': 3}
@@ -145,7 +146,7 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
                 dic1 = matarch.set_index('d')['expr'].to_dict()
                 dic2 = matarch.set_index('d')['expr2'].to_dict()
                 dic = [dic1,dic2][0]
-                nrs = dxyz[solvd]-1
+                nrs = dxyz[solv]-1
         ABCDE = [0, 0, 0, 0, 0]
         A=Matrix([0,0,0])
         B=Matrix([0,0,0])
@@ -192,13 +193,11 @@ def genpolycoeff(plr=1,parm=["alpha", "x", "y"],solvd='alpha',eur=[0, 0, 0]):
         msl = ['u0','v0','w0','expr','expr2']
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, matarch, abc
-
-
 ```
 
 ```{pyodide-python}
-genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y') 
-genpolycoeff(plr=1,parm=["alpha", "x", "y"], solvd='y',eur=[1, 4, 2])[0]
+#genpolycoeff(equn="alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2",solv="y")
+#genpolycoeff(plr=1,parm=["alpha", "x", "y"], solv='y',grd=1,eur=[1, 4, 2])[0]
 ```
 
 ```{pyodide-python}
