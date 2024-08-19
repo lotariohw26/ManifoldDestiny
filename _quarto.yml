@@ -14,6 +14,7 @@
 # https://lotariohw26.github.io/MD_WASMS/py/examples/
 # data-raw/metadata.json
 # https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit
+# MD_WASMS/examples/r/MD-script/testing.R
 project:
   type: website
   output-dir: docs
@@ -33,6 +34,7 @@ project:
     - "analyzer.qmd"
     - "restoration.qmd"
     - "randpython.qmd"
+    - "calculator.qmd"
 website:
   title: "{{< var titls >}}"
   navbar:

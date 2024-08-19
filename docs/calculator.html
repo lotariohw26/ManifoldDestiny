@@ -334,7 +334,7 @@ body.reveal.quarto-dark div.qwebr-console-area {
 // Document level settings ----
 
 // Determine if we need to install R packages
-globalThis.qwebrInstallRPackagesList = ['dplyr', 'data.table', 'ggplot2', 'combinat', 'plotly', 'htmltools', 'broom'];
+globalThis.qwebrInstallRPackagesList = ['complexlm', 'dplyr', 'data.table', 'ggplot2', 'combinat', 'plotly', 'htmltools', 'broom'];
 
 // Specify possible locations to search for the repository
 globalThis.qwebrPackageRepoURLS = ['https://repo.r-wasm.org/'];
@@ -356,7 +356,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\nls(package:ManifoldDestinyWASMP)\ndata(package='ManifoldDestinyWASMD')\ndfl <- ManifoldDestinyWASMD::yout","id":1,"options":{"read-only":"false","out-height":"","editor-max-height":"","echo":"fenced","context":"interactive","comment":"","message":"true","editor-quick-suggestions":"false","output":"true","fig-cap":"","fig-width":7,"fig-height":5,"results":"markup","classes":"","editor-font-scale":"1","eval":"true","dpi":72,"autorun":"true","label":"unnamed-chunk-1","warning":"true","editor-word-wrap":"true","out-width":"700px"}},{"code":"perv <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,100,30)))})(100)\nprow <- c(m=0.51,s=0.10)\nproa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)\nprob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)\nztec <- c(0,1)  \nbasc <- list(df=ballcastsim(perv,prow,proa,prob,ztec),list(fr=1,eq=\"alpha=k0+k1*x+k2*y\",va='y',prg=list(cnd=1)))\ncogr <- Countinggraphs(basc[[1]])","id":2,"options":{"read-only":"false","out-height":"","editor-max-height":"","context":"interactive","comment":"","message":"true","editor-quick-suggestions":"false","output":"true","fig-cap":"","fig-height":5,"results":"markup","classes":"","editor-font-scale":"1","fig-width":7,"dpi":72,"autorun":"true","label":"unnamed-chunk-2","warning":"true","editor-word-wrap":"true","out-width":"700px"}},{"code":"cogr$rdfci","id":3,"options":{"read-only":"false","out-height":"","editor-max-height":"","context":"interactive","comment":"","message":"true","editor-quick-suggestions":"false","output":"true","fig-cap":"","fig-height":5,"results":"markup","classes":"","editor-font-scale":"1","fig-width":7,"dpi":72,"autorun":"true","label":"unnamed-chunk-3","warning":"true","editor-word-wrap":"true","out-width":"700px"}}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\n#ls(package:ManifoldDestinyWASMP)\n#data(package='ManifoldDestinyWASMD')\ndfl <- appn3","options":{"output":"true","fig-width":7,"echo":"fenced","editor-max-height":"","label":"unnamed-chunk-1","out-width":"700px","read-only":"false","context":"interactive","editor-font-scale":"1","warning":"true","comment":"","fig-height":5,"editor-quick-suggestions":"false","fig-cap":"","message":"true","autorun":"false","out-height":"","editor-word-wrap":"true","results":"markup","eval":"true","dpi":72,"classes":""}},{"id":2,"code":"df1[[1]]","options":{"output":"true","fig-width":7,"editor-max-height":"","label":"unnamed-chunk-2","out-width":"700px","read-only":"false","context":"interactive","editor-font-scale":"1","warning":"true","comment":"","editor-quick-suggestions":"false","fig-cap":"","message":"true","autorun":"false","out-height":"","editor-word-wrap":"true","results":"markup","fig-height":5,"dpi":72,"classes":""}}];
 
 </script>
 <script type="module">
@@ -2006,9 +2006,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-3"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Last time updated: 2024-07-19 15:25:33</strong></p>
+<p><strong>Last time updated: 2024-08-19 21:58:45</strong></p>
 
 
 
@@ -2430,7 +2428,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/simulations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/lotariohw26/ManifoldDestiny/edit/main/calculator.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

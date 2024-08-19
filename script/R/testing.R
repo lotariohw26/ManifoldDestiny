@@ -1,16 +1,43 @@
 ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-apps <- appn0
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
+apps <- appn3
 adat <- apps[[1]]
 amet <- apps[[2]]
 ##########################################################################################################
 ###########################################################################################################
+#######################################################################################################################################################
+# Complex estimation
+bal <- adat %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R)
+co <- Countinggraphs(bal,names(bal))$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R)
+la <- olsce(dr=co)
+la 
+View(co)
+
+co$purging(c(S=50,T=50,U=50,V=50),c(0.05,0.95))
+com <- olsce(co$rdfc)
+
+
+
+
+
+rooglesheets4::gs4_auth(email="lotariohw26@gmail.com")
+marcdf <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1FxJg9hjU-M1MIeKl0koiHDVIp2dPAmm3nJpRzd5Ejdg/edit#gid=811418100",range="A5:N578",sheet="Bounded Tabulations") %>% dplyr::select(1,2,3,4,11:14) %>% dplyr::rename(R=Registered) %>% dplyr::rename_at(1,~"P") %>% dplyr::select(-2)
+co <- Countinggraphs(marcdf,names(marcdf))$sdfc %>% dplyr::arrange(P) %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) 
+la
+#
+
+
+
+
+# Report
 selr <- selreport(apps)
 selo <- seloutput(selr)
 options(scipen = 999)
 print(selo$cmp,digits=4)
 ##########################################################################################################
+# Split report
 cob <- Countinggraphs(adat,selvar=names(adat))
 sum(dplyr::select(cob$rdfci,S,T,U,V))
 prma <- c(24,50,58,62,112,121,146)
@@ -23,7 +50,28 @@ def$regression("alpha=k0 + k1*g + k2*h")
 summary(def$regsum[[1]])
 def$regression("alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g**3 + k8*g**2*h + k9*g*h**2")
 summary(def$regsum[[1]])
-#######################################################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # libraries
 ManifoldDestiny::wasmconload()
 library(usethis)
