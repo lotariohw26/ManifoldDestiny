@@ -667,6 +667,8 @@ Countingprocess$methods(manimp=function(init_par=NULL,
     rad <- mansysl$rot[[2]]*(pi/180)
     mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
     nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
+    #browser()
+    #enf[[3]][[3]]
     #abcv <- setNames(as.vector(lapply(enf[[3]][[3]], as.character)),c(paste0(rep(letters[1:3], each=3), rep(1:3, times=3))))
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
