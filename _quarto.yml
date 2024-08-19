@@ -85,6 +85,8 @@ website:
           href: "restoration.qmd"
         - text: "Functions"
           href: "randpython.qmd"
+        - text: "Functions2"
+          href: "calculator.qmd"
   repo-url: "https://github.com/lotariohw26/ManifoldDestiny"
   site-url: "https://lotariohw26.github.io/ManifoldDestiny/"
   reader-mode: false
