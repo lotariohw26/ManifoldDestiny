@@ -299,8 +299,10 @@ erotation <-function(dfe=NULL,
 		     sev=NULL,
 		     rs=c(1,2,3),
                      gra=c(0,0,0),
-		     med=FALSE
+		     med=TRUE
 		     ){
+
+	browser()
   Ralv <- Rall(sel=rs)
   rpar <- gra*(pi/180)
   mvec <- c(1,0)[ifelse(isTRUE(med), 1, 2)]

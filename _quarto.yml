@@ -15,6 +15,7 @@
 # data-raw/metadata.json
 # https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit
 # MD_WASMS/examples/r/MD-script/testing.R
+# MD_WASMS/examples/r/MD-script/testing.R
 project:
   type: website
   output-dir: docs
@@ -44,7 +45,7 @@ website:
       - text: "Documentation"
         menu:
         - text: "Presentation" 
-          href: "presentation.qmd"
+        #          href: "presentation.qmd"
         - text: "Addendum 1: Arizona"
           href: "addendum/Addendum_az.qmd"
         - text: "Addendum 2: Nevada"
