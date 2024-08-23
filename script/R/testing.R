@@ -2,9 +2,9 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
-apps <- appn3
-adat <- apps[[1]]
-amet <- apps[[2]]
+#apps <- appn3
+#adat <- apps[[1]]
+#amet <- apps[[2]]
 library(complexlm)
 ##########################################################################################################
 ###########################################################################################################
@@ -12,7 +12,25 @@ googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 url <- "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=449303683#gid=449303683"
 balins <- googlesheets4::read_sheet(url, range="G3:K228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))
 names(balins) <- c("PW","PN","g","h","alpha","P")
-erotation(balins,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677))
+rotuvw <- erotation(balins,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
+%>% dplyr::mutate( 
+re <- Estimation(rotuvw,2)
+names(rotuvw)
+re$regression("w3=k0+k1*u3+k2*v3+k3*u3")
+summary(re$regsum[[1]])
+
+
+k0 + k1*u + k2*v + k3*u**2 + k4*v**2 + k5*u*v + k6*v**3 + k7*u*v + k8*u**2*v + k9*u*v**2
+
+
+
+re$regression(slv4[1])
+re$hat_predict("g",1)
+summary(lm(as.formula('S~S_hat'),data=re$compare))
+re$comdesc
+library(googlesheets4)
+ls(package:googlesheets4)
+sheet_write(iris,"",sheet=5)
 
 
 

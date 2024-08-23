@@ -302,7 +302,6 @@ erotation <-function(dfe=NULL,
 		     med=TRUE
 		     ){
 
-	browser()
   Ralv <- Rall(sel=rs)
   rpar <- gra*(pi/180)
   mvec <- c(1,0)[ifelse(isTRUE(med), 1, 2)]
@@ -931,14 +930,15 @@ Estimation <- setRefClass("Estimation", fields=list(
 						lpku='list'
 						))
 Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
+			   browser()
   edfc <<- rdfcinp
-  roto <<- 0 #ifelse(sum(unique(dplyr::select(edfc,m1,m2,m3)))==3, 0, 1)
+  roto <<- ifelse(sum(unique(dplyr::select(edfc,m1,m2,m3)))==3, 0, 1)
   fnr <<- form
   param <<- stickers[['parameters']][[fnr]]
   syequ <<- eqpar$meqs
   #radpar <<- c(theta=0,phi=0,rho=0)
   metad <<- list( mtd = list( nmn = "Default"), spr = list(), sol = list( fr = "1", eq = "alpha=k0+k1*x+k2*y", va = "y"), prg = list( cnd = 0, z = 0, stuv = c(0,0,0,0), blup = c(0,1), eqp = "alpha=k0+k1*g+k2*h"), bib = list())
-  lpku <<- lpkul
+  #lpku <<- lpkul
 })
 Estimation$methods(regression=function(regequ=c("alpha=k0+k1*x+k2*y")){
   regass <<- regequ
