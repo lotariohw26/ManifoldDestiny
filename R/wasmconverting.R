@@ -1,4 +1,4 @@
-##############################################################################e###################################################################ji 
+#############################################################################e###################################################################ji 
 #' @export wasmconload
 wasmconload <- function(){
   ifelse(Sys.info()[['sysname']]=="Emscripten",
@@ -199,6 +199,7 @@ selreport <- function(
 		      baldata=NULL
 		      ){
 
+	browser()
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
@@ -293,6 +294,47 @@ Rzy <- function(rad) {
   }
     allrot <- list(Rxy,Rxz,Ryx,Ryz,Rzx,Rzy)[sel]
 }
+#' @export abc
+eplext <- function(dfmat=NULL,varu=c("g", "h")){
+   ## Extract the variables
+   var1 <- varu[1]
+   var2 <- varu[2]
+   #
+   ## Dynamically generate the lhs based on varu
+   lhs <- c(paste0(var1, "1"), paste0(var2, "1"), paste0(var2, var1), 
+            paste0(var1, "2"), paste0(var2, "2"), paste0(var2, "2", var1), paste0(var2, var1, "2"), 
+            paste0(var1, "3"), paste0(var2, "3"), paste0(var2, "3", var1), paste0(var2, "2", var1, "2"), paste0(var2, var1, "3"), 
+            paste0(var1, "4"), paste0(var2, "4"), paste0(var2, "3", var1, "2"), paste0(var2, "2", var1, "3"), paste0(var2, var1, "4"), paste0(var2, "4", var1))
+   
+   # Dynamically generate the rhs based on varu
+   rhs <- c(paste0(var1, "^1"), paste0(var2, "^1"), paste0(var2, " * ", var1), 
+            paste0(var1, "^2"), paste0(var2, "^2"), paste0(var2, "^2 * ", var1), paste0(var2, " * ", var1, "^2"), 
+            paste0(var1, "^3"), paste0(var2, "^3"), paste0(var2, "^3 * ", var1), paste0(var2, "^2 * ", var1, "^2"), paste0(var2, " * ", var1, "^3"), 
+            paste0(var1, "^4"), paste0(var2, "^4"), paste0(var2, "^3 * ", var1, "^2"), paste0(var2, "^2 * ", var1, "^3"), paste0(var2, " * ", var1, "^4"), paste0(var2, "^4 * ", var1))
+     
+  # Create the matrix
+  meq <- matrix(c(lhs, rhs), ncol = 2, byrow = FALSE)
+  ## Apply the mutates based on the order value
+  rdfce <<- dfmat %>%
+      dplyr::mutate(!!sym(meq[1, 1]) := !!rlang::parse_expr(meq[1, 2])) %>%
+      dplyr::mutate(!!sym(meq[2, 1]) := !!rlang::parse_expr(meq[2, 2])) %>%
+      dplyr::mutate(!!sym(meq[3, 1]) := !!rlang::parse_expr(meq[3, 2])) %>%
+      dplyr::mutate(!!sym(meq[4, 1]) := !!rlang::parse_expr(meq[4, 2])) %>%
+      dplyr::mutate(!!sym(meq[5, 1]) := !!rlang::parse_expr(meq[5, 2])) %>%
+      dplyr::mutate(!!sym(meq[6, 1]) := !!rlang::parse_expr(meq[6, 2])) %>%
+      dplyr::mutate(!!sym(meq[7, 1]) := !!rlang::parse_expr(meq[7, 2])) %>%
+      dplyr::mutate(!!sym(meq[8, 1]) := !!rlang::parse_expr(meq[8, 2])) %>%
+      dplyr::mutate(!!sym(meq[9, 1]) := !!rlang::parse_expr(meq[9, 2])) %>%
+      dplyr::mutate(!!sym(meq[10, 1]) := !!rlang::parse_expr(meq[10, 2])) %>%
+      dplyr::mutate(!!sym(meq[11, 1]) := !!rlang::parse_expr(meq[11, 2])) %>%
+      dplyr::mutate(!!sym(meq[12, 1]) := !!rlang::parse_expr(meq[12, 2])) %>%
+      dplyr::mutate(!!sym(meq[13, 1]) := !!rlang::parse_expr(meq[13, 2])) %>%
+      dplyr::mutate(!!sym(meq[14, 1]) := !!rlang::parse_expr(meq[14, 2])) %>%
+      dplyr::mutate(!!sym(meq[15, 1]) := !!rlang::parse_expr(meq[15, 2])) %>%
+      dplyr::mutate(!!sym(meq[16, 1]) := !!rlang::parse_expr(meq[16, 2])) %>%
+      dplyr::mutate(!!sym(meq[17, 1]) := !!rlang::parse_expr(meq[17, 2])) %>%
+      dplyr::mutate(!!sym(meq[18, 1]) := !!rlang::parse_expr(meq[18, 2]))
+}
 
 #' @export erotation
 erotation <-function(dfe=NULL,
@@ -334,9 +376,9 @@ erotation <-function(dfe=NULL,
     dplyr::mutate(v2=Ralv[[2]](rpar[2])[2,1]*u1+Ralv[[2]](rpar[2])[2,2]*v1+Ralv[[2]](rpar[2])[2,3]*w1) %>%
     dplyr::mutate(w2=Ralv[[2]](rpar[2])[3,1]*u1+Ralv[[2]](rpar[2])[3,2]*v1+Ralv[[2]](rpar[2])[3,3]*w1) %>%
     ##
-    dplyr::mutate(u3=Ralv[[3]](rpar[3])[1,1]*u2+Ralv[[3]](rpar[3])[1,2]*v2+Ralv[[3]](rpar[3])[1,3]*w2) %>%
-    dplyr::mutate(v3=Ralv[[3]](rpar[3])[2,1]*u2+Ralv[[3]](rpar[3])[2,2]*v2+Ralv[[3]](rpar[3])[2,3]*w2) %>%
-    dplyr::mutate(w3=Ralv[[3]](rpar[3])[3,1]*u2+Ralv[[3]](rpar[3])[3,2]*v2+Ralv[[3]](rpar[3])[3,3]*w2) 
+    dplyr::mutate(x=Ralv[[3]](rpar[3])[1,1]*u2+Ralv[[3]](rpar[3])[1,2]*v2+Ralv[[3]](rpar[3])[1,3]*w2) %>%
+    dplyr::mutate(y=Ralv[[3]](rpar[3])[2,1]*u2+Ralv[[3]](rpar[3])[2,2]*v2+Ralv[[3]](rpar[3])[2,3]*w2) %>%
+    dplyr::mutate(z=Ralv[[3]](rpar[3])[3,1]*u2+Ralv[[3]](rpar[3])[3,2]*v2+Ralv[[3]](rpar[3])[3,3]*w2) 
     #dplyr::mutate(slide=floor(u1*50))
 }
 
@@ -509,12 +551,12 @@ Countingprocess$methods(r2siminput=function(form=1,latest=0)
   r2list <<- list(form=form,turn=turn,regs=regs,minmax=minmax,s=sv,ds=dsv,Perc=Perc[[form]],nprec=nprec)
 })
 Countingprocess$methods(descriptive=function(form=1){
-  flp <- c(unname(unlist(parameters)))
-  co <- c('S','T','U','V','R','Z')
-  sdv <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(co)),mean))
-  mdv <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(flp)),mean))
-  sta <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(c(co,flp))),sd))
-  desms <<- data.frame(variable=rownames(sta),mean=c(sdv[,1],mdv[,1]),std=sta[,1])
+  #flp <- c(unname(unlist(parameters)))
+  #co <- c('S','T','U','V','R','Z')
+  #sdv <- as.data.frame(sapplydplyr::select(rdfc,dplyr::all_of(co)),mean))
+  #mdv <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(flp)),mean))
+  #sta <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(c(co,flp))),sd))
+  #desms <<- data.frame(variable=rownames(sta),mean=c(sdv[,1],mdv[,1]),std=sta[,1])
 })
 
 Countingprocess$methods(rotation=function(
@@ -525,7 +567,7 @@ Countingprocess$methods(rotation=function(
 			             slid=F)
 				     {
 
-  rofc <<- erotation(rdfc,selv,smat,grad,mead)
+  #rofc <<- erotation(rdfc,selv,smat,grad,mead)
 })
 
 Countingprocess$methods(plext=function(frm=2){
@@ -930,7 +972,6 @@ Estimation <- setRefClass("Estimation", fields=list(
 						lpku='list'
 						))
 Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
-			   browser()
   edfc <<- rdfcinp
   roto <<- ifelse(sum(unique(dplyr::select(edfc,m1,m2,m3)))==3, 0, 1)
   fnr <<- form
@@ -981,6 +1022,7 @@ Estimation$methods(diagnostics=function(){
 Estimation$methods(hat_predict=function(svf='y'){
   kvec <<- broom::tidy(regsum[[1]])$estimate
   names(kvec) <<- paste0("k", 0:(length(kvec) - 1))
+  browser()
   if (roto==0){
     eurv <- c(0,0,0)
     lpy <<- py_genpolycoeff(regass,svf)

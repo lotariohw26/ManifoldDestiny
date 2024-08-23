@@ -1,4 +1,4 @@
-##https://stats.stackexchange.com/questions/66088/analysis-with-complex-data-anything-different
+#' @export olsce
 olsce <- function(dr=goext,ce=NULL,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')){
   P <- dr['P']
   le <- dim(P)[1]

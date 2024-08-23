@@ -1,37 +1,60 @@
+library(complexlm)
+library(dplyr)
 ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
-#apps <- appn3
-#adat <- apps[[1]]
-#amet <- apps[[2]]
-library(complexlm)
+apps <- app0
+adat <- apps[[1]]
+amet <- apps[[2]]
+amet
 ##########################################################################################################
 ###########################################################################################################
+selr <- selreport(apps)
+selo <- seloutput(selr)
+2+2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 url <- "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=449303683#gid=449303683"
 balins <- googlesheets4::read_sheet(url, range="G3:K228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))
 names(balins) <- c("PW","PN","g","h","alpha","P")
 rotuvw <- erotation(balins,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
-%>% dplyr::mutate( 
-re <- Estimation(rotuvw,2)
-names(rotuvw)
-re$regression("w3=k0+k1*u3+k2*v3+k3*u3")
+abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
+re <- Estimation(abc,2)
+names(abc)
+#  [1] "P"     "g"     "h"     "alpha" "ui"    "vi"    "wi"    "m1"    "m2"    "m3"    "n1"    "n2"    "n3"    "st1"   "st2"  
+# [16] "st3"   "mu"    "mv"    "mw"    "u0"    "v0"    "w0"    "u1"    "v1"    "w1"    "u2"    "v2"    "w2"    "x"     "y"    
+# [31] "z"     "x1"    "y1"    "yx"    "x2"    "y2"    "y2x"   "yx2"   "x3"    "y3"    "y3x"   "y2x2"  "yx3"   "x4"    "y4"   
+# [46] "y3x2"  "y2x3"  "yx4"   "y4x"  
+re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
+re$hat_predict()
+
+
 summary(re$regsum[[1]])
 
 
-k0 + k1*u + k2*v + k3*u**2 + k4*v**2 + k5*u*v + k6*v**3 + k7*u*v + k8*u**2*v + k9*u*v**2
 
-
-
-re$regression(slv4[1])
-re$hat_predict("g",1)
-summary(lm(as.formula('S~S_hat'),data=re$compare))
-re$comdesc
-library(googlesheets4)
-ls(package:googlesheets4)
-sheet_write(iris,"",sheet=5)
-
+##4*kkyk0 + k1*u + k2*v + k3*u**2 + k4*v**2 + k5*u*v + k6*v**3 + k7*u*v + k8*u**2*v + k9*u*v**2u
+#re$regression(slv4[1])
+#re$hat_predict("g",1)
+#summary(lm(as.formula('S~S_hat'),data=re$compare))
+#re$comdesc
+#library(googlesheets4)
+#ls(package:googlesheets4)
+#sheet_w*rite(iris,"",sheet=5)
 
 
 
