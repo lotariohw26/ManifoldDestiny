@@ -199,14 +199,15 @@ selreport <- function(
 		      baldata=NULL
 		      ){
 
-	browser()
+  browser()
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
   co <- Countinggraphs(da)
-  if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
-  co$sortpre(frm)
+  #if (md$prg$cnd==1) 
+  co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
+  #co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
   co$plext(frm)
@@ -551,12 +552,12 @@ Countingprocess$methods(r2siminput=function(form=1,latest=0)
   r2list <<- list(form=form,turn=turn,regs=regs,minmax=minmax,s=sv,ds=dsv,Perc=Perc[[form]],nprec=nprec)
 })
 Countingprocess$methods(descriptive=function(form=1){
-  #flp <- c(unname(unlist(parameters)))
-  #co <- c('S','T','U','V','R','Z')
-  #sdv <- as.data.frame(sapplydplyr::select(rdfc,dplyr::all_of(co)),mean))
-  #mdv <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(flp)),mean))
-  #sta <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(c(co,flp))),sd))
-  #desms <<- data.frame(variable=rownames(sta),mean=c(sdv[,1],mdv[,1]),std=sta[,1])
+  flp <- c(unname(unlist(parameters)))
+  co <- c('S','T','U','V','R','Z')
+  sdv <- as.data.frame(sapplydplyr::select(rdfc,dplyr::all_of(co)),mean)
+  mdv <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(flp)),mean))
+  sta <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(c(co,flp))),sd))
+  desms <<- data.frame(variable=rownames(sta),mean=c(sdv[,1],mdv[,1]),std=sta[,1])
 })
 
 Countingprocess$methods(rotation=function(
@@ -615,6 +616,7 @@ Countingprocess$methods(plext=function(frm=2){
 })
 
 Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y"),rnk=0,pres=NULL,pri=0,prma=NULL){
+				browser()
   rdfv <- rdfci %>%
     dplyr::arrange(P) %>%
     dplyr::filter(Z>z) %>%
@@ -973,13 +975,17 @@ Estimation <- setRefClass("Estimation", fields=list(
 						))
 Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   edfc <<- rdfcinp
-  roto <<- ifelse(sum(unique(dplyr::select(edfc,m1,m2,m3)))==3, 0, 1)
+  if(!all(c("m1", "m2", "m3") %in% names(edfc))) {
+      roto == 0
+  } else {
+      roto == 1
+  }
   fnr <<- form
   param <<- stickers[['parameters']][[fnr]]
   syequ <<- eqpar$meqs
   #radpar <<- c(theta=0,phi=0,rho=0)
   metad <<- list( mtd = list( nmn = "Default"), spr = list(), sol = list( fr = "1", eq = "alpha=k0+k1*x+k2*y", va = "y"), prg = list( cnd = 0, z = 0, stuv = c(0,0,0,0), blup = c(0,1), eqp = "alpha=k0+k1*g+k2*h"), bib = list())
-  #lpku <<- lpkul
+  lpku <<- lpkul
 })
 Estimation$methods(regression=function(regequ=c("alpha=k0+k1*x+k2*y")){
   regass <<- regequ
@@ -1103,4 +1109,8 @@ Estimation$methods(hat_intcomp=function(){
     prc0123=100*sum(abs(compare[[comps]] - 0) <= 3)/length(compare[[comps]]))
   comdesc <<- data.frame(fname=txvnc,stats=names(vnd),values=vnd)
 })
+
+
+
+
 
