@@ -199,7 +199,6 @@ selreport <- function(
 		      baldata=NULL
 		      ){
 
-  browser()
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
@@ -207,7 +206,7 @@ selreport <- function(
   co <- Countinggraphs(da)
   #if (md$prg$cnd==1) 
   co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
-  #co$sortpre(frm)
+  co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
   co$plext(frm)
@@ -616,7 +615,6 @@ Countingprocess$methods(plext=function(frm=2){
 })
 
 Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y"),rnk=0,pres=NULL,pri=0,prma=NULL){
-				browser()
   rdfv <- rdfci %>%
     dplyr::arrange(P) %>%
     dplyr::filter(Z>z) %>%
