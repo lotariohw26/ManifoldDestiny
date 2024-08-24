@@ -9,12 +9,12 @@ googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #######################################################################################################################################################
 # Applications
 recoudatr(qenvae$appn0)
+recoudatr(qenvae$appn1)
+recoudatr(qenvae$appn2)
+recoudatr(qenvae$appn3)
+recoudatr(qenvae$appn4)
+recoudatr(qenvae$appn7)
 ManifoldDestiny::bm()
-#recoudatr(qenvae$appn1)
-#recoudatr(qenvae$appn2)
-#recoudatr(qenvae$appn3)
-#recoudatr(qenvae$appn4)
-#recoudatr(qenvae$appn7)
 #######################################################################################################################################################
 # Simulation
 ## Normal 

@@ -204,8 +204,8 @@ selreport <- function(
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
   co <- Countinggraphs(da)
-  #if (md$prg$cnd==1) 
-  co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
+  if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
+  browser()
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
@@ -551,12 +551,12 @@ Countingprocess$methods(r2siminput=function(form=1,latest=0)
   r2list <<- list(form=form,turn=turn,regs=regs,minmax=minmax,s=sv,ds=dsv,Perc=Perc[[form]],nprec=nprec)
 })
 Countingprocess$methods(descriptive=function(form=1){
-  flp <- c(unname(unlist(parameters)))
-  co <- c('S','T','U','V','R','Z')
-  sdv <- as.data.frame(sapplydplyr::select(rdfc,dplyr::all_of(co)),mean)
-  mdv <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(flp)),mean))
-  sta <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(c(co,flp))),sd))
-  desms <<- data.frame(variable=rownames(sta),mean=c(sdv[,1],mdv[,1]),std=sta[,1])
+  #flp <- c(unname(unlist(parameters)))
+  #co <- c('S','T','U','V','R','Z')
+  #sdv <- as.data.frame(sapplydplyr::select(rdfc,dplyr::all_of(co)),mean))
+  #mdv <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(flp)),mean))
+  #sta <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(c(co,flp))),sd))
+  #desms <<- data.frame(variable=rownames(sta),mean=c(sdv[,1],mdv[,1]),std=sta[,1])
 })
 
 Countingprocess$methods(rotation=function(
@@ -671,6 +671,7 @@ Countingprocess$methods(sortpre=function(form=1,
   #plr2 <- round(cor(quintile[[paste0(sortby,'_pred')]],quintile[[sortby]])^2,4)
   #sumreg <<- list(poleq=paste0(plso),polint=pintv,R2=paste0(plr2))
 })
+
 Countingprocess$methods(mansys=function(sygen=NULL,stuv=c("S","T","U","V")){
   mansysl <<- sygen
   sho <- c("_s","_h","_o")[[mansysl$frm]]
