@@ -1,4 +1,4 @@
-#############################################################################e###################################################################ji 
+0###########################################################################e###################################################################ji 
 #' @export wasmconload
 wasmconload <- function(){
   ifelse(Sys.info()[['sysname']]=="Emscripten",
@@ -198,25 +198,23 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
-
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
   co <- Countinggraphs(da)
   if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
-  browser()
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
   co$plext(frm)
   co$plot2d(frm)
   co$plotxy(frm)
-  co$resplot(frm)
+  #co$resplot(frm)
   co$plotly3d(partition=frm)
-  co$gridarrange()
-  #co$rotation(md$sol$pr,md$sol$ro[[1]],md$sol$ro[[2]])
-  #co$rotgraph()
+  co$gridarrange(frm)
+  co$rotation(selv=c("alpha","g","h"),smat=md$sol$ro[[1]],grad=md$sol$ro[[2]],mead=TRUE)
+  co$rotgraph()
   ges <- Estimation(co$rdfc,frm)
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
@@ -343,7 +341,6 @@ erotation <-function(dfe=NULL,
                      gra=c(0,0,0),
 		     med=TRUE
 		     ){
-
   Ralv <- Rall(sel=rs)
   rpar <- gra*(pi/180)
   mvec <- c(1,0)[ifelse(isTRUE(med), 1, 2)]
@@ -537,6 +534,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   polyc[[3]] <<- stats::lm(rdfci$lamda ~ poly(rdfci$pri, pnset, raw=TRUE))
 
 })
+
 Countingprocess$methods(r2siminput=function(form=1,latest=0)
 {
   rdf <- list(rdfci,rdfc)[[ifelse(latest==0,1,2)]]
@@ -550,24 +548,25 @@ Countingprocess$methods(r2siminput=function(form=1,latest=0)
   nprec <- length(rdf$P)
   r2list <<- list(form=form,turn=turn,regs=regs,minmax=minmax,s=sv,ds=dsv,Perc=Perc[[form]],nprec=nprec)
 })
+
 Countingprocess$methods(descriptive=function(form=1){
-  #flp <- c(unname(unlist(parameters)))
-  #co <- c('S','T','U','V','R','Z')
-  #sdv <- as.data.frame(sapplydplyr::select(rdfc,dplyr::all_of(co)),mean))
-  #mdv <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(flp)),mean))
-  #sta <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(c(co,flp))),sd))
-  #desms <<- data.frame(variable=rownames(sta),mean=c(sdv[,1],mdv[,1]),std=sta[,1])
+  flp <- c(unname(unlist(parameters)))
+  co <- c('S','T','U','V','R','Z')
+  sdv <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(co)),mean))
+  mdv <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(flp)),mean))
+  sta <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(c(co,flp))),sd))
+  desms <<- data.frame(variable=rownames(sta),mean=c(sdv[,1],mdv[,1]),std=sta[,1])
 })
 
 Countingprocess$methods(rotation=function(
-				     selv=c("alpha","x","y"),
-				     smat=c(1,4,2),
+				     selv=c("alpha","g","h"),
+				     smat=c(1,2,4),
 				     grad=c(0,0,0),
 				     mead=T,
 			             slid=F)
 				     {
 
-  #rofc <<- erotation(rdfc,selv,smat,grad,mead)
+   if(any(grad != 0)) rofc <<- erotation(rdfc,selv,smat,grad,mead)
 })
 
 Countingprocess$methods(plext=function(frm=2){
@@ -658,8 +657,9 @@ Countingprocess$methods(sortpre=function(form=1,
     dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
     dplyr::mutate(!!paste0(proppar,'_m'):=mean(!!rlang::sym(proppar))) %>%
     dplyr::mutate(!!paste0(proppar,'_mr'):=!!rlang::sym(proppar)-!!rlang::sym(paste0(proppar,'_m')))
+    #browser()
     psel %>% purrr::map(function(x,df=srdfc,p=polyn){
-        pred <- c(predict(lm(df[[x]] ~ stats::poly(df$pri,p, raw=TRUE))))
+        pred <- stats::predict(lm(alpha~poly(alpha,p),data=df))
         res <- pred - df[[x]]
         data.frame(pred,res) %>% `colnames<-` (c(paste0(x,'_pred'),paste0(x,'_res')))
     }) %>% as.data.frame(.) -> predictor
@@ -818,8 +818,9 @@ Countinggraphs$methods(plotxy=function(form=1,Pexc=NULL){
 })
 Countinggraphs$methods(resplot=function(form=1){
   #selvar <- c(paste0(parameters[[form]][c(1,2,4)],'_res'),paste0(parameters[[form]][c(3)],c("","_m","_mr")))
+  #View(quintile)
   #names(quintile)
-  #dfg <- dplyr::select(quintile,all_of(selvar))
+  #dfg <- dplyr::select(quintile,all_of(selvar[1:5]))
   #cmb <- combinat::combn(3, 2)
   #pl_rescro <<- lapply(seq(1,dim(cmb)[2]), function(x){
   #  ggplot2::ggplot(data=dfg,ggplot2::aes(x=selvar[3],y=selvar[3+x])) +
@@ -845,7 +846,7 @@ Countinggraphs$methods(plotly3d=function(
     y <- mrdfc[, 3]
     plotly::plot_ly(x = x, y = y, z = z, type = "scatter3d", mode = "markers", marker = list(size = 3)) %>%
       plotly::layout(
-        title = paste0('R2 = ', round(summary(lm(data = gdf))$r.squared, 4)),
+        title = paste0('R2 = ', round(summary(stats::lm(data = gdf))$r.squared)),
         scene = list(
           xaxis = list(title = names(gdf)[1]),
           text = 'abc',
@@ -919,11 +920,12 @@ Countinggraphs$methods(rotslides=function(){
 #
 Countinggraphs$methods(gridarrange=function(pl3d=list(selo=1,selm=list(1:5,6:10))){
 
-  ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
-  	 div(pl_3d_mani[pl3d$selm[[1]]],class="column"),
-  	 div(pl_3d_mani[pl3d$selm[[2]]],class="column"))
+  #ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
+  #	 div(pl_3d_mani[pl3d$selm[[1]]],class="column"),
+  #	 div(pl_3d_mani[pl3d$selm[[2]]],class="column"))
 
-  all_pl_3d_mani <<- list(page=htmltools::browsable(ohtml),ohtml=ohtml,one3d=pl_3d_mani,plot2d=pl_2dsort,plotxy=pl_corrxy,plotres=pl_rescro,r2list=r2list,sr=sumreg,abc=rotplotly)
+  all_pl_3d_mani <<- list(page=NULL,ohtml=NULL,one3d=pl_3d_mani,plot2d=pl_2dsort,plotxy=pl_corrxy,plotres=NULL,r2list=r2list,sr=sumreg,abc=rotplotly)
+  #all_pl_3d_mani <<- list(page=htmltools::browsable(ohtml),ohtml=ohtml,one3d=pl_3d_mani,plot2d=pl_2dsort,plotxy=pl_corrxy,plotres=pl_rescro,r2list=r2list,sr=sumreg,abc=rotplotly)
 })
 ############################################################################################################################################################
 #' @export strform
@@ -975,9 +977,9 @@ Estimation <- setRefClass("Estimation", fields=list(
 Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   edfc <<- rdfcinp
   if(!all(c("m1", "m2", "m3") %in% names(edfc))) {
-      roto == 0
+      roto <<- 0
   } else {
-      roto == 1
+      roto <<- 1
   }
   fnr <<- form
   param <<- stickers[['parameters']][[fnr]]
@@ -1027,7 +1029,6 @@ Estimation$methods(diagnostics=function(){
 Estimation$methods(hat_predict=function(svf='y'){
   kvec <<- broom::tidy(regsum[[1]])$estimate
   names(kvec) <<- paste0("k", 0:(length(kvec) - 1))
-  browser()
   if (roto==0){
     eurv <- c(0,0,0)
     lpy <<- py_genpolycoeff(regass,svf)

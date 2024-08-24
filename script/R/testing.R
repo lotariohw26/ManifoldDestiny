@@ -4,14 +4,13 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
-apps <- appn1
+apps <- appn0
 adat <- apps[[1]]
 amet <- apps[[2]]
 ##########################################################################################################
 ###########################################################################################################
 selr <- selreport(apps)
 selo <- seloutput(selr)
-2+2
 
 
 

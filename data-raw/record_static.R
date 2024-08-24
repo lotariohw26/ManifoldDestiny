@@ -14,7 +14,6 @@ recoudatr(qenvae$appn2)
 recoudatr(qenvae$appn3)
 recoudatr(qenvae$appn4)
 recoudatr(qenvae$appn7)
-ManifoldDestiny::bm()
 #######################################################################################################################################################
 # Simulation
 ## Normal 
@@ -52,4 +51,7 @@ rigv <- lapply(1:1, function(x) {
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
 })
 ######################################################################################################################################################
+ManifoldDestiny::bm()
+
+
 
