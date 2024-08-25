@@ -20,11 +20,111 @@ abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
 re <- Estimation(abc,2)
 names(abc)
 re$regression("z=k0+k1*y+k2*x+k3*y2")
+re$regsum
+def(cdf=abc,re$kvec)
+
+str(as.vector(re$kvec))
+
 #re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
+#kvnr <- c(3,6,10,17)[1] #[mansysl$plnr]
+#kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
+#kvea[1:length(kvec)] <- kvec
+
+ABCDE[[1]][1:5]
+
+str(sapply(as.list(ABCDE[[1]][1:5]),as.character))
+
+
+
+c(1,2,3)
+
+rad <- c(10,20,30)*(pi/180)
+mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
+nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
+abcv <- setNames(sapply(ghi[[1]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
+def <- abc %>% dplyr::mutate(!!!kvea[1:3]) %>% dplyr::mutate(!!!mv,!!!nv) %>%
+	dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%
+	dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%
+	dplyr::mutate(a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
+	dplyr::mutate(b1=pareq(abcv[4],c(as.list(.[,])))) %>%
+	dplyr::mutate(b2=pareq(abcv[5],c(as.list(.[,])))) %>%
+	dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%
+	dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%
+	dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%
+	dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) 
+View(def)
+selr <- selreport(apps)
+selo <- seloutput(selr)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+library(complexlm)
+library(dplyr)
+ManifoldDestiny::wasmconload()
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
+apps <- appn0
+adat <- apps[[1]]
+amet <- apps[[2]]
+##########################################################################################################
+###########################################################################################################
+plnr <- 1
+ghi <- py_genpolycoeff(plr=plnr,parm=c("alpha", "x", "y"), solv='y',grd=1,eur=c(1, 4, 2))[3]
+googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+url <- "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=449303683#gid=449303683"
+balins <- googlesheets4::read_sheet(url, range="G3:K228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))
+names(balins) <- c("PW","PN","g","h","alpha","P")
+rotuvw <- erotation(balins,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
+abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
+re <- Estimation(abc,2)
+names(abc)
+re$regression("z=k0+k1*y+k2*x+k3*y2")
+#re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
+
+def(abc,re$kvec)
+
+
 kvnr <- c(3,6,10,17)[1] #[mansysl$plnr]
+
+
+
 kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
 #kvea[1:length(kvec)] <- kvec
-def(cdf=abc)
 
 
 rad <- c(10,20,30)*(pi/180)
