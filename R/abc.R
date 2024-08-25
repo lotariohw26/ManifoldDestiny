@@ -1,3 +1,26 @@
+def <- function(){
+	2+2
+}
+
+##' @export manobj
+#manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
+#  polyc <- setNames(as.vector(lapply(enfl[[1]], as.character)),LETTERS[1:5])
+#  la_e <- unlist(polyc[c(LETTERS[1:5])])
+#  pnr <- sum(la_e!="0")
+#  rootdf <- dfa  %>%
+#    dplyr::mutate(A=pareq(la_e[1],c(as.list(.[,])))) %>%
+#    dplyr::mutate(B=pareq(la_e[2],c(as.list(.[,])))) %>%
+#    dplyr::mutate(C=pareq(la_e[3],c(as.list(.[,])))) %>%
+#    dplyr::mutate(D=pareq(la_e[3],c(as.list(.[,])))) %>%
+#    dplyr::mutate(E=pareq(la_e[3],c(as.list(.[,])))) %>%
+#    dplyr::group_by(P) %>%
+#    #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+#    dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+#    dplyr::mutate(!!paste0(svar):=Re(polsolv[1])) %>%
+#    dplyr::ungroup()
+#  rootdf[[svar]]
+#}
+
 #' @export olsce
 olsce <- function(dr=goext,ce=NULL,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')){
   P <- dr['P']
@@ -39,6 +62,7 @@ olsce <- function(dr=goext,ce=NULL,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv
   r2I <- 1-rc/tc
   list(beta=beta_cr,r2=r2I)
 }
+
 #olsce()
 #beta_r <- c(-0.005693794321159,0.000763439988202552,0.816255513568808,1.58764312942543,-0.140264148421178,-0.498357855155589,0.513978651269852,-0.582940600960614,0.0261057978154113,0.421921936572005,0.113403802790825,0.0164414984815799)
 #fit.complex = function(Y, X.List) {
@@ -132,6 +156,3 @@ olsce <- function(dr=goext,ce=NULL,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv
 #> Beta1.Est
 #[1] 2.912617-2.030427i
 #' @export abc
-abc <- function(){
-
-}

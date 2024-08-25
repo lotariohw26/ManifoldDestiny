@@ -1040,7 +1040,7 @@ Estimation$methods(hat_predict=function(svf='y'){
     sd <- regform[1]
     eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
     lpy <<- py_genpolycoeff(expr=NULL,solvd=sd,solvf='Z',eur=eurv)
-    #py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(1, 4, 2))[[3]]
+    #ply <<- py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(1, 4, 2))[[3]]
     lpy[[1]] <<- setNames(as.vector(lapply(lpy[[1]],as.character)),LETTERS[1:5])
     lpy[[2]] <<- setNames(as.vector(lapply(lpy[[2]],as.character)),c("x","y","z"))
     lpy[[3]] <<- setNames(as.vector(lapply(lpy[[3]],as.character)),paste0(rep(letters[1:3],each=3),seq(1,3)))

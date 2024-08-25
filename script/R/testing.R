@@ -9,6 +9,54 @@ adat <- apps[[1]]
 amet <- apps[[2]]
 ##########################################################################################################
 ###########################################################################################################
+plnr <- 1
+ghi <- py_genpolycoeff(plr=plnr,parm=c("alpha", "x", "y"), solv='y',grd=1,eur=c(1, 4, 2))[3]
+googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+url <- "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=449303683#gid=449303683"
+balins <- googlesheets4::read_sheet(url, range="G3:K228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))
+names(balins) <- c("PW","PN","g","h","alpha","P")
+rotuvw <- erotation(balins,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
+abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
+re <- Estimation(abc,2)
+names(abc)
+re$regression("z=k0+k1*y+k2*x+k3*y2")
+#re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
+kvnr <- c(3,6,10,17)[1] #[mansysl$plnr]
+kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
+kvea[1:length(kvec)] <- kvec
+rad <- c(10,20,30)*(pi/180)
+mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
+nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
+abcv <- setNames(sapply(ghi[[1]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
+
+mv
+def <- abc %>% dplyr::mutate(!!!kvea[1:3]) %>% dplyr::mutate(!!!mv,!!!nv) %>%
+	dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%
+	dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%
+	dplyr::mutate(a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
+	dplyr::mutate(b1=pareq(abcv[4],c(as.list(.[,])))) %>%
+	dplyr::mutate(b2=pareq(abcv[5],c(as.list(.[,])))) %>%
+	dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%
+	dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%
+	dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%
+	dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) 
+
+
+
+
+
+
+View(def)
+
+ouabcv 
+
+
+
+
+
+
+
+
 selr <- selreport(apps)
 selo <- seloutput(selr)
 
@@ -83,25 +131,13 @@ summary(re$regsum[[1]])
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 marcdf <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1FxJg9hjU-M1MIeKl0koiHDVIp2dPAmm3nJpRzd5Ejdg/edit#gid=811418100",range="A5:N578",sheet="Bounded Tabulations") %>% dplyr::select(1,2,3,4,11:14) %>% dplyr::rename(R=Registered) %>% dplyr::rename_at(1,~"P") %>% dplyr::select(-2)
 co <- Countinggraphs(marcdf,names(marcdf))$sdfc %>% dplyr::arrange(P) %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) 
-
-
 cest1 <- olsce(co)
 cest1
-
-
-
-
-
-
-
-la
 #
 bal <- app_3_bal[[1]] %>% dplyr::select(-PN) %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R)
 co <- Countinggraphs(bal,names(bal))
 co$purging(c(S=50,T=50,U=50,V=50),c(0.05,0.95))
 com <- olsce(co$rdfc)
-
-
 library(complexlm)
 set.seed(4242)
 n <- 8
@@ -111,14 +147,9 @@ e <- complex(real=rnorm(n)/6, imaginary=rnorm(n)/6)
 xx <- complex(real= rnorm(n), imaginary= rnorm(n))
 tframe <- data.frame(x = xx, y= slop*xx + interc + e)
 lm(y ~ x, data = tframe, weights = rep(1,n))
-
 cest1 <- olsce(
 cest1 
 	       cest1 co)
-
-
-
-
 set.seed(4242)
 n <- 8
 slop <- complex(real = 4.23, imaginary = 2.323)
