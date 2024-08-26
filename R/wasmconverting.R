@@ -679,10 +679,8 @@ Countingprocess$methods(mansys=function(sygen=NULL,stuv=c("S","T","U","V")){
   exnrs <<- gsub('v',mansysl$pre[2], gsub('u',mansysl$pre[3],peqs[mansysl$me[['plnr']]]))
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
-  enf[[3]] <<- py_genpolycoeff(equn=mansysl$eq,solv=mansysl$va,grd=sum(mansysl$rot[[2]]))
-  #enf[[3]] <<- py_genpolycoeff(grd=sum(mansysl$rot[[2]]))
-  #mansysl$pre
-  #mansysl$rot[[1]]
+  enf[[3]] <<- py_genpolycoeff(equn=mansysl$eq,solv=mansysl$va,grd=sum(mansysl$rot[[1]]))
+  #enf[[3]][[1]]
   allstuv <<- list(stuv)
 })
 Countingprocess$methods(setres=function(czset=NULL,prnt=0){
