@@ -1,4 +1,4 @@
-library(complexlm)
+ibrary(complexlm)
 library(dplyr)
 ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
@@ -9,6 +9,24 @@ adat <- apps[[1]]
 amet <- apps[[2]]
 ##########################################################################################################
 ###########################################################################################################
+selr <- selreport(apps)
+selo <- seloutput(selr)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###########################################################################################################
+
 plnr <- 1
 ghi <- py_genpolycoeff(plr=plnr,parm=c("alpha", "x", "y"), solv='y',grd=1,eur=c(1, 4, 2))[3]
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
@@ -23,8 +41,6 @@ re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
 ghi <- def(cdf=abc,re$kvec,3)
 View(ghi)
 ##############
-selr <- selreport(apps)
-selo <- seloutput(selr)
 
 
 

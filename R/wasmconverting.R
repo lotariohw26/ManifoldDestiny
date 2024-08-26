@@ -198,6 +198,7 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
+  browser()
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
@@ -215,7 +216,8 @@ selreport <- function(
   co$gridarrange(frm)
   co$rotation(selv=c("alpha","g","h"),smat=md$sol$ro[[1]],grad=md$sol$ro[[2]],mead=TRUE)
   co$rotgraph()
-  ges <- Estimation(co$rdfc,frm)
+   #
+  ges <- Estimation(co$rofc,frm)
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
   ges$hat_predict(md$sol$va)
@@ -535,18 +537,17 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 
 })
 
-Countingprocess$methods(r2siminput=function(form=1,latest=0)
-{
-  rdf <- list(rdfci,rdfc)[[ifelse(latest==0,1,2)]]
-  pm <- parameters[[form]]
-  regs <- c(mean(rdf$R),sd(rdf$R))
-  turn <- c(mean(rdf$V/rdf$R),sd(rdf$V/rdf$R))
-  minmax <- c(min(rdf$R),max(rdf$R))
-  sv <- c(mean(rdf[[pm[[1]]]]),sd(rdf[[pm[[1]]]]))
-  dsv <- c(mean(rdf[[pm[[2]]]])-mean(rdf[[pm[[1]]]]),sd(rdf[[pm[[2]]]]-rdf[[pm[[1]]]]))
-  Perc <- list(s=c(mean(rdf$Omega),sd(rdf$Omega)),h=c(mean(rdf$Omega),sd(rdf$Omega)),o=c(mean(rdf$xi),sd(rdf$xi)))
-  nprec <- length(rdf$P)
-  r2list <<- list(form=form,turn=turn,regs=regs,minmax=minmax,s=sv,ds=dsv,Perc=Perc[[form]],nprec=nprec)
+Countingprocess$methods(r2siminput=function(form=1,latest=0){
+  #rdf <- list(rdfci,rdfc)[[ifelse(latest==0,1,2)]]
+  #pm <- parameters[[form]]
+  #regs <- c(mean(rdf$R),sd(rdf$R))
+  #turn <- c(mean(rdf$V/rdf$R),sd(rdf$V/rdf$R))
+  #minmax <- c(min(rdf$R),max(rdf$R))
+  #sv <- c(mean(rdf[[pm[[1]]]]),sd(rdf[[pm[[1]]]]))
+  #dsv <- c(mean(rdf[[pm[[2]]]])-mean(rdf[[pm[[1]]]]),sd(rdf[[pm[[2]]]]-rdf[[pm[[1]]]]))
+  #Perc <- list(s=c(mean(rdf$Omega),sd(rdf$Omega)),h=c(mean(rdf$Omega),sd(rdf$Omega)),o=c(mean(rdf$xi),sd(rdf$xi)))
+  #nprec <- length(rdf$P)
+  #r2list <<- list(form=form,turn=turn,regs=r{egs,minmax=minmax,s=sv,ds=dsv,Perc=Perc[[form]],nprec=nprec)
 })
 
 Countingprocess$methods(descriptive=function(form=1){
@@ -563,10 +564,13 @@ Countingprocess$methods(rotation=function(
 				     smat=c(1,2,4),
 				     grad=c(0,0,0),
 				     mead=T,
-			             slid=F)
-				     {
+			             slid=F){
 
-   if(any(grad != 0)) rofc <<- erotation(rdfc,selv,smat,grad,mead)
+  # if(any(grad != 0)) {
+  #         rofc <<- erotation(rdfc,selv,smat,grad,mead) 
+  # } elseif {
+  #         rofc <<- rdfc 
+  #}
 })
 
 Countingprocess$methods(plext=function(frm=2){
@@ -1105,6 +1109,7 @@ Estimation$methods(hat_intcomp=function(){
     prc0123=100*sum(abs(compare[[comps]] - 0) <= 3)/length(compare[[comps]]))
   comdesc <<- data.frame(fname=txvnc,stats=names(vnd),values=vnd)
 })
+
 
 
 
