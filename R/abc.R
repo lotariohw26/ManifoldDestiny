@@ -19,7 +19,13 @@ def <- function(cdf=NULL,kve=NULL,plr=3){
       dplyr::mutate(B=pareq(ABCDEv[2],c(as.list(.[,])))) %>%
       dplyr::mutate(C=pareq(ABCDEv[3],c(as.list(.[,])))) %>%
       dplyr::mutate(D=pareq(ABCDEv[4],c(as.list(.[,])))) %>%
-      dplyr::mutate(E=pareq(ABCDEv[5],c(as.list(.[,])))) 
+      dplyr::mutate(E=pareq(ABCDEv[5],c(as.list(.[,])))) %>%
+      dplyr::group_by(P) %>%
+      dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+      #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+      dplyr::mutate(!!paste0(svar):=Re(polsolv[1])) %>%
+      dplyr::ungroup()
+
 
 }
 

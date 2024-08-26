@@ -1112,5 +1112,3 @@ Estimation$methods(hat_intcomp=function(){
 
 
 
-
-
