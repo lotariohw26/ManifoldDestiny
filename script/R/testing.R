@@ -18,14 +18,9 @@ names(balins) <- c("PW","PN","g","h","alpha","P")
 rotuvw <- erotation(balins,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
 abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
 re <- Estimation(abc,2)
-names(abc)
 #re$regression("z=k0+k1*y+k2*x+k3*y2")
 re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
 ghi <- def(cdf=abc,re$kvec,3)
-
-
-
-View(abc)
 View(ghi)
 ##############
 selr <- selreport(apps)

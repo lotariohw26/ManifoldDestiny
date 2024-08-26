@@ -1,10 +1,11 @@
-def <- function(cdf=NULL,kve=NULL,plr=3){
-	browser()
+def <- function(cdf=NULL,kve=NULL,plr=3,svar='g'){
   names(kve) <- paste0("k",0:(length(kve)-1))
   vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
   pyg <- py_genpolycoeff(plr=plr,parm=c("alpha", "y", "x"),solv='y',grd=1,eur=vmat)
-  abcv <- setNames(sapply(pyg[[3]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
+  abcv <- setNames(sapply(pyg[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
   ABCDEv <- setNames(sapply(pyg[[1]], as.character),c("A","B","C","D","E"))
+
+  #View(outabc)
   outabc <- cdf %>% dplyr::mutate(!!!kve)%>%
       dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%
       dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%
@@ -21,9 +22,9 @@ def <- function(cdf=NULL,kve=NULL,plr=3){
       dplyr::mutate(D=pareq(ABCDEv[4],c(as.list(.[,])))) %>%
       dplyr::mutate(E=pareq(ABCDEv[5],c(as.list(.[,])))) %>%
       dplyr::group_by(P) %>%
-      dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+      dplyr::mutate(polsolv=py_polysolver(plr-1,c(A,B,C,D,E)[1:plr])) %>%
       #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
-      dplyr::mutate(!!paste0(svar):=Re(polsolv[1])) %>%
+      dplyr::mutate(!!paste0("polsolvreal"):=Re(polsolv[1])) %>%
       dplyr::ungroup()
 
 
