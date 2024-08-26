@@ -33,7 +33,6 @@ copl <- cogr$polyc[[1]][[1]]
 plfc <- c(0.19,0.19,0.19)
 exn <- c("apprn","apprh","appro","apprnr")
 rigv <- lapply(1:1, function(x) { 
-		       browser()
   mda <- qenvas[[exn[x]]]
   exs <- list(
 	    frm=as.numeric(mda$sol$fr),
