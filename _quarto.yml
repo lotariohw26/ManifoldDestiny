@@ -17,6 +17,7 @@
 # https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit
 # MD_WASMS/examples/r/MD-script/testing.R
 # MD_WASMS/examples/r/MD-script/testing.R
+# if(Sys.info()[['sysname']]=="Emscripten") { 1 } else { 2 }
 project:
   type: website
   output-dir: docs

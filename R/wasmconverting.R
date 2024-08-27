@@ -1,4 +1,4 @@
-###########################################################################e###################################################################ji 
+##########################################################################e###################################################################
 #' @export wasmconload
 wasmconload <- function(){
   ifelse(Sys.info()[['sysname']]=="Emscripten",
@@ -198,6 +198,7 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
+
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
@@ -206,7 +207,7 @@ selreport <- function(
   if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
   co$sortpre(frm)
   co$descriptive(frm)
-  co$r2siminput(frm)
+  #co$r2siminput(frm)
   co$plext(frm)
   co$plot2d(frm)
   co$plotxy(frm)
@@ -215,6 +216,7 @@ selreport <- function(
   co$gridarrange(frm)
   co$rotation(selv=c("alpha","g","h"),smat=md$sol$ro[[1]],grad=md$sol$ro[[2]],mead=TRUE)
   co$rotgraph()
+	browser()
   #co$rotplotly
   #browser()
   ges <- Estimation(co$rofc,frm)
@@ -833,6 +835,7 @@ Countinggraphs$methods(plotly3d=function(
 					 selid=1
 					 ){
 
+  browser()
   rdfcpar <- rdfc %>% dplyr::select(parameters[[partition]][c(1,2,3,4,5)])
   mrdfc <- as.matrix(rdfcpar)
   combi <- combinat::combn(5, 3)
@@ -918,12 +921,13 @@ Countinggraphs$methods(rotslides=function(){
 #
 Countinggraphs$methods(gridarrange=function(pl3d=list(selo=1,selm=list(1:5,6:10))){
 
-  #ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
-  #	 div(pl_3d_mani[pl3d$selm[[1]]],class="column"),
-  #	 div(pl_3d_mani[pl3d$selm[[2]]],class="column"))
+			       browser()
+  pl_3d_mani[pl3d$selm[[1]]]
+  ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
+  	 div(pl_3d_mani[pl3d$selm[[1]]],class="column"),
+  	 div(pl_3d_mani[pl3d$selm[[2]]],class="column"))
 
-  all_pl_3d_mani <<- list(page=NULL,ohtml=NULL,one3d=pl_3d_mani,plot2d=pl_2dsort,plotxy=pl_corrxy,plotres=NULL,r2list=r2list,sr=sumreg,abc=rotplotly)
-  #all_pl_3d_mani <<- list(page=htmltools::browsable(ohtml),ohtml=ohtml,one3d=pl_3d_mani,plot2d=pl_2dsort,plotxy=pl_corrxy,plotres=pl_rescro,r2list=r2list,sr=sumreg,abc=rotplotly)
+  all_pl_3d_mani <<- list(page=htmltools::browsable(ohtml),ohtml=ohtml,one3d=pl_3d_mani,plot2d=pl_2dsort,plotxy=pl_corrxy,plotres=pl_rescro,r2list=r2list,sr=sumreg,abc=rotplotly)
 })
 ############################################################################################################################################################
 #' @export strform

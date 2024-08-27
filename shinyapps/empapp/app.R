@@ -90,6 +90,7 @@ server <- function(input, output, session) {
     seld[[2]]$sol$fr <- input$form
     seld[[2]]$sol$eq[[1]] <- input$meqf
     seld[[2]]$sol$va <- input$solvf
+    browser()
     #seld[[2]]$sol$ro[[1]]
     #seld[[2]]$sol$ro[[2]][1] <- input$theta*pi/180
     #seld[[2]]$sol$ro[[2]][2] <- input$phi*pi/180
@@ -132,7 +133,7 @@ server <- function(input, output, session) {
     cformo()[[2]]$comdesc
   })
   output$plot_3d_rot <- renderPlotly({
-    cformo()[[1]]$all_pl_3d_mani[[1]]
+    cformo()[[1]]$rotplotly[[1]]
   })
   output$plot_bp <- renderPlot({
     cformo()[[4]]$pl_2dsort

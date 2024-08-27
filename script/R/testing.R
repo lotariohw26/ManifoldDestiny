@@ -4,37 +4,15 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
-apps <- appn0
+apps <- appn1
 adat <- apps[[1]]
 amet <- apps[[2]]
 ##########################################################################################################
 ###########################################################################################################
 selr <- selreport(apps)
+selr[[1]]$rotplotly 
 #selo <- seloutput(selr)
-
-
-
-
-
-
-
-
-if(Sys.info()[['sysname']]=="Emscripten") {
-	1
-} else {
-	2
-}
-
-
-
-
-
-
-
-
-
 ###########################################################################################################
-
 plnr <- 1
 ghi <- py_genpolycoeff(plr=plnr,parm=c("alpha", "x", "y"), solv='y',grd=1,eur=c(1, 4, 2))[3]
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
