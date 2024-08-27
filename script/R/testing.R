@@ -4,14 +4,20 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
-apps <- appn1
+apps <- appn0
 adat <- apps[[1]]
 amet <- apps[[2]]
 ##########################################################################################################
 ###########################################################################################################
 selr <- selreport(apps)
-selr[[1]]$rotplotly 
-#selo <- seloutput(selr)
+selo <- seloutput(selr)
+
+#selr[[1]]$rotplotly 
+#selr[[1]]$rotplotly 
+
+
+
+
 ###########################################################################################################
 plnr <- 1
 ghi <- py_genpolycoeff(plr=plnr,parm=c("alpha", "x", "y"), solv='y',grd=1,eur=c(1, 4, 2))[3]

@@ -90,7 +90,7 @@ server <- function(input, output, session) {
     seld[[2]]$sol$fr <- input$form
     seld[[2]]$sol$eq[[1]] <- input$meqf
     seld[[2]]$sol$va <- input$solvf
-    browser()
+    #browser()
     #seld[[2]]$sol$ro[[1]]
     #seld[[2]]$sol$ro[[2]][1] <- input$theta*pi/180
     #seld[[2]]$sol$ro[[2]][2] <- input$phi*pi/180
@@ -143,4 +143,7 @@ server <- function(input, output, session) {
   })
 }
 shinyApp(ui = ui, server = server)
+
+
+
 

@@ -213,18 +213,16 @@ selreport <- function(
   co$plotxy(frm)
   #co$resplot(frm)
   co$plotly3d(partition=frm)
-  co$gridarrange(frm)
+  #co$pl_3d_mani[[1]]
+  co$gridarrange()
   co$rotation(selv=c("alpha","g","h"),smat=md$sol$ro[[1]],grad=md$sol$ro[[2]],mead=TRUE)
   co$rotgraph()
-	browser()
-  #pl_3d_mani
   #co$rotplotly
-  #browser()
   ges <- Estimation(co$rofc,frm)
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
-  #ges$hat_predict(md$sol$va)
-  #ges$hat_intcomp()
+  ges$hat_predict(md$sol$va)
+  ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$sol$eq[2])
@@ -836,7 +834,6 @@ Countinggraphs$methods(plotly3d=function(
 					 selid=1
 					 ){
 
-  browser()
   rdfcpar <- rdfc %>% dplyr::select(parameters[[partition]][c(1,2,3,4,5)])
   mrdfc <- as.matrix(rdfcpar)
   combi <- combinat::combn(5, 3)
@@ -922,9 +919,6 @@ Countinggraphs$methods(rotslides=function(){
 
 #
 Countinggraphs$methods(gridarrange=function(pl3d=list(selo=1,selm=list(1:5,6:10))){
-
-			       browser()
-  pl_3d_mani[pl3d$selm[[1]]]
   ohtml <- div(class="row", style = "display: flex; flex-wrap: wrap; justify-content: center",
   	 div(pl_3d_mani[pl3d$selm[[1]]],class="column"),
   	 div(pl_3d_mani[pl3d$selm[[2]]],class="column"))
