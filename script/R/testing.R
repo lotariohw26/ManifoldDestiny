@@ -1,4 +1,4 @@
-ibrary(complexlm)
+library(complexlm)
 library(dplyr)
 ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
@@ -10,12 +10,20 @@ amet <- apps[[2]]
 ##########################################################################################################
 ###########################################################################################################
 selr <- selreport(apps)
-selo <- seloutput(selr)
+#selo <- seloutput(selr)
 
 
 
 
 
+
+
+
+if(Sys.info()[['sysname']]=="Emscripten") {
+	1
+} else {
+	2
+}
 
 
 

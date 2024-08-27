@@ -198,7 +198,6 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
-  browser()
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
@@ -216,12 +215,13 @@ selreport <- function(
   co$gridarrange(frm)
   co$rotation(selv=c("alpha","g","h"),smat=md$sol$ro[[1]],grad=md$sol$ro[[2]],mead=TRUE)
   co$rotgraph()
-   #
+  #co$rotplotly
+  #browser()
   ges <- Estimation(co$rofc,frm)
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
-  ges$hat_predict(md$sol$va)
-  ges$hat_intcomp()
+  #ges$hat_predict(md$sol$va)
+  #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$sol$eq[2])
@@ -566,11 +566,11 @@ Countingprocess$methods(rotation=function(
 				     mead=T,
 			             slid=F){
 
-  # if(any(grad != 0)) {
-  #         rofc <<- erotation(rdfc,selv,smat,grad,mead) 
-  # } elseif {
-  #         rofc <<- rdfc 
-  #}
+  if(any(grad!=0)) {
+  	rofc <<- erotation(rdfc,selv,smat,grad,mead) 
+  } else {
+  	rofc <<- rdfc 
+  }
 })
 
 Countingprocess$methods(plext=function(frm=2){
@@ -817,11 +817,9 @@ Countinggraphs$methods(plotxy=function(form=1,Pexc=NULL){
   })
 })
 Countinggraphs$methods(resplot=function(form=1){
-  #selvar <- c(paste0(parameters[[form]][c(1,2,4)],'_res'),paste0(parameters[[form]][c(3)],c("","_m","_mr")))
-  #View(quintile)
-  #names(quintile)
-  #dfg <- dplyr::select(quintile,all_of(selvar[1:5]))
-  #cmb <- combinat::combn(3, 2)
+  selvar <- c(paste0(parameters[[form]][c(1,2,4)],'_res'),paste0(parameters[[form]][c(3)],c("","_m","_mr")))
+  dfg <- dplyr::select(quintile,all_of(selvar[1:5]))
+  cmb <- combinat::combn(3, 2)
   #pl_rescro <<- lapply(seq(1,dim(cmb)[2]), function(x){
   #  ggplot2::ggplot(data=dfg,ggplot2::aes(x=selvar[3],y=selvar[3+x])) +
   #  ggplot2::geom_point() +
