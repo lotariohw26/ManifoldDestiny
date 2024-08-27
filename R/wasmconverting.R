@@ -207,7 +207,7 @@ selreport <- function(
   if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
   co$sortpre(frm)
   co$descriptive(frm)
-  #co$r2siminput(frm)
+  co$r2siminput(frm)
   co$plext(frm)
   co$plot2d(frm)
   co$plotxy(frm)
@@ -217,6 +217,7 @@ selreport <- function(
   co$rotation(selv=c("alpha","g","h"),smat=md$sol$ro[[1]],grad=md$sol$ro[[2]],mead=TRUE)
   co$rotgraph()
 	browser()
+  #pl_3d_mani
   #co$rotplotly
   #browser()
   ges <- Estimation(co$rofc,frm)
@@ -540,16 +541,16 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 })
 
 Countingprocess$methods(r2siminput=function(form=1,latest=0){
-  #rdf <- list(rdfci,rdfc)[[ifelse(latest==0,1,2)]]
-  #pm <- parameters[[form]]
-  #regs <- c(mean(rdf$R),sd(rdf$R))
-  #turn <- c(mean(rdf$V/rdf$R),sd(rdf$V/rdf$R))
-  #minmax <- c(min(rdf$R),max(rdf$R))
-  #sv <- c(mean(rdf[[pm[[1]]]]),sd(rdf[[pm[[1]]]]))
-  #dsv <- c(mean(rdf[[pm[[2]]]])-mean(rdf[[pm[[1]]]]),sd(rdf[[pm[[2]]]]-rdf[[pm[[1]]]]))
-  #Perc <- list(s=c(mean(rdf$Omega),sd(rdf$Omega)),h=c(mean(rdf$Omega),sd(rdf$Omega)),o=c(mean(rdf$xi),sd(rdf$xi)))
-  #nprec <- length(rdf$P)
-  #r2list <<- list(form=form,turn=turn,regs=r{egs,minmax=minmax,s=sv,ds=dsv,Perc=Perc[[form]],nprec=nprec)
+  rdf <- list(rdfci,rdfc)[[ifelse(latest==0,1,2)]]
+  pm <- parameters[[form]]
+  regs <- c(mean(rdf$R),sd(rdf$R))
+  turn <- c(mean(rdf$V/rdf$R),sd(rdf$V/rdf$R))
+  minmax <- c(min(rdf$R),max(rdf$R))
+  sv <- c(mean(rdf[[pm[[1]]]]),sd(rdf[[pm[[1]]]]))
+  dsv <- c(mean(rdf[[pm[[2]]]])-mean(rdf[[pm[[1]]]]),sd(rdf[[pm[[2]]]]-rdf[[pm[[1]]]]))
+  Perc <- list(s=c(mean(rdf$Omega),sd(rdf$Omega)),h=c(mean(rdf$Omega),sd(rdf$Omega)),o=c(mean(rdf$xi),sd(rdf$xi)))
+  nprec <- length(rdf$P)
+  r2list <<- list(form=form,turn=turn,regs=regs,minmax=minmax,s=sv,ds=dsv,Perc=Perc[[form]],nprec=nprec)
 })
 
 Countingprocess$methods(descriptive=function(form=1){
@@ -856,6 +857,7 @@ Countinggraphs$methods(plotly3d=function(
         )
       ) 
   })
+  #pl_3d_mani[[1]]
   # Assign names to the list
   names(pl_3d_mani) <<- sapply(seq(1, dim(combi)[2]), function(x, comb = combi, df = rdfcpar) {
     gdf <- df %>% dplyr::select(comb[, x])
