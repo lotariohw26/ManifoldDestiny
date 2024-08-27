@@ -112,7 +112,7 @@ apprnr:
     eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
     va: "y"
     ls: "(alpha-alpha_s)^2"
-    ro: [[1, 4, 6],[10,20,30]]
+    ro: [[1, 4, 6],[180,0,0]]
   prg:
     cnd: 0
     z: 0 
