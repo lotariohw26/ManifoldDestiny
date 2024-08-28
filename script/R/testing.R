@@ -11,9 +11,8 @@ amet <- apps[[2]]
 ###########################################################################################################
 amet$sol
 selr <- selreport(apps)
-
-selo <- seloutput(selr)
-#selr[[1]]$rotplotly 
+selo <- seloutput(sel
+#selr[[1]]$rotplotl
 #selr[[1]]$rotplotly 
 
 
