@@ -198,13 +198,14 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
-
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
   co <- Countinggraphs(da)
   if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
+  browser()
+  #co$purdf
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
@@ -220,9 +221,10 @@ selreport <- function(
   #co$rotplotly
   ges <- Estimation(co$rofc,frm)
   ges$regression(md$sol$eq[1])
+  #summary(ges$regsum[[1]])
   ges$diagnostics()
-  ges$hat_predict(md$sol$va)
-  ges$hat_intcomp()
+  #ges$hat_predict(md$sol$va)
+  #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$sol$eq[2])
@@ -1107,7 +1109,4 @@ Estimation$methods(hat_intcomp=function(){
     prc0123=100*sum(abs(compare[[comps]] - 0) <= 3)/length(compare[[comps]]))
   comdesc <<- data.frame(fname=txvnc,stats=names(vnd),values=vnd)
 })
-
-
-
 

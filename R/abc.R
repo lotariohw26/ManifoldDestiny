@@ -1,3 +1,8 @@
+##' @export abc
+abc <- function(){
+}
+
+##' @export def
 def <- function(cdf=NULL,kve=NULL,plr=3,svar='g'){
   names(kve) <- paste0("k",0:(length(kve)-1))
   vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
@@ -29,6 +34,7 @@ def <- function(cdf=NULL,kve=NULL,plr=3,svar='g'){
 
 
 }
+
 
 ##' @export manobj
 #manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
