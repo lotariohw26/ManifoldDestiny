@@ -4,28 +4,29 @@ tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
   vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
   abcv <- setNames(sapply(pyg[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
   ABCDEv <- setNames(sapply(pyg[[1]], as.character),c("A","B","C","D","E"))
-##' @export abc
-abc <- function(){
+  outabc <- cdf %>% dplyr::mutate(!!!kve)%>%
+      dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%
+      dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%
+      dplyr::mutate(a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
+      dplyr::mutate(b1=pareq(abcv[4],c(as.list(.[,])))) %>%
+      dplyr::mutate(b2=pareq(abcv[5],c(as.list(.[,])))) %>%
+      dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%
+      dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%
+      dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%
+      dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%
+      dplyr::mutate(A=pareq(ABCDEv[1],c(as.list(.[,])))) %>%
+      dplyr::mutate(B=pareq(ABCDEv[2],c(as.list(.[,])))) %>%
+      dplyr::mutate(C=pareq(ABCDEv[3],c(as.list(.[,])))) %>%
+      dplyr::mutate(D=pareq(ABCDEv[4],c(as.list(.[,])))) %>%
+      dplyr::mutate(E=pareq(ABCDEv[5],c(as.list(.[,])))) %>%
+      dplyr::group_by(P) %>%
+      dplyr::mutate(polsolv=py_polysolver(plr-1,c(A,B,C,D,E)[1:plr])) %>%
+      #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+      dplyr::mutate(!!paste0("polsolvreal"):=Re(polsolv[1])) %>%
+      dplyr::ungroup()
+
+
 }
-##' @export def
-##' @export manobj
-#manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
-#  polyc <- setNames(as.vector(lapply(enfl[[1]], as.character)),LETTERS[1:5])
-#  la_e <- unlist(polyc[c(LETTERS[1:5])])
-#  pnr <- sum(la_e!="0")
-#  rootdf <- dfa  %>%
-#    dplyr::mutate(A=pareq(la_e[1],c(as.list(.[,])))) %>%
-#    dplyr::mutate(B=pareq(la_e[2],c(as.list(.[,])))) %>%
-#    dplyr::mutate(C=pareq(la_e[3],c(as.list(.[,])))) %>%
-#    dplyr::mutate(D=pareq(la_e[3],c(as.list(.[,])))) %>%
-#    dplyr::mutate(E=pareq(la_e[3],c(as.list(.[,])))) %>%
-#    dplyr::group_by(P) %>%
-#    #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
-#    dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
-#    dplyr::mutate(!!paste0(svar):=Re(polsolv[1])) %>%
-#    dplyr::ungroup()
-#  rootdf[[svar]]
-#}
 ##########################################################################e###################################################################
 #' @export wasmconload
 wasmconload <- function(){
@@ -811,6 +812,8 @@ Countingprocess$methods(manimp=function(init_par=NULL,
   }
   rdfc <<- dplyr::select(loss_df,P,R_m,S_m,T_m,U_m,V_m,Z_m,LSV) %>% data.table::setnames(c("S_m","T_m","U_m","V_m","Z_m","R_m"),c("S","T","U","V","Z","R")) %>% ballcount(se=se)
 })
+
+
 ###########################################################################################################################################################
 #' @export Countinggraphs
 Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
@@ -1063,17 +1066,14 @@ Estimation$methods(hat_predict=function(svf='y'){
     pnr <- sum(lpy[[1]]!="0")
   }
   if (roto==1){
-    #edfc 
     ex <- gsub("\\^","**",regform[2])
     sd <- regform[1]
     eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
-    pnr <- 3
-    lpy <<- py_genpolycoeff(plr=pnr,parm=c("alpha", "x", "y"),solv='y',grd=1,eur=c(1, 4, 2))
+    lpy <<- py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"),solv='y',grd=1,eur=c(1, 4, 2))
     lpy[[1]] <<- setNames(as.vector(lapply(lpy[[1]],as.character)),LETTERS[1:5])
     lpy[[2]] <<- setNames(as.vector(lapply(lpy[[2]],as.character)),paste0(rep(letters[1:3],each=3),seq(1,3)))
     lpy[[3]] <<- setNames(as.vector(lapply(lpy[[3]],as.character)),c("x","y","z"))
   }
-  browser()
   abc <- tethyd(predict_df,lpy,plr=3,svar='g')
   pred_df_pol <<- predict_df %>% dplyr::arrange(P) %>%
     dplyr::mutate(nr=pnr) %>%
