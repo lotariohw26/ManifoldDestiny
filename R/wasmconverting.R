@@ -1,9 +1,25 @@
+<<<<<<< HEAD
 ##' @export def
 tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
   names(kve) <- paste0("k",0:(length(kve)-1))
   vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
   abcv <- setNames(sapply(pyg[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
   ABCDEv <- setNames(sapply(pyg[[1]], as.character),c("A","B","C","D","E"))
+=======
+##' @export abc
+abc <- function(){
+}
+
+##' @export def
+def <- function(cdf=NULL,kve=NULL,plr=3,svar='g'){
+  names(kve) <- paste0("k",0:(length(kve)-1))
+  vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
+  pyg <- py_genpolycoeff(plr=plr,parm=c("alpha", "y", "x"),solv='y',grd=1,eur=vmat)
+  abcv <- setNames(sapply(pyg[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
+  ABCDEv <- setNames(sapply(pyg[[1]], as.character),c("A","B","C","D","E"))
+
+  #View(outabc)
+>>>>>>> 8acc8056bdfa375b4c05541987bf1cc8fca8c33f
   outabc <- cdf %>% dplyr::mutate(!!!kve)%>%
       dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%
       dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%
@@ -29,6 +45,7 @@ tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
 }
 
 
+<<<<<<< HEAD
 
 
 
@@ -36,6 +53,26 @@ tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
 
 
 
+=======
+##' @export manobj
+#manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
+#  polyc <- setNames(as.vector(lapply(enfl[[1]], as.character)),LETTERS[1:5])
+#  la_e <- unlist(polyc[c(LETTERS[1:5])])
+#  pnr <- sum(la_e!="0")
+#  rootdf <- dfa  %>%
+#    dplyr::mutate(A=pareq(la_e[1],c(as.list(.[,])))) %>%
+#    dplyr::mutate(B=pareq(la_e[2],c(as.list(.[,])))) %>%
+#    dplyr::mutate(C=pareq(la_e[3],c(as.list(.[,])))) %>%
+#    dplyr::mutate(D=pareq(la_e[3],c(as.list(.[,])))) %>%
+#    dplyr::mutate(E=pareq(la_e[3],c(as.list(.[,])))) %>%
+#    dplyr::group_by(P) %>%
+#    #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+#    dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+#    dplyr::mutate(!!paste0(svar):=Re(polsolv[1])) %>%
+#    dplyr::ungroup()
+#  rootdf[[svar]]
+#}
+>>>>>>> 8acc8056bdfa375b4c05541987bf1cc8fca8c33f
 ##########################################################################e###################################################################
 #' @export wasmconload
 wasmconload <- function(){
@@ -1073,9 +1110,11 @@ Estimation$methods(hat_predict=function(svf='y'){
     pnr <- sum(lpy[[1]]!="0")
   }
   if (roto==1){
+    #edfc 
     ex <- gsub("\\^","**",regform[2])
     sd <- regform[1]
     eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
+<<<<<<< HEAD
     ply <- py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"),solv='y',grd=1,eur=c(1, 4, 2))
     #pyg <- py_genpolycoeff(plr=plr,parm=c("alpha", "y", "x"),solv='y',grd=1,eur=vmat)
     lpy[[1]] <<- setNames(as.vector(lapply(ply[[1]],as.character)),LETTERS[1:5])
@@ -1083,6 +1122,16 @@ Estimation$methods(hat_predict=function(svf='y'){
     lpy[[3]] <<- setNames(as.vector(lapply(ply[[3]],as.character)),c("x","y","z"))
   }
   abc <- tethyd(predict_df,lpy,plr=3,svar='g')
+=======
+    pnr <- 3
+    lpy <<- py_genpolycoeff(plr=pnr,parm=c("alpha", "x", "y"),solv='y',grd=1,eur=c(1, 4, 2))
+    lpy[[1]] <<- setNames(as.vector(lapply(lpy[[1]],as.character)),LETTERS[1:5])
+    lpy[[2]] <<- setNames(as.vector(lapply(lpy[[2]],as.character)),paste0(rep(letters[1:3],each=3),seq(1,3)))
+    lpy[[3]] <<- setNames(as.vector(lapply(lpy[[3]],as.character)),c("x","y","z"))
+  }
+  browser()
+  View(pred_df_pol)
+>>>>>>> 8acc8056bdfa375b4c05541987bf1cc8fca8c33f
   pred_df_pol <<- predict_df %>% dplyr::arrange(P) %>%
     dplyr::mutate(nr=pnr) %>%
     dplyr::mutate(!!!kvec) %>%
