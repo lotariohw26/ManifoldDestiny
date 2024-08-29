@@ -738,6 +738,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,
 
   ## Variables
   lof <- function(kvec=NULL,prn=T){
+	  browser()
     kvnr <- c(3,6,10,17)[1] #[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
