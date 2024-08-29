@@ -1,4 +1,4 @@
-appsn:
+apsnn:
   nid: appsn
   mtd:
     nmn: Defeault
@@ -18,7 +18,7 @@ appsn:
     blup: [0,1]
     eqp: "alpha=k0+k1*g+k2*h"
   bib: []
-apprn:
+aprnn:
   nid: apprn
   mtd:
     nmn: Defeault
@@ -38,7 +38,7 @@ apprn:
     blup: [0,1]
     eqp: "alpha=k0+k1*x+k2*y+k3*zeta"
   bib: []
-apprh:
+aprhn:
   nid: apprh
   mtd:
     nmn: Defeault
@@ -58,7 +58,7 @@ apprh:
     blup: [0,1]
     eqp: "alpha=k0+k1*x+k2*y+k3*zeta"
   bib: []
-appro:
+apron:
   nid: appro
   mtd:
     nmn: Defeault
@@ -77,30 +77,7 @@ appro:
     blup: [0,1]
     eqp: "alpha=k0+k1*x+k2*y+k3*zeta"
   bib: []
-appp0:
-  mtd:
-    nmn: Test
-    nid: appp1
-  spr:
-    nid: appp0
-    url: "https://docs.google.com/spreadsheets/d/107T8JmDdqRCeSVo4uZ-XJCWmLdfITOC64alk5ljrUqk/edit#gid=0"
-    pgn: 1
-    rng: A1:F23
-    cln: ['PN', 'R', 'S', 'T', 'U', 'V']
-    stuv: ['S', 'T', 'U', 'V']
-  sol:
-    fr: "1"
-    eq: "alpha=k0+k1*x+k2*y"
-    va: "y"
-    ro: [[1, 2, 3],[0,0,0]]
-  prg:
-    cnd: 0
-    z: 0 
-    stuv: [0,0,0,0]
-    blup: [0,1]
-    eqp: "alpha=k0+k1*g+k2*h"
-  bib: []
-apprnr:
+aprnr:
   nid: apprn
   mtd:
     nmn: Defeault

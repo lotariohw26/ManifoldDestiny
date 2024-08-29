@@ -9,11 +9,11 @@ suppressMessages(ManifoldDestiny::wasmconload())
 #  usethis::use_data(metd,overwrite=T)
 #  
 #  # Model
-#  fdm <- paste0(rprojroot::find_rstudio_root_file(),'/script/python/pysympy.py')
-#  reticulate::source_python(fdm)
-#  eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
-#  ## Saving data
-#  usethis::use_data(eqpar, overwrite = TRUE)
+fdm <- paste0(rprojroot::find_rstudio_root_file(),'/script/python/pysympy.py')
+reticulate::source_python(fdm)
+eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
+## Saving data
+usethis::use_data(eqpar, overwrite = TRUE)
 #  
 #  # 20 laws and 40 isos
 #  fdm <- paste0(rprojroot::find_rstudio_root_file(),'/script/python/20_laws_40_isos.py')
@@ -137,21 +137,21 @@ suppressMessages(ManifoldDestiny::wasmconload())
 #
 
 #ManifoldDestiny::wasmconload()
-#lpku <<- list(
-#  S = list(
-#    x = c(Sd = 'x*(Z-U-V)', Td = '(1-x)*(Z-U-V)', Ud = 'U', Vd = 'V'),'S~S_hat',
-#    y = c(Sd = 'S', Td = 'T', Ud = 'y*(Z-S-T)', Vd = '(1-y)*(Z-S-T)','U~U_hat')
-#  ),
-#  H = list(
-#    g = c(Sd = 'g*(Z-T-U)', Td = 'T', Ud = 'U', Vd = '(1-g)*(Z-T-U)','S~S_hat'),
-#    h = c(Sd = 'S', Td = 'h*(Z-T-U)', Ud = 'h*(Z-T-U)', Vd = 'V','S~S_hat')
-#  ),
-#  O = list(
-#    n = c(Sd = 'm*(Z-T-V)', Td = 'T', Ud = '(1-m)*(Z-T-V)', Vd = 'V','S-S_hat'),
-#    m = c(Sd = 'S', Td = 'm*(Z-T-V)', Ud = 'U', Vd = '(1-m)*(Z-T-V)','T-T_hat')
-#  )
-#)
-#usethis::use_data(lpku, overwrite = TRUE)
+lpku <<- list(
+  S = list(
+    x = c(Sd = 'x*(Z-U-V)', Td = '(1-x)*(Z-U-V)', Ud = 'U', Vd = 'V'),'S~S_hat',
+    y = c(Sd = 'S', Td = 'T', Ud = 'y*(Z-S-T)', Vd = '(1-y)*(Z-S-T)','U~U_hat')
+  ),
+  H = list(
+    g = c(Sd = 'g*(Z-T-U)', Td = 'T', Ud = 'U', Vd = '(1-g)*(Z-T-U)','S~S_hat'),
+    h = c(Sd = 'S', Td = 'h*(Z-T-U)', Ud = 'h*(Z-T-U)', Vd = 'V','S~S_hat')
+  ),
+  O = list(
+    n = c(Sd = 'm*(Z-T-V)', Td = 'T', Ud = '(1-m)*(Z-T-V)', Vd = 'V','S-S_hat'),
+    m = c(Sd = 'S', Td = 'm*(Z-T-V)', Ud = 'U', Vd = '(1-m)*(Z-T-V)','T-T_hat')
+  )
+)
+usethis::use_data(lpku, overwrite = TRUE)
 #
 #
 #
@@ -175,3 +175,4 @@ suppressMessages(ManifoldDestiny::wasmconload())
 
 
 
+ManifoldDestiny::bm()

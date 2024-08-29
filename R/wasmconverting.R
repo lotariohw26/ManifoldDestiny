@@ -1,3 +1,41 @@
+##' @export def
+tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
+  names(kve) <- paste0("k",0:(length(kve)-1))
+  vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
+  abcv <- setNames(sapply(pyg[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
+  ABCDEv <- setNames(sapply(pyg[[1]], as.character),c("A","B","C","D","E"))
+  outabc <- cdf %>% dplyr::mutate(!!!kve)%>%
+      dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%
+      dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%
+      dplyr::mutate(a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
+      dplyr::mutate(b1=pareq(abcv[4],c(as.list(.[,])))) %>%
+      dplyr::mutate(b2=pareq(abcv[5],c(as.list(.[,])))) %>%
+      dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%
+      dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%
+      dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%
+      dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%
+      dplyr::mutate(A=pareq(ABCDEv[1],c(as.list(.[,])))) %>%
+      dplyr::mutate(B=pareq(ABCDEv[2],c(as.list(.[,])))) %>%
+      dplyr::mutate(C=pareq(ABCDEv[3],c(as.list(.[,])))) %>%
+      dplyr::mutate(D=pareq(ABCDEv[4],c(as.list(.[,])))) %>%
+      dplyr::mutate(E=pareq(ABCDEv[5],c(as.list(.[,])))) %>%
+      dplyr::group_by(P) %>%
+      dplyr::mutate(polsolv=py_polysolver(plr-1,c(A,B,C,D,E)[1:plr])) %>%
+      #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+      dplyr::mutate(!!paste0("polsolvreal"):=Re(polsolv[1])) %>%
+      dplyr::ungroup()
+
+
+}
+
+
+
+
+
+
+
+
+
 ##########################################################################e###################################################################
 #' @export wasmconload
 wasmconload <- function(){
@@ -198,18 +236,17 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
+
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
   co <- Countinggraphs(da)
   if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
-  browser()
   #co$purdf
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
-  co$plext(frm)
   co$plot2d(frm)
   co$plotxy(frm)
   #co$resplot(frm)
@@ -218,16 +255,17 @@ selreport <- function(
   co$gridarrange()
   co$rotation(selv=c("alpha","g","h"),smat=md$sol$ro[[1]],grad=md$sol$ro[[2]],mead=TRUE)
   co$rotgraph()
+  co$plext(frm)
   #co$rotplotly
   ges <- Estimation(co$rofc,frm)
   ges$regression(md$sol$eq[1])
   #summary(ges$regsum[[1]])
   ges$diagnostics()
-  #ges$hat_predict(md$sol$va)
+  ges$hat_predict(md$sol$va)
   #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
-  ies$regression(md$sol$eq[2])
+  ies$regression(md$sol$eq[1])
   ies$diagnostics()
   ## Identify
   ### Bowplot
@@ -664,7 +702,6 @@ Countingprocess$methods(sortpre=function(form=1,
     dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
     dplyr::mutate(!!paste0(proppar,'_m'):=mean(!!rlang::sym(proppar))) %>%
     dplyr::mutate(!!paste0(proppar,'_mr'):=!!rlang::sym(proppar)-!!rlang::sym(paste0(proppar,'_m')))
-    #browser()
     psel %>% purrr::map(function(x,df=srdfc,p=polyn){
         pred <- stats::predict(lm(alpha~poly(alpha,p),data=df))
         res <- pred - df[[x]]
@@ -986,7 +1023,7 @@ Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   syequ <<- eqpar$meqs
   #radpar <<- c(theta=0,phi=0,rho=0)
   metad <<- list( mtd = list( nmn = "Default"), spr = list(), sol = list( fr = "1", eq = "alpha=k0+k1*x+k2*y", va = "y"), prg = list( cnd = 0, z = 0, stuv = c(0,0,0,0), blup = c(0,1), eqp = "alpha=k0+k1*g+k2*h"), bib = list())
-  lpku <<- lpkul
+  lpku <<- lpku
 })
 Estimation$methods(regression=function(regequ=c("alpha=k0+k1*x+k2*y")){
   regass <<- regequ
@@ -1039,12 +1076,13 @@ Estimation$methods(hat_predict=function(svf='y'){
     ex <- gsub("\\^","**",regform[2])
     sd <- regform[1]
     eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
-    lpy <<- py_genpolycoeff(expr=NULL,solvd=sd,solvf='Z',eur=eurv)
-    #ply <<- py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"), solvd='x',eur=c(1, 4, 2))[[3]]
-    lpy[[1]] <<- setNames(as.vector(lapply(lpy[[1]],as.character)),LETTERS[1:5])
-    lpy[[2]] <<- setNames(as.vector(lapply(lpy[[2]],as.character)),c("x","y","z"))
-    lpy[[3]] <<- setNames(as.vector(lapply(lpy[[3]],as.character)),paste0(rep(letters[1:3],each=3),seq(1,3)))
+    ply <- py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"),solv='y',grd=1,eur=c(1, 4, 2))
+    #pyg <- py_genpolycoeff(plr=plr,parm=c("alpha", "y", "x"),solv='y',grd=1,eur=vmat)
+    lpy[[1]] <<- setNames(as.vector(lapply(ply[[1]],as.character)),LETTERS[1:5])
+    lpy[[2]] <<- setNames(as.vector(lapply(ply[[2]],as.character)),paste0(rep(letters[1:3],each=3),seq(1,3)))
+    lpy[[3]] <<- setNames(as.vector(lapply(ply[[3]],as.character)),c("x","y","z"))
   }
+  abc <- tethyd(predict_df,lpy,plr=3,svar='g')
   pred_df_pol <<- predict_df %>% dplyr::arrange(P) %>%
     dplyr::mutate(nr=pnr) %>%
     dplyr::mutate(!!!kvec) %>%

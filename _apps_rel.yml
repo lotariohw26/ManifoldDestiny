@@ -1,5 +1,5 @@
-appn0:
-  nid: "appn0"
+apn0r:
+  nid: "apn0r"
   mtd:
     nmn: "Presidential"
     yea: 2020
@@ -15,7 +15,8 @@ appn0:
     stuv: ['A1', 'B1', 'A3+A4+A5', 'B2+B3+B4+B5']
   sol:
     fr: "2"
-    eq: ["z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3"]
+    eq: ["z=k0+k1*y+k2*x+k3*y2+k4*yx"]
+    #    eq: ["z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3"]
     va: "g"
     ro: [[1, 2, 4],[-44.9573,7.001545,-19.9677]]
   prg:
@@ -26,8 +27,8 @@ appn0:
     prma: [24,50,58,62,112,121,146]
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['https://www.youtube.com/watch?v=_37ghf0DRLw','https://drive.google.com/file/d/1w4CAafy7wwPDlnAwC12UQAZxwoa-DEoq/view?pli=1','https://www.overleaf.com/project/66be20768458b4502ab04fa2']
-appn1:
-  nid: "appn1"
+apn1n:
+  nid: "apn1n"
   mtd:
     nmn: "Presidential"
     yea: 2020
@@ -54,8 +55,8 @@ appn1:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['sol2022i',"https://x.com/KingSolomon006/status/1814076081583919472"]
 
-appn2:
-  nid: "appn2"
+apn2n:
+  nid: "apn2n"
   mtd:
     nmn: "General"
     sta: "Nevada"
@@ -82,8 +83,8 @@ appn2:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['https://www.documentcloud.org/documents/22088788-gilbert-v-sisolak-et-al', 'abc']
 
-appn3:
-  nid: "appn3"
+apn3n:
+  nid: "apn3n"
   mtd:
     nmn: abc
     rcn: "Governor"
@@ -112,8 +113,8 @@ appn3:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: []
 
-appn4:
-  nid: "appn4"
+apn4n:
+  nid: "apn4n"
   mtd:
     nmn: abc
     rcn: null
@@ -140,9 +141,9 @@ appn4:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['']
 
-appn5:
+apn5n:
   mtd:
-    id: appn5
+    id: apn5n
     nmn: abc
   spr:
     rcn: Presidiential
@@ -173,10 +174,10 @@ appn5:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit']
 
-appn6:
-  nid: appn6
+apn6n:
+  nid: apn6n
   mtd:
-    id: appn6
+    id: apn6
     nmn: abc
     rcn: General Election
     cnd: ['Marchant (R)', 'Cisco (D)']
@@ -208,46 +209,11 @@ appn6:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit']
 
-appn7:
-  nid: "appn7"
+apn7n:
+  nid: "apn7n"
   spr:
     url: "https://docs.google.com/spreadsheets/d/1ZSvEOFD_I-bM_Ki7AVUUmwlC-M25AQe66t9v5cE3Bdo/edit?gid=2139335671#gid=2139335671"
     pgn: 3
     rng: A1:G380
     cln: ['PN', 'A1', 'B1','A2','B2','A3','B3']
     stuv: ['A1', 'B1', 'A2', 'B2']
-
-
-#
-#appn10:
-#  mtd:
-#    nmn: Test
-#    nid: appp10
-#  spr:
-#    lab: "The Equation of the School Board Trustee (District D) Race"
-#    nid: "yout"
-#    url: "https://docs.google.com/spreadsheets/d/1gCfmuK44sUeb0Hb0plAc8VllPSjtUiEHWlJjeHq3xXY/edit?gid=1306366563#gid=1306366563"
-#    bib: "https://docs.google.com/document/d/1yCc91KwvNFcTlNUkfHuHTN_kdeBbeaMcxZNjkdbHFxI/edit"
-#    pgn: "Trust D; No comment"
-#    eq: "alpha=k0+k1*g+k2*h"
-#    rng: "A16:P50"
-#  spr:
-#    cln: ['PN','A1','B1','C1','D1','E1','A2','B2','C2','D2','E2','A3','B3','C3','D3','E3']
-#    stuv: ['A1+B1+C1+A2+B2+A3+B3+C3', 'D1+D3', 'E1+C2+E3', 'D2+E2']
-#    va: "g"
-#    fr: 2
-#    ro: [0, 0, 0]
-#  sol:
-#    fr: "2"
-#    eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h"]
-#    va: "g"
-#    ex: ["alpha","g","h"]
-#  prg:
-#    cnd: 1
-#    z: 0 
-#    stuv: [0,0,0,0]
-#    blup: [0,1]
-#    eqp: "alpha=k0+k1*g+k2*h"
-#  bib: ['']
-#
-#

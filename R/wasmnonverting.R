@@ -51,8 +51,8 @@ py_genpolycoeff <- function(equn="alpha=k0+k1*g+k2*h",solv="y",grd=0,parm=c("alp
 }
 
 py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"),solv='y',grd=1,eur=c(1, 4, 2))
-
 #py_genpolycoeff(equn="k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2",solv="g")
+
 ##' @export bm
 bm <- function(){
    devtools::document()
@@ -91,5 +91,4 @@ gre <- function(ma="lotariohw26@gmail.com",url=url,sheet=sheet,range=range){
 	googlesheets4::gs4_auth(email=ma)
 	gsh <- googlesheets4::read_sheet(url,sheet=sheet,range=range) 
 }
-
 

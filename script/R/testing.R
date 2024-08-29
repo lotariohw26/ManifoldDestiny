@@ -1,27 +1,39 @@
 library(complexlm)
 library(dplyr)
 ManifoldDestiny::wasmconload()
+library(ManifoldDestiny)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
-apps <- appn0
-adat <- apps[[1]]
-amet <- apps[[2]]
+ls(package:ManifoldDestiny)
+#  [1] "abc"              "apn0"             "apn0r"            "apn1"             "apn1n"            "apn2"            
+#  [7] "apn2n"            "apn3"             "apn3n"            "apn4"             "apprn"            "appsn"           
+# [13] "ballcastsim"      "ballcount"        "bm"               "Countinggraphs"   "Countingprocess"  "def"             
+# [19] "eqpar"            "erotation"        "Estimation"       "gmp"              "gop"              "gre"             
+# [25] "k"                "l"                "lpku"             "manobj"           "olsce"            "pareq"           
+# [31] "py_genpolycoeff"  "py_polysolver"    "r2simn"           "Rall"             "recoudatr"        "seloutput"       
+# [37] "selreport"        "SimVoterdatabase" "stickers"         "strform"          "totwomodes"       "wasmconload"     
+#  [1] "abc"                  "apn0"                 "apn1"                 "apn2"                 "apn3"                
+#  [6] "apn4"                 "apprn"                "appsn"                "ballcastsim"          "ballcount"           
+# [11] "bm"                   "Countinggraphs"       "Countingprocess"      "def"                  "eplext"              
+# [16] "erotation"            "Estimation"           "gmp"                  "gop"                  "gre"                 
+# [21] "k"                    "l"                    "library.dynam"        "library.dynam.unload" "lpku"                
+# [26] "manobj"               "olsce"                "pareq"                "py_genpolycoeff"      "py_polysolver"       
+# [31] "py_polysolverW"       "r2simn"               "Rall"                 "recoudatr"            "recousiml"           
+# [36] "seloutput"            "selreport"            "SimVoterdatabase"     "stickers"             "strform"             
+# [41] "system.file"          "totwomodes"           "wasmconload"         
+aps <- apn0r
+adat <- aps[[1]]
+amet <- aps[[2]]
 ##########################################################################################################
 ###########################################################################################################
-amet$sol
-selr <- selreport(apps)
-
-selo <- seloutput(selr)
+#slr <- selreport(aps)
+#slo <- seloutput(slr)
 #selr[[1]]$rotplotly 
 #selr[[1]]$rotplotly 
-
-
-
-
 ###########################################################################################################
+vmat <- c(1,2,4)
 plnr <- 1
-ghi <- py_genpolycoeff(plr=plnr,parm=c("alpha", "x", "y"), solv='y',grd=1,eur=c(1, 4, 2))[3]
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 url <- "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=449303683#gid=449303683"
 balins <- googlesheets4::read_sheet(url, range="G3:K228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))
@@ -31,9 +43,13 @@ abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
 re <- Estimation(abc,2)
 #re$regression("z=k0+k1*y+k2*x+k3*y2")
 re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
-ghi <- def(cdf=abc,re$kvec,3)
+summary(re$regsum[[1]])
+pyg <- py_genpolycoeff(plr=3,parm=c("alpha", "x", "y"),solv='y',grd=1,eur=vmat)
+ghi <- tethyd(abc,re$kvec,pyg)
 View(ghi)
 ##############
+
+ManifoldDestiny::lpkul
 
 
 
@@ -61,10 +77,10 @@ names(abc)
 # [31] "z"     "x1"    "y1"    "yx"    "x2"    "y2"    "y2x"   "yx2"   "x3"    "y3"    "y3x"   "y2x2"  "yx3"   "x4"    "y4"   
 # [46] "y3x2"  "y2x3"  "yx4"   "y4x"  
 re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
+summary(re$regsum[[1]])
 re$hat_predict()
 
 
-summary(re$regsum[[1]])
 
 
 

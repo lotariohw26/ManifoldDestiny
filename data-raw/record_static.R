@@ -8,12 +8,12 @@ qenvas <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_app
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #######################################################################################################################################################
 # Applications
-recoudatr(qenvae$appn0)
-recoudatr(qenvae$appn1)
-recoudatr(qenvae$appn2)
-recoudatr(qenvae$appn3)
-recoudatr(qenvae$appn4)
-recoudatr(qenvae$appn7)
+recoudatr(qenvae$apn0r)
+recoudatr(qenvae$apn1n)
+
+recoudatr(qenvae$apn2n)
+recoudatr(qenvae$apn3n)
+recoudatr(qenvae$apn4n)
 #######################################################################################################################################################
 # Simulation
 ## Normal 
@@ -23,7 +23,7 @@ proa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 prob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztec <- c(0,1)	
 gsh <- ballcastsim(perv,prow,proa,prob,ztec)
-mda <- qenvas$appsn
+mda <- qenvas$apsnn
 assign(mda$nid,list(gsh,mda))
 do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
 ## Rigged election
@@ -31,7 +31,7 @@ set.seed(1)
 cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
 plfc <- c(0.19,0.19,0.19,0.19)
-exn <- c("apprn","apprh","appro","apprnr")
+exn <- c("aprnn","aprhn","apron","aprnr")
 rigv <- lapply(4, function(x) { 
   mda <- qenvas[[exn[x]]]
   exs <- list(
@@ -51,6 +51,6 @@ rigv <- lapply(4, function(x) {
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
 })
 ######################################################################################################################################################
-
+ManifoldDestiny::bm()
 
 
