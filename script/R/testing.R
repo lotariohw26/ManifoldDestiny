@@ -6,54 +6,73 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
-#  [1] "abc"              "apn0"             "apn0r"            "apn1"             "apn1n"            "apn2"            
-#  [7] "apn2n"            "apn3"             "apn3n"            "apn4"             "apprn"            "appsn"           
-# [13] "ballcastsim"      "ballcount"        "bm"               "Countinggraphs"   "Countingprocess"  "def"             
-# [19] "eqpar"            "erotation"        "Estimation"       "gmp"              "gop"              "gre"             
-# [25] "k"                "l"                "lpku"             "manobj"           "olsce"            "pareq"           
-# [31] "py_genpolycoeff"  "py_polysolver"    "r2simn"           "Rall"             "recoudatr"        "seloutput"       
-# [37] "selreport"        "SimVoterdatabase" "stickers"         "strform"          "totwomodes"       "wasmconload"     
-#  [1] "abc"                  "apn0"                 "apn1"                 "apn2"                 "apn3"                
-#  [6] "apn4"                 "apprn"                "appsn"                "ballcastsim"          "ballcount"           
-# [11] "bm"                   "Countinggraphs"       "Countingprocess"      "def"                  "eplext"              
-# [16] "erotation"            "Estimation"           "gmp"                  "gop"                  "gre"                 
-# [21] "k"                    "l"                    "library.dynam"        "library.dynam.unload" "lpku"                
-# [26] "manobj"               "olsce"                "pareq"                "py_genpolycoeff"      "py_polysolver"       
-# [31] "py_polysolverW"       "r2simn"               "Rall"                 "recoudatr"            "recousiml"           
-# [36] "seloutput"            "selreport"            "SimVoterdatabase"     "stickers"             "strform"             
-# [41] "system.file"          "totwomodes"           "wasmconload"         
 aps <- apn0r
 adat <- aps[[1]]
 amet <- aps[[2]]
 ##########################################################################################################
-###########################################################################################################
+baldata <- apn0r
+WS <- Sys.info()[['sysname']]=="Emscripten"
+da <- baldata[[1]]
+md <- baldata[[2]]
+frm <- as.numeric(md$sol$fr)
+co <- Countinggraphs(da)
+if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
+co$purdf
+#co$sortpre(frm)
+#co$descriptive(frm)
+#co$r2siminput(frm)
+#co$plot2d(frm)
+#co$plotxy(frm)
+##co$resplot(frm)
+#co$plotly3d(partition=frm)
+#co$pl_3d_mani[[1]]
+#co$gridarrange()
+#co$rotation(selv=c("alpha","g","h"),smat=md$sol$ro[[1]],grad=md$sol$ro[[2]],mead=TRUE)
+#co$rotgraph()
+#co$plext(frm)
 #slr <- selreport(aps)
 #slo <- seloutput(slr)
 #selr[[1]]$rotplotly 
-amet$sol
-selr <- selreport(apps)
-selo <- seloutput(sel
-#selr[[1]]$rotplotl
+#amet$sol
+#selr <- selreport(apps)
+#selo <- seloutput(sel
+##selr[[1]]$rotplotl
 #selr[[1]]$rotplotly 
+###########################################################################################################
+###########################################################################################################
+### Level 2
 ###########################################################################################################
 vmat <- c(1,2,4)
 plnr <- 1
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 url <- "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=449303683#gid=449303683"
-balins <- googlesheets4::read_sheet(url, range="G3:K228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))
-names(balins) <- c("PW","PN","g","h","alpha","P")
-rotuvw <- erotation(balins,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
+crot <- googlesheets4::read_sheet(url, range="G3:R228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))
+wtet <- googlesheets4::read_sheet(url, range="A6:B16",sheet="Write Tet")
+names(crot) <- c("PW","PN","g","h","alpha","Data#","u[0]","v[0]","w[0]","x","y","z","P") 
+rotuvw <- erotation(crot,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
+bind <- dplyr::bind_cols(dplyr::select(rotuvw,x,y,z),dplyr::select(crot,x,y,z))
 abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
 re <- Estimation(abc,2)
-#re$regression("z=k0+k1*y+k2*x+k3*y2")
 re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
-summary(re$regsum[[1]])
-pyg <- py_genpolycoeff(plr=3,parm=c("alpha", "x", "y"),solv='y',grd=1,eur=vmat)
+pyg <- py_genpolycoeff(plr=3,parm=c("z", "x", "y"),solv='alpha',grd=1,eur=vmat)
 ghi <- tethyd(abc,re$kvec,pyg)
-View(ghi)
+
+#View(ghi)
 ##############
+# # A tibble: 10 × 2
+#    Patriarch    Value
+#    <chr>        <dbl>
+#  1 k[0,0]     0.00164
+#  2 k[1,0]    -0.731  
+#  3 k[1,1]     1.08   
+#  4 k[2,0]    -0.785  
+#  5 k[2,1]     0.0640 
+#  6 k[2,2]     0.0649 
+#  7 k[3,0]     0.924  
+#  8 k[3,1]     3.04   
+#  9 k[3,2]    -1.27   
+# 10 k[3,3]     0.0924 
 
-ManifoldDestiny::lpkul
 
 
 
@@ -61,8 +80,12 @@ ManifoldDestiny::lpkul
 
 
 
+View(da)
 
 
+
+
+sort(setdiff(co$rdfci$P,balins$P))
 
 
 
@@ -72,6 +95,7 @@ googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 url <- "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=449303683#gid=449303683"
 balins <- googlesheets4::read_sheet(url, range="G3:K228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))
 names(balins) <- c("PW","PN","g","h","alpha","P")
+dim(balins)
 rotuvw <- erotation(balins,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
 abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
 re <- Estimation(abc,2)

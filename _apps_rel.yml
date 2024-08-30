@@ -11,7 +11,7 @@ apn0r:
     url: "https://docs.google.com/spreadsheets/d/10815wJU8oscTeC5ZsUp_HN2qBJtcQNraa-G3dKien8c/edit?gid=1639367400#gid=1639367400"
     pgn: "Baltimore Mothersheet"
     rng: E4:P240
-    cln: ['P','PN','A1','B1','A2','B2','A3','B3','A4','B4','A5','B5']
+    cln: ['PN','P','A1','B1','A2','B2','A3','B3','A4','B4','A5','B5']
     stuv: ['A1', 'B1', 'A3+A4+A5', 'B2+B3+B4+B5']
   sol:
     fr: "2"
@@ -27,6 +27,7 @@ apn0r:
     prma: [24,50,58,62,112,121,146]
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['https://www.youtube.com/watch?v=_37ghf0DRLw','https://drive.google.com/file/d/1w4CAafy7wwPDlnAwC12UQAZxwoa-DEoq/view?pli=1','https://www.overleaf.com/project/66be20768458b4502ab04fa2']
+
 apn1n:
   nid: "apn1n"
   mtd:

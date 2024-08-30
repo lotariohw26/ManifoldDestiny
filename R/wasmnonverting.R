@@ -9,8 +9,7 @@ recoudatr <- function(mda=NULL,prn=1){
         T = !!rlang::parse_expr(mda$spr$stuv[2]),
         U = !!rlang::parse_expr(mda$spr$stuv[3]),
         V = !!rlang::parse_expr(mda$spr$stuv[4])
-      ) %>%
-  #!
+      ) %>% 
   mutate(R = ifelse("R" %in% names(.), R, S+T+U+V))                                                            
   assign(mda$nid,list(as.data.frame(gsh),mda))
   do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))

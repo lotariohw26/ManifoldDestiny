@@ -8,12 +8,13 @@ qenvas <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_app
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #######################################################################################################################################################
 # Applications
-#recoudatr(qenvae$apn0r)
+recoudatr(qenvae$apn0r)
 #recoudatr(qenvae$apn1n)
 #recoudatr(qenvae$apn2n)
 #recoudatr(qenvae$apn3n)
 #recoudatr(qenvae$apn4n)
-#ManifoldDestiny::bm()
+ManifoldDestiny::bm()
+View(ManifoldDestiny::apn0r[[1]])
 #######################################################################################################################################################
 # Simulation
 ## Normal 
