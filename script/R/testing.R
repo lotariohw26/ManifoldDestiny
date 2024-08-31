@@ -48,9 +48,10 @@ co$rofc
 re <- Estimation(co$rofc,2)
 re$regression("z=k0+k1*x+k2*y")
 #re$regression("z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3")
-re$regsum[[1]]
+summary(re$regsum[[1]])
+pyg <- py_genpolycoeff(expr="z=k0+k1*x+k2*y",solv="x",plr=1,eur=c(1, 4, 2),rot=1)
 
-pyg <- py_genpolycoeff(plr=3fparm=c("z", "x", "y"),solv='z',grd=1,eur=vmat)
+
 ghi <- tethyd(co$rofc,re$kvec,pyg)
 View(ghi)
 vmat <- unique(dplyr::select(ghi,a1,a2,a3,b1,b2,b3,c1,c2,c3,k0,k1,k2,k3,k4,k5,k6,k7,k8,k9)) %>% dplyr::mutate(d100=k1*a3+k2*b3-c3)
