@@ -1,6 +1,9 @@
 ##' @export abc
 abc <- function(){
 }
+##' @export def
+def <- function(){
+}
 
 ##' @export manobj
 #manobj <- function(enfl=NULL,dfa=NULL,svar='y'){

@@ -14,7 +14,7 @@ recoudatr(qenvae$apn0r)
 #recoudatr(qenvae$apn3n)
 #recoudatr(qenvae$apn4n)
 ManifoldDestiny::bm()
-View(ManifoldDestiny::apn0r[[1]])
+ManifoldDestiny::apn0r[[1]]
 #######################################################################################################################################################
 # Simulation
 ## Normal 

@@ -15,21 +15,26 @@ WS <- Sys.info()[['sysname']]=="Emscripten"
 da <- baldata[[1]]
 md <- baldata[[2]]
 frm <- as.numeric(md$sol$fr)
-co <- Countinggraphs(da)
-if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
+co <- Countinggraphs(da,selvar=c('PN','P','R','S','T','U','V'))
+co$purging(prma=c(77,39,45,141,174,172,168,173,110,139,147))
+#if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
+names(co$rdfc)
 co$purdf
-#co$sortpre(frm)
-#co$descriptive(frm)
-#co$r2siminput(frm)
-#co$plot2d(frm)
-#co$plotxy(frm)
-##co$resplot(frm)
-#co$plotly3d(partition=frm)
-#co$pl_3d_mani[[1]]
-#co$gridarrange()
-#co$rotation(selv=c("alpha","g","h"),smat=md$sol$ro[[1]],grad=md$sol$ro[[2]],mead=TRUE)
+co$sortpre(frm)
+co$descriptive(frm)
+co$r2siminput(frm)
+co$plot2d(frm)
+co$plotxy(frm)
+#co$resplot(frm)
+co$plotly3d(partition=frm)
+co$pl_3d_mani[[1]]
+co$gridarrange()
+co$rotation(selv=c("g","h","alpha","PN"),
+	    smat=md$sol$ro[[1]],
+	    grad=md$sol$ro[[2]],
+	    mead=TRUE)
 #co$rotgraph()
-#co$plext(frm)
+co$plext(frm)
 #slr <- selreport(aps)
 #slo <- seloutput(slr)
 #selr[[1]]$rotplotly 
@@ -38,6 +43,18 @@ co$purdf
 #selo <- seloutput(sel
 ##selr[[1]]$rotplotl
 #selr[[1]]$rotplotly 
+vmat <- c(1,2,4)
+co$rofc
+re <- Estimation(co$rofc,2)
+re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
+re$kvec
+pyg <- py_genpolycoeff(plr=3,parm=c("z", "x", "y"),solv='z',grd=1,eur=vmat)
+pyg[[3]]
+ghi <- tethyd(co$rofc,re$kvec,pyg)
+View(ghi)
+
+
+
 ###########################################################################################################
 ###########################################################################################################
 ### Level 2
@@ -57,40 +74,13 @@ re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
 pyg <- py_genpolycoeff(plr=3,parm=c("z", "x", "y"),solv='alpha',grd=1,eur=vmat)
 ghi <- tethyd(abc,re$kvec,pyg)
 
-#View(ghi)
-##############
-# # A tibble: 10 × 2
-#    Patriarch    Value
-#    <chr>        <dbl>
-#  1 k[0,0]     0.00164
-#  2 k[1,0]    -0.731  
-#  3 k[1,1]     1.08   
-#  4 k[2,0]    -0.785  
-#  5 k[2,1]     0.0640 
-#  6 k[2,2]     0.0649 
-#  7 k[3,0]     0.924  
-#  8 k[3,1]     3.04   
-#  9 k[3,2]    -1.27   
-# 10 k[3,3]     0.0924 
+dif1 <- sort(setdiff(co$rdfc$PN,crot$PN))
+dif2 <- sort(setdiff(crot$PN,co$rdfc$PN))
+prl1 <- dplyr::select(co$rdfci,P,PN) %>% dplyr::filter(PN%in%dif1)
+prl2 <- dplyr::select(crot,P,PN) %>% dplyr::filter(PN%in%dif2)
 
 
-
-
-
-
-
-
-View(da)
-
-
-
-
-sort(setdiff(co$rdfci$P,balins$P))
-
-
-
-
-
+View(prl2)
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 url <- "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=449303683#gid=449303683"
 balins <- googlesheets4::read_sheet(url, range="G3:K228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))

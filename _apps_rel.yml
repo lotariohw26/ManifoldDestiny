@@ -8,11 +8,13 @@ apn0r:
     cou: ['Baltimore']
     mod: ['EV', 'MiV']
   spr:
-    url: "https://docs.google.com/spreadsheets/d/10815wJU8oscTeC5ZsUp_HN2qBJtcQNraa-G3dKien8c/edit?gid=1639367400#gid=1639367400"
-    pgn: "Baltimore Mothersheet"
-    rng: E4:P240
-    cln: ['PN','P','A1','B1','A2','B2','A3','B3','A4','B4','A5','B5']
-    stuv: ['A1', 'B1', 'A3+A4+A5', 'B2+B3+B4+B5']
+    url: "https://docs.google.com/spreadsheets/d/1ePxTwcx6LFL8pW8SZfx5iZgqZeCUzXY3bUQiFUYncgg/edit?gid=1164302233#gid=116430223"
+    #    url: "https://docs.google.com/spreadsheets/d/10815wJU8oscTeC5ZsUp_HN2qBJtcQNraa-G3dKien8c/edit?gid=1639367400#gid=1639367400"
+    #url: "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=1974020018#gid=1974020018"
+    pgn: "All Baltimore Precincts"
+    rng: B14:N250
+    cln: ['P','PN','R','A1','B1','A2','B2','A3','B3','A4','B4','A5','B5']
+    stuv: ['A1+A2', 'B1+B2', 'A3+A4+A5', 'B3+B4+B5']
   sol:
     fr: "2"
     eq: ["z=k0+k1*y+k2*x+k3*y2+k4*yx"]

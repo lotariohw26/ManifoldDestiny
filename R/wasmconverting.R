@@ -1,9 +1,9 @@
 ##' @export def
 tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
-	browser()
   names(kve) <- paste0("k",0:(length(kve)-1))
   vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
   abcv <- setNames(sapply(pyg[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
+  mata <- pyg[[3]]
   ABCDEv <- setNames(sapply(pyg[[1]], as.character),c("A","B","C","D","E"))
   outabc <- cdf %>% dplyr::mutate(!!!kve) %>%
       dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%  
@@ -14,7 +14,27 @@ tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
       dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%   
       dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%   
       dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%   
-      dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%  
+      dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[1]:=pareq(mata$expr[1],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[2]:=pareq(mata$expr[2],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[3]:=pareq(mata$expr[3],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[4]:=pareq(mata$expr[4],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[5]:=pareq(mata$expr[5],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[6]:=pareq(mata$expr[6],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[7]:=pareq(mata$expr[7],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[8]:=pareq(mata$expr[8],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[9]:=pareq(mata$expr[9],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[10]:=pareq(mata$expr[10],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[11]:=pareq(mata$expr[11],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[12]:=pareq(mata$expr[12],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[13]:=pareq(mata$expr[13],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[14]:=pareq(mata$expr[14],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[15]:=pareq(mata$expr[15],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[16]:=pareq(mata$expr[16],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[17]:=pareq(mata$expr[17],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[18]:=pareq(mata$expr[18],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[19]:=pareq(mata$expr[19],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!mata$d[20]:=pareq(mata$expr[20],c(as.list(.[,])))) %>%
       dplyr::mutate(A=pareq(ABCDEv[1],c(as.list(.[,])))) %>%
       dplyr::mutate(B=pareq(ABCDEv[2],c(as.list(.[,])))) %>%
       dplyr::mutate(C=pareq(ABCDEv[3],c(as.list(.[,])))) %>%
@@ -24,7 +44,7 @@ tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
       dplyr::mutate(polsolv=py_polysolver(plr-1,c(A,B,C,D,E)[1:plr])) %>%
       dplyr::mutate(!!paste0("polsolvreal"):=Re(polsolv[1])) %>%
       dplyr::ungroup()
-      # if(Sys.info()[['sysname']]=="Emscripten") { 1 } else { 2 }
+# if(Sys.info()[['sysname']]=="Emscripten") { 1 } else { 2 }
 
 
 }
@@ -382,9 +402,9 @@ erotation <-function(dfe=NULL,
   rofc <- dfe %>% dplyr::select(P,all_of(sev)) %>%
     dplyr::arrange(P) %>%
     # Standardize variable names
-    dplyr::mutate(ui=.[[2]]) %>%
-    dplyr::mutate(vi=.[[3]]) %>%
-    dplyr::mutate(wi=.[[4]]) %>%
+    dplyr::mutate(ui=.[[sev[1]]]) %>%
+    dplyr::mutate(vi=.[[sev[2]]]) %>%
+    dplyr::mutate(wi=.[[sev[3]]]) %>%
     # Settings
     dplyr::mutate(m1=cos(rpar[1]),m2=cos(rpar[2]),m3=cos(rpar[3])) %>%
     dplyr::mutate(n1=sin(rpar[1]),n2=sin(rpar[2]),n3=sin(rpar[3])) %>%
