@@ -1,4 +1,4 @@
-##' @export def
+##' @export tethyd
 tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
   names(kve) <- paste0("k",0:(length(kve)-1))
   vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
@@ -44,7 +44,11 @@ tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
       dplyr::mutate(polsolv=py_polysolver(plr-1,c(A,B,C,D,E)[1:plr])) %>%
       dplyr::mutate(!!paste0("polsolvreal"):=Re(polsolv[1])) %>%
       dplyr::ungroup()
-# if(Sys.info()[['sysname']]=="Emscripten") { 1 } else { 2 }
+      #vmat <- unique(dplyr::select(ghi,a1,a2,a3,b1,b2,b3,c1,c2,c3,k0,k1,k2,k3,k4,k5,k6,k7,k8,k9)) %>% dplyr::mutate(d100=k2*a3+k1*b3-c3)
+      #mata$d[4]
+      #mata$expr[4]
+      #vmat$d100
+      # if(Sys.info()[['sysname']]=="Emscripten") { 1 } else { 2 }
 
 
 }

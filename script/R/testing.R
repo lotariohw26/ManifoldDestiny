@@ -46,15 +46,14 @@ co$plext(frm)
 vmat <- c(1,2,4)
 co$rofc
 re <- Estimation(co$rofc,2)
-re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
-re$kvec
-pyg <- py_genpolycoeff(plr=3,parm=c("z", "x", "y"),solv='z',grd=1,eur=vmat)
-pyg[[3]]
+re$regression("z=k0+k1*x+k2*y")
+#re$regression("z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3")
+re$regsum[[1]]
+
+pyg <- py_genpolycoeff(plr=3fparm=c("z", "x", "y"),solv='z',grd=1,eur=vmat)
 ghi <- tethyd(co$rofc,re$kvec,pyg)
 View(ghi)
-
-
-
+vmat <- unique(dplyr::select(ghi,a1,a2,a3,b1,b2,b3,c1,c2,c3,k0,k1,k2,k3,k4,k5,k6,k7,k8,k9)) %>% dplyr::mutate(d100=k1*a3+k2*b3-c3)
 ###########################################################################################################
 ###########################################################################################################
 ### Level 2
@@ -74,6 +73,7 @@ re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
 pyg <- py_genpolycoeff(plr=3,parm=c("z", "x", "y"),solv='alpha',grd=1,eur=vmat)
 ghi <- tethyd(abc,re$kvec,pyg)
 
+View(ghi)
 dif1 <- sort(setdiff(co$rdfc$PN,crot$PN))
 dif2 <- sort(setdiff(crot$PN,co$rdfc$PN))
 prl1 <- dplyr::select(co$rdfci,P,PN) %>% dplyr::filter(PN%in%dif1)
@@ -680,4 +680,7 @@ library(googlesheets4)
 ls(package:googlesheets4)
 sheet_write(iris,"",sheet=5)
 #gs4_auth(scopes = "https://www.googleapis.com/auth/spreadsheets")
-#https://developers.google.com/identity/protocols/oauth2/scopes
+#link <- "https://docs.google.com/spreadsheets/d/1BK1hr2BdL_sEN_UEBAVf3ijRX3tlBPkJN2CFKi6xux0/edit?gid=0#gid=0"
+#ghi
+#googlesheets4::write_sheet(ghi, ss = link)
+##https://developers.google.com/identity/protocols/oauth2/scopes

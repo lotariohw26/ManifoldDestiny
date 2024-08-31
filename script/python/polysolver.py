@@ -33,17 +33,14 @@ def rall(sel=[0, 0, 0]):
     allrot = [ps[i] for i in sel]
     return allrot
 
-def genpolycoeff(equn="alpha=k0+k1*g+k2*h",solv='y',grd=0,parm=["alpha", "x", "y"],plr=1,eur=[1, 4, 2]):
+def genpolycoeff(expr="alpha=k0+k1*g+k2*h",solv='y',parm=["alpha", "x", "y"],plr=1,eur=[1, 4, 2],rot=0):
     x, y, z = sympy.symbols('x y z')
     k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
     alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
-    expr = [Eq(z,k0+k1*x+k2*y),Eq(z,k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2),Eq(z,k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3)][plr-1]
-    # Without rotation
-    if grd == 0:
-        #exprc = expr.subs([(z,parm[0]),(x,parm[1]),(y,parm[2])])
-        ls, rs = equn.split('=')
-        eqs = Eq(sympify(ls), sympify(rs))
-        polys = poly(eqs.rhs - eqs.lhs, sympify(solv)).all_coeffs()
+    ls, rs = expr.split('=')
+    expr = Eq(sympify(ls), sympify(rs))
+    if rot == 0:
+        polys = poly(expr.rhs - expr.lhs, sympify(solv)).all_coeffs()
         abc = [1,0,0,0,1,0,0,0,1]
         uvw = []
         ABCDE = [0, 0, 0, 0, 0]
@@ -53,6 +50,7 @@ def genpolycoeff(equn="alpha=k0+k1*g+k2*h",solv='y',grd=0,parm=["alpha", "x", "y
     else:
         dxyz = {'x': 1, 'y': 2, 'z': 3}
         # Defining
+        breakpoint()
         x,  y,  z  = sympy.symbols('x y z')
         ui, vi, wi = sympy.symbols('ui vi wi')
         u0, v0, w0 = sympy.symbols('u0 v0 w0')
@@ -95,11 +93,13 @@ def genpolycoeff(equn="alpha=k0+k1*g+k2*h",solv='y',grd=0,parm=["alpha", "x", "y
         Eu = Eq(x, a1 * u0 + a2 * v0 + a3 * w0)
         Ev = Eq(y, b1 * u0 + b2 * v0 + b3 * w0)
         Ew = Eq(z, c1 * u0 + c2 * v0 + c3 * w0)
-        # Start with non-rotated
         exprf = solve(expr,z)[0]-z
+        exprf
         exprc = exprf.subs([(x, solve(Eu, x)[0]), (y, solve(Ev, y)[0]), (z, solve(Ew, z)[0])])
+        exprc
         # Reorganize
         exprr = collect(expand(exprc), pvar)
+        exprr
         xr = [] 
         yr = []
         zr = []
@@ -109,11 +109,14 @@ def genpolycoeff(equn="alpha=k0+k1*g+k2*h",solv='y',grd=0,parm=["alpha", "x", "y
         matarch = pandas.DataFrame(data, columns=clma)
         matarch.loc[0, ['expr','expr2']]=exprr.args[0]
         matarch.loc[0, ['d']]='d_000'
+        matarch
+        #exprr
         for i in range(1, eqsn):
             expt = exprr.args[i]
             expr = expt.args[-1]
             varn = expt / expr
             nrfs = len(varn.free_symbols)
+            #varn.free_symbols
             matarch.loc[i, 'var'] = str(varn)
             for j in range(0,nrfs):
                 varn = expt.args[j].as_base_exp()[0]
@@ -178,9 +181,11 @@ def genpolycoeff(equn="alpha=k0+k1*g+k2*h",solv='y',grd=0,parm=["alpha", "x", "y
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, abc, matarch
 
-#genpolycoeff(equn="alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2",solv="y")[1]
-#genpolycoeff(plr=3,parm=["alpha", "x", "y"], solv='x',grd=1,eur=[1, 4, 2])[2]
+#genpolycoeff(expr="alpha=k0 + k1*g + k2*h",solv="alpha")
+#genpolycoeff(expr="z=k0 + k1*x + k2*y",solv="x",plr=1,eur=[1, 4, 2],rot=1)
 
 def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
     return eval(ste, kwargs)
+#  Yes, in SymPy, you can detect the polynomial part of an equation using the  as_poly  method. This method helps      
+#  identify the polynomial part of an expression or equation.                                                          
 
