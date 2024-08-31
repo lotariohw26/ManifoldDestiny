@@ -1,10 +1,12 @@
 ##' @export tethyd
 tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
+	browser()
   names(kve) <- paste0("k",0:(length(kve)-1))
   vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
   abcv <- setNames(sapply(pyg[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
   mata <- pyg[[3]]
   ABCDEv <- setNames(sapply(pyg[[1]], as.character),c("A","B","C","D","E"))
+  View(outabc)
   outabc <- cdf %>% dplyr::mutate(!!!kve) %>%
       dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%  
       dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%    
@@ -252,14 +254,16 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
-
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
   co <- Countinggraphs(da)
-  if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
-  #co$purdf
+  abc <- md$prg$cnd
+  if (abc==1) {
+    co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
+  }
+  co$purdf
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
@@ -268,20 +272,21 @@ selreport <- function(
   #co$resplot(frm)
   co$plotly3d(partition=frm)
   #co$pl_3d_mani[[1]]
-  co$gridarrange()
-  co$rotation(selv=c("alpha","g","h"),smat=md$sol$ro[[1]],grad=md$sol$ro[[2]],mead=TRUE)
+  co$rotation(selv=c("g","h","alpha"),
+  	    smat=md$sol$ro[[1]],
+  	    grad=md$sol$ro[[2]],
+  	    mead=TRUE)
   co$rotgraph()
   co$plext(frm)
-  #co$rotplotly
+  co$gridarrange()
   ges <- Estimation(co$rofc,frm)
-  ges$regression(md$sol$eq[1])
-  #summary(ges$regsum[[1]])
+  ges$regression(md$sol$eq[2])
   ges$diagnostics()
-  ges$hat_predict(md$sol$va)
+  #ges$hat_predict()
   #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
-  ies$regression(md$sol$eq[1])
+  ies$regression(md$sol$eq[2])
   ies$diagnostics()
   ## Identify
   ### Bowplot
@@ -763,7 +768,6 @@ Countingprocess$methods(manimp=function(init_par=NULL,
 
   ## Variables
   lof <- function(kvec=NULL,prn=T){
-	  browser()
     kvnr <- c(3,6,10,17)[1] #[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec

@@ -10,6 +10,9 @@ aps <- apn0r
 adat <- aps[[1]]
 amet <- aps[[2]]
 ##########################################################################################################
+#slr <- selreport(aps)
+#slo <- seloutput(slr)
+##########################################################################################################
 baldata <- apn0r
 WS <- Sys.info()[['sysname']]=="Emscripten"
 da <- baldata[[1]]
@@ -17,8 +20,6 @@ md <- baldata[[2]]
 frm <- as.numeric(md$sol$fr)
 co <- Countinggraphs(da,selvar=c('PN','P','R','S','T','U','V'))
 co$purging(prma=c(77,39,45,141,174,172,168,173,110,139,147))
-#if (md$prg$cnd==1) co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
-names(co$rdfc)
 co$purdf
 co$sortpre(frm)
 co$descriptive(frm)
@@ -33,28 +34,25 @@ co$rotation(selv=c("g","h","alpha","PN"),
 	    smat=md$sol$ro[[1]],
 	    grad=md$sol$ro[[2]],
 	    mead=TRUE)
-#co$rotgraph()
+co$rotgraph()
 co$plext(frm)
-#slr <- selreport(aps)
-#slo <- seloutput(slr)
-#selr[[1]]$rotplotly 
-#amet$sol
-#selr <- selreport(apps)
-#selo <- seloutput(sel
-##selr[[1]]$rotplotl
-#selr[[1]]$rotplotly 
+co$gridarrange()
 vmat <- c(1,2,4)
 co$rofc
+seq <- 2
 re <- Estimation(co$rofc,2)
-re$regression("z=k0+k1*x+k2*y")
-#re$regression("z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3")
+eqa <- c("z=k0+k1*x+k2*y","z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3")
+re$regression(eqa[seq])
 summary(re$regsum[[1]])
-pyg <- py_genpolycoeff(expr="z=k0+k1*x+k2*y",solv="x",plr=1,eur=c(1, 4, 2),rot=1)
-
-
+pyg <- py_genpolycoeff(expr=eqa[seq],plr=3)
+pyg <- py_genpolycoeff(expr=eqa[seq],plr=3,solv="x",eur=c(1, 4, 2),rot=1)
+pyg[[1]]
 ghi <- tethyd(co$rofc,re$kvec,pyg)
 View(ghi)
-vmat <- unique(dplyr::select(ghi,a1,a2,a3,b1,b2,b3,c1,c2,c3,k0,k1,k2,k3,k4,k5,k6,k7,k8,k9)) %>% dplyr::mutate(d100=k1*a3+k2*b3-c3)
+
+
+
+#vmat <- unique(dplyr::select(ghi,a1,a2,a3,b1,b2,b3,c1,c2,c3,k0,k1,k2,k3,k4,k5,k6,k7,k8,k9)) %>% dplyr::mutate(d100=k1*a3+k2*b3-c3)
 ###########################################################################################################
 ###########################################################################################################
 ### Level 2
@@ -73,7 +71,6 @@ re <- Estimation(abc,2)
 re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
 pyg <- py_genpolycoeff(plr=3,parm=c("z", "x", "y"),solv='alpha',grd=1,eur=vmat)
 ghi <- tethyd(abc,re$kvec,pyg)
-
 View(ghi)
 dif1 <- sort(setdiff(co$rdfc$PN,crot$PN))
 dif2 <- sort(setdiff(crot$PN,co$rdfc$PN))

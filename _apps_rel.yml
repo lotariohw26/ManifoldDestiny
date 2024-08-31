@@ -17,16 +17,15 @@ apn0r:
     stuv: ['A1+A2', 'B1+B2', 'A3+A4+A5', 'B3+B4+B5']
   sol:
     fr: "2"
-    eq: ["z=k0+k1*x+k2*yz"]
-    #    eq: ["z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3"]
-    va: "x"
+    eq: ["z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3","alpha=k0+k1*g+k2*h+k3*Gamma"]
+    va: "g"
     ro: [[1, 2, 4],[-44.9573,7.001545,-19.9677]]
   prg:
     cnd: 1
     z: 300
     stuv: [0,0,0,0]
     blup: [0,1]
-    prma: [24,50,58,62,112,121,146]
+    prma: [77,39,45,141,174,172,168,173,110,139,147]
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['https://www.youtube.com/watch?v=_37ghf0DRLw','https://drive.google.com/file/d/1w4CAafy7wwPDlnAwC12UQAZxwoa-DEoq/view?pli=1','https://www.overleaf.com/project/66be20768458b4502ab04fa2']
 
@@ -220,3 +219,6 @@ apn7n:
     rng: A1:G380
     cln: ['PN', 'A1', 'B1','A2','B2','A3','B3']
     stuv: ['A1', 'B1', 'A2', 'B2']
+
+
+
