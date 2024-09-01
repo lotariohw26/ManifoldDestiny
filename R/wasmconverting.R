@@ -5,7 +5,6 @@ tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
   abcv <- setNames(sapply(pyg[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
   mata <- pyg[[3]]
   ABCDEv <- setNames(sapply(pyg[[1]], as.character),c("A","B","C","D","E"))
-  #View(outabc)
   outabc <- cdf %>% dplyr::mutate(!!!kve) %>%
       dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%  
       dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%    
@@ -251,10 +250,8 @@ selreport <- function(
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
   co <- Countinggraphs(da)
-  abc <- md$prg$cnd
-  if (abc==1) {
-    co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
-  }
+  if (md$prg$cnd==1)
+  co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
   co$purdf
   co$sortpre(frm)
   co$descriptive(frm)
@@ -272,9 +269,9 @@ selreport <- function(
   co$plext(frm)
   co$gridarrange()
   ges <- Estimation(co$rofc,frm)
-  ges$regression(md$sol$eq[2])
+  ges$regression(md$sol$eq[1])
   ges$diagnostics()
-  #ges$hat_predict()
+  ges$hat_predict()
   #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
@@ -1036,7 +1033,6 @@ Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   fnr <<- form
   param <<- stickers[['parameters']][[fnr]]
   syequ <<- eqpar$meqs
-  #radpar <<- c(theta=0,phi=0,rho=0)
   metad <<- list( mtd = list( nmn = "Default"), spr = list(), sol = list( fr = "1", eq = "alpha=k0+k1*x+k2*y", va = "y"), prg = list( cnd = 0, z = 0, stuv = c(0,0,0,0), blup = c(0,1), eqp = "alpha=k0+k1*g+k2*h"), bib = list())
   lpku <<- lpku
 })
@@ -1091,10 +1087,11 @@ Estimation$methods(hat_predict=function(svf='y'){
     ex <- gsub("\\^","**",regform[2])
     sd <- regform[1]
     eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
-    lpy <<- py_genpolycoeff(plr=1,parm=c("alpha", "x", "y"),solv='y',grd=1,eur=c(1, 4, 2))
-    lpy[[1]] <<- setNames(as.vector(lapply(lpy[[1]],as.character)),LETTERS[1:5])
-    lpy[[2]] <<- setNames(as.vector(lapply(lpy[[2]],as.character)),paste0(rep(letters[1:3],each=3),seq(1,3)))
-    lpy[[3]] <<- setNames(as.vector(lapply(lpy[[3]],as.character)),c("x","y","z"))
+    #! 'z'
+    lpy <<- py_genpolycoeff(form=fnr,expr=regass,solv='z',eur=eurv,rot=roto)
+    newdf <- tethyd(edfc,kvec,lpy)
+    View(newdf)
+    browser()
   }
   abc <- tethyd(predict_df,lpy,plr=3,svar='g')
   pred_df_pol <<- predict_df %>% dplyr::arrange(P) %>%
