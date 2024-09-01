@@ -42,15 +42,14 @@ def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0):
     parm = elem[2-1][:5]
     ls, rs = expr.split('=')
     expr = Eq(sympify(ls), sympify(rs))
-    plr = sympy.total_degree(expr)-1
-    print(plr)
+    plr = int(sympy.total_degree(expr)-1)
     if rot == 0:
         polys = poly(expr.rhs - expr.lhs, sympify(solv)).all_coeffs()
         abc = [1,0,0,0,1,0,0,0,1]
         uvw = []
         ABCDE = [0, 0, 0, 0, 0]
         ABCDE[:len(polys)] = polys
-        return ABCDE, abc, 0
+        return ABCDE, abc, 0, rot, plr
     else:
         dxyz = {'x': 1, 'y': 2, 'z': 3}
         parm=["g", "h", "alpha"]
@@ -181,10 +180,10 @@ def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0):
         ABCDE = [ABCDE[i] for i in indpr[plr-1]]
         msl = ['u0','v0','w0','expr','expr2']
         matarch[msl]=matarch[msl].astype(str)
-        return ABCDE, abc, matarch
+        return ABCDE, abc, matarch, rot, plr
 
-#pn1 = genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0)
-#pr1 = genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=[1, 2, 4],rot=1)
+#genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0)
+#genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=[1, 2, 4],rot=1)
 #pr2 = genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2",solv='x',eur=[1, 2, 4],rot=1)
 #pr3 = genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='x',eur=[1, 2, 4],rot=1)
 genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='z',eur=[1, 2, 4],rot=1)

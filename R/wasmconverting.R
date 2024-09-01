@@ -1,49 +1,55 @@
 ##' @export tethyd
-tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
-  names(kve) <- paste0("k",0:(length(kve)-1))
-  vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
-  abcv <- setNames(sapply(pyg[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
-  mata <- pyg[[3]]
-  ABCDEv <- setNames(sapply(pyg[[1]], as.character),c("A","B","C","D","E"))
-  outabc <- cdf %>% dplyr::mutate(!!!kve) %>%
-      dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%  
-      dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%    
-      dplyr::mutate(a3=pareq(abcv[3],c(as.list(.[,])))) %>%     
-      dplyr::mutate(b1=pareq(abcv[4],c(as.list(.[,])))) %>%   
-      dplyr::mutate(b2=pareq(abcv[5],c(as.list(.[,])))) %>%   
-      dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%   
-      dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%   
-      dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%   
-      dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[1]:=pareq(mata$expr[1],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[2]:=pareq(mata$expr[2],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[3]:=pareq(mata$expr[3],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[4]:=pareq(mata$expr[4],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[5]:=pareq(mata$expr[5],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[6]:=pareq(mata$expr[6],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[7]:=pareq(mata$expr[7],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[8]:=pareq(mata$expr[8],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[9]:=pareq(mata$expr[9],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[10]:=pareq(mata$expr[10],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[11]:=pareq(mata$expr[11],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[12]:=pareq(mata$expr[12],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[13]:=pareq(mata$expr[13],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[14]:=pareq(mata$expr[14],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[15]:=pareq(mata$expr[15],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[16]:=pareq(mata$expr[16],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[17]:=pareq(mata$expr[17],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[18]:=pareq(mata$expr[18],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[19]:=pareq(mata$expr[19],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!mata$d[20]:=pareq(mata$expr[20],c(as.list(.[,])))) %>%
-      dplyr::mutate(A=pareq(ABCDEv[1],c(as.list(.[,])))) %>%
-      dplyr::mutate(B=pareq(ABCDEv[2],c(as.list(.[,])))) %>%
-      dplyr::mutate(C=pareq(ABCDEv[3],c(as.list(.[,])))) %>%
-      dplyr::mutate(D=pareq(ABCDEv[4],c(as.list(.[,])))) %>%
-      dplyr::mutate(E=pareq(ABCDEv[5],c(as.list(.[,])))) %>%
-      dplyr::group_by(P) %>%
-      dplyr::mutate(polsolv=py_polysolver(plr-1,c(A,B,C,D,E)[1:plr])) %>%
-      dplyr::mutate(!!paste0("polsolvreal"):=Re(polsolv[1])) %>%
-      dplyr::ungroup()
+tethyd <- function(cdf=NULL,kve=NULL,ABCDE=NULL,plr=3,svar='g',rot=0){
+  pred_df_pol <<- cdf %>%
+    dplyr::mutate(pnr=plr) %>%
+    dplyr::mutate(!!!kve) %>%
+    dplyr::mutate(A=pareq(as.character(ABCDE[[1]]),.[,])) %>%
+    dplyr::mutate(B=pareq(as.character(ABCDE[[2]]),.[,])) %>%
+    dplyr::mutate(C=pareq(as.character(ABCDE[[3]]),.[,])) %>%
+    dplyr::mutate(D=pareq(as.character(ABCDE[[4]]),.[,])) %>%
+    dplyr::mutate(E=pareq(as.character(ABCDE[[5]]),.[,])) 
+
+#  vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
+#  abcv <- setNames(sapply(pyg[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
+#  mata <- pyg[[3]]
+#  ABCDEv <- setNames(sapply(pyg[[1]], as.character),c("A","B","C","D","E"))
+#  outabc <- cdf %>% dplyr::mutate(!!!kve) %>%
+#      dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%  
+#      dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%    
+#      dplyr::mutate(a3=pareq(abcv[3],c(as.list(.[,])))) %>%     
+#      dplyr::mutate(b1=pareq(abcv[4],c(as.list(.[,])))) %>%   
+#      dplyr::mutate(b2=pareq(abcv[5],c(as.list(.[,])))) %>%   
+#      dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%   
+#      dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%   
+#      dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%   
+#      dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[1]:=pareq(mata$expr[1],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[2]:=pareq(mata$expr[2],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[3]:=pareq(mata$expr[3],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[4]:=pareq(mata$expr[4],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[5]:=pareq(mata$expr[5],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[6]:=pareq(mata$expr[6],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[7]:=pareq(mata$expr[7],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[8]:=pareq(mata$expr[8],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[9]:=pareq(mata$expr[9],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[10]:=pareq(mata$expr[10],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[11]:=pareq(mata$expr[11],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[12]:=pareq(mata$expr[12],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[13]:=pareq(mata$expr[13],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[14]:=pareq(mata$expr[14],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[15]:=pareq(mata$expr[15],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[16]:=pareq(mata$expr[16],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[17]:=pareq(mata$expr[17],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[18]:=pareq(mata$expr[18],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[19]:=pareq(mata$expr[19],c(as.list(.[,])))) %>%
+#      dplyr::mutate(!!mata$d[20]:=pareq(mata$expr[20],c(as.list(.[,])))) %>%
+#      dplyr::mutate(A=pareq(ABCDEv[1],c(as.list(.[,])))) %>%
+#      dplyr::mutate(B=pareq(ABCDEv[2],c(as.list(.[,])))) %>%
+#      dplyr::mutate(C=pareq(ABCDEv[3],c(as.list(.[,])))) %>%
+#      dplyr::mutate(D=pareq(ABCDEv[4],c(as.list(.[,])))) %>%
+#      dplyr::mutate(E=pareq(ABCDEv[5],c(as.list(.[,])))) %>%
+
+
 }
 ##########################################################################e###################################################################
 #' @export wasmconload
@@ -253,6 +259,7 @@ selreport <- function(
   if (md$prg$cnd==1)
   co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
   co$purdf
+  
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
@@ -271,7 +278,7 @@ selreport <- function(
   ges <- Estimation(co$rofc,frm)
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
-  ges$hat_predict()
+  ges$hat_predict(svf=md$sol$va)
   #ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
@@ -1078,10 +1085,8 @@ Estimation$methods(hat_predict=function(svf='y'){
   kvec <<- broom::tidy(regsum[[1]])$estimate
   names(kvec) <<- paste0("k", 0:(length(kvec) - 1))
   if (roto==0){
-    eurv <- c(0,0,0)
-    lpy <<- py_genpolycoeff(regass,svf)
+    lpy <<- py_genpolycoeff(form=fnr,expr=regass,solv=svf,rot=roto)
     setNames(as.vector(lapply(lpy[[1]], as.character)),LETTERS[1:5])
-    pnr <- sum(lpy[[1]]!="0")
   }
   if (roto==1){
     ex <- gsub("\\^","**",regform[2])
@@ -1090,24 +1095,21 @@ Estimation$methods(hat_predict=function(svf='y'){
     #! 'z'
     lpy <<- py_genpolycoeff(form=fnr,expr=regass,solv='z',eur=eurv,rot=roto)
     newdf <- tethyd(edfc,kvec,lpy)
-    View(newdf)
-    browser()
   }
-  abc <- tethyd(predict_df,lpy,plr=3,svar='g')
-  pred_df_pol <<- predict_df %>% dplyr::arrange(P) %>%
-    dplyr::mutate(nr=pnr) %>%
-    dplyr::mutate(!!!kvec) %>%
-    dplyr::mutate(A=pareq(as.character(lpy[[1]][[1]]),.[,])) %>%
-    dplyr::mutate(B=pareq(as.character(lpy[[1]][[2]]),.[,])) %>%
-    dplyr::mutate(C=pareq(as.character(lpy[[1]][[3]]),.[,])) %>%
-    dplyr::mutate(D=pareq(as.character(lpy[[1]][[4]]),.[,])) %>%
-    dplyr::mutate(E=pareq(as.character(lpy[[1]][[5]]),.[,])) %>%
-    dplyr::group_by(P) %>%
-    #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
-    dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
-    dplyr::mutate(!!paste0(svf[1],'_hat'):=Re(polsolv[1])) %>%
-    dplyr::ungroup()
-  regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=pred_df_pol)
+  browser()
+  pred_df_pol <<- tethyd(edfc,kvec,ABCDE=lpy[[1]],plr=lpy[[5]],svar=svf,rot=roto) %>%
+	  dplyr::group_by(P) %>%
+          #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+          dplyr::mutate(polsolv=py_polysolver(pnr-1,c(A,B,C,D,E)[1:pnr])) 
+  View(pred_df_pol)
+  #  dplyr::mutate(!!paste0(svf[1],'_hat'):=Re(polsolv[1])) %>%
+  #  dplyr::ungroup()
+  #    #dplyr::group_by(P) %>%
+  #    #dplyr::mutate(polsolv=py_polysolver(plr-1,c(A,B,C,D,E)[1:plr])) %>%
+  #    #dplyr::mutate(!!paste0("polsolvreal"):=Re(polsolv[1])) %>%
+  #    #dplyr::ungroup()
+
+  #regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=pred_df_pol)
 })
 Estimation$methods(hat_intcomp=function(){
   txvnc <- c("Mean votes",

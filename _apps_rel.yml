@@ -17,7 +17,8 @@ apn0r:
     stuv: ['A1+A2', 'B1+B2', 'A3+A4+A5', 'B3+B4+B5']
   sol:
     fr: "2"
-    eq: ["z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3","alpha=k0+k1*g+k2*h+k3*Gamma"]
+    eq: ["z=k0+k1*x+k2*y","alpha=k0+k1*g+k2*h+k3*Gamma"]
+    #eq: ["z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3","alpha=k0+k1*g+k2*h+k3*Gamma"]
     va: "g"
     ro: [[1, 2, 4],[-44.9573,7.001545,-19.9677]]
   prg:
