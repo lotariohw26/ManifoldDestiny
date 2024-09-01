@@ -33,10 +33,13 @@ def rall(sel=[0, 0, 0]):
     allrot = [ps[i] for i in sel]
     return allrot
 
-def genpolycoeff(expr="alpha=k0+k1*g+k2*h",plr=1,solv='y',eur=[1, 4, 2],rot=0):
+def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",plr=1,solv='y',eur=[1, 4, 2],rot=0):
     x, y, z = sympy.symbols('x y z')
     k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
     alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
+    parl = [["alpha","x","y","zeta","lamda","Omega"], ["alpha","g","h","Gamma","Omega","lamda"], ["alpha","m","n","xi","lamda","Omega"]]
+    elem = [["alpha","x","y","zeta","lamda","Omega"], ["alpha","g","h","Gamma","Omega","lamda"], ["alpha","m","n","xi","lamda","Omega"]]
+    parm = elem[form-1][:5]
     ls, rs = expr.split('=')
     expr = Eq(sympify(ls), sympify(rs))
     if rot == 0:
@@ -181,7 +184,7 @@ def genpolycoeff(expr="alpha=k0+k1*g+k2*h",plr=1,solv='y',eur=[1, 4, 2],rot=0):
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, abc, matarch
 
-#genpolycoeff(expr="alpha=k0+k1*x+k2*y",solv="x")
+genpolycoeff(expr="alpha=k0+k1*x+k2*y",solv="x")
 #genpolycoeff(expr="z=k0+k1*x+k2*y",solv="x",plr=1,eur=[1, 4, 2],rot=1)
 #genpolycoeff("z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv="x",plr=3,eur=[1, 4, 2],rot=1)[2]
 
