@@ -1,12 +1,11 @@
 ##' @export tethyd
 tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
-	browser()
   names(kve) <- paste0("k",0:(length(kve)-1))
   vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
   abcv <- setNames(sapply(pyg[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
   mata <- pyg[[3]]
   ABCDEv <- setNames(sapply(pyg[[1]], as.character),c("A","B","C","D","E"))
-  View(outabc)
+  #View(outabc)
   outabc <- cdf %>% dplyr::mutate(!!!kve) %>%
       dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%  
       dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%    
@@ -46,13 +45,6 @@ tethyd <- function(cdf=NULL,kve=NULL,pyg=NULL,plr=3,svar='g'){
       dplyr::mutate(polsolv=py_polysolver(plr-1,c(A,B,C,D,E)[1:plr])) %>%
       dplyr::mutate(!!paste0("polsolvreal"):=Re(polsolv[1])) %>%
       dplyr::ungroup()
-      #vmat <- unique(dplyr::select(ghi,a1,a2,a3,b1,b2,b3,c1,c2,c3,k0,k1,k2,k3,k4,k5,k6,k7,k8,k9)) %>% dplyr::mutate(d100=k2*a3+k1*b3-c3)
-      #mata$d[4]
-      #mata$expr[4]
-      #vmat$d100
-      # if(Sys.info()[['sysname']]=="Emscripten") { 1 } else { 2 }
-
-
 }
 ##########################################################################e###################################################################
 #' @export wasmconload

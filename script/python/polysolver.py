@@ -43,6 +43,7 @@ def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0):
     ls, rs = expr.split('=')
     expr = Eq(sympify(ls), sympify(rs))
     plr = sympy.total_degree(expr)-1
+    print(plr)
     if rot == 0:
         polys = poly(expr.rhs - expr.lhs, sympify(solv)).all_coeffs()
         abc = [1,0,0,0,1,0,0,0,1]
@@ -112,8 +113,6 @@ def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0):
         matarch = pandas.DataFrame(data, columns=clma)
         matarch.loc[0, ['expr','expr2']]=exprr.args[0]
         matarch.loc[0, ['d']]='d_000'
-        matarch
-        #exprr
         for i in range(1, eqsn):
             expt = exprr.args[i]
             expr = expt.args[-1]
@@ -184,11 +183,11 @@ def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0):
         matarch[msl]=matarch[msl].astype(str)
         return ABCDE, abc, matarch
 
-#genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0)
-#genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=[1, 2, 4],rot=1)
-#genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2",solv='x',eur=[1, 2, 4],rot=1)
-#genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='x',eur=[1, 2, 4],rot=1)
-#
+#pn1 = genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0)
+#pr1 = genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=[1, 2, 4],rot=1)
+#pr2 = genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2",solv='x',eur=[1, 2, 4],rot=1)
+#pr3 = genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='x',eur=[1, 2, 4],rot=1)
+##
 def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
     return eval(ste, kwargs)
 #  Yes, in SymPy, you can detect the polynomial part of an equation using the  as_poly  method. This method helps      
