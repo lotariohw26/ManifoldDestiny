@@ -175,4 +175,4 @@ usethis::use_data(lpku, overwrite = TRUE)
 
 
 
-ManifoldDestiny::bm()
+#ManifoldDestiny::bm()
