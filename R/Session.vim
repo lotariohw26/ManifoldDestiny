@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/Research/ManifoldDestiny/script/R
+cd ~/Research/ManifoldDestiny/R
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -168,11 +168,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 1099 - ((10 * winheight(0) + 10) / 21)
+let s:l = 1 - ((0 * winheight(0) + 10) / 21)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1099
+keepjumps 1
 normal! 0
 wincmd w
 argglobal
@@ -189,14 +189,14 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 17 - ((16 * winheight(0) + 32) / 65)
+let s:l = 14 - ((13 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 17
+keepjumps 14
 normal! 0
 wincmd w
-6wincmd w
+4wincmd w
 exe '1resize ' . ((&lines * 32 + 34) / 68)
 exe 'vert 1resize ' . ((&columns * 93 + 139) / 279)
 exe '2resize ' . ((&lines * 32 + 34) / 68)
@@ -315,6 +315,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
