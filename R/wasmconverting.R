@@ -252,6 +252,8 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
+
+
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
@@ -267,7 +269,6 @@ selreport <- function(
   co$plotxy(frm)
   #co$resplot(frm)
   co$plotly3d(partition=frm)
-  #co$pl_3d_mani[[1]]
   co$rotation(selv=c("g","h","alpha"),
   	    smat=md$sol$ro[[1]],
   	    grad=md$sol$ro[[2]],
@@ -404,7 +405,9 @@ erotation <-function(dfe=NULL,
   Ralv <- Rall(sel=rs)
   rpar <- gra*(pi/180)
   mvec <- c(1,0)[ifelse(isTRUE(med), 1, 2)]
-  rofc <- dfe %>% dplyr::select(P,all_of(sev)) %>%
+  #setdiff(names(dfe),sev)
+  #View(rofc)
+  rofc <- dfe %>% dplyr::select(P,sev,S,T,U,V,Z) %>%
     dplyr::arrange(P) %>%
     # Standardize variable names
     dplyr::mutate(ui=.[[sev[1]]]) %>%
