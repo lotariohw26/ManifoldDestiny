@@ -7,27 +7,13 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 #source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
 aps <- apn0r
-#aps <- apn1n
+aps <- apn1n
 adat <- aps[[1]]
 amet <- aps[[2]]
 ##########################################################################################################
-slr <- selreport(aps)
-
-slo <- seloutput(slr)
+#slr <- selreport(aps)
+#slo <- seloutput(slr)
 ##########################################################################################################
-
-View(slr[[2]]$comdesc)
-View(slr[[2]]$compare)
-
-
-
-
-
-
-
-
-
-
 baldata <- apn0r
 WS <- Sys.info()[['sysname']]=="Emscripten"
 da <- baldata[[1]]
@@ -60,17 +46,13 @@ re <- Estimation(co$rofc,2)
 eqa <- c("z=k0+k1*x+k2*y","z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3")
 re$regression(eqa[seq])
 summary(re$regsum[[1]])
+
+
 df1 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=c(1, 2, 4),rot=1)
 df2 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2",solv='x',eur=c(1, 2, 4),rot=1)
 df3 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='z',eur=c(1, 2, 4),rot=1)
-# a1**3*k6 + a1**2*b1*k7 + a1*b1**2*k8 + b1**3*k9
-# a2**3*k6 + a2**2*b2*k7 + a2*b2**2*k8 + b2**3*k9
-# a3**3*k6 + a3**2*b3*k7 + a3*b3**2*k8 + b3**3*k9
 ghi <- tethyd(co$rofc,re$kvec,df3)
 View(ghi)
-# a1**3*k6 + a1**2*b1*k7 + a1*b1**2*k8 + b1**3*k9
-# a2**3*k6 + a2**2*b2*k7 + a2*b2**2*k8 + b2**3*k9
-# a3**3*k6 + a3**2*b3*k7 + a3*b3**2*k8 + b3**3*k9
 
 
 

@@ -86,7 +86,7 @@ server <- function(input, output, session) {
     seld[[2]]$prg$stuv <- vecl[[2]]
     seld[[2]]$prg$prma <- vecl[[3]]
     ##### Solution
-    #browser()
+    browser()
     seld[[2]]$sol$fr <- input$form
     seld[[2]]$sol$eq[[1]] <- input$meqf
     seld[[2]]$sol$va <- input$solvf
