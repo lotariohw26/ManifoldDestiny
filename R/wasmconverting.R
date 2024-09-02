@@ -277,10 +277,9 @@ selreport <- function(
   co$gridarrange()
   ges <- Estimation(co$rofc,frm)
   ges$regression(md$sol$eq[1])
-  #summary(ges$regsum[[1]])
   ges$diagnostics()
   ges$hat_predict(svf=md$sol$va)
-  #ges$hat_intcomp()
+  ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$sol$eq[2])
@@ -1029,7 +1028,7 @@ Estimation <- setRefClass("Estimation", fields=list(
 						roto='vector',
 						comdesc='data.frame',
 						radpar='vector',
-						lpku='list'
+						lpk='list'
 						))
 Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   edfc <<- rdfcinp
@@ -1042,7 +1041,7 @@ Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   param <<- stickers[['parameters']][[fnr]]
   syequ <<- eqpar$meqs
   metad <<- list( mtd = list( nmn = "Default"), spr = list(), sol = list( fr = "1", eq = "alpha=k0+k1*x+k2*y", va = "y"), prg = list( cnd = 0, z = 0, stuv = c(0,0,0,0), blup = c(0,1), eqp = "alpha=k0+k1*g+k2*h"), bib = list())
-  lpku <<- lpku
+  lpk <<- lpku
 })
 Estimation$methods(regression=function(regequ=c("alpha=k0+k1*x+k2*y")){
   regass <<- regequ
@@ -1114,7 +1113,7 @@ Estimation$methods(hat_intcomp=function(){
 	     "Miss +/-3",
              "Full match or +/-1,2,3")
   svf <- as.character(summary(regsum[[2]])[[2]][[2]])
-  lpkus <- lpku[[fnr]][[svf]]
+  lpkus <- lpk[[fnr]][[svf]]
   BLM <- c('S','T','U','V','Z')
   slvh <- slv <- c(BLM,svf)
   slvh[slvh==svf] <- paste0(svf,'_hat')

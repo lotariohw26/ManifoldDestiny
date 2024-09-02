@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/Research/ManifoldDestiny
+cd ~/Research/ManifoldDestiny/script/python
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -14,7 +14,7 @@ else
   set shortmess=aoO
 endif
 badd +1 ~/InitJIH/README.md
-badd +7 ~/Research/ManifoldDestiny/_quarto.yml
+badd +11 ~/Research/ManifoldDestiny/_quarto.yml
 badd +78 ~/Research/ManifoldDestiny/_variables.yml
 badd +1 ~/Research/ManifoldDestiny/Session.vim
 badd +10 ~/InitLOT/README.md
@@ -27,15 +27,13 @@ badd +1 ~/Research/ManifoldDestiny/script/R/testing.R
 badd +28 term://~/Research/ManifoldDestiny/script/python//155604:bash
 badd +29 ~/Research/ManifoldDestiny/prerendr.R
 badd +14 term://~/Research/ManifoldDestiny/script/python//156410:bash
-badd +0 ~/Research/ManifoldDestiny/shinyapps/empapp/app.R
 argglobal
 %argdel
 $argadd ~/InitLOT/README.md
 set stal=2
 tabnew +setlocal\ bufhidden=wipe
-tabnew +setlocal\ bufhidden=wipe
 tabrewind
-edit ~/Research/ManifoldDestiny/_quarto.yml
+edit ~/Research/ManifoldDestiny/_apps_rel.yml
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -46,10 +44,7 @@ vsplit
 2wincmd h
 wincmd _ | wincmd |
 split
-wincmd _ | wincmd |
-split
-2wincmd k
-wincmd w
+1wincmd k
 wincmd w
 wincmd w
 wincmd _ | wincmd |
@@ -66,39 +61,16 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 21 + 34) / 68)
+exe '1resize ' . ((&lines * 32 + 34) / 68)
 exe 'vert 1resize ' . ((&columns * 93 + 139) / 279)
-exe '2resize ' . ((&lines * 21 + 34) / 68)
+exe '2resize ' . ((&lines * 32 + 34) / 68)
 exe 'vert 2resize ' . ((&columns * 93 + 139) / 279)
-exe '3resize ' . ((&lines * 21 + 34) / 68)
+exe '3resize ' . ((&lines * 32 + 34) / 68)
 exe 'vert 3resize ' . ((&columns * 93 + 139) / 279)
 exe '4resize ' . ((&lines * 32 + 34) / 68)
 exe 'vert 4resize ' . ((&columns * 93 + 139) / 279)
-exe '5resize ' . ((&lines * 32 + 34) / 68)
-exe 'vert 5resize ' . ((&columns * 93 + 139) / 279)
-exe 'vert 6resize ' . ((&columns * 91 + 139) / 279)
+exe 'vert 5resize ' . ((&columns * 91 + 139) / 279)
 argglobal
-balt ~/Research/ManifoldDestiny/_apps_rel.yml
-setlocal fdm=expr
-setlocal fde=nvim_treesitter#foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-let s:l = 7 - ((6 * winheight(0) + 10) / 21)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 7
-normal! 010|
-wincmd w
-argglobal
-if bufexists(fnamemodify("~/Research/ManifoldDestiny/_apps_rel.yml", ":p")) | buffer ~/Research/ManifoldDestiny/_apps_rel.yml | else | edit ~/Research/ManifoldDestiny/_apps_rel.yml | endif
-if &buftype ==# 'terminal'
-  silent file ~/Research/ManifoldDestiny/_apps_rel.yml
-endif
 balt ~/Research/ManifoldDestiny/_quarto.yml
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
@@ -108,7 +80,7 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 10) / 21)
+let s:l = 1 - ((0 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -129,11 +101,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 8 - ((4 * winheight(0) + 10) / 21)
+let s:l = 1 - ((0 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 8
+keepjumps 1
 normal! 0
 wincmd w
 argglobal
@@ -192,24 +164,22 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 46 - ((1 * winheight(0) + 32) / 65)
+let s:l = 45 - ((0 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 46
+keepjumps 45
 normal! 0
 wincmd w
-exe '1resize ' . ((&lines * 21 + 34) / 68)
+exe '1resize ' . ((&lines * 32 + 34) / 68)
 exe 'vert 1resize ' . ((&columns * 93 + 139) / 279)
-exe '2resize ' . ((&lines * 21 + 34) / 68)
+exe '2resize ' . ((&lines * 32 + 34) / 68)
 exe 'vert 2resize ' . ((&columns * 93 + 139) / 279)
-exe '3resize ' . ((&lines * 21 + 34) / 68)
+exe '3resize ' . ((&lines * 32 + 34) / 68)
 exe 'vert 3resize ' . ((&columns * 93 + 139) / 279)
 exe '4resize ' . ((&lines * 32 + 34) / 68)
 exe 'vert 4resize ' . ((&columns * 93 + 139) / 279)
-exe '5resize ' . ((&lines * 32 + 34) / 68)
-exe 'vert 5resize ' . ((&columns * 93 + 139) / 279)
-exe 'vert 6resize ' . ((&columns * 91 + 139) / 279)
+exe 'vert 5resize ' . ((&columns * 91 + 139) / 279)
 tabnext
 edit ~/Research/ManifoldDestiny/script/python/polysolver.py
 let s:save_splitbelow = &splitbelow
@@ -270,25 +240,7 @@ normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 140 + 139) / 279)
 exe 'vert 2resize ' . ((&columns * 138 + 139) / 279)
-tabnext
-edit ~/Research/ManifoldDestiny/shinyapps/empapp/app.R
-argglobal
-balt ~/Research/ManifoldDestiny/_quarto.yml
-setlocal fdm=expr
-setlocal fde=nvim_treesitter#foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 32) / 65)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 1
-normal! 0
-tabnext 1
+tabnext 2
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -296,6 +248,8 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
