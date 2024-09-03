@@ -1,3 +1,4 @@
+# Abc
 # !!! fix deviation from mean
 import sympy, pandas, numpy
 from sympy import solve, Eq, symbols, latex, simplify, diff, poly, sympify, Matrix, pprint, collect, expand, Poly, Symbol, Pow
@@ -52,9 +53,7 @@ def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0):
         matarch = 0
         return ABCDE, abc, matarch, plr, rot
     else:
-        #parm=parl[form-1][0:3]
-
-        #!
+        #parm=parl[form-1][0:3]        #!
         parm=["g", "h", "alpha"]
         dxyz = {'x': 1, 'y': 2, 'z': 3}
         # Defining
@@ -146,32 +145,38 @@ def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0):
             A[0] += dic['d_330']
             A[1] += dic['d_303']
             A[2] += dic['d_300']
-            B[0] += dic['d_320']*w0+dic['d_321']*v0
-            B[1] += dic['d_302']*w0+dic['d_312']*u0
-            B[2] += dic['d_301']*v0+dic['d_310']*u0
-            C[0] += dic['d_310']*w0**2+dic['d_311']*u0*w0+dic['d_312']*v0**2
-            C[1] += dic['d_301']*w0**2+dic['d_311']*u0*w0+dic['d_321']*u0**2
-            C[2] += dic['d_302']*v0**2+dic['d_311']*u0*v0+dic['d_320']*u0**2
-            iD[0] += dic['d_300']*v0**3+dic['d_301']*v0*w0**2+dic['d_302']*v0**2*v0+dic['d_303']*w0**3
-            D[1] += dic['d_300']*u0**3+dic['d_310']*u0*v0**2+dic['d_320']*v0**2*u0+dic['d_330']*v0**3
-            D[2] += dic['d_303']*v0**3+dic['d_312']*w0*v0**2+dic['d_321']*w0**2*v0+dic['d_330']*v0**3
+            B[0] += dic['d_320']*w0 + dic['d_321']*v0
+            B[1] += dic['d_302']*w0 + dic['d_312']*u0
+            B[2] += dic['d_301']*v0 + dic['d_310']*u0
+            C[0] += dic['d_310']*w0**2 + dic['d_311']*v0*w0 + dic['d_312']*v0**2
+            C[1] += dic['d_301']*w0**2 + dic['d_311']*u0*w0 + dic['d_321']*u0**2
+            C[2] += dic['d_302']*v0**2 + dic['d_311']*u0*v0 + dic['d_320']*u0**2
+            D[0] += dic['d_300']*v0**3 + dic['d_301']*v0*w0**2 + dic['d_302']*v0**2*v0+dic['d_303']*w0**3
+            D[1] += dic['d_300']*u0**3 + dic['d_310']*u0*v0**2 + dic['d_320']*v0**2*u0+dic['d_330']*v0**3
+            D[2] += dic['d_303']*v0**3 + dic['d_312']*w0*v0**2 + dic['d_321']*w0**2*v0 + dic['d_330']*v0**3
         if plr in [2,3]:
             B[0] += dic['d_220']
             B[1] += dic['d_202']
             B[2] += dic['d_200']
-            C[0] += dic['d_210']*v0+dic['d_211']*w0
-            C[1] += dic['d_201']*u0+dic['d_211']*w0
-            C[2] += dic['d_201']*u0+dic['d_210']*v0
-            D[0] += dic['d_200']*v0**2+dic['d_201']*v0*u0+dic['d_202']*w0**2
-            D[1] += dic['d_200']*u0**2+dic['d_210']*u0*w0+dic['d_220']*w0**2
-            D[2] += dic['d_202']*u0**2+dic['d_211']*u0*w0+dic['d_220']*u0**2
+            C[0] += dic['d_210']*w0 + dic['d_211']*v0
+            C[1] += dic['d_201']*w0 + dic['d_211']*u0
+            C[2] += dic['d_201']*v0 + dic['d_210']*u0
+            D[0] += dic['d_200']*w0**2 + dic['d_201']*v0*w0 + dic['d_202']*v0**2
+            D[1] += dic['d_200']*w0**2 + dic['d_210']*u0*w0 + dic['d_220']*u0**2
+            D[2] += dic['d_202']*v0**2 + dic['d_211']*u0*v0 + dic['d_220']*u0**2
         if plr in [1,2,3]:
             C[0] += dic['d_110']
             C[1] += dic['d_101']
-            C[2] += dic['d_110']
-            D[0] += dic['d_100']*v0+dic['d_101']*w0+dic['d_000']
-            D[1] += dic['d_100']*u0+dic['d_110']*w0+dic['d_000']
-            D[2] += dic['d_101']*u0+dic['d_110']*v0+dic['d_000']
+            C[2] += dic['d_100']
+            D[0] += dic['d_100']*w0 + dic['d_101']*v0+dic['d_000']
+            D[1] += dic['d_100']*w0 + dic['d_110']*u0+dic['d_000']
+            D[2] += dic['d_101']*v0 + dic['d_110']*u0+dic['d_000']
+        #breakpoint()
+        #A[0]
+        #B[0]
+        #C[0]
+        #D[0]
+        #E[0]
         ABCDE[0] = A[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
         ABCDE[1] = B[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
         ABCDE[2] = C[nrs].subs([(u0,parm[0]),(v0,parm[1]),(w0,parm[2])])
@@ -191,10 +196,11 @@ def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0):
 #pr3 = genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='x',eur=[1, 2, 4],rot=1)
 #genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=[1, 2, 4],rot=1)[0]
 #genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2",solv='x',eur=[1, 2, 4],rot=1)[0]
-#genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='x',eur=[1, 2, 4],rot=1)
+genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='x',eur=[1, 2, 4],rot=1)[0][1]
 ##
 def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
     return eval(ste, kwargs)
-#  Yes, in SymPy, you can detect the polynomial part of an equation using the  as_poly  method. This method helps      
-#  identify the polynomial part of an expression or equation.                                                          
+
+
+
 
