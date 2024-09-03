@@ -49,40 +49,20 @@ summary(re$regsum[[1]])
 #df1 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=c(1, 2, 4),rot=1)
 #df2 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2",solv='x',eur=c(1, 2, 4),rot=1)
 df3 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='z',eur=c(1, 2, 4),rot=1)
-co$rofc$x <- 1
-co$rofc$y <- 1
-co$rofc$z <- 1
-df3[[1]][[2]]
-ghi <- tethyd(co$rofc[1,],re$kvec,df3)
+#co$rofc$g <- 1
+#co$rofc$h <- 1
+#co$rofc$alpha <- 1
+df3[[4]]
+ghi <- tethyd(co$rofc,re$kvec,df3)
+
+
+View(co$rofc)
+View(ghi)
 ghi$A
 ghi$B
 ghi$C
 ghi$D
-
-ghi$d_200+ghi$d_301+ghi$d_310
-
-2+2
-#   P          g         h      alpha           PN   S    T   U    V    Z         ui
-# 1 1 0.05957617 0.1660544 0.09709995 0101 001-001 149 1135 226 2352 3862 0.05957617
-#          vi         wi        m1        m2        m3         n1        n2         n3
-# 1 0.1660544 0.09709995 0.7076336 0.9925429 0.9398853 -0.7065796 0.1218961 -0.3414903
-#   st1 st2 st3        mu        mv        mw        u0         v0         w0
-# 1   1   2   4 0.3727912 0.3869167 0.3764626 -0.313215 -0.2208623 -0.2793626
-#           u1         v1         w1         u2         v2         w2 x y z
-# 1 -0.3776982 0.06502176 -0.2793626 -0.3408285 0.06502176 -0.3233193 1 1 1
-#            k0       k1         k2         k3         k4         k5         k6
-# 1 0.001643394 1.075718 -0.7313355 0.06491264 0.06400776 -0.7854439 0.09237558
-#         k7       k8        k9 pnr        a1        a2         a3         b1
-# 1 -1.27171 3.038049 0.9238417   4 0.7023566 0.7013106 -0.1218961 -0.6346476
-#          b2        b3        c1         c2        c3       d_000     d_110     d_101
-# 1 0.6945067 0.3389438 0.3223625 -0.1606984 0.9328764 0.001643394 0.8973154 0.4071932
-#       d_100      d_220    d_330      d_202     d_303      d_200       d_300
-# 1 -1.311884 -0.3128688 1.053436 -0.3157483 0.9346239 -0.0919141 -0.01314279
-#       d_211     d_210     d_312     d_310      d_201     d_321    d_301     d_320
-# 1 0.7590771 0.3469879 -2.074804 0.2910764 -0.3710872 0.2077128 0.355015 -1.056288
-#      d_302      d_311           A         B         C        D E
-# 1 1.199962 -0.8583696 -0.01314279 0.5541773 -2.050678 1.557581 0
-
+# [1] 1.557581
 
 #vmat <- unique(dplyr::select(ghi,a1,a2,a3,b1,b2,b3,c1,c2,c3,k0,k1,k2,k3,k4,k5,k6,k7,k8,k9)) %>% dplyr::mutate(d100=k1*a3+k2*b3-c3)
 ###########################################################################################################
@@ -101,6 +81,8 @@ bind <- dplyr::bind_cols(dplyr::select(rotuvw,x,y,z),dplyr::select(crot,x,y,z))
 abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
 re <- Estimation(abc,2)
 re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
+
+
 pyg <- py_genpolycoeff(plr=3,parm=c("z", "x", "y"),solv='alpha',grd=1,eur=vmat)
 ghi <- tethyd(abc,re$kvec,pyg)
 View(ghi)

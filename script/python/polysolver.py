@@ -172,16 +172,10 @@ def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0):
             D[0] += dic['d_100']*z + dic['d_101']*y+dic['d_000']
             D[1] += dic['d_100']*z + dic['d_110']*x+dic['d_000']
             D[2] += dic['d_101']*y + dic['d_110']*x+dic['d_000']
-        #breakpoint()
-        #A[0]
-        #B[0]
-        #C[0]
-        #D[0]
-        #E[0]
-        ABCDE[0] = A[nrs]
-        ABCDE[1] = B[nrs]
-        ABCDE[2] = C[nrs]
-        ABCDE[3] = D[nrs]
+        ABCDE[0] = A[nrs].subs([(x,parm[0]),(y,parm[1]),(z,parm[2])])
+        ABCDE[1] = B[nrs].subs([(x,parm[0]),(y,parm[1]),(z,parm[2])])
+        ABCDE[2] = C[nrs].subs([(x,parm[0]),(y,parm[1]),(z,parm[2])])
+        ABCDE[3] = D[nrs].subs([(x,parm[0]),(y,parm[1]),(z,parm[2])])
         ABCDE[4] = E[nrs]
         indpr = [[2,3,4,0,1],[1,2,3,4,0],[0,1,2,3,4]]
         ABCDE = [ABCDE[i] for i in indpr[plr-1]]
@@ -196,8 +190,7 @@ def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0):
 # pr3 = genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='x',eur=[1, 2, 4],rot=1)
 # genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=[1, 2, 4],rot=1)[0]
 # genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2",solv='x',eur=[1, 2, 4],rot=1)[0]
-# genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='z',eur=[1, 2, 4],rot=1)[0][1]
-##
+# genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='z',eur=[1, 2, 4],rot=1)[0][3]
 def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
     return eval(ste, kwargs)
 

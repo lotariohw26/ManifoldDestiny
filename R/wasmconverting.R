@@ -49,7 +49,12 @@ tethyd <- function(cdf=NULL,kvec=NULL,lpy=lpy){
        dplyr::mutate(B=pareq(lpy[[1]]$B,c(as.list(.[,])))) %>%
        dplyr::mutate(C=pareq(lpy[[1]]$C,c(as.list(.[,])))) %>%
        dplyr::mutate(D=pareq(lpy[[1]]$D,c(as.list(.[,])))) %>%
-       dplyr::mutate(E=pareq(lpy[[1]]$E,c(as.list(.[,])))) 
+       dplyr::mutate(E=pareq(lpy[[1]]$E,c(as.list(.[,])))) %>%
+       dplyr::group_by(P) %>%
+       dplyr::mutate(polsolv=py_polysolver(c(A,B,C,D,E)[1:pnr])) %>%
+       ##dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
+       dplyr::mutate(!!paste0("abc",'_hat'):=Re(polsolv[1])) %>%
+       dplyr::ungroup()
   }
 }
 ##########################################################################e###################################################################
