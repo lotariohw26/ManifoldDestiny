@@ -54,7 +54,7 @@ def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0):
         return ABCDE, abc, matarch, plr, rot
     else:
         #parm=parl[form-1][0:3]        #!
-        parm=["g", "h", "alpha"]
+        parm=["g_m", "h_m", "alpha_m"]
         dxyz = {'x': 1, 'y': 2, 'z': 3}
         # Defining
         x,  y,  z  = sympy.symbols('x y z')

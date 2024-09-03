@@ -48,16 +48,23 @@ re$regression(eqa[seq])
 summary(re$regsum[[1]])
 #df1 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=c(1, 2, 4),rot=1)
 #df2 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2",solv='x',eur=c(1, 2, 4),rot=1)
-df3 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='z',eur=c(1, 2, 4),rot=1)
+df3 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='y',eur=c(1, 2, 4),rot=1)
 #co$rofc$g <- 1
 #co$rofc$h <- 1
 #co$rofc$alpha <- 1
-df3[[4]]
-ghi <- tethyd(co$rofc,re$kvec,df3)
+df3[[1]][[2]]
+co2rofc <- co$rofc %>% 
+	dplyr::mutate(g_m=g-mean(g)) %>%
+	dplyr::mutate(h_m=h-mean(h)) %>%
+	dplyr::mutate(alpha_m=alpha-mean(alpha))
+View(co2rofc)
+ghi <- tethyd(co2rofc,re$kvec,df3)
 
+round(cor(ghi$abc_hat,ghi$alpha_m)^2,digits=4)
+round(cor(ghi$abc_hat,ghi$g_m)^2,digits=4)
+round(cor(ghi$abc_hat,ghi$h_m)^2,digits=4)
+t
 
-View(co$rofc)
-View(ghi)
 ghi$A
 ghi$B
 ghi$C
