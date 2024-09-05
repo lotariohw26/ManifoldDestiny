@@ -6,8 +6,8 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 #source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
-aps <- apn0r
-#aps <- apn1n
+#aps <- apn0r
+aps <- apn1n
 adat <- aps[[1]]
 amet <- aps[[2]]
 ##########################################################################################################
