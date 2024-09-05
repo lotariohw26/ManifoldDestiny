@@ -259,6 +259,7 @@ selreport <- function(
 		      ){
 
 
+	browser()
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
