@@ -51,9 +51,10 @@ def genpolycoeffn(form=2,expr="alpha=k0+k1*g+k2*h",solv='g'):
     ABCDE[:len(polys)] = polys
     matarch = 0
     return ABCDE, abc, matarch, plr
-#genpolycoeffn(form=2,expr="alpha=k0+k1*g+k2*h",solv='g')
 
-def genpolycoeffr(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1]):
+genpolycoeffn(form=2,expr="alpha=k0+k1*g+k2*h",solv='g')
+
+def genpolycoeffr(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='z',eur=[1, 2, 4]):
     parl = [["alpha","x","y","zeta","lamda","Omega"], ["alpha","g","h","Gamma","Omega","lamda"], ["alpha","m","n","xi","lamda","Omega"]]
     elem = [["alpha","x","y","zeta","lamda","Omega"], ["alpha","g","h","Gamma","Omega","lamda"], ["alpha","m","n","xi","lamda","Omega"]]
     x, y, z = sympy.symbols('x y z')
@@ -108,6 +109,7 @@ def genpolycoeffr(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1]):
     Eu = Eq(x, a1 * u0 + a2 * v0 + a3 * w0)
     Ev = Eq(y, b1 * u0 + b2 * v0 + b3 * w0)
     Ew = Eq(z, c1 * u0 + c2 * v0 + c3 * w0)
+    #exprf = solve(expr,z)[0]-z
     exprf = solve(expr,z)[0]-z
     exprc = exprf.subs([(x, solve(Eu, x)[0]), (y, solve(Ev, y)[0]), (z, solve(Ew, z)[0])])
     # Reorganize
@@ -192,9 +194,8 @@ def genpolycoeffr(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1]):
     matarch[msl]=matarch[msl].astype(str)
     return ABCDE, abc, matarch, plr
 
+genpolycoeffr()
 #genpolycoeffr(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='z',eur=[1, 2, 4])
-
-
 
 def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0):
     parl = [["alpha","x","y","zeta","lamda","Omega"], ["alpha","g","h","Gamma","Omega","lamda"], ["alpha","m","n","xi","lamda","Omega"]]
@@ -352,7 +353,7 @@ def genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=[1, 1, 1],rot=0):
 # pr3 = genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='x',eur=[1, 2, 4],rot=1)
 # genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=[1, 2, 4],rot=1)[0]
 # genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2",solv='x',eur=[1, 2, 4],rot=1)[0]
-# genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='z',eur=[1, 2, 4],rot=1)[0][3]
+#genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='z',eur=[1, 2, 4],rot=1)[0][3]
 def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
     return eval(ste, kwargs)
 

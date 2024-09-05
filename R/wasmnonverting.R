@@ -50,15 +50,16 @@ py_genpolycoeffn <- function(form=2,expr="alpha=k0+k1*g+k2*h",solv='g'){
   reticulate::source_python(paste0(rprojroot::find_rstudio_root_file(),"/script/python/polysolver.py"))
   reticulate::py$genpolycoeffn(form,expr,solv)
 }
-py_genpolycoeffr <- function(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=c(1, 1, 1),rot=0){
+#py_genpolycoeffn()
+py_genpolycoeffr <- function(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=c(1, 1, 1)){
   reticulate::source_python(paste0(rprojroot::find_rstudio_root_file(),"/script/python/polysolver.py"))
-  reticulate::py$genpolycoeffr(form,expr,solv,eur=as.integer(eur))
+  reticulate::py$genpolycoeffr()
+  #reticulate::py$genpolycoeffr(form,expr,solv,eur=as.integer(eur))
+
 }
 
-py_genpolycoeffn()
-py_genpolycoeffr()
-
-
+# py_genpolycoeffn()
+# py_genpolycoeffr()
 
 
 
