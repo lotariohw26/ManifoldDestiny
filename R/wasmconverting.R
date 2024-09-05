@@ -1,10 +1,10 @@
 ##' @export tethyd
-tethyd <- function(cdf=NULL,kvec=NULL,lpy=lpy){
-	browser()
+tethyd <- function(cdf=NULL,kvec=NULL,lpy=lpy,solv=NULL){
+#	browser()
   names(kvec) <- paste0("k", 0:(length(kvec) - 1))
   lpy[[1]] <-setNames(as.vector(lapply(lpy[[1]], as.character)),LETTERS[1:length(lpy[[1]])])
   #vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
-  abcv <- setNames(sapply(lpy[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
+  abcv <- setNames(sapply(lpy[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = "")) 
   polc <- cdf %>% dplyr::mutate(!!!kvec) %>%
     dplyr::mutate(pnr=lpy[[4]]+1) %>%
     dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%  
@@ -44,10 +44,9 @@ tethyd <- function(cdf=NULL,kvec=NULL,lpy=lpy){
     dplyr::group_by(P) %>%
     dplyr::mutate(polsolv=py_polysolver(c(A,B,C,D,E)[1:pnr])) %>%
     #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
-    dplyr::mutate(!!paste0("abc",'_hat'):=Re(polsolv[1])) %>%
+    dplyr::mutate(!!paste0(solv,'_hat'):=Re(polsolv[1])) %>%
     dplyr::ungroup()
 }
-
 ##########################################################################e###################################################################
 #' @export wasmconload
 wasmconload <- function(){
@@ -1082,7 +1081,7 @@ Estimation$methods(diagnostics=function(){
 Estimation$methods(hat_predict=function(svf='y'){
   kvec <<- broom::tidy(regsum[[1]])$estimate
   if (roto==0){
-    lpy <<- py_genpolycoeffn(fnr,expr=regass,solv=svf)
+    lpy <<- py_genpolycoeffn(fnr,expr=regass)
   }
   if (roto==1){
     #! 'z'
@@ -1091,8 +1090,9 @@ Estimation$methods(hat_predict=function(svf='y'){
     #eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
     lpy <<- py_genpolycoeffr(form=fnr,expr=regass,solv=sd,eur=eurv)
   }
-  tdf <<- tethyd(edfc,kvec,lpy)
-  regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=pred_df_pol)
+  tdf <<- tethyd(edfc,kvec,lpy,solv=svf)
+  regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=tdf)
+  #browser()
 })
 Estimation$methods(hat_intcomp=function(){
   txvnc <- c("Mean votes",
@@ -1111,7 +1111,7 @@ Estimation$methods(hat_intcomp=function(){
   BLM <- c('S','T','U','V','Z')
   slvh <- slv <- c(BLM,svf)
   slvh[slvh==svf] <- paste0(svf,'_hat')
-  compare <<- dplyr::select(pred_df_pol,all_of(slvh)) %>% data.table::setnames(slv) %>%
+  compare <<- dplyr::select(tdf,all_of(slvh)) %>% data.table::setnames(slv) %>%
   ### Backsolving for ballots S,T,U,V
   dplyr::mutate(!!names(lpkus[1]):=pareq(lpkus[1],as.list(.[]))) %>%
   dplyr::mutate(!!names(lpkus[2]):=pareq(lpkus[2],as.list(.[]))) %>%
