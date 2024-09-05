@@ -6,15 +6,15 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 #source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
-#aps <- apn0r
-aps <- apn1n
+aps <- apn0r
+#aps <- apn0n
 adat <- aps[[1]]
 amet <- aps[[2]]
 # [1] "sol2022i"                                               
 # [2] "https://x.com/KingSolomon006/status/1814076081583919472"
 ##########################################################################################################
 slr <- selreport(aps)
-View(slr)
+#View(slr)
 #slo <- seloutput(slr)
 ##########################################################################################################
 baldata <- apn0r
