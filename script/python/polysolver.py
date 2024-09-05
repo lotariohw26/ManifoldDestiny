@@ -1,5 +1,5 @@
 # Abc
-# !!! fix deviation from mean
+#j!!! fix deviation from mean
 import sympy, pandas, numpy
 from sympy import solve, Eq, symbols, latex, simplify, diff, poly, sympify, Matrix, pprint, collect, expand, Poly, Symbol, Pow
 def rall(sel=[0, 0, 0]):

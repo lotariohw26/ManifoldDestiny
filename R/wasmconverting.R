@@ -257,8 +257,6 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
-
-
 	browser()
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
@@ -1093,20 +1091,18 @@ Estimation$methods(diagnostics=function(){
 Estimation$methods(hat_predict=function(svf='y'){
   kvec <<- broom::tidy(regsum[[1]])$estimate
   if (roto==0){
-    lpy <<- py_genpolycoeff(form=fnr,expr=regass,solv=svf,rot=roto)
+	  browser()
+    lpy <<- py_genpolycoeffn(fnr,expr=regass,solv=svf)
   }
   if (roto==1){
     #! 'z'
-    ex <- gsub("\\^","**",regform[2])
-    sd <- regform[1]
-    eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
-    lpy <<- py_genpolycoeff(form=fnr,expr=regass,solv=sd,eur=eurv,rot=roto)
+	  browser()
+    #ex <- gsub("\\^","**",regform[2])
+    #sd <- regform[1]
+    #eurv <- c(edfc$st1[1],edfc$st2[2],edfc$st3[3])
+    lpy <<- py_genpolycoeffr(form=fnr,expr=regass,solv=sd,eur=eurv)
   }
-  pred_df_pol <<- tethyd(edfc,kvec,lpy) %>% dplyr::group_by(P) %>%
-    dplyr::mutate(polsolv=py_polysolver(pnr,c(A,B,C,D,E)[1:pnr])) %>%
-    #dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
-    dplyr::mutate(!!paste0(svf[1],'_hat'):=Re(polsolv[1])) %>%
-    dplyr::ungroup()
+  pred_df_pol <<- tethyd(edfc,kvec,lpy) %>% dplyr::group_by(P) 
   regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=pred_df_pol)
 })
 Estimation$methods(hat_intcomp=function(){
