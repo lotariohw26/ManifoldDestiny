@@ -46,6 +46,24 @@ py_polysolver <- function(abcde=NULL){
 }
 
 #' @export py_genpolycoeff 
+py_genpolycoeffn <- function(form=2,expr="alpha=k0+k1*g+k2*h",solv='g'){
+  reticulate::source_python(paste0(rprojroot::find_rstudio_root_file(),"/script/python/polysolver.py"))
+  reticulate::py$genpolycoeffn(form,expr,solv)
+}
+#py_genpolycoeffn()
+py_genpolycoeffr <- function(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=c(1, 1, 1)){
+  reticulate::source_python(paste0(rprojroot::find_rstudio_root_file(),"/script/python/polysolver.py"))
+  reticulate::py$genpolycoeffr()
+  #reticulate::py$genpolycoeffr(form,expr,solv,eur=as.integer(eur))
+
+}
+
+# py_genpolycoeffn()
+# py_genpolycoeffr()
+
+
+
+#' @export py_genpolycoeff 
 py_genpolycoeff <- function(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=c(1, 1, 1),rot=0){
   reticulate::source_python(paste0(rprojroot::find_rstudio_root_file(),"/script/python/polysolver.py"))
   reticulate::py$genpolycoeff(form,expr,solv,eur=as.integer(eur),rot=rot)
@@ -53,7 +71,7 @@ py_genpolycoeff <- function(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=c(1, 1
 #py_genpolycoeff(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=c(1, 1, 1),rot=0)
 #py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=c(1, 2, 4),rot=1)[[3]]
 #py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2",solv='x',eur=c(1, 2, 4),rot=1)[[3]]
-py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='x',eur=c(1, 2, 4),rot=1)
+#py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='x',eur=c(1, 2, 4),rot=1)
 #
 ##' @export bm
 bm <- function(){

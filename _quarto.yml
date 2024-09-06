@@ -109,3 +109,15 @@ format:
 
 bibliography: man_bib.bib
 #24 50 58 62 112 121 146
+# !" purdf
+#
+#  if (lpy[[5]]==0) {
+#    polc <- cdf %>%
+#     dplyr::mutate(pnr=lpy[[4]]+1) %>%
+#     dplyr::mutate(!!!kvec) %>%
+#     dplyr::mutate(A=pareq(as.character(lpy[[1]][[1]]),.[,])) %>%
+#     dplyr::mutate(B=pareq(as.character(lpy[[1]][[2]]),.[,])) %>%
+#     dplyr::mutate(C=pareq(as.character(lpy[[1]][[3]]),.[,])) %>%
+#     dplyr::mutate(D=pareq(as.character(lpy[[1]][[4]]),.[,])) %>%
+#     dplyr::mutate(E=pareq(as.character(lpy[[1]][[5]]),.[,])) 
+##
