@@ -1,12 +1,10 @@
 ##' @export tethyd
 tethyd <- function(cdf=NULL,kvec=NULL,lpy=lpy,solv=NULL,parm=NULL,rot=NULL){
-	browser()
   names(kvec) <- paste0("k", 0:(length(kvec) - 1))
   lpy[[1]] <-setNames(as.vector(lapply(lpy[[1]], as.character)),LETTERS[1:length(lpy[[1]])])
   vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
   abcv <- setNames(sapply(lpy[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = "")) 
   mtv <- paste0(parm[1:3],"_m")
-  View(polc)
   polc <- cdf %>% 
     dplyr::mutate(!!!kvec) %>% 
     dplyr::mutate(!!rlang::sym(mtv[1]) := mean(!!rlang::sym(parm[1]))) %>%
@@ -286,7 +284,7 @@ selreport <- function(
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
   ges$hat_predict(svf=md$sol$va)
-  #ges$hat_intcomp()
+  ges$hat_intcomp()
   ### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$sol$eq[2])
@@ -749,9 +747,12 @@ Countingprocess$methods(mansys=function(sygen=NULL,stuv=c("S","T","U","V")){
   exnrs <<- gsub('v',mansysl$pre[2], gsub('u',mansysl$pre[3],peqs[mansysl$me[['plnr']]]))
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
-  enf[[3]] <<- py_genpolycoeff(equn=mansysl$eq,solv=mansysl$va,grd=sum(mansysl$rot[[1]]))
-  #enf[[3]][[1]]
-  allstuv <<- list(stuv)
+  if (mansysl$rot[[1]]==0){
+     enf[[3]] <<- py_genpolycoeffn(mansysl$frm,mansysl$eq,mansysl$va)
+  }
+  if (mansysl$rot[[1]]==1) {
+     enf[[3]] <<- py_genpolycoeffr(mansysl$frm,mansysl$eq,mansysl$va,mansysl$rot[[2]])
+  }
 })
 Countingprocess$methods(setres=function(czset=NULL,prnt=0){
   frp <- mansysl$frm
@@ -776,26 +777,30 @@ Countingprocess$methods(manimp=function(init_par=NULL,
     kvnr <- c(3,6,10,17)[1] #[mansysl$plnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
-    rad <- mansysl$rot[[2]]*(pi/180)
-    mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
-    nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
-    abcv <- setNames(sapply(enf[[3]][[2]],as.character),paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
+    if (mansysl$rot[[1]]==1) {
+      rad <- mansysl$rot[[3]]*(pi/180)
+      mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
+      nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
+      abcv <- setNames(sapply(enf[[3]][[2]],as.character),paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
+    }
+    browser()
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
-      ### Parameters
       dplyr::mutate(!!!kvea) %>%
-      ### MN
+      { if (mansysl$rot[[1]]==1) 
       dplyr::mutate(!!!mv,!!!nv) %>%
-      dplyr::mutate(a1=pareq(abcv[1],c(as.list(.[,])))) %>%
-      dplyr::mutate(a2=pareq(abcv[2],c(as.list(.[,])))) %>%
-      dplyr::mutate(a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
-      dplyr::mutate(b1=pareq(abcv[4],c(as.list(.[,])))) %>%
-      dplyr::mutate(b2=pareq(abcv[5],c(as.list(.[,])))) %>%
-      dplyr::mutate(b3=pareq(abcv[6],c(as.list(.[,])))) %>%
-      dplyr::mutate(c1=pareq(abcv[7],c(as.list(.[,])))) %>%
-      dplyr::mutate(c2=pareq(abcv[8],c(as.list(.[,])))) %>%
-      dplyr::mutate(c3=pareq(abcv[9],c(as.list(.[,])))) %>%
+      dplyr::mutate(.,a1=pareq(abcv[1],c(as.list(.[,])))) %>%
+      dplyr::mutate(.,a2=pareq(abcv[2],c(as.list(.[,])))) 
+      #dplyr::mutate(.,a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
+      #dplyr::mutate(.,b1=pareq(abcv[4],c(as.list(.[,])))) %>%
+      #dplyr::mutate(.,b2=pareq(abcv[5],c(as.list(.[,])))) %>%
+      #dplyr::mutate(.,b3=pareq(abcv[6],c(as.list(.[,])))) %>%
+      #dplyr::mutate(.,c1=pareq(abcv[7],c(as.list(.[,])))) %>%
+      #dplyr::mutate(.,c2=pareq(abcv[8],c(as.list(.[,])))) %>%
+      #dplyr::mutate(.,c3=pareq(abcv[9],c(as.list(.[,])))) 
+      #dplyr::mutate(.,abc=123) 
+      else . } %>%
       ### Presetting the first variables
       dplyr::mutate(!!allvec[1]:=enf[[1]]) %>%
       ### Presetting second variable
@@ -1094,14 +1099,14 @@ Estimation$methods(diagnostics=function(){
 Estimation$methods(hat_predict=function(svf='y'){
   kvec <<- broom::tidy(regsum[[1]])$estimate
   if (roto==0){
-    lpy <<- py_genpolycoeffn(fnr,expr=regass)
+    lpy <<- py_genpolycoeffn(fnr,expr=regass,solv=sd)
   }
-  if (roto==1){
+  if (roto==1) {
     lpy <<- py_genpolycoeffr(form=fnr,expr=regass,solv=sd,eur=eurv)
   }
   tdf <<- tethyd(edfc,kvec,lpy,solv=svf,parm=param,rot=roto)
-  #regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=tdf)
-  #browser()
+  regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=tdf)
+  summary(regsum[[2]])
 })
 Estimation$methods(hat_intcomp=function(){
   txvnc <- c("Mean votes",

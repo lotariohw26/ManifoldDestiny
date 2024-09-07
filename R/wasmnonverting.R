@@ -22,6 +22,7 @@ recousiml <- function(mda=NULL,prn=1){
 #' @export py_polysolver
 py_polysolver <- function(abcde=NULL){
   #degree
+	browser()
   path_fqs <- paste0(rprojroot::find_rstudio_root_file(),"/script/python")
   #path_fqs <- system.file("script/python",package = "ManifoldDestiny")
   reticulate::import("numba")

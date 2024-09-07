@@ -20,7 +20,7 @@ apn0r:
     #eq: ["z=k0+k1*x+k2*y","alpha=k0+k1*g+k2*h+k3*Gamma"]
     eq: ["z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3","alpha=k0+k1*g+k2*h+k3*Gamma"]
     va: "g"
-    ro: [[1, 2, 4],[-44.9573,7.001545,-19.9677]]
+    ro: [[1],[1, 2, 4],[-44.9573,7.001545,-19.9677]]
   prg:
     cnd: 1
     z: 300
@@ -49,7 +49,7 @@ apn1n:
     fr: "2"
     eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
     va: "g"
-    ro: [[1, 2, 3],[0,0,0]]
+    ro: [[0],[1, 2, 3],[0,0,0]]
   prg:
     cnd: 0
     z: 0 
