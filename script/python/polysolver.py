@@ -51,7 +51,7 @@ def genpolycoeffn(form=2,expr="alpha=k0+k1*g+k2*h",solv='g'):
 
 #genpolycoeffn(form=2,expr="alpha=k0+k1*g+k2*h",solv='g')
 
-def genpolycoeffr(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='z',eur=[1, 2, 4]):
+def genpolycoeffr(form=1,expr="z=k0+k1*x+k2*y",solv='y',eur=[1, 2, 4]):
     elem = [["alpha","x","y","zeta","lamda","Omega"], ["alpha","g","h","Gamma","Omega","lamda"], ["alpha","m","n","xi","lamda","Omega"]]
     x, y, z = sympy.symbols('x y z')
     alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
@@ -188,6 +188,7 @@ def genpolycoeffr(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*
     matarch[msl]=matarch[msl].astype(str)
     return ABCDE, abc, matarch, plr
 
+#genpolycoeffr()
 #genpolycoeffr(form=1,expr="z=k0+k1*x+k2*y",solv='alpha',eur=[1, 2, 4])
 #genpolycoeffr(form=1,expr="z=k0+k1*x+k2*y",solv='x',eur=[1, 2, 4])[0]
 #genpolycoeffr(form=1,expr="z=k0+k1*x+k2*y",solv='y',eur=[1, 2, 4])[0]

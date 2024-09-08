@@ -752,8 +752,9 @@ Countingprocess$methods(mansys=function(sygen=NULL,stuv=c("S","T","U","V")){
      enf[[3]] <<- py_genpolycoeffn(mansysl$frm,mansysl$eq,mansysl$va)
   }
   if (mansysl$rot[[1]]==1) {
-	  browser()
-     enf[[3]] <<- py_genpolycoeffr(mansysl$frm,mansysl$eq,mansysl$va,mansysl$rot[[2]])
+     mansysl$frm,mansys
+     enf[[3]] <<- py_genpolycoeffr(mansysl$frm,mansysl$eq[1],
+				   mansysl$va,mansysl$rot[[2]])
   }
   allstuv <<- list(stuv)
 })
