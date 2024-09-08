@@ -27,13 +27,12 @@ mda <- qenvas$apsnn
 assign(mda$nid,list(gsh,mda))
 do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
 ## Rigged election
-#set.seed(2)
+set.seed(1)
 cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
-#plfc <- c(0.21,0.21,0.21,0.21)
+plfc <- c(0.21,0.21,0.21,0.21)
 exn <- c("aprnn","aprhn","apron","aprnr")
-#rigv <- lapply(1, function(x) { 
-  x <- 4
+rigv <- lapply(1:4, function(x) { 
   mda <- qenvas[[exn[x]]]
   exs <- list(
 	    frm=as.numeric(mda$sol$fr),
@@ -45,12 +44,12 @@ exn <- c("aprnn","aprhn","apron","aprnr")
   	  )
   cogr$mansys(sygen=exs)
   cogr$polyc[[1]]
-  #cogr$setres(NULL,1)
-  #cogr$setres(plfc[x],1)
+  cogr$setres(NULL,1)
+  cogr$setres(plfc[x],1)
   cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
   assign(mda$nid,list(cogr$rdfc,mda))
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
-#})
+})
 #####################################################################################################################################################
 ManifoldDestiny::bm()
 

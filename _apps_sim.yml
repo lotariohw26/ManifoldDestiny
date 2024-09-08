@@ -10,7 +10,7 @@ apsnn:
     eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
     va: "y"
     ls: "(alpha-alpha_s)^2"
-    ro: [[1, 2, 3],[0,0,0]]
+    ro: [0]
   prg:
     cnd: 0
     z: 0 
@@ -30,7 +30,7 @@ aprnn:
     eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
     va: "y"
     ls: "(alpha-alpha_s)^2"
-    ro: [[0]]
+    ro: [0]
   prg:
     cnd: 0
     z: 0 
@@ -50,7 +50,7 @@ aprhn:
     eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
     va: "g"
     ls: "(alpha-alpha_s)^2"
-    ro: [[1, 2, 3],[0,0,0]]
+    ro: [0]
   prg:
     cnd: 0
     z: 0 
@@ -70,6 +70,7 @@ apron:
     eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
     va: "g"
     ls: "(alpha-alpha_s)^2"
+    ro: [0]
   prg:
     cnd: 0
     z: 0 
