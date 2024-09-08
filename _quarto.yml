@@ -84,7 +84,7 @@ website:
           href: "rigging.qmd"
         - text: "Analyzer"
           href: "analyzer.qmd"
- r       - text: "Restoration"
+        - text: "Restoration"
           href: "restoration.qmd"
         - text: "Functions"
           href: "randpython.qmd"
