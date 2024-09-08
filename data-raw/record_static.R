@@ -33,7 +33,7 @@ copl <- cogr$polyc[[1]][[1]]
 #plfc <- c(0.21,0.21,0.21,0.21)
 exn <- c("aprnn","aprhn","apron","aprnr")
 #rigv <- lapply(1, function(x) { 
-  x <- 1
+  x <- 4
   mda <- qenvas[[exn[x]]]
   exs <- list(
 	    frm=as.numeric(mda$sol$fr),
