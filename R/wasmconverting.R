@@ -118,6 +118,7 @@ manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
   polyc <- setNames(as.vector(lapply(enfl[[1]], as.character)),LETTERS[1:5])
   la_e <- unlist(polyc[c(LETTERS[1:5])])
   pnr <- sum(la_e!="0")
+  #View(rootdf)
   rootdf <- dfa  %>%
     dplyr::mutate(A=pareq(la_e[1],c(as.list(.[,])))) %>%
     dplyr::mutate(B=pareq(la_e[2],c(as.list(.[,])))) %>%
@@ -127,7 +128,7 @@ manobj <- function(enfl=NULL,dfa=NULL,svar='y'){
     dplyr::group_by(P) %>%
     dplyr::mutate(polsolv=py_polysolver(c(A,B,C,D,E)[1:pnr])) %>%
     #!! dplyr::mutate(polsolv=py_polysolverW(pnr-1,c(A,B,C,D,E)[1:pnr])) %>%
-    dplyr::mutate(!!paste0(svar):=Re(polsolv)) %>%
+    dplyr::mutate(!!paste0(svar):=Re(polsolv)[1]) %>%
     dplyr::ungroup()
 }
 #' @export gmp
@@ -752,6 +753,7 @@ Countingprocess$methods(mansys=function(sygen=NULL,stuv=c("S","T","U","V")){
   if (mansysl$rot[[1]]==1) {
      enf[[3]] <<- py_genpolycoeffr(mansysl$frm,mansysl$eq,mansysl$va,mansysl$rot[[2]])
   }
+  allstuv <<- list(stuv)
 })
 Countingprocess$methods(setres=function(czset=NULL,prnt=0){
   frp <- mansysl$frm
@@ -773,65 +775,67 @@ Countingprocess$methods(manimp=function(init_par=NULL,
 
   ## Variables
   lof <- function(kvec=NULL,prn=T){
-	  browser()
     pnr <- enf[[3]][[4]]
     kvnr <- c(3,6,10,17)[pnr]
     kvea <- rep(0,kvnr); names(kvea) <- paste0("k",0:(length(kvea)-1))
     kvea[1:length(kvec)] <- kvec
-    if (mansysl$rot[[1]]==1) {
-      rad <- mansysl$rot[[3]]*(pi/180)
-      mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
-      nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
-      abcv <- setNames(sapply(enf[[3]][[2]],as.character),paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
-    }
+    #if (mansysl$rot[[1]]==1) {
+    #  rad <- mansysl$rot[[3]]*(pi/180)
+    #  mv <- c(m1=cos(rad[1]),m2=cos(rad[2]),m3=cos(rad[3]))
+    #  nv <- c(n1=sin(rad[1]),n2=sin(rad[2]),n3=sin(rad[3]))
+    #  abcv <- setNames(sapply(enf[[3]][[2]],as.character),paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
+    #}
     #loss_df <<- rdfci[1:10,] %>%
-    View(rdfci)
-    View(loss_df)
+    #View(rdfci)
+    #View(loss_df)
+    browser()
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
       dplyr::mutate(!!!kvea) %>%
-      { if (mansysl$rot[[1]]==1) 
-      dplyr::mutate(!!!mv,!!!nv) %>%
-      dplyr::mutate(.,a1=pareq(abcv[1],c(as.list(.[,])))) %>%
-      dplyr::mutate(.,a2=pareq(abcv[2],c(as.list(.[,])))) 
-      #dplyr::mutate(.,a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
-      #dplyr::mutate(.,b1=pareq(abcv[4],c(as.list(.[,])))) %>%
-      #dplyr::mutate(.,b2=pareq(abcv[5],c(as.list(.[,])))) %>%
-      #dplyr::mutate(.,b3=pareq(abcv[6],c(as.list(.[,])))) %>%
-      #dplyr::mutate(.,c1=pareq(abcv[7],c(as.list(.[,])))) %>%
-      #dplyr::mutate(.,c2=pareq(abcv[8],c(as.list(.[,])))) %>%
-      #dplyr::mutate(.,c3=pareq(abcv[9],c(as.list(.[,])))) 
-      #dplyr::mutate(.,abc=123) 
-      else . } %>%
+      #{ if (mansysl$rot[[1]]==1) 
+      #dplyr::mutate(!!!mv,!!!nv) %>%
+      #dplyr::mutate(.,a1=pareq(abcv[1],c(as.list(.[,])))) %>%
+      #dplyr::mutate(.,a2=pareq(abcv[2],c(as.list(.[,])))) 
+      ##dplyr::mutate(.,a3=pareq(abcv[3],c(as.list(.[,])))) %>%  
+      ##dplyr::mutate(.,b1=pareq(abcv[4],c(as.list(.[,])))) %>%
+      ##dplyr::mutate(.,b2=pareq(abcv[5],c(as.list(.[,])))) %>%
+      ##dplyr::mutate(.,b3=pareq(abcv[6],c(as.list(.[,])))) %>%
+      ##dplyr::mutate(.,c1=pareq(abcv[7],c(as.list(.[,])))) %>%
+      ##dplyr::mutate(.,c2=pareq(abcv[8],c(as.list(.[,])))) %>%
+      ##dplyr::mutate(.,c3=pareq(abcv[9],c(as.list(.[,])))) 
+      ##dplyr::mutate(.,abc=123) 
+      #else . } %>%
       ### Presetting the first variables
       dplyr::mutate(!!allvec[1]:=enf[[1]]) %>%
       ### Presetting second variable
       dplyr::mutate(!!allvec[2]:=pareq(enf[[2]],c(as.list(.[,])))) %>%
       ### Presetting the Manifold object
-      dplyr::mutate(!!allvec[3]:=manobj(enfl=enf[[3]][1],.[,],allvec[3])) %>%
+      dplyr::mutate(!!allvec[3]:=manobj(enfl=enf[[3]],.[,],allvec[3])) %>%
       #!RWASM
       ### Adding some noise
-      dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) 
+      dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) %>%
       ### Backsolving for the two remaining parameter
-      dplyr::mutate(!!allvec[4]:=pareq(se[[endp[1]]][2],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!allvec[5]:=pareq(se[[endp[2]]][2],c(as.list(.[,])))) %>%
-      dplyr::mutate(!!allvec[6]:=pareq(se[[endp[3]]][2],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!allvec[4]:=pareq(se[[endp[1]]],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!allvec[5]:=pareq(se[[endp[2]]],c(as.list(.[,])))) %>%
+      dplyr::mutate(!!allvec[6]:=pareq(se[[endp[3]]],c(as.list(.[,])))) %>%
       dplyr::mutate(LSV=0) 
       #dplyr::mutate(LSV:=pareq(mansysl$lf,c(as.list(.[,])))) 
       ##### Backsolving for ballots
       ## Observatinal values
-      #dplyr::mutate(!!paste0(stuv[1],'_m'):=pareq(se[[paste0(stuv[1],sho)]][2],as.list(.[])))  
+      #dplyr::mutate(!!paste0(stuv[1],'_m'):=pareq(se[[paste0(stuv[1],sho)]][2],as.list(.[])))  %>%
       #dplyr::mutate(!!paste0(stuv[2],'_m'):=pareq(se[[paste0(stuv[2],sho)]][2],as.list(.[])))  %>%
       ### Changed ballots
-      #dplyr::mutate(!!paste0(stuv[3],'_m'):=floor(pareq(se[[paste0(stuv[3],sho)]][2],as.list(.[]))))  
+      #dplyr::mutate(!!paste0(stuv[3],'_m'):=floor(pareq(se[[paste0(stuv[3],sho)]][2],as.list(.[]))))  %>%
       #dplyr::mutate(!!paste0(stuv[4],'_m'):=floor(pareq(se[[paste0(stuv[4],sho)]][2],as.list(.[]))))  %>%
-      ##! other options
+      ###! other options
       #dplyr::mutate(Z_m=S_m+T_m+U_m+V_m) %>%
       #dplyr::mutate(R_m=R) %>%
-      ### testing
+      #### testing
       #dplyr::mutate(alpha_test=(S_m+U_m)/(Z_m)) 
       ## Loss value
+      names(loss_df)
+      View(loss_df)
   }
   lv <- function(params=NULL){
     lofdf <- lof(kvec=params)
