@@ -22,7 +22,6 @@ recousiml <- function(mda=NULL,prn=1){
 #' @export py_polysolver
 py_polysolver <- function(abcde=NULL){
   #degree
-	browser()
   path_fqs <- paste0(rprojroot::find_rstudio_root_file(),"/script/python")
   #path_fqs <- system.file("script/python",package = "ManifoldDestiny")
   reticulate::import("numba")
@@ -30,6 +29,7 @@ py_polysolver <- function(abcde=NULL){
   np <- reticulate::import("numpy")
   vec <- abcde[!is.na(abcde)] 
   degree <- length(abcde)-1
+  #browser()
   if (degree==1) {
     #Re(AlgebraicHaploPackage::cubic(A=vec[1],B=vec[2],C=0,D=0))[1]
     retv <- np$roots(vec)[1]
