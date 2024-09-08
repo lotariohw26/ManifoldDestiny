@@ -58,7 +58,6 @@ py_genpolycoeffr <- function(fm=2,ex="z=k0+k1*x+k2*y",so='g',eu=c(1, 2, 4)){
   reticulate::py$genpolycoeffr(as.integer(fm),ex,so,eur=as.integer(eu))
 }
 
-
 ##' @export py_genpolycoeff 
 #py_genpolycoeff <- function(form=2,expr="alpha=k0+k1*g+k2*h",solv='g',eur=c(1, 1, 1),rot=0){
 #  reticulate::source_python(paste0(rprojroot::find_rstudio_root_file(),"/script/python/polysolver.py"))

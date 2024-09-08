@@ -263,15 +263,14 @@ selreport <- function(
   md <- baldata[[2]]
   frm <- as.numeric(md$sol$fr)
   co <- Countinggraphs(da)
-  if (md$prg$cnd==1)
-  co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
-  co$purdf
+  if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
+  #print(co$purdf)
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
   co$plot2d(frm)
   co$plotxy(frm)
-  #co$resplot(frm)
+  co$resplot(frm)
   co$plotly3d(partition=frm)
   co$rotation(selv=c("g","h","alpha"),
   	    smat=md$sol$ro[[1]],
@@ -895,15 +894,20 @@ Countinggraphs$methods(plotxy=function(form=1,Pexc=NULL){
   })
 })
 Countinggraphs$methods(resplot=function(form=1){
-  selvar <- c(paste0(parameters[[form]][c(1,2,4)],'_res'),paste0(parameters[[form]][c(3)],c("","_m","_mr")))
-  dfg <- dplyr::select(quintile,all_of(selvar[1:5]))
-  cmb <- combinat::combn(3, 2)
-  #pl_rescro <<- lapply(seq(1,dim(cmb)[2]), function(x){
-  #  ggplot2::ggplot(data=dfg,ggplot2::aes(x=selvar[3],y=selvar[3+x])) +
-  #  ggplot2::geom_point() +
-  #  ggplot2::geom_smooth(method=lm,se=F,show.legend = F) +
-  #  ggplot2::labs(x='x',y='y',title="")
-  #  })
+  #selvar <- c(paste0(parameters[[form]][c(1,2,4)],'_res'),paste0(parameters[[form]][c(3)],c("","_m","_mr")))
+  #dfg <- dplyr::select(quintile,all_of(selvar[1:5]))
+  #dfg <- quintile
+  #browser()
+  ##cmb <- combinat::combn(3, 2)
+  ##pl_rescro <<- lapply(seq(1,dim(cmb)[2]), function(x){
+  #ggplot2::ggplot(data=dfg,ggplot2::aes(x=alpha_res,y=alpha_res)) +
+  #   ggplot2::geom_point() +
+  ##  #ggplot2::ggplot(data=dfg,ggplot2::aes(x=selvar[3],y=selvar[3+x])) +
+  #   ggplot2::geom_smooth(method=lm,se=F,show.legend = F) 
+  #   ggplot2::labs(x='x',y='y',title="")
+  ##  2+2
+  ##})
+
 })
 Countinggraphs$methods(plotly3d=function(
 					 partition=1,
