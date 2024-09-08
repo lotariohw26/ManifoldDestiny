@@ -785,6 +785,8 @@ Countingprocess$methods(manimp=function(init_par=NULL,
       abcv <- setNames(sapply(enf[[3]][[2]],as.character),paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = ""))
     }
     #loss_df <<- rdfci[1:10,] %>%
+    View(rdfci)
+    View(loss_df)
     loss_df <<- rdfci %>%
       dplyr::select(P,R,S,T,U,V,Z,all_of(allvec)) %>%
       data.table::setnames(allvec,altvec) %>%
@@ -810,7 +812,7 @@ Countingprocess$methods(manimp=function(init_par=NULL,
       dplyr::mutate(!!allvec[3]:=manobj(enfl=enf[[3]][1],.[,],allvec[3])) %>%
       #!RWASM
       ### Adding some noise
-      dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) %>%
+      dplyr::mutate(!!allvec[3]:=!!rlang::sym(allvec[3])*(1+rnorm(n(),wn[1],wn[2]))) 
       ### Backsolving for the two remaining parameter
       dplyr::mutate(!!allvec[4]:=pareq(se[[endp[1]]][2],c(as.list(.[,])))) %>%
       dplyr::mutate(!!allvec[5]:=pareq(se[[endp[2]]][2],c(as.list(.[,])))) %>%
