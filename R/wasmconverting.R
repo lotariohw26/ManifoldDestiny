@@ -5,15 +5,18 @@ tethyd <- function(cdf=NULL,kvec=NULL,lpy=lpy,solv=NULL,parm=NULL,rot=NULL){
   vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
   abcv <- setNames(sapply(lpy[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = "")) 
   mtv <- paste0(parm[1:3],"_m")
+  browser()
+  cdf$x <- cdf$y <- cdf$z <- 1
+  View(polc)
   polc <- cdf %>% 
     dplyr::mutate(!!!kvec) %>% 
     dplyr::mutate(!!rlang::sym(mtv[1]) := mean(!!rlang::sym(parm[1]))) %>%
     dplyr::mutate(!!rlang::sym(mtv[2]) := mean(!!rlang::sym(parm[2]))) %>%
     dplyr::mutate(!!rlang::sym(mtv[3]) := mean(!!rlang::sym(parm[3]))) %>%
     dplyr::mutate(pnr = lpy[[4]] + 1) %>%
-    dplyr::mutate(!!mtv[1]:=mean(!!sym(parm[1]))) %>%
-    dplyr::mutate(!!mtv[2]:=mean(!!sym(parm[2]))) %>%
-    dplyr::mutate(!!mtv[3]:=mean(!!sym(parm[3]))) %>%
+    dplyr::mutate(!!mtv[1]:=1+0*mean(!!sym(parm[1]))) %>%
+    dplyr::mutate(!!mtv[2]:=1+0*mean(!!sym(parm[2]))) %>%
+    dplyr::mutate(!!mtv[3]:=1+0*mean(!!sym(parm[3]))) %>%
     dplyr::mutate(pnr=lpy[[4]]+1) %>%
     { if (rot==1) 
     dplyr::mutate(., a1=pareq(abcv[1],c(as.list(.[,])))) %>%  
@@ -257,7 +260,6 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
-
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
@@ -270,7 +272,7 @@ selreport <- function(
   co$r2siminput(frm)
   co$plot2d(frm)
   co$plotxy(frm)
-  co$resplot(frm)
+  #co$resplot(frm)
   co$plotly3d(partition=frm)
   co$rotation(selv=c("g","h","alpha"),
   	    smat=md$sol$ro[[1]],
@@ -410,7 +412,8 @@ erotation <-function(dfe=NULL,
   mvec <- c(1,0)[ifelse(isTRUE(med), 1, 2)]
   #setdiff(names(dfe),sev)
   #View(rofc)
-  rofc <- dfe %>% dplyr::select(P,all_of(sev),S,T,U,V,Z) %>%
+  rofc <- dfe %>% dplyr::select(P,all_of(sev)) %>%
+  #rofc <- dfe %>% dplyr::select(P,all_of(sev),S,T,U,V,Z) %>%
     dplyr::arrange(P) %>%
     # Standardize variable names
     dplyr::mutate(ui=.[[sev[1]]]) %>%
@@ -1108,14 +1111,14 @@ Estimation$methods(diagnostics=function(){
 Estimation$methods(hat_predict=function(svf='y'){
   kvec <<- broom::tidy(regsum[[1]])$estimate
   if (roto==0){
-    lpy <<- py_genpolycoeffn(fnr,expr=regass,solv=sd)
+    lpy <<- py_genpolycoeffn(fnr,regass,svf)
   }
   if (roto==1) {
-    lpy <<- py_genpolycoeffr(form=fnr,expr=regass,solv=sd,eur=eurv)
+    eurv <- unique(c(edfc$st1,edfc$st2,edfc$st3))
+    lpy <<- py_genpolycoeffr(c("g","h","alpha"),regass,svf,eurv)
   }
   tdf <<- tethyd(edfc,kvec,lpy,solv=svf,parm=param,rot=roto)
   regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=tdf)
-  summary(regsum[[2]])
 })
 Estimation$methods(hat_intcomp=function(){
   txvnc <- c("Mean votes",

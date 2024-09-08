@@ -49,7 +49,7 @@ apn1n:
     fr: "2"
     eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
     va: "g"
-    ro: [[0],[1, 2, 3],[0,0,0]]
+    ro: [0]
   prg:
     cnd: 0
     z: 0 
@@ -78,6 +78,7 @@ apn2n:
     fr: "2"
     eq: ["alpha=k0+k1*g+k2*g**2+k3*g*h+k4*h**2+k5*g**3+k6*g**2*h+k7*h**3","alpha=k0+k1*g+k2*h+k3*Gamma"]
     va: "g"
+    ro: [0]
   prg:
     cnd: 0
     z: 0 
@@ -108,6 +109,7 @@ apn3n:
     fr: "1"
     eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y"]
     va: "y"
+    ro: [0]
   prg:
     cnd: 1
     z: 0 
@@ -136,6 +138,7 @@ apn4n:
     fr: "2"
     eq: ["alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3","alpha=k0+k1*g+k2*h"]
     va: "g"
+    ro: [0]
   prg:
     cnd: 0
     z: 0 
@@ -169,6 +172,7 @@ apn5n:
     eq: ["alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3","alpha=k0+k1*g+k2*h"]
     va: "g"
     ex: ["alpha","g","h"]
+    ro: [0]
   prg:
     cnd: 1
     z: 0 
@@ -204,6 +208,7 @@ apn6n:
     eq: ["alpha=k0+k1*h+k2*g+k3*h**2+k4*g*h+k5*g**2+k6*h**3+k7*h**2*g+k8*h*g**2+k9*g**3","alpha=k0+k1*h+k2*g"]
     va: "g"
     ex: ["alpha","g","h"]
+    ro: [0]
   prg:
     cnd: 1
     z: 0 

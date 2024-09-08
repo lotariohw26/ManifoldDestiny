@@ -32,7 +32,7 @@ def rall(sel=[0, 0, 0]):
     allrot = [ps[i] for i in sel]
     return allrot
 
-def genpolycoeffn(form=2,expr="alpha=k0+k1*g+k2*h",solv='g'):
+def genpolycoeffn(form,expr,solv):
     elem = [["alpha","x","y","zeta","lamda","Omega"], ["alpha","g","h","Gamma","Omega","lamda"], ["alpha","m","n","xi","lamda","Omega"]]
     x, y, z = sympy.symbols('x y z')
     alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
@@ -51,12 +51,12 @@ def genpolycoeffn(form=2,expr="alpha=k0+k1*g+k2*h",solv='g'):
 
 #genpolycoeffn(form=2,expr="alpha=k0+k1*g+k2*h",solv='g')
 
-def genpolycoeffr(form=1,expr="z=k0+k1*x+k2*y",solv='y',eur=[1, 2, 4]):
-    elem = [["alpha","x","y","zeta","lamda","Omega"], ["alpha","g","h","Gamma","Omega","lamda"], ["alpha","m","n","xi","lamda","Omega"]]
+def genpolycoeffr(elem,expr,solv,eur):
+    #elem = [["alpha","x","y","zeta","lamda","Omega"], ["alpha","g","h","Gamma","Omega","lamda"], ["alpha","m","n","xi","lamda","Omega"]]
     x, y, z = sympy.symbols('x y z')
     alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
     k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')
-    parm = elem[form-1][:5]
+    parm = elem #elem[form-1][:5]
     pamm = [element + "_m" for element in parm]
     ls, rs = expr.split('=')
     expr = Eq(sympify(ls), sympify(rs))
@@ -188,11 +188,7 @@ def genpolycoeffr(form=1,expr="z=k0+k1*x+k2*y",solv='y',eur=[1, 2, 4]):
     matarch[msl]=matarch[msl].astype(str)
     return ABCDE, abc, matarch, plr
 
-#genpolycoeffr()
-#genpolycoeffr(form=1,expr="z=k0+k1*x+k2*y",solv='alpha',eur=[1, 2, 4])
-#genpolycoeffr(form=1,expr="z=k0+k1*x+k2*y",solv='x',eur=[1, 2, 4])[0]
-#genpolycoeffr(form=1,expr="z=k0+k1*x+k2*y",solv='y',eur=[1, 2, 4])[0]
-#genpolycoeffr(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='alpha',eur=[1, 2, 4])
+#genpolycoeffr(["g","h","alpha"],"z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",'alpha',[1,2,4])[0]
 
 def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
     return eval(ste, kwargs)

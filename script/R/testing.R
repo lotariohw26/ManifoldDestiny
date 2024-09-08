@@ -7,17 +7,109 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 #source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
-#aps <- apn0r
-aps <- apn1n
+aps <- apn0r
+##aps <- apn1n
+##aps <- apn2n
+#aps <- apn3n
+#aps <- apn4n
 adat <- aps[[1]]
 amet <- aps[[2]]
-# [1] "sol2022i"                                               
-# [2] "https://x.com/KingSolomon006/status/1814076081583919472"
 ##########################################################################################################
-slr <- selreport(aps)
+#slr <- selreport(aps)
+#slo <- seloutput(slr)
+##########################################################################################################
+vmat <- c(1,2,4)
+plnr <- 1
+googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+url <- "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=449303683#gid=449303683"
+crot <- googlesheets4::read_sheet(url, range="G3:R228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))
+names(crot) <- c("PW","PN","g","h","alpha","Data#","u[0]","v[0]","w[0]","x","y","z","P") 
+rotuvw <- erotation(crot,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
+re <- Estimation(rotuvw,2)
+#!
+#re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
+re$regression("z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3")
+broom::tidy(re$regsum[[1]])$estimate
+#  [1]  0.001643394  1.075717880 -0.731335532  0.064912642  0.064007760 -0.785443920
+#  [7]  0.092375583 -1.271709722  3.038048882  0.923841730
+#0.001643393953 -0.7313355321 1.07571788 -0.7854439197 0.06400775959 0.06491264234 0.9238417301 3.038048882 -1.271709722 0.09237558323
+re$hat_predict("alpha")
 
-slo <- seloutput(slr)
-##########################################################################################################
+re$tdf$d_000[1]
+re$tdf$d_100[1]
+re$tdf$d_101[1]
+re$tdf$d_110[1]
+re$tdf$d_200[1]
+re$tdf$d_201[1]
+re$tdf$d_202[1]
+re$tdf$d_210[1]
+re$tdf$d_211[1]
+re$tdf$d_220[1]
+re$tdf$d_310[1]
+re$tdf$d_311[1]
+re$tdf$d_312[1]
+re$tdf$d_320[1]
+re$tdf$d_321[1]
+re$tdf$d_330[1]
+re$tdf$A[1]
+re$tdf$B[1]
+re$tdf$C[1]
+re$tdf$D[1]
+
+wtet <- googlesheets4::read_sheet(url, range="A6:B16",sheet="Write Tet")
+bind <- dplyr::bind_cols(dplyr::select(rotuvw,x,y,z),dplyr::select(crot,x,y,z))
+abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
+
+
+pyg <- py_genpolycoeff(plr=3,parm=c("z", "x", "y"),solv='alpha',grd=1,eur=vmat)
+ghi <- tethyd(abc,re$kvec,pyg)
+View(ghi)
+dif1 <- sort(setdiff(co$rdfc$PN,crot$PN))
+dif2 <- sort(setdiff(crot$PN,co$rdfc$PN))
+prl1 <- dplyr::select(co$rdfci,P,PN) %>% dplyr::filter(PN%in%dif1)
+prl2 <- dplyr::select(crot,P,PN) %>% dplyr::filter(PN%in%dif2)
+
+
+View(prl2)
+googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
+url <- "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=449303683#gid=449303683"
+balins <- googlesheets4::read_sheet(url, range="G3:K228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))
+names(balins) <- c("PW","PN","g","h","alpha","P")
+dim(balins)
+rotuvw <- erotation(balins,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
+abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
+re <- Estimation(abc,2)
+names(abc)
+#  [1] "P"     "g"     "h"     "alpha" "ui"    "vi"    "wi"    "m1"    "m2"    "m3"    "n1"    "n2"    "n3"    "st1"   "st2"  
+# [16] "st3"   "mu"    "mv"    "mw"    "u0"    "v0"    "w0"    "u1"    "v1"    "w1"    "u2"    "v2"    "w2"    "x"     "y"    
+# [31] "z"     "x1"    "y1"    "yx"    "x2"    "y2"    "y2x"   "yx2"   "x3"    "y3"    "y3x"   "y2x2"  "yx3"   "x4"    "y4"   
+# [46] "y3x2"  "y2x3"  "yx4"   "y4x"  
+re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
+summary(re$regsum[[1]])
+re$hat_predict()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 baldata <- apn0r
 WS <- Sys.info()[['sysname']]=="Emscripten"
 da <- baldata[[1]]
@@ -80,46 +172,8 @@ ghi$D
 ###########################################################################################################
 ### Level 2
 ###########################################################################################################
-vmat <- c(1,2,4)
-plnr <- 1
-googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
-url <- "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=449303683#gid=449303683"
-crot <- googlesheets4::read_sheet(url, range="G3:R228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))
-wtet <- googlesheets4::read_sheet(url, range="A6:B16",sheet="Write Tet")
-names(crot) <- c("PW","PN","g","h","alpha","Data#","u[0]","v[0]","w[0]","x","y","z","P") 
-rotuvw <- erotation(crot,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
-bind <- dplyr::bind_cols(dplyr::select(rotuvw,x,y,z),dplyr::select(crot,x,y,z))
-abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
-re <- Estimation(abc,2)
-re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
 
 
-pyg <- py_genpolycoeff(plr=3,parm=c("z", "x", "y"),solv='alpha',grd=1,eur=vmat)
-ghi <- tethyd(abc,re$kvec,pyg)
-View(ghi)
-dif1 <- sort(setdiff(co$rdfc$PN,crot$PN))
-dif2 <- sort(setdiff(crot$PN,co$rdfc$PN))
-prl1 <- dplyr::select(co$rdfci,P,PN) %>% dplyr::filter(PN%in%dif1)
-prl2 <- dplyr::select(crot,P,PN) %>% dplyr::filter(PN%in%dif2)
-
-
-View(prl2)
-googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
-url <- "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=449303683#gid=449303683"
-balins <- googlesheets4::read_sheet(url, range="G3:K228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))
-names(balins) <- c("PW","PN","g","h","alpha","P")
-dim(balins)
-rotuvw <- erotation(balins,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
-abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
-re <- Estimation(abc,2)
-names(abc)
-#  [1] "P"     "g"     "h"     "alpha" "ui"    "vi"    "wi"    "m1"    "m2"    "m3"    "n1"    "n2"    "n3"    "st1"   "st2"  
-# [16] "st3"   "mu"    "mv"    "mw"    "u0"    "v0"    "w0"    "u1"    "v1"    "w1"    "u2"    "v2"    "w2"    "x"     "y"    
-# [31] "z"     "x1"    "y1"    "yx"    "x2"    "y2"    "y2x"   "yx2"   "x3"    "y3"    "y3x"   "y2x2"  "yx3"   "x4"    "y4"   
-# [46] "y3x2"  "y2x3"  "yx4"   "y4x"  
-re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
-summary(re$regsum[[1]])
-re$hat_predict()
 
 
 
