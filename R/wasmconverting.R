@@ -4,21 +4,15 @@ tethyd <- function(cdf=NULL,kvec=NULL,lpy=lpy,solv=NULL,parm=NULL,rot=NULL){
   lpy[[1]] <-setNames(as.vector(lapply(lpy[[1]], as.character)),LETTERS[1:length(lpy[[1]])])
   vmat <- c(unique(cdf$st1),unique(cdf$st2),unique(cdf$st3))
   abcv <- setNames(sapply(lpy[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = "")) 
-  mtv <- paste0(parm[1:3],"_m")
-  browser()
-  cdf$x <- cdf$y <- cdf$z <- 1
-  View(polc)
+  nbm <- paste0(names(cdf)[2:4],"_m")
+  #cdf$x <- cdf$y <- cdf$z <- 1
   polc <- cdf %>% 
-    dplyr::mutate(!!!kvec) %>% 
-    dplyr::mutate(!!rlang::sym(mtv[1]) := mean(!!rlang::sym(parm[1]))) %>%
-    dplyr::mutate(!!rlang::sym(mtv[2]) := mean(!!rlang::sym(parm[2]))) %>%
-    dplyr::mutate(!!rlang::sym(mtv[3]) := mean(!!rlang::sym(parm[3]))) %>%
-    dplyr::mutate(pnr = lpy[[4]] + 1) %>%
-    dplyr::mutate(!!mtv[1]:=1+0*mean(!!sym(parm[1]))) %>%
-    dplyr::mutate(!!mtv[2]:=1+0*mean(!!sym(parm[2]))) %>%
-    dplyr::mutate(!!mtv[3]:=1+0*mean(!!sym(parm[3]))) %>%
+    dplyr::mutate(!!!kvec) %>%
     dplyr::mutate(pnr=lpy[[4]]+1) %>%
     { if (rot==1) 
+    dplyr::mutate(.,!!rlang::sym(nbm[1]) :=u0) %>%
+    dplyr::mutate(.,!!rlang::sym(nbm[2]) :=v0) %>%
+    dplyr::mutate(.,!!rlang::sym(nbm[3]) :=w0) %>%
     dplyr::mutate(., a1=pareq(abcv[1],c(as.list(.[,])))) %>%  
     dplyr::mutate(., a2=pareq(abcv[2],c(as.list(.[,])))) %>%    
     dplyr::mutate(., a3=pareq(abcv[3],c(as.list(.[,])))) %>%    

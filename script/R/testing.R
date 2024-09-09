@@ -26,6 +26,8 @@ crot <- googlesheets4::read_sheet(url, range="G3:R228") %>% dplyr::mutate(P = dp
 names(crot) <- c("PW","PN","g","h","alpha","Data#","u[0]","v[0]","w[0]","x","y","z","P") 
 rotuvw <- erotation(crot,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
 re <- Estimation(rotuvw,2)
+#View(crot)
+#View(rotuvw)
 #!
 #re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
 re$regression("z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3")
@@ -34,6 +36,30 @@ broom::tidy(re$regsum[[1]])$estimate
 #  [7]  0.092375583 -1.271709722  3.038048882  0.923841730
 #0.001643393953 -0.7313355321 1.07571788 -0.7854439197 0.06400775959 0.06491264234 0.9238417301 3.038048882 -1.271709722 0.09237558323
 re$hat_predict("alpha")
+cor(re$tdf$alpha,re$tdf$alpha_hat)**2
+re$hat_predict("g")
+# [1] 0.9956742
+cor(re$tdf$g,re$tdf$g_hat)**2
+re$hat_predict("h")
+cor(re$tdf$h,re$tdf$h_hat)**2
+#!
+re$tdf$d_311[1]
+
+
+re$tdf$A[1]
+re$tdf$B[1]
+re$tdf$C[1]
+re$tdf$D[1]
+
+re$tdf$d_100[1]
+re$tdf$d_201[1]
+re$tdf$d_210[1]
+re$tdf$d_302[1]
+re$tdf$d_320[1]
+
+View(polc)
+
+
 
 re$tdf$d_000[1]
 re$tdf$d_100[1]
@@ -51,10 +77,6 @@ re$tdf$d_312[1]
 re$tdf$d_320[1]
 re$tdf$d_321[1]
 re$tdf$d_330[1]
-re$tdf$A[1]
-re$tdf$B[1]
-re$tdf$C[1]
-re$tdf$D[1]
 
 wtet <- googlesheets4::read_sheet(url, range="A6:B16",sheet="Write Tet")
 bind <- dplyr::bind_cols(dplyr::select(rotuvw,x,y,z),dplyr::select(crot,x,y,z))
