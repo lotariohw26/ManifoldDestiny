@@ -581,8 +581,8 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   lx <<- eqpar$meql
   ils <- c('S','T','U','V')
   sdfc <<- ballcount(dplyr::select(sdfinp,all_of(selvar)),se=se)
-  browser()
   rdfci <<- rdfc <<- sdfc %>%
+    #!
     #dplyr::arrange(alpha) %>%
     dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
     dplyr::relocate(pri,.before=P)

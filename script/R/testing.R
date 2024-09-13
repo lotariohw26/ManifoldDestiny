@@ -24,13 +24,6 @@ md <- baldata[[2]]
 frm <- as.numeric(md$sol$fr)
 co <- Countinggraphs(da,selvar=c('PN','P','R','S','T','U','V'))$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
 View(co)
-
-
-
-
-
-
-
 md$prg
 co$purging()
 co$sortpre(frm)

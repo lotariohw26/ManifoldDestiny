@@ -102,7 +102,7 @@ apn3n:
     mod: ['EDV', 'MiV']
     rng: G5:O940
     cln: ['PC', 'PN', 'R', 'A0', 'A1', 'A2', 'B0', 'B1', 'B2']
-    stuv: ['A1', 'B1', 'A2', 'B2']
+    stuv: ['A2', 'B2', 'A1', 'B1']
     eq: "alpha=k0+k1*x+k2*y"
     va: y
   sol:

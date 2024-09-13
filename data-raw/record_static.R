@@ -13,6 +13,7 @@ googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #recoudatr(qenvae$apn2n)
 recoudatr(qenvae$apn3n)
 #recoudatr(qenvae$apn4n)
+ManifoldDestiny::bm()
 ######################################################################################################################################################
 # Simulation
 ## Normal 
@@ -50,5 +51,4 @@ rigv <- lapply(1:4, function(x) {
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
 })
 #####################################################################################################################################################
-ManifoldDestiny::bm()
 
