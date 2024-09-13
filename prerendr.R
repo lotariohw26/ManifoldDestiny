@@ -167,20 +167,20 @@ ManifoldDestiny::bm()
 #
 #
 #
-#stickers <-
-#  list(parameters=list(
-#  standard=c("alpha","x","y","zeta","lamda","Omega"),
-#  hybrid=c("alpha","g","h","Gamma","Omega","lamda"),
-#  opposition=c("alpha","m","n","xi","lamda","Omega"),
-#  bowshock=c("alpha","x","y","Omega","m","n")
-#  ),
-#  forms=list('_s','o_h','h_o')) 
-#
-#
-#
-#parameters
-#unname(unlist(stickers$parameters))
-#usethis::use_data(stickers, overwrite = TRUE)
+stickers <-
+  list(parameters=list(
+  standard=c("alpha","x","y","zeta","lamda","Omega"),
+  hybrid=c("alpha","g","h","Gamma","Omega","lamda"),
+  opposition=c("alpha","m","n","xi","lamda","Omega"),
+  bowshock=c("alpha","x","y","Omega","m","n")
+  ),
+  forms=list('_s','o_h','h_o')) 
+
+
+
+parameters
+unname(unlist(stickers$parameters))
+usethis::use_data(stickers, overwrite = TRUE)
 ##
 ##ManifoldDestiny::bm()
 #

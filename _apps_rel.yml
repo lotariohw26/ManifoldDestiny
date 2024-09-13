@@ -98,7 +98,7 @@ apn3n:
     cnd: ['Lake (R)', 'Hobbs (D)']
   spr:
     url: "https://docs.google.com/spreadsheets/d/1FxJg9hjU-M1MIeKl0koiHDVIp2dPAmm3nJpRzd5Ejdg/edit#gid=301195549"
-    pgn: 1
+    pgn: "Yield Tabulations"
     mod: ['EDV', 'MiV']
     rng: G5:O940
     cln: ['PC', 'PN', 'R', 'A0', 'A1', 'A2', 'B0', 'B1', 'B2']

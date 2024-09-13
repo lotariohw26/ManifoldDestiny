@@ -5,12 +5,11 @@ ManifoldDestiny::wasmconload()
 library(ManifoldDestiny)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-#source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
-aps <- apn0r
-##aps <- apn1n
+#aps <- apn0r
+#aps <- apn1n
 ##aps <- apn2n
-#aps <- apn3n
+aps <- apn3n
 #aps <- apn4n
 adat <- aps[[1]]
 amet <- aps[[2]]
@@ -18,6 +17,187 @@ amet <- aps[[2]]
 #slr <- selreport(aps)
 #slo <- seloutput(slr)
 ##########################################################################################################
+baldata <- apn3n
+WS <- Sys.info()[['sysname']]=="Emscripten"
+da <- baldata[[1]]
+md <- baldata[[2]]
+frm <- as.numeric(md$sol$fr)
+co <- Countinggraphs(da,selvar=c('PN','P','R','S','T','U','V'))$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
+View(co)
+
+
+
+
+
+
+
+md$prg
+co$purging()
+co$sortpre(frm)
+co$descriptive(frm)
+co$r2siminput(frm)
+co$plot2d(frm)
+co$plotxy(frm)
+#co$resplot(frm)
+co$plotly3d(partition=frm)
+co$pl_3d_mani[[1]]
+co$gridarrange()
+#co$rotation(selv=c("g","h","alpha","PN"),
+#	    smat=md$sol$ro[[1]],
+#	    grad=md$sol$ro[[2]],
+#	    mead=TRUE)
+co$rotgraph()
+co$plext(frm)
+co$gridarrange()
+vmat <- c(1,2,4)
+co$rofc
+seq <- 2
+re <- Estimation(co$rofc,2)
+eqa <- c("z=k0+k1*x+k2*y","z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3")
+re$regression(eqa[seq])
+summary(re$regsum[[1]])
+#df1 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=c(1, 2, 4),rot=1)
+#df2 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2",solv='x',eur=c(1, 2, 4),rot=1)
+df3 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='y',eur=c(1, 2, 4),rot=1)
+#co$rofc$g <- 1
+#co$rofc$h <- 1
+#co$rofc$alpha <- 1
+df3[[1]][[2]]
+co2rofc <- co$rofc %>% 
+	dplyr::mutate(g_m=g-mean(g)) %>%
+	dplyr::mutate(h_m=h-mean(h)) %>%
+	dplyr::mutate(alpha_m=alpha-mean(alpha))
+View(co2rofc)
+ghi <- tethyd(co2rofc,re$kvec,df3)
+
+round(cor(ghi$abc_hat,ghi$alpha_m)^2,digits=4)
+round(cor(ghi$abc_hat,ghi$g_m)^2,digits=4)
+round(cor(ghi$abc_hat,ghi$h_m)^2,digits=4)
+
+
+
+
+complexlm::lm(y ~ x, data = tframe, weights = rep(1,n))
+olsce(dr=tframe,ce=NULL,zv=c('alpha','NULL'),xv=c('x','NULL'),yv=c('NULL','NULL'))
+
+
+
+
+
+
+
+
+
+w.max <- 5 # Max extent of the independent values
+w <- expand.grid(seq(-w.max,w.max), seq(-w.max,w.max))
+w <- complex(real=w[[1]], imaginary=w[[2]])
+w <- w[Mod(w) <= w.max]
+n <- length(w)
+# (2) the dependent variable `z`.
+beta <- c(-20+5i, complex(argument=2*pi/3, modulus=3/2))
+sigma <- 2; rho <- 0.8 # Parameters of the error distribution
+library(MASS) #mvrnorm
+
+# https://docs.google.com/spreadsheets/d/1FxJg9hjU-M1MIeKl0koiHDVIp2dPAmm3nJpRzd5Ejdg/edit?gid=301195549#gid=301195549
+# https://stats.stackexchange.com/questions/66088/analysis-with-complex-data-anything-different
+#########################################################################################################################
+# functions
+olsce <- function(dr=goext,ce=NULL,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')){
+	browser()
+  #P <- dr['P']
+  #dr <- dplyr::arrange(dr,P) 
+  le <- dim(dr)[1]
+  ### Data
+  if (is.null(zv[2])) zv[[2]]<- rep(0,le)
+  z0 <- complex(real=dr[[zv[1]]],imaginary=)
+  x0 <- complex(real=rep(1,le),imaginary=rep(0,le))
+  y0 <- complex(real=rep(1,le),imaginary=rep(0,le))
+  xi <- complex(real=dr[[xv[1]]],imaginary=dr[[xv[2]]])
+  yi <- complex(real=dr[[yv[1]]],imaginary=dr[[yv[2]]])
+  #vin <- data.frame(P,z0,x0,y0,xi,yi) 
+  vin <- data.frame(z0,x0,y0,xi,yi) 
+  cvar <- c('x0y0','x0y1','x1y0','x0y2','x1y1','x2y0','x0y3','x1y2','x2y1','x3y0')
+  oc <- sapply(cvar,function(cn){
+  rp <- as.numeric(substr(cn,2,2))
+  cp <- as.numeric(substr(cn,4,4))
+  xn <- xi^rp
+  yn <- yi^cp
+  fp <- Re(xn)*Re(yn)-Im(xn)*Im(yn)
+  sp <- Re(xn)*Im(yn)+Im(xn)*Re(yn)
+  complex(real=fp,imaginary=sp)
+  })
+  dfX <- as.data.frame(oc)
+  X <- as.matrix(dfX)
+  Y <- as.matrix(vin$z0)
+  ### Estimated coefficients
+  slv <- solve(Conj(t(X)) %*% X, Conj(t(X)) %*% Y)
+  beta_cr <- complex(real=Re(slv),imaginary=Im(slv))
+  ex_o <- X %*% as.vector(beta_cr)
+  ##
+  res <- complex(real=Re(ex_o)-Re(Y),imaginary=0)
+  tss <- complex(real=Re(Y)-Re(mean(ex_o)),imaginary=0)
+  RSS <- complex(real=Re(res)^2-Im(res)^2, imaginary=2*Re(res)*Im(res))
+  TSS <- complex(real=Re(tss)^2-Im(tss)^2, imaginary=2*Re(tss)*Im(tss))
+  vecsq <- c(sum(Re(RSS)),sum(Im(RSS)),sum(Re(TSS)),sum(Im(TSS)))
+  rc <-sqrt(vecsq[1]^2+vecsq[2]^2)
+  tc <-sqrt(vecsq[3]^2+vecsq[4]^2)
+  r2I <- 1-rc/tc
+  list(beta=beta_cr,r2=r2I)
+}
+#########################################################################################################################
+# Data
+set.seed(1)
+Beta0 = 1 + 3i
+Beta1 = 3 - 2i
+X = runif(15, 0, 10)
+Y = (Beta0 + Beta1*X +
+        rnorm(length(X), 0, 0.7) * exp(1i*runif(length(X), 0, 2*pi))
+)
+n <- 8
+slop <- complex(real = 4.23, imaginary = 2.323)
+interc <- complex(real = 1.4, imaginary = 1.804)
+e <- complex(real=rnorm(n)/6, imaginary=rnorm(n)/6)
+xx <- complex(real= rnorm(n), imaginary= rnorm(n))
+tframe <- data.frame(x= xx, y= slop*xx + interc + e)
+library(ManifoldDestiny)
+data(ManifoldDestiny)
+library(dplyr)
+dfa <- apn3n[[1]] %>% dplyr::mutate(alpha=S/(S+T+U+V),
+				    lamda=(S+V)/(S+T+U+V),
+				    Psi_s=R,
+				    Psi_t=R,
+				    Psi_u=R,
+				    Psi_v=R)
+View(dfa)
+#########################################################################################################################
+# Estimation
+complexlm::lm(y ~ x, data = tframe, weights = rep(1,n))
+olsce(dr=tframe,ce=NULL,zv=c('alpha','NULL'),xv=c('x','NULL'),yv=c('NULL','NULL'))
+#########################################################################################################################
+View(tframe)
+
+#beta_r <- c(-0.005693794321159,0.000763439988202552,0.816255513568808,1.58764312942543,-0.140264148421178,-0.498357855155589,0.513978651269852,-0.582940600960614,0.0261057978154113,0.421921936572005,0.113403802790825,0.0164414984815799)
+View(Y)
+View(X)
+
+
+
+
+
+
+
+
+
+
+
+
+##########################################################################################################
+
+
+
+
+
+
 vmat <- c(1,2,4)
 plnr <- 1
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
