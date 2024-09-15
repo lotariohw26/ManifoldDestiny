@@ -681,6 +681,8 @@ Countingprocess$methods(plext=function(frm=2){
 })
 
 Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y"),rnk=0,pres=NULL,pri=0,prma=NULL){
+  #dim(rdfv)
+  #dim(rdfci)
   rdfv <- rdfci %>%
     dplyr::arrange(P) %>%
     dplyr::filter(Z>z) %>%

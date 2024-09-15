@@ -26,6 +26,7 @@ def <- function(){
 
 #' @export olsce
 olsce <- function(dr=goext,ce=NULL,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')){
+  #browser()
   P <- dr['P']
   le <- dim(P)[1]
   dr <- dplyr::arrange(dr,P)

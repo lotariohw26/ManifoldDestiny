@@ -5,6 +5,7 @@ ManifoldDestiny::wasmconload()
 library(ManifoldDestiny)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
 #aps <- apn0r
 #aps <- apn1n
@@ -22,8 +23,33 @@ WS <- Sys.info()[['sysname']]=="Emscripten"
 da <- baldata[[1]]
 md <- baldata[[2]]
 frm <- as.numeric(md$sol$fr)
-co <- Countinggraphs(da,selvar=c('PN','P','R','S','T','U','V'))$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
-View(co)
+co <- Countinggraphs(da,selvar=c('PN','P','R','S','T','U','V'))
+co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
+
+abc <- co$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
+abb <- olsce(dr=abc,ce=NULL,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t'))
+abb[[1]]
+2+2
+# $beta
+#  [1]    1.514226+  0.2057645i   -4.888719-  4.7249861i    1.870422+  3.8536004i   14.041028+ 14.4471800i
+#  [5]  -12.703145-  9.2108303i    1.254841-  3.6371626i  -41.288697- 55.3383844i  109.775006+130.6289803i
+#  [9] -108.979005-109.7920658i   39.395585+ 33.5150277i
+# 
+# $r2
+# [1] 0.9946381
+def <- complexlm::lm(alpha ~ lamda + Psi_s + Psi_t, data = abc)
+2+2
+summary(def)
+
+
+
+
+
+
+
+
+
+View(abc)
 md$prg
 co$purging()
 co$sortpre(frm)
