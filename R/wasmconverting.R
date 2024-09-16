@@ -1077,6 +1077,10 @@ Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
   metad <<- list( mtd = list( nmn = "Default"), spr = list(), sol = list( fr = "1", eq = "alpha=k0+k1*x+k2*y", va = "y"), prg = list( cnd = 0, z = 0, stuv = c(0,0,0,0), blup = c(0,1), eqp = "alpha=k0+k1*g+k2*h"), bib = list())
   lpk <<- lpku
 })
+Estimation$methods(comregression=function(regequ=c("alpha=k0+k1*x+k2*y")){
+	comdat(dr=edfc)
+})
+
 Estimation$methods(regression=function(regequ=c("alpha=k0+k1*x+k2*y")){
   regass <<- regequ
   regform <<- strsplit(regass, "=")[[1]]

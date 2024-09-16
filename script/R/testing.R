@@ -18,6 +18,7 @@ amet <- aps[[2]]
 #slr <- selreport(aps)
 #slo <- seloutput(slr)
 ##########################################################################################################
+# II
 baldata <- apn3n
 WS <- Sys.info()[['sysname']]=="Emscripten"
 da <- baldata[[1]]
@@ -25,12 +26,49 @@ md <- baldata[[2]]
 frm <- as.numeric(md$sol$fr)
 co <- Countinggraphs(da,selvar=c('PN','P','R','S','T','U','V'))
 co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
-
 abc <- co$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
+def <- comdat(abc)
+
+
+
+abc <- Estimation(abc,2)
+abc$comregression()
+
+
+comdat() 
+
+"alpha=k0+k1*x+k2*y"
+
+
+# I
+set.seed(1)
+n <- 10
+slop <- complex(real = 4.23, imaginary = 2.323)
+interc <- complex(real = 1.4, imaginary = 1.804)
+e <- complex(real=rnorm(n)/6, imaginary=rnorm(n)/6)
+xx <- complex(real= rnorm(n), imaginary= rnorm(n))
+tframe <- data.frame(alpha=)
+
+
+
+
+##########################################################################################################
+
+
+
+
+
+data.frame(y1=Re(tframe$x),y2=Im(tframe$x))
+
+tframe$y
+
+lm(y ~ x, data = tframe, weights = rep(1,n))
+
 abb <- olsce(dr=abc,ce=NULL,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t'))
+
+
 abb[[1]]
-2+2
-# $beta
+2+2+2
 #  [1]    1.514226+  0.2057645i   -4.888719-  4.7249861i    1.870422+  3.8536004i   14.041028+ 14.4471800i
 #  [5]  -12.703145-  9.2108303i    1.254841-  3.6371626i  -41.288697- 55.3383844i  109.775006+130.6289803i
 #  [9] -108.979005-109.7920658i   39.395585+ 33.5150277i
@@ -40,15 +78,6 @@ abb[[1]]
 def <- complexlm::lm(alpha ~ lamda + Psi_s + Psi_t, data = abc)
 2+2
 summary(def)
-
-
-
-
-
-
-
-
-
 View(abc)
 md$prg
 co$purging()
@@ -92,21 +121,8 @@ ghi <- tethyd(co2rofc,re$kvec,df3)
 round(cor(ghi$abc_hat,ghi$alpha_m)^2,digits=4)
 round(cor(ghi$abc_hat,ghi$g_m)^2,digits=4)
 round(cor(ghi$abc_hat,ghi$h_m)^2,digits=4)
-
-
-
-
 complexlm::lm(y ~ x, data = tframe, weights = rep(1,n))
 olsce(dr=tframe,ce=NULL,zv=c('alpha','NULL'),xv=c('x','NULL'),yv=c('NULL','NULL'))
-
-
-
-
-
-
-
-
-
 w.max <- 5 # Max extent of the independent values
 w <- expand.grid(seq(-w.max,w.max), seq(-w.max,w.max))
 w <- complex(real=w[[1]], imaginary=w[[2]])
