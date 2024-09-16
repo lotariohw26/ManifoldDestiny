@@ -27,9 +27,13 @@ frm <- as.numeric(md$sol$fr)
 co <- Countinggraphs(da,selvar=c('PN','P','R','S','T','U','V'))
 co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
 abc <- co$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
-def <- comdat(abc)
+def <- comdat(abc,zv=c('alpha','alpha'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t'))
+ghi <- olsce(def)
 
 
+View(dr)
+
+View(dplyr::select(def,z0,x0y0,x0y1,x1y0))
 
 abc <- Estimation(abc,2)
 abc$comregression()
@@ -41,14 +45,14 @@ comdat()
 
 
 # I
-set.seed(1)
-n <- 10
+set.seed(4242)
+n <- 8
 slop <- complex(real = 4.23, imaginary = 2.323)
 interc <- complex(real = 1.4, imaginary = 1.804)
 e <- complex(real=rnorm(n)/6, imaginary=rnorm(n)/6)
 xx <- complex(real= rnorm(n), imaginary= rnorm(n))
-tframe <- data.frame(alpha=)
-
+tframe <- data.frame(x= xx, y= slop*xx + interc + e)
+lm(y ~ x, data = tframe, weights = rep(1,n))
 
 
 
