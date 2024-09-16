@@ -28,15 +28,57 @@ co <- Countinggraphs(da,selvar=c('PN','P','R','S','T','U','V'))
 co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
 abc <- co$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
 def <- comdat(abc,zv=c('alpha','alpha'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t'))
-ghi <- olsce(def)
-ghi
-def <- olsce2(abc,zv=c('alpha','alpha'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t'))
+ghi <- olsce(dplyr::select(def,z0,x0y1))
+jkl <- olsce2(abc,zv=c('alpha','alpha'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t'))
 
 
 n <- dim(def)[1]
-names(def)
-lm(z0 ~ x0y1, data = def, weights = rep(1,n))
+tlm <- lm(z0 ~ x0y0+x0y1, data = def, weights = rep(1,n))
+summary(tlm)
 
+ghi
+# $beta
+# [1]  0.9483402+1.003232i -2.3871046+0.895054i
+# [3]  1.3990830-1.839813i
+# 
+# $r2
+# [1] 0.9860486
+# Call: lm(formula = z0 ~ x0y0 + x0y1 + x1y0, data = def, weights = rep(1, 
+#     n))
+# [1] 559
+# Residuals:
+#       V1                                                                                          
+#  length:563                                                                                       
+#  stats :-4.839e-05-0.0004198i, -1.692e-04-0.0004646i, 3.355e-04+0.0000000i, 3.355e-04+0.0000000i  
+# 
+# Coefficients:
+#             Estimate                   
+# (intercept) -2.462363e+10-6.780430e+10i
+# x1y0         2.462363e+10+6.780430e+10i
+# x0y1        -2.387800e+00+8.951000e-01i
+# x0y0         1.399700e+00-1.840000e+00i
+#             Std. Error                 
+# (intercept)  1.165836e+11+0.000000e+00i
+# x1y0         4.510000e-02+0.000000e+00i
+# x0y1         4.680000e-02+0.000000e+00i
+# x0y0         1.165836e+11+0.000000e+00i
+#             Pseudo Std. Error          
+# (intercept)  5.832323e+10+3.799580e+10i
+# x1y0         1.650000e-02+2.110000e-02i
+# x0y1         2.340000e-02+1.520000e-02i
+# x0y0         5.832323e+10+3.799580e+10i
+#             t value                    
+# (intercept) -2.112000e-01-5.816000e-01i
+# x1y0         5.464120e+11+1.504615e+12i
+# x0y1        -5.101980e+01+1.912480e+01i
+# x0y0         0.000000e+00+0.000000e+00i
+#             Pr(>|t|)                   
+# (intercept)  5.363000e-01+0.000000e+00i
+# x1y0         0.000000e+00+0.000000e+00i
+# x0y1         0.000000e+00+0.000000e+00i
+# x0y0         1.000000e+00+0.000000e+00i
+# 
+# Residual standard error: 0.01837 on 559 degrees of freedom
 # I
 set.seed(4242)
 n <- 8
