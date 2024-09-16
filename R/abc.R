@@ -57,7 +57,6 @@ olsce <- function(dr=goext){
   ### Estimated coefficients
   slv <- solve(Conj(t(X)) %*% X, Conj(t(X)) %*% Y)
   beta_cr <- complex(real=Re(slv),imaginary=Im(slv))
-  #! 
   ex_o <- X %*% as.vector(beta_cr)
   ##
   res <- complex(real=Re(ex_o)-Re(Y),imaginary=0)

@@ -31,7 +31,6 @@ def <- comdat(abc,zv=c('alpha','alpha'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_
 ghi <- olsce(def)
 
 
-View(dr)
 
 View(dplyr::select(def,z0,x0y0,x0y1,x1y0))
 
