@@ -29,19 +29,13 @@ co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$p
 abc <- co$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
 def <- comdat(abc,zv=c('alpha','alpha'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t'))
 ghi <- olsce(def)
+ghi
+def <- olsce2(abc,zv=c('alpha','alpha'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t'))
 
 
-
-View(dplyr::select(def,z0,x0y0,x0y1,x1y0))
-
-abc <- Estimation(abc,2)
-abc$comregression()
-
-
-comdat() 
-
-"alpha=k0+k1*x+k2*y"
-
+n <- dim(def)[1]
+names(def)
+lm(z0 ~ x0y1, data = def, weights = rep(1,n))
 
 # I
 set.seed(4242)
@@ -51,6 +45,7 @@ interc <- complex(real = 1.4, imaginary = 1.804)
 e <- complex(real=rnorm(n)/6, imaginary=rnorm(n)/6)
 xx <- complex(real= rnorm(n), imaginary= rnorm(n))
 tframe <- data.frame(x= xx, y= slop*xx + interc + e)
+View(tframe)
 lm(y ~ x, data = tframe, weights = rep(1,n))
 
 
