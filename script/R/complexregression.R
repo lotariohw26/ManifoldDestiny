@@ -61,21 +61,27 @@ interc <- complex(real = 1.4, imaginary = 1.804)
 e <- complex(real=rnorm(n)/6, imaginary=rnorm(n)/6)
 xx <- complex(real= rnorm(n), imaginary= rnorm(n))
 yy <- complex(real= rnorm(n), imaginary= rnorm(n))
-tframecom <- data.frame(x= xx,y=yy, z= slop*xx + slop*yy + interc + e)
-tframerel <- tframecom %>% dplyr::mutate(P=row_number(),z=as.complex(z),x=as.complex(x),y =as.complex(y),z1=Re(z),z2= Im(z),x1=Re(x),x2=Im(x),y1=Re(y),y2=Im(y)) %>% select(P,z1,z2,y1,y2,x1,x2)
+t1framecom <- data.frame(x= xx,y=yy, z= slop*xx + slop*yy + interc + e)
+t1framerel <- tframecom %>% dplyr::mutate(P=row_number(),z=as.complex(z),x=as.complex(x),y =as.complex(y),z1=Re(z),z2= Im(z),x1=Re(x),x2=Im(x),y1=Re(y),y2=Im(y)) %>% select(P,z1,z2,y1,y2,x1,x2)
 # II
 baldata <- apn3n
 WS <- Sys.info()[['sysname']]=="Emscripten"
 da <- baldata[[1]]
-md <- baldata[[2]]
-frm <- as.numeric(md$sol$fr)
+co <- Countinggraphs(da,selvar=c('PN','P','R','S','T','U','V'))
+co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
+t2framecom <- co$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
+t2framerel <- co$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
 ##########################################################################################################
 # A
-complexlm::lm(z ~ x + y, data = tframecom, weights = rep(1,n))
 # I
+complexlm::lm(z ~ x + y, data = t1framecom, weights = rep(1,n))
 # II
+#complexlm::lm(z ~ x + y, data = t2framecom, weights = rep(1,n))
 # B
 # I
+# complexlm::lm(z ~ x + y, data = t2framerel, weights = rep(1,n))
 # II
-abc <- comdat(dr=tframerel,zv=c('z1','z2'),xv=c('y1','y2'),yv=c('x1','x2'))
-olsce(abc)
+olsce(comdat(dr=t2framerel,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
+
+
+
