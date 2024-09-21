@@ -1,37 +1,36 @@
 ##########################################################################################################
-comdat <- function(dr=goext){
+comdat <- function(dr=goext,zv=c('NULL','NULL'),xv=c('NULL','NULL'),yv=c('NULL','NULL')){
   P <- dr['P']
   le <- dim(P)[1]
   dr <- dplyr::arrange(dr,P)
   ### Data
-  #if (is.null(dr[[zv[1]]])) {zv[[1]]<- rep(0,le)}
-  #if (is.null(dr[[zv[2]]])) {zv[[2]]<- rep(0,le)}
-  #if (is.null(dr[[xv[1]]])) {xv[[1]]<- rep(0,le)}
-  #if (is.null(dr[[xv[2]]])) {xv[[2]]<- rep(0,le)}
-  #if (is.null(dr[[yv[1]]])) {yv[[1]]<- rep(0,le)}
-  #if (is.null(dr[[yv[2]]])) {yv[[2]]<- rep(0,le)}
+  #if (is.null(zv[1]) {zv[[1]]<- rep(0,le)}
+  #if (is.null(zv[2]) {zv[[2]]<- rep(0,le)}
+  #if (is.null(xv[2]) {xv[[1]]<- rep(0,le)}
+  #if (is.null(xv[2]) {xv[[2]]<- rep(0,le)}
+  #if (is.null(yv[2]) {yv[[1]]<- rep(0,le)}
+  #if (is.null(yv[2]) {yv[[2]]<- rep(0,le)}
   z0 <- complex(real=rep(1,le),imaginary=rep(0,le))
   x0 <- complex(real=rep(1,le),imaginary=rep(0,le))
   y0 <- complex(real=rep(1,le),imaginary=rep(0,le))
-  zi <- complex(real=dr[['z1']],imaginary=dr[['z2']])
-  xi <- complex(real=dr[['x1']],imaginary=dr[['x2']])
-  yi <- complex(real=dr[['y1']],imaginary=dr[['y2']])
-  vin <- data.frame(z0,x0,y0,zi,xi,yi)
+  zi <- complex(real=dr[[zv[1]]],imaginary=dr[[zv[2]]])
+  xi <- complex(real=dr[[xv[1]]],imaginary=dr[[xv[2]]])
+  yi <- complex(real=dr[[yv[1]]],imaginary=dr[[yv[2]]])
+  vin <- data.frame(zi,x0,y0,xi,yi)
   cvar <- c('x0y0','x0y1','x1y0','x0y2','x1y1','x2y0','x0y3','x1y2','x2y1','x3y0')
   oc <- sapply(cvar,function(cn){
-  rp <- as.numeric(substr(cn,2,2))
-  cp <- as.numeric(substr(cn,4,4))
-  xn <- xi^rp
-  yn <- yi^cp
-  fp <- Re(xn)*Re(yn)-Im(xn)*Im(yn)
-  sp <- Re(xn)*Im(yn)+Im(xn)*Re(yn)
-  complex(real=fp,imaginary=sp)
+  	rp <- as.numeric(substr(cn,2,2))
+  	cp <- as.numeric(substr(cn,4,4))
+  	xn <- xi^rp
+  	yn <- yi^cp
+  	fp <- Re(xn)*Re(yn)-Im(xn)*Im(yn)
+  	sp <- Re(xn)*Im(yn)+Im(xn)*Re(yn)
+  	complex(real=fp,imaginary=sp)
   })
-  dfX <- dplyr::bind_cols(as.data.frame(z0),as.data.frame(oc))
+  dfxz <- dplyr::bind_cols(as.data.frame(zi),as.data.frame(oc))
 }
 #' @export olsce
 olsce <- function(dr=goext){
-	browser()
   Y <- as.matrix(dplyr::select(dr,names(dr)[1]))
   X <- as.matrix(dplyr::select(dr,names(dr)[-1]))
   ### Estimated coefficients
@@ -78,12 +77,5 @@ complexlm::lm(z ~ x + y, data = tframecom, weights = rep(1,n))
 # B
 # I
 # II
-abc <- comdat(dr=tframerel)
+abc <- comdat(dr=tframerel,zv=c('z1','z2'),xv=c('y1','y2'),yv=c('x1','x2'))
 olsce(abc)
-View(abc)
-
-
-
-
-
-
