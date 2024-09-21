@@ -108,3 +108,5 @@ format:
     Line stretch: 1.5
 
 bibliography: man_bib.bib
+execute:
+  echo: false
