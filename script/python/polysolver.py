@@ -157,8 +157,8 @@ def genpolycoeffr(elem,expr,solv,eur):
         C[0] += dic['d_310']*z**2 + dic['d_311']*y*z + dic['d_312']*y**2
         C[1] += dic['d_301']*z**2 + dic['d_311']*x*z + dic['d_321']*x**2
         C[2] += dic['d_302']*y**2 + dic['d_311']*x*y + dic['d_320']*x**2
-        D[0] += dic['d_300']*y**3 + dic['d_301']*y*z**2 + dic['d_302']*y**2*y+dic['d_303']*z**3
-        D[1] += dic['d_300']*x**3 + dic['d_310']*x*y**2 + dic['d_320']*y**2*x+dic['d_330']*y**3
+        D[0] += dic['d_300']*y**3 + dic['d_301']*y*z**2 + dic['d_302']*y**2*y + dic['d_303']*z**3
+        D[1] += dic['d_300']*x**3 + dic['d_310']*x*y**2 + dic['d_320']*y**2*x + dic['d_330']*y**3
         D[2] += dic['d_303']*y**3 + dic['d_312']*z*y**2 + dic['d_321']*z**2*y + dic['d_330']*y**3
     if plr in [2,3]:
         B[0] += dic['d_220']
