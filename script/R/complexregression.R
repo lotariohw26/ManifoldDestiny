@@ -76,27 +76,21 @@ t2framecom <- t2framerel %>% dplyr::mutate(P=row_number()) %>% comdat(pl=3,zv=c(
 # A
 # I
 nI <- dim(t1framecom)[1]
-complexlm::lm(z ~ x + y, data = t1framecom, weights = rep(1,nI))$
+complexlm::lm(z ~ x + y, data = t1framecom, weights = rep(1,nI))
 # II
 nII <- dim(t2framecom)[1]
 names(t2framecom)
 complexlm::lm(zi ~ x0y1 + x1y0 , data = t2framecom, weights = rep(1,nII))
-complexlm::lm(zi ~ x0y1 + x1y0 + x0y2 + x1y1 +x2y0, data = t2framecom, weights = rep(1,nII))
-complexlm::lm(zi ~ x0y1 + x1y0 + x0y2 + x1y1 +x2y0, data = t2framecom, weights = rep(1,nII))
-complexlm::lm(zi ~ x0y1 + x1y0 + x0y2 + x1y1 +x2y0 + x0y3 + x1y2 + x2y1 + x3y0, data = t2framecom, weights = rep(1,nII))
 
 olsce(comdat(dr=t2framerel,pl=1,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
+##########################################################################################################
+complexlm::lm(zi ~ x0y1 + x1y0 , data = t2framecom, weights = rep(1,nII))
+olsce(comdat(dr=t2framerel,pl=1,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
+complexlm::lm(zi ~ x0y1 + x1y0 + x0y2 + x1y1 +x2y0, data = t2framecom, weights = rep(1,nII))
 olsce(comdat(dr=t2framerel,pl=2,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
+complexlm::lm(zi ~ x0y1 + x1y0 + x0y2 + x1y1 +x2y0 + x0y3 + x1y2 + x2y1 + x3y0, data = t2framecom, weights = rep(1,nII))
 olsce(comdat(dr=t2framerel,pl=3,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
-set.seed(4242)
-n <- 6
-p <- 2
-slop <- complex(real = 4.23, imaginary = 2.323)
-slop2 = complex(real = 2.1, imaginary = -3.9)
-interc <- complex(real = 1.4, imaginary = 1.804)
-e <- complex(real=rnorm(n)/6, imaginary=rnorm(n)/6)
-desmat <- matrix(c(complex(real = rnorm(n * p), imaginary = rnorm(n * p)), rep(1, n)), n, p + 1)
-y = desmat %*% c(slop, slop2, interc) + e
-lm.fit(desmat, y)
+
+
 
 
