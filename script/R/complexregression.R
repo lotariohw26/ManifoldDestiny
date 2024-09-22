@@ -1,5 +1,5 @@
 ##########################################################################################################
-comdat <- function(dr=goext,zv=c('NULL','NULL'),xv=c('NULL','NULL'),yv=c('NULL','NULL')){
+comdat <- function(dr=goext,plr=1,zv=c('NULL','NULL'),xv=c('NULL','NULL'),yv=c('NULL','NULL')){
   P <- dr['P']
   le <- dim(P)[1]
   dr <- dplyr::arrange(dr,P)
@@ -17,8 +17,8 @@ comdat <- function(dr=goext,zv=c('NULL','NULL'),xv=c('NULL','NULL'),yv=c('NULL',
   xi <- complex(real=dr[[xv[1]]],imaginary=dr[[xv[2]]])
   yi <- complex(real=dr[[yv[1]]],imaginary=dr[[yv[2]]])
   vin <- data.frame(zi,x0,y0,xi,yi)
-  cvar <- c('x0y0','x0y1','x1y0','x0y2','x1y1','x2y0','x0y3','x1y2','x2y1','x3y0')
-  oc <- sapply(cvar,function(cn){
+  pls <- list(c('x0y0','x0y1','x1y0'),c('x0y0','x0y1','x1y0','x0y2','x1y1','x2y0'),c('x0y0','x0y1','x1y0','x0y2','x1y1','x2y0','x0y3','x1y2','x2y1','x3y0'))[[plr]]
+  oc <- sapply(pls,function(cn){
   	rp <- as.numeric(substr(cn,2,2))
   	cp <- as.numeric(substr(cn,4,4))
   	xn <- xi^rp
@@ -62,26 +62,47 @@ e <- complex(real=rnorm(n)/6, imaginary=rnorm(n)/6)
 xx <- complex(real= rnorm(n), imaginary= rnorm(n))
 yy <- complex(real= rnorm(n), imaginary= rnorm(n))
 t1framecom <- data.frame(x= xx,y=yy, z= slop*xx + slop*yy + interc + e)
-t1framerel <- tframecom %>% dplyr::mutate(P=row_number(),z=as.complex(z),x=as.complex(x),y =as.complex(y),z1=Re(z),z2= Im(z),x1=Re(x),x2=Im(x),y1=Re(y),y2=Im(y)) %>% select(P,z1,z2,y1,y2,x1,x2)
+#t1framerel <- tframecom %>% dplyr::mutate(P=row_number(),z=as.complex(z),x=as.complex(x),y =as.complex(y),z1=Re(z),z2= Im(z),x1=Re(x),x2=Im(x),y1=Re(y),y2=Im(y)) %>% select(P,z1,z2,y1,y2,x1,x2)
 # II
 baldata <- apn3n
 WS <- Sys.info()[['sysname']]=="Emscripten"
 da <- baldata[[1]]
+md <- baldata[[2]]
 co <- Countinggraphs(da,selvar=c('PN','P','R','S','T','U','V'))
 co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
-t2framecom <- co$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
 t2framerel <- co$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
+t2framecom <- t2framerel %>% dplyr::mutate(P=row_number()) %>% dplyr::mutate(z=complex(real=alpha,imaginary=0)) %>%
+	dplyr::mutate(x=complex(real=lamda,imaginary=Psi_s)) %>%
+	dplyr::mutate(y=complex(real=lamda,imaginary=Psi_t)) %>%
+	dplyr::select(P,z,x,y)
+t2framecom$z
+t2framecom$x
+t2framecom$y
 ##########################################################################################################
 # A
 # I
-complexlm::lm(z ~ x + y, data = t1framecom, weights = rep(1,n))
+nI <- dim(t1framecom)[1]
+complexlm::lm(z ~ x + y, data = t1framecom, weights = rep(1,nI))
 # II
-#complexlm::lm(z ~ x + y, data = t2framecom, weights = rep(1,n))
+nII <- dim(t2framecom)[1]
+complexlm::lm(z ~ y + x, data = t2framecom, weights = rep(1,nII))
+# Call:
+# complexlm::lm(formula = z ~ y + x, data = t2framecom, weights = rep(1, 
+#     nII))
+# 
+# Coefficients:
+#      (intercept)                 y                 x  
+#  0.9758+0.02745i  -0.7460+1.64108i  -0.2204-1.61945i  
 # B
 # I
 # complexlm::lm(z ~ x + y, data = t2framerel, weights = rep(1,n))
 # II
-olsce(comdat(dr=t2framerel,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
+olsce(comdat(dr=t2framerel,pl=1,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
+# $beta
+# [1]  0.9757863+0.02744609i -0.7460253+1.64107929i -0.2203648-1.61944782i
+# 
+# $r2
+# [1] 0.9919189
 
 
 
