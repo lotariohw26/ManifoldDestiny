@@ -778,4 +778,12 @@ re$tdf$B[1]-(-0.2614930231)
 re$tdf$C[1]-(-1.443286174)
 re$tdf$D[1]-(-0.3781669319)
 
-			
+
+
+abc <- distinct(dplyr::select(re$tdf,a1,a2,a3,b1,b2,b3,c1,c2,c3,k1,k2,k3,k4,k5,k6,k7,k8,k9))
+
+
+# 
+abc$k9*6*abc$b1*abc$b2*abc$b3+abc$k6*6*abc$a1*abc$a2*abc$a3
+
+
