@@ -71,38 +71,32 @@ md <- baldata[[2]]
 co <- Countinggraphs(da,selvar=c('PN','P','R','S','T','U','V'))
 co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
 t2framerel <- co$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
-t2framecom <- t2framerel %>% dplyr::mutate(P=row_number()) %>% dplyr::mutate(z=complex(real=alpha,imaginary=0)) %>%
-	dplyr::mutate(x=complex(real=lamda,imaginary=Psi_s)) %>%
-	dplyr::mutate(y=complex(real=lamda,imaginary=Psi_t)) %>%
-	dplyr::select(P,z,x,y)
-t2framecom$z
-t2framecom$x
-t2framecom$y
+t2framecom <- t2framerel %>% dplyr::mutate(P=row_number()) %>% comdat(pl=3,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t'))
 ##########################################################################################################
 # A
 # I
 nI <- dim(t1framecom)[1]
-complexlm::lm(z ~ x + y, data = t1framecom, weights = rep(1,nI))
+complexlm::lm(z ~ x + y, data = t1framecom, weights = rep(1,nI))$
 # II
 nII <- dim(t2framecom)[1]
-complexlm::lm(z ~ y + x, data = t2framecom, weights = rep(1,nII))
-# Call:
-# complexlm::lm(formula = z ~ y + x, data = t2framecom, weights = rep(1, 
-#     nII))
-# 
-# Coefficients:
-#      (intercept)                 y                 x  
-#  0.9758+0.02745i  -0.7460+1.64108i  -0.2204-1.61945i  
-# B
-# I
-# complexlm::lm(z ~ x + y, data = t2framerel, weights = rep(1,n))
-# II
-olsce(comdat(dr=t2framerel,pl=1,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
-# $beta
-# [1]  0.9757863+0.02744609i -0.7460253+1.64107929i -0.2203648-1.61944782i
-# 
-# $r2
-# [1] 0.9919189
+names(t2framecom)
+complexlm::lm(zi ~ x0y1 + x1y0 , data = t2framecom, weights = rep(1,nII))
+complexlm::lm(zi ~ x0y1 + x1y0 + x0y2 + x1y1 +x2y0, data = t2framecom, weights = rep(1,nII))
+complexlm::lm(zi ~ x0y1 + x1y0 + x0y2 + x1y1 +x2y0, data = t2framecom, weights = rep(1,nII))
+complexlm::lm(zi ~ x0y1 + x1y0 + x0y2 + x1y1 +x2y0 + x0y3 + x1y2 + x2y1 + x3y0, data = t2framecom, weights = rep(1,nII))
 
+olsce(comdat(dr=t2framerel,pl=1,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
+olsce(comdat(dr=t2framerel,pl=2,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
+olsce(comdat(dr=t2framerel,pl=3,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
+set.seed(4242)
+n <- 6
+p <- 2
+slop <- complex(real = 4.23, imaginary = 2.323)
+slop2 = complex(real = 2.1, imaginary = -3.9)
+interc <- complex(real = 1.4, imaginary = 1.804)
+e <- complex(real=rnorm(n)/6, imaginary=rnorm(n)/6)
+desmat <- matrix(c(complex(real = rnorm(n * p), imaginary = rnorm(n * p)), rep(1, n)), n, p + 1)
+y = desmat %*% c(slop, slop2, interc) + e
+lm.fit(desmat, y)
 
 
