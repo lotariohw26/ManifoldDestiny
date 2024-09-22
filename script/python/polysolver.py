@@ -174,9 +174,9 @@ def genpolycoeffr(elem,expr,solv,eur):
         C[0] += dic['d_110']
         C[1] += dic['d_101']
         C[2] += dic['d_100']
-        D[0] += dic['d_100']*z + dic['d_101']*y+dic['d_000']
-        D[1] += dic['d_100']*z + dic['d_110']*x+dic['d_000']
-        D[2] += dic['d_101']*y + dic['d_110']*x+dic['d_000']
+        D[0] += dic['d_100']*z + dic['d_101']*y + dic['d_000']
+        D[1] += dic['d_100']*z + dic['d_110']*x + dic['d_000']
+        D[2] += dic['d_101']*y + dic['d_110']*x + dic['d_000']
     ABCDE[0] = A[nrs].subs([(x,pamm[0]),(y,pamm[1]),(z,pamm[2])])
     ABCDE[1] = B[nrs].subs([(x,pamm[0]),(y,pamm[1]),(z,pamm[2])])
     ABCDE[2] = C[nrs].subs([(x,pamm[0]),(y,pamm[1]),(z,pamm[2])])
