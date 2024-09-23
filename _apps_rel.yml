@@ -71,7 +71,7 @@ apn3n:
     stuv: ['A2', 'B2', 'A1', 'B1']
   sol:
     fr: "1"
-    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*Zeta"]
+    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
     va: "y"
     ro: [0]
   prg:
@@ -216,3 +216,6 @@ apn8n:
     rng: A1:G380
     cln: ['PN', 'A1', 'B1','A2','B2','A3','B3']
     stuv: ['A1', 'B1', 'A2', 'B2']
+
+
+
