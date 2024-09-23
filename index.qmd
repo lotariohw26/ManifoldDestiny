@@ -16,10 +16,10 @@ filters:
 
 ```{r, echo=F}
 # script/R/simulations.R
+# ![](pngs/md.png)
 ```
 
 **Based upon the ideas developed by Edward K. Solomon**
-![](pngs/md.png)
 
 **Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
 

@@ -1,19 +1,19 @@
 ---
 title: "{{< var addns >}}"
 subtitle: "{{< var addnl >}}"
-format:
-  revealjs: 
-    smaller: true
-    toc-depth: 1
-    toc: true 
-execute: 
-  cache: false
-footer: <https://lotariohw26.github.io/ManifoldDestiny/>
-output: 
-  html_document:
-    mathjax: "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-nocite: |
-  @*
+# format:
+#   revealjs: 
+#     smaller: true
+#     toc-depth: 1
+#     toc: true 
+# execute: 
+#   cache: false
+# footer: <https://lotariohw26.github.io/ManifoldDestiny/>
+# output: 
+#   html_document:
+#     mathjax: "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+# nocite: |
+#   @*
 ---
 
 ```{r}
@@ -21,9 +21,6 @@ knitr::knit_exit()
 ```
 
 
-```{r}
-knitr::knit_exit()
-```
 
 
 ```{r, echo=F, warning=F, message=F}
@@ -58,7 +55,7 @@ class: inverse, center, middle
 # Overview
 
 ```{r, echo=FALSE, out.width="80%", fig.cap=""}
-pa <- paste0(rprojroot::find_rstudio_root_file(),'/inst/addendum/pngs/ALEXANDER_chart-of-Rs-voting-for-Hobbs.jpg')
+#pa <- paste0(rprojroot::find_rstudio_root_file(),'/inst/addendum/pngs/ALEXANDER_chart-of-Rs-voting-for-Hobbs.jpg')
 knitr::include_graphics(c(pa))
 ```
 

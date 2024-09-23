@@ -356,7 +356,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"fig-width":7,"read-only":"false","autorun":"true","label":"unnamed-chunk-1","output":"true","echo":"fenced","results":"markup","fig-height":5,"editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","comment":"","editor-quick-suggestions":"false","eval":"true","message":"true","fig-cap":"","classes":"","editor-max-height":"","context":"interactive","dpi":72,"warning":"true","out-height":""},"id":1,"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\n#ls(package:ManifoldDestinyWASMP)\n#data(package='ManifoldDestinyWASMD')\napps <- appn0"},{"options":{"fig-width":7,"read-only":"false","autorun":"true","label":"unnamed-chunk-2","output":"true","results":"markup","fig-height":5,"editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","comment":"","editor-quick-suggestions":"false","message":"true","fig-cap":"","classes":"","editor-max-height":"","context":"interactive","dpi":72,"warning":"true","out-height":""},"id":2,"code":"adat <- apps[[1]]\namet <- apps[[2]]\ncob <- Countinggraphs(adat)\ncob$purging(z=0) \ndef <- Estimation(cob$rdfce)"},{"options":{"fig-width":7,"read-only":"false","autorun":"true","label":"unnamed-chunk-3","output":"true","results":"markup","fig-height":5,"editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","comment":"","editor-quick-suggestions":"false","message":"true","fig-cap":"","classes":"","editor-max-height":"","context":"interactive","dpi":72,"warning":"true","out-height":""},"id":3,"code":"def$regression(\"alpha=k0 + k1*g + k2*h\")\nsummary(def$regsum[[1]])"},{"options":{"fig-width":7,"read-only":"false","autorun":"true","label":"unnamed-chunk-4","output":"true","results":"markup","fig-height":5,"editor-word-wrap":"true","out-width":"700px","editor-font-scale":"1","comment":"","editor-quick-suggestions":"false","message":"true","fig-cap":"","classes":"","editor-max-height":"","context":"interactive","dpi":72,"warning":"true","out-height":""},"id":4,"code":"def$regression(\"alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2\")\nsummary(def$regsum[[1]])"}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"webr::install(\"ManifoldDestinyWASMP\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nwebr::install(\"ManifoldDestinyWASMD\", repos = \"https://lotariohw26.github.io/MD_WASMC\")\nlibrary(ManifoldDestinyWASMP)\nlibrary(ManifoldDestinyWASMD)\n#ls(package:ManifoldDestinyWASMP)\n#data(package='ManifoldDestinyWASMD')\napps <- appn0","options":{"echo":"fenced","label":"unnamed-chunk-1","autorun":"true","editor-max-height":"","eval":"true","read-only":"false","editor-font-scale":"1","message":"true","dpi":72,"context":"interactive","out-height":"","comment":"","fig-cap":"","warning":"true","fig-height":5,"output":"true","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","fig-width":7,"editor-quick-suggestions":"false"}},{"id":2,"code":"adat <- apps[[1]]\namet <- apps[[2]]\ncob <- Countinggraphs(adat)\ncob$purging(z=0) \ndef <- Estimation(cob$rdfce)","options":{"label":"unnamed-chunk-2","autorun":"true","editor-max-height":"","read-only":"false","editor-font-scale":"1","message":"true","dpi":72,"context":"interactive","out-height":"","comment":"","fig-cap":"","warning":"true","fig-height":5,"output":"true","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","fig-width":7,"editor-quick-suggestions":"false"}},{"id":3,"code":"def$regression(\"alpha=k0 + k1*g + k2*h\")\nsummary(def$regsum[[1]])","options":{"label":"unnamed-chunk-3","autorun":"true","editor-max-height":"","read-only":"false","editor-font-scale":"1","message":"true","dpi":72,"context":"interactive","out-height":"","comment":"","fig-cap":"","warning":"true","fig-height":5,"output":"true","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","fig-width":7,"editor-quick-suggestions":"false"}},{"id":4,"code":"def$regression(\"alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2\")\nsummary(def$regsum[[1]])","options":{"label":"unnamed-chunk-4","autorun":"true","editor-max-height":"","read-only":"false","editor-font-scale":"1","message":"true","dpi":72,"context":"interactive","out-height":"","comment":"","fig-cap":"","warning":"true","fig-height":5,"output":"true","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","fig-width":7,"editor-quick-suggestions":"false"}}];
 
 </script>
 <script type="module">
@@ -1608,59 +1608,6 @@ window.Quarto = {
 <span class="menu-text">Index</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-documentation" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Documentation</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-documentation">    
-        <li>
-    <a class="dropdown-item" href="./presentation.html">
- <span class="dropdown-text">Presentation</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./addendum/Addendum_az.html">
- <span class="dropdown-text">Addendum 1: Arizona</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./addendum/Addendum_ne.html">
- <span class="dropdown-text">Addendum 2: Nevada</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./paper.html">
- <span class="dropdown-text">Paper</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./tabset.html"> 
-<span class="menu-text">Tabset</span></a>
-  </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shiny-applications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Shiny applications</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-shiny-applications">    
-        <li class="dropdown-header">R2 simulator</li>
-        <li class="dropdown-header">Rigging of a natural election</li>
-        <li class="dropdown-header">Election results analyzer</li>
-        <li class="dropdown-header">Restoration of a rigged election</li>
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-e-books" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">E-books</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-e-books">    
-        <li>
-    <a class="dropdown-item" href="https://lotariohw26.github.io/MD_BOOK1">
- <span class="dropdown-text">Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./man_bib.html"> 
-<span class="menu-text">Bibliography</span></a>
-  </li>  
-  <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-appendix" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Appendix</span>
     </a>
@@ -1677,24 +1624,8 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-webassembly">    
         <li>
-    <a class="dropdown-item" href="./simulations.html">
- <span class="dropdown-text">Simulations</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./rigging.html">
- <span class="dropdown-text">Rigging</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./analyzer.html">
- <span class="dropdown-text">Analyzer</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./restoration.html">
- <span class="dropdown-text">Restoration</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./randpython.html">
- <span class="dropdown-text">Functions</span></a>
+ <span class="dropdown-text">Pyodide</span></a>
   </li>  
     </ul>
   </li>
