@@ -1,35 +1,3 @@
-apn0r:
-  nid: "apn0r"
-  mtd:
-    nmn: "Presidential"
-    yea: 2020
-    cnd: ['Trump (R)', 'Biden (D)']
-    sta: "Maryland"
-    cou: ['Baltimore']
-    mod: ['EV', 'MiV']
-  spr:
-    url: "https://docs.google.com/spreadsheets/d/1ePxTwcx6LFL8pW8SZfx5iZgqZeCUzXY3bUQiFUYncgg/edit?gid=1164302233#gid=116430223"
-    #    url: "https://docs.google.com/spreadsheets/d/10815wJU8oscTeC5ZsUp_HN2qBJtcQNraa-G3dKien8c/edit?gid=1639367400#gid=1639367400"
-    #url: "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=1974020018#gid=1974020018"
-    pgn: "All Baltimore Precincts"
-    rng: B14:N250
-    cln: ['P','PN','R','A1','B1','A2','B2','A3','B3','A4','B4','A5','B5']
-    stuv: ['A1+A2', 'B1+B2', 'A3+A4+A5', 'B3+B4+B5']
-  sol:
-    fr: "2"
-    #eq: ["z=k0+k1*x+k2*y","alpha=k0+k1*g+k2*h+k3*Gamma"]
-    eq: ["z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3","alpha=k0+k1*g+k2*h+k3*Gamma"]
-    va: "g"
-    ro: [[1],[1, 2, 4],[-44.9573,7.001545,-19.9677]]
-  prg:
-    cnd: 1
-    z: 300
-    stuv: [0,0,0,0]
-    blup: [0,1]
-    prma: [77,39,45,141,174,172,168,173,110,139,147]
-    eqp: "alpha=k0+k1*g+k2*h"
-  bib: ['https://www.youtube.com/watch?v=_37ghf0DRLw','https://drive.google.com/file/d/1w4CAafy7wwPDlnAwC12UQAZxwoa-DEoq/view?pli=1','https://www.overleaf.com/project/66be20768458b4502ab04fa2,"https://drive.google.com/file/d/1w4CAafy7wwPDlnAwC12UQAZxwoa-DEoq/view?pli=1']
-
 apn1n:
   nid: "apn1n"
   mtd:
@@ -101,8 +69,6 @@ apn3n:
     rng: G5:O940
     cln: ['PC', 'PN', 'R', 'A0', 'A1', 'A2', 'B0', 'B1', 'B2']
     stuv: ['A2', 'B2', 'A1', 'B1']
-    eq: "alpha=k0+k1*x+k2*y"
-    va: y
   sol:
     fr: "1"
     eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*Zeta"]
@@ -115,8 +81,38 @@ apn3n:
     blup: [0.05,0.95]
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ["https://docs.google.com/document/d/1GfCZvMDNE6JnG5q5e5lewH9EiNQ7vzojcotiY7gdQOo/edit#heading=h.lty23tl914ct"]
-
-apn4n:
+apn4r:
+  nid: "apn0r"
+  mtd:
+    nmn: "Presidential"
+    yea: 2020
+    cnd: ['Trump (R)', 'Biden (D)']
+    sta: "Maryland"
+    cou: ['Baltimore']
+    mod: ['EV', 'MiV']
+  spr:
+    url: "https://docs.google.com/spreadsheets/d/1ePxTwcx6LFL8pW8SZfx5iZgqZeCUzXY3bUQiFUYncgg/edit?gid=1164302233#gid=116430223"
+    #    url: "https://docs.google.com/spreadsheets/d/10815wJU8oscTeC5ZsUp_HN2qBJtcQNraa-G3dKien8c/edit?gid=1639367400#gid=1639367400"
+    #url: "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=1974020018#gid=1974020018"
+    pgn: "All Baltimore Precincts"
+    rng: B14:N250
+    cln: ['P','PN','R','A1','B1','A2','B2','A3','B3','A4','B4','A5','B5']
+    stuv: ['A1+A2', 'B1+B2', 'A3+A4+A5', 'B3+B4+B5']
+  sol:
+    fr: "2"
+    #eq: ["z=k0+k1*x+k2*y","alpha=k0+k1*g+k2*h+k3*Gamma"]
+    eq: ["z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3","alpha=k0+k1*g+k2*h+k3*Gamma"]
+    va: "g"
+    ro: [[1],[1, 2, 4],[-44.9573,7.001545,-19.9677]]
+  prg:
+    cnd: 1
+    z: 300
+    stuv: [0,0,0,0]
+    blup: [0,1]
+    prma: [77,39,45,141,174,172,168,173,110,139,147]
+    eqp: "alpha=k0+k1*g+k2*h"
+  bib: ['https://www.youtube.com/watch?v=_37ghf0DRLw','https://drive.google.com/file/d/1w4CAafy7wwPDlnAwC12UQAZxwoa-DEoq/view?pli=1','https://www.overleaf.com/project/66be20768458b4502ab04fa2,"https://drive.google.com/file/d/1w4CAafy7wwPDlnAwC12UQAZxwoa-DEoq/view?pli=1']
+apn5n:
   nid: "apn4n"
   mtd:
     nmn: abc
@@ -144,8 +140,7 @@ apn4n:
     blup: [0,1]
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['']
-
-apn5n:
+apn6n:
   mtd:
     id: apn5n
     nmn: abc
@@ -178,8 +173,7 @@ apn5n:
     blup: [0,1]
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit']
-
-apn6n:
+apn7n:
   nid: apn6n
   mtd:
     id: apn6
@@ -214,8 +208,7 @@ apn6n:
     blup: [0,1]
     eqp: "alpha=k0+k1*g+k2*h"
   bib: ['https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit']
-
-apn7n:
+apn8n:
   nid: "apn7n"
   spr:
     url: "https://docs.google.com/spreadsheets/d/1ZSvEOFD_I-bM_Ki7AVUUmwlC-M25AQe66t9v5cE3Bdo/edit?gid=2139335671#gid=2139335671"
@@ -223,6 +216,3 @@ apn7n:
     rng: A1:G380
     cln: ['PN', 'A1', 'B1','A2','B2','A3','B3']
     stuv: ['A1', 'B1', 'A2', 'B2']
-
-
-
