@@ -3,16 +3,15 @@ title: "{{< var titll >}}"
 output: github_document
 execute: 
   cache: false
-webr:
-  show-startup-message: true      # Display status of webR initialization
-  show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
-  packages: ['ggplot2','dplyr','data.table','readr','plotly','combinat','htmltools','broom','cowplot'] 
-  cell-options:
-    autorun: true
+#webr:
+#  show-startup-message: true      # Display status of webR initialization
+#  show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
+#  packages: ['ggplot2','dplyr','data.table','readr','plotly','combinat','htmltools','broom','cowplot'] 
+#  cell-options:
+#    autorun: true
 filters:
   - panelize
   - pyodide
-  - webr
 ---
 
 ```{r, echo=F}
@@ -21,6 +20,11 @@ filters:
 ```
 
 **Based upon the ideas developed by Edward K. Solomon**
+
+```{r}
+knitr::knit_exit()
+```
+
 
 ```{pyodide-python}
 import sympy, pandas, numpy
