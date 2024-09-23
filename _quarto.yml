@@ -37,8 +37,8 @@ project:
     #    - "rigging.qmd"
     #    - "analyzer.qmd"
     #    - "restoration.qmd"
-    - "randpython.qmd"
-    # - "calculator.qmd"
+    #    - "randpython.qmd"
+    #    - "calculator.qmd"
 website:
   title: "{{< var titls >}}"
   navbar:
@@ -77,8 +77,8 @@ website:
         menu:
         - text: "20 laws and 40 isometries "
           href: "laws.qmd"
-      - text: WebAssembly
-        menu:
+          #      - text: WebAssembly
+          #        menu:
           #        - text: "Simulations"
           #          href: "simulations.qmd"
           #        - text: "Rigging"
@@ -87,8 +87,8 @@ website:
           #          href: "analyzer.qmd"
           #        - text: "Restoration"
           #          href: "restoration.qmd"
-        - text: "Pyodide"
-          href: "randpython.qmd"
+          #        - text: "Pyodide"
+          #          href: "randpython.qmd"
           #        - text: "Functions2"
           #          href: "calculator.qmd"
   repo-url: "https://github.com/lotariohw26/ManifoldDestiny"

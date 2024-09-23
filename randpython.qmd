@@ -2,12 +2,6 @@
 title: ""
 execute: 
   cache: false
-webr:
-  show-startup-message: false      # Display status of webR initialization
-  show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
-  packages: ['dplyr','data.table','ggplot2','combinat','plotly','htmltools','broom'] # Pre-install dependencies
-  cell-options:
-    autorun: true
 filters:
   - panelize
   - webr
@@ -218,98 +212,6 @@ testr = genpolycoeffr(["g","h","alpha"],"z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k
 ```
 
 ```{r, echo=F, eval=T}
-knitr::knit_exit()
-```
-
-# Python
-
-<head>
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
-</head>
-
-<body>
-  <p>
-    You can execute any Python code. Just enter something in the box below and
-    click the button.
-  </p>
-  <input id="code" value="sum([1, 2, 3, 4, 5])" />
-  <button onclick="evaluatePython()">Run</button>
-  <br />
-  <br />
-  <div>Output:</div>
-  <textarea id="output" style="width: 100%;" rows="6" disabled></textarea>
-
-  <script>
-    const output = document.getElementById("output");
-    const code = document.getElementById("code");
-
-    function addToOutput(s) {
-      output.value += ">>>" + code.value + "\n" + s + "\n";
-    }
-
-    output.value = "Initializing...\n";
-    // init Pyodide
-    async function main() {
-      let pyodide = await loadPyodide();
-      output.value += "Ready!\n";
-      return pyodide;
-    }
-    let pyodideReadyPromise = main();
-
-    async function evaluatePython() {
-      let pyodide = await pyodideReadyPromise;
-      try {
-        let output = pyodide.runPython(code.value);
-        addToOutput(output);
-      } catch (err) {
-        addToOutput(err);
-      }
-    }
-  </script>
-</body>
-
-# R
-
-<div>
-  <pre><code id="out">Loading webR, please wait...</code></pre>
-  <input spellcheck="false" autocomplete="off" id="input" type="text">
-  <button onclick="globalThis.sendInput()" id="run">Run</button>
-</div>
-
-<script type="module">
-  /* Create a webR console using the Console helper class */
-  import { Console } from 'https://webr.r-wasm.org/latest/webr.mjs';
-  const webRConsole = new Console({
-    stdout: line => document.getElementById('out').append(line + '\n'),
-    stderr: line => document.getElementById('out').append(line + '\n'),
-    prompt: p => document.getElementById('out').append(p),
-  });
-  webRConsole.run();
-  
-  /* Write to the webR console using the ``stdin()`` method */
-  let input = document.getElementById('input');
-  globalThis.sendInput = () => {
-    webRConsole.stdin(input.value);
-    document.getElementById('out').append(input.value + '\n');
-    input.value = "";
-  }
-  
-  /* Send input on Enter key */
-  input.addEventListener(
-    "keydown",
-    (evt) => {if(evt.keyCode === 13) globalThis.sendInput()}
-  );
-</script>
-
-
-
-**Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
-
-
-
-
-
-```{r, echo=F}
 knitr::knit_exit()
 ```
 
