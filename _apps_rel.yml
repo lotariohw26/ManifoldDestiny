@@ -90,8 +90,6 @@ apn2n:
 apn3n:
   nid: "apn3n"
   mtd:
-    nmn: abc
-    rcn: "Governor"
     yea: 2022
     cou: ['Maricopa']
     sta: Arizona
@@ -107,7 +105,7 @@ apn3n:
     va: y
   sol:
     fr: "1"
-    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y"]
+    eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*Zeta"]
     va: "y"
     ro: [0]
   prg:
