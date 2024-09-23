@@ -13,11 +13,11 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
+badd +10 ~/InitLOT/README.md
+badd +1 ~/Research/ManifoldDestiny/_quarto.yml
 badd +1 ~/InitJIH/README.md
-badd +7 ~/Research/ManifoldDestiny/_quarto.yml
 badd +78 ~/Research/ManifoldDestiny/_variables.yml
 badd +1 ~/Research/ManifoldDestiny/Session.vim
-badd +10 ~/InitLOT/README.md
 badd +1 ~/Research/ManifoldDestiny/_apps_rel.yml
 badd +1 ~/Research/ManifoldDestiny/script/python/polysolver.py
 badd +1 ~/Research/ManifoldDestiny/data-raw/record_static.R
@@ -27,7 +27,23 @@ badd +1 ~/Research/ManifoldDestiny/script/R/testing.R
 badd +28 term://~/Research/ManifoldDestiny/script/python//155604:bash
 badd +29 ~/Research/ManifoldDestiny/prerendr.R
 badd +14 term://~/Research/ManifoldDestiny/script/python//156410:bash
-badd +0 ~/Research/ManifoldDestiny/shinyapps/empapp/app.R
+badd +1 ~/Research/ManifoldDestiny/shinyapps/empapp/app.R
+badd +8 ~/Research/ManifoldDestiny/randpython.qmd
+badd +3 term://~/Research/ManifoldDestiny//2389623:bash
+badd +38 ~/Research/ManifoldDestiny/script/R/complexregression.R
+badd +56 ~/Research/ManifoldDestiny/R/abc.R
+badd +17 ~/Research/ManifoldDestiny/addendum/Addendum_az.qmd
+badd +1 ~/Research/ManifoldDestiny/index.qmd
+badd +8 term://~/Research/ManifoldDestiny//2434328:bash
+badd +14 term://~/Research/ManifoldDestiny//2435063:bash
+badd +37 term://~/Research/ManifoldDestiny//2488155:bash
+badd +225 term://~/Research/ManifoldDestiny//2489360:bash
+badd +3 term://~/Research/ManifoldDestiny//2499133:bash
+badd +81 term://~/Research/ManifoldDestiny//2499904:bash
+badd +9 term://~/Research/ManifoldDestiny//2500377:bash
+badd +11 term://~/Research/ManifoldDestiny//2500949:bash
+badd +14 term://~/Research/ManifoldDestiny//2501569:bash
+badd +22 ~/Research/ManifoldDestiny/calculator.qmd
 argglobal
 %argdel
 $argadd ~/InitLOT/README.md
@@ -87,11 +103,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 7 - ((6 * winheight(0) + 10) / 21)
+let s:l = 1 - ((0 * winheight(0) + 10) / 21)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 7
+keepjumps 1
 normal! 010|
 wincmd w
 argglobal
@@ -271,7 +287,7 @@ wincmd w
 exe 'vert 1resize ' . ((&columns * 140 + 139) / 279)
 exe 'vert 2resize ' . ((&columns * 138 + 139) / 279)
 tabnext
-edit ~/Research/ManifoldDestiny/shinyapps/empapp/app.R
+edit ~/Research/ManifoldDestiny/_apps_rel.yml
 argglobal
 balt ~/Research/ManifoldDestiny/_quarto.yml
 setlocal fdm=expr
@@ -288,7 +304,7 @@ keepjumps exe s:l
 normal! zt
 keepjumps 1
 normal! 0
-tabnext 1
+tabnext 3
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

@@ -33,6 +33,7 @@ def rall(sel=[0, 0, 0]):
     return allrot
 
 def genpolycoeffn(form,expr,solv):
+    forp = {'N': 1, 'H': 2, 'O': 3}
     elem = [["alpha","x","y","zeta","lamda","Omega"], ["alpha","g","h","Gamma","Omega","lamda"], ["alpha","m","n","xi","lamda","Omega"]]
     x, y, z = sympy.symbols('x y z')
     alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
