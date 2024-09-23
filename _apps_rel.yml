@@ -114,7 +114,7 @@ apn3n:
     stuv: [50,50,50,50]
     blup: [0.05,0.95]
     eqp: "alpha=k0+k1*g+k2*h"
-  bib: []
+  bib: ["https://docs.google.com/document/d/1GfCZvMDNE6JnG5q5e5lewH9EiNQ7vzojcotiY7gdQOo/edit#heading=h.lty23tl914ct"]
 
 apn4n:
   nid: "apn4n"
