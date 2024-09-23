@@ -2,6 +2,7 @@
 # _apps_sim.yml
 # _apps_his.yml
 # data-raw/record_static.R
+# script/R/complexregression.R
 # script/R/testing.R
 # shinyapps/manimp/app.R
 # shinyapps/empapp/app.R
@@ -44,52 +45,52 @@ website:
     left:
       - text: "Index"
         href: index.qmd
-      - text: "Documentation"
-        menu:
-        - text: "Presentation" 
-        #          href: "presentation.qmd"
-        - text: "Addendum 1: Arizona"
-          href: "addendum/Addendum_az.qmd"
-        - text: "Addendum 2: Nevada"
-          href: "addendum/Addendum_ne.qmd"
-        - text: "Paper"
-          href: paper.qmd
-      - text: "Tabset"
-        href: tabset.qmd
-      - text: Shiny applications
-        menu:
-          - text: "R2 simulator"
-          # href: "{{< var shn1 >}}"
-          - text: "Rigging of a natural election"
-          #  href: "{{< var shn2 >}}"
-          - text: "Election results analyzer"
-          #  href: "{{< var shn3 >}}"
-          - text: "Restoration of a rigged election"
-          #  href: "{{< var shn4 >}}"
-      - text: E-books
-        menu:
-          - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
-            href: "https://lotariohw26.github.io/MD_BOOK1"
-      - text: Bibliography
-        href: man_bib.qmd
+        #      - text: "Documentation"
+        #        menu:
+        #        - text: "Presentation" 
+        #        #          href: "presentation.qmd"
+        #        - text: "Addendum 1: Arizona"
+        #          href: "addendum/Addendum_az.qmd"
+        #        - text: "Addendum 2: Nevada"
+        #          href: "addendum/Addendum_ne.qmd"
+        #        - text: "Paper"
+        #          href: paper.qmd
+        #      - text: "Tabset"
+        #        href: tabset.qmd
+        #      - text: Shiny applications
+        #        menu:
+        #          - text: "R2 simulator"
+        #          # href: "{{< var shn1 >}}"
+        #          - text: "Rigging of a natural election"
+        #          #  href: "{{< var shn2 >}}"
+        #          - text: "Election results analyzer"
+        #          #  href: "{{< var shn3 >}}"
+        #          - text: "Restoration of a rigged election"
+        #          #  href: "{{< var shn4 >}}"
+        #      - text: E-books
+        #        menu:
+        #          - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
+        #            href: "https://lotariohw26.github.io/MD_BOOK1"
+        #      - text: Bibliography
+        #        href: man_bib.qmd
       - text: Appendix
         menu:
         - text: "20 laws and 40 isometries "
           href: "laws.qmd"
       - text: WebAssembly
         menu:
-        - text: "Simulations"
-          href: "simulations.qmd"
-        - text: "Rigging"
-          href: "rigging.qmd"
-        - text: "Analyzer"
-          href: "analyzer.qmd"
-        - text: "Restoration"
-          href: "restoration.qmd"
-        - text: "Functions"
+          #        - text: "Simulations"
+          #          href: "simulations.qmd"
+          #        - text: "Rigging"
+          #          href: "rigging.qmd"
+          #        - text: "Analyzer"
+          #          href: "analyzer.qmd"
+          #        - text: "Restoration"
+          #          href: "restoration.qmd"
+        - text: "Pyodide"
           href: "randpython.qmd"
-        - text: "Functions2"
-          href: "calculator.qmd"
+          #        - text: "Functions2"
+          #          href: "calculator.qmd"
   repo-url: "https://github.com/lotariohw26/ManifoldDestiny"
   site-url: "https://lotariohw26.github.io/ManifoldDestiny/"
   reader-mode: false

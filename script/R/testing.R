@@ -69,7 +69,23 @@ re$tdf$d_330[1]
 wtet <- googlesheets4::read_sheet(url, range="A6:B16",sheet="Write Tet")
 bind <- dplyr::bind_cols(dplyr::select(rotuvw,x,y,z),dplyr::select(crot,x,y,z))
 abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
-pyg <- py_genpolycoeff(plr=3,parm=c("z", "x", "y"),solv='alpha',grd=1,eur=vmat)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pyg <- py_genpolycoeffr(plr=3,parm=c("z", "x", "y"),solv='alpha',grd=1,eur=vmat)
+pyg[[1]]
+
 ghi <- tethyd(abc,re$kvec,pyg)
 View(ghi)
 dif1 <- sort(setdiff(co$rdfc$PN,crot$PN))
@@ -149,19 +165,11 @@ ghi$B
 ghi$C
 ghi$D
 # [1] 1.557581
-
 #vmat <- unique(dplyr::select(ghi,a1,a2,a3,b1,b2,b3,c1,c2,c3,k0,k1,k2,k3,k4,k5,k6,k7,k8,k9)) %>% dplyr::mutate(d100=k1*a3+k2*b3-c3)
 ###########################################################################################################
 ###########################################################################################################
 ### Level 2
 ###########################################################################################################
-
-
-
-
-
-
-
 ##4*kkyk0 + k1*u + k2*v + k3*u**2 + k4*v**2 + k5*u*v + k6*v**3 + k7*u*v + k8*u**2*v + k9*u*v**2u
 #re$regression(slv4[1])
 #re$hat_predict("g",1)
@@ -785,5 +793,4 @@ abc <- distinct(dplyr::select(re$tdf,a1,a2,a3,b1,b2,b3,c1,c2,c3,k1,k2,k3,k4,k5,k
 
 # 
 abc$k9*6*abc$b1*abc$b2*abc$b3+abc$k6*6*abc$a1*abc$a2*abc$a3
-
 
