@@ -254,10 +254,11 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
+  browser()
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
-  frm <- as.numeric(md$sol$fr)
+  frm <- md$sol$fr
   co <- Countinggraphs(da)
   if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
   print(co$purdf)
@@ -276,7 +277,7 @@ selreport <- function(
   co$plext(frm)
   co$gridarrange()
   ges <- Estimation(co$rofc,frm)
-  #md$sol$eq[1]
+   #md$sol$eq[1]
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
   ges$hat_predict(svf=md$sol$va)
@@ -710,14 +711,16 @@ Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("
 
 })
 #})
-Countingprocess$methods(sortpre=function(form=1,
+Countingprocess$methods(sortpre=function(form="N",
 					 polyn=6,
 					 sortby='alpha'
 					 ){
 
-  frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11,12),c(13,14,15,16,17,18),c(19,20,21,22,23,24))[[form]]
+  #frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11,12),c(13,14,15,16,17,18),c(19,20,21,22,23,24))[[form]]
   # [1] "alpha" "x"     "y"     "zeta"  "lamda" "Omega" "alpha" "g"     "h"     "Gamma" "Omega" "lamda" "alpha"
   #[14] "m"     "n"     "xi"    "lamda" "Omega" "alpha" "x"     "y"     "Omega" "m"     "n"    
+  browser()
+  #stick$parm
   selvar <- unname(unlist(parameters))[frmsel]
   psel <<- selvar[1:ifelse(form %in% 1:3,5,6)]
   proppar <- rev(selvar)[1]
