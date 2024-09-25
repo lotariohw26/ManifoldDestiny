@@ -264,9 +264,9 @@ selreport <- function(
   co$descriptive(frm)
   co$r2siminput(frm)
   co$plot2d(frm)
-  co$plotxy(frm)
-  #co$resplot(frm)
-  co$plotly3d(partition=frm)
+  #co$plotxy(frm)
+  ##co$resplot(frm)
+  #co$plotly3d(partition=frm)
   #co$rotation(selv=c("g","h","alpha"),
   #	    smat=md$sol$ro[[1]],
   #	    grad=md$sol$ro[[2]],
@@ -601,8 +601,9 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 })
 
 Countingprocess$methods(r2siminput=function(form=1,latest=0){
+  #!
   rdf <- list(rdfci,rdfc)[[ifelse(latest==0,1,2)]]
-  pm <- parameters[[form]]
+  pm <- stick[[1]][[form]]
   regs <- c(mean(rdf$R),sd(rdf$R))
   turn <- c(mean(rdf$V/rdf$R),sd(rdf$V/rdf$R))
   minmax <- c(min(rdf$R),max(rdf$R))
@@ -716,7 +717,7 @@ Countingprocess$methods(sortpre=function(form="N",
 
   selv <- stick[[1]][[form]]
   prop <- rev(selv)[1]
-  psel <<- selv[1:2]
+  psel <<- selv[1:3]
 
   srdfc <- rdfc %>%
     dplyr::select(P,all_of(selv)) %>%
@@ -865,6 +866,8 @@ Countinggraphs$methods(plot2d=function(form=1,
 				       selv=1
 				       ){
 
+  browser()
+  View(quintile)
   pselv <- list(psel[c(1,2,3)],psel)[[selv]]
   longdf <- tidyr::pivot_longer(quintile,all_of(c(psel,paste0(psel,'_pred'))))
   go <- ggplot2::ggplot(data=longdf) +
