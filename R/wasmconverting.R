@@ -254,14 +254,12 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
-  browser()
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- md$sol$fr
   co <- Countinggraphs(da)
   if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
-  print(co$purdf)
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
@@ -716,27 +714,22 @@ Countingprocess$methods(sortpre=function(form="N",
 					 sortby='alpha'
 					 ){
 
-  #frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11,12),c(13,14,15,16,17,18),c(19,20,21,22,23,24))[[form]]
-  # [1] "alpha" "x"     "y"     "zeta"  "lamda" "Omega" "alpha" "g"     "h"     "Gamma" "Omega" "lamda" "alpha"
-  #[14] "m"     "n"     "xi"    "lamda" "Omega" "alpha" "x"     "y"     "Omega" "m"     "n"    
-  browser()
-  #stick$parm
-  selvar <- unname(unlist(parameters))[frmsel]
-  psel <<- selvar[1:ifelse(form %in% 1:3,5,6)]
-  proppar <- rev(selvar)[1]
+  selv <- stick[[1]][[form]]
+  prop <- rev(selv)[1]
+  psel <<- selv[1:2]
+
   srdfc <- rdfc %>%
-    dplyr::select(P,all_of(selvar)) %>%
+    dplyr::select(P,all_of(selv)) %>%
     dplyr::arrange(alpha) %>%
     dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
-    dplyr::mutate(!!paste0(proppar,'_m'):=mean(!!rlang::sym(proppar))) %>%
-    dplyr::mutate(!!paste0(proppar,'_mr'):=!!rlang::sym(proppar)-!!rlang::sym(paste0(proppar,'_m')))
+    dplyr::mutate(!!paste0(prop,'_m'):=mean(!!rlang::sym(prop))) %>%
+    dplyr::mutate(!!paste0(prop,'_mr'):=!!rlang::sym(prop)-!!rlang::sym(paste0(prop,'_m')))
     psel %>% purrr::map(function(x,df=srdfc,p=polyn){
         pred <- stats::predict(lm(alpha~poly(alpha,p),data=df))
         res <- pred - df[[x]]
         data.frame(pred,res) %>% `colnames<-` (c(paste0(x,'_pred'),paste0(x,'_res')))
     }) %>% as.data.frame(.) -> predictor
   quintile <<- dplyr::bind_cols(srdfc, predictor)
-
   ## Comments needed
   #plso <- round(polynom::polynomial(unname(coef(polyc[[form]]))),3)
   #pintv <- polynom::integral(polynom::polynomial(plso),c(0,1))
