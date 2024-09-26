@@ -262,44 +262,46 @@ selreport <- function(
   if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
   co$sortpre(frm)
   co$descriptive(frm)
-  #co$r2siminput(frm)
+  co$r2siminput(frm)
   co$plot2d(frm)
-  #co$pl_2dsort[[1]]
   co$plotxy(frm)
-  browser()
-  ##co$resplot(frm)
-  #co$plotly3d(partition=frm)
-  #co$rotation(selv=c("g","h","alpha"),
-  #	    smat=md$sol$ro[[1]],
-  #	    grad=md$sol$ro[[2]],
-  #	    mead=TRUE)
-  #co$rotgraph()
+  co$pl_corrxy[[8]]
+  #co$resplot(frm)
+  co$plotly3d(partition=frm)
+  if (md$sol$ro[[1]]==1) {
+    co$rotation(selv=c("g","h","alpha"),
+    	    smat=md$sol$ro[[1]],
+    	    grad=md$sol$ro[[2]],
+    	    mead=T)
+    co$rotgraph()
+  }
   co$plext(frm)
   co$gridarrange()
+  browser()
   ges <- Estimation(co$rofc,frm)
-   #md$sol$eq[1]
-  ges$regression(md$sol$eq[1])
-  ges$diagnostics()
-  ges$hat_predict(svf=md$sol$va)
-  ges$hat_intcomp()
+  # #md$sol$eq[1]
+  #ges$regression(md$sol$eq[1])
+  #ges$diagnostics()
+  #ges$hat_predict(svf=md$sol$va)
+  #ges$hat_intcomp()
+  #### Identify
+  #ies <- Estimation(co$rdfc,frm)
+  #ies$regression(md$sol$eq[2])
+  #ies$diagnostics()
   ### Identify
-  ies <- Estimation(co$rdfc,frm)
-  ies$regression(md$sol$eq[2])
-  ies$diagnostics()
-  ## Identify
-  ### Bowplot
-  cob <- Countinggraphs(da,selvar=names(da))
-  if (md$prg$cnd==1) {cob$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
-  cob$sortpre(4,3)
-  cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
-  selv=2)
-  return(list(co=co,
-	      ges=ges,
-	      ies=ies,
-	      cb=cob,
-	      md=md))
+  #### Bowplot
+  #cob <- Countinggraphs(da,selvar=names(da))
+  #if (md$prg$cnd==1) {cob$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
+  #cob$sortpre(4,3)
+  #cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
+  #selv=2)
+  #return(list(co=co,
+  #            ges=ges,
+  #            ies=ies,
+  #            cb=cob,
+  #            md=md))
 }
-##' @export seloutput
+###' @export seloutput
 seloutput <- function(selreport=NULL){
   tab1 <- selreport[[1]]$rdfc
   tab2 <- selreport[[1]]$desms
@@ -631,21 +633,18 @@ Countingprocess$methods(rotation=function(
 				     mead=T,
 			             slid=F){
 
-  if(any(grad!=0)) {
+  #if(any(grad!=0)) {
   	rofc <<- erotation(rdfc,selv,smat,grad,mead) 
-  } else {
+  #} else {
   	rofc <<- rdfc 
-  }
+  #}
 })
 
 Countingprocess$methods(plext=function(frm=2){
    # Select the variable pair from the list
-   varu <- list(c("x", "y"), c("g", "h"), c("m", "n"))[[frm]]
-   
-   # Extract the variables
+   varu <- as.list(stick[[1]][[frm]][c(2,3)])
    var1 <- varu[1]
    var2 <- varu[2]
-   
    # Dynamically generate the lhs based on varu
    lhs <- c(paste0(var1, "1"), paste0(var2, "1"), paste0(var2, var1), 
             paste0(var1, "2"), paste0(var2, "2"), paste0(var2, "2", var1), paste0(var2, var1, "2"), 
@@ -877,8 +876,6 @@ Countinggraphs$methods(plot2d=function(form=1,
     pl_2dsort <<- list(go)
 })
 Countinggraphs$methods(plotxy=function(form=1,Pexc=NULL){
-  browser()
-  rdfc
   dfg <- dplyr::select(rdfc,P,parm[[form]]) %>% dplyr::filter(!P%in%Pexc) %>% dplyr::select(-P)
   cmb <- combinat::combn(5, 2)
   pl_corrxy <<- lapply(seq(1,dim(cmb)[2]), function(x){
@@ -1065,6 +1062,7 @@ Estimation <- setRefClass("Estimation", fields=list(
 						lpk='list'
 						))
 Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
+  browser()
   edfc <<- rdfcinp
   if(!all(c("m1", "m2", "m3") %in% names(edfc))) {
       roto <<- 0
