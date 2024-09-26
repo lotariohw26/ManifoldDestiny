@@ -262,9 +262,11 @@ selreport <- function(
   if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
   co$sortpre(frm)
   co$descriptive(frm)
-  co$r2siminput(frm)
+  #co$r2siminput(frm)
   co$plot2d(frm)
-  #co$plotxy(frm)
+  #co$pl_2dsort[[1]]
+  co$plotxy(frm)
+  browser()
   ##co$resplot(frm)
   #co$plotly3d(partition=frm)
   #co$rotation(selv=c("g","h","alpha"),
@@ -547,7 +549,7 @@ Countingprocess <- setRefClass("Countingprocess",
 					   psel='vector',
 					   polyc='list',
 					   radpar='vector',
-					   parameters='list',
+					   parm='list',
 					   preend='list',
 					   parampre='data.frame',
                                            rotplotly='list',
@@ -575,19 +577,18 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   sortby=alpha
 					   ){
 
-  wasm <<- F # Sys.info()[['sysname']]=="Emscripten"
-  parameters <<- stickers[['parameters']]
+  wasm <<- Sys.info()[['sysname']]=="Emscripten"
+  parm <<- stick[['parm']]
   se <<- eqpar$meqs
   lx <<- eqpar$meql
   ils <- c('S','T','U','V')
   sdfc <<- ballcount(dplyr::select(sdfinp,all_of(selvar)),se=se)
   rdfci <<- rdfc <<- sdfc %>%
-    #!
-    #dplyr::arrange(alpha) %>%
+    dplyr::arrange(alpha) %>%
     dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
-    dplyr::relocate(pri,.before=P)
-    #dplyr::arrange(P)
-    #dplyr::relocate(Z,.after=O)
+    dplyr::relocate(pri,.before=P) %>%
+    dplyr::arrange(P) %>%
+    dplyr::relocate(Z,.after=O)
   ## Polynom
   pdata <- rdfci  %>% dplyr::arrange(alpha) 
   pnset <- min(length(rdfci$pri)-1,polyn)
@@ -615,7 +616,7 @@ Countingprocess$methods(r2siminput=function(form=1,latest=0){
 })
 
 Countingprocess$methods(descriptive=function(form=1){
-  flp <- c(unname(unlist(parameters)))
+  flp <- c(unname(unlist(parm)))
   co <- c('S','T','U','V','R','Z')
   sdv <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(co)),mean))
   mdv <- as.data.frame(sapply(dplyr::select(rdfc,dplyr::all_of(flp)),mean))
@@ -866,20 +867,19 @@ Countinggraphs$methods(plot2d=function(form=1,
 				       selv=1
 				       ){
 
-  browser()
-  View(quintile)
-  pselv <- list(psel[c(1,2,3)],psel)[[selv]]
   longdf <- tidyr::pivot_longer(quintile,all_of(c(psel,paste0(psel,'_pred'))))
   go <- ggplot2::ggplot(data=longdf) +
-    ggplot2::geom_line(data=filter(longdf,name%in%paste0(pselv,'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +
-    ggplot2::geom_point(data=filter(longdf,name%in%pselv),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
+    ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel,'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +  
+    ggplot2::geom_point(data=filter(longdf,name%in%psel),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
     ggplot2::labs(title=labs$title,x=labs$x,y=labs$y,caption=labs$caption) +
     ggplot2::ylim(0,1) +
     ggplot2::theme_bw()
     pl_2dsort <<- list(go)
 })
 Countinggraphs$methods(plotxy=function(form=1,Pexc=NULL){
-  dfg <- dplyr::select(rdfc,P,parameters[[form]]) %>% dplyr::filter(!P%in%Pexc) %>% dplyr::select(-P)
+  browser()
+  rdfc
+  dfg <- dplyr::select(rdfc,P,parm[[form]]) %>% dplyr::filter(!P%in%Pexc) %>% dplyr::select(-P)
   cmb <- combinat::combn(5, 2)
   pl_corrxy <<- lapply(seq(1,dim(cmb)[2]), function(x){
     dfn <- names(dfg[cmb[,x]])
@@ -895,7 +895,7 @@ Countinggraphs$methods(plotxy=function(form=1,Pexc=NULL){
   })
 })
 Countinggraphs$methods(resplot=function(form=1){
-  #selvar <- c(paste0(parameters[[form]][c(1,2,4)],'_res'),paste0(parameters[[form]][c(3)],c("","_m","_mr")))
+  #selvar <- c(paste0(parm[[form]][c(1,2,4)],'_res'),paste0(parm[[form]][c(3)],c("","_m","_mr")))
   #dfg <- quintile
   #browser()
   ##cmb <- combinat::combn(3, 2)
@@ -909,7 +909,7 @@ Countinggraphs$methods(resplot=function(form=1){
   ##})
 #			       browser()
 #  View(quintile)
-#  selvar <- c(paste0(parameters[[form]][c(1,2,4)],'_res'),paste0(parameters[[form]][c(3)],c("","_m","_mr")))
+#  selvar <- c(paste0(parm[[form]][c(1,2,4)],'_res'),paste0(parm[[form]][c(3)],c("","_m","_mr")))
 #  dfg <- dplyr::select(quintile,all_of(selvar))
 #  cmb <- combinat::combn(3, 2)
   #pl_rescro <<- lapply(seq(1,dim(cmb)[2]), function(x){
@@ -925,7 +925,7 @@ Countinggraphs$methods(plotly3d=function(
 					 selid=1
 					 ){
 
-  rdfcpar <- rdfc %>% dplyr::select(parameters[[partition]][c(1,2,3,4,5)])
+  rdfcpar <- rdfc %>% dplyr::select(parm[[partition]][c(1,2,3,4,5)])
   mrdfc <- as.matrix(rdfcpar)
   combi <- combinat::combn(5, 3)
   pl_3d_mani <<- lapply(seq(1, dim(combi)[2]), function(x, comb = combi, df = rdfcpar) {
@@ -1072,7 +1072,7 @@ Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
       roto <<- 1
   }
   fnr <<- form
-  param <<- stickers[['parameters']][[fnr]]
+  param <<- stickers[['parm']][[fnr]]
   syequ <<- eqpar$meqs
   metad <<- list( mtd = list( nmn = "Default"), spr = list(), sol = list( fr = "1", eq = "alpha=k0+k1*x+k2*y", va = "y"), prg = list( cnd = 0, z = 0, stuv = c(0,0,0,0), blup = c(0,1), eqp = "alpha=k0+k1*g+k2*h"), bib = list())
   lpk <<- lpku
@@ -1182,4 +1182,6 @@ Estimation$methods(hat_intcomp=function(){
     prc0123=100*sum(abs(compare[[comps]] - 0) <= 3)/length(compare[[comps]]))
   comdesc <<- data.frame(fname=txvnc,stats=names(vnd),values=vnd)
 })
+
+
 
