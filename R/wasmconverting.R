@@ -265,7 +265,7 @@ selreport <- function(
   co$r2siminput(frm)
   co$plot2d(frm)
   co$plotxy(frm)
-  co$pl_corrxy[[8]]
+  #co$pl_corrxy[[8]]
   #co$resplot(frm)
   co$plotly3d(partition=frm)
   if (md$sol$ro[[1]]==1) {
@@ -277,29 +277,28 @@ selreport <- function(
   }
   co$plext(frm)
   co$gridarrange()
-  browser()
   ges <- Estimation(co$rofc,frm)
   # #md$sol$eq[1]
-  #ges$regression(md$sol$eq[1])
-  #ges$diagnostics()
-  #ges$hat_predict(svf=md$sol$va)
-  #ges$hat_intcomp()
+  ges$regression(md$sol$eq[1])
+  ges$diagnostics()
+  ges$hat_predict(svf=md$sol$va)
+  ges$hat_intcomp()
   #### Identify
-  #ies <- Estimation(co$rdfc,frm)
-  #ies$regression(md$sol$eq[2])
-  #ies$diagnostics()
-  ### Identify
-  #### Bowplot
-  #cob <- Countinggraphs(da,selvar=names(da))
-  #if (md$prg$cnd==1) {cob$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
-  #cob$sortpre(4,3)
-  #cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
-  #selv=2)
-  #return(list(co=co,
-  #            ges=ges,
-  #            ies=ies,
-  #            cb=cob,
-  #            md=md))
+  ies <- Estimation(co$rdfc,frm)
+  ies$regression(md$sol$eq[2])
+  ies$diagnostics()
+  ## Identify
+  ### Bowplot
+  cob <- Countinggraphs(da,selvar=names(da))
+  if (md$prg$cnd==1) {cob$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
+  cob$sortpre(4,3)
+  cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
+  selv=2)
+  return(list(co=co,
+              ges=ges,
+              ies=ies,
+              cb=cob,
+              md=md))
 }
 ###' @export seloutput
 seloutput <- function(selreport=NULL){
@@ -585,7 +584,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   lx <<- eqpar$meql
   ils <- c('S','T','U','V')
   sdfc <<- ballcount(dplyr::select(sdfinp,all_of(selvar)),se=se)
-  rdfci <<- rdfc <<- sdfc %>%
+  rdfci <<- rdfc <<- rofc <<- sdfc %>%
     dplyr::arrange(alpha) %>%
     dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
     dplyr::relocate(pri,.before=P) %>%
@@ -632,12 +631,7 @@ Countingprocess$methods(rotation=function(
 				     grad=c(0,0,0),
 				     mead=T,
 			             slid=F){
-
-  #if(any(grad!=0)) {
   	rofc <<- erotation(rdfc,selv,smat,grad,mead) 
-  #} else {
-  	rofc <<- rdfc 
-  #}
 })
 
 Countingprocess$methods(plext=function(frm=2){
@@ -1043,7 +1037,7 @@ Estimation <- setRefClass("Estimation", fields=list(
 						predict_df='data.frame',
 						pred_df_pol='data.frame',
 						compare='data.frame',
-						fnr='numeric',
+						fnr='character',
 						lpy='list',
 						frvar='vector',
 						regequ='character',
@@ -1062,7 +1056,6 @@ Estimation <- setRefClass("Estimation", fields=list(
 						lpk='list'
 						))
 Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
-  browser()
   edfc <<- rdfcinp
   if(!all(c("m1", "m2", "m3") %in% names(edfc))) {
       roto <<- 0
@@ -1070,7 +1063,7 @@ Estimation$methods(initialize=function(rdfcinp=NULL,form=1){
       roto <<- 1
   }
   fnr <<- form
-  param <<- stickers[['parm']][[fnr]]
+  param <<- stick[['parm']][fnr]
   syequ <<- eqpar$meqs
   metad <<- list( mtd = list( nmn = "Default"), spr = list(), sol = list( fr = "1", eq = "alpha=k0+k1*x+k2*y", va = "y"), prg = list( cnd = 0, z = 0, stuv = c(0,0,0,0), blup = c(0,1), eqp = "alpha=k0+k1*g+k2*h"), bib = list())
   lpk <<- lpku
