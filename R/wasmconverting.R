@@ -265,8 +265,7 @@ selreport <- function(
   co$r2siminput(frm)
   co$plot2d(frm)
   co$plotxy(frm)
-  #co$pl_corrxy[[8]]
-  #co$resplot(frm)
+  co$resplot(frm)
   co$plotly3d(partition=frm)
   if (md$sol$ro[[1]]==1) {
     co$rotation(selv=c("g","h","alpha"),
@@ -278,7 +277,6 @@ selreport <- function(
   co$plext(frm)
   co$gridarrange()
   ges <- Estimation(co$rofc,frm)
-  # #md$sol$eq[1]
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
   ges$hat_predict(svf=md$sol$va)
@@ -886,29 +884,16 @@ Countinggraphs$methods(plotxy=function(form=1,Pexc=NULL){
   })
 })
 Countinggraphs$methods(resplot=function(form=1){
-  #selvar <- c(paste0(parm[[form]][c(1,2,4)],'_res'),paste0(parm[[form]][c(3)],c("","_m","_mr")))
-  #dfg <- quintile
-  #browser()
-  ##cmb <- combinat::combn(3, 2)
-  ##pl_rescro <<- lapply(seq(1,dim(cmb)[2]), function(x){
-  #ggplot2::ggplot(data=dfg,ggplot2::aes(x=alpha_res,y=alpha_res)) +
-  #   ggplot2::geom_point() +
-  ##  #ggplot2::ggplot(data=dfg,ggplot2::aes(x=selvar[3],y=selvar[3+x])) +
-  #   ggplot2::geom_smooth(method=lm,se=F,show.legend = F) 
-  #   ggplot2::labs(x='x',y='y',title="")
-  ##  2+2
-  ##})
-#			       browser()
-#  View(quintile)
-#  selvar <- c(paste0(parm[[form]][c(1,2,4)],'_res'),paste0(parm[[form]][c(3)],c("","_m","_mr")))
-#  dfg <- dplyr::select(quintile,all_of(selvar))
-#  cmb <- combinat::combn(3, 2)
-  #pl_rescro <<- lapply(seq(1,dim(cmb)[2]), function(x){
-  #  ggplot2::ggplot(data=dfg,ggplot2::aes(x=selvar[3],y=selvar[3+x])) +
-  #  ggplot2::geom_point() +
-  #  ggplot2::geom_smooth(method=lm,se=F,show.legend = F) +
-  #  ggplot2::labs(x='x',y='y',title="")
-  #  })
+  selvar <- c(paste0(parm[[form]][c(1,2,4)],'_res'),paste0(parm[[form]][c(3)],c("","_m","_mr")))[1]
+  dfg <- quintile
+  cmb <- combinat::combn(3, 2)
+  pl_rescro <<- lapply(seq(1,dim(cmb)[2]), function(x){
+  ggplot2::ggplot(data=dfg,ggplot2::aes(x=alpha_res,y=alpha_res)) +
+     ggplot2::geom_point() +
+  #   ggplot2::ggplot(data=dfg,ggplot2::aes(x=selvar[3],y=selvar[3+x])) +
+      ggplot2::geom_smooth(method=lm,se=F,show.legend = F) +
+     ggplot2::labs(x='x',y='y',title="")
+  })
 })
 Countinggraphs$methods(plotly3d=function(
 					 partition=1,

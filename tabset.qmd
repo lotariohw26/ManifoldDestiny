@@ -3,7 +3,6 @@ title: ""
 ---
 
 
-
 ```{r}
 #| echo: false
 #| output: false
@@ -12,6 +11,7 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ```
+
 ::: {.callout-caution collapse="true"}
 ## {{< var tabh.h0 >}}
 ```{r}
@@ -50,17 +50,15 @@ apps <- appro
 ```
 {{< include tab.qmd >}}
 :::
-
 ::: {.callout-caution collapse="true"}
 ## {{< var sec6.un1 >}}
 ```{r}
 #| echo: false
 #| output: false
-apps <- appn1
+apps <- apn1n
 ```
 {{< include tab.qmd >}}
 :::
-
 ::: {.callout-caution collapse="true"}
 ## {{< var sec6.un2 >}}
 ```{r}
@@ -70,7 +68,9 @@ apps <- appn2
 ```
 {{< include tab.qmd >}}
 :::
-
+```{r}
+knitr::knit_exit()
+```
 ::: {.callout-caution collapse="true"}
 ## {{< var sec6.un3 >}}
 ```{r}
