@@ -1,34 +1,27 @@
 library(ggplot2)
 library(complexlm)
 library(dplyr)
-ManifoldDestiny::wasmconload()
 library(ManifoldDestiny)
+ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
-aps <- apn1n
+#aps <- apn1n
 #aps <- apn2n
-#aps <- apn3n
+aps <- apn3r
 #aps <- apn4n
 adat <- aps[[1]]
 amet <- aps[[2]]
 ##########################################################################################################
 slr <- selreport(aps)
-slo <- seloutput(slr)
+
+#slo <- seloutput(slr)
 ##########################################################################################################
+md$prg$eqp
+amet$pm$prg$eqp
 
-
-
-
-
-
-
-
-
-
-
-
+amet$mtd
 
 vmat <- c(1,2,4)
 plnr <- 1
@@ -805,4 +798,5 @@ abc <- distinct(dplyr::select(re$tdf,a1,a2,a3,b1,b2,b3,c1,c2,c3,k1,k2,k3,k4,k5,k
 
 # 
 abc$k9*6*abc$b1*abc$b2*abc$b3+abc$k6*6*abc$a1*abc$a2*abc$a3
+
 

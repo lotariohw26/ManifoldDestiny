@@ -9,7 +9,7 @@
 # script/python/polysolver.py
 # script/R/stylized.R
 # R/abc.R
-# R/wasmconverting.R
+# R/wasmcrnverting.R
 # R/wasmnonverting.R
 # data-raw/record_dynamic.R
 # https://lotariohw26.github.io/MD_WASMS/r/examples/
@@ -32,14 +32,14 @@ project:
     - "tab.qmd"
     - "tabset.qmd"
     #    - "metaview.qmd"
-    #    - "laws.qmd"
+    - "laws.qmd"
     #    - "man_bib.qmd"
     #    - "simulations.qmd"
     #    - "rigging.qmd"
     #    - "analyzer.qmd"
     #    - "restoration.qmd"
     #    - "randpython.qmd"
-    #    - "calculator.qmd"
+    - "calculator.qmd"
 website:
   title: "{{< var titls >}}"
   navbar:
@@ -68,18 +68,20 @@ website:
         #          #  href: "{{< var shn3 >}}"
         #          - text: "Restoration of a rigged election"
         #          #  href: "{{< var shn4 >}}"
-        #      - text: E-books
-        #        menu:
-        #          - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
-        #            href: "https://lotariohw26.github.io/MD_BOOK1"
-        #      - text: Bibliography
-        #        href: man_bib.qmd
+      - text: E-books
+        menu:
+        - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
+          href: "https://lotariohw26.github.io/MD_BOOK1"
+      - text: Bibliography
+        href: man_bib.qmd
       - text: Appendix
         menu:
         - text: "20 laws and 40 isometries "
           href: "laws.qmd"
-          #      - text: WebAssembly
-          #        menu:
+      - text: WebAssembly
+        menu:
+        - text: "Python"
+          href: "calculator.qmd"
           #        - text: "Simulations"
           #          href: "simulations.qmd"
           #        - text: "Rigging"
@@ -90,8 +92,6 @@ website:
           #          href: "restoration.qmd"
           #        - text: "Pyodide"
           #          href: "randpython.qmd"
-          #        - text: "Functions2"
-          #          href: "calculator.qmd"
   repo-url: "https://github.com/lotariohw26/ManifoldDestiny"
   site-url: "https://lotariohw26.github.io/ManifoldDestiny/"
   reader-mode: false

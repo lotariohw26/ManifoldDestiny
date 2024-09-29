@@ -254,12 +254,13 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
+
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- md$sol$fr
   co <- Countinggraphs(da)
-  if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
+  if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,frm=md$prg$frp,prma=md$prg$prma)}
   co$sortpre(frm)
   co$descriptive(frm)
   co$r2siminput(frm)
@@ -268,9 +269,9 @@ selreport <- function(
   co$resplot(frm)
   co$plotly3d(partition=frm)
   if (md$sol$ro[[1]]==1) {
-    co$rotation(selv=c("g","h","alpha"),
-    	    smat=md$sol$ro[[1]],
-    	    grad=md$sol$ro[[2]],
+    co$rotation(selv=md$sol$ro[[2]],
+    	    smat=md$sol$ro[[3]],
+    	    grad=md$sol$ro[[4]],
     	    mead=T)
     co$rotgraph()
   }
@@ -280,7 +281,7 @@ selreport <- function(
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
   ges$hat_predict(svf=md$sol$va)
-  ges$hat_intcomp()
+  #ges$hat_intcomp()
   #### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$sol$eq[2])
@@ -673,9 +674,7 @@ Countingprocess$methods(plext=function(frm=2){
       dplyr::mutate(!!sym(meq[18, 1]) := !!rlang::parse_expr(meq[18, 2]))
 })
 
-Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y"),rnk=0,pres=NULL,pri=0,prma=NULL){
-  #dim(rdfv)
-  #dim(rdfci)
+Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y"),rnk=0,pres=NULL,pri=0,frm='N',prma=NULL){
   rdfv <- rdfci %>%
     dplyr::arrange(P) %>%
     dplyr::filter(Z>z) %>%
@@ -685,7 +684,7 @@ Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("
     dplyr::filter(V>stuv[4]) %>%
     dplyr::filter(!P%in%prma) %>%
     dplyr::filter(if_all(c(alpha,x,y,g,h,m,n),~.>blup[1]&.<blup[2]))
-    erdfv <- Estimation(rdfv)
+    erdfv <- Estimation(rdfv,frm)
     erdfv$regression(eqp)
     erdfv$regsum[[1]]
     rdfc <<- erdfv$predict_df %>%
@@ -1102,9 +1101,7 @@ Estimation$methods(hat_predict=function(svf='y'){
   }
   if (roto==1) {
     eurv <- unique(c(edfc$st1,edfc$st2,edfc$st3))
-  browser()
     lpy <<- py_genpolycoeffr(c("g","h","alpha"),regass,svf,eurv)
-    View(lpy[[3]])
   }
   tdf <<- tethyd(edfc,kvec,lpy,solv=svf,parm=param,rot=roto)
   regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=tdf)
@@ -1158,6 +1155,4 @@ Estimation$methods(hat_intcomp=function(){
     prc0123=100*sum(abs(compare[[comps]] - 0) <= 3)/length(compare[[comps]]))
   comdesc <<- data.frame(fname=txvnc,stats=names(vnd),values=vnd)
 })
-
-
 

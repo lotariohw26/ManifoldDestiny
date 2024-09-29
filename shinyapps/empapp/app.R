@@ -1,8 +1,8 @@
 ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-abc <- data(package = "ManifoldDestiny")[[3]][,3]
-abr <- abc[grepl("app", abc)]
+abc <- data(package = "ManifoldDestiny")[[3]][,3][1:3]
+abr <- abc[1:1]
 apps <- get(abr[1])
 options(digits=2)
 ###############################################################################################################################################################
@@ -15,9 +15,10 @@ ui <- fluidPage(
                   selected = "app0"),
       textInput("purge", "Purge criteria (Z, STUV, P):", value = "0;0 0 0 0;0"),
       selectInput("form", "Type of rig:",
-                  choices = c("Normal Form" = "1",
-                              "Hybrid Form" = "2",
-                              "Opposition Form" = "3"), selected = "2"),
+                  choices = c("Normal Form" = "N",
+                              "Hybrid Form" = "H",
+                              "Opposition Form" = "O",
+                              "Complex Form" = "C"), selected = "H"),
       textInput("meqf", "Manifold equation:",
                 value = "alpha=k0+k1*g+k2*h"),
       textInput("solvf", "Solve for:",
@@ -90,7 +91,7 @@ server <- function(input, output, session) {
     seld[[2]]$sol$fr <- input$form
     seld[[2]]$sol$eq[[1]] <- input$meqf
     seld[[2]]$sol$va <- input$solvf
-    #browser()
+    #selreport(seld)
     #seld[[2]]$sol$ro[[1]]
     #seld[[2]]$sol$ro[[2]][1] <- input$theta*pi/180
     #seld[[2]]$sol$ro[[2]][2] <- input$phi*pi/180
@@ -143,4 +144,6 @@ server <- function(input, output, session) {
   })
 }
 shinyApp(ui = ui, server = server)
+
+
 
