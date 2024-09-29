@@ -7,9 +7,10 @@
 # shinyapps/manimp/app.R
 # shinyapps/empapp/app.R
 # script/python/polysolver.py
+# script/python/abc.py
 # script/R/stylized.R
 # R/abc.R
-# R/wasmcrnverting.R
+# R/wasmconverting.R
 # R/wasmnonverting.R
 # data-raw/record_dynamic.R
 # https://lotariohw26.github.io/MD_WASMS/r/examples/
