@@ -9,20 +9,14 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
 #aps <- apn1n
 #aps <- apn2n
-aps <- apn3r
-#aps <- apn4n
-adat <- aps[[1]]
-amet <- aps[[2]]
+#aps <- apn3r
+##aps <- apn4n
+#adat <- aps[[1]]
+#amet <- aps[[2]]
+###########################################################################################################
+#slr <- selreport(aps)
+##slo <- seloutput(slr)
 ##########################################################################################################
-slr <- selreport(aps)
-
-#slo <- seloutput(slr)
-##########################################################################################################
-md$prg$eqp
-amet$pm$prg$eqp
-
-amet$mtd
-
 vmat <- c(1,2,4)
 plnr <- 1
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
@@ -30,21 +24,13 @@ url <- "https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_
 crot <- googlesheets4::read_sheet(url, range="G3:R228") %>% dplyr::mutate(P = dplyr::row_number(.[[1]]))
 names(crot) <- c("PW","PN","g","h","alpha","Data#","u[0]","v[0]","w[0]","x","y","z","P") 
 rotuvw <- erotation(crot,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
-re <- Estimation(rotuvw,2)
-#re$regression("z=k0+k1*y+k2*x+k3*y2+k4*yx+k5*x2+k6*y3+k7*y2x+k8*yx2+k9*x3")
+re <- Estimation(rotuvw,"H")
 re$regression("z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3")
-broom::tidy(re$regsum[[1]])$estimate
-#  [1]  0.001643394  1.075717880 -0.731335532  0.064912642  0.064007760 -0.785443920
-#  [7]  0.092375583 -1.271709722  3.038048882  0.923841730
-#0.001643393953 -0.7313355321 1.07571788 -0.7854439197 0.06400775959 0.06491264234 0.9238417301 3.038048882 -1.271709722 0.09237558323
-re$hat_predict("alpha")
-cor(re$tdf$alpha,re$tdf$alpha_hat)**2
 re$hat_predict("g")
 # [1] 0.9956742
 cor(re$tdf$g,re$tdf$g_hat)**2
 re$hat_predict("h")
 cor(re$tdf$h,re$tdf$h_hat)**2
-#!
 re$tdf$d_311[1]
 re$tdf$A[1]
 re$tdf$B[1]
@@ -74,23 +60,7 @@ re$tdf$d_330[1]
 wtet <- googlesheets4::read_sheet(url, range="A6:B16",sheet="Write Tet")
 bind <- dplyr::bind_cols(dplyr::select(rotuvw,x,y,z),dplyr::select(crot,x,y,z))
 abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 pyg <- py_genpolycoeffr(plr=3,parm=c("z", "x", "y"),solv='alpha',grd=1,eur=vmat)
-pyg[[1]]
-
 ghi <- tethyd(abc,re$kvec,pyg)
 View(ghi)
 dif1 <- sort(setdiff(co$rdfc$PN,crot$PN))
@@ -159,12 +129,9 @@ co2rofc <- co$rofc %>%
 	dplyr::mutate(alpha_m=alpha-mean(alpha))
 View(co2rofc)
 ghi <- tethyd(co2rofc,re$kvec,df3)
-
 round(cor(ghi$abc_hat,ghi$alpha_m)^2,digits=4)
 round(cor(ghi$abc_hat,ghi$g_m)^2,digits=4)
 round(cor(ghi$abc_hat,ghi$h_m)^2,digits=4)
-t
-
 ghi$A
 ghi$B
 ghi$C

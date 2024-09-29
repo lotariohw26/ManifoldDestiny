@@ -38,8 +38,8 @@ project:
     #    - "rigging.qmd"
     #    - "analyzer.qmd"
     #    - "restoration.qmd"
-    #    - "randpython.qmd"
-    - "calculator.qmd"
+    - "randpython.qmd"
+    #    - "calculator.qmd"
 website:
   title: "{{< var titls >}}"
   navbar:
@@ -81,7 +81,7 @@ website:
       - text: WebAssembly
         menu:
         - text: "Python"
-          href: "calculator.qmd"
+          href: "randpython.qmd"
           #        - text: "Simulations"
           #          href: "simulations.qmd"
           #        - text: "Rigging"

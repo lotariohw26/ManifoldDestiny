@@ -10,7 +10,9 @@ filters:
 
 ```{pyodide-python}
 import sympy, pandas, numpy
-from sympy import solve, Eq, symbols, latex, simplify, diff, poly, sympify, Matrix, pprint, collect, expand, Poly, Symbol, Pow
+```
+
+```{pyodide-python}
 def rall(sel=[0, 0, 0]):
     n, m = symbols('n m')
     
@@ -46,6 +48,7 @@ def rall(sel=[0, 0, 0]):
 
 ```{pyodide-python}
 def genpolycoeffn(form,expr,solv):
+    forp = {'N': 1, 'H': 2, 'O': 3}
     elem = [["alpha","x","y","zeta","lamda","Omega"], ["alpha","g","h","Gamma","Omega","lamda"], ["alpha","m","n","xi","lamda","Omega"]]
     x, y, z = sympy.symbols('x y z')
     alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
@@ -61,7 +64,6 @@ def genpolycoeffn(form,expr,solv):
     ABCDE[:len(polys)] = polys
     matarch = 0
     return ABCDE, abc, matarch, plr
-
 ```
 
 ```{pyodide-python}
@@ -209,6 +211,10 @@ testn = genpolycoeffn(form=2,expr="alpha=k0+k1*g+k2*h",solv='g')
 
 ```{pyodide-python}
 testr = genpolycoeffr(["g","h","alpha"],"z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",'alpha')
+```
+
+```{pyodide-python}
+pareq(ste="(a + b)*c", a=2, b=4, c=3)
 ```
 
 ```{r, echo=F, eval=T}
