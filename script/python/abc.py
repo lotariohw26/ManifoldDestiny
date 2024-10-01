@@ -55,8 +55,12 @@ d_301 = plsv.pareq(str(test[2]['expr'][16]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,
 d_320 = plsv.pareq(str(test[2]['expr'][17]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
 d_302 = plsv.pareq(str(test[2]['expr'][18]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
 d_311 = plsv.pareq(str(test[2]['expr'][19]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
+nr = 0
+test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
+d_000
 nr = 1
 test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
+d_110
 nr = 2
 test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
 nr = 3

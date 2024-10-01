@@ -1,6 +1,21 @@
 suppressMessages(ManifoldDestiny::wasmconload())
 ##############################################################################################################
 library(ManifoldDestiny)
+library(dplyr)
+###############################################################################################################
+apps <- T # Oppdater plot
+if(isTRUE(apps)) {
+appl <- list(c("r2rsim","ManifoldDestiny"), c("manimp","ManifoldDestiny"),c("empapp","ManifoldDestiny"), c("restor","ManifoldDestiny"))[1]
+  appl
+  lapply(1:4, function(x) {
+     x <- 1
+     system.file("shinyapps",appl[x][[1]][1], package=appl[x][[1]][2]) %>%
+     fs::dir_copy(paste0("inst/shinyapps/",appl[x][[1]][1]), overwrite = TRUE)
+     dp <- paste0("inst/shinyapps/",appl[[x]][1])
+     tp <- paste0("docs/",appl[[x]][1])
+     shinylive::export(dp,tp)
+  })
+}
 ###############################################################################################################
 lpku <<- list(
   S = list(
@@ -18,6 +33,7 @@ lpku <<- list(
   )
 )
 usethis::use_data(lpku, overwrite = TRUE)
+###############################################################################################################
 #  # Model
 fdm <- paste0(rprojroot::find_rstudio_root_file(),'/script/python/pysympy.py')
 reticulate::source_python(fdm)
@@ -31,6 +47,7 @@ peqs <-c(
 'k0 + k1*u + k2*v + k3*u**2 + k4*v**2 + k5*u*v + k6*v**3 + k7*u*v + k8*u**2*v + k9*u*v**2',
 'k0 + k1*u + k2*v + k3*u**2 + k4*v**2 + k5*u*v + k6*u**3 + k7*v**3 + k8*u**2*v + k9*u*v**2 + k10*u**4 + k11*v**4 + k12*u**3*v + k13*u**2*v**2 + k14*u*v**3 +k15*u**4*v + k16*u*v**2')
 usethis::use_data(peqs, overwrite = TRUE)
+###############################################################################################################
 laws2 <- tribble(
   ~Law_Number, ~North_vs_South, ~West_vs_East, ~Diagonal_vs_Diagonal,
   "First Law", "$x_{1}=\\alpha_{1}+\\zeta(\\alpha_{1}-y_{1})$", "$g_{1}=\\alpha_{1}+\\gamma(\\alpha_{1}-h_{1})$", "$m_{1}=\\Omega_{1}+\\xi(\\Omega_{1}-n_{1})$",
@@ -54,6 +71,7 @@ laws2 <- tribble(
   "Nineteenth Law", "$\\zeta=\\frac{x_{1}-\\lambda_{1}}{\\lambda_{1}-y_{2}}; \\Omega_{1}=\\frac{y_{2}-\\lambda_{1}}{y_{2}-x_{1}}$", "$\\gamma=\\frac{g_{1}-\\Omega_{1}}{\\Omega_{1}-h_{2}}; \\lambda_{1}=\\frac{h_{2}-\\Omega_{1}}{h_{2}-g_{1}}$", "$\\xi=\\frac{m_{1}-\\lambda_{1}}{\\lambda_{1}-n_{2}}; \\alpha_{1}=\\frac{n_{2}-\\lambda_{1}}{n_{2}-m_{1}}$",
   "Twentieth Law", "$\\zeta=\\frac{\\lambda_{1}-\\alpha_{1}}{(y_{2}-y_{1})+(\\alpha_{1}-\\lambda_{1})}$", "$\\gamma=\\frac{\\Omega_{1}-\\alpha_{1}}{(h_{2}-h_{1})+(\\alpha_{1}-\\Omega_{1})}$", "$\\xi=\\frac{\\lambda_{1}-\\Omega_{1}}{(n_{2}-n_{1})+(\\Omega_{1}-\\lambda_{1})}$"
 )
+###############################################################################################################
 stick <-
   list(parm=list(
   S=c("alpha","x","y","zeta","lamda","Omega"),
@@ -66,4 +84,5 @@ usethis::use_data(stick, overwrite = TRUE)
   
 frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11,12),c(13,14,15,16,17,18),c(19,20,21,22,23,24))
 usethis::use_data(frmsel, overwrite = TRUE)
+###############################################################################################################
 

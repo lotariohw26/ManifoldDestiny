@@ -4,6 +4,7 @@
 # data-raw/record_static.R
 # script/R/complexregression.R
 # script/R/testing.R
+# shinyapps/r2rsim/app.R
 # shinyapps/manimp/app.R
 # shinyapps/empapp/app.R
 # script/python/polysolver.py
