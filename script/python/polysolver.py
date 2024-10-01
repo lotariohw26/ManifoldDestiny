@@ -54,6 +54,7 @@ def genpolycoeffn(form,expr,solv):
 
 def genpolycoeffr(elem,expr,solv,eur):
     #elem = [["alpha","x","y","zeta","lamda","Omega"], ["alpha","g","h","Gamma","Omega","lamda"], ["alpha","m","n","xi","lamda","Omega"]]
+    #breakpoint()
     x, y, z = sympy.symbols('x y z')
     alpha, g, h, n, m, zeta, Gamma, lamda, ui = symbols('alpha g h n m zeta Gamma lamda ui')
     k0, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10 = symbols('k0:11')

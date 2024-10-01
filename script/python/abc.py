@@ -4,8 +4,8 @@ prv = ["g","h","alpha"]
 rve = [1, 2, 4]
 gra = [-44.9573,7.001545,-19.9677]
 eqs = ["z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3","alpha=k0+k1*g+k2*h+k3*Gamma"][0]
-sfo = ['alpha'][0]
-test = plsv.genpolycoeffr(prv,eqs,sfo,rve)
+sfo = ['alpha','g','h'][1]
+test = plsv.genpolycoeffr(elem=prv,expr=eqs,solv=sfo,eur=rve)
 m1v = math.cos(math.radians(gra[0]))
 m2v = math.cos(math.radians(gra[1]))
 m3v = math.cos(math.radians(gra[2]))
