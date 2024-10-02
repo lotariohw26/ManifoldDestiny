@@ -5,10 +5,8 @@ library(dplyr)
 ###############################################################################################################
 apps <- T # Oppdater plot
 if(isTRUE(apps)) {
-appl <- list(c("r2rsim","ManifoldDestiny"), c("manimp","ManifoldDestiny"),c("empapp","ManifoldDestiny"), c("restor","ManifoldDestiny"))[1]
-  appl
+appl <- list(c("r2rsim","ManifoldDestiny"), c("manimp","ManifoldDestiny"),c("empapp","ManifoldDestiny"), c("restor","ManifoldDestiny"))
   lapply(1:4, function(x) {
-     x <- 1
      system.file("shinyapps",appl[x][[1]][1], package=appl[x][[1]][2]) %>%
      fs::dir_copy(paste0("inst/shinyapps/",appl[x][[1]][1]), overwrite = TRUE)
      dp <- paste0("inst/shinyapps/",appl[[x]][1])
@@ -85,4 +83,3 @@ usethis::use_data(stick, overwrite = TRUE)
 frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11,12),c(13,14,15,16,17,18),c(19,20,21,22,23,24))
 usethis::use_data(frmsel, overwrite = TRUE)
 ###############################################################################################################
-
