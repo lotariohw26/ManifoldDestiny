@@ -103,6 +103,37 @@ lhs: d_311
 
 
 
+import pandas as pd
+
+# Initialize an empty list to store the results for the DataFrame
+results = []
+
+# Loop through the range (adjust the range according to your needs)
+for nr in range(20):  # Example: looping from 0 to 19, you can change the range as needed
+    # Retrieve lhs and rhs values from test
+    lhs = test[2]['d'][nr]
+    rhs = test[2]['expr'][nr]
+    
+    # Call the 'pareq' method with the necessary arguments (assuming pareq returns a value or result)
+    pareq_result = plsv.pareq(str(rhs), a1=a1, a2=a2, a3=a3, b1=b1, b2=b2, b3=b3, 
+                              c1=c1, c2=c2, c3=c3, k0=k0, k1=k1, k2=k2, k3=k3, 
+                              k4=k4, k5=k5, k6=k6, k7=k7, k8=k8, k9=k9)
+    
+    # Append the lhs, rhs, and pareq_result into the results list as a dictionary
+    results.append({
+        'lhs': lhs,
+        'rhs': rhs,
+        'pareq_result': pareq_result
+    })
+
+# Convert the results list into a pandas DataFrame
+df_results = pd.DataFrame(results)
+
+# Now df_results holds the data and you can use it for further analysis or saving
+print(df_results)  # Optional: Display the DataFrame in the console
+
+# If you want to save this DataFrame to a file (like a CSV)
+df_results.to_csv('pareq_results.csv', index=False)
 
 
 
