@@ -26,11 +26,17 @@ names(crot) <- c("PW","PN","g","h","alpha","Data#","u[0]","v[0]","w[0]","x","y",
 rotuvw <- erotation(crot,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001545,-19.9677)) 
 re <- Estimation(rotuvw,"H")
 re$regression("z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3")
+broom::tidy(re$regsum[[1]])
 re$hat_predict("g")
+
 # [1] 0.9956742
 cor(re$tdf$g,re$tdf$g_hat)**2
 re$hat_predict("h")
 cor(re$tdf$h,re$tdf$h_hat)**2
+
+
+
+
 re$tdf$d_311[1]
 re$tdf$A[1]
 re$tdf$B[1]
@@ -757,13 +763,5 @@ re$tdf$A[1]-(-0.01314279264)
 re$tdf$B[1]-(-0.2614930231)
 re$tdf$C[1]-(-1.443286174)
 re$tdf$D[1]-(-0.3781669319)
-
-
-
 abc <- distinct(dplyr::select(re$tdf,a1,a2,a3,b1,b2,b3,c1,c2,c3,k1,k2,k3,k4,k5,k6,k7,k8,k9))
-
-
-# 
 abc$k9*6*abc$b1*abc$b2*abc$b3+abc$k6*6*abc$a1*abc$a2*abc$a3
-
-

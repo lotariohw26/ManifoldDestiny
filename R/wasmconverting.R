@@ -1101,6 +1101,8 @@ Estimation$methods(hat_predict=function(svf='y'){
   }
   if (roto==1) {
     eurv <- unique(c(edfc$st1,edfc$st2,edfc$st3))
+    #!
+    browser()
     lpy <<- py_genpolycoeffr(c("g","h","alpha"),regass,svf,eurv)
   }
   tdf <<- tethyd(edfc,kvec,lpy,solv=svf,parm=param,rot=roto)

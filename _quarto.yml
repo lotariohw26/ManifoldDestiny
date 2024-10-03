@@ -4,9 +4,10 @@
 # data-raw/record_static.R
 # script/R/complexregression.R
 # script/R/testing.R
-# shinyapps/r2rsim/app.R
-# shinyapps/manimp/app.R
-# shinyapps/empapp/app.R
+# inst/shinyapps/r2rsim/app.R
+# inst/shinyapps/manimp/app.R
+# inst/shinyapps/empapp/app.R
+# inst/shinyapps/restor/app.R
 # script/python/polysolver.py
 # script/python/abc.py
 # script/R/stylized.R
