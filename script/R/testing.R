@@ -9,14 +9,14 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
 #aps <- apn1n
 #aps <- apn2n
-aps <- apn3r
-#aps <- apn4n
-adat <- aps[[1]]
-amet <- aps[[2]]
+#aps <- apn3r
+##aps <- apn4n
+#adat <- aps[[1]]
+#amet <- aps[[2]]
+############################################################################################################
+#slr <- selreport(aps)
+##slo <- seloutput(slr)
 ###########################################################################################################
-slr <- selreport(aps)
-#slo <- seloutput(slr)
-##########################################################################################################
 vmat <- c(1,2,4)
 plnr <- 1
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
@@ -27,7 +27,40 @@ rotuvw <- erotation(crot,c("g","h","alpha","P"),rs=c(1,2,4),gra=c(-44.9573,7.001
 re <- Estimation(rotuvw,"H")
 re$regression("z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3")
 broom::tidy(re$regsum[[1]])
-re$hat_predict("g")
+re$hat_predict("g")$estimate
+
+View(re$lpy[[3]])
+
+re$tdf$d_000[1]
+
+re$tdf$d_100[1]
+re$tdf$d_101[1]
+re$tdf$d_110[1]
+re$tdf$d_100[1]
+
+re$tdf$d_200[1]
+re$tdf$d_201[1]
+re$tdf$d_202[1]
+re$tdf$d_210[1]
+re$tdf$d_211[1]
+re$tdf$d_220[1]
+
+re$tdf$d_300[1]
+re$tdf$d_301[1]
+re$tdf$d_302[1]
+re$tdf$d_303[1]
+re$tdf$d_310[1]
+re$tdf$d_311[1]
+re$tdf$d_312[1]
+re$tdf$d_320[1]
+re$tdf$d_321[1]
+re$tdf$d_330[1]
+
+
+
+
+
+
 
 # [1] 0.9956742
 cor(re$tdf$g,re$tdf$g_hat)**2
@@ -42,27 +75,6 @@ re$tdf$A[1]
 re$tdf$B[1]
 re$tdf$C[1]
 re$tdf$D[1]
-re$tdf$d_100[1]
-re$tdf$d_201[1]
-re$tdf$d_210[1]
-re$tdf$d_302[1]
-re$tdf$d_320[1]
-re$tdf$d_000[1]
-re$tdf$d_100[1]
-re$tdf$d_101[1]
-re$tdf$d_110[1]
-re$tdf$d_200[1]
-re$tdf$d_201[1]
-re$tdf$d_202[1]
-re$tdf$d_210[1]
-re$tdf$d_211[1]
-re$tdf$d_220[1]
-re$tdf$d_310[1]
-re$tdf$d_311[1]
-re$tdf$d_312[1]
-re$tdf$d_320[1]
-re$tdf$d_321[1]
-re$tdf$d_330[1]
 wtet <- googlesheets4::read_sheet(url, range="A6:B16",sheet="Write Tet")
 bind <- dplyr::bind_cols(dplyr::select(rotuvw,x,y,z),dplyr::select(crot,x,y,z))
 abc <- eplext(dfmat=rotuvw,varu=c("x", "y"))

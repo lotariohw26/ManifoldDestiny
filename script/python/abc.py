@@ -14,16 +14,17 @@ n1v = math.sin(math.radians(gra[0]))
 n2v = math.sin(math.radians(gra[1]))
 n3v = math.sin(math.radians(gra[2]))
 m1v, m2v, m3v, n1v, n2v, n3v
-k0=0.001643394 
+k0=0.001643394  
 k1=1.075717880 
-k2=-0.731335532  
-k3=-0.785443920  
-k4=0.064007760  
-k5=0.064912642  
-k6=0.923841730  
-k7=3.038048882 
-k8=-1.271709722
-k9=0.092375583
+k2=-0.731335532
+k3=0.064912642  
+k4=0.064007760 
+k5=-0.785443920
+k6=0.092375583 
+k7=-1.271709722  
+k8=3.038048882
+k9=0.923841730
+
 # I
 a1 = plsv.pareq(ste=str(test[1][0]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
 a2 = plsv.pareq(ste=str(test[1][1]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
@@ -35,33 +36,99 @@ c1 = plsv.pareq(ste=str(test[1][6]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
 c2 = plsv.pareq(ste=str(test[1][7]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
 c3 = plsv.pareq(ste=str(test[1][8]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
 a1, a2, a3, b1, b2, b3, c1, c2, c3
-test[2]['expr'][4]
-'a1**2*k3 + a1*b1*k4 + b1**2*k5'
-'a1**2*k3 + a1*b1*k4 + b1**2*k5'
-'a1**2*k3 + a1*b1*k4 + b1**2*k5'
+test[2]['expr']
+test[2]['expr'][2]
+test[2]['expr'][3]
+
+
+nr = 5
+lhs = test[2]['d'][nr]
+rhs = test[2]['expr'][nr]
+plsv.pareq(str(rhs),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k9)
+rhs
+lhs
+
+for nr in range(20):  # Example: looping from 0 to 4, you can change the range as needed
+    lhs = test[2]['d'][nr]
+    rhs = test[2]['expr'][nr]
+    # Call the 'pareq' method with the necessary arguments
+    #print("rhs:", rhs)
+    print("lhs:", lhs)
+    plsv.pareq(str(rhs), a1=a1, a2=a2, a3=a3, b1=b1, b2=b2, b3=b3, c1=c1, c2=c2, c3=c3, k0=k0, k1=k1, k2=k2, k3=k3, k4=k4, k5=k5, k6=k6, k7=k7, k8=k8, k9=k9)
+   # Print or use the values of rhs and lhs as required
+
+
+
+lhs: d_000
+0.001643394 d[0,0,0]	0.001643393953
+lhs: d_110
+0.8973153912789109 d[1,1,0]	0.8973
+lhs: d_101
+0.4071932389090186 d[1,0,1]	0.4072
+lhs: d_100
+-1.3118839020577144 d[1,0,0]	-1.3119
+lhs: d_220
+-0.3128688463478883 d[2,2,0]	-0.3128688459
+lhs: d_330
+1.0534362501230063 d[3,3,0]	1.05343625
+lhs: d_202
+-0.3157483283534651 d[2,0,2]	-0.3157483282
+lhs: d_303
+0.93462393175588 d[3,0,3]	0.9346239316
+lhs: d_200
+-0.09191410329864645 d[2,0,0]	-0.09191410324
+lhs: d_300
+-0.013142792646241595 d[3,0,0]	-0.01314279264
+lhs: d_211
+0.7590771006031121 d[2,1,1]	0.7590771006
+lhs: d_210
+0.3469878996010749 d[2,1,0]	0.3469878993
+lhs: d_312
+-2.074803792120009 d[3,1,2]	-2.074803792
+lhs: d_310
+0.29107640846896415 d[3,1,0]	0.2910764084
+lhs: d_201
+-0.37108719030286785 d[2,0,1]	-0.3710871903
+lhs: d_321
+0.20771277395662346 d[3,2,1]	0.2077127746
+lhs: d_301
+0.355014958784053 d[3,0,1]	0.3550149588
+lhs: d_320
+-1.0562878296510383 d[3,2,0]	-1.05628783
+lhs: d_302
+1.199962364580633 d[3,0,2]	1.199962364
+lhs: d_311
+-0.85836961014258 d[3,1,1]	-0.86138405
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # II
-d_000 = plsv.pareq(str(test[2]['expr'][0]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_110 = plsv.pareq(str(test[2]['expr'][1]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_101 = plsv.pareq(str(test[2]['expr'][2]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_100 = plsv.pareq(str(test[2]['expr'][3]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_220 = plsv.pareq(str(test[2]['expr'][4]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_330 = plsv.pareq(str(test[2]['expr'][5]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_202 = plsv.pareq(str(test[2]['expr'][6]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_303 = plsv.pareq(str(test[2]['expr'][7]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_200 = plsv.pareq(str(test[2]['expr'][8]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_300 = plsv.pareq(str(test[2]['expr'][9]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_211 = plsv.pareq(str(test[2]['expr'][10]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_210 = plsv.pareq(str(test[2]['expr'][11]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_312 = plsv.pareq(str(test[2]['expr'][12]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_310 = plsv.pareq(str(test[2]['expr'][13]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_201 = plsv.pareq(str(test[2]['expr'][14]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_321 = plsv.pareq(str(test[2]['expr'][15]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_301 = plsv.pareq(str(test[2]['expr'][16]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_320 = plsv.pareq(str(test[2]['expr'][17]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_302 = plsv.pareq(str(test[2]['expr'][18]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
-d_311 = plsv.pareq(str(test[2]['expr'][19]),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,k1=k1,k2=k2,k3=k3,k4=k4,k5=k5,k6=k6,k7=k7,k8=k8,k9=k0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # I
 d_000
@@ -86,71 +153,6 @@ d_311
 d_312
 d_320
 d_321
-d_330
-
-
-
-nr = 2
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-d_000
-nr = 1
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-d_110
-nr = 2
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 3
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 4
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 5
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 6
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 7
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 8
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 9
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 10
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 11
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 12
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 13
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 14
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 15
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 16
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 17
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 18
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-nr = 19
-test[2]['d'][nr], test[2]['var'][nr], test[2]['expr'][nr]
-
-
-
-d_110
-d_200
-d_201
-d_202
-d_211
-d_210
-d_220
-d_300
-d_301
-d_302
-d_303
-d_310
-d_312
-d_311
-d_321
-d_320
 d_330
 
 
