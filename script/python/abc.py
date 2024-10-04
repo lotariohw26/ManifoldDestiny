@@ -1,4 +1,5 @@
 # https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=499474525#gid=499474525
+import pandas as pd
 import polysolver as plsv
 import math                                                                   
 prv = ["g","h","alpha"]
@@ -48,57 +49,80 @@ plsv.pareq(str(rhs),a1=a1,a2=a2,a3=a3,b1=b1,b2=b2,b3=b3,c1=c1,c2=c2,c3=c3,k0=k0,
 rhs
 lhs
 
+# Initialize an empty list to store the results for the DataFrame
+results = []
 for nr in range(20):  # Example: looping from 0 to 4, you can change the range as needed
+  lhs = test[2]['d'][nr]
+  rhs = test[2]['expr'][nr]
+  pareq_result = plsv.pareq(str(rhs), a1=a1, a2=a2, a3=a3, b1=b1, b2=b2, b3=b3, c1=c1, c2=c2, c3=c3, k0=k0, k1=k1, k2=k2, k3=k3, k4=k4, k5=k5, k6=k6, k7=k7, k8=k8, k9=k9)
+  results = results.append({
+      'lhs': lhs,
+      'rhs': rhs,
+      'pareq_result': pareq_result
+  })
+  df_results = pd.DataFrame(results)
+    
+results = []
+for nr in range(20):  # Example: looping from 0 to 19, you can change the range as needed
     lhs = test[2]['d'][nr]
     rhs = test[2]['expr'][nr]
-    # Call the 'pareq' method with the necessary arguments
-    #print("rhs:", rhs)
-    print("lhs:", lhs)
-    plsv.pareq(str(rhs), a1=a1, a2=a2, a3=a3, b1=b1, b2=b2, b3=b3, c1=c1, c2=c2, c3=c3, k0=k0, k1=k1, k2=k2, k3=k3, k4=k4, k5=k5, k6=k6, k7=k7, k8=k8, k9=k9)
-   # Print or use the values of rhs and lhs as required
+    pareq_result = plsv.pareq(
+        str(rhs),
+        a1=a1, a2=a2, a3=a3,
+        b1=b1, b2=b2, b3=b3,
+        c1=c1, c2=c2, c3=c3,
+        k0=k0, k1=k1, k2=k2, k3=k3, k4=k4, k5=k5, k6=k6, k7=k7, k8=k8, k9=k9
+    )
+    # Append the result dictionary directly to the list
+    results.append({
+        'lhs': lhs,
+        'rhs': rhs,
+        'pareq_result': pareq_result
+    })
 
-
+df_results = pd.DataFrame(results)
+df_results.to_csv('results.csv', index=False)
 
 lhs: d_000
-0.001643394 d[0,0,0]	0.001643393953
+0.001643394-0.001643393953
 lhs: d_110
-0.8973153912789109 d[1,1,0]	0.8973
+0.8973153912789109-0.8973
 lhs: d_101
-0.4071932389090186 d[1,0,1]	0.4072
+0.4071932389090186-0.4072
 lhs: d_100
--1.3118839020577144 d[1,0,0]	-1.3119
+-1.3118839020577144-1.3119
 lhs: d_220
--0.3128688463478883 d[2,2,0]	-0.3128688459
+-0.3128688463478883-0.3128688459
 lhs: d_330
-1.0534362501230063 d[3,3,0]	1.05343625
+1.0534362501230063-1.05343625
 lhs: d_202
--0.3157483283534651 d[2,0,2]	-0.3157483282
+-0.3157483283534651-0.3157483282
 lhs: d_303
-0.93462393175588 d[3,0,3]	0.9346239316
+0.93462393175588-0.9346239316
 lhs: d_200
--0.09191410329864645 d[2,0,0]	-0.09191410324
+-0.09191410329864645-0.09191410324
 lhs: d_300
--0.013142792646241595 d[3,0,0]	-0.01314279264
+-0.013142792646241595-0.01314279264
 lhs: d_211
-0.7590771006031121 d[2,1,1]	0.7590771006
+0.7590771006031121-0.7590771006
 lhs: d_210
-0.3469878996010749 d[2,1,0]	0.3469878993
+0.3469878996010749-0.3469878993
 lhs: d_312
--2.074803792120009 d[3,1,2]	-2.074803792
+-2.074803792120009-(-2.074803792)
 lhs: d_310
-0.29107640846896415 d[3,1,0]	0.2910764084
+0.29107640846896415-0.2910764084
 lhs: d_201
--0.37108719030286785 d[2,0,1]	-0.3710871903
+-0.37108719030286785-0.3710871903
 lhs: d_321
-0.20771277395662346 d[3,2,1]	0.2077127746
+0.20771277395662346-0.2077127746
 lhs: d_301
-0.355014958784053 d[3,0,1]	0.3550149588
+0.355014958784053-0.3550149588
 lhs: d_320
--1.0562878296510383 d[3,2,0]	-1.05628783
+-1.0562878296510383-(-1.05628783)
 lhs: d_302
-1.199962364580633 d[3,0,2]	1.199962364
+1.199962364580633-1.199962364
 lhs: d_311
--0.85836961014258 d[3,1,1]	-0.86138405
+-0.85836961014258-(-0.86138405)
 
 
 
