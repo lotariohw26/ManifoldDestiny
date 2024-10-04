@@ -1,3 +1,15 @@
+#if (grepl("wasm", sessionInfo()[[2]])) {
+#  # If the session info contains "wasm", install the package from the specified repository
+#  webr::install("WASMP", repos = "https://joernih.github.io/WASMA/")
+#  library("WASMP")
+#} else {
+#  # If the session info does not contain "wasm", load the package from the local library
+#  library("WASMP")
+#}
+library(shiny)
+library(dplyr)
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
+source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
@@ -5,6 +17,8 @@ abc <- data(package = "ManifoldDestiny")[[3]][,3][1:3]
 abr <- abc[1:1]
 apps <- get(abr[1])
 options(digits=2)
+
+
 ###############################################################################################################################################################
 ui <- fluidPage(
   titlePanel("Election results analyzer"),
