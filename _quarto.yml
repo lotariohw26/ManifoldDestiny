@@ -59,18 +59,16 @@ website:
         #        #          href: "addendum/Addendum_ne.qmd"
         #        #        - text: "Paper"
         #        #          href: paper.qmd
-        #      - text: "Tabset"
-        #        href: tabset.qmd
-        #        #      - text: Shiny applications
-        #        #        menu:
-        #        #          - text: "R2 simulator"
-        #        #          # href: "{{< var shn1 >}}"
-        #        #          - text: "Rigging of a natural election"
-        #        #          #  href: "{{< var shn2 >}}"
-        #        #          - text: "Election results analyzer"
-        #        #          #  href: "{{< var shn3 >}}"
-        #        #          - text: "Restoration of a rigged election"
-        #        #          #  href: "{{< var shn4 >}}"
+        #- text: "Tabset"
+        #  href: tabset.qmd
+      - text: Shiny applications
+        menu:
+          - text: "Python"
+            href: https://lotariohw26.github.io/MD_WASMS/py/examples/
+        #  - text: "R2 simulator"
+        #  - text: "Rigging of a natural election"
+        #  - text: "Election results analyzer"
+        #  - text: "Restoration of a rigged election"
         #      - text: E-books
         #        menu:
         #        - text: "Analysis of the 2020 and 2022 General Elections of Clark and Washoe Counties, Nevada"
@@ -81,10 +79,10 @@ website:
         #        menu:
         #        - text: "20 laws and 40 isometries "
         #          href: "laws.qmd"
-        #      - text: WebAssembly
-        #        menu:
-        #        - text: "Python"
-        #          href: "randpython.qmd"
+        # - text: WebAssembly
+        #   menu:
+        #   - text: "Python"
+        #     href: "randpython.qmd"
         #          #        - text: "Simulations"
         #          #          href: "simulations.qmd"
         #          #        - text: "Rigging"
