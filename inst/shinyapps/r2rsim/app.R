@@ -1,16 +1,19 @@
-#if (grepl("wasm", sessionInfo()[[2]])) {
-#  # If the session info contains "wasm", install the package from the specified repository
-#  webr::install("WASMP", repos = "https://joernih.github.io/WASMA/")
-#  library("WASMP")
-#} else {
-#  # If the session info does not contain "wasm", load the package from the local library
-#  library("WASMP")
-#}
-library(shiny)
+library(plotly)
 library(dplyr)
-source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
-source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-# Shiny
+library(shiny)
+library(combinat)
+library(htmltools)
+library(ggplot2)
+library(gridExtra)
+library(broom)
+library(tidyr)
+library(combinat)
+library(AlgebraicHaploPackage)
+library(huxtable)
+library(kableExtra)
+library(polynom)
+#ManifoldDestiny::wasmconload()
+#Shiny
 ui <- fluidPage(
   titlePanel("R2 Simulator"),
   tabsetPanel(

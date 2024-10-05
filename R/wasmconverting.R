@@ -1,3 +1,44 @@
+##########################################################################e###################################################################
+#' @export wasmconload
+wasmconload <- function(){
+  ifelse(Sys.info()[['sysname']]=="Emscripten",
+  {
+      # Commands to be executed if the condition is TRUE
+      webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+      webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
+      webr::install(c("AlgebraicHaploPackage","cowplot","broom","htmltools","combinat","DT","dplyr","purrr","magrittr","data.table","tidyr","plotly"))
+      library(ManifoldDestinyWASMP)
+      library(ManifoldDestinyWASMD)
+      #
+      library(AlgebraicHaploPackage)
+      library(broom)
+      library(combinat)
+      library(ggplot2)
+      library(htmltools)
+      library(plotly)
+  },
+  {
+      # Commands to be executed if the condition is FALSE
+      library(ManifoldDestiny)
+      source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmconverting.R'))
+      source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmnonverting.R'))
+  })
+  library(plotly)
+  library(dplyr)
+  library(shiny)
+  library(combinat)
+  library(htmltools)
+  library(ggplot2)
+  library(gridExtra)
+  library(broom)
+  library(tidyr)
+  library(combinat)
+  library(AlgebraicHaploPackage)
+  library(huxtable)
+  library(kableExtra)
+  library(polynom)
+}
+#########################################################################################################################################################
 ##' @export tethyd
 tethyd <- function(cdf=NULL,kvec=NULL,lpy=lpy,solv=NULL,parm=NULL,rot=NULL){
   names(kvec) <- paste0("k", 0:(length(kvec) - 1))
@@ -54,47 +95,6 @@ tethyd <- function(cdf=NULL,kvec=NULL,lpy=lpy,solv=NULL,parm=NULL,rot=NULL){
     dplyr::mutate(!!paste0(solv,'_hat'):=Re(polsolv[1])) %>%
     dplyr::ungroup()
 }
-##########################################################################e###################################################################
-#' @export wasmconload
-wasmconload <- function(){
-  ifelse(Sys.info()[['sysname']]=="Emscripten",
-  {
-      # Commands to be executed if the condition is TRUE
-      webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
-      webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
-      webr::install(c("AlgebraicHaploPackage","cowplot","broom","htmltools","combinat","DT","dplyr","purrr","magrittr","data.table","tidyr","plotly"))
-      library(ManifoldDestinyWASMP)
-      library(ManifoldDestinyWASMD)
-      #
-      library(AlgebraicHaploPackage)
-      library(broom)
-      library(combinat)
-      library(ggplot2)
-      library(htmltools)
-      library(plotly)
-  },
-  {
-      # Commands to be executed if the condition is FALSE
-      library(ManifoldDestiny)
-      source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmconverting.R'))
-      source(paste0(rprojroot::find_rstudio_root_file(),'/R/wasmnonverting.R'))
-  })
-  library(plotly)
-  library(dplyr)
-  library(shiny)
-  library(combinat)
-  library(htmltools)
-  library(ggplot2)
-  library(gridExtra)
-  library(broom)
-  library(tidyr)
-  library(combinat)
-  library(AlgebraicHaploPackage)
-  library(huxtable)
-  library(kableExtra)
-  library(polynom)
-}
-#########################################################################################################################################################
 # ' @export py_polysolverW
 py_polysolverW <- function(degree=1,kvec=NULL){
   vec <- kvec[!is.na(kvec)]

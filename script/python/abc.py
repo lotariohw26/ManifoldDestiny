@@ -83,6 +83,39 @@ for nr in range(20):  # Example: looping from 0 to 19, you can change the range 
 df_results = pd.DataFrame(results)
 df_results.to_csv('results.csv', index=False)
 
+
+import pandas as pd
+
+# Initialize an empty list to store the results for the DataFrame
+results = []
+
+# Loop through the range (adjust the range according to your needs)
+for nr in range(20):  # Example: looping from 0 to 19, you can change the range as needed
+    # Retrieve lhs and rhs values from test
+    lhs = test[2]['d'][nr]
+    rhs = test[2]['expr'][nr]
+    
+    # Call the 'pareq' method with the necessary arguments (assuming pareq returns a value or result)
+    pareq_result = plsv.pareq(str(rhs), a1=a1, a2=a2, a3=a3, b1=b1, b2=b2, b3=b3, 
+                              c1=c1, c2=c2, c3=c3, k0=k0, k1=k1, k2=k2, k3=k3, 
+                              k4=k4, k5=k5, k6=k6, k7=k7, k8=k8, k9=k9)
+    
+    # Append the lhs, rhs, and pareq_result into the results list as a dictionary
+    results.append({
+        'lhs': lhs,
+        'rhs': rhs,
+        'pareq_result': pareq_result
+    })
+
+# Convert the results list into a pandas DataFrame
+df_results = pd.DataFrame(results)
+df_results
+# Now df_results holds the data and you can use it for further analysis or saving
+print(df_results)  # Optional: Display the DataFrame in the console
+
+# If you want to save this DataFrame to a file (like a CSV)
+df_results.to_csv('abc.csv', index=False)
+#df_results.to_excel('abc.xlsx', index=False)  # Save DataFrame to Excel file         
 lhs: d_000
 0.001643394-0.001643393953
 lhs: d_110
@@ -123,92 +156,4 @@ lhs: d_302
 1.199962364580633-1.199962364
 lhs: d_311
 -0.85836961014258-(-0.86138405)
-
-
-
-
-import pandas as pd
-
-# Initialize an empty list to store the results for the DataFrame
-results = []
-
-# Loop through the range (adjust the range according to your needs)
-for nr in range(20):  # Example: looping from 0 to 19, you can change the range as needed
-    # Retrieve lhs and rhs values from test
-    lhs = test[2]['d'][nr]
-    rhs = test[2]['expr'][nr]
-    
-    # Call the 'pareq' method with the necessary arguments (assuming pareq returns a value or result)
-    pareq_result = plsv.pareq(str(rhs), a1=a1, a2=a2, a3=a3, b1=b1, b2=b2, b3=b3, 
-                              c1=c1, c2=c2, c3=c3, k0=k0, k1=k1, k2=k2, k3=k3, 
-                              k4=k4, k5=k5, k6=k6, k7=k7, k8=k8, k9=k9)
-    
-    # Append the lhs, rhs, and pareq_result into the results list as a dictionary
-    results.append({
-        'lhs': lhs,
-        'rhs': rhs,
-        'pareq_result': pareq_result
-    })
-
-# Convert the results list into a pandas DataFrame
-df_results = pd.DataFrame(results)
-
-# Now df_results holds the data and you can use it for further analysis or saving
-print(df_results)  # Optional: Display the DataFrame in the console
-
-# If you want to save this DataFrame to a file (like a CSV)
-df_results.to_csv('pareq_results.csv', index=False)
-
-
-
-
-
-
-
-
-
-
-# II
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# I
-d_000
-# II
-d_100
-d_101
-d_110
-# III
-d_200
-d_201
-d_202
-d_210
-d_211
-d_220
-# IV
-d_300
-d_301
-d_302
-d_303
-d_310
-d_311
-d_312
-d_320
-d_321
-d_330
-
-
 
