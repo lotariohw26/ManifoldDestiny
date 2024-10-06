@@ -195,5 +195,69 @@ genpolycoeffr(["g","h","alpha"],"z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k
 def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
     return eval(ste, kwargs)
 
-# pareq(ste='(a + b)*c', a=2, b=4, c=3)
+# https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=499474525#gid=499474525
+import pandas as pd
+import polysolver as plsv
+import math                                                                   
+prv = ["g","h","alpha"]
+rve = [1, 2, 4]
+gra = [-44.9573,7.001545,-19.9677]
+eqs = ["z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3","alpha=k0+k1*g+k2*h+k3*Gamma"][0]
+sfo = ['g','h','alpha'][2]
+test = genpolycoeffr(elem=prv,expr=eqs,solv=sfo,eur=rve)
+m1v = math.cos(math.radians(gra[0]))
+m2v = math.cos(math.radians(gra[1]))
+m3v = math.cos(math.radians(gra[2]))
+n1v = math.sin(math.radians(gra[0]))
+n2v = math.sin(math.radians(gra[1]))
+n3v = math.sin(math.radians(gra[2]))
+m1v, m2v, m3v, n1v, n2v, n3v
+k0=0.001643394  
+k1=1.075717880 
+k2=-0.731335532
+k3=0.064912642  
+k4=0.064007760 
+k5=-0.785443920
+k6=0.092375583 
+k7=-1.271709722  
+k8=3.038048882
+k9=0.923841730
+
+# I
+a1 = pareq(ste=str(test[1][0]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
+a2 = pareq(ste=str(test[1][1]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
+a3 = pareq(ste=str(test[1][2]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
+b1 = pareq(ste=str(test[1][3]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
+b2 = pareq(ste=str(test[1][4]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
+b3 = pareq(ste=str(test[1][5]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
+c1 = pareq(ste=str(test[1][6]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
+c2 = pareq(ste=str(test[1][7]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
+c3 = pareq(ste=str(test[1][8]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
+a1, a2, a3, b1, b2, b3, c1, c2, c3
+test[2]['expr']
+test[2]['expr'][2]
+test[2]['expr'][3]
+
+results = []
+for nr in range(20):  # Example: looping from 0 to 19, you can change the range as needed
+    lhs = test[2]['d'][nr]
+    rhs = test[2]['expr'][nr]
+    pareq_result = plsv.pareq(
+        str(rhs),
+        a1=a1, a2=a2, a3=a3,
+        b1=b1, b2=b2, b3=b3,
+        c1=c1, c2=c2, c3=c3,
+        k0=k0, k1=k1, k2=k2, k3=k3, k4=k4, k5=k5, k6=k6, k7=k7, k8=k8, k9=k9
+    )
+    # Append the result dictionary directly to the list
+    results.append({
+        'lhs': lhs,
+        'rhs': rhs,
+        'pareq_result': pareq_result
+    })
+
+df_results = pd.DataFrame(results)
+df_results.to_csv('results.csv', index=False)
+
+
 
