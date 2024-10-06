@@ -10,12 +10,6 @@ filters:
 
 ```{pyodide-python}
 import sympy, pandas, numpy, math
-```
-
-
-
-```{pyodide-python}
-import sympy, pandas, numpy
 from sympy import solve, Eq, symbols, latex, simplify, diff, poly, sympify, Matrix, pprint, collect, expand, Poly, Symbol, Pow
 def rall(sel=[0, 0, 0]):
     n, m = symbols('n m')
@@ -207,7 +201,7 @@ def genpolycoeffr(elem,expr,solv,eur):
     matarch[msl]=matarch[msl].astype(str)
     return ABCDE, abc, matarch, plr
 
-genpolycoeffr(["g","h","alpha"],"z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",'alpha',[1,2,4])[2]
+# genpolycoeffr(["g","h","alpha"],"z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",'alpha',[1,2,4])[2]
 
 def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
     return eval(ste, kwargs)
@@ -251,7 +245,7 @@ results = []
 for nr in range(20):  # Example: looping from 0 to 19, you can change the range as needed
     lhs = test[2]['d'][nr]
     rhs = test[2]['expr'][nr]
-    pareq_result = plsv.pareq(
+    pareq_result = pareq(
         str(rhs),
         a1=a1, a2=a2, a3=a3,
         b1=b1, b2=b2, b3=b3,
@@ -265,15 +259,17 @@ for nr in range(20):  # Example: looping from 0 to 19, you can change the range 
         'pareq_result': pareq_result
     })
 
-df_results = pd.DataFrame(results)
+df_results = pandas.DataFrame(results)
+
 ```
 
+# Output
 ```{pyodide-python}
 a1, a2, a3, b1, b2, b3, c1, c2, c3
 ```
 
 ```{pyodide-python}
-# https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=499474525#gid=499474525
-df_results 
+df_results
 ```
+
 
