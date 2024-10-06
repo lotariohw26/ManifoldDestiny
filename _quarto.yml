@@ -40,7 +40,7 @@ project:
     #    - "rigging.qmd"
     #    - "analyzer.qmd"
     #    - "restoration.qmd"
-    - "randpython.qmd"
+    #    - "randpython.qmd"
     #    - "calculator.qmd"
 website:
   title: "{{< var titls >}}"
@@ -61,9 +61,8 @@ website:
         #- text: "Tabset"
         #  href: tabset.qmd
         #- text: Shiny applications
-        #  menu:
-        #    - text: "Python"
-        #      href: https://lotariohw26.github.io/MD_WASMS/py/examples/
+      - text: "Python"
+        href: https://lotariohw26.github.io/MD_WASMS/py/examples/
         #  - text: "R2 simulator"
         #  - text: "Rigging of a natural election"
         #  - text: "Election results analyzer"
@@ -80,8 +79,8 @@ website:
         #          href: "laws.qmd"
         # - text: WebAssembly
         #   menu:
-      - text: "Pyodide"
-        href: "randpython.qmd"
+        #- text: "Pyodide"
+        #  href: "randpython.qmd"
         #          #        - text: "Simulations"
         #          #          href: "simulations.qmd"
         #          #        - text: "Rigging"
