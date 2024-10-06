@@ -60,8 +60,8 @@ website:
         #        #          href: paper.qmd
         #- text: "Tabset"
         #  href: tabset.qmd
-      - text: "Shiny applications"
-        href: https://lotariohw26.github.io/MD_WASMS/py/examples/
+        # - text: "Shiny applications"
+        #  href: https://lotariohw26.github.io/MD_WASMS/py/examples/
         #  - text: "R2 simulator"
         #  - text: "Rigging of a natural election"
         #  - text: "Election results analyzer"
