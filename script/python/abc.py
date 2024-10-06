@@ -1,4 +1,4 @@
-import sympy, pandas, numpy, math
+import sympy, pandas, numpy, math, polysolver
 
 from sympy import solve, Eq, symbols, latex, simplify, diff, poly, sympify, Matrix, pprint, collect, expand, Poly, Symbol, Pow
 def rall(sel=[0, 0, 0]):
@@ -235,7 +235,7 @@ results = []
 for nr in range(20):  # Example: looping from 0 to 19, you can change the range as needed
     lhs = test[2]['d'][nr]
     rhs = test[2]['expr'][nr]
-    pareq_result = plsv.pareq(
+    pareq_result = polysolver.pareq(
         str(rhs),
         a1=a1, a2=a2, a3=a3,
         b1=b1, b2=b2, b3=b3,
@@ -253,8 +253,8 @@ df_results = pandas.DataFrame(results)
 
 a1, a2, a3, b1, b2, b3, c1, c2, c3
 
-# https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=499474525#gid=499474525
 
 df_results 
+# https://docs.google.com/spreadsheets/d/1Qf51QlYkCmd8h72R5JrFUt9VYCgpq8U_RyQTLzOoiFc/edit?gid=499474525#gid=499474525
 
 
