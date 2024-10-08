@@ -8,8 +8,10 @@ suppressMessages(ManifoldDestiny::wasmconload())
 ManifoldDestiny::bm()
 ###############################################################################################################
 if(isTRUE(apps)) {
-appl <- list(c("r2rsim","ManifoldDestiny"), c("manimp","ManifoldDestiny"),c("empapp","ManifoldDestiny"), c("restor","ManifoldDestiny"))
+x <- 1
+appl <- list(c("abc","ManifoldDestiny"), c("manimp","ManifoldDestiny"),c("empapp","ManifoldDestiny"), c("restor","ManifoldDestiny"))
   lapply(1:1, function(x) {
+		 x <- 1
      system.file("shinyapps",appl[x][[1]][1], package=appl[x][[1]][2]) %>%
      fs::dir_copy(paste0("inst/shinyapps/",appl[x][[1]][1]), overwrite = TRUE)
      dp <- paste0("inst/shinyapps/",appl[[x]][1])
@@ -37,7 +39,7 @@ appl <- list(c("r2rsim","ManifoldDestiny"), c("manimp","ManifoldDestiny"),c("emp
 #usethis::use_data(lpku, overwrite = TRUE)
 ################################################################################################################
 ##  # Model
-#fdm <- paste0(rprojroot::find_rstudio_root_file(),'/script/python/pysympy.py')
+#fdm <- paste0(rprojroot::find_rstudio_root_file(),'/script/python/pysympy.py')A
 #reticulate::source_python(fdm)
 #eqpar <- list(meql=reticulate::py$modeql,meqs=reticulate::py$modeqs)
 ### Saving data
@@ -87,11 +89,9 @@ appl <- list(c("r2rsim","ManifoldDestiny"), c("manimp","ManifoldDestiny"),c("emp
 #frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11,12),c(13,14,15,16,17,18),c(19,20,21,22,23,24))
 #usethis::use_data(frmsel, overwrite = TRUE)
 ################################################################################################################
-file.copy(from = "script/python/polysolver.py", to ="MD_WASMS/examples/python/repl/abc.py", overwrite=T) 
-file.copy(from = "inst/shinyapps/r2rsim/app.R", to ="MD_WASMS/examples/r/001-hello/app.R", overwrite=T) 
-file.copy(from = "inst/shinyapps/r2rsim/app.R", to ="MD_WASMS/examples/r/002-text/app.R", overwrite=T) 
-file.copy(from = "inst/shinyapps/r2rsim/app.R", to ="MD_WASMS/examples/r/003-reactivity/app.R", overwrite=T) 
-file.copy(from = "inst/shinyapps/r2rsim/app.R", to ="MD_WASMS/examples/r/004-mpg/app.R", overwrite=T) 
-
-
+#file.copy(from = "script/python/abc.py", to ="MD_WASMS/examples/python/repl/poly.py", overwrite=T) 
+#file.copy(from = "inst/shinyapps/r2rsim/app.R", to ="MD_WASMS/examples/r/001-hello/app.R", overwrite=T) 
+#file.copy(from = "inst/shinyapps/r2rsim/app.R", to ="MD_WASMS/examples/r/002-text/app.R", overwrite=T) 
+#file.copy(from = "inst/shinyapps/r2rsim/app.R", to ="MD_WASMS/examples/r/003-reactivity/app.R", overwrite=T) 
+#file.copy(from = "inst/shinyapps/r2rsim/app.R", to ="MD_WASMS/examples/r/004-mpg/app.R", overwrite=T) 
 
