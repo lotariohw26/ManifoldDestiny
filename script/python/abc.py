@@ -284,7 +284,7 @@ B1, B2, B3
 C1, C2, C3
 D1, D2, D3
 
-# Controll sums
+# Controll sums for testing
 def sum_values(*args):                                               
     return sum(args)                                                 
 
@@ -293,4 +293,3 @@ sum(df_results['pareq_result'][0:20])
 sum_values(A1,B1,C1,D1)
 sum_values(A2,B2,C2,D2)
 sum_values(A3,B3,C3,D3)
-
