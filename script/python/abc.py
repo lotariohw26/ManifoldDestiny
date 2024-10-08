@@ -194,6 +194,22 @@ def genpolycoeffr(elem,expr,solv,eur):
 
 def pareq(ste='(x + y*zeta)/(zeta + 1)', **kwargs):
     return eval(ste, kwargs)
+##############################################################################################################
+#
+g_m= 0.372791
+h_m= 0.386917
+alpha_m= 0.376463
+#
+k0=0.001643394  
+k1=1.075717880 
+k2=-0.731335532
+k3=0.064912642  
+k4=0.064007760 
+k5=-0.785443920
+k6=0.092375583 
+k7=-1.271709722  
+k8=3.038048882
+k9=0.923841730
 
 prv = ["g","h","alpha"]
 rve = [1, 2, 4]
@@ -213,16 +229,6 @@ n1v = math.sin(math.radians(gra[0]))
 n2v = math.sin(math.radians(gra[1]))
 n3v = math.sin(math.radians(gra[2]))
 m1v, m2v, m3v, n1v, n2v, n3v
-k0=0.001643394  
-k1=1.075717880 
-k2=-0.731335532
-k3=0.064912642  
-k4=0.064007760 
-k5=-0.785443920
-k6=0.092375583 
-k7=-1.271709722  
-k8=3.038048882
-k9=0.923841730
 
 # I
 a1 = pareq(ste=str(pol1[1][0]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
@@ -237,8 +243,8 @@ c3 = pareq(ste=str(pol1[1][8]),m1=m1v,m2=m2v,m3=m3v,n1=n1v,n2=n2v,n3=n3v)
 
 results = []
 for nr in range(20):  # Example: looping from 0 to 19, you can change the range as needed
-    lhs = test[2]['d'][nr]
-    rhs = test[2]['expr'][nr]
+    lhs = pol1[2]['d'][nr]
+    rhs = pol1[2]['expr'][nr]
     pareq_result = pareq(
         str(rhs),
         a1=a1, a2=a2, a3=a3,
@@ -252,8 +258,8 @@ for nr in range(20):  # Example: looping from 0 to 19, you can change the range 
         'rhs': rhs,
         'pareq_result': pareq_result
     })
-df_results = pandas.DataFrame(results)
 
+df_results = pandas.DataFrame(results)
 # 
 A1=pareq(ste=str(pol1[0][0]),a1=a1, a2=a2, a3=a3, b1=b1, b2=b2, b3=b3, c1=c1, c2=c2, c3=c3, k0=k0, k1=k1, k2=k2, k3=k3, k4=k4, k5=k5, k6=k6, k7=k7, k8=k8, k9=k9,alpha_m=0,g_m=0,h_m=0)
 B1=pareq(ste=str(pol1[0][1]),a1=a1, a2=a2, a3=a3, b1=b1, b2=b2, b3=b3, c1=c1, c2=c2, c3=c3, k0=k0, k1=k1, k2=k2, k3=k3, k4=k4, k5=k5, k6=k6, k7=k7, k8=k8, k9=k9,alpha_m=0,g_m=0,h_m=0)
@@ -269,6 +275,7 @@ A3=pareq(ste=str(pol3[0][0]),a1=a1, a2=a2, a3=a3, b1=b1, b2=b2, b3=b3, c1=c1, c2
 B3=pareq(ste=str(pol3[0][1]),a1=a1, a2=a2, a3=a3, b1=b1, b2=b2, b3=b3, c1=c1, c2=c2, c3=c3, k0=k0, k1=k1, k2=k2, k3=k3, k4=k4, k5=k5, k6=k6, k7=k7, k8=k8, k9=k9,alpha_m=0,g_m=0,h_m=0)
 C3=pareq(ste=str(pol3[0][2]),a1=a1, a2=a2, a3=a3, b1=b1, b2=b2, b3=b3, c1=c1, c2=c2, c3=c3, k0=k0, k1=k1, k2=k2, k3=k3, k4=k4, k5=k5, k6=k6, k7=k7, k8=k8, k9=k9,alpha_m=0,g_m=0,h_m=0)
 D3=pareq(ste=str(pol3[0][3]),a1=a1, a2=a2, a3=a3, b1=b1, b2=b2, b3=b3, c1=c1, c2=c2, c3=c3, k0=k0, k1=k1, k2=k2, k3=k3, k4=k4, k5=k5, k6=k6, k7=k7, k8=k8, k9=k9,alpha_m=0,g_m=0,h_m=0)
+
 # Output
 a1, a2, a3, b1, b2, b3, c1, c2, c3
 df_results
@@ -276,4 +283,14 @@ A1, A2, A3
 B1, B2, B3
 C1, C2, C3
 D1, D2, D3
+
+# Controll sums
+def sum_values(*args):                                               
+    return sum(args)                                                 
+
+sum_values(a1, a2, a3, b1, b2, b3, c1, c2, c3)
+sum(df_results['pareq_result'][0:20])
+sum_values(A1,B1,C1,D1)
+sum_values(A2,B2,C2,D2)
+sum_values(A3,B3,C3,D3)
 

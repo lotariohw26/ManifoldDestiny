@@ -10,15 +10,17 @@ ls(package:ManifoldDestiny)
 aps <- apn1n
 aps <- apn2n
 aps <- apn3r
-aps <- apn4n
+#aps <- apn4n
 #adat <- aps[[1]]
 #amet <- aps[[2]]
 ############################################################################################################
 slr <- selreport(aps)
+
 slo <- seloutput(slr)
 ###########################################################################################################
-
-
+sum(unique(tdf[c('a1','a2','a3', 'b1','b2','b3', 'c1','c2','c3')]))
+sum(unique(select(tdf,starts_with("d_"))))
+select(tdf,starts_with("d_"))
 
 
 
@@ -42,9 +44,7 @@ re <- Estimation(rotuvw,"H")
 re$regression("z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3")
 broom::tidy(re$regsum[[1]])
 re$hat_predict("g")$estimate
-
 View(re$lpy[[3]])
-
 re$tdf$d_000[1]
 
 re$tdf$d_100[1]

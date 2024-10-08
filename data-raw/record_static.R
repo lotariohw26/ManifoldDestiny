@@ -50,3 +50,5 @@ rigv <- lapply(1:4, function(x) {
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
 })
 ####################################################################################################################################################
+sum(unique(tdf[c('a1','a2','a3', 'b1','b2','b3', 'c1','c2','c3')]))
+sum(unique(select(tdf,starts_with("d_"))))

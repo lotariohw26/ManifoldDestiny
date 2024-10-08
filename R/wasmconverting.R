@@ -47,6 +47,8 @@ tethyd <- function(cdf=NULL,kvec=NULL,lpy=lpy,solv=NULL,parm=NULL,rot=NULL){
   abcv <- setNames(sapply(lpy[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = "")) 
   nbm <- paste0(names(cdf)[2:4],"_m")
   #cdf$x <- cdf$y <- cdf$z <- 1
+  browser()
+  View(polc)
   polc <- cdf %>% 
     dplyr::mutate(!!!kvec) %>%
     dplyr::mutate(pnr=lpy[[4]]+1) %>%
@@ -254,7 +256,6 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
-
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
@@ -1104,6 +1105,7 @@ Estimation$methods(hat_predict=function(svf='y'){
     lpy <<- py_genpolycoeffr(param[[1]][1:3],regass,svf,eurv)
   }
   tdf <<- tethyd(edfc,kvec,lpy,solv=svf,parm=param,rot=roto)
+  #browser()
   regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=tdf)
 })
 Estimation$methods(hat_intcomp=function(){
