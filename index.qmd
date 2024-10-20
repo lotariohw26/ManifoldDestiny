@@ -21,6 +21,8 @@ filters:
 
 **Based upon the ideas developed by Edward K. Solomon**
 
+**Last time updated: {{< now timestamp >}}**
+
 ```{r}
 knitr::knit_exit()
 ```
@@ -230,9 +232,5 @@ testr = genpolycoeffr(["g","h","alpha"],"z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k
 ```
 
 **Last time updated: `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`**
-
-
-
-
 
 

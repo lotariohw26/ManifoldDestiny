@@ -7,17 +7,34 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
-aps <- apn1n
-aps <- apn2n
-aps <- apn3r
-#aps <- apn4n
-#adat <- aps[[1]]
-#amet <- aps[[2]]
+aps <- apn5an
+aps <- apn5bn
+#aps <- apn1n
+#aps <- apn2n
+#aps <- apn3r
+##aps <- apn4n
+adat <- aps[[1]]
+amet <- aps[[2]]
 ############################################################################################################
 slr <- selreport(aps)
-
 slo <- seloutput(slr)
 ###########################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 sum(unique(tdf[c('a1','a2','a3', 'b1','b2','b3', 'c1','c2','c3')]))
 sum(unique(select(tdf,starts_with("d_"))))
 select(tdf,starts_with("d_"))

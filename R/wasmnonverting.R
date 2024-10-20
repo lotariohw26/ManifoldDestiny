@@ -10,8 +10,7 @@ recoudatr <- function(mda=NULL,prn=1){
         U = !!rlang::parse_expr(mda$spr$stuv[3]),
         V = !!rlang::parse_expr(mda$spr$stuv[4])
       ) %>%
-  #!
-  mutate(R = dplyr::if_else(!is.na(R), R, S + T + U + V)) 
+ { if ("R" %in% .[]) . else mutate(., R = S + T + U + V)}  
   assign(mda$nid,list(as.data.frame(gsh),mda))
   do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
   return(mda$nid)

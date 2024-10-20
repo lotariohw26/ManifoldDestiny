@@ -1,4 +1,4 @@
-#d _apps_rel.yml
+# _apps_rel.yml
 # _apps_sim.yml
 # _apps_his.yml
 # data-raw/record_static.R
@@ -24,7 +24,7 @@
 project:
   type: website
   output-dir: docs
-  #  pre-render: prerendr.R
+  pre-render: prerendr.R
   render:
     - "index.qmd"
     #    - "presentation.qmd"

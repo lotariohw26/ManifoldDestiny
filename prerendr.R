@@ -90,8 +90,11 @@ appl <- list(c("abc","ManifoldDestiny"), c("manimp","ManifoldDestiny"),c("empapp
 #usethis::use_data(frmsel, overwrite = TRUE)
 ################################################################################################################
 #file.copy(from = "script/python/abc.py", to ="MD_WASMS/examples/python/repl/poly.py", overwrite=T) 
-#file.copy(from = "inst/shinyapps/r2rsim/app.R", to ="MD_WASMS/examples/r/001-hello/app.R", overwrite=T) 
-#file.copy(from = "inst/shinyapps/r2rsim/app.R", to ="MD_WASMS/examples/r/002-text/app.R", overwrite=T) 
-#file.copy(from = "inst/shinyapps/r2rsim/app.R", to ="MD_WASMS/examples/r/003-reactivity/app.R", overwrite=T) 
-#file.copy(from = "inst/shinyapps/r2rsim/app.R", to ="MD_WASMS/examples/r/004-mpg/app.R", overwrite=T) 
+file.copy(from="inst/shinyapps/r2rsim/app.R",to="MD_WASMS/examples/r/001-hello/app.R", overwrite=T) 
+file.copy(from="inst/shinyapps/r2rsim/app.R",to="MD_WASMS/examples/r/002-text/app.R", overwrite=T) 
+file.copy(from="inst/shinyapps/r2rsim/app.R",to="MD_WASMS/examples/r/003-reactivity/app.R", overwrite=T) 
+file.copy(from="inst/shinyapps/r2rsim/app.R",to="MD_WASMS/examples/r/004-mpg/app.R", overwrite=T) 
 
+#library(webshot)
+#webshot("https://www.r-project.org/", "r.png")
+#webshot("https://www.r-project.org/", "r-viewport.png", cliprect = "viewport")
