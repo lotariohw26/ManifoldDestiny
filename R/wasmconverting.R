@@ -448,7 +448,7 @@ erotation <-function(dfe=NULL,
 #' @export ballcount
 ballcount <- function(ballotsdf=NULL,se=se){
   # Assigning model equations
-  sdfc <<- ballotsdf %>%
+  sdfc <- ballotsdf %>%
     dplyr::mutate(Z=S+T+U+V) %>%
     dplyr::mutate(O=Z-Z) %>%
     dplyr::mutate(x=pareq(se[['x_s']][1],as.list(.[,]))) %>%
@@ -676,6 +676,7 @@ Countingprocess$methods(plext=function(frm=2){
 })
 
 Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("alpha=k0+k1*x+k2*y"),rnk=0,pres=NULL,pri=0,frm='N',prma=NULL){
+
   rdfv <- rdfci %>%
     dplyr::arrange(P) %>%
     dplyr::filter(Z>z) %>%
@@ -685,23 +686,18 @@ Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("
     dplyr::filter(V>stuv[4]) %>%
     dplyr::filter(!P%in%prma) %>%
     dplyr::filter(if_all(c(alpha,x,y,g,h,m,n),~.>blup[1]&.<blup[2]))
-    erdfv <- Estimation(rdfv,frm)
-    erdfv$regression(eqp)
-    erdfv$regsum[[1]]
-    rdfc <<- erdfv$predict_df %>%
-            dplyr::mutate(pre_rnk=dplyr::row_number(desc(deva))) %>%
-            dplyr::arrange(pre_rnk) %>%
-            dplyr::filter(pre_rnk>rnk) %>% 
-	    dplyr::filter(!P%in%pres) %>%
-            dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
-            dplyr::arrange(P)
-  prpr <- setdiff(rdfci$P,rdfv$P)
-  purdf <<- rdfci %>% dplyr::filter(P%in%prpr)
-  #print(dim(rdfci)[1]); print(dim(rdfv)[1]); print(dim(rdfc)[1])
-  if (pri==1) {print(dim(rdfci)[1]); print(dim(rdfv)[1]); print(dim(rdfc)[1])}
 
+  erdfv <- Estimation(rdfv,frm)
+  erdfv$regression(eqp)
+  rdfc <<- erdfv$predict_df %>%
+    dplyr::mutate(pre_rnk=dplyr::row_number(desc(deva))) %>%
+    dplyr::arrange(pre_rnk) %>%
+    dplyr::filter(pre_rnk>rnk) %>% 
+    dplyr::filter(!P%in%pres) %>%
+    dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
+    dplyr::arrange(P)
+  if (pri==1) {print(dim(rdfci)[1]); print(dim(rdfc)[1])}
 })
-#})
 Countingprocess$methods(sortpre=function(form="N",
 					 polyn=6,
 					 sortby='alpha'

@@ -8,7 +8,7 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
 aps <- apn5an
-aps <- apn5bn
+#aps <- apn5bn
 #aps <- apn1n
 #aps <- apn2n
 #aps <- apn3r
@@ -16,13 +16,50 @@ aps <- apn5bn
 adat <- aps[[1]]
 amet <- aps[[2]]
 ############################################################################################################
-slr <- selreport(aps)
-slo <- seloutput(slr)
+#slr <- selreport(aps)
+#slo <- seloutput(slr)
 ###########################################################################################################
+co <- Countinggraphs(adat,selvar=c('PN','P','R','S','T','U','V'))
+co$purging(stuv=c(1,1,1,1),pri=1)
+cok <- cos(45*(pi/180))
+sik <- sin(45*(pi/180))
+def <- co$rdfc %>% dplyr::mutate(v1=cok*x-sik*y,v2=sin*x+cok*y)
+re <- Estimation(def,"H")
+eqi <- "alpha=k0 + k1*v1 + k2*v2"
+re$regression(eqi)
+summary(re$regsum[[1]])
+broom::tidy(re$regsum[[1]])
+2+2
+#View(co$purdf)
+#sort(c(77,39,45,141,174,172,168,173,110,139,147))
+#sort(co$purdf$P)
+#co$sortpre(frm)
+#co$descriptive(frm)
+#co$r2siminput(frm)
+#co$plot2d(frm)
+#co$plotxy(frm)
+##co$resplot(frm)
+#co$plotly3d(partition=frm)
+#co$pl_3d_mani[[1]]
+#co$gridarrange()
+#co$rotation(selv=c("g","h","alpha","PN"),
+#	    smat=md$sol$ro[[1]],
+#	    grad=md$sol$ro[[2]],
+#	    mead=TRUE)
+#co$rotgraph()
+#co$plext(frm)
+#co$gridarrange()
+#vmat <- c(1,2,4)
+#co$rofc
+#seq <- 2
+summary(re$regsum[[1]])
+#df1 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=c(1, 2, 4),rot=1)
+#df2 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2",solv='x',eur=c(1, 2, 4),rot=1)
+df3 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='y',eur=c(1, 2, 4),rot=1)
 
 
 
-
+#View(adat)
 
 
 
@@ -199,28 +236,6 @@ ghi$D
 #library(googlesheets4)
 #ls(package:googlesheets4)
 #sheet_w*rite(iris,"",sheet=5)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
