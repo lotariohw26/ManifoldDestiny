@@ -72,10 +72,10 @@ website:
         #          href: "https://lotariohw26.github.io/MD_BOOK1"
         #      - text: Bibliography
         #        href: man_bib.qmd
-        #      - text: Appendix
-        #        menu:
-        #        - text: "20 laws and 40 isometries "
-        #          href: "laws.qmd"
+      - text: Appendix
+        menu:
+        - text: "20 laws and 40 isometries"
+          href: "laws.qmd"
         # - text: WebAssembly
         #   menu:
       - text: "Pyodide"

@@ -19,27 +19,31 @@ amet <- aps[[2]]
 #slr <- selreport(aps)
 #slo <- seloutput(slr)
 ###########################################################################################################
+frm <- 1
 co <- Countinggraphs(adat,selvar=c('PN','P','R','S','T','U','V'))
-co$purging(stuv=c(1,1,1,1),pri=1)
-cok <- cos(45*(pi/180))
-sik <- sin(45*(pi/180))
-def <- co$rdfc %>% dplyr::mutate(v1=cok*x-sik*y,v2=sin*x+cok*y)
+co$purging(prma=c(59,191,206,214,299,300,215,217,317,318),pri=1)
+co$sortpre(frm)
+co$descriptive(frm)
+co$r2siminput(frm)
+co$plot2d(frm)
+co$plotxy(frm)
+co$resplot(frm)
+co$plotly3d(partition=frm)
+co$pl_2dsort
+co$sumreg[[1]]
+co$sumreg[[2]]
+co$sumreg[[3]]
+abc <- co$gridarrange()
+cok <- cos(-45*(pi/180))
+sik <- sin(-45*(pi/180))
+def <- co$rdfc %>% dplyr::mutate(v1=cok*x-sik*y,v2=sik*x+cok*y)
+ghi <- pl3(df3p=def,selv=c("v1","v2","alpha"))
 re <- Estimation(def,"H")
 eqi <- "alpha=k0 + k1*v1 + k2*v2"
 re$regression(eqi)
 summary(re$regsum[[1]])
-broom::tidy(re$regsum[[1]])
 2+2
-#View(co$purdf)
-#sort(c(77,39,45,141,174,172,168,173,110,139,147))
-#sort(co$purdf$P)
-#co$sortpre(frm)
-#co$descriptive(frm)
-#co$r2siminput(frm)
-#co$plot2d(frm)
-#co$plotxy(frm)
-##co$resplot(frm)
-#co$plotly3d(partition=frm)
+
 #co$pl_3d_mani[[1]]
 #co$gridarrange()
 #co$rotation(selv=c("g","h","alpha","PN"),
