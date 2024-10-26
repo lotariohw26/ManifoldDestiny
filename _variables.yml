@@ -6,43 +6,34 @@ addal: "Arizona General Election 2022"
 addns: "Addendum"
 addnl: "Nevada General Election 2020"
 
-sec1:
-  nmn: "Introduction"
-  un1: "Setting up the election system"
-  un2: "Tautologies using standard form (north vs. south)"
-  un3: "Tautologies using hybrid form (west vs. east)"
-  un4: "Tautologies using opposition form (upper vs. lower)"
-  un5: "Modelling the election process"
-  un6: "How outside factors to the voting system will impact $\\zeta_i$"
-  un7: "How outside factors to the voting system will impact $\\Gamma_i$"
+sec1: [["Introduction"],
+["Setting up the election system",
+"Tautologies using standard form (north vs. south)",
+"Tautologies using hybrid form (west vs. east)",
+"Tautologies using opposition form (upper vs. lower)",
+"Modelling the election process","How outside factors to the voting system will impact $\\zeta_i$",
+"How outside factors to the voting system will impact $\\Gamma_i$"]]
+  
+sec2: [["Methods of Ballot Counting"],
+["Generic approach to ballot counting",
+"The 20 laws and 40 isometries governing an election",
+"Counting in a fair election",
+"Counting in a rigged election",
+"Implementing a loss-function in a rigged election"]]
 
-sec2:
-  nmn: "Methods of Ballot Counting"
-  un1: "Generic approach to ballot counting"
-  un2: "The 20 laws and 40 isometries governing an election"
-  un3: "Counting in a fair election"
-  un4: "Counting in a rigged election"
-  un5: "Implementing a loss-function in a rigged election"
+sec3: [["Election Simulations"],
+["Fair election","Rigged election"]]
 
-sec3:
-  nmn: "Election Simulations"
-  un1: "Fair election"
-  un2: "Rigged election"
+sec4: [["Checking for a rigged election"],
+[["Procedure"]]]
 
-sec4:
-  nmn: "Checking for a rigged election"
-  un1: "Procedure"
+sec5: [["Literature Review",""]]
 
-sec5:
-  nmn: "Literature Review"
-  un1: ""
-
-sec6:
-  nmn: "Applications"
-  un1:  "Application 1:"
-  un2:  "Application 2:"
-  un3:  "Application 3:"
-  un4:  "Application 4:"
+sec6: [["Applications"],
+["Application 1:",
+"Application 2:",
+"Application 3:",
+"Application 4:",]]
 
 sec7:
   nmn: "Restoring Original Election Results"
@@ -52,8 +43,7 @@ sec8:
   nmn: "Conclusions"
   un1: "Procedure"
 
-sec9:
-  nmn: "References"
+sec9: [["References"]]
 
 tabh:
   h0: "Fair election"

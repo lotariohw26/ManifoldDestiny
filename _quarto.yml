@@ -27,7 +27,7 @@ project:
   pre-render: prerendr.R
   render:
     - "index.qmd"
-    #    - "presentation.qmd"
+    - "presentation.qmd"
     #    - "paper.qmd"
     #    - "addendum/Addendum_az.qmd"
     #    - "addendum/Addendum_ne.qmd"

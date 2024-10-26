@@ -17,7 +17,6 @@ nocite: |
 ---
 
 
-
 ```{r, echo=F, message=F, warning=F, results='hide'}
 ManifoldDestiny::wasmconload()
 library(polynom)
@@ -25,25 +24,25 @@ modlat <- eqpar$meql
 laws_df1 <- ManifoldDestiny::eqdef$meql
 laws_df2 <- ManifoldDestiny::eqdef$meqs
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
-ssr <- selreport(ManifoldDestiny::appsn)
-rsr  <- selreport(ManifoldDestiny::apprn)
-round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))
+#ssr <- selreport(ManifoldDestiny::appsn)
+#rsr <- selreport(ManifoldDestiny::apprn)
+#round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))
 ```
 
 
+# {{< var sec1.1 >}}
 
-# {{< var sec1.nmn >}}
 Ed. Solomon
 
 > "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
 
-## {{< var sec1.un1 >}}
+## {{< var sec1.2.1 >}}
+
 - Two candidates: A, B
 - County with three precincts: 1, 2, 3
 - Two modes of voting
   - Number of ballots mode 1: S, T
   - Number of ballots mode 2: V, U
-
 
 ---
 
@@ -78,7 +77,8 @@ lego_hux_imp_ii <- as_hux(towii[,1:3]) %>%
 lego_hux_imp_ii
 ```
 
-## {{< var sec1.un2 >}}
+## {{< var sec1.2.2 >}}
+
 ```{r, echo=F}
 lego_hux_nor <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
   set_background_color(1, 1:2, "black") %>% 
@@ -87,8 +87,6 @@ lego_hux_nor <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
   set_all_borders(brdr(2, "solid", "black"))
 lego_hux_nor %>% set_caption("")
 ```
-
-
 
 Parameters:**$x$, $y$, $\zeta$, $\alpha$, $\lambda$**
 
@@ -130,7 +128,8 @@ Numerical calculation of candidate one total percentage
 kableExtra::kbl(format(stfc2,digits=4)) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
 
-## {{< var sec1.un3 >}}
+## {{< var sec1.2.3 >}}
+
 ```{r, echo=F}
 lego_hux_imp <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
   set_background_color(1:2, 1, "black") %>% 
@@ -172,13 +171,15 @@ Numerical calculation of candidate one total percentage
 
 ---
 
+
 ```{r, echo=F}
 #| label: tbl-hfc2
 #| tbl-cap: 'Election results applying hybrid form case II'
 kableExtra::kbl(format(hyfc2,digits=4)) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
 
-## {{< var sec1.un4 >}}
+## {{< var sec1.2.4 >}}
+
 ```{r, echo=F}
 lego_hux_opo <- as_hux(matrix(c("S","T","U","V"), 2, 2)) %>%
   set_background_color(c(1),c(1), "black") %>% 
@@ -203,7 +204,6 @@ n=`r modlat$n_o[1]` \text{ , } m=`r modlat$m_o[1]`
 \begin{equation*}
 \lambda=`r modlat$lamda_o[1]`=`r modlat$lamda_o[2]`
 \end{equation*}
-
 ---
 
 ```{r, echo=F}
@@ -220,7 +220,7 @@ kableExtra::kbl(format(opfc1,digits=4)) %>% kableExtra::kable_paper(full_width =
 kableExtra::kbl(format(opfc2,digits=4)) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
 
-## {{< var sec1.un5 >}}
+## {{< var sec1.2.6 >}}
 
 - **Step 1:** Each registered voter assign themself (independent of voting technology) to either candidate A or candidate B
 - **Step 2:** Voting technology realized
@@ -269,7 +269,7 @@ Neutral-voting assumption:
 
 Note: As we will investigate later, this condition might be needed in order to restore a rigged election to its original form. 
 
-## {{< var sec1.un6 >}}
+## {{< var sec1.2.6 >}}
 
 1. Differences in the cost of voting (e.g., topology, voting rules, dropboxes etc.) across precincts $\Rightarrow$
 1. Changes to the likelihood of voting $\Rightarrow$ 
@@ -293,7 +293,7 @@ If none of this three cases are satisfied, variation in $\zeta_i$ should explain
 
 [Application 1: Election process simulator]({{< var shn1 >}})
 
-## {{< var sec1.un7 >}}
+## {{< var sec1.2.7 >}}
 
 1. Differenc in the cost of voting (e.g., topology, voting rules, dropboxes, socio economics etc.) across precincts $\Rightarrow$ 
 1. Make changes to the likelihood of voting $\Rightarrow$ 
@@ -318,7 +318,20 @@ If none of this three cases are satisfied, variation in $\Gamma_i$ should explai
 
 [Application 1: Election process simulator]({{< var shn1 >}})
 
-# {{< var sec2.nmn >}}
+
+
+# {{< var sec2.1 >}}
+
+# {{< var sec9.1 >}}
+
+::: {#refs}
+:::
+
+
+```{r}
+knitr::knit_exit()
+```
+
 ## {{< var sec2.un1 >}}
 - We have identified three ways of counting
   - *Standard form* ( $x$, $y$, $\zeta$, $\alpha$, $\lambda$ )

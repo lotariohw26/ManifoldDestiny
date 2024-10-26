@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Manifold Destiny - or how to rig an election",
     "section": "",
-    "text": "Based upon the ideas developed by Edward K. Solomon\nLast time updated: 2024-10-14 21:38:41"
+    "text": "Based upon the ideas developed by Edward K. Solomon\nLast time updated: 2024-10-25 21:32:09"
   },
   {
     "objectID": "tabset.html",
@@ -40,5 +40,75 @@
     "title": "Output",
     "section": "",
     "text": "Please enable JavaScript to experience the dynamic code cell content on this page.\n\nOutput\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "presentation.html#references",
+    "href": "presentation.html#references",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "",
+    "text": "The impact on the election outcome, however, would be small or close to non-existens if the conditions of the existance of a trivial Manifold related to opposition form are not satisfied:\n\nProportion of the hybrid ballot boxes is already high (Aggregate convergence lemma)\n\nNote: \\(\\lim_{\\Gamma_i \\rightarrow \\infty} \\alpha_i=\\frac{g_i+\\zeta_i h_i}{\\zeta_i+g_i}=y_i\\)\n\nCorrelation between \\(g\\) and \\(h\\) is very high (Twixt lemma)\n\nNote: If correlation is 1, we can set \\(g_i=\\rho_h h_i\\) so that \\(\\alpha_i(h_i,\\Gamma_i)=\\frac{\\rho_h h_i+\\Gamma_i h_i}{\\Gamma_i+x_i}\\)\n\nLow variance to \\(\\Gamma_i\\)\n\nNote: Invariance across precincts would imply that \\(\\Gamma_i=\\Gamma\\), so that election outcome only determined by variations in two parameters: \\(\\alpha_i=\\frac{g_i+\\Gamma h_i}{h_i}\\)\n\n\nIf none of this three cases are satisfied, variation in \\(\\Gamma_i\\) should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?\nApplication 1: Election process simulator\n\n\n\nhttps://lotariohw26.github.io/ManifoldDestiny/\n\n\n\n\nDelfino, Gustavo, and Guillermo Salas. 2011. “Analysis of the 2004 Venezuela Referendum: The Official Results Versus the Petition Signatures.” Statistical Science, 479–501.\n\n\nEdward, Solomon. 20xx. “Nevada 2020, Clark and Washoe, Laymen’s only.” https://docs.google.com/document/d/1X90y8zuBWI0NW2pFNjB77VcZIyBo-W4RiV1mb8BsMJE/edit#heading=h.lty23tl914ct.\n\n\n———. 2020. “Clark and Washoe Precinct Analysis.” https://docs.google.com/document/d/1TEt-ZqPkX0jcpFLoE6PAbCZh0s8kxFzcsKC_3f0dShk/edit.\n\n\n———. 2022a. “Anderson Ruling Rebuttal .” https://docs.google.com/document/d/1ywNTOUZuJNB_viiwNuj029HZSzJEJdr7-2AY6n5SKsk/edit#heading=h.lbxjlnrdr0eu.\n\n\n———. 2022b. “Clark and Washoe Counties, 2020 and 2022 Elections.” https://docs.google.com/document/d/1SCgXpvHwfHJN0T-DdERC3NUQbMlMhOWmRfFjnJs0Ui8/edit#heading=h.lty23tl914ct.\n\n\n———. 2023a. “Anderson Ruling Rebuttal.” https://docs.google.com/document/d/1ywNTOUZuJNB_viiwNuj029HZSzJEJdr7-2AY6n5SKsk/edit?usp=drive_link.\n\n\n———. 2023b. “Least squares regression for 3D data.” https://bard.google.com/share/ee16dfd2d48a."
+  },
+  {
+    "objectID": "presentation.html#section-1",
+    "href": "presentation.html#section-1",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Setting up the election system",
+    "text": "Setting up the election system\n\nTwo candidates: A, B\nCounty with three precincts: 1, 2, 3\nTwo modes of voting\n\nNumber of ballots mode 1: S, T\nNumber of ballots mode 2: V, U"
+  },
+  {
+    "objectID": "presentation.html#section-2",
+    "href": "presentation.html#section-2",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Tautologies using standard form (north vs. south)",
+    "text": "Tautologies using standard form (north vs. south)\n\n\n\n\nST\n\nVU\n\n\n\n\nParameters:\\(x\\), \\(y\\), \\(\\zeta\\), \\(\\alpha\\), \\(\\lambda\\)\n\\[\\begin{equation*}\nx=\\frac{S}{S + T} \\text{, }y=\\frac{U}{U + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\zeta=\\frac{U + V}{S + T}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\alpha=\\frac{S + U}{S + T + U + V}=\\frac{x + y \\zeta}{\\zeta + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\lambda=\\frac{S + V}{S + T + U + V}=\\frac{x + \\zeta \\left(1 - y\\right)}{\\zeta + 1}\n\\end{equation*}\\]"
+  },
+  {
+    "objectID": "presentation.html#section-3",
+    "href": "presentation.html#section-3",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Tautologies using hybrid form (west vs. east)",
+    "text": "Tautologies using hybrid form (west vs. east)\n\n\n\n\nST\n\nVU\n\n\n\n\nParameters: \\(g\\), \\(h\\), \\(\\Gamma\\), \\(\\alpha\\), \\(\\Omega\\) \\[\\begin{equation*}\ng=\\frac{S}{S + V} \\text{, } h=\\frac{U}{T + U}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Gamma=\\frac{T + U}{S + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\alpha=\\frac{S + U}{S + T + U + V}=\\frac{\\Gamma h + g}{\\Gamma + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Omega=\\frac{S + T}{S + T + U + V}=\\frac{\\Gamma \\left(1 - g\\right) + g}{\\Gamma + 1}\n\\end{equation*}\\]"
+  },
+  {
+    "objectID": "presentation.html#section-4",
+    "href": "presentation.html#section-4",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "Tautologies using opposition form (upper vs. lower)",
+    "text": "Tautologies using opposition form (upper vs. lower)\n\n\n\n\nSU\n\nTV\n\n\n\n\nParameters: \\(m\\), \\(n\\), \\(\\xi\\), \\(\\lambda\\), \\(\\Omega\\) \\[\\begin{equation*}\nn=\\frac{S}{S + U} \\text{ , } m=\\frac{T}{T + V}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\xi=\\frac{T + V}{S + U}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\Omega=\\frac{S + T}{S + T + U + V}=\\frac{m + n \\xi}{\\xi + 1}\n\\end{equation*}\\] \\[\\begin{equation*}\n\\lambda=\\frac{S + V}{S + T + U + V}=\\frac{\\Gamma}{\\Gamma + 1}\n\\end{equation*}\\]"
+  },
+  {
+    "objectID": "presentation.html#section-5",
+    "href": "presentation.html#section-5",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "How outside factors to the voting system will impact \\(\\zeta_i\\)",
+    "text": "How outside factors to the voting system will impact \\(\\zeta_i\\)\n\nStep 1: Each registered voter assign themself (independent of voting technology) to either candidate A or candidate B\nStep 2: Voting technology realized\nStep 3: Registered voters determine whether to vote or not to vote\nStep 4: If voting, do this by either mode 1 or by mode 2.\n\n\n\n\n\n\n  flowchart LR\n  A[Candidate A or B] --&gt; R[A]\n  R --&gt; RV[Vote]\n  RV --&gt; RVE[Non-Mail]\n  RV --&gt; RVM[Mail]\n  R --&gt; RN[Not Vote]\n  DV --&gt; DVE[Non-Mail]\n  DV --&gt; DVM[Mail]\n  A --&gt; D[B]\n  D --&gt; DV[Vote]\n  D --&gt; Dn[Not Vote]"
+  },
+  {
+    "objectID": "presentation.html#section-6",
+    "href": "presentation.html#section-6",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "",
+    "text": "Probability of assigning oneself to candidate A in precinct \\(i\\)\n\n\\(p_{w,i} \\sim N(\\alpha_i,\\sigma^2_{w,i})\\)\n\nVoting technology\n\n\\(z_i \\sim U(0,1)\\)\n\nProbability of not voting in precinct \\(i\\)\n\nCandidate A, \\(p_{nz,a,i}=(1-z_i)p_{n,a,i}\\sim N(\\alpha_{a,n},\\sigma^2_{a,n})\\) \nCandidate B, \\(p_{nz,b,i}=(1-z_i)p_{n,b,i}\\sim N(\\alpha_{b,n},\\sigma^2_{b,n})\\)\n\nProbability of voting by mode 2 in precinct \\(i\\)\n\nCandidate A, \\(p_{m2,a,i}=(1-p_{nv,a,i})p_{a,mv}\\sim N(\\alpha_{a,mv},\\sigma^2_{a,mv})\\)\nCandidate B, \\(p_{m2,b,i}=(1-p_{nv,b,i})p_{b,mv}\\sim N(\\alpha_{a,mv},\\sigma^2_{a,mv})\\)\n\nProbability of voting by mode 1 in precinct \\(i\\)\n\nCandidate A, \\(p_{m1,a,i}=1-p_{m2,a,i}-p_{nz,a,i}\\)\nCandidate B, \\(p_{m1,b,i}=1-p_{m2,b,i}-p_{nz,b,i}\\)"
+  },
+  {
+    "objectID": "presentation.html#section-7",
+    "href": "presentation.html#section-7",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "How outside factors to the voting system will impact \\(\\zeta_i\\)",
+    "text": "How outside factors to the voting system will impact \\(\\zeta_i\\)\n\nDifferences in the cost of voting (e.g., topology, voting rules, dropboxes etc.) across precincts \\(\\Rightarrow\\)\nChanges to the likelihood of voting \\(\\Rightarrow\\)\nSimplify so that changes in the likelihood of voting only impact Mode 2 \\(\\Rightarrow\\)\nHigher \\(\\zeta_i\\) \\(\\Rightarrow\\)\nWhich changes the total election outcome through \\(\\alpha_i=\\frac{x_i+\\zeta_i y_i}{\\zeta_i+x_i}\\)"
+  },
+  {
+    "objectID": "presentation.html#section-8",
+    "href": "presentation.html#section-8",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "How outside factors to the voting system will impact \\(\\Gamma_i\\)",
+    "text": "How outside factors to the voting system will impact \\(\\Gamma_i\\)\n\nDifferenc in the cost of voting (e.g., topology, voting rules, dropboxes, socio economics etc.) across precincts \\(\\Rightarrow\\)\nMake changes to the likelihood of voting \\(\\Rightarrow\\)\nSimplify so that changes in the likelihood of voting only impact mode 2 \\(\\Rightarrow\\)\nHigher \\(\\zeta_i\\) \\(\\Rightarrow\\)\nIf new and earlier sample not representative of each other, higher \\(\\Gamma_i\\) \\(\\Rightarrow\\)\nWhich changes the total election outcome through \\(\\alpha_i=\\frac{g_i+\\zeta_i h_i}{\\zeta_i+1}\\)"
+  },
+  {
+    "objectID": "presentation.html#section-9",
+    "href": "presentation.html#section-9",
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "How outside factors to the voting system will impact \\(\\Gamma_i\\)",
+    "text": "How outside factors to the voting system will impact \\(\\Gamma_i\\)\n\nDifferenc in the cost of voting (e.g., topology, voting rules, dropboxes, socio economics etc.) across precincts \\(\\Rightarrow\\)\nMake changes to the likelihood of voting \\(\\Rightarrow\\)\nSimplify so that changes in the likelihood of voting only impact mode 2 \\(\\Rightarrow\\)\nHigher \\(\\zeta_i\\) \\(\\Rightarrow\\)\nIf new and earlier sample not representative of each other, higher \\(\\Gamma_i\\) \\(\\Rightarrow\\)\nWhich changes the total election outcome through \\(\\alpha_i=\\frac{g_i+\\zeta_i h_i}{\\zeta_i+1}\\)"
   }
 ]
