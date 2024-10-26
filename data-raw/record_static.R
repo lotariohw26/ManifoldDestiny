@@ -8,12 +8,12 @@ qenvas <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_app
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #######################################################################################################################################################
 # Applications
-#recoudatr(qenvae$apn5an)
-#recoudatr(qenvae$apn5bn)
 #recoudatr(qenvae$apn1n)
 #recoudatr(qenvae$apn2n)
 #recoudatr(qenvae$apn3r)
 #recoudatr(qenvae$apn4n)
+#recoudatr(qenvae$apn5an)
+#recoudatr(qenvae$apn5bn)
 #ManifoldDestiny::bm()
 ######################################################################################################################################################
 # Simulation
@@ -32,11 +32,11 @@ set.seed(1)
 cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
 plfc <- c(0.21,0.21,0.21,0.21)
-exn <- c("aprnn","aprhn","apron","aprnr")[1:3]
-rigv <- lapply(1:4, function(x) { 
+exn <- c("aprnn","aprhn","apron","aprnr")[1:4]
+rigv <- lapply(1:1, function(x) { 
   mda <- qenvas[[exn[x]]]
   exs <- list(
-	    frm=as.numeric(mda$sol$fr),
+	    frm=mda$sol$fr,
   	    pre=mda$sol$pr,
   	    end=mda$sol$de,
   	    eq=mda$sol$eq[1],
@@ -52,5 +52,7 @@ rigv <- lapply(1:4, function(x) {
   do.call("use_data", list(as.name(mda$nid), overwrite = T))
 })
 ####################################################################################################################################################
-sum(unique(tdf[c('a1','a2','a3', 'b1','b2','b3', 'c1','c2','c3')]))
-sum(unique(select(tdf,starts_with("d_"))))
+#sum(unique(tdf[c('a1','a2','a3', 'b1','b2','b3', 'c1','c2','c3')]))
+#sum(unique(select(tdf,starts_with("d_"))))
+
+

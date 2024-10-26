@@ -7,7 +7,8 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
-aps <- apn5an
+aps <- appsn
+#aps <- apn5an
 #aps <- apn5bn
 #aps <- apn1n
 #aps <- apn2n
@@ -16,7 +17,8 @@ aps <- apn5an
 adat <- aps[[1]]
 amet <- aps[[2]]
 ############################################################################################################
-#slr <- selreport(aps)
+slr <- selreport(aps)
+
 #slo <- seloutput(slr)
 ###########################################################################################################
 frm <- 1
@@ -60,37 +62,10 @@ summary(re$regsum[[1]])
 #df1 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y",solv='x',eur=c(1, 2, 4),rot=1)
 #df2 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2",solv='x',eur=c(1, 2, 4),rot=1)
 df3 <- py_genpolycoeff(form=2,expr="z=k0+k1*x+k2*y+k3*x**2+k4*x*y+k5*y**2+k6*x**3+k7*x**2*y+k8*y**2*x+k9*y**3",solv='y',eur=c(1, 2, 4),rot=1)
-
-
-
 #View(adat)
-
-
-
-
-
-
-
-
-
-
-
-
 sum(unique(tdf[c('a1','a2','a3', 'b1','b2','b3', 'c1','c2','c3')]))
 sum(unique(select(tdf,starts_with("d_"))))
 select(tdf,starts_with("d_"))
-
-
-
-
-
-
-
-
-
-
-
-
 vmat <- c(1,2,4)
 plnr <- 1
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
@@ -104,19 +79,16 @@ broom::tidy(re$regsum[[1]])
 re$hat_predict("g")$estimate
 View(re$lpy[[3]])
 re$tdf$d_000[1]
-
 re$tdf$d_100[1]
 re$tdf$d_101[1]
 re$tdf$d_110[1]
 re$tdf$d_100[1]
-
 re$tdf$d_200[1]
 re$tdf$d_201[1]
 re$tdf$d_202[1]
 re$tdf$d_210[1]
 re$tdf$d_211[1]
 re$tdf$d_220[1]
-
 re$tdf$d_300[1]
 re$tdf$d_301[1]
 re$tdf$d_302[1]
@@ -127,21 +99,10 @@ re$tdf$d_312[1]
 re$tdf$d_320[1]
 re$tdf$d_321[1]
 re$tdf$d_330[1]
-
-
-
-
-
-
-
 # [1] 0.9956742
 cor(re$tdf$g,re$tdf$g_hat)**2
 re$hat_predict("h")
 cor(re$tdf$h,re$tdf$h_hat)**2
-
-
-
-
 re$tdf$d_311[1]
 re$tdf$A[1]
 re$tdf$B[1]

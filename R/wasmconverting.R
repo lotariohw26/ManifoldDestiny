@@ -746,8 +746,9 @@ Countingprocess$methods(sortpre=function(form="N",
 
 Countingprocess$methods(mansys=function(sygen=NULL,stuv=c("S","T","U","V")){
   mansysl <<- sygen
-  sho <- c("_s","_h","_o")[[mansysl$frm]]
+  sho <- c("_s","_h","_o")[form[[mansysl$frm]]]
   allvar <<- list(pre=mansysl$pre,end=mansysl$end)
+  browser()
   exnrs <<- gsub('v',mansysl$pre[2], gsub('u',mansysl$pre[3],peqs[mansysl$me[['plnr']]]))
   enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]

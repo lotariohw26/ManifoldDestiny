@@ -30,7 +30,13 @@ if(isTRUE(eqma)) {
   usethis::use_data(eqpar, overwrite = TRUE)
 }
 ###############################################################################################################
-#ManifoldDestiny::bm()
+form <- list(N=c(1),H=c(2),O=c(3))
+form[['N']]
+usethis::use_data(form, overwrite = TRUE)
+ManifoldDestiny::bm()
+ManifoldDestiny::form
+2+2
+###############################################################################################################
 #lpku <<- list(
 #  S = list(
 #    x = c(Sd = 'x*(Z-U-V)', Td = '(1-x)*(Z-U-V)', Ud = 'U', Vd = 'V'),'S~S_hat',

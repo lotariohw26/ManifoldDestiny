@@ -4,7 +4,7 @@ apsnn:
     nmn: Defeault
   spr:
   sol:
-    fr: "1"
+    fr: "N"
     pr: ["alpha","x","y"]
     de: ["zeta","Omega","lamda"]
     eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
@@ -24,7 +24,7 @@ aprnn:
     nmn: Defeault
   spr:
   sol:
-    fr: "1"
+    fr: "N"
     pr: ["alpha","x","y"]
     de: ["zeta","Omega","lamda"]
     eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
@@ -44,7 +44,7 @@ aprhn:
     nmn: Defeault
   spr:
   sol:
-    fr: "2"
+    fr: "H"
     pr: ["alpha","h","g"]
     de: ["Gamma","Omega","lamda"]
     eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
@@ -64,7 +64,7 @@ apron:
     nmn: Defeault
   spr:
   sol:
-    fr: "2"
+    fr: "O"
     pr: ["alpha","h","g"]
     de: ["Gamma","Omega","lamda"]
     eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
@@ -84,12 +84,12 @@ aprnr:
     nmn: Defeault
   spr:
   sol:
-    fr: "1"
+    fr: "N"
     pr: ["alpha","x","y"]
     de: ["zeta","Omega","lamda"]
     ro: [[1],[1, 4, 6],[180,0,0]]
     eq: ["z=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
-    va: "y"
+    va: "N"
     ls: "(alpha-alpha_s)^2"
   prg:
     cnd: 0
