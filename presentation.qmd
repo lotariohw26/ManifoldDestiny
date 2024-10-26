@@ -22,11 +22,12 @@ ManifoldDestiny::wasmconload()
 library(polynom)
 modlat <- eqpar$meql
 laws_df1 <- ManifoldDestiny::eqdef$meql
+laws1 <- laws_df1 
 laws_df2 <- ManifoldDestiny::eqdef$meqs
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
-#ssr <- selreport(ManifoldDestiny::appsn)
-#rsr <- selreport(ManifoldDestiny::apprn)
-#round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))
+ssr <- selreport(ManifoldDestiny::appsn)
+rsr <- selreport(ManifoldDestiny::apprn)
+round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))
 ```
 
 
@@ -318,21 +319,9 @@ If none of this three cases are satisfied, variation in $\Gamma_i$ should explai
 
 [Application 1: Election process simulator]({{< var shn1 >}})
 
-
-
 # {{< var sec2.1 >}}
 
-# {{< var sec9.1 >}}
-
-::: {#refs}
-:::
-
-
-```{r}
-knitr::knit_exit()
-```
-
-## {{< var sec2.un1 >}}
+## {{< var sec2.2.1 >}}
 - We have identified three ways of counting
   - *Standard form* ( $x$, $y$, $\zeta$, $\alpha$, $\lambda$ )
   - *Hybrid form* ( $g$, $h$, $\alpha$, $\Gamma$, $\Omega$ )
@@ -349,9 +338,7 @@ knitr::knit_exit()
 
 ::: {.callout-note collapse="true"}
 ```{r}
-kable(laws1[,c(5,6,7,8)], format = "markdown", escape = FALSE) # %>% kableExtra::kable_styling(font_size=8)
-
-
+#kable(laws1[,c(5,6,7,8)], format = "markdown", escape = FALSE) # %>% kableExtra::kable_styling(font_size=8)
 ```
 :::
 
@@ -361,14 +348,14 @@ kable(laws1[,c(5,6,7,8)], format = "markdown", escape = FALSE) # %>% kableExtra:
 
 ::: {.callout-note collapse="true"}
 ```{r} 
-kable(laws2, format = "markdown", escape = FALSE) 
+#kable(laws2, format = "markdown", escape = FALSE) 
 
 ```
 :::
 
 [Application 2: Rigged election process simulator]({{< var shn2 >}})
 
-## {{< var sec2.un4 >}}
+## {{< var sec2.2.2 >}}
 
 
 **Setting the prefered election outcome**
@@ -499,7 +486,7 @@ round(polynom::integral(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients)),c(0
 
 ---
 
-## {{< var sec2.un1 >}}
+## {{< var sec2.2.5 >}}
 
 - Specify a loss function
   - $\sum_{p=1}^{P}(\alpha_p-\overline{\alpha})^2$
@@ -518,7 +505,12 @@ round(polynom::integral(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients)),c(0
 
 ![](images/loss_5_conditions.png){width=300}
 
-# {{< var sec3.nmn >}}
+
+# {{< var sec3.1 >}}
+
+```{r}
+knitr::knit_exit()
+```
 
 
 ## {{< var sec3.un1 >}}
@@ -665,5 +657,10 @@ kableExtra::kbl(concl_appps) #%>% kableExtra::kable_classic_2(full_width = F) %>
 
 
 
+
+# {{< var sec9.1 >}}
+
+::: {#refs}
+:::
 
 

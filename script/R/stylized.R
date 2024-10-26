@@ -59,3 +59,5 @@ clambda <- round(c1df$sdfc$lamda,2)
 cg <- round(c1df$sdfc$g,2)
 ch <- round(c1df$sdfc$y,2)
 cGamma <- round(c1df$sdfc$Gamma,2)
+
+
