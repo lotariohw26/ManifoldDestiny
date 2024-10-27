@@ -32,8 +32,8 @@ set.seed(1)
 cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
 plfc <- c(0.21,0.21,0.21,0.21)
-exn <- c("aprnn","aprhn","apron","aprnr")[1:4]
-rigv <- lapply(1:2, function(x) { 
+exn <- c("aprnn","aprhn","apron","aprnr")[1:3]
+rigv <- lapply(1:3, function(x) { 
   mda <- qenvas[[exn[x]]]
   exs <- list(
 	    frm=mda$sol$fr,
@@ -54,5 +54,4 @@ rigv <- lapply(1:2, function(x) {
 ####################################################################################################################################################
 #sum(unique(tdf[c('a1','a2','a3', 'b1','b2','b3', 'c1','c2','c3')]))
 #sum(unique(select(tdf,starts_with("d_"))))
-
 
