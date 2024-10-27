@@ -66,8 +66,6 @@ tethyd <- function(cdf=NULL,kvec=NULL,lpy=lpy,solv=NULL,parm=NULL,rot=NULL){
   abcv <- setNames(sapply(lpy[[2]][1:9], as.character), paste(rep(c("a", "b", "c"), each = 3), 1:3, sep = "")) 
   nbm <- paste0(names(cdf)[2:4],"_m")
   #cdf$x <- cdf$y <- cdf$z <- 1
-  browser()
-  View(polc)
   polc <- cdf %>% 
     dplyr::mutate(!!!kvec) %>%
     dplyr::mutate(pnr=lpy[[4]]+1) %>%
@@ -746,25 +744,25 @@ Countingprocess$methods(sortpre=function(form="N",
 
 Countingprocess$methods(mansys=function(sygen=NULL,stuv=c("S","T","U","V")){
   mansysl <<- sygen
-  sho <- c("_s","_h","_o")[form[[mansysl$frm]]]
+  frmv <- form[[mansysl$frm]][1]
+  sho <- c("_s","_h","_o")[frmv]
   allvar <<- list(pre=mansysl$pre,end=mansysl$end)
-  browser()
   exnrs <<- gsub('v',mansysl$pre[2], gsub('u',mansysl$pre[3],peqs[mansysl$me[['plnr']]]))
-  enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
+  enf[[1]] <<- unname(stats::predict(polyc[[frmv]]))
   enf[[2]] <<- eqpar$meqs[[paste0(mansysl$pre[2],sho)]]
   if (mansysl$rot[[1]]==0){
-     enf[[3]] <<- py_genpolycoeffn(mansysl$frm,mansysl$eq,mansysl$va)
+     enf[[3]] <<- py_genpolycoeffn(frmv,mansysl$eq,mansysl$va)
   }
   if (mansysl$rot[[1]]==1) {
-     enf[[3]] <<- py_genpolycoeffr(mansysl$frm,mansysl$eq[1],mansysl$va,mansysl$rot[[2]])
+     enf[[3]] <<- py_genpolycoeffr(frmv,mansysl$eq[1],mansysl$va,mansysl$rot[[2]])
   }
   allstuv <<- list(stuv)
 })
 Countingprocess$methods(setres=function(czset=NULL,prnt=0){
-  frp <- mansysl$frm
+  frp <- form[[mansysl$frm]]
   if (!is.null(czset)) {
     polyc[[frp]][[1]][[1]] <<- czset   
-    enf[[1]] <<- unname(stats::predict(polyc[[mansysl$frm]]))
+    enf[[1]] <<- unname(stats::predict(polyc[[frp]]))
   }
   if (prnt==1) {
     vec <- unname(polyc[[frp]][[1]])
@@ -848,9 +846,10 @@ Countingprocess$methods(manimp=function(init_par=NULL,
     #print(clvl)
   }
   # Init
+  frmv <- form[[mansysl$frm]][1]
   allvec <- c(unlist(allvar$pre),unlist(allvar$end))
   stuv <- paste0(c(unlist(allstuv)))
-  sho <- c("_s","_h","_o")[[mansysl$frm]]
+  sho <- c("_s","_h","_o")[[frmv]]
   altvec <- paste0(as.vector(unlist(allvar)),sho)
   endp <- paste0(allvec,sho)[c(4,5,6)]
   if (identical(man,TRUE)){
@@ -1120,7 +1119,6 @@ Estimation$methods(hat_predict=function(svf='y'){
     lpy <<- py_genpolycoeffr(param[[1]][1:3],regass,svf,eurv)
   }
   tdf <<- tethyd(edfc,kvec,lpy,solv=svf,parm=param,rot=roto)
-  #browser()
   regsum[[2]] <<- lm(as.formula(paste0(svf[1],"~", svf[1],'_hat')),data=tdf)
 })
 Estimation$methods(hat_intcomp=function(){

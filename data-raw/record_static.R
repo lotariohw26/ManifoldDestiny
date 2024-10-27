@@ -33,7 +33,7 @@ cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
 plfc <- c(0.21,0.21,0.21,0.21)
 exn <- c("aprnn","aprhn","apron","aprnr")[1:4]
-rigv <- lapply(1:1, function(x) { 
+rigv <- lapply(1:2, function(x) { 
   mda <- qenvas[[exn[x]]]
   exs <- list(
 	    frm=mda$sol$fr,
@@ -45,7 +45,7 @@ rigv <- lapply(1:1, function(x) {
   	  )
   cogr$mansys(sygen=exs)
   cogr$polyc[[1]]
-  cogr$setres(NULL,1)
+  #cogr$setres(NULL,1)
   cogr$setres(plfc[x],1)
   cogr$manimp(init_par=c(k0=0,k1=0.60,k2=0.40),wn=c(0,0),man=T)
   assign(mda$nid,list(cogr$rdfc,mda))
