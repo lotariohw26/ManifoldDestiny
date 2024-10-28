@@ -305,10 +305,10 @@ selreport <- function(
   ies$regression(md$sol$eq[2])
   ies$diagnostics()
   ## Identify
-  ### Bowplot
+  ## Bowplot
   cob <- Countinggraphs(da,selvar=names(da))
   if (md$prg$cnd==1) {cob$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
-  cob$sortpre(4,3)
+  cob$sortpre("S",polyn=6)
   cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
   selv=2)
   return(list(co=co,
@@ -611,11 +611,11 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   pdata <- rdfci  %>% dplyr::arrange(alpha) 
   pnset <- min(length(rdfci$pri)-1,polyn)
   ### Init values standard form
-  polyc[[1]] <<- stats::lm(rdfci$alpha ~ poly(rdfci$pri, pnset, raw=TRUE))
+  polyc[['S']] <<- stats::lm(rdfci$alpha ~ poly(rdfci$pri, pnset, raw=TRUE))
   ### Init valuesstats:: hybrid form
-  polyc[[2]] <<- stats::lm(rdfci$alpha ~ poly(rdfci$pri, pnset, raw=TRUE))
+  polyc[['H']] <<- stats::lm(rdfci$alpha ~ poly(rdfci$pri, pnset, raw=TRUE))
   ##### Init valustats::es opposition form
-  polyc[[3]] <<- stats::lm(rdfci$lamda ~ poly(rdfci$pri, pnset, raw=TRUE))
+  polyc[['O']] <<- stats::lm(rdfci$lamda ~ poly(rdfci$pri, pnset, raw=TRUE))
 
 })
 
@@ -714,11 +714,10 @@ Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("
     dplyr::arrange(P)
   if (pri==1) {print(dim(rdfci)[1]); print(dim(rdfc)[1])}
 })
-Countingprocess$methods(sortpre=function(form="N",
+Countingprocess$methods(sortpre=function(form="S",
 					 polyn=6,
 					 sortby='alpha'
 					 ){
-
   selv <- stick[[1]][[form]]
   prop <- rev(selv)[1]
   psel <<- selv[1:3]

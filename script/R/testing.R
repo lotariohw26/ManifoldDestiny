@@ -7,24 +7,25 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
-aps <- appsn
+#aps <- appsn
 #aps <- apn5an
 #aps <- apn5bn
-#aps <- apn1n
-#aps <- apn2n
+aps <- apn1n
+aps <- apn2n
 #aps <- apn3r
 ##aps <- apn4n
 adat <- aps[[1]]
 amet <- aps[[2]]
 ############################################################################################################
 slr <- selreport(aps)
-
 #slo <- seloutput(slr)
 ###########################################################################################################
 frm <- 1
 co <- Countinggraphs(adat,selvar=c('PN','P','R','S','T','U','V'))
 co$purging(prma=c(59,191,206,214,299,300,215,217,317,318),pri=1)
+bm()
 co$sortpre(frm)
+
 co$descriptive(frm)
 co$r2siminput(frm)
 co$plot2d(frm)

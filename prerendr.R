@@ -30,12 +30,23 @@ if(isTRUE(eqma)) {
   usethis::use_data(eqpar, overwrite = TRUE)
 }
 ###############################################################################################################
-form <- list(N=c(1),H=c(2),O=c(3))
-form[['N']]
+form <- list(S=c(1),H=c(2),O=c(3))
+form[['S']]
 usethis::use_data(form, overwrite = TRUE)
 ManifoldDestiny::bm()
 ManifoldDestiny::form
-2+2
+stick <-
+  list(parm=list(
+  S=c("alpha","x","y","zeta","lamda","Omega"),
+  H=c("alpha","g","h","Gamma","Omega","lamda"),
+  O=c("alpha","m","n","xi","lamda","Omega"),
+  B=c("alpha","x","y","Omega","m","n")
+  ),
+  forms=list('_s','o_h','h_o')) 
+usethis::use_data(stick, overwrite = TRUE)
+frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11,12),c(13,14,15,16,17,18),c(19,20,21,22,23,24))
+usethis::use_data(frmsel, overwrite = TRUE)
+bm()
 ###############################################################################################################
 #lpku <<- list(
 #  S = list(
@@ -92,18 +103,6 @@ ManifoldDestiny::form
 #  "Twentieth Law", "$\\zeta=\\frac{\\lambda_{1}-\\alpha_{1}}{(y_{2}-y_{1})+(\\alpha_{1}-\\lambda_{1})}$", "$\\gamma=\\frac{\\Omega_{1}-\\alpha_{1}}{(h_{2}-h_{1})+(\\alpha_{1}-\\Omega_{1})}$", "$\\xi=\\frac{\\lambda_{1}-\\Omega_{1}}{(n_{2}-n_{1})+(\\Omega_{1}-\\lambda_{1})}$"
 #)
 ################################################################################################################
-#stick <-
-#  list(parm=list(
-#  S=c("alpha","x","y","zeta","lamda","Omega"),
-#  H=c("alpha","g","h","Gamma","Omega","lamda"),
-#  O=c("alpha","m","n","xi","lamda","Omega"),
-#  B=c("alpha","x","y","Omega","m","n")
-#  ),
-#  forms=list('_s','o_h','h_o')) 
-#usethis::use_data(stick, overwrite = TRUE)
-#  
-#frmsel <- list(c(1,2,3,4,5,6),c(7,8,9,10,11,12),c(13,14,15,16,17,18),c(19,20,21,22,23,24))
-#usethis::use_data(frmsel, overwrite = TRUE)
 ################################################################################################################
 #file.copy(from = "script/python/abc.py", to ="MD_WASMS/examples/python/repl/poly.py", overwrite=T) 
 #file.copy(from="inst/shinyapps/r2rsim/app.R",to="MD_WASMS/examples/r/001-hello/app.R", overwrite=T) 

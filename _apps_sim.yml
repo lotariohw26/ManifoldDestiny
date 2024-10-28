@@ -4,7 +4,7 @@ apsnn:
     nmn: Defeault
   spr:
   sol:
-    fr: "N"
+    fr: "S"
     pr: ["alpha","x","y"]
     de: ["zeta","Omega","lamda"]
     eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
@@ -19,12 +19,12 @@ apsnn:
     eqp: "alpha=k0+k1*g+k2*h"
   bib: []
 aprnn:
-  nid: apprn
+  nid: aprnn
   mtd:
     nmn: Defeault
   spr:
   sol:
-    fr: "N"
+    fr: "S"
     pr: ["alpha","x","y"]
     de: ["zeta","Omega","lamda"]
     eq: ["alpha=k0+k1*x+k2*y","alpha=k0+k1*x+k2*y+k3*zeta"]
@@ -84,7 +84,7 @@ aprnr:
     nmn: Defeault
   spr:
   sol:
-    fr: "N"
+    fr: "S"
     pr: ["alpha","x","y"]
     de: ["zeta","Omega","lamda"]
     ro: [[1],[1, 4, 6],[180,0,0]]

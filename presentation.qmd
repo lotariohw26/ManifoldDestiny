@@ -25,8 +25,8 @@ laws_df1 <- ManifoldDestiny::eqdef$meql
 laws1 <- laws_df1 
 laws_df2 <- ManifoldDestiny::eqdef$meqs
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
-ssr <- selreport(ManifoldDestiny::appsn)
-rsr <- selreport(ManifoldDestiny::apprn)
+#ssr <- selreport(ManifoldDestiny::apsnn)
+#rsr <- selreport(ManifoldDestiny::aprhn)
 round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))
 ```
 
