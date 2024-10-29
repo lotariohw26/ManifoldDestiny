@@ -8,8 +8,8 @@ qenvas <- yaml::yaml.load_file(paste0(rprojroot::find_rstudio_root_file(),"/_app
 googlesheets4::gs4_auth(email="lotariohw26@gmail.com")
 #######################################################################################################################################################
 # Applications
-#recoudatr(qenvae$apn1n)
-#recoudatr(qenvae$apn2n)
+recoudatr(qenvae$apn1n)
+recoudatr(qenvae$apn2n)
 #recoudatr(qenvae$apn3r)
 #recoudatr(qenvae$apn4n)
 #recoudatr(qenvae$apn5an)
@@ -24,8 +24,11 @@ proa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 prob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztec <- c(0,1)	
 gsh <- ballcastsim(perv,prow,proa,prob,ztec)
-assign(names(qenvas)[1],list(gsh,mda))
-do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
+assign(names(qenvas)[1],list(gsh,qenvas[[1]]))
+do.call("use_data", list(as.name(qenvas[[1]]$nid), overwrite = TRUE))
+bm()
+ManifoldDestiny::apsnn
+
 ## Rigged election
 set.seed(1)
 cogr <- Countinggraphs(gsh)
@@ -51,9 +54,8 @@ rigv <- lapply(1:3, function(x) {
  assign(mda$nid,list(cogr$rdfc,mda))
  do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
 })
-
-#bm()
+bm()
 ####################################################################################################################################################
 #sum(unique(tdf[c('a1','a2','a3', 'b1','b2','b3', 'c1','c2','c3')]))
 #sum(unique(select(tdf,starts_with("d_"))))
-
+ManifoldDestiny::appsn

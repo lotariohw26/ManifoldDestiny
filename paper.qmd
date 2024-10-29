@@ -8,6 +8,11 @@ format:
     number-sections: true
 ---
 
+```{r}
+knitr::knit_exit()
+```
+
+
 ```{r, echo=F}
 ManifoldDestiny::wasmconload()
 #source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/simulations.R'))

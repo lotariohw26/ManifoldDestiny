@@ -17,7 +17,7 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 ```{r}
 #| echo: false
 #| output: false
-apps <- appsn
+apps <- apsnn
 ```
 {{< include tab.qmd >}}
 :::
@@ -26,7 +26,7 @@ apps <- appsn
 ```{r}
 #| echo: false
 #| output: false
-apps <- apprn
+apps <- aprnn
 ```
 {{< include tab.qmd >}}
 :::
@@ -36,7 +36,7 @@ apps <- apprn
 ```{r}
 #| echo: false
 #| output: false
-apps <- apprh
+apps <- aprnn
 ```
 {{< include tab.qmd >}}
 :::
@@ -46,7 +46,7 @@ apps <- apprh
 ```{r}
 #| echo: false
 #| output: false
-apps <- appro
+apps <- aprnn
 ```
 {{< include tab.qmd >}}
 :::
@@ -64,7 +64,7 @@ apps <- apn1n
 ```{r}
 #| echo: false
 #| output: false
-apps <- appn2
+apps <- apn1n
 ```
 {{< include tab.qmd >}}
 :::

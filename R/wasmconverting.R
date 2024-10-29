@@ -299,7 +299,7 @@ selreport <- function(
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
   ges$hat_predict(svf=md$sol$va)
-  #ges$hat_intcomp()
+  ges$hat_intcomp()
   #### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$sol$eq[2])
@@ -331,6 +331,7 @@ seloutput <- function(selreport=NULL){
   l3 <- selreport[[2]]$resplots[[1]][[3]]
   l4 <- selreport[[2]]$resplots[[1]][[4]]
   tab8 <- cowplot::plot_grid(plotlist=list(l1,l2,l3,l4))
+  #selreport[[2]]$comdesc
   tab9 <- dplyr::select(selreport[[2]]$comdesc,1,3)
   tab10 <- selreport[[4]]$pl_2dsort
   tab11 <- list(summary(selreport[[3]]$regsum[[1]]))
