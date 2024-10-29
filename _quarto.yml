@@ -46,10 +46,10 @@ website:
     left:
       - text: "Index"
         href: index.qmd
-        #      - text: "Documentation"
-        #        menu:
-        #        - text: "Presentation" 
-        #        #        #          href: "presentation.qmd"
+      - text: "Documentation"
+        menu:
+        - text: "Presentation" 
+          href: "presentation.qmd"
         #        #        - text: "Addendum 1: Arizona"
         #        #          href: "addendum/Addendum_az.qmd"
         #        #        - text: "Addendum 2: Nevada"

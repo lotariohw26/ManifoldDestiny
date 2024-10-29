@@ -14,8 +14,8 @@ else
   set shortmess=aoO
 endif
 badd +10 ~/InitLOT/README.md
-badd +2 ~/InitLOT/config/hyprland/hyprland.conf
 badd +1 ~/Research/ManifoldDestiny/_quarto.yml
+badd +2 ~/InitLOT/config/hyprland/hyprland.conf
 badd +3 term://~/Research/ManifoldDestiny//2762442:bash
 badd +5 term://~/Research/ManifoldDestiny//236552:bash
 badd +1 ~/InitJIH/README.md
@@ -48,8 +48,23 @@ badd +11 term://~/Research/ManifoldDestiny//2500949:bash
 badd +14 term://~/Research/ManifoldDestiny//2501569:bash
 badd +22 ~/Research/ManifoldDestiny/calculator.qmd
 badd +19 term://~/Research/ManifoldDestiny/R//2808552:R\ 
-badd +1 ~/Research/ManifoldDestiny/presentation.qmd
-badd +0 term://~/Research/ManifoldDestiny/data-raw//385230:R\ 
+badd +81 ~/Research/ManifoldDestiny/presentation.qmd
+badd +1 ~/Research/ManifoldDestiny/tabset.qmd
+badd +3 ~/Research/ManifoldDestiny/tab.qmd
+badd +228 term://~/Research/ManifoldDestiny//722227:bash
+badd +1 ~/InitLOT/config/nvim/keymapping.vim
+badd +25 term://~/Research/ManifoldDestiny//1298434:bash
+badd +24 ~/Research/ManifoldDestiny/_apps_sim.yml
+badd +66 term://~/Research/ManifoldDestiny//1335872:R\ 
+badd +3 term://~/Research/ManifoldDestiny/data-raw//830421:bash
+badd +1192 term://~/Research/ManifoldDestiny//842018:bash
+badd +1 term://~/Research/ManifoldDestiny/data-raw//712675:bash
+badd +12 ~/Research/ManifoldDestiny/paper.qmd
+badd +1 ~/Research/ManifoldDestiny/metaview.qmd
+badd +1 ~/Research/ManifoldDestiny/man_bib.qmd
+badd +1093 term://~/Research/ManifoldDestiny//870859:bash
+badd +136 term://~/Research/ManifoldDestiny//875543:bash
+badd +0 term://~/Research/ManifoldDestiny/data-raw//882834:bash
 argglobal
 %argdel
 $argadd ~/InitLOT/README.md
@@ -57,7 +72,25 @@ set stal=2
 tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
 tabrewind
+edit ~/Research/ManifoldDestiny/_quarto.yml
+argglobal
+setlocal fdm=expr
+setlocal fde=nvim_treesitter#foldexpr()
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 1 - ((0 * winheight(0) + 33) / 66)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+tabnext
 edit ~/Research/ManifoldDestiny/R/wasmnonverting.R
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
@@ -95,13 +128,13 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 21 + 34) / 69)
+exe '1resize ' . ((&lines * 16 + 34) / 69)
 exe 'vert 1resize ' . ((&columns * 94 + 139) / 279)
-exe '2resize ' . ((&lines * 24 + 34) / 69)
+exe '2resize ' . ((&lines * 16 + 34) / 69)
 exe 'vert 2resize ' . ((&columns * 94 + 139) / 279)
-exe '3resize ' . ((&lines * 10 + 34) / 69)
+exe '3resize ' . ((&lines * 15 + 34) / 69)
 exe 'vert 3resize ' . ((&columns * 94 + 139) / 279)
-exe '4resize ' . ((&lines * 8 + 34) / 69)
+exe '4resize ' . ((&lines * 16 + 34) / 69)
 exe 'vert 4resize ' . ((&columns * 94 + 139) / 279)
 exe '5resize ' . ((&lines * 21 + 34) / 69)
 exe 'vert 5resize ' . ((&columns * 91 + 139) / 279)
@@ -120,11 +153,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 60 - ((1 * winheight(0) + 10) / 21)
+let s:l = 61 - ((1 * winheight(0) + 8) / 16)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 60
+keepjumps 61
 normal! 0
 wincmd w
 argglobal
@@ -141,7 +174,7 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 14 - ((7 * winheight(0) + 12) / 24)
+let s:l = 14 - ((4 * winheight(0) + 8) / 16)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -153,7 +186,7 @@ if bufexists(fnamemodify("~/Research/ManifoldDestiny/data-raw/record_static.R", 
 if &buftype ==# 'terminal'
   silent file ~/Research/ManifoldDestiny/data-raw/record_static.R
 endif
-balt ~/Research/ManifoldDestiny/_quarto.yml
+balt term://~/Research/ManifoldDestiny/data-raw//882834:bash
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -162,17 +195,17 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 13 - ((0 * winheight(0) + 5) / 10)
+let s:l = 14 - ((1 * winheight(0) + 7) / 15)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 13
+keepjumps 14
 normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("term://~/Research/ManifoldDestiny/data-raw//385230:R\ ", ":p")) | buffer term://~/Research/ManifoldDestiny/data-raw//385230:R\  | else | edit term://~/Research/ManifoldDestiny/data-raw//385230:R\  | endif
+if bufexists(fnamemodify("term://~/Research/ManifoldDestiny/data-raw//882834:bash", ":p")) | buffer term://~/Research/ManifoldDestiny/data-raw//882834:bash | else | edit term://~/Research/ManifoldDestiny/data-raw//882834:bash | endif
 if &buftype ==# 'terminal'
-  silent file term://~/Research/ManifoldDestiny/data-raw//385230:R\ 
+  silent file term://~/Research/ManifoldDestiny/data-raw//882834:bash
 endif
 balt ~/Research/ManifoldDestiny/data-raw/record_static.R
 setlocal fdm=expr
@@ -183,12 +216,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 19 - ((7 * winheight(0) + 4) / 8)
+let s:l = 3 - ((2 * winheight(0) + 8) / 16)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 19
-normal! 0
+keepjumps 3
+normal! 033|
 wincmd w
 argglobal
 if bufexists(fnamemodify("~/Research/ManifoldDestiny/R/abc.R", ":p")) | buffer ~/Research/ManifoldDestiny/R/abc.R | else | edit ~/Research/ManifoldDestiny/R/abc.R | endif
@@ -274,13 +307,13 @@ normal! zt
 keepjumps 17
 normal! 0
 wincmd w
-exe '1resize ' . ((&lines * 21 + 34) / 69)
+exe '1resize ' . ((&lines * 16 + 34) / 69)
 exe 'vert 1resize ' . ((&columns * 94 + 139) / 279)
-exe '2resize ' . ((&lines * 24 + 34) / 69)
+exe '2resize ' . ((&lines * 16 + 34) / 69)
 exe 'vert 2resize ' . ((&columns * 94 + 139) / 279)
-exe '3resize ' . ((&lines * 10 + 34) / 69)
+exe '3resize ' . ((&lines * 15 + 34) / 69)
 exe 'vert 3resize ' . ((&columns * 94 + 139) / 279)
-exe '4resize ' . ((&lines * 8 + 34) / 69)
+exe '4resize ' . ((&lines * 16 + 34) / 69)
 exe 'vert 4resize ' . ((&columns * 94 + 139) / 279)
 exe '5resize ' . ((&lines * 21 + 34) / 69)
 exe 'vert 5resize ' . ((&columns * 91 + 139) / 279)
@@ -301,11 +334,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 33) / 66)
+let s:l = 19 - ((18 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
+keepjumps 19
 normal! 0
 tabnext
 edit ~/Research/ManifoldDestiny/script/python/polysolver.py
@@ -379,13 +412,13 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 33) / 66)
+let s:l = 2 - ((1 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
+keepjumps 2
 normal! 0
-tabnext 4
+tabnext 1
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

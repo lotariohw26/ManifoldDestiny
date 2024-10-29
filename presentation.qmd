@@ -16,9 +16,6 @@ nocite: |
   @*
 ---
 
-```{r}
-knitr::knit_exit()
-```
 
 
 ```{r, echo=F, message=F, warning=F, results='hide'}
@@ -39,6 +36,7 @@ round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))
 
 Ed. Solomon
 
+
 > "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
 
 ## {{< var sec1.2.1 >}}
@@ -50,6 +48,10 @@ Ed. Solomon
   - Number of ballots mode 2: V, U
 
 ---
+
+```{r}
+knitr::knit_exit()
+```
 
 **Our two stylized numerical cases**
 
