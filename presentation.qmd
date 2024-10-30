@@ -49,9 +49,6 @@ Ed. Solomon
 
 ---
 
-```{r}
-knitr::knit_exit()
-```
 
 **Our two stylized numerical cases**
 
@@ -325,6 +322,11 @@ If none of this three cases are satisfied, variation in $\Gamma_i$ should explai
 
 [Application 1: Election process simulator]({{< var shn1 >}})
 
+```{r}
+knitr::knit_exit()
+```
+
+
 # {{< var sec2.1 >}}
 
 ## {{< var sec2.2.1 >}}
@@ -432,6 +434,7 @@ round(polynom::integral(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients)),c(0
  - $\zeta_i(x_i,\alpha_i,y_i)=\frac{x_i-\alpha_i}{\alpha_i-y_i}$
  - $\lambda_i(x_i,\zeta_i,y_i)=\frac{x_i-\zeta_i (1-y_i)}{\zeta_i+1}$
 
+
 ---
 
 
@@ -512,11 +515,11 @@ round(polynom::integral(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients)),c(0
 ![](images/loss_5_conditions.png){width=300}
 
 
-# {{< var sec3.1 >}}
-
 ```{r}
 knitr::knit_exit()
 ```
+
+# {{< var sec3.1 >}}
 
 
 ## {{< var sec3.un1 >}}
@@ -592,6 +595,11 @@ The video "Conexiones Peligrosas"
 
 If we can walk through all of the **four** steps here, property 1<sup>st</sup> and 2<sup>nd</sup> that we have stated for a normal election are violated and we can conclude that the estimated Manifold equation is inserted - Manifold Destiny - to distort the outcome of normal election.
 
+```{r}
+knitr::knit_exit()
+```
+
+
 ## {{< var sec6.un1 >}}
 ```{r}
 #| echo: false
@@ -648,6 +656,11 @@ apps <- appn4
 	![](images/r2h.png){width=300}
 
 ---
+
+```{r}
+knitr::knit_exit()
+```
+
 
 - Our four applications
 
