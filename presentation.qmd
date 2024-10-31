@@ -25,6 +25,7 @@ modlat <- eqpar$meql
 laws_df1 <- ManifoldDestiny::eqdef$meql
 laws1 <- laws_df1 
 laws_df2 <- ManifoldDestiny::eqdef$meqs
+laws2 <- laws_df2
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
 ssr <- selreport(ManifoldDestiny::apsnn)
 rsr <- selreport(ManifoldDestiny::aprhn)
@@ -35,7 +36,6 @@ round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))
 # {{< var sec1.1 >}}
 
 Ed. Solomon
-
 
 > "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
 
@@ -322,11 +322,6 @@ If none of this three cases are satisfied, variation in $\Gamma_i$ should explai
 
 [Application 1: Election process simulator]({{< var shn1 >}})
 
-```{r}
-knitr::knit_exit()
-```
-
-
 # {{< var sec2.1 >}}
 
 ## {{< var sec2.2.1 >}}
@@ -341,11 +336,17 @@ knitr::knit_exit()
 
 ---
 
+```{r}
+knitr::knit_exit()
+```
+
+
 
 ### 40 isometris
 
 ::: {.callout-note collapse="true"}
 ```{r}
+#laws1
 #kable(laws1[,c(5,6,7,8)], format = "markdown", escape = FALSE) # %>% kableExtra::kable_styling(font_size=8)
 ```
 :::
