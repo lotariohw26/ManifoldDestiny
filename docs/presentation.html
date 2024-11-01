@@ -362,6 +362,7 @@
 <ul>
 <li><a href="#/section" id="/toc-section">Introduction</a></li>
 <li><a href="#/section-9" id="/toc-section-9">Methods of Ballot Counting</a></li>
+<li><a href="#/section-13" id="/toc-section-13">Election Simulations</a></li>
 </ul>
 </nav>
 </section>
@@ -1028,8 +1029,454 @@ Table&nbsp;6: Election results applying hybrid form case II
 <li>Selecting <strong>3</strong> parameters from a set of <strong>5</strong> implies <strong>10</strong> different combinations</li>
 </ul>
 </section>
-<section class="slide level2 smaller scrollable" id="references">
+<section class="slide level2">
 
+<h3 id="isometris">40 isometris</h3>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 16%">
+<col style="width: 19%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Equation1</th>
+<th style="text-align: left;">Equation2</th>
+<th style="text-align: left;">Equation3</th>
+<th style="text-align: left;">Equation4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(x_{1} = \frac{s}{s+t}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(y_{1} = \frac{u}{u+v}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(x_{2} = (1-x_{1}) = \frac{t}{s+t}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(y_{2} = (1-y_{1}) = \frac{v}{u+v}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(g_{1} = \frac{s}{s+v}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(h_{1} = \frac{u}{u+t}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(g_{2} = (1-g_{1}) = \frac{v}{s+v}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(h_{2} = (1-h_{1}) = \frac{t}{u+t}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(m_{1} = \frac{s}{s+u}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(n_{1} = \frac{t}{t+v}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(m_{2} = (1-m_{1}) = \frac{u}{s+u}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(n_{2} = (1-n_{1}) = \frac{v}{t+v}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\alpha_{1} = \frac{s+u}{(s+u)+(t+v)}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\xi = \frac{t+v}{s+u}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\alpha_{1} = (\xi+1)^{-1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\xi = \frac{1-\alpha_{1}}{\alpha_{1}} = \frac{\alpha_{2}}{\alpha_{1}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\alpha_{2} = \frac{t+v}{(s+u)+(t+v)}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\xi^{-1} = \frac{s+u}{t+v}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\alpha_{2} = (\xi^{-1}+1)^{-1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\xi^{-1} = \frac{1-\alpha_{2}}{\alpha_{2}} = \frac{\alpha_{1}}{\alpha_{2}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\lambda_{1} = \frac{s+v}{(s+v)+(u+t)}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\gamma = \frac{u+t}{s+v}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\lambda_{1} = (\gamma+1)^{-1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\gamma = \frac{1-\lambda_{1}}{\lambda_{1}} = \frac{\lambda_{2}}{\lambda_{1}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\lambda_{2} = \frac{u+t}{(s+v)+(u+t)}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\gamma^{-1} = \frac{s+v}{u+t}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\lambda_{2} = (\gamma^{-1}+1)^{-1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\gamma^{-1} = \frac{1-\lambda_{2}}{\lambda_{2}} = \frac{\lambda_{1}}{\lambda_{2}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\Omega_{1} = \frac{s+t}{(s+t)+(u+v)}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\zeta = \frac{u+v}{s+t}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\Omega_{1} = (\zeta+1)^{-1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\zeta = \frac{1-\Omega_{1}}{\Omega_{1}} = \frac{\Omega_{2}}{\Omega_{1}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\Omega_{2} = \frac{u+v}{(s+t)+(u+v)}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\zeta^{-1} = \frac{s+t}{u+v}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\Omega_{2} = (\zeta^{-1}+1)^{-1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\zeta^{-1} = \frac{1-\Omega_{2}}{\Omega_{2}} = \frac{\Omega_{1}}{\Omega_{2}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="laws">20 laws</h3>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 31%">
+<col style="width: 31%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Law_Number</th>
+<th style="text-align: left;">North_vs_South</th>
+<th style="text-align: left;">West_vs_East</th>
+<th style="text-align: left;">Diagonal_vs_Diagonal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">First Law</td>
+<td style="text-align: left;"><span class="math inline">\(x_{1}=\alpha_{1}+\zeta(\alpha_{1}-y_{1})\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(g_{1}=\alpha_{1}+\gamma(\alpha_{1}-h_{1})\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(m_{1}=\Omega_{1}+\xi(\Omega_{1}-n_{1})\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Second Law</td>
+<td style="text-align: left;"><span class="math inline">\(x_{1}=\lambda_{1}+\zeta(\lambda_{1}-y_{2})\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(g_{1}=\Omega_{1}+\gamma(\Omega_{1}-h_{2})\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(m_{1}=\lambda_{1}+\xi(\lambda_{1}-n_{2})\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Third Law</td>
+<td style="text-align: left;"><span class="math inline">\(x_{1}=\frac{\alpha_{1}y_{2}-\lambda_{1}y_{1}}{(\alpha_{1}-\lambda_{1})-(y_{1}-y_{2})}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(g_{1}=\frac{\alpha_{1}h_{2}-\Omega_{1}h_{1}}{(\alpha_{1}-\Omega_{1})-(h_{1}-h_{2})}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(m_{1}=\frac{\Omega_{1}n_{2}-\lambda_{1}n_{1}}{(\Omega_{1}-\lambda_{1})-(n_{1}-n_{2})}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fourth Law</td>
+<td style="text-align: left;"><span class="math inline">\(x_{1}=\frac{\lambda_{1}+\alpha_{1}-\Omega_{2}}{2\Omega_{1}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(g_{1}=\frac{\Omega_{1}+\alpha_{1}-\lambda_{2}}{2\lambda_{1}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(m_{1}=\frac{\lambda_{1}+\Omega_{1}-\alpha_{2}}{2\alpha_{1}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fifth Law</td>
+<td style="text-align: left;"><span class="math inline">\(y_{1}=\alpha_{1}-\zeta^{-1}(\alpha_{1}-x_{1})\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(h_{1}=\alpha_{1}-\gamma^{-1}(\alpha_{1}-g_{1})\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(n_{1}=\Omega_{1}-\xi^{-1}(\Omega_{1}-m_{1})\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sixth Law</td>
+<td style="text-align: left;"><span class="math inline">\(y_{1}=\lambda_{2}-\zeta^{-1}(\lambda_{1}-x_{1})\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(h_{1}=\Omega_{2}-\gamma^{-1}(\Omega_{1}-g_{1})\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(n_{1}=\lambda_{2}-\xi^{-1}(\lambda_{1}-m_{1})\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Seventh Law</td>
+<td style="text-align: left;"><span class="math inline">\(y_{1}=\frac{x_{1}\lambda_{2}-x_{2}\alpha_{1}}{(\lambda_{2}-\alpha_{1})-(x_{2}-x_{1})}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(h_{1}=\frac{g_{1}\Omega_{2}-g_{2}\alpha_{1}}{(\Omega_{2}-\alpha_{1})-(g_{2}-g_{1})}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(n_{1}=\frac{m_{1}\lambda_{2}-m_{2}\Omega_{1}}{(\lambda_{2}-\Omega_{1})-(m_{2}-m_{1})}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eighth Law</td>
+<td style="text-align: left;"><span class="math inline">\(y_{1}=\frac{\lambda_{2}+\alpha_{1}-\Omega_{1}}{2\Omega_{2}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(h_{1}=\frac{\Omega_{2}+\alpha_{1}-\lambda_{1}}{2\lambda_{2}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(n_{1}=\frac{\lambda_{2}+\Omega_{1}-\alpha_{1}}{2\alpha_{2}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ninth Law</td>
+<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=x_{1}\Omega_{1}+\Omega_{2}y_{1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=g_{1}\lambda_{1}+\lambda_{2}h_{1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=m_{1}\alpha_{1}+\alpha_{2}n_{1}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tenth Law</td>
+<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\Omega_{1}(x_{1}-x_{2})+\lambda_{2}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\lambda_{1}(g_{1}-g_{2})+\Omega_{2}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\alpha_{1}(m_{1}-m_{2})+\lambda_{2}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eleventh Law</td>
+<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\Omega_{2}(y_{1}-y_{2})+\lambda_{1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\lambda_{2}(h_{1}-h_{2})+\Omega_{1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\alpha_{2}(n_{1}-n_{2})+\lambda_{1}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Twelfth Law</td>
+<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\frac{x_{1}(y_{2}-y_{1})-\lambda_{1}(x_{1}-y_{1})}{y_{2}-x_{1}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\frac{g_{1}(h_{2}-h_{1})-\Omega_{1}(g_{1}-h_{1})}{h_{2}-g_{1}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\frac{m_{1}(n_{2}-n_{1})-\lambda_{1}(m_{1}-n_{1})}{n_{2}-m_{1}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Thirteenth Law</td>
+<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=x_{1}\Omega_{1}+\Omega_{2}y_{2}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=g_{1}\lambda_{1}+\lambda_{2}h_{2}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=m_{1}\alpha_{1}+\alpha_{2}n_{2}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fourteenth Law</td>
+<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=\Omega_{1}(x_{1}-x_{2})+\alpha_{2}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\lambda_{1}(g_{1}-g_{2})+\alpha_{2}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=\alpha_{1}(m_{1}-m_{2})+\Omega_{2}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fifteenth Law</td>
+<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=\frac{\alpha_{1}(x_{1}-y_{2})-x_{1}(y_{1}-y_{2})}{x_{1}-y_{1}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\frac{\alpha_{1}(g_{1}-h_{2})-g_{1}(h_{1}-h_{2})}{g_{1}-h_{1}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=\frac{\Omega_{1}(m_{1}-n_{2})-m_{1}(n_{1}-n_{2})}{m_{1}-n_{1}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sixteenth Law</td>
+<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=\Omega_{2}(y_{2}-y_{1})+\alpha_{1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\lambda_{2}(h_{2}-h_{1})+\alpha_{1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\lambda_{1}=\alpha_{2}(n_{2}-n_{1})+\Omega_{1}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Seventeenth Law</td>
+<td style="text-align: left;"><span class="math inline">\(\zeta=\frac{x_{1}-\alpha_{1}}{\alpha_{1}-y_{1}};\Omega_{1}=\frac{y_{1}-\alpha_{1}}{y_{1}-x_{1}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\gamma=\frac{g_{1}-\alpha_{1}}{\alpha_{1}-h_{1}};\lambda_{1}=\frac{h_{1}-\alpha_{1}}{h_{1}-g_{1}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\xi=\frac{m_{1}-\Omega_{1}}{\Omega_{1}-n_{1}};\alpha_{1}=\frac{n_{1}-\Omega_{1}}{n_{1}-m_{1}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eighteenth Law</td>
+<td style="text-align: left;"><span class="math inline">\(\Omega_{1}=\frac{\lambda_{2}-\alpha_{1}}{x_{2}-x_{1}}=\frac{\alpha_{2}-\lambda_{1}}{x_{2}-x_{1}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\gamma_{1}=\frac{\Omega_{2}-\alpha_{1}}{g_{2}-g_{1}}=\frac{\alpha_{2}-\Omega_{1}}{g_{2}-g_{1}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\alpha_{1}=\frac{\lambda_{2}-\Omega_{1}}{m_{2}-m_{1}}=\frac{\Omega_{2}-\lambda_{1}}{m_{2}-m_{1}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nineteenth Law</td>
+<td style="text-align: left;"><span class="math inline">\(\zeta=\frac{x_{1}-\lambda_{1}}{\lambda_{1}-y_{2}}; \Omega_{1}=\frac{y_{2}-\lambda_{1}}{y_{2}-x_{1}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\gamma=\frac{g_{1}-\Omega_{1}}{\Omega_{1}-h_{2}}; \lambda_{1}=\frac{h_{2}-\Omega_{1}}{h_{2}-g_{1}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\xi=\frac{m_{1}-\lambda_{1}}{\lambda_{1}-n_{2}}; \alpha_{1}=\frac{n_{2}-\lambda_{1}}{n_{2}-m_{1}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Twentieth Law</td>
+<td style="text-align: left;"><span class="math inline">\(\zeta=\frac{\lambda_{1}-\alpha_{1}}{(y_{2}-y_{1})+(\alpha_{1}-\lambda_{1})}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\gamma=\frac{\Omega_{1}-\alpha_{1}}{(h_{2}-h_{1})+(\alpha_{1}-\Omega_{1})}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\xi=\frac{\lambda_{1}-\Omega_{1}}{(n_{2}-n_{1})+(\Omega_{1}-\lambda_{1})}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><a href="">Application 2: Rigged election process simulator</a></p>
+</section>
+<section id="section-11" class="slide level2">
+<h2>The 20 laws and 40 isometries governing an election</h2>
+<p><strong>Setting the prefered election outcome</strong></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Non-rigged election</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="presentation_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Rigged election using standard form</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="presentation_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p><strong>Normal</strong> <br> <span class="math display">\[\begin{equation*}
+f(x)_{0}^{1}=0, 0, 2, -10, 29, -51, 50, -26, 6
+\end{equation*}\]</span></p>
+<p>Election outome:</p>
+<ul>
+<li>Integral 0.535</li>
+<li>Counting 0.538</li>
+</ul>
+<p><br> <strong>Rigged</strong> <br></p>
+<p><span class="math display">\[\begin{equation*}
+f(x)_{0}^{1}=0, 0, 1, 0, -4, 9, -9, 4, -1
+\end{equation*}\]</span></p>
+<p>Election outome</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.502</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="rigged-election-example-1-applying-normal-form">Rigged election example 1: applying normal form</h3>
+<ul>
+<li>Setting for eaching precinct the first three parameters</li>
+<li><span class="math inline">\(\alpha_i=&lt;...&gt;\)</span> (i.e., equal to the prefered election outcome)</li>
+<li><span class="math inline">\(x_i=\frac{a_i}{a_i+b_i}\)</span> (true observations)</li>
+<li><span class="math inline">\(y_i=\overset{\text{Manifold equation}}{\overbrace{\overset{}{M(x_i,\alpha_i,\underset{\text{outside information}}{...})}}}+\epsilon_t \text{ where } \epsilon_t \sim N(0,\sigma^2)\)</span></li>
+<li>Backsolve for</li>
+<li><span class="math inline">\(\zeta_i(x_i,\alpha_i,y_i)=\frac{x_i-\alpha_i}{\alpha_i-y_i}\)</span></li>
+<li><span class="math inline">\(\lambda_i(x_i,\zeta_i,y_i)=\frac{x_i-\zeta_i (1-y_i)}{\zeta_i+1}\)</span></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>3<sup>rd</sup> <span class="math inline">\(y_i\)</span> can now be determined by <em>two</em> equations
+<ul>
+<li><ol type="a">
+<li>Tautology (must hold)</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Manifold equation + error term (white noise)</li>
+</ol></li>
+</ul></li>
+<li>4<sup>th</sup>. Changes in <span class="math inline">\(\zeta_i\)</span> - and as a corrollary <span class="math inline">\(\Omega_i\)</span> - is now
+<ul>
+<li><ol type="a">
+<li>Solely caused by the error term <span class="math inline">\(\epsilon_i\)</span> and, if used, the non-linear part of the Manifold equation.</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Has no longer any causal impact on <span class="math inline">\(\alpha_i\)</span></li>
+</ol></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="rigged-election-example-2-applying-hybrid-form">Rigged election example 2: applying hybrid form</h3>
+<ul>
+<li>Setting for eaching precinct the first three parameters</li>
+<li><span class="math inline">\(\alpha_i=&lt;...&gt;\)</span> (i.e., equal to the prefered election outcome)</li>
+<li><span class="math inline">\(h_i=\frac{s_i}{s_i+v_i}\)</span> (true observations)</li>
+<li><span class="math inline">\(g_i=\overset{\text{Manifold equation}}{\overbrace{\overset{}{M(h_i,\alpha_i,\underset{\text{outside information}}{...})}}}+\epsilon_t \text{ where } \epsilon_t \sim N(0,\sigma^2)\)</span></li>
+<li>Backsolve form</li>
+<li><span class="math inline">\(\Gamma_i(g_i,\alpha_i,h_i)=\frac{g_i-\alpha_i}{\alpha_i-h_i}\)</span></li>
+<li><span class="math inline">\(\Omega_i(g_i,\Gamma,h_i)=-\alpha_i+\frac{\Gamma_i+2g_i}{\Gamma_i+1}\)</span></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>5<sup>th</sup> <span class="math inline">\(y_i\)</span> can now be determined by <em>two</em> equations
+<ul>
+<li><ol type="a">
+<li>Tautology (must hold)</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Manifold equation + error term (white noise)</li>
+</ol></li>
+</ul></li>
+<li>6<sup>th</sup> Changes in <span class="math inline">\(\Gamma_i\)</span> - and as a corrollary <span class="math inline">\(\lambda_i\)</span> - is now
+<ul>
+<li><ol type="a">
+<li>Solely caused by the error term <span class="math inline">\(\epsilon_i\)</span> and, if used, the non-linear part of the Manifold equation.</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Has no longer any causal impact on <span class="math inline">\(\alpha_i\)</span></li>
+</ol></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="rigged-election-example-3-applying-opposition-form">Rigged election example 3: applying opposition form</h3>
+<ul>
+<li>Setting for eaching precinct the first three parameters</li>
+<li><span class="math inline">\(\lambda_i=&lt;...&gt;\)</span> (i.e., equal or less than the prefered election outcome)</li>
+<li><span class="math inline">\(n_i=\frac{a_i}{a_i+c_i}\)</span> (true observations)</li>
+<li><span class="math inline">\(m_i=\overset{\text{Manifold equation}}{\overbrace{\overset{}{M(n_i,\lambda_i,\underset{\text{outside information}}{...})}}}+\epsilon_t \text{ where } \epsilon_{t_i} \sim N(0,\sigma^2)\)</span></li>
+<li>Backsolve for</li>
+<li><span class="math inline">\(\Omega_i(n_i,m_i,\lambda_i) = \frac{\lambda_i(n_i-m_i)-m_i(2n_i-1)}{1-(n_i+m_i)}\)</span></li>
+<li><span class="math inline">\(\xi_i(n_i,m_i,\Omega_i)=\frac{m_i-\Omega_i}{\Omega_i-n_i}\)</span></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>7<sup>th</sup> <span class="math inline">\(m_i\)</span> can now be determined by <em>two</em> equations
+<ul>
+<li><ol type="a">
+<li>Tautology (must hold)</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Manifold equation + error term (white noise)</li>
+</ol></li>
+</ul></li>
+<li>8<sup>th</sup> Changes in <span class="math inline">\(\xi_i\)</span> is now
+<ul>
+<li><ol type="a">
+<li>Solely caused by the error term <span class="math inline">\(\epsilon_i\)</span> and, if used, the non-linear part of the Manifold equation.</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Has no longer any causal impact on <span class="math inline">\(\lambda_i\)</span></li>
+</ol></li>
+</ul></li>
+</ul>
+</section>
+<section id="section-12" class="slide level2">
+<h2>Implementing a loss-function in a rigged election</h2>
+<ul>
+<li>Specify a loss function
+<ul>
+<li><span class="math inline">\(\sum_{p=1}^{P}(\alpha_p-\overline{\alpha})^2\)</span></li>
+</ul></li>
+<li><span class="math inline">\(M(,)=\)</span>x+y$
+<ul>
+<li>Use: Linear, quadratic, cubic or quartic (all have analytical solutions)</li>
+<li>Also: Euler rotation</li>
+</ul></li>
+<li>System approach Demands mulitvariate Manifold Equations
+<ul>
+<li>Univariate manifold Equation</li>
+<li>Multivariate Manifold Equations</li>
+</ul></li>
+<li>Constrain on implementation
+<ul>
+<li>Flipping votes on one mode</li>
+<li>Vote registration until upper limit</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/loss_5_conditions.png" width="300" class="r-stretch"></section></section>
+<section id="section-13" class="title-slide slide level1 smaller scrollable">
+<h1>Election Simulations</h1>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
@@ -1059,7 +1506,7 @@ Edward, Solomon. 20xx. <span>“<span class="nocase">Nevada 2020, Clark and Wash
 ———. 2023b. <span>“<span class="nocase">Least squares regression for 3D data</span>.”</span> <a href="https://bard.google.com/share/ee16dfd2d48a" class="uri">https://bard.google.com/share/ee16dfd2d48a</a>.
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 

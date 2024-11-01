@@ -17,21 +17,18 @@ nocite: |
 ---
 
 
-
 ```{r, echo=F, message=F, warning=F, results='hide'}
 ManifoldDestiny::wasmconload()
 library(polynom)
+library(ManifoldDestiny)
 modlat <- eqpar$meql
 laws_df1 <- ManifoldDestiny::eqdef$meql
-laws1 <- laws_df1 
 laws_df2 <- ManifoldDestiny::eqdef$meqs
-laws2 <- laws_df2
 source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
 ssr <- selreport(ManifoldDestiny::apsnn)
 rsr <- selreport(ManifoldDestiny::aprhn)
 round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))
 ```
-
 
 # {{< var sec1.1 >}}
 
@@ -48,7 +45,6 @@ Ed. Solomon
   - Number of ballots mode 2: V, U
 
 ---
-
 
 **Our two stylized numerical cases**
 
@@ -336,18 +332,12 @@ If none of this three cases are satisfied, variation in $\Gamma_i$ should explai
 
 ---
 
-```{r}
-knitr::knit_exit()
-```
-
-
 
 ### 40 isometris
 
 ::: {.callout-note collapse="true"}
 ```{r}
-#laws1
-#kable(laws1[,c(5,6,7,8)], format = "markdown", escape = FALSE) # %>% kableExtra::kable_styling(font_size=8)
+kable(laws1[,c(5,6,7,8)], format = "markdown", escape = FALSE) # %>% kableExtra::kable_styling(font_size=8)
 ```
 :::
 
@@ -357,10 +347,11 @@ knitr::knit_exit()
 
 ::: {.callout-note collapse="true"}
 ```{r} 
-#kable(laws2, format = "markdown", escape = FALSE) 
+kable(laws2, format = "markdown", escape = FALSE) 
 
 ```
 :::
+
 
 [Application 2: Rigged election process simulator]({{< var shn2 >}})
 
@@ -434,7 +425,6 @@ round(polynom::integral(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients)),c(0
 - Backsolve for
  - $\zeta_i(x_i,\alpha_i,y_i)=\frac{x_i-\alpha_i}{\alpha_i-y_i}$
  - $\lambda_i(x_i,\zeta_i,y_i)=\frac{x_i-\zeta_i (1-y_i)}{\zeta_i+1}$
-
 
 ---
 
@@ -516,12 +506,12 @@ round(polynom::integral(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients)),c(0
 ![](images/loss_5_conditions.png){width=300}
 
 
-```{r}
-knitr::knit_exit()
-```
 
 # {{< var sec3.1 >}}
 
+```{r}
+knitr::knit_exit()
+```
 
 ## {{< var sec3.un1 >}}
 ```{r}
