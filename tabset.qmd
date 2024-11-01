@@ -51,7 +51,7 @@ apps <- aprnn
 {{< include tab.qmd >}}
 :::
 ::: {.callout-caution collapse="true"}
-## {{< var sec6.un1 >}}
+## {{< var sec6.2.1 >}}
 ```{r}
 #| echo: false
 #| output: false
@@ -60,7 +60,7 @@ apps <- apn1n
 {{< include tab.qmd >}}
 :::
 ::: {.callout-caution collapse="true"}
-## {{< var sec6.un2 >}}
+## {{< var sec6.2.2 >}}
 ```{r}
 #| echo: false
 #| output: false
@@ -72,7 +72,7 @@ apps <- apn1n
 knitr::knit_exit()
 ```
 ::: {.callout-caution collapse="true"}
-## {{< var sec6.un3 >}}
+## {{< var sec6.2.3 >}}
 ```{r}
 #| echo: false
 #| output: false
@@ -82,7 +82,7 @@ apps <- appn3
 :::
 
 ::: {.callout-caution collapse="true"}
-## {{< var sec6.un4 >}}
+## {{< var sec6.2.4 >}}
 ```{r}
 #| echo: false
 #| output: false
@@ -90,13 +90,4 @@ apps <- appn4
 ```
 {{< include tab.qmd >}}
 :::
-
-
-
-
-
-
-
-
-
 

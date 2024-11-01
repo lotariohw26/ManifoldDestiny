@@ -18,7 +18,8 @@ recoudatr(qenvae$apn2n)
 ######################################################################################################################################################
 # Simulation
 ## Normal 
-perv <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,100,30)))})(100)
+set.seed(1)
+perv <- (function(x){data.frame(P=seq(1,x),RV=as.integer(rnorm(x,1000,30)))})(100)
 prow <- c(m=0.51,s=0.10)
 proa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 prob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
@@ -26,17 +27,13 @@ ztec <- c(0,1)
 gsh <- ballcastsim(perv,prow,proa,prob,ztec)
 assign(names(qenvas)[1],list(gsh,qenvas[[1]]))
 do.call("use_data", list(as.name(qenvas[[1]]$nid), overwrite = TRUE))
-bm()
-ManifoldDestiny::apsnn
 
 ## Rigged election
-set.seed(1)
 cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
 plfc <- c(0.21,0.21,0.21,0.21)
 exn <- names(qenvas)[-1]
 rigv <- lapply(1:3, function(x) { 
- x <- 1
  mda <- qenvas[[exn[x]]]
  exs <- list(
            frm=mda$sol$fr,
@@ -58,4 +55,6 @@ bm()
 ####################################################################################################################################################
 #sum(unique(tdf[c('a1','a2','a3', 'b1','b2','b3', 'c1','c2','c3')]))
 #sum(unique(select(tdf,starts_with("d_"))))
-ManifoldDestiny::appsn
+#ManifoldDestiny::appsn
+
+
