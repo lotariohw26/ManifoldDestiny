@@ -509,19 +509,15 @@ round(polynom::integral(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients)),c(0
 
 # {{< var sec3.1 >}}
 
-```{r}
-knitr::knit_exit()
-```
-
-## {{< var sec3.un1 >}}
+## {{< var sec3.2.1 >}}
 ```{r}
 #| echo: false
 #| output: false
-apps <- appsn
+apps <- apsnn
 ```
 {{< include tabpar.qmd >}}
 
-## {{< var sec3.un2 >}}
+## {{< var sec3.2.2 >}}
 
 ### Normal form
 ```{r}
@@ -537,7 +533,7 @@ apps <- apprn
 ```{r}
 #| echo: false
 #| output: false
-apps <- apprh
+apps <- aprnn
 ```
 {{< include tab.qmd >}}
 
@@ -547,12 +543,12 @@ apps <- apprh
 ```{r}
 #| echo: false
 #| output: false
-apps <- appro
+apps <- aprnn
 ```
 {{< include tab.qmd >}}
 
 
-# {{< var sec5.nmn >}}
+# {{< var sec5.1 >}}
 
 ![](images/ss.png){width=300}
 
@@ -577,7 +573,7 @@ The video "Conexiones Peligrosas"
 
 {{< video https://www.youtube.com/watch?v=YQg1Cr3vRic&t=76s >}}
 
-# {{< var sec6.nmn >}}
+# {{< var sec6.1 >}}
 
 1. Check whether *trivial* Manifold occuranse related to (1) normal form, (2) hybrid form, or (3) opposition formare satisfied.
 1. If not, perform 3d Manifold analysis on all 10 different parameter combinations for all three forms of voting.
@@ -586,48 +582,41 @@ The video "Conexiones Peligrosas"
 
 If we can walk through all of the **four** steps here, property 1<sup>st</sup> and 2<sup>nd</sup> that we have stated for a normal election are violated and we can conclude that the estimated Manifold equation is inserted - Manifold Destiny - to distort the outcome of normal election.
 
-```{r}
-knitr::knit_exit()
-```
 
 
-## {{< var sec6.un1 >}}
+## {{< var sec6.2.1 >}}
 ```{r}
 #| echo: false
 #| output: false
-apps <- appn1
+apps <- apn1n
 ```
 {{< include tabpar.qmd >}}
 
-## {{< var sec6.un2 >}}
+## {{< var sec6.2.2 >}}
 ```{r}
 #| echo: false
 #| output: false
-apps <- appn2
+apps <- apn1n
 ```
 {{< include tabpar.qmd >}}
 
 
-## {{< var sec6.un3 >}}
+## {{< var sec6.2.3 >}}
 ```{r}
 #| echo: false
 #| output: false
-apps <- appn2
+apps <- apn1n
 ```
 {{< include tabpar.qmd >}}
-## {{< var sec6.un4 >}}
+## {{< var sec6.2.3 >}}
 ```{r}
 #| echo: false
 #| output: false
-apps <- appn4
+apps <- apn1n
 ```
 {{< include tabpar.qmd >}}
 
-# {{< var sec7.nmn >}}
-
-## {{< var sec7.un1 >}}
-
-# {{< var sec8.nmn >}}
+# {{< var sec8.1 >}}
 
 - At the heart of the difference between a fair and rigged election is the issue of causation
   - Fair election: Aggregate Percentage of a Candidate **cannot** precede the Election Day and the Mail-in Percentages of that Candidate
@@ -648,29 +637,20 @@ apps <- appn4
 
 ---
 
-```{r}
-knitr::knit_exit()
-```
-
-
 - Our four applications
 
 ```{r, echo=F, warning=F, message=F}
 kableExtra::kbl(concl_appps) #%>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
 ```
 
-# {{< var sec9.nmn >}}
-
-::: {#refs}
-:::
-
-
-
-
-
 # {{< var sec9.1 >}}
 
 ::: {#refs}
 :::
+
+
+```{r}
+knitr::knit_exit()
+```
 
 

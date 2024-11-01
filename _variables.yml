@@ -21,8 +21,7 @@ sec2: [["Methods of Ballot Counting"],
 "Counting in a rigged election",
 "Implementing a loss-function in a rigged election"]]
 
-sec3: [["Election Simulations"],
-["Fair election","Rigged election"]]
+sec3: [["Election Simulations"],["Fair election","Rigged election"]]
 
 sec4: [["Checking for a rigged election"],
 [["Procedure"]]]
@@ -35,13 +34,9 @@ sec6: [["Applications"],
 "Application 3:",
 "Application 4:",]]
 
-sec7:
-  nmn: "Restoring Original Election Results"
-  un1: "Procedure"
+sec7: [["Restoring Original Election Results"],["Procedure"]]
 
-sec8:
-  nmn: "Conclusions"
-  un1: "Procedure"
+sec8: [["Conclusions"],["Procedure"]]
 
 sec9: [["References"]]
 
