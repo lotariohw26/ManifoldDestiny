@@ -277,40 +277,40 @@ selreport <- function(
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- md$sol$fr
-  #co <- Countinggraphs(da)
-  #if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,frm=md$prg$frp,prma=md$prg$prma)}
-  #co$sortpre(frm)
-  #co$descriptive(frm)
-  #co$r2siminput(frm)
-  #co$plot2d(frm)
-  #co$plotxy(frm)
-  #co$resplot(frm)
-  #co$plotly3d(partition=frm)
-  #if (md$sol$ro[[1]]==1) {
-  #  co$rotation(selv=md$sol$ro[[2]],
-  #  	    smat=md$sol$ro[[3]],
-  #  	    grad=md$sol$ro[[4]],
-  #  	    mead=T)
-  #  co$rotgraph()
-  #}
-  #co$plext(frm)
-  #co$gridarrange()
-  #ges <- Estimation(co$rofc,frm)
-  #ges$regression(md$sol$eq[1])
-  #ges$diagnostics()
-  #ges$hat_predict(svf=md$sol$va)
-  #ges$hat_intcomp()
-  ##### Identify
-  #ies <- Estimation(co$rdfc,frm)
-  #ies$regression(md$sol$eq[2])
-  #ies$diagnostics()
-  ## Identify
-  ## Bowplot
+  co <- Countinggraphs(da)
+  if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,frm=md$prg$frp,prma=md$prg$prma)}
+  co$sortpre(frm)
+  co$descriptive(frm)
+  co$r2siminput(frm)
+  co$plot2d()
+  co$plotxy(frm)
+  co$resplot(frm)
+  co$plotly3d(partition=frm)
+  if (md$sol$ro[[1]]==1) {
+    co$rotation(selv=md$sol$ro[[2]],
+    	    smat=md$sol$ro[[3]],
+    	    grad=md$sol$ro[[4]],
+    	    mead=T)
+    co$rotgraph()
+  }
+  co$plext(frm)
+  co$gridarrange()
+  ges <- Estimation(co$rofc,frm)
+  ges$regression(md$sol$eq[1])
+  ges$diagnostics()
+  ges$hat_predict(svf=md$sol$va)
+  ges$hat_intcomp()
+  #### Identify
+  ies <- Estimation(co$rdfc,frm)
+  ies$regression(md$sol$eq[2])
+  ies$diagnostics()
+  # Identify
+  # Bowplot
   cob <- Countinggraphs(da,selvar=names(da))
   if (md$prg$cnd==1) {cob$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
   cob$sortpre("S",polyn=6)
-  cob$plot2d(4,labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
-  selv=2)
+  cob$plot2d(labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
+  selv=c(1:3,6))
   return(list(co=co,
               ges=ges,
               ies=ies,
@@ -331,7 +331,6 @@ seloutput <- function(selreport=NULL){
   l3 <- selreport[[2]]$resplots[[1]][[3]]
   l4 <- selreport[[2]]$resplots[[1]][[4]]
   tab8 <- cowplot::plot_grid(plotlist=list(l1,l2,l3,l4))
-  #selreport[[2]]$comdesc
   tab9 <- dplyr::select(selreport[[2]]$comdesc,1,3)
   tab10 <- selreport[[4]]$pl_2dsort
   tab11 <- list(summary(selreport[[3]]$regsum[[1]]))
@@ -720,7 +719,6 @@ Countingprocess$methods(sortpre=function(form="S",
 					 sortby='alpha'
 					 ){
 
-  #seln <- list(c(1:3),c(1:3,6))[[ifelse(isTRUE(bowp),2,1)]]
   selv <- stick[[1]][[form]]
   prop <- rev(selv)[1]
   psel <<- selv[1:6]
@@ -868,19 +866,17 @@ Countingprocess$methods(manimp=function(init_par=NULL,
 ###########################################################################################################################################################
 #' @export Countinggraphs
 Countinggraphs <- setRefClass("Countinggraphs", contains = c('Countingprocess'))
-Countinggraphs$methods(plot2d=function(form=1,
-    				       labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,
-				       alpha=1,size=1),
-				       selv=1
+Countinggraphs$methods(plot2d=function(labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=1,size=1),selv=c(1:3)
 				       ){
 
-  browser()
-  psel
-  go
-  longdf <- tidyr::pivot_longer(quintile,all_of(c(psel[c(1:3,6)],paste0(psel,'_pred'))))
+  longdf <- tidyr::pivot_longer(quintile,all_of(c(psel[selv],paste0(psel[selv],'_pred'))))
   go <- ggplot2::ggplot(data=longdf) +
-    ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel,'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +  
-    ggplot2::geom_point(data=filter(longdf,name%in%psel),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
+    ggplot2::geom_point(data=filter(longdf,name%in%psel[selv]),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
+    ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel[selv],'_pred')),ggplot2::aes(x=pri,y=value, color=name)) 
+    go
+    browser()
+    names(longdf)
+paste0(psel[selv],'_pred')
     ggplot2::labs(title=labs$title,x=labs$x,y=labs$y,caption=labs$caption) +
     ggplot2::ylim(0,1) +
     ggplot2::theme_bw()
