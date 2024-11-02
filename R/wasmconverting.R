@@ -311,6 +311,7 @@ selreport <- function(
   cob$sortpre("S",polyn=6)
   cob$plot2d(labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
   selv=c(1:3,6))
+  #cob$pl_2dsort[[1]]
   return(list(co=co,
               ges=ges,
               ies=ies,
@@ -321,7 +322,7 @@ selreport <- function(
 seloutput <- function(selreport=NULL){
   tab1 <- selreport[[1]]$rdfc
   tab2 <- selreport[[1]]$desms
-  tab3 <- selreport[[1]]$pl_corrxy[[1]]
+  tab3 <- selreport[[1]]$pl_corrxy[[5]]
   tab4 <- selreport[[1]]$pl_2dsort[[1]]
   tab5 <- selreport[[1]]$pl_3d_mani[[1]]
   tab6 <- selreport[[1]]$r2list
@@ -722,15 +723,14 @@ Countingprocess$methods(sortpre=function(form="S",
   selv <- stick[[1]][[form]]
   prop <- rev(selv)[1]
   psel <<- selv[1:6]
-
   srdfc <- rdfc %>%
     dplyr::select(P,all_of(selv)) %>%
     dplyr::arrange(alpha) %>%
     dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
     dplyr::mutate(!!paste0(prop,'_m'):=mean(!!rlang::sym(prop))) %>%
     dplyr::mutate(!!paste0(prop,'_mr'):=!!rlang::sym(prop)-!!rlang::sym(paste0(prop,'_m')))
-    psel %>% purrr::map(function(x,df=srdfc,p=polyn){
-        pred <- stats::predict(lm(alpha~poly(alpha,p),data=df))
+  psel %>% purrr::map(function(x,df=srdfc,p=polyn){
+        pred <- predict(stats::lm(df[[x]] ~ poly(df[['pri']], p, raw=TRUE)))
         res <- pred - df[[x]]
         data.frame(pred,res) %>% `colnames<-` (c(paste0(x,'_pred'),paste0(x,'_res')))
     }) %>% as.data.frame(.) -> predictor
@@ -872,11 +872,8 @@ Countinggraphs$methods(plot2d=function(labs=list(title=NULL,x="precinct (normali
   longdf <- tidyr::pivot_longer(quintile,all_of(c(psel[selv],paste0(psel[selv],'_pred'))))
   go <- ggplot2::ggplot(data=longdf) +
     ggplot2::geom_point(data=filter(longdf,name%in%psel[selv]),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
-    ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel[selv],'_pred')),ggplot2::aes(x=pri,y=value, color=name)) 
-    go
-    browser()
-    names(longdf)
-paste0(psel[selv],'_pred')
+    #ggplot2::geom_point(data=filter(longdf,name%in%c("x_pred")),ggplot2::aes(x=pri,y=value, color=name)) 
+    ggplot2::geom_point(data=filter(longdf,name%in%paste0(psel[selv],'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +
     ggplot2::labs(title=labs$title,x=labs$x,y=labs$y,caption=labs$caption) +
     ggplot2::ylim(0,1) +
     ggplot2::theme_bw()
@@ -925,9 +922,10 @@ Countinggraphs$methods(plotly3d=function(
     z <- mrdfc[, 1]
     x <- mrdfc[, 2]
     y <- mrdfc[, 3]
+    r2 <- round(summary(stats::lm(z~x+y,data = gdf))$r.squared, digits=4)
     plotly::plot_ly(x = x, y = y, z = z, type = "scatter3d", mode = "markers", marker = list(size = 3)) %>%
       plotly::layout(
-        #title = paste0('R2 = ', round(summary(stats::lm(data = gdf))$r.squared)),
+        title = paste0('R2 = ', r2),
         scene = list(
           xaxis = list(title = names(gdf)[1]),
           text = 'abc',
