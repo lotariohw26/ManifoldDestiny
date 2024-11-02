@@ -8,7 +8,7 @@ source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ls(package:ManifoldDestiny)
 aps <- apn1n
-aps <- apn2n
+#aps <- apn2n
 #aps <- apn3r
 #aps <- apn4n
 aps <- apsnn
@@ -19,7 +19,10 @@ adat <- aps[[1]]
 amet <- aps[[2]]
 ############################################################################################################
 slr <- selreport(aps)
+
+slr[[4]]
 slo <- seloutput(slr)
+slo[[11]] 
 ###########################################################################################################
 frm <- 1
 co <- Countinggraphs(adat,selvar=c('PN','P','R','S','T','U','V'))
@@ -41,7 +44,7 @@ cok <- cos(-45*(pi/180))
 sik <- sin(-45*(pi/180))
 def <- co$rdfc %>% dplyr::mutate(v1=cok*x-sik*y,v2=sik*x+cok*y)
 ghi <- pl3(df3p=def,selv=c("v1","v2","alpha"))
-re <- Estimation(def,"H")
+re <- Estimation(def,"H",bowp=T)
 eqi <- "alpha=k0 + k1*v1 + k2*v2"
 re$regression(eqi)
 summary(re$regsum[[1]])

@@ -277,33 +277,33 @@ selreport <- function(
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- md$sol$fr
-  co <- Countinggraphs(da)
-  if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,frm=md$prg$frp,prma=md$prg$prma)}
-  co$sortpre(frm)
-  co$descriptive(frm)
-  co$r2siminput(frm)
-  co$plot2d(frm)
-  co$plotxy(frm)
-  co$resplot(frm)
-  co$plotly3d(partition=frm)
-  if (md$sol$ro[[1]]==1) {
-    co$rotation(selv=md$sol$ro[[2]],
-    	    smat=md$sol$ro[[3]],
-    	    grad=md$sol$ro[[4]],
-    	    mead=T)
-    co$rotgraph()
-  }
-  co$plext(frm)
-  co$gridarrange()
-  ges <- Estimation(co$rofc,frm)
-  ges$regression(md$sol$eq[1])
-  ges$diagnostics()
-  ges$hat_predict(svf=md$sol$va)
-  ges$hat_intcomp()
-  #### Identify
-  ies <- Estimation(co$rdfc,frm)
-  ies$regression(md$sol$eq[2])
-  ies$diagnostics()
+  #co <- Countinggraphs(da)
+  #if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,frm=md$prg$frp,prma=md$prg$prma)}
+  #co$sortpre(frm)
+  #co$descriptive(frm)
+  #co$r2siminput(frm)
+  #co$plot2d(frm)
+  #co$plotxy(frm)
+  #co$resplot(frm)
+  #co$plotly3d(partition=frm)
+  #if (md$sol$ro[[1]]==1) {
+  #  co$rotation(selv=md$sol$ro[[2]],
+  #  	    smat=md$sol$ro[[3]],
+  #  	    grad=md$sol$ro[[4]],
+  #  	    mead=T)
+  #  co$rotgraph()
+  #}
+  #co$plext(frm)
+  #co$gridarrange()
+  #ges <- Estimation(co$rofc,frm)
+  #ges$regression(md$sol$eq[1])
+  #ges$diagnostics()
+  #ges$hat_predict(svf=md$sol$va)
+  #ges$hat_intcomp()
+  ##### Identify
+  #ies <- Estimation(co$rdfc,frm)
+  #ies$regression(md$sol$eq[2])
+  #ies$diagnostics()
   ## Identify
   ## Bowplot
   cob <- Countinggraphs(da,selvar=names(da))
@@ -719,9 +719,11 @@ Countingprocess$methods(sortpre=function(form="S",
 					 polyn=6,
 					 sortby='alpha'
 					 ){
+
+  #seln <- list(c(1:3),c(1:3,6))[[ifelse(isTRUE(bowp),2,1)]]
   selv <- stick[[1]][[form]]
   prop <- rev(selv)[1]
-  psel <<- selv[1:3]
+  psel <<- selv[1:6]
 
   srdfc <- rdfc %>%
     dplyr::select(P,all_of(selv)) %>%
@@ -872,7 +874,10 @@ Countinggraphs$methods(plot2d=function(form=1,
 				       selv=1
 				       ){
 
-  longdf <- tidyr::pivot_longer(quintile,all_of(c(psel,paste0(psel,'_pred'))))
+  browser()
+  psel
+  go
+  longdf <- tidyr::pivot_longer(quintile,all_of(c(psel[c(1:3,6)],paste0(psel,'_pred'))))
   go <- ggplot2::ggplot(data=longdf) +
     ggplot2::geom_line(data=filter(longdf,name%in%paste0(psel,'_pred')),ggplot2::aes(x=pri,y=value, color=name)) +  
     ggplot2::geom_point(data=filter(longdf,name%in%psel),ggplot2::aes(x=pri,y=value, color=name),size=labs$size,alpha=labs$alpha) +
