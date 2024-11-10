@@ -6,9 +6,9 @@
 ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-# apps <- apsnn
-# apps <- aprnn
-apps <- aprhn
+apps <- apsnn
+#apps <- aprnn
+#apps <- aprhn
 #apps <- apron
 #apps <- apn1n
 #apps <- apn2n

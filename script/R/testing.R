@@ -18,10 +18,9 @@ aps <- apsnn
 adat <- aps[[1]]
 amet <- aps[[2]]
 ############################################################################################################
-#slr <- selreport(aps)
-##slr[[4]]
-#slo <- seloutput(slr)
-#slo[[4]]
+slr <- selreport(aps)
+slo <- seloutput(slr)
+#slo[[5]]
 ###########################################################################################################
 frm <- "S"
 co <- Countinggraphs(adat,selvar=c('P','R','S','T','U','V'))
@@ -48,8 +47,6 @@ re <- Estimation(def,"H",bowp=T)
 eqi <- "alpha=k0 + k1*v1 + k2*v2"
 re$regression(eqi)
 summary(re$regsum[[1]])
-2+2
-go
 pred <- stats::lm(as.formula(paste0(x, " ~ poly(", x, ", ", p, ")")), data=df)
 #co$pl_3d_mani[[1]]
 #co$gridarrange()

@@ -1,15 +1,36 @@
+library(dplyr)
+################################################################################################################
+# General script for Maricopa: 2024
+###############################################################################################################
+system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/arizona/2024"))
+rf2024 <- data.table::fread(paste0(rprojroot::find_rstudio_root_file(),'/data-raw/arizona/2024/Unofficial Combined Results 11-9-24 630pm.txt'))
+dim(rf2024)
+names(rf2024)
+#  [1] "ContestId"               "ContestExtId"            "ContestName"             "ContestPartyAffiliation" "ContestVoteFor"          "ContestType"             "ContestOrder"           
+#  [8] "PrecinctId"              "PrecinctExtId"           "PrecinctName"            "PrecinctOrder"           "PrecinctStatus"          "PrecinctRegistered"      "PrecinctTurnout"        
+# [15] "PrecinctTurnoutPerc"     "CandidateId"             "CandidateExtId"          "CandidateName"           "CandidateType"           "CandidateAffiliation"    "CandidateOrder"         
+# [22] "Registered"              "Turnout"                 "TurnoutPerc"             "Overvotes"               "Undervotes"              "Votes"                   "Turnout_EARLY VOTE"     
+# [29] "Overvotes_EARLY VOTE"    "Undervotes_EARLY VOTE"   "Votes_EARLY VOTE"        "Turnout_ELECTION DAY"    "Overvotes_ELECTION DAY"  "Undervotes_ELECTION DAY" "Votes_ELECTION DAY"     
+# [36] "Turnout_PROVISIONAL"     "Overvotes_PROVISIONAL"   "Undervotes_PROVISIONAL"  "Votes_PROVISIONAL"      
+sct <- c('PrecinctName','Registered','CandidateName','CandidateAffiliation','Votes_EARLY VOTE','Votes_ELECTION DAY')
+abc <- rf2024 %>% dplyr::select(all_of(sct)) 
+sapply(seq(1,np),function(period){
+  sapply(seq(1,nr),function(rn){
+	}) -> lst_race
+}) -> lst_race_snap 
+
 ################################################################################################################
 # General script for Maricopa
 ###############################################################################################################
 # setNames
-system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/csv/ariz2022/maricopa/txt_proto"))
-#lp <- system(paste0('ls ',dirtxt),intern=T)[c(2:12,1)]
-#fn <- paste0(abs_p,'/data-raw/Arizona_2022/MaricopaAZ/txt/',lp)[c(2:14,1)]
-lr <- data.table::fread(paste0(abs_p,'/data-raw/Arizona_2022/maricopa/maricopadfload.csv'))[1:5,] %>% mutate(across(everything(), gsub, pattern = "'", replacement = '"'))
+abs_p <- rprojroot::find_rstudio_root_file()
+system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/arizona/2022/maricopa/txt_proto"))
+lp <- system(paste0('ls ',dirtxt),intern=T)[c(2:12,1)]
+fn <- paste0(abs_p,'/data-raw/arizona/2022/maricopa/txt/',lp)[c(2:14,1)]
+lr <- data.table::fread(paste0(abs_p,'/data-raw/arizona/2022/maricopa/maricopadfload.csv'))[1:5,] %>% mutate(across(everything(), gsub, pattern = "'", replacement = '"'))
 nr <- dim(lr)[1]
 np <- length(lp)
-sct <- c('PrecinctName','Registered','CandidateName','CandidateAffiliation','Votes_EARLY VOTE','Votes_ELECTION DAY')
-sapply(seq(1,np),function(period){
+sct <- c('PrecinctName','Registered','CandidateName','CandidateAffiliation','Votes_EARLY VOTE','Votes_ELECTION DAY'sapply(seq(1,np),function(period){
   vot <- data.table::fread(paste0(abs_p,'/data-raw/',dirtxt,lp[period])) 
   prn <- data.frame(PrecinctName=unique(vot$PrecinctName)) %>% dplyr::mutate(P=row_number()) 
   sapply(seq(1,nr),function(rn){
@@ -44,7 +65,7 @@ openxlsx::write.xlsx(lst_race_snap_all_az_ma,paste0(abs_p,'/data-raw/Arizona_202
 # General script for Cohise
 ###############################################################################################################
 library(dplyr)
-az_co_gen_2022 <- data.table::fread(paste0(rprojroot::find_rstudio_root_file(),'/data-raw/csv/ariz2022/cohise/csv/abc.csv'),header=FALSE) %>% dplyr::slice(-n())
+az_co_gen_2022 <- data.table::fread(paste0(rprojroot::find_rstudio_root_file(),'/data-raw/arizona/2022/cohise/csv/abc.csv'),header=FALSE) %>% dplyr::slice(-n())
 races <- unique(as.character(az_co_gen_2022[1,-c(1:6)]))[c(1,4,9,11)]
 lapply(races,function(r){
   vnr <- c(2:6,which(az_co_gen_2022[1,]==r))

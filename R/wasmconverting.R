@@ -280,9 +280,11 @@ selreport <- function(
   co <- Countinggraphs(da)
   if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,frm=md$prg$frp,prma=md$prg$prma)}
   co$sortpre(frm)
+  co$plot2d(selv=c(1:3,6))
+  #browser()
+  #co$pl_2dsort
   co$descriptive(frm)
   co$r2siminput(frm)
-  co$plot2d()
   co$plotxy(frm)
   co$resplot(frm)
   co$plotly3d(partition=frm)
@@ -308,10 +310,10 @@ selreport <- function(
   # Bowplot
   cob <- Countinggraphs(da,selvar=names(da))
   if (md$prg$cnd==1) {cob$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
-  cob$sortpre("S",polyn=6)
+  cob$sortpre("B",polyn=6)
   cob$plot2d(labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
-  selv=c(1:3,6))
-  #cob$pl_2dsort[[1]]
+  selv=c(1:6))
+  cob$pl_2dsort[[1]]
   return(list(co=co,
               ges=ges,
               ies=ies,
@@ -613,6 +615,7 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   pnset <- min(length(rdfci$pri)-1,polyn)
   ### Init values standard form
   polyc[['S']] <<- stats::lm(rdfci$alpha ~ poly(rdfci$pri, pnset, raw=TRUE))
+  polyc[['B']] <<- stats::lm(rdfci$alpha ~ poly(rdfci$pri, pnset, raw=TRUE))
   ### Init valuesstats:: hybrid form
   polyc[['H']] <<- stats::lm(rdfci$alpha ~ poly(rdfci$pri, pnset, raw=TRUE))
   ##### Init valustats::es opposition form
@@ -717,12 +720,13 @@ Countingprocess$methods(purging=function(z=0,stuv=c(0,0,0,0),blup=c(0,1),eqp=c("
 })
 Countingprocess$methods(sortpre=function(form="S",
 					 polyn=6,
-					 sortby='alpha'
+					 sortby='alpha',
+					 sv=c(1:6)
 					 ){
 
   selv <- stick[[1]][[form]]
   prop <- rev(selv)[1]
-  psel <<- selv[1:6]
+  psel <<- selv[sv]
   srdfc <- rdfc %>%
     dplyr::select(P,all_of(selv)) %>%
     dplyr::arrange(alpha) %>%

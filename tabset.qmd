@@ -36,7 +36,7 @@ apps <- aprnn
 ```{r}
 #| echo: false
 #| output: false
-apps <- aprnn
+apps <- aprhn
 ```
 {{< include tab.qmd >}}
 :::
@@ -46,7 +46,7 @@ apps <- aprnn
 ```{r}
 #| echo: false
 #| output: false
-apps <- aprnn
+apps <- aprhn
 ```
 {{< include tab.qmd >}}
 :::
@@ -90,9 +90,6 @@ apps <- appn4
 ```
 {{< include tab.qmd >}}
 :::
-
-
-
 
 
 
