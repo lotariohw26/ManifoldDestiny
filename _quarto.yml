@@ -2,6 +2,7 @@
 # _apps_sim.yml
 # _apps_his.yml
 # data-raw/record_static.R
+# data-raw/record_dynamic.R
 # script/R/complexregression.R
 # script/R/testing.R
 # inst/shinyapps/r2rsim/app.R

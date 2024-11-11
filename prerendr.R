@@ -230,7 +230,7 @@ usethis::use_data(laws2, overwrite = TRUE)
 ###per2 <- polynom::polynomial(unname(rppr2[[1]]$polyc[[1]][[1]],3))
 ###per3 <- polynom::polynomial(unname(rppr3[[1]]$polyc[[1]][[1]],3))
 ###
-##
+##69
 ###ManifoldDestiny::wasmconload()
 ##lpku <<- list(
 ##  S = list(
@@ -249,7 +249,7 @@ usethis::use_data(laws2, overwrite = TRUE)
 ##usethis::use_data(lpku, overwrite = TRUE)
 ###
 ###
-###
+###(
 ###stickers <-
 ###  list(parameters=list(
 ###  standard=c("alpha","x","y","zeta","lamda","Omega"),
@@ -271,3 +271,9 @@ usethis::use_data(laws2, overwrite = TRUE)
 ##
 ##
 #ManifoldDestiny::bm()
+vt <- c(59,69.5,65.9,65,9,66.4)
+sd <- var(vt)**(1/2)
+em <- mean(vt)
+(81.3-em)/sd
+em
+sd
