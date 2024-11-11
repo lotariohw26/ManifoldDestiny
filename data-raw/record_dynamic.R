@@ -2,69 +2,28 @@ library(dplyr)
 ################################################################################################################
 # General script for Maricopa: 2024
 ###############################################################################################################
-system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/arizona/2024"))
-rf2024 <- data.table::fread(paste0(rprojroot::find_rstudio_root_file(),'/data-raw/arizona/2024/Unofficial Combined Results 11-9-24 630pm.txt'))
-dim(rf2024)
+lsf <- system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/arizona/2024"), intern=T)
 sct <- c('PrecinctName','Registered','ContestName','CandidateName','CandidateAffiliation','Votes_EARLY VOTE','Votes_ELECTION DAY','Votes_PROVISIONAL')
-names(rf2024)
-
-
-
-rs <- unique(rf2024$ContestName)[1:2]
-unique(rf2024$CandidateName)
-
-View(abc)
-
-sr <- 1 #:length(rs)
-sr
-abc <- rf2024 %>%
-  dplyr::select(all_of(sct)) %>%
-  dplyr::filter(ContestName%in%rs[sr]) %>%
-  dplyr::filter(CandidateAffiliation%in%c("DEM","REP")) %>%
-  dplyr::mutate(C = as.integer(factor(CandidateName, levels = unique(CandidateName))),.before = 1) %>%
-  dplyr::mutate(P = as.integer(factor(PrecinctName, levels = unique(PrecinctName))),.before = 1) %>%
-  dplyr::select(-C,-CandidateAffiliation) %>%
-  dplyr::group_by(P,ContestName) %>%
-  tidyr::pivot_wider(names_from=CandidateName,values_from=c('Votes_PROVISIONAL','Votes_ELECTION DAY','Votes_EARLY VOTE')) 
-
-usethis::use_data(abc, overwrite = TRUE)
-abc <- list(abc,abc)
-openxlsx::write.xlsx(abc,paste0(rprojroot::find_rstudio_root_file(),'/data-raw/abc.xlsx'))
-
-
-
-#    #dplyr::filter(Registered>0) %>%
-#    #dplyr::filter(P<935) %>%
-#    dplyr::group_by(P) 
-#
-dim(abc)
-View(abc)
-#2+2
-#sapply(seq(1,1),function(period){
-  #sapply(seq(1,nr),function(rn){
-    #rsr <- lr[rn]
-    #race <- rsr$R
-    #cand <- unlist(rsr[,-1])
-    #use <- vot %>% dplyr::filter(grepl(race,ContestName)) %>
-    dplyr::select(all_of(sct)) %>% )
-    dplyr::mutate(TXT=lp[period]) %>%
-    dplyr::left_join(prn,by='PrecinctName') %>% 
-    dplyr::filter(Registered>0) %>%
-    dplyr::filter(P<935) %>%
-    dplyr::group_by(P) %>%
-    dplyr::filter(CandidateName%in%cand) %>%
-    dplyr::arrange(P,PrecinctName,CandidateName) %>%
-    dplyr::arrange(P,PrecinctName,rev(CandidateAffiliation)) %>%
-    dplyr::relocate(TXT,P,PrecinctName) %>%
-    dplyr::mutate(CandParty=paste0(CandidateName," ",CandidateAffiliation)) %>%
-    dplyr::select(-CandidateAffiliation,-CandidateName) %>%
-    tidyr::pivot_wider(names_from=CandParty,values_from=c('Votes_ELECTION DAY','Votes_EARLY VOTE')) %>%
-    dplyr::ungroup() %>%
-    dplyr::mutate(SNAP=period,RACE=race,RACENR=rn) %>%
-    dplyr::relocate(SNAP,RACE,RACENR) 
-    setNames(list(use),race)
-	}) -> lst_race
-#}) -> lst_race_snap 
+rcn <- 1:2
+snn <- 1:2
+sapply(snn,function(per){
+  per <- 1
+  txfd <-  paste0(rprojroot::find_rstudio_root_file(),'/data-raw/arizona/2024/',lsf[per])
+  snap <- data.table::fread(txfd)
+  cont <- unique(snap$ContestName)[rcn]
+  sapply(rcn,function(rac){
+    snax <- snap %>% dplyr::select(all_of(sct)) %>% 
+	    dplyr::filter(ContestName%in%cont[rac]) %>%
+            dplyr::filter(CandidateAffiliation%in%c("DEM","REP")) %>%
+            dplyr::mutate(C = as.integer(factor(CandidateName, levels = unique(CandidateName))),.before = 1) %>%
+            dplyr::mutate(P = as.integer(factor(PrecinctName, levels = unique(PrecinctName))),.before = 1) %>%
+            dplyr::select(-C,-CandidateAffiliation) %>%
+            dplyr::group_by(P,ContestName) %>%
+            tidyr::pivot_wider(names_from=CandidateName,values_from=c('Votes_PROVISIONAL','Votes_ELECTION DAY','Votes_EARLY VOTE')) 
+  }) -> lst_race
+}) -> lst_race_snap
+usethis::use_data(lst_race_snap, overwrite = TRUE)
+openxlsx::write.xlsx(lst_race_snap,paste0(rprojroot::find_rstudio_root_file(),'/data-raw/arizona/2024/xlsx/abc.xlsx'))
 ################################################################################################################
 # General script for Maricopa
 ###############################################################################################################
@@ -77,7 +36,6 @@ r <- data.table::fread(paste0(abs_p,'/data-raw/arizona/2022/maricopa/maricopadfl
 nr <- dim(lr)[1]
 np <- length(lp)
 sct <- c('PrecinctName','Registered','CandidateName','CandidateAffiliation','Votes_EARLY VOTE','Votes_ELECTION DAY'
-
 
 sapply(seq(1,np),function(period){
   vot <- data.table::fread(paste0(abs_p,'/data-raw/',dirtxt,lp[period])) 
