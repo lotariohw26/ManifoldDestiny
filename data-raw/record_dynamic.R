@@ -28,9 +28,10 @@ abc <- function(fld="/data-raw/arizona/2024/",
   }) -> lst_rac_snp  
 }
 abc <- abc()
-bs1 <- rbind(abc[["US Senate",1]],abc[["US Senate",2]],abc[["US Senate",3]])
 bp1 <- rbind(abc[["Presidential Electors",1]],abc[["Presidential Electors",2]],abc[["Presidential Electors",3]])
-abcl <- list(bs1,bp1)
+bs1 <- rbind(abc[["US Senate",1]],abc[["US Senate",2]],abc[["US Senate",3]])
+
+abcl <- list("Presidential Electors"=bp1,"US Senate"=bs1)
 openxlsx::write.xlsx(abcl,paste0(rprojroot::find_rstudio_root_file(),'/data-raw/arizona/2024/xlsx/maricopa_beneral_2024.xlsx'))
 usethis::use_data(abcl, overwrite = TRUE)
 
