@@ -4,20 +4,16 @@ abc <- function(fld="/data-raw/arizona/2024/",
 		aff=c("DEM","REP"),
 		vom=c('Votes_PROVISIONAL','Votes_ELECTION DAY','Votes_EARLY VOTE'),
 		sct=c('PrecinctName','Registered','ContestName','CandidateName','CandidateAffiliation','Votes_EARLY VOTE','Votes_ELECTION DAY','Votes_PROVISIONAL')){
-  lsf <- system(paste0('ls ',rprojroot::find_rstudio_root_file(),"/data-raw/arizona/2024"), intern=T)
-  sapply(1:length(rac),function(per){
-    #per <- 1
-    lsf[per]
-    flsp <-  paste0(rprojroot::find_rstudio_root_file(),fld,lsf[1])
+  cmd <- paste0('ls ',rprojroot::find_rstudio_root_file(),fld,'*.txt')
+  lsf <- system(cmd, intern=T)
+  sapply(1:length(lsf),function(per){
+    per <- 1
+    flsp <-  paste0(rprojroot::find_rstudio_root_file(),fld,lsf[per])
     losd <- data.table::fread(flsp)
-    unique(losd$ContestName)
-    #sapply(1:length(lsf),function(con){
-    sapply(1:2,function(con){
-    	#browser()
-	#View(snax)
+    sapply(1:length(rac),function(con){
         snax <- losd %>% 
 		dplyr::select(all_of(sct)) %>% 
-		dplyr::filter(ContestName%in%rac) %>% 
+		dplyr::filter(ContestName%in%rac[con]) %>% 
 		dplyr::filter(CandidateAffiliation%in%aff) %>%
                 dplyr::mutate(P = as.integer(factor(PrecinctName, levels = unique(PrecinctName))),.before = 1) %>%
                 dplyr::select(-CandidateAffiliation) %>%
@@ -26,15 +22,32 @@ abc <- function(fld="/data-raw/arizona/2024/",
                 dplyr::ungroup() %>%
                 dplyr::mutate(SNAP=per,.before = 1) 
 	setNames(list(snax),per)
+    	#browser()
+	#View(snax)
     }) -> lst_rac
   }) -> lst_rac_snp  
 }
-abc <- abc()
-View(abc[,2])
-abc[,1]
-View(abc[[1]][1])
-View(abc[[2]])
+fldv="/data-raw/arizona/2024/" 
+racv=c("Presidential Electors","US Senate") 
+affv=c("DEM","REP") 
+vomv=c('Votes_PROVISIONAL','Votes_ELECTION DAY','Votes_EARLY VOTE') 
+sctv=c('PrecinctName','Registered','ContestName','CandidateName','CandidateAffiliation','Votes_EARLY VOTE','Votes_ELECTION DAY','Votes_PROVISIONAL') 
+lst_race_snap_all_az_ma_2024 <- abc(fldv,racv,affv,vomv,sctv)
+abc()
 
+
+usethis::use_data(lst_race_snap_all_az_ma_2024, overwrite = TRUE)
+openxlsx::write.xlsx(lst_race_snap_all_az_ma_2024,paste0(rprojroot::find_rstudio_root_file(),'/data-raw/arizona/2024/xlsx/maricopa_beneral_2024.xlsx'))
+
+bms()
+abc[[1,1]]
+abc[[2,1]]
+abc[[1,2]]
+abc[[2,2]]
+abc[[1,3]]
+abc[[2,3]]
+
+View(abc[[2,3]])
 
 txfd <-  paste0(rprojroot::find_rstudio_root_file(),'/data-raw/arizona/2024/',lsf[1])
 snap <- data.table::fread(txfd)
