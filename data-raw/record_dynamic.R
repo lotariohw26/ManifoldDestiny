@@ -30,10 +30,37 @@ abc <- function(fld="/data-raw/arizona/2024/",
 abc <- abc()
 bp1 <- rbind(abc[["Presidential Electors",1]],abc[["Presidential Electors",2]],abc[["Presidential Electors",3]])
 bs1 <- rbind(abc[["US Senate",1]],abc[["US Senate",2]],abc[["US Senate",3]])
-
 abcl <- list("Presidential Electors"=bp1,"US Senate"=bs1)
 openxlsx::write.xlsx(abcl,paste0(rprojroot::find_rstudio_root_file(),'/data-raw/arizona/2024/xlsx/maricopa_beneral_2024.xlsx'))
 usethis::use_data(abcl, overwrite = TRUE)
+
+
+# Initialize data with abc() function
+abc <- abc()
+
+# Generalized function to bind rows for a specified category and number of columns
+bind_rows_by_category <- function(data, category, num_columns) {
+  do.call(rbind, lapply(1:num_columns, function(i) data[[category, i]]))
+}
+
+# Define the categories and dynamically determine the number of columns for each
+categories <- c("Presidential Electors", "US Senate")
+num_columns <- 3  # Adjust if the number of columns varies; this can be dynamic
+
+# Create a list to store the combined results for each category
+combined_results <- list()
+
+# Loop through each category and bind the rows for the specified number of columns
+for (category in categories) {
+  combined_results[[category]] <- bind_rows_by_category(abc, category, num_columns)
+}
+
+# Write to an Excel file
+output_path <- file.path(find_rstudio_root_file(), 'data-raw/arizona/2024/xlsx/maricopa_general_2024.xlsx')
+write.xlsx(combined_results, output_path)
+
+# Save the data in R's internal format
+use_data(combined_results, overwrite = TRUE)
 
 
 
