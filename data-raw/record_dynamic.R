@@ -1,5 +1,5 @@
 library(dplyr)
-abc <- function(fld="/data-raw/arizona/2024/",
+csndfl <- function(fld="/data-raw/arizona/2024/",
 		rac=c("Presidential Electors","US Senate"),
 		aff=c("DEM","REP"),
 		vom=c('Votes_PROVISIONAL','Votes_ELECTION DAY','Votes_EARLY VOTE'),
@@ -7,7 +7,6 @@ abc <- function(fld="/data-raw/arizona/2024/",
   cmd <- paste0('ls ',rprojroot::find_rstudio_root_file(),fld)
   scd <- system(cmd, intern=T)
   lsf <- scd[grep("txt", scd)]
-  #browser()
   sapply(1:length(lsf),function(per){
     #per <- n1
     flsp <-  paste0(rprojroot::find_rstudio_root_file(),fld,lsf[per])
@@ -22,79 +21,18 @@ abc <- function(fld="/data-raw/arizona/2024/",
 		dplyr::group_by(P,ContestName) %>%
                 tidyr::pivot_wider(names_from=CandidateName,values_from=c('Votes_PROVISIONAL','Votes_ELECTION DAY','Votes_EARLY VOTE')) %>% 
                 dplyr::ungroup() %>%
-                dplyr::mutate(SNAP=per,.before = 1) 
+                dplyr::mutate(SNAP=per,.before = 1) %>%
+                dplyr::mutate(TIME=lsf[per],.before = 1) 
 	setNames(list(snax),rac[con]) 
     }) -> lst_rac
        #setNames(lst_rac,per) 
   }) -> lst_rac_snp  
+  stodfl <- lapply(1:length(rac), function(i) do.call(rbind, lst_rac_snp[1, ]))
 }
-abc <- abc()
-#abc[[1,1]]
-bp1 <- rbind(abc[["Presidential Electors",1]],abc[["Presidential Electors",2]],abc[["Presidential Electors",3]])
-bs1 <- rbind(abc[["US Senate",1]],abc[["US Senate",2]],abc[["US Senate",3]])
-abcl <- list("Presidential Electors"=bp1,"US Senate"=bs1)
-openxlsx::write.xlsx(abcl,paste0(rprojroot::find_rstudio_root_file(),'/data-raw/arizona/2024/xlsx/maricopa_beneral_2024.xlsx'))
-usethis::use_data(abcl, overwrite = TRUE)
-
-
-# Initialize data with abc() function
-abc <- abc()
-
-# Generalized function to bind rows for a specified category and number of columns
-bind_rows_by_category <- function(data, category, num_columns) {
-  do.call(rbind, lapply(1:num_columns, function(i) data[[category, i]]))
-}
-
-# Define the categories and dynamically determine the number of columns for each
-categories <- c("Presidential Electors", "US Senate")
-num_columns <- 3  # Adjust if the number of columns varies; this can be dynamic
-
-# Create a list to store the combined results for each category
-combined_results <- list()
-
-# Loop through each category and bind the rows for the specified number of columns
-for (category in categories) {
-  combined_results[[category]] <- bind_rows_by_category(abc, category, num_columns)
-}
-
-# Write to an Excel file
-output_path <- file.path(find_rstudio_root_file(), 'data-raw/arizona/2024/xlsx/maricopa_general_2024.xlsx')
-write.xlsx(combined_results, output_path)
-
-# Save the data in R's internal format
-use_data(combined_results, overwrite = TRUE)
-
-
-
-
-lst_race_snap_all_az_ma <- sapply(seq(1,nr),function(x){setNames(list(data.table::rbindlist(lst_race_snap[seq(x,np*nr,nr)],F)),lr[x,1])})
-
-
-fldv="/data-raw/arizona/2024/" 
-racv=c("Presidential Electors","US Senate") 
-affv=c("DEM","REP") 
-vomv=c('Votes_PROVISIONAL','Votes_ELECTION DAY','Votes_EARLY VOTE') 
-sctv=c('PrecinctName','Registered','ContestName','CandidateName','CandidateAffiliation','Votes_EARLY VOTE','Votes_ELECTION DAY','Votes_PROVISIONAL') 
-abc0 <- abc(fldv,racv,affv,vomv,sctv)
-
-lpabc <- list(abc0[[1,1]],abc0[[1,2]],abc0[[1,3]])
-lsabc <- list(abc0[[1,1]],abc0[[1,2]],abc0[[1,3]])
-dpfbl <- do.call(rbind, lpabc) 
-dsfbl <- do.call(rbind, lsabc) 
-lall <- list(dpfbl,dsfbl)
-openxlsx::write.xlsx(lall,paste0(rprojroot::find_rstudio_root_file(),'/data-raw/arizona/2024/xlsx/maricopa_beneral_2024.xlsx'))
-usethis::use_data(lall, overwrite = TRUE)
-#abc[[1,1]]
-#abc[[1,2]]
-#abc[[1,3]]
-#abc[[2,1]]
-#abc[[2,2]]
-#abc[[2,3]]
-#bms()
-
-
-
-
+stodfl <- csndfl()
+output_path <- file.path(rprojroot::find_rstudio_root_file(), 'data-raw/arizona/2024/xlsx/maricopa2024.xlsx')
+openxlsx::write.xlsx(stodfl, output_path)
+usethis::use_data(stodfl, overwrite = TRUE)
 ################################################################################################################
 # General script for Maricopa
 ###############################################################################################################
