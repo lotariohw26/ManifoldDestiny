@@ -7,6 +7,7 @@ abc <- function(fld="/data-raw/arizona/2024/",
   cmd <- paste0('ls ',rprojroot::find_rstudio_root_file(),fld)
   scd <- system(cmd, intern=T)
   lsf <- scd[grep("txt", scd)]
+  #browser()
   sapply(1:length(lsf),function(per){
     #per <- n1
     flsp <-  paste0(rprojroot::find_rstudio_root_file(),fld,lsf[per])
@@ -28,6 +29,7 @@ abc <- function(fld="/data-raw/arizona/2024/",
   }) -> lst_rac_snp  
 }
 abc <- abc()
+#abc[[1,1]]
 bp1 <- rbind(abc[["Presidential Electors",1]],abc[["Presidential Electors",2]],abc[["Presidential Electors",3]])
 bs1 <- rbind(abc[["US Senate",1]],abc[["US Senate",2]],abc[["US Senate",3]])
 abcl <- list("Presidential Electors"=bp1,"US Senate"=bs1)
@@ -163,4 +165,4 @@ lst_race_snap_all_az_co <- setNames(lst_race_snap_all_az_co,races)
 usethis::use_data(lst_race_snap_all_az_co, overwrite = TRUE)
 openxlsx::write.xlsx(lst_race_snap_all_az_co,file=paste0(abs_p,'/data-raw/Arizona_2022/cohise/xlsx/election_gen_2022.xlsx'))
 ###############################################################################################################
-
+# find . -type f -name "*.txt" -exec cp {} . \;           
