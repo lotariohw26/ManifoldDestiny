@@ -25,9 +25,8 @@ csndfl <- function(fld="/data-raw/arizona/2024/",
                 dplyr::mutate(TIME=lsf[per],.before = 1) 
 	setNames(list(snax),rac[con]) 
     }) -> lst_rac
-       #setNames(lst_rac,per) 
   }) -> lst_rac_snp  
-  stodfl <- lapply(1:length(rac), function(i) do.call(rbind, lst_rac_snp[1, ]))
+  stodfl <- setNames(lapply(1:length(rac), function(i) do.call(rbind, lst_rac_snp[1, ])), rac)
 }
 stodfl <- csndfl()
 output_path <- file.path(rprojroot::find_rstudio_root_file(), 'data-raw/arizona/2024/xlsx/maricopa2024.xlsx')
