@@ -29,10 +29,10 @@ project:
   #  pre-render: prerendr.R
   render:
     - "index.qmd"
-    - "presentation.qmd"
-    - "paper.qmd"
-    - "tab.qmd"
-    - "tabset.qmd"
+    # - "presentation.qmd"
+    # - "paper.qmd"
+    #    - "tab.qmd"
+    #- "tabset.qmd"
     - "metaview.qmd"
     - "laws.qmd"
     - "man_bib.qmd"
@@ -40,7 +40,7 @@ project:
     #    - "rigging.qmd"
     #    - "analyzer.qmd"
     #    - "restoration.qmd"
-    - "randpython.qmd"
+    # - "randpython.qmd"
     #    - "calculator.qmd"
 website:
   title: "{{< var titls >}}"
@@ -76,20 +76,20 @@ website:
         menu:
         - text: "20 laws and 40 isometries"
           href: "laws.qmd"
-        # - text: WebAssembly
-        #   menu:
+      - text: WebAssembly
+        menu:
+        - text: "Analyzer"
+        #   href: "analyzer.qmd"
+        #- text: "Simulations"
+        #  href: "simulations.qmd"
+        #- text: "Rigging"
+        #  href: "rigging.qmd"
+        #- text: "Restoration"
+        #  href: "restoration.qmd"
+        #- text: "Pyodide"
+        #  href: "randpython.qmd"
+        # href: "randpython.qmd"
       - text: "Pyodide"
-        href: "randpython.qmd"
-        #          #        - text: "Simulations"
-        #          #          href: "simulations.qmd"
-        #          #        - text: "Rigging"
-        #          #          href: "rigging.qmd"
-        #          #        - text: "Analyzer"
-        #          #          href: "analyzer.qmd"
-        #          #        - text: "Restoration"
-        #          #          href: "restoration.qmd"
-        #          #        - text: "Pyodide"
-        #          #          href: "randpython.qmd"
   repo-url: "https://github.com/lotariohw26/ManifoldDestiny"
   site-url: "https://lotariohw26.github.io/ManifoldDestiny/"
   reader-mode: false

@@ -1,0 +1,656 @@
+---
+title: "{{< var titll >}}"
+subtitle: "Based upon the ideas developed by Edward K. Solomon"
+format:
+  revealjs: 
+    smaller: true
+    toc-depth: 1
+    toc: true 
+execute: 
+  cache: false
+footer: <https://lotariohw26.github.io/ManifoldDestiny/>
+output: 
+  html_document:
+    mathjax: "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+nocite: |
+  @*
+---
+
+
+```{r, echo=F, message=F, warning=F, results='hide'}
+ManifoldDestiny::wasmconload()
+library(polynom)
+library(ManifoldDestiny)
+modlat <- eqpar$meql
+laws_df1 <- ManifoldDestiny::eqdef$meql
+laws_df2 <- ManifoldDestiny::eqdef$meqs
+source(paste0(rprojroot::find_rstudio_root_file(),'/script/R/stylized.R'))
+ssr <- selreport(ManifoldDestiny::apsnn)
+rsr <- selreport(ManifoldDestiny::aprhn)
+round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))
+```
+
+# {{< var sec1.1 >}}
+
+Ed. Solomon
+
+> "At the very core of this article lay the assumption of Causality, that the **Effect cannot precede the Cause**; likewise, the **Aggregate Percentage of a Candidate cannot precede the Election Day and the Mail-in Percentages of that candidate**. 
+
+## {{< var sec1.2.1 >}}
+
+- Two candidates: A, B
+- County with three precincts: 1, 2, 3
+- Two modes of voting
+  - Number of ballots mode 1: S, T
+  - Number of ballots mode 2: V, U
+
+---
+
+**Our two stylized numerical cases**
+
+```{r, echo=F}
+#| label: fig-1.1
+#| fig-cap: "Case 1:.."
+clr <- c("black","green","red","blue")
+lego_hux_imp_i <- as_hux(towi[,1:3]) %>%
+  set_text_color(5, 1:2, clr[1]) %>%
+  set_background_color(1, 1:3, clr[2]) %>% 
+  set_background_color(2, 1:3, clr[3]) %>%
+  set_background_color(3, 1:3, clr[4]) %>%
+  set_background_color(4, 2:3, clr[4]) %>%
+  set_background_color(5, 3:3, clr[4]) %>%
+  set_font_size(16)
+lego_hux_imp_i
+```
+
+```{r, echo=F}
+#| label: fig-1.2
+#| fig-cap: "Case 2:..."
+lego_hux_imp_ii <- as_hux(towii[,1:3]) %>%
+  set_text_color(5, 1:2, clr[1]) %>%
+  set_background_color(1, 1:3, clr[2]) %>% 
+  set_background_color(2, 1:3, clr[3]) %>%
+  set_background_color(3, 1:3, clr[4]) %>%
+  set_background_color(4, 2:3, clr[4]) %>%
+  set_background_color(5, 3:3, clr[4]) %>%
+  set_font_size(16)
+lego_hux_imp_ii
+```
+
+## {{< var sec1.2.2 >}}
+
+```{r, echo=F}
+lego_hux_nor <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
+  set_background_color(1, 1:2, "black") %>% 
+  set_background_color(2, 1:2, "grey") %>% 
+  set_text_color(1:2, 1:2, "red") %>% 
+  set_all_borders(brdr(2, "solid", "black"))
+lego_hux_nor %>% set_caption("")
+```
+
+Parameters:**$x$, $y$, $\zeta$, $\alpha$, $\lambda$**
+
+\begin{equation*}
+x=`r modlat$x_s[1]` \text{, }y=`r modlat$y_s[1]`
+\end{equation*}
+\begin{equation*}
+\zeta=`r modlat$zeta_s[1]`
+\end{equation*}
+\begin{equation*}
+\alpha=`r modlat$alpha_s[1]`=`r modlat$alpha_s[2]`
+\end{equation*}
+\begin{equation*}
+\lambda=`r modlat$lamda_s[1]`=`r modlat$lamda_s[2]`
+\end{equation*}
+
+---
+
+```{r, echo=F}
+#| label: tbl-sfc1
+#| tbl-cap: 'Election results applying standard form on case I'
+kableExtra::kbl(format(stfc1,digits=4)) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+```
+
+Numerical calculation of candidate one total percentage
+
+- Precinct 1
+  - $\alpha=\frac{`r cx[1]`+`r cy[1]`\cdot `r czeta[1]`}{1+`r czeta[1]`}=`r calpha[1]`$
+- Precinct 2
+  - $\alpha=\frac{`r cx[2]`+`r cy[2]`\cdot `r czeta[2]`}{1+`r czeta[2]`}=`r calpha[2]`$
+- Precinct 3
+  - $\alpha=\frac{`r cx[3]`+`r cy[3]`\cdot `r czeta[3]`}{1+`r czeta[3]`}=`r calpha[3]`$
+
+---
+
+```{r, echo=F}
+#| label: tbl-sfc2
+#| tbl-cap: 'Election results applying hybrid form on case II'
+kableExtra::kbl(format(stfc2,digits=4)) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+```
+
+## {{< var sec1.2.3 >}}
+
+```{r, echo=F}
+lego_hux_imp <- as_hux(matrix(c("S","V","T","U"), 2, 2)) %>%
+  set_background_color(1:2, 1, "black") %>% 
+  set_background_color(1:2, 2, "grey") %>% 
+  set_text_color(1:2, 1:2, "red") %>% 
+  set_all_borders(brdr(2, "solid", "black"))
+lego_hux_imp %>% set_caption("")
+```
+
+Parameters: $g$, $h$, $\Gamma$, $\alpha$, $\Omega$
+\begin{equation*}
+g=`r modlat$g_h[1]` \text{, } h=`r modlat$h_h[1]` 
+\end{equation*}
+\begin{equation*}
+\Gamma=`r modlat$Gamma_h[1]`
+\end{equation*}
+\begin{equation*}
+\alpha=`r modlat$alpha_h[1]`=`r modlat$alpha_h[2]`
+\end{equation*}
+\begin{equation*}
+\Omega=`r modlat$Omega_h[1] `=`r modlat$Omega_h[2]`
+\end{equation*}
+---
+
+```{r, echo=F}
+#| label: tbl-hfc1
+#| tbl-cap: 'Election results applying hybrid form case I'
+kableExtra::kbl(format(hyfc1,digits=4)) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+```
+
+Numerical calculation of candidate one total percentage
+
+- Precinct 1
+  - $\alpha=\frac{`r cg[1]`+`r ch[1]`\cdot `r cGamma[1]`}{1+`r cGamma[1]`}=`r calpha[1]`$
+- Precinct 2
+  - $\alpha=\frac{`r cg[2]`+`r ch[2]`\cdot `r cGamma[2]`}{1+`r cGamma[2]`}=`r calpha[2]`$
+- Precinct 3
+  - $\alpha=\frac{`r cg[3]`+`r ch[3]`\cdot `r cGamma[3]`}{1+`r cGamma[3]`}=`r calpha[3]`$
+
+---
+
+
+```{r, echo=F}
+#| label: tbl-hfc2
+#| tbl-cap: 'Election results applying hybrid form case II'
+kableExtra::kbl(format(hyfc2,digits=4)) %>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+```
+
+## {{< var sec1.2.4 >}}
+
+```{r, echo=F}
+lego_hux_opo <- as_hux(matrix(c("S","T","U","V"), 2, 2)) %>%
+  set_background_color(c(1),c(1), "black") %>% 
+  set_background_color(c(2),c(2), "black") %>% 
+  set_background_color(c(1),c(2), "grey") %>% 
+  set_background_color(c(2),c(1), "grey") %>% 
+  set_text_color(1:2, 1:2, "red") %>% 
+  set_all_borders(brdr(2, "solid", "black"))
+lego_hux_opo %>% set_caption("")
+```
+
+Parameters: $m$, $n$, $\xi$, $\lambda$, $\Omega$
+\begin{equation*}
+n=`r modlat$n_o[1]` \text{ , } m=`r modlat$m_o[1]`
+\end{equation*}
+\begin{equation*}
+\xi=`r modlat$xi_o[1]`
+\end{equation*}
+\begin{equation*}
+\Omega=`r modlat$Omega_o[1]`=`r modlat$Omega_o[2]`
+\end{equation*}
+\begin{equation*}
+\lambda=`r modlat$lamda_o[1]`=`r modlat$lamda_o[2]`
+\end{equation*}
+---
+
+```{r, echo=F}
+#| label: tbl-ofc1
+#| tbl-cap: 'Election results applying hybrid form case II'
+kableExtra::kbl(format(opfc1,digits=4)) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+```
+
+---
+
+```{r, echo=F}
+#| label: tbl-ofc2
+#| tbl-cap: 'Election results applying hybrid form case II'
+kableExtra::kbl(format(opfc2,digits=4)) %>% kableExtra::kable_paper(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+```
+
+## {{< var sec1.2.6 >}}
+
+- **Step 1:** Each registered voter assign themself (independent of voting technology) to either candidate A or candidate B
+- **Step 2:** Voting technology realized
+- **Step 3:** Registered voters determine whether to vote or not to vote 
+- **Step 4:** If voting, do this by either mode 1 or by mode 2.
+
+```{mermaid}
+  flowchart LR
+  A[Candidate A or B] --> R[A]
+  R --> RV[Vote]
+  RV --> RVE[Non-Mail]
+  RV --> RVM[Mail]
+  R --> RN[Not Vote]
+  DV --> DVE[Non-Mail]
+  DV --> DVM[Mail]
+  A --> D[B]
+  D --> DV[Vote]
+  D --> Dn[Not Vote]
+```
+
+##
+
+- Probability of assigning oneself to candidate A in precinct $i$
+  - $p_{w,i} \sim N(\alpha_i,\sigma^2_{w,i})$
+- Voting technology
+  - $z_i \sim U(0,1)$
+- Probability of not voting in precinct $i$
+  - Candidate A, $p_{nz,a,i}=(1-z_i)p_{n,a,i}\sim N(\alpha_{a,n},\sigma^2_{a,n})$ <br>
+  - Candidate B, $p_{nz,b,i}=(1-z_i)p_{n,b,i}\sim N(\alpha_{b,n},\sigma^2_{b,n})$
+- Probability of voting by mode 2 in precinct $i$
+  - Candidate A, $p_{m2,a,i}=(1-p_{nv,a,i})p_{a,mv}\sim N(\alpha_{a,mv},\sigma^2_{a,mv})$ 
+  - Candidate B, $p_{m2,b,i}=(1-p_{nv,b,i})p_{b,mv}\sim N(\alpha_{a,mv},\sigma^2_{a,mv})$ 
+- Probability of voting by mode 1 in precinct $i$
+  - Candidate A, $p_{m1,a,i}=1-p_{m2,a,i}-p_{nz,a,i}$ 
+  - Candidate B, $p_{m1,b,i}=1-p_{m2,b,i}-p_{nz,b,i}$ 
+
+
+---
+
+Neutral-voting assumption:
+
+- Decission to vote or not to vote is independent of voting preferences:
+  - $p_{nz,a,i}=p_{nz,a,i}$ 
+- If voting, decission to vote by mode 1 or by mode 2 independent of voting preferences: 
+  - $p_{m2,a,i}=p_{m2,a,i}$ 
+
+Note: As we will investigate later, this condition might be needed in order to restore a rigged election to its original form. 
+
+## {{< var sec1.2.6 >}}
+
+1. Differences in the cost of voting (e.g., topology, voting rules, dropboxes etc.) across precincts $\Rightarrow$
+1. Changes to the likelihood of voting $\Rightarrow$ 
+1. Simplify so that changes in the likelihood of voting only impact Mode 2 $\Rightarrow$ 
+1. Higher $\zeta_i$ $\Rightarrow$
+1. Which changes the total election outcome through $\alpha_i=\frac{x_i+\zeta_i y_i}{\zeta_i+x_i}$
+
+---
+
+The impact on the election outcome, however, would be small or close to non-existens if the conditions
+of the existance of a *trivial* Manifold occuranse related to normal form are not satisfied:
+
+- Proportion of mail-in-votes to election day vote is already high (Aggregate convergence lemma)
+  - Note: $\lim_{\zeta_i \rightarrow \infty} \alpha_i=\frac{x_i+\zeta_i y_i}{\zeta_i+x_i}=y_i$
+- Correlation between $x$ and $y$ is very high (Twixt lemma)
+  - Note: If correlation is 1, we can set $x_i=\rho_s y_i$ so that $\alpha_i(y_i,\zeta_i)=\frac{\rho_s y_i+\zeta_i y_i}{\zeta_i+x_i}$
+- Low variance to $\zeta$ 
+  - Note: Invariance across precincts would imply that $\zeta_i=\zeta$, so that election outcome only determined by variations in two parameters: $\alpha_i(y_i,x_i)=\frac{x_i+\zeta y_i}{\zeta+x_i}$
+	
+If none of this three cases are satisfied, variation in $\zeta_i$ should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?
+
+[Application 1: Election process simulator]({{< var shn1 >}})
+
+## {{< var sec1.2.7 >}}
+
+1. Differenc in the cost of voting (e.g., topology, voting rules, dropboxes, socio economics etc.) across precincts $\Rightarrow$ 
+1. Make changes to the likelihood of voting $\Rightarrow$ 
+1. Simplify so that changes in the likelihood of voting only impact mode 2 $\Rightarrow$ 
+1. Higher $\zeta_i$ $\Rightarrow$
+1. If new and earlier sample not representative of each other, higher $\Gamma_i$ $\Rightarrow$
+1. Which changes the total election outcome through $\alpha_i=\frac{g_i+\zeta_i h_i}{\zeta_i+1}$
+
+---
+
+The impact on the election outcome, however, would be small or close to non-existens if the conditions
+of the existance of a *trivial* Manifold related to opposition form are not satisfied:
+
+- Proportion of the hybrid ballot boxes is already high (Aggregate convergence lemma)
+  - Note: $\lim_{\Gamma_i \rightarrow \infty} \alpha_i=\frac{g_i+\zeta_i h_i}{\zeta_i+g_i}=y_i$
+- Correlation between $g$ and $h$ is very high (Twixt lemma)
+  - Note: If correlation is 1, we can set $g_i=\rho_h h_i$ so that $\alpha_i(h_i,\Gamma_i)=\frac{\rho_h h_i+\Gamma_i h_i}{\Gamma_i+x_i}$
+- Low variance to $\Gamma_i$ 
+  - Note: Invariance across precincts would imply that $\Gamma_i=\Gamma$, so that election outcome only determined by variations in two parameters: $\alpha_i=\frac{g_i+\Gamma h_i}{h_i}$
+
+If none of this three cases are satisfied, variation in $\Gamma_i$ should explain part of the election result. But how much should we expect within a county (2%, 5%, 10%)?
+
+[Application 1: Election process simulator]({{< var shn1 >}})
+
+# {{< var sec2.1 >}}
+
+## {{< var sec2.2.1 >}}
+- We have identified three ways of counting
+  - *Standard form* ( $x$, $y$, $\zeta$, $\alpha$, $\lambda$ )
+  - *Hybrid form* ( $g$, $h$, $\alpha$, $\Gamma$, $\Omega$ )
+  - *Opposition form* ( $n$, $m$, $\xi$, $\Omega$, $\lambda$ )
+-  Each form can (throught its parametric tautologies) determine the 5 parameters that have been listed.
+  -  We are free to *predetermine* **3** of them
+  -  The remaining **2** must be *backsolved*, this based on information from the first three parameters.
+  -  Selecting **3** parameters from a set of **5** implies **10** different combinations
+
+---
+
+
+### 40 isometris
+
+::: {.callout-note collapse="true"}
+```{r}
+kable(laws1[,c(5,6,7,8)], format = "markdown", escape = FALSE) # %>% kableExtra::kable_styling(font_size=8)
+```
+:::
+
+---
+
+### 20 laws 
+
+::: {.callout-note collapse="true"}
+```{r} 
+kable(laws2, format = "markdown", escape = FALSE) 
+
+```
+:::
+
+
+[Application 2: Rigged election process simulator]({{< var shn2 >}})
+
+## {{< var sec2.2.2 >}}
+
+
+**Setting the prefered election outcome**
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Non-rigged election
+```{r}
+ssr[[1]]$pl_2dsort
+```
+
+:::
+
+
+::: {.column width="50%"}
+
+Rigged election using standard form
+```{r}
+rsr[[1]]$pl_2dsort
+```
+
+:::
+
+::::
+
+---
+
+
+**Normal**
+<br>
+\begin{equation*}
+f(x)_{0}^{1}=`r round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))`
+\end{equation*}
+
+
+
+Election outome:
+
+- Integral `r round(polynom::integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients)),c(0,1),3),3)`
+- Counting `r round(ssr[[1]]$desms[7,2],3)`
+
+
+<br>
+**Rigged**
+<br>
+
+
+
+\begin{equation*}
+f(x)_{0}^{1}=`r round(integral(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients))))`
+\end{equation*}
+
+Election outome
+```{r, echo=F}
+round(polynom::integral(polynomial(unname(rsr[[1]]$polyc[[1]]$coefficients)),c(0,1),3),3)
+```
+
+---
+
+### Rigged election example 1: applying normal form
+
+- Setting for eaching precinct the first three parameters
+ - $\alpha_i=<...>$ (i.e., equal to the prefered election outcome)
+ - $x_i=\frac{a_i}{a_i+b_i}$ (true observations)
+ - $y_i=\overset{\text{Manifold equation}}{\overbrace{\overset{}{M(x_i,\alpha_i,\underset{\text{outside information}}{...})}}}+\epsilon_t \text{ where } \epsilon_t \sim N(0,\sigma^2)$
+- Backsolve for
+ - $\zeta_i(x_i,\alpha_i,y_i)=\frac{x_i-\alpha_i}{\alpha_i-y_i}$
+ - $\lambda_i(x_i,\zeta_i,y_i)=\frac{x_i-\zeta_i (1-y_i)}{\zeta_i+1}$
+
+---
+
+
+**Properties**: 
+
+- 3<sup>rd</sup> $y_i$ can now be determined by *two* equations
+  - a. Tautology (must hold)
+  - b. Manifold equation + error term (white noise)
+- 4<sup>th</sup>. Changes in $\zeta_i$ - and as a corrollary $\Omega_i$ - is now 
+  - a. Solely caused by the error term $\epsilon_i$ and, if used, the non-linear part of the Manifold equation.
+  - b. Has no longer any causal impact on $\alpha_i$
+
+---
+
+### Rigged election example 2: applying hybrid form
+
+- Setting for eaching precinct the first three parameters
+ - $\alpha_i=<...>$ (i.e., equal to the prefered election outcome)
+ - $h_i=\frac{s_i}{s_i+v_i}$ (true observations)
+ - $g_i=\overset{\text{Manifold equation}}{\overbrace{\overset{}{M(h_i,\alpha_i,\underset{\text{outside information}}{...})}}}+\epsilon_t \text{ where } \epsilon_t \sim N(0,\sigma^2)$
+- Backsolve form
+ - $\Gamma_i(g_i,\alpha_i,h_i)=\frac{g_i-\alpha_i}{\alpha_i-h_i}$
+ - $\Omega_i(g_i,\Gamma,h_i)=-\alpha_i+\frac{\Gamma_i+2g_i}{\Gamma_i+1}$
+
+---
+
+**Properties**: 
+
+- 5<sup>th</sup> $y_i$ can now be determined by *two* equations
+  - a. Tautology (must hold)
+  - b. Manifold equation + error term (white noise)
+- 6<sup>th</sup> Changes in $\Gamma_i$ - and as a corrollary $\lambda_i$ - is now 
+  - a. Solely caused by the error term $\epsilon_i$ and, if used, the non-linear part of the Manifold equation.
+  - b. Has no longer any causal impact on $\alpha_i$
+
+---
+
+### Rigged election example 3: applying opposition form
+
+- Setting for eaching precinct the first three parameters
+ - $\lambda_i=<...>$ (i.e., equal or less than the prefered election outcome)
+ - $n_i=\frac{a_i}{a_i+c_i}$ (true observations)
+ - $m_i=\overset{\text{Manifold equation}}{\overbrace{\overset{}{M(n_i,\lambda_i,\underset{\text{outside information}}{...})}}}+\epsilon_t \text{ where } \epsilon_{t_i} \sim N(0,\sigma^2)$
+- Backsolve for
+ - $\Omega_i(n_i,m_i,\lambda_i) = \frac{\lambda_i(n_i-m_i)-m_i(2n_i-1)}{1-(n_i+m_i)}$
+ - $\xi_i(n_i,m_i,\Omega_i)=\frac{m_i-\Omega_i}{\Omega_i-n_i}$
+
+---
+
+**Properties**: 
+
+- 7<sup>th</sup> $m_i$ can now be determined by *two* equations
+  - a. Tautology (must hold)
+  - b. Manifold equation + error term (white noise)
+- 8<sup>th</sup> Changes in $\xi_i$ is now 
+  - a. Solely caused by the error term $\epsilon_i$ and, if used, the non-linear part of the Manifold equation.
+  - b. Has no longer any causal impact on $\lambda_i$
+
+---
+
+## {{< var sec2.2.5 >}}
+
+- Specify a loss function
+  - $\sum_{p=1}^{P}(\alpha_p-\overline{\alpha})^2$
+- $M(,)=$x+y$
+  - Use: Linear, quadratic, cubic or quartic (all have analytical solutions)
+  - Also: Euler rotation
+- System approach Demands mulitvariate Manifold Equations
+  - Univariate manifold Equation
+  - Multivariate Manifold Equations
+- Constrain on implementation
+  - Flipping votes on one mode
+  - Vote registration until upper limit
+
+---
+
+
+![](images/loss_5_conditions.png){width=300}
+
+
+
+# {{< var sec3.1 >}}
+
+## {{< var sec3.2.1 >}}
+```{r}
+#| echo: false
+#| output: false
+apps <- apsnn
+```
+{{< include tabpar.qmd >}}
+
+## {{< var sec3.2.2 >}}
+
+### Normal form
+```{r}
+#| echo: false
+#| output: false
+apps <- apprn
+```
+{{< include tab.qmd >}}
+
+---
+
+### Hybrid
+```{r}
+#| echo: false
+#| output: false
+apps <- aprnn
+```
+{{< include tab.qmd >}}
+
+---
+
+### Opposition
+```{r}
+#| echo: false
+#| output: false
+apps <- aprnn
+```
+{{< include tab.qmd >}}
+
+
+# {{< var sec5.1 >}}
+
+![](images/ss.png){width=300}
+
+> Abstract: On August 15th, 2004, Venezuelans had the opportunity to vote in a Presidential Recall Referendum to decide whether or not President Hugo Chávez should be removed from office. The process was largely computerized using a touch-screen system. In general the ballots were not manually counted. The significance of the high linear correlation (0.99) between the number of requesting signatures for the recall petition and the number of opposition votes in computerized centers is analyzed. The same-day audit was found to be not only ineffective but a source of suspicion. Official results were compared with the 1998 presidential election and other electoral events and distortions were found.
+
+[Paper](https://projecteuclid.org/journals/statistical-science/volume-26/issue-4/Analysis-of-the-2004-Venezuela-Referendum--The-Official-Results/10.1214/08-STS263.full)
+
+
+---
+
+- Venezuela referendum to recall President Hugo Chávez (2004)
+	- Mode 1: Computerized Voting Centers
+	- Mode 2: Manuel Voting Centers
+
+> HYPOTHESIS: **In computerized centers**, official **results were forced to follow a linear relationship** with respect to the number of signatures.
+
+![](images/manifold.png){width=300}
+
+---
+
+The video "Conexiones Peligrosas"
+
+{{< video https://www.youtube.com/watch?v=YQg1Cr3vRic&t=76s >}}
+
+# {{< var sec6.1 >}}
+
+1. Check whether *trivial* Manifold occuranse related to (1) normal form, (2) hybrid form, or (3) opposition formare satisfied.
+1. If not, perform 3d Manifold analysis on all 10 different parameter combinations for all three forms of voting.
+1. For at least one of the suspicion cases, estimate the Manifold equation using (ordinary, complex or quaternionic) least squares estimation
+1. Check for normality of the estimated residual for the Manifold model.
+
+If we can walk through all of the **four** steps here, property 1<sup>st</sup> and 2<sup>nd</sup> that we have stated for a normal election are violated and we can conclude that the estimated Manifold equation is inserted - Manifold Destiny - to distort the outcome of normal election.
+
+
+
+## {{< var sec6.2.1 >}}
+```{r}
+#| echo: false
+#| output: false
+apps <- apn1n
+```
+{{< include tabpar.qmd >}}
+
+## {{< var sec6.2.2 >}}
+```{r}
+#| echo: false
+#| output: false
+apps <- apn1n
+```
+{{< include tabpar.qmd >}}
+
+
+## {{< var sec6.2.3 >}}
+```{r}
+#| echo: false
+#| output: false
+apps <- apn1n
+```
+{{< include tabpar.qmd >}}
+## {{< var sec6.2.3 >}}
+```{r}
+#| echo: false
+#| output: false
+apps <- apn1n
+```
+{{< include tabpar.qmd >}}
+
+# {{< var sec8.1 >}}
+
+- At the heart of the difference between a fair and rigged election is the issue of causation
+  - Fair election: Aggregate Percentage of a Candidate **cannot** precede the Election Day and the Mail-in Percentages of that Candidate
+  - Rigged election: Aggregate Percentage of a Candidate **could** precede the Election Day and the Mail-in Percentages of that Candidate
+
+- If the conditions related to the the existance of a *trivial* Manifold occuranse to either normal form, hybrid form nor opposition form are not satisfied, this would imply
+	- 1<sup>st</sup> The total election outcome will be determined by *three* parameters (no manifold in 3d space). 
+	- 2<sup>nd</sup> Changes in $\Gamma_i$ and $\zeta_i$ would have an impact on $\alpha_i$.
+
+---
+
+- Condition on that $R^2$ falls within the critical region.
+	- Normal form
+	![](images/r2n.png){width=300}
+
+	- Hybrid form
+	![](images/r2h.png){width=300}
+
+---
+
+- Our four applications
+
+```{r, echo=F, warning=F, message=F}
+kableExtra::kbl(concl_appps) #%>% kableExtra::kable_classic_2(full_width = F) %>% kableExtra::row_spec(1, bold = F)
+```
+
+# {{< var sec9.1 >}}
+
+::: {#refs}
+:::
+
+
+```{r}
+knitr::knit_exit()
+```
+
+
