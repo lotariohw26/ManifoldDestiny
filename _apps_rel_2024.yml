@@ -1,0 +1,28 @@
+apn1n:
+  nid: "apn1n"
+  mtd:
+    nmn: "Presidential"
+    yea: 2024
+    cnd: ['Trump (R)', 'Harris (D)']
+    sta: "Arizona"
+    cou: ['Maricopa']
+    mod: ['MIV', 'EDV']
+  spr:
+    url: "https://github.com/lotariohw26/ManifoldDestiny/blob/main/data-raw/arizona/2024/xlsx/maricopa2024.xlsx"
+    pgn: 1
+    rng: A2:F1288
+    cln: ['PN', 'R', 'A1', 'B1', 'A2', 'B2']
+    stuv: ['A1', 'B1', 'A2', 'B2']
+  sol:
+    fr: "H"
+    eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
+    va: "g"
+    ro: [0]
+  prg:
+    cnd: 0
+    z: 0 
+    stuv: [0,0,0,0]
+    blup: [0,1]
+    eqp: "alpha=k0+k1*g+k2*h"
+  bib: [""]
+
