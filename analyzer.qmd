@@ -28,6 +28,16 @@ data(package='ManifoldDestinyWASMD')
 ```
 
 ```{webr-r}
+apps <- pma24[[1]]
+adat <- apps[[1]]
+amet <- apps[[2]]
+```
+
+```{r}
+knitr::knit_exit()
+```
+
+```{webr-r}
 #apps <- appn0
 #adat <- apps[[1]]
 #amet <- apps[[2]]

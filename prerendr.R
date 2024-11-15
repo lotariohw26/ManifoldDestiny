@@ -17,16 +17,13 @@ eqma <- F # Oppdater plot
 # 2024
 recoudatr(qrel2024$pma24)
 # Applications
-
 #recoudatr(qenvae$apn2n)
 #recoudatr(qenvae$apn3r)
 #recoudatr(qenvae$apn4n)
 #recoudatr(qenvae$apn5an)
 #recoudatr(qenvae$apn5bn)
 #ManifoldDestiny::bm()
-
-
-
+bms()
 ######################################################################################################################################################
 # Simulation
 ## Normal 

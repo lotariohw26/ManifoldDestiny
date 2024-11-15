@@ -1,4 +1,4 @@
-pma24:
+j
   nid: "pma24"
   mtd:
     nmn: "Presidential"
@@ -12,7 +12,7 @@ pma24:
     pgn: 1
     rng: A1:L170
     cln: ['TIME','SNAP','P','PN','R','CN','A1', 'B1', 'A2', 'B2','A3','B3']
-    stuv: ['A1+A2', 'B1+B2', 'A3', 'B3']
+    stuv: ['A2', 'B2', 'A1+A3', 'B1+B3']
   sol:
     fr: "H"
     eq: ["alpha=k0+k1*g+k2*h","alpha=k0+k1*g+k2*h+k3*Gamma"]
