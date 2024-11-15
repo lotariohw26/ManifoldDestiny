@@ -1,0 +1,48 @@
+---
+title: ""
+output: github_document
+always_allow_html: true
+execute: 
+  cache: false
+webr:
+  show-startup-message: false      # Display status of webR initialization
+  show-header-message: false      # Check to see if COOP&COEP headers are set for speed.
+  packages: ['dplyr','data.table','ggplot2','combinat','plotly','htmltools','broom'] # Pre-install dependencies
+  cell-options:
+    autorun: true
+filters:
+  - panelize
+  - webr
+  - pyodide
+---
+
+```{webr-r}
+#| echo: fenced
+#| eval: true
+webr::install("ManifoldDestinyWASMP", repos = "https://lotariohw26.github.io/MD_WASMC")
+webr::install("ManifoldDestinyWASMD", repos = "https://lotariohw26.github.io/MD_WASMC")
+library(ManifoldDestinyWASMP)
+library(ManifoldDestinyWASMD)
+ls(package:ManifoldDestinyWASMP)
+data(package='ManifoldDestinyWASMD')
+```
+
+```{webr-r}
+#apps <- appn0
+#adat <- apps[[1]]
+#amet <- apps[[2]]
+#cob <- Countinggraphs(adat)
+#cob$purging(z=0) 
+#def <- Estimation(cob$rdfce)
+```
+
+```{webr-r}
+def$regression("alpha=k0 + k1*g + k2*h")
+summary(def$regsum[[1]])
+```
+
+```{webr-r}
+def$regression("alpha=k0 + k1*g + k2*h + k3*g**2 + k4*h**2 + k5*g*h + k6*h**3 + k7*g*h + k8*g**2*h + k9*g*h**2")
+summary(def$regsum[[1]])
+```
+

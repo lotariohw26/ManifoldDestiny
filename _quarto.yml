@@ -2,8 +2,6 @@
 # _apps_rel_2024.yml
 # _apps_sim.yml
 # _apps_his.yml
-# data-raw/record_static.R
-# data-raw/record_dynamic.R
 # script/R/complexregression.R
 # script/R/testing.R
 # inst/shinyapps/r2rsim/app.R
@@ -79,7 +77,7 @@ website:
       - text: WebAssembly
         menu:
         - text: "Analyzer"
-        #   href: "analyzer.qmd"
+          href: "analyzer.qmd"
         #- text: "Simulations"
         #  href: "simulations.qmd"
         #- text: "Rigging"
