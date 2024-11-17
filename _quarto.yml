@@ -110,3 +110,6 @@ execute:
   echo: false
 # https://lotariohw26.github.io/ManifoldDestiny/
 # https://lotariohw26.github.io/MD_WASMS/py/examples/
+# #1 Data transformation
+# #2 Standardization 
+# #3 Counting

@@ -15,15 +15,18 @@ apps <- F # Oppdater plot
 eqma <- F # Oppdater plot
 ##############################################################################################################
 # 2024
-recoudatr(qrel2024$pma24)
-# Applications
-#recoudatr(qenvae$apn2n)
-#recoudatr(qenvae$apn3r)
-#recoudatr(qenvae$apn4n)
-#recoudatr(qenvae$apn5an)
-#recoudatr(qenvae$apn5bn)
-#ManifoldDestiny::bm()
-bms()
+#recoudatr(qrel2024$pma24)
+#recoudatr(qrel2024$sma24)
+#bms()
+##recoudatr(qrel2024$sma24)
+## Applications
+##recoudatr(qenvae$apn2n)
+##recoudatr(qenvae$apn3r)
+##recoudatr(qenvae$apn4n)
+##recoudatr(qenvae$apn5an)
+##recoudatr(qenvae$apn5bn)
+##ManifoldDestiny::bm()
+#bms()
 ######################################################################################################################################################
 # Simulation
 ## Normal 
@@ -34,16 +37,16 @@ proa <- c(vdm=0.7,mdm=0.4,vds=0.10,mds=0.10)
 prob <- c(vdm=0.5,mdm=0.6,vds=0.10,mds=0.10)
 ztec <- c(0,1)	
 gsh <- ballcastsim(perv,prow,proa,prob,ztec)
-assign(names(qenvas)[1],list(gsh,qenvas[[1]]))
-do.call("use_data", list(as.name(qenvas[[1]]$nid), overwrite = TRUE))
+assign(names(qrelsim)[1],list(gsh,qrelsim[[1]]))
+do.call("use_data", list(as.name(qrelsim[[1]]$nid), overwrite = TRUE))
 
 ## Rigged election
 cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
 plfc <- c(0.21,0.21,0.21,0.21)
-exn <- names(qenvas)[-1]
+exn <- names(qrelsim)[-1]
 rigv <- lapply(1:3, function(x) { 
- mda <- qenvas[[exn[x]]]
+ mda <- qrelsim[[exn[x]]]
  exs <- list(
            frm=mda$sol$fr,
  	    pre=mda$sol$pr,
@@ -60,7 +63,6 @@ rigv <- lapply(1:3, function(x) {
  assign(mda$nid,list(cogr$rdfc,mda))
  do.call("use_data", list(as.name(mda$nid), overwrite = TRUE))
 })
-bm()
 ####################################################################################################################################################
 #sum(unique(tdf[c('a1','a2','a3', 'b1','b2','b3', 'c1','c2','c3')]))
 #sum(unique(select(tdf,starts_with("d_"))))
@@ -339,3 +341,4 @@ em <- mean(vt)
 (81.3-em)/sd
 em
 sd
+bms()

@@ -6,7 +6,9 @@ ManifoldDestiny::wasmconload()
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
-ls(package:ManifoldDestiny)
+
+#aps <- pma24
+#aps <- sma24
 #aps <- apn1n
 #aps <- apn2n
 #aps <- apn3r
@@ -15,19 +17,88 @@ aps <- apsnn
 #aps <- aprnn
 #aps <- apn5an
 #aps <- apn5bn
-adat <- aps[[1]]
-amet <- aps[[2]]
+adatd <- aps[[1]]
+ametd <- aps[[2]]
 ############################################################################################################
-#slr <- selreport(aps)
-#slo <- seloutput(slr)
+slr <- selreport(aps)
+
+slo <- seloutput(slr)
 #slo[[5]]
 ###########################################################################################################
+co$pl_corrxy 
+
+
+
+
+
+
+adat <- dplyr::filter(adatd,SNAP==1)
+View(adatd)
 frm <- "S"
-co <- Countinggraphs(adat,selvar=c('P','R','S','T','U','V'))
-#co <- Countinggraphs(adat,selvar=c('PN','P','R','S','T','U','V'))
-#co$purging(prma=c(59,191,206,214,299,300,215,217,317,318),pri=1)
+co <-  cob <- Countinggraphs(adat,omit=T)
+sum(dplyr::select(co$rdfci,R))
+
+co$purging()
 co$sortpre(frm)
+co$plot2d(selv=c(1:3,6))
 co$descriptive(frm)
+co$r2siminput(frm)
+co$plotxy(frm)
+co$resplot(frm)
+co$plotly3d(partition=frm)
+co$plext(frm)
+co$gridarrange()
+co$all_pl_3d_mani[[1]]
+
+ges <- Estimation(co$rofc,frm)
+ges$regression(md$sol$eq[1])
+ges$diagnostics()
+ges$hat_predict(svf=md$sol$va)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+co <- Countinggraphs(adat,selvar=c('P','R','S','T','U','V'),omit=T)
+
+
+
+
+
+
+
+
+
+
+co$purging()
+co$sortpre(frm)
 co$r2siminput(frm)
 co$plot2d(selv=c(1:3,6))
 co$pl_2dsort
@@ -35,9 +106,19 @@ co$plotxy(frm)
 co$resplot(frm)
 co$plotly3d(partition=frm)
 co$pl_2dsort
+co$pl_3d_mani 
 co$sumreg[[1]]
 co$sumreg[[2]]
 co$sumreg[[3]]
+sum(dplyr::select(co$rdfci,R))
+
+View(co$rdfci)
+
+co$descriptive(frm)
+
+format(co$desms,scientific=F)
+
+
 abc <- co$gridarrange()
 cok <- cos(-45*(pi/180))
 sik <- sin(-45*(pi/180))

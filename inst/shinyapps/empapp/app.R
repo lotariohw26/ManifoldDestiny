@@ -1,24 +1,26 @@
-#if (grepl("wasm", sessionInfo()[[2]])) {
-#  # If the session info contains "wasm", install the package from the specified repository
-#  webr::install("WASMP", repos = "https://joernih.github.io/WASMA/")
-#  library("WASMP")
-#} else {
-#  # If the session info does not contain "wasm", load the package from the local library
-#  library("WASMP")
-#}
+if (grepl("wasm", sessionInfo()[[2]])) {
+  # If the session info contains "wasm", install the package from the specified repository
+  webr::install("WASMP", repos = "https://joernih.github.io/WASMA/")
+  library("WASMP")
+  library(shiny)
+  library(dplyr)
+  library(ggplot2)
+} else {
+  # If the session info does not contain "wasm", load the package from the local library
+  library("WASMP")
+  library(shiny)
+  library(dplyr)
+  library(ggplot2)
+}
 library(shiny)
-library(dplyr)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-ManifoldDestiny::wasmconload()
-source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmconverting.R"))
-source(paste0(rprojroot::find_rstudio_root_file(),"/R/wasmnonverting.R"))
-abc <- data(package = "ManifoldDestiny")[[3]][,3][1:3]
-abr <- abc[1:1]
-apps <- get(abr[1])
+abc <- data(package = "ManifoldDestiny")[[3]][,3]
+abr <- abc[c(1,30)]
+install.packages("plotly")
+library(plotly)
+#apps <- get(abr[1])
 options(digits=2)
-
-
 ###############################################################################################################################################################
 ui <- fluidPage(
   titlePanel("Election results analyzer"),
@@ -119,42 +121,42 @@ server <- function(input, output, session) {
     paste0(cformo()[['md']]$sol$eq," \n ",cformo()[['md']]$sol$eq)
   })
   output$table_dsc <- renderPrint({
-    print(cformo()[[1]]$desms)
+    #print(cformo()[[1]]$desms)
   })
   output$table_pur <- renderPrint({
-    print(cformo()[[1]]$purdf)
+    #print(cformo()[[1]]$purdf)
   })
   output$plot_q <- renderPlot({
-    cformo()[[1]]$pl_2dsort[[1]]
+    #cformo()[[1]]$pl_2dsort[[1]]
   })
   output$plot_xy <- renderPlot({
-    cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
+    #cowplot::plot_grid(plotlist=cformo()[[1]]$pl_corrxy[c(1,2)],ncol=2)
   })
   output$plot_3ds <- renderUI({
-    cformo()[[1]]$all_pl_3d_mani[[1]]
+    #cformo()[[1]]$all_pl_3d_mani[[1]]
   })
   output$print_sum <- renderPrint({
-    list(summary(cformo()[[2]]$regsum[[1]]),
-	 summary(cformo()[[3]]$regsum[[1]]))
+#    list(summary(cformo()[[2]]$regsum[[1]]),
+#	 summary(cformo()[[3]]$regsum[[1]]))
   })
   output$plot_res <- renderPlot({
-    l1 <- cformo()[[2]]$resplots[[1]][[1]]
-    l2 <- cformo()[[2]]$resplots[[1]][[2]]
-    l3 <- cformo()[[2]]$resplots[[1]][[3]]
-    l4 <- cformo()[[2]]$resplots[[1]][[4]]
-    cowplot::plot_grid(plotlist=list(l1,l2,l3,l4))
+    # l1 <- cformo()[[2]]$resplots[[1]][[1]]
+    # l2 <- cformo()[[2]]$resplots[[1]][[2]]
+    # l3 <- cformo()[[2]]$resplots[[1]][[3]]
+    # l4 <- cformo()[[2]]$resplots[[1]][[4]]
+    # cowplot::plot_grid(plotlist=list(l1,l2,l3,l4))
   })
   output$print_com <- renderPrint({
-    cformo()[[2]]$comdesc
+    #cformo()[[2]]$comdesc
   })
   output$plot_3d_rot <- renderPlotly({
-    cformo()[[1]]$rotplotly[[1]]
+    #cformo()[[1]]$rotplotly[[1]]
   })
   output$plot_bp <- renderPlot({
-    cformo()[[4]]$pl_2dsort
+    #cformo()[[4]]$pl_2dsort
   })
   output$meta_dsc <- renderPrint({
-    cformo()[['md']]
+    #cformo()[['md']]
   })
 }
 shinyApp(ui = ui, server = server)

@@ -13,10 +13,6 @@ pl3 <- function(df3p=NULL,selv=c("x","y","alpha")){
      )
    ) 
 }
-
-
-
-
 ##########################################################################e###################################################################
 #' @export wasmconload
 wasmconload <- function(){
@@ -273,16 +269,15 @@ ballcastsim <- function(dfm=(function(x){data.frame(P=seq(1,x),RV=as.integer(rno
 selreport <- function(
 		      baldata=NULL
 		      ){
+  browser()
   WS <- Sys.info()[['sysname']]=="Emscripten"
   da <- baldata[[1]]
   md <- baldata[[2]]
   frm <- md$sol$fr
-  co <- Countinggraphs(da)
+  co <-  cob <- Countinggraphs(da,omit=T)
   if (md$prg$cnd==1) {co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,frm=md$prg$frp,prma=md$prg$prma)}
   co$sortpre(frm)
   co$plot2d(selv=c(1:3,6))
-  #browser()
-  #co$pl_2dsort
   co$descriptive(frm)
   co$r2siminput(frm)
   co$plotxy(frm)
@@ -301,14 +296,13 @@ selreport <- function(
   ges$regression(md$sol$eq[1])
   ges$diagnostics()
   ges$hat_predict(svf=md$sol$va)
-  ges$hat_intcomp()
+  #ges$hat_intcomp()
   #### Identify
   ies <- Estimation(co$rdfc,frm)
   ies$regression(md$sol$eq[2])
   ies$diagnostics()
   # Identify
   # Bowplot
-  cob <- Countinggraphs(da,selvar=names(da))
   if (md$prg$cnd==1) {cob$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
   cob$sortpre("B",polyn=6)
   cob$plot2d(labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
@@ -595,7 +589,8 @@ Countingprocess <- setRefClass("Countingprocess",
 Countingprocess$methods(initialize=function(sdfinp=NULL,
 					   selvar=c('P','R','S','T','U','V'),
 					   polyn=7,
-					   sortby=alpha
+					   sortby=alpha,
+					   omit=F
 					   ){
 
   wasm <<- Sys.info()[['sysname']]=="Emscripten"
@@ -603,8 +598,9 @@ Countingprocess$methods(initialize=function(sdfinp=NULL,
   se <<- eqpar$meqs
   lx <<- eqpar$meql
   ils <- c('S','T','U','V')
-  sdfc <<- ballcount(dplyr::select(sdfinp,all_of(selvar)),se=se)
-  rdfci <<- rdfc <<- rofc <<- sdfc %>%
+  sdfc <<- ballcount(dplyr::select(sdfinp,all_of(selvar)),se=se) %>% { if (isTRUE(omit)) na.omit(.) else . } 
+
+  rdfci <<- rdfc <<- rofc <<- sdfc %>% 
     dplyr::arrange(alpha) %>%
     dplyr::mutate(pri=dplyr::row_number()/length(P)) %>%
     dplyr::relocate(pri,.before=P) %>%
@@ -723,7 +719,6 @@ Countingprocess$methods(sortpre=function(form="S",
 					 sortby='alpha',
 					 sv=c(1:6)
 					 ){
-
   selv <- stick[[1]][[form]]
   prop <- rev(selv)[1]
   psel <<- selv[sv]
