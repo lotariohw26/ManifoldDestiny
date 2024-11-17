@@ -303,15 +303,15 @@ selreport <- function(
   ies$diagnostics()
   # Identify
   # Bowplot
-  if (md$prg$cnd==1) {cob$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
-  cob$sortpre("B",polyn=6)
-  cob$plot2d(labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
-  selv=c(1:6))
-  cob$pl_2dsort[[1]]
+  #if (md$prg$cnd==1) {cob$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)}
+  #cob$sortpre("B",polyn=6)
+  #cob$plot2d(labs=list(title=NULL,x="precinct (normalized)",y="percentage",caption=NULL,alpha=0.4,size=0.5),
+  #selv=c(1:6))
+  #cob$pl_2dsort[[1]]
   return(list(co=co,
               ges=ges,
               ies=ies,
-              cb=cob,
+              cb=NULL,
               md=md))
 }
 ###' @export seloutput
