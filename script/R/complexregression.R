@@ -4,6 +4,16 @@ library(ggplot2)
 library(dplyr)
 source(paste0(rprojroot::find_rstudio_root_file(),"/R/abc.R"))
 ##########################################################################################################
+aps <- pma24
+#aps <- sma24
+co <- Countinggraphs(aps[[1]],selvar=c('PN','P','R','S','T','U','V'))
+#co$purging(z=md$prg$z,stuv=md$prg$stuv,blup=md$prg$blup,eqp=md$prg$eqp,prma=md$prg$prma)
+t2framerel <- co$rdfc %>% dplyr::mutate(Psi_s=S/R,Psi_t=T/R) |> dplyr::select(PN,P,R,S,T,U,V,alpha,Psi_s,Psi_t,lamda)
+
+
+##########################################################################################################
+##########################################################################################################
+##########################################################################################################
 # I
 set.seed(4242)
 n <- 8
@@ -32,7 +42,6 @@ complexlm::lm(z ~ x + y, data = t1framecom, weights = rep(1,nI))
 nII <- dim(t2framecom)[1]
 names(t2framecom)
 complexlm::lm(zi ~ x0y1 + x1y0 , data = t2framecom, weights = rep(1,nII))
-
 olsce(comdat(dr=t2framerel,pl=1,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
 ##########################################################################################################
 complexlm::lm(zi ~ x0y1 + x1y0 , data = t2framecom, weights = rep(1,nII))
@@ -41,4 +50,5 @@ complexlm::lm(zi ~ x0y1 + x1y0 + x0y2 + x1y1 +x2y0, data = t2framecom, weights =
 olsce(comdat(dr=t2framerel,pl=2,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
 complexlm::lm(zi ~ x0y1 + x1y0 + x0y2 + x1y1 +x2y0 + x0y3 + x1y2 + x2y1 + x3y0, data = t2framecom, weights = rep(1,nII))
 olsce(comdat(dr=t2framerel,pl=3,zv=c('alpha','NULL'),xv=c('lamda','Psi_s'),yv=c('lamda','Psi_t')))
+##########################################################################################################
 

@@ -40,6 +40,9 @@ gsh <- ballcastsim(perv,prow,proa,prob,ztec)
 assign(names(qrelsim)[1],list(gsh,qrelsim[[1]]))
 do.call("use_data", list(as.name(qrelsim[[1]]$nid), overwrite = TRUE))
 
+
+#!!sym()
+
 ## Rigged election
 cogr <- Countinggraphs(gsh)
 copl <- cogr$polyc[[1]][[1]]
