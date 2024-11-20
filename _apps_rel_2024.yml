@@ -19,10 +19,10 @@ pma24:
     va: "g"
     ro: [0]
   prg:
-    cnd: 0
+    cnd: 1
     z: 0 
-    stuv: [0,0,0,0]
-    blup: [0,1]
+    stuv: [50,50,50,50]
+    blup: [0.05,0.95]
     eqp: "alpha=k0+k1*g+k2*h"
   bib: [""]
 sma24:
@@ -46,10 +46,9 @@ sma24:
     va: "g"
     ro: [0]
   prg:
-    cnd: 0
+    cnd: 1
     z: 0 
-    stuv: [0,0,0,0]
-    blup: [0,1]
+    stuv: [50,50,50,50]
+    blup: [0.05,0.95]
     eqp: "alpha=k0+k1*g+k2*h"
   bib: [""]
-
