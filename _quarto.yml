@@ -31,12 +31,12 @@ project:
     # - "paper.qmd"
     #    - "tab.qmd"
     #- "tabset.qmd"
-    - "metaview.qmd"
-    - "laws.qmd"
-    - "man_bib.qmd"
-    #    - "simulations.qmd"
-    #    - "rigging.qmd"
-    - "analyzer.qmd"
+    #- "metaview.qmd"
+    #- "laws.qmd"
+    #- "man_bib.qmd"
+    ##    - "simulations.qmd"
+    ##    - "rigging.qmd"
+    #- "analyzer.qmd"
     #    - "restoration.qmd"
     # - "randpython.qmd"
     #    - "calculator.qmd"
@@ -46,11 +46,11 @@ website:
     left:
       - text: "Index"
         href: index.qmd
-      - text: "Documentation"
-        menu:
-        - text: "Presentation" 
-          href: "presentation.qmd"
-        #        #        - text: "Addendum 1: Arizona"
+        #- text: "Documentation"
+        #  menu:
+        #  - text: "Presentation" 
+        #    href: "presentation.qmd"
+        #  #        #        - text: "Addendum 1: Arizona"
         #        #          href: "addendum/Addendum_az.qmd"
         #        #        - text: "Addendum 2: Nevada"
         #        #          href: "addendum/Addendum_ne.qmd"
@@ -70,14 +70,14 @@ website:
         #          href: "https://lotariohw26.github.io/MD_BOOK1"
         #      - text: Bibliography
         #        href: man_bib.qmd
-      - text: Appendix
-        menu:
-        - text: "20 laws and 40 isometries"
-          href: "laws.qmd"
-      - text: WebAssembly
-        menu:
-        - text: "Analyzer"
-          href: "analyzer.qmd"
+        #- text: Appendix
+        #  menu:
+        #  - text: "20 laws and 40 isometries"
+        #    href: "laws.qmd"
+        #- text: WebAssembly
+        #  menu:
+        #  - text: "Analyzer"
+        #    href: "analyzer.qmd"
         #- text: "Simulations"
         #  href: "simulations.qmd"
         #- text: "Rigging"
