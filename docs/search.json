@@ -2,6 +2,16 @@
   {
     "objectID": "index.html",
     "href": "index.html",
+<<<<<<< HEAD
+=======
+    "title": "Manifold Destiny - or how to rig an election",
+    "section": "",
+    "text": "Based upon the ideas developed by Edward K. Solomon\nLast time updated: 2024-11-20 22:41:30"
+  },
+  {
+    "objectID": "tabset.html",
+    "href": "tabset.html",
+>>>>>>> a06d11dc6bda20760596f02c11496140f2130dd7
     "title": "{{< var titls >}}",
     "section": "",
     "text": "si— title: “Manifold Destiny - or how to rig an election” output: github_document execute: cache: false #webr: # show-startup-message: true # Display status of webR initialization # show-header-message: false # Check to see if COOP&COEP headers are set for speed. # packages: [‘ggplot2’,‘dplyr’,‘data.table’,‘readr’,‘plotly’,‘combinat’,‘htmltools’,‘broom’,‘cowplot’] # cell-options: # autorun: true filters: - panelize - pyodide\n\nBased upon the ideas developed by Edward K. Solomon\nLast time updated: 2025-04-10 21:43:28"
