@@ -1,4 +1,4 @@
-si---
+---
 title: "{{< var titll >}}"
 output: github_document
 execute: 
@@ -16,12 +16,18 @@ filters:
 
 ```{r, echo=F}
 # script/R/simulations.R
-# ![](pngs/md.png)
 ```
+
+![](images/md.png)
 
 **Based upon the ideas developed by Edward K. Solomon**
 
 **Last time updated: {{< now timestamp >}}**
+
+```{r}
+knitr::knit_exit()
+```
+
 
 ```{r}
 knitr::knit_exit()
