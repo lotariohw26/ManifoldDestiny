@@ -16,6 +16,11 @@ nocite: |
   @*
 ---
 
+# {{< var sec1.1 >}}
+
+```{r}
+knitr::knit_exit()
+```
 
 ```{r, echo=F, message=F, warning=F, results='hide'}
 ManifoldDestiny::wasmconload()
@@ -29,6 +34,9 @@ ssr <- selreport(ManifoldDestiny::apsnn)
 rsr <- selreport(ManifoldDestiny::aprhn)
 round(integral(polynomial(unname(ssr[[1]]$polyc[[1]]$coefficients))))
 ```
+
+
+
 
 # {{< var sec1.1 >}}
 

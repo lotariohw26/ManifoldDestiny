@@ -27,7 +27,7 @@ project:
   #  pre-render: prerendr.R
   render:
     - "index.qmd"
-    # - "presentation.qmd"
+    - "presentation.qmd"
     # - "paper.qmd"
     #    - "tab.qmd"
     #- "tabset.qmd"
@@ -46,10 +46,10 @@ website:
     left:
       - text: "Index"
         href: index.qmd
-        #- text: "Documentation"
-        #  menu:
-        #  - text: "Presentation" 
-        #    href: "presentation.qmd"
+      - text: "Documentation"
+        menu:
+        - text: "Presentation" 
+          href: "presentation.qmd"
         #  #        #        - text: "Addendum 1: Arizona"
         #        #          href: "addendum/Addendum_az.qmd"
         #        #        - text: "Addendum 2: Nevada"
@@ -87,7 +87,7 @@ website:
         #- text: "Pyodide"
         #  href: "randpython.qmd"
         # href: "randpython.qmd"
-      - text: "Pyodide"
+        # - text: "Pyodide"
   repo-url: "https://github.com/lotariohw26/ManifoldDestiny"
   site-url: "https://lotariohw26.github.io/ManifoldDestiny/"
   reader-mode: false
