@@ -130,3 +130,5 @@ dyntabulation <- function(fld="/data-raw/arizona/2024/",
   stodfl <- setNames(lapply(1:length(rac), function(i) do.call(rbind, lst_rac_snp[i, ])), rac)
 }
 
+
+
